@@ -1,0 +1,1372 @@
+[
+  {
+    "platform": "aos",
+    "old_value": "home",
+    "screen_name": "home_discovery",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 14,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-14"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "finder",
+    "screen_name": "gallery_home",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 15,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-15"
+    },
+    "note": "AOS MainTab.FINDER는 GalleryRoute입니다. 검색 화면과 합치면 안 됩니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "finder_search",
+    "screen_name": "finder_search",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 16,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-16"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "chatty",
+    "screen_name": null,
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 17,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-17"
+    },
+    "note": "채티 컨테이너 값입니다. 선택된 direct/lounge/project 정보가 없으면 하위 화면으로 정확히 복원할 수 없습니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "my_page",
+    "screen_name": "profile_home",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 18,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-18"
+    },
+    "note": "네이티브 프로필 컨테이너에서 발생합니다. Web my_resume와 중복 여부를 해결한 뒤 한쪽만 집계합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "finder_result_creator",
+    "screen_name": "finder_result_creator",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 21,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-21"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "finder_result_portfolio",
+    "screen_name": "finder_result_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 22,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-22"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "finder_result_project",
+    "screen_name": "finder_result_project",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 23,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-23"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "user_detail",
+    "screen_name": "profile_home",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 26,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-26"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "portfolio_detail",
+    "screen_name": "portfolio_detail",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 27,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-27"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "project_detail",
+    "screen_name": "project_detail",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 28,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-28"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "inspiration_detail",
+    "screen_name": "inspiration_detail",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 29,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-29"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "proposal_detail",
+    "screen_name": "media_viewer",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 30,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-30"
+    },
+    "note": "이 알파 AOS의 CastingDetailActivity는 WebPreviewActivityRoute에서 여는 첨부 미디어 미리보기입니다. Web의 실제 proposal_detail과 구분합니다. 다른 버전에는 발신 위치 재확인이 필요합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "proposal_create",
+    "screen_name": "proposal_form",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 33,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-33"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "action_context_only",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "proposal_edit",
+    "screen_name": "proposal_form",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 34,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-34"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "action_context_only",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "my_profile_card",
+    "screen_name": "profile_home",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 37,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-37"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "my_profile_preview",
+    "screen_name": "profile_share_preview",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 38,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-38"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "my_page_menu",
+    "screen_name": "settings_home",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 39,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-39"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "user_resume",
+    "screen_name": "career_home",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 40,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-40"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "visitor_today_bottom_sheet",
+    "screen_name": "profile_visitor_list",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 41,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-41"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "service_agreement",
+    "screen_name": "support_agreement_list",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 42,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-42"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "pending_agreement_detail",
+    "screen_name": "support_agreement_detail",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 43,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-43"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "shuffle_bundle",
+    "screen_name": "finder_shuffle_result",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 44,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-44"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "member_profile_inspiration",
+    "screen_name": "profile_inspiration",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 47,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-47"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "bookmark_creator",
+    "screen_name": "activity_bookmark_creator",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 50,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-50"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "bookmark_portfolio",
+    "screen_name": "activity_bookmark_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 51,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-51"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "contacts_first_connections",
+    "screen_name": "contact_first",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 54,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-54"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "contacts_follower",
+    "screen_name": "contact_follower",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 55,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-55"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "contacts_following",
+    "screen_name": "contact_following",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 56,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-56"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "contacts_team",
+    "screen_name": "team_list",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 57,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-57"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "discovery_recommend_keywords",
+    "screen_name": "finder_keyword",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 60,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-60"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "discovery_recommend_network",
+    "screen_name": "network_dial",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 61,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-61"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "app_entry",
+    "screen_name": null,
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 64,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-64"
+    },
+    "note": "SplashActivity의 시작 단계입니다. 앱 시작 진단 이벤트로 관리하며 로그인 화면 조회로 바꾸지 않습니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "signup_method",
+    "screen_name": "auth_entry",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 65,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-65"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "signup_terms",
+    "screen_name": "auth_signup_terms",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 66,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-66"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 69,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-69"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "text_portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 70,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-70"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "img_portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 71,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-71"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "video_portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 72,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-72"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "audio_portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 73,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-73"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "pdf_portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 74,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-74"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "youtube_portfolio_create",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 75,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-75"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "text_portfolio_edit",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 76,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-76"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "img_portfolio_edit",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 77,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-77"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "video_portfolio_edit",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 78,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-78"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "audio_portfolio_edit",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 79,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-79"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "pdf_portfolio_edit",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 80,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-80"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "youtube_portfolio_edit",
+    "screen_name": "upload_portfolio",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 81,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-81"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "project_card_create",
+    "screen_name": "upload_project",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 82,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-82"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "project_card_edit",
+    "screen_name": "upload_project",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 83,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-83"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "inspiration_create",
+    "screen_name": "upload_inspiration",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 84,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-84"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "inspiration_edit",
+    "screen_name": "upload_inspiration",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 85,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-85"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_id",
+    "screen_name": "profile_edit_id",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 88,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-88"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_ko_name",
+    "screen_name": "profile_edit_name_ko",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 89,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-89"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_en_name",
+    "screen_name": "profile_edit_name_en",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 90,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-90"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_jobs",
+    "screen_name": "profile_edit_profession_select",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 91,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-91"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_keyword_personal",
+    "screen_name": "profile_edit_keyword_style",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 92,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-92"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_keyword_working_preference",
+    "screen_name": "profile_edit_keyword_work",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 93,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-93"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "basic_info_keyword_ambition",
+    "screen_name": "profile_edit_keyword_goal",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 94,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-94"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "onboarding_cover_intro_profession",
+    "screen_name": "profile_edit_cover",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 97,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-97"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "onboarding_cover_intro_nickname",
+    "screen_name": "profile_edit_cover",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 98,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-98"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "onboarding_cover_intro_ko_name",
+    "screen_name": "profile_edit_cover",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 99,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-99"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "onboarding_cover_intro_tagline",
+    "screen_name": "profile_edit_cover",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 100,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-100"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "onboarding_cover_intro_media",
+    "screen_name": "profile_edit_cover",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 101,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-101"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "onboarding_cover_intro_profile_image",
+    "screen_name": "profile_edit_cover",
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 102,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-102"
+    },
+    "note": "공통 화면명 변경안입니다. 조건 속성과 함께 변환합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "aos",
+    "old_value": "undefinded",
+    "screen_name": null,
+    "evidence": {
+      "file": "core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt",
+      "line": 110,
+      "url": "https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-110"
+    },
+    "note": "미정 값입니다. 이름만으로 복원하지 말고 발신 위치를 확인합니다.",
+    "event_use": "screen_name_definition",
+    "proof_level": "enum_definition; per-callsite activation requires QA",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "bookmark_creator",
+    "screen_name": "activity_bookmark_creator",
+    "evidence": [
+      {
+        "file": "Projects/Features/Setting/Sources/View/BookMark/BookMarkView.swift",
+        "line": 73,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Setting/Sources/View/BookMark/BookMarkView.swift#lines-73"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "bookmark_portfolio",
+    "screen_name": "activity_bookmark_portfolio",
+    "evidence": [
+      {
+        "file": "Projects/Features/Setting/Sources/View/BookMark/BookMarkView.swift",
+        "line": 92,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Setting/Sources/View/BookMark/BookMarkView.swift#lines-92"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "my_profile_card",
+    "screen_name": "profile_home",
+    "evidence": [
+      {
+        "file": "Projects/Features/My/Sources/CommonMy/ProfileDetailView.swift",
+        "line": 1209,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/My/Sources/CommonMy/ProfileDetailView.swift#lines-1209"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "project_detail",
+    "screen_name": "project_detail",
+    "evidence": [
+      {
+        "file": "Projects/Features/My/Sources/ProjectCardDetail/ProjectCardDetailView.swift",
+        "line": 193,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/My/Sources/ProjectCardDetail/ProjectCardDetailView.swift#lines-193"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "finder_search",
+    "screen_name": "finder_search",
+    "evidence": [
+      {
+        "file": "Projects/Features/Finder/Sources/View/FinderSearchViews/FinderSearchView.swift",
+        "line": 296,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Finder/Sources/View/FinderSearchViews/FinderSearchView.swift#lines-296"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "team_list",
+    "screen_name": "team_list",
+    "evidence": [
+      {
+        "file": "Projects/Features/Team/Sources/List/TeamListView.swift",
+        "line": 37,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Team/Sources/List/TeamListView.swift#lines-37"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "signup_terms",
+    "screen_name": "auth_signup_terms",
+    "evidence": [
+      {
+        "file": "Projects/Features/Join/Sources/Component/TermsOfUse/TermsOfUseBottomSheetView.swift",
+        "line": 74,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Join/Sources/Component/TermsOfUse/TermsOfUseBottomSheetView.swift#lines-74"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "contacts_first_connections",
+    "screen_name": "contact_first",
+    "evidence": [
+      {
+        "file": "Projects/Features/Contact/Sources/View/ContactView.swift",
+        "line": 55,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Contact/Sources/View/ContactView.swift#lines-55"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "contacts_follower",
+    "screen_name": "contact_follower",
+    "evidence": [
+      {
+        "file": "Projects/Features/Contact/Sources/View/ContactView.swift",
+        "line": 94,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Contact/Sources/View/ContactView.swift#lines-94"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "contacts_following",
+    "screen_name": "contact_following",
+    "evidence": [
+      {
+        "file": "Projects/Features/Contact/Sources/View/ContactView.swift",
+        "line": 137,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Contact/Sources/View/ContactView.swift#lines-137"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "portfolio_detail",
+    "screen_name": "portfolio_detail",
+    "evidence": [
+      {
+        "file": "Projects/Features/Home/Sources/FeedDetail/FeedDetailView.swift",
+        "line": 1079,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Home/Sources/FeedDetail/FeedDetailView.swift#lines-1079"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "inspiration_detail",
+    "screen_name": "inspiration_detail",
+    "evidence": [
+      {
+        "file": "Projects/Features/Home/Sources/Inspiration/InspirationDetailView.swift",
+        "line": 475,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Home/Sources/Inspiration/InspirationDetailView.swift#lines-475"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "home",
+    "screen_name": "home_discovery",
+    "evidence": [
+      {
+        "file": "Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift",
+        "line": 249,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift#lines-249"
+      },
+      {
+        "file": "Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift",
+        "line": 249,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift#lines-249"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "finder",
+    "screen_name": "finder_search",
+    "evidence": [
+      {
+        "file": "Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift",
+        "line": 226,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift#lines-226"
+      }
+    ],
+    "note": "finder 값은 현재 .finder 탭으로 복귀하는 호출 위치에 한정합니다. 과거 빌드에는 적용하지 않습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "finder_result_creator",
+    "screen_name": "finder_result_creator",
+    "evidence": [
+      {
+        "file": "Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift",
+        "line": 230,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift#lines-230"
+      },
+      {
+        "file": "Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift",
+        "line": 1588,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift#lines-1588"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "finder_result_portfolio",
+    "screen_name": "finder_result_portfolio",
+    "evidence": [
+      {
+        "file": "Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift",
+        "line": 1590,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift#lines-1590"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "ios",
+    "old_value": "finder_result_project",
+    "screen_name": "finder_result_project",
+    "evidence": [
+      {
+        "file": "Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift",
+        "line": 1592,
+        "url": "https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift#lines-1592"
+      }
+    ],
+    "note": "명시 screen_view 호출 또는 Finder 탭 이름을 확인했습니다.",
+    "proof_level": "explicit_source_call; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "my_resume",
+    "screen_name": "profile_home",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 42,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-42"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "user_detail",
+    "screen_name": "profile_home",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 43,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-43"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "inbox_suggestion",
+    "screen_name": "proposal_inbox",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 44,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-44"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "proposal_detail",
+    "screen_name": "proposal_detail",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 45,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-45"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "proposal_create",
+    "screen_name": "proposal_form",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 46,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-46"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "proposal_edit",
+    "screen_name": "proposal_form",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 47,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-47"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  },
+  {
+    "platform": "web",
+    "old_value": "signup_general_privileges",
+    "screen_name": "support_privilege",
+    "evidence": {
+      "file": "src/constants/routes.ts",
+      "line": 48,
+      "url": "https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-48"
+    },
+    "note": "명시 경로 매핑값입니다. 초기화 설정과 실제 수신은 별도 검증합니다.",
+    "proof_level": "route_mapping; delivery_not_tested",
+    "validity": "captured alpha source and producer only; do not apply to all historical builds",
+    "historical_count_comparable": false
+  }
+]

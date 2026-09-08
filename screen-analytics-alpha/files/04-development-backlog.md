@@ -1,0 +1,148 @@
+# 개발 수정 목록과 확인 근거
+
+P0는 이번 계측 변경을 수집 완료로 판정하기 전에 해결할 항목입니다. 운영 장애의 심각도를 뜻하지 않습니다. 담당은 역할 기준이며 실제 담당자·일정은 배정이 필요합니다. 아래 티켓은 전달용 초안이고 외부 이슈 트래커에는 등록하지 않았습니다.
+
+## AN-01 · 같은 팀 목록의 이름 통일
+
+우선순위 P0 · 담당 AOS·iOS
+
+AOS TeamHomeActivity는 contacts_team, iOS TeamListView는 team_list를 화면 이름으로 사용합니다.
+
+수정할 내용: 두 화면의 목표 이름을 team_list로 맞추고 기존 값은 플랫폼·버전 조건을 둔 대응표로 연결합니다.
+
+통과 조건: 각 플랫폼에서 채티의 팀 버튼으로 들어가면 team_list가 한 번 수신되고 한국어 표시명은 내 팀·팀 초대 목록입니다.
+
+근거: [aos TeamHomeActivity.kt:21](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/teamhome/TeamHomeActivity.kt#lines-21), [ios TeamListView.swift:37](https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Team/Sources/List/TeamListView.swift#lines-37).
+
+## AN-02 · 첨부 미리보기와 제안 상세의 이름 충돌 해소
+
+우선순위 P0 · 담당 AOS·Web·데이터
+
+AOS CastingDetailActivity는 type·url을 받아 미디어 미리보기를 그리면서 C8Screen.ProposalDetail을 보냅니다. Web의 proposal_detail은 실제 제안 상세 경로입니다.
+
+수정할 내용: AOS 첨부 미리보기는 media_viewer와 content_type으로, Web 제안 상세는 proposal_detail로 분리합니다. 과거 proposal_detail은 발신 스트림·플랫폼·호출 위치를 확인한 범위만 변환합니다.
+
+통과 조건: 첨부 미리보기와 제안 상세를 연속 방문해 각 이름이 정확히 한 번씩 기록되고 같은 화면으로 합산되지 않습니다.
+
+근거: [aos CastingDetailActivity.kt:86](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/app/src/main/java/com/heyratel/cre8orclub/presentation/casting/CastingDetailActivity.kt#lines-86), [aos WebProductActivityIntentFactoryModule.kt:61](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/app/src/main/java/com/heyratel/cre8orclub/presentation/webview/WebProductActivityIntentFactoryModule.kt#lines-61), [web routes.ts:62](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-62).
+
+## AN-03 · 빠른 다른 화면 이동을 막는 시간 제한 교체
+
+우선순위 P0 · 담당 Web
+
+useTrackPageView는 화면 이름 비교 전에 훅 인스턴스의 마지막 시각만 비교합니다. 실제 함수를 모의 시계로 실행했을 때 100ms 뒤 다른 경로의 조회가 억제됐습니다.
+
+수정할 내용: 고정 1초 제한 대신 동일 방문·동일 이벤트 식별값 중복을 막습니다. 다른 목적지 이동은 시간 간격과 무관하게 허용합니다. AN-04와 같은 변경 묶음으로 배포하며 시간 제한만 단독 제거하지 않습니다.
+
+통과 조건: A→B를 0.1초 간격으로 이동하면 총 두 조회, 같은 방문의 중복 콜백이면 총 한 조회입니다.
+
+근거: [web useTrackPageView.ts:21](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/useTrackPageView.ts#lines-21).
+
+## AN-04 · 보이지 않는 사전 로딩을 방문에서 제외
+
+우선순위 P0 · 담당 Web·AOS·iOS
+
+Web은 경로 효과에서 trackScreenView를 바로 호출하며 주 화면·초기 가시성 확인이 없습니다. 모의 hidden 상태의 마운트에서도 이벤트가 생성됐습니다. 실제 알파 WebView의 수신 중복은 미검증입니다.
+
+수정할 내용: 주 WebView·가시성·콘텐츠 준비 조건을 모두 만족한 때 방문을 만듭니다. 호스트는 명시적 가시성 상태와 수집 프로토콜을 전달합니다. visibilitychange와 webviewVisible 복귀 콜백도 같은 방문 식별값을 사용해 기존 방문의 조회를 다시 올리지 않습니다. AN-03과 함께 배포합니다.
+
+통과 조건: 현재 프로필과 양옆 두 프로필을 준비했을 때 현재 프로필만 기록되고, 다음 프로필이 실제 보일 때 새 방문 한 건이 기록됩니다. 1초 미만 및 1초 초과 앱·탭 복귀 모두 기존 방문의 조회 증가가 없어야 합니다.
+
+근거: [web useTrackPageView.ts:32](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/useTrackPageView.ts#lines-32), [web App.tsx:116](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/App.tsx#lines-116), [web Provider.tsx:47](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/Provider.tsx#lines-47), [web useTrackPageView.ts:52](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/useTrackPageView.ts#lines-52), [web useTrackPageView.ts:37](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/useTrackPageView.ts#lines-37).
+
+## AN-05 · 체류 시작 시각과 종료 처리 개선
+
+우선순위 P0 · 담당 Web
+
+enteredDateTime은 모듈 상수입니다. 모듈 로드 5분 후 화면에 들어가 1분 머문 모의 실행에서 6분 구간이 생성됐습니다. cleanup은 리스너만 제거하며 추가 전송하지 않습니다.
+
+수정할 내용: 실제 전면 진입 시 구간을 열고 숨김·다른 목적지 이동·종료 때 닫습니다. 복귀 때 새 전면 구간을 열며 같은 구간 중복 전송을 제거합니다.
+
+통과 조건: 사전 대기 5분을 빼고 전면 체류 1분만 기록합니다. 재진입·SPA 이동·웹뷰 가려짐에서도 시작·종료 구간이 맞습니다.
+
+근거: [web use체류시간로깅.ts:8](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/use%EC%B2%B4%EB%A5%98%EC%8B%9C%EA%B0%84%EB%A1%9C%EA%B9%85.ts#lines-8), [web use체류시간로깅.ts:40](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/use%EC%B2%B4%EB%A5%98%EC%8B%9C%EA%B0%84%EB%A1%9C%EA%B9%85.ts#lines-40), [web index.tsx:30](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/pages/profile-v3/index.tsx#lines-30).
+
+## AN-06 · 내부 로그의 기기·버전 필드 대응
+
+우선순위 P1 · 담당 Web·백엔드
+
+Web Beacon 본문은 X-Device-Info·X-App-Version 키를 사용하지만 Web에 포함된 공개 API 타입은 deviceInformation·appVersion입니다. 실제 서버의 알파 수신 결과는 미확인입니다.
+
+수정할 내용: 인증 API의 HTTP 헤더와 공개 Beacon API의 JSON 필드를 구분해 현재 배포 계약에 맞춥니다. 새 계약에는 실제 앱·웹 빌드 정보를 저장합니다.
+
+통과 조건: 같은 테스트 방문의 내부 수신 레코드에서 플랫폼·앱 버전·빌드·Web 배포 식별값을 확인할 수 있습니다.
+
+근거: [web use체류시간로깅.ts:27](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/hooks/use%EC%B2%B4%EB%A5%98%EC%8B%9C%EA%B0%84%EB%A1%9C%EA%B9%85.ts#lines-27), [web index.d.ts:11048](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/types/server/index.d.ts#lines-11048).
+
+## AN-07 · 채티·마이 탭의 내부 분류 공백 처리
+
+우선순위 P0 · 담당 AOS·백엔드·데이터
+
+AOS 메인 탭은 INBOX·MY_PAGE를 체류 분류로 선택하고 data 계층은 두 값을 전송 대상에서 제외합니다. 하위 프로필 로그 등 다른 경로까지 모두 없다는 뜻은 아닙니다.
+
+수정할 내용: 채티의 실제 선택 목록과 프로필의 주체·표현 방식을 공통 화면 이벤트에 기록합니다. 지원되지 않는 enum을 무작정 추가 전송하지 않습니다.
+
+통과 조건: 채티 하위 목록과 프로필 방문이 새 내부 수신 계약에 남습니다. 구버전 체류 수집은 기존 정책을 유지하며 새 방문 수에 중복 가산하지 않습니다.
+
+근거: [aos MainScreen.kt:576](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainScreen.kt#lines-576), [aos ScreenDurationTypeSupport.kt:19](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/screenlog/ScreenDurationTypeSupport.kt#lines-19).
+
+## AN-08 · 프로젝트 검색 결과의 내부 체류 매핑 확인
+
+우선순위 P1 · 담당 iOS·백엔드
+
+iOS Finder 프로젝트 탭은 GA 이름을 가지지만 ScreenDurationTypeDomain 대응에서 nil을 반환합니다. Web에 포함된 서버 타입과 참고 API 소스에는 FINDER_SEARCH_RESULT_PROJECT가 있습니다. 실제 알파 API 지원은 추가 확인이 필요합니다.
+
+수정할 내용: 알파 API 지원을 확인한 뒤 iOS의 타입·호출부를 맞추거나 새 공통 화면 이벤트로 수집합니다. 오래된 코드 주석만으로 미지원이라고 판단하지 않습니다.
+
+통과 조건: 프로젝트 탭 방문과 체류 구간이 GA 및 내부 수신에서 확인되고, 미지원 응답이 발생하면 성공 처리하지 않습니다.
+
+근거: [ios FinderSearchViewModel.swift:1597](https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Features/Finder/Sources/ViewModel/FinderSearchViewModel.swift#lines-1597), [web index.d.ts:11051](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/types/server/index.d.ts#lines-11051).
+
+## AN-09 · 화면명과 기존 screen_id의 의미 분리
+
+우선순위 P0 · 담당 AOS·iOS·Web·데이터
+
+AOS screen_id는 프로필 UID나 상세 콘텐츠 번호를 받습니다. 공통 화면명과 같은 의미가 아닙니다. 현재 GA·체류 API는 공통 방문 식별값을 공유하지 않습니다.
+
+수정할 내용: 공통 screen_name, 방문 screen_instance_id, 재시도 event_id를 분리합니다. 기존 screen_id를 덮어쓰지 않습니다.
+
+통과 조건: 같은 종류의 다른 콘텐츠를 연속으로 보면 이름은 같고 방문 식별값은 다릅니다. 같은 이벤트 재시도는 동일 event_id로 내부에서 중복 제거됩니다.
+
+근거: [aos MemberDetailActivity.kt:201](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/app/src/main/java/com/heyratel/cre8orclub/presentation/member/MemberDetailActivity.kt#lines-201), [aos FeedDetailActivity.kt:132](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/app/src/main/java/com/heyratel/cre8orclub/presentation/feed/detail/FeedDetailActivity.kt#lines-132).
+
+## AN-10 · 알파 GA 수집 설정과 실제 배포 확인
+
+우선순위 P0 · 담당 Web·배포 담당·데이터
+
+Web은 측정 ID와 초기화 플래그가 없으면 전송하지 않습니다. 저장소의 Alpha Build에는 측정 ID를 명시적으로 export하지 않고, 실제 CI 변수는 미확인입니다. Alpha Deploy는 수동 단계입니다.
+
+수정할 내용: 알파 전용 측정 ID·스트림·CI 변수·실제 번들을 확인하고 테스트 이벤트가 올바른 알파 수집처에 도달하는지 검증합니다.
+
+통과 조건: 배포 성공 커밋·빌드 식별값과 GA 테스트 수신을 연결합니다. 개발 브랜치 최신화만으로 통과시키지 않습니다.
+
+근거: [web ga.ts:16](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/utils/ga.ts#lines-16), [web bitbucket-pipelines.yml:187](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/bitbucket-pipelines.yml#lines-187), [web bitbucket-pipelines.yml:204](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/bitbucket-pipelines.yml#lines-204).
+
+## AN-11 · 목록 전체에 공통 기록 규칙 적용
+
+우선순위 P1 · 담당 AOS·iOS·Web
+
+현행 소스에는 AOS 화면명 enum 66개, iOS 명시 화면 이름 17개, Web 명시 매핑 이름 7개가 확인됩니다. 정의 수·실제 호출 수·수신 수는 서로 다른 수치입니다.
+
+수정할 내용: 새 목록의 주 화면에 기록을 적용하고 연락처·검색·북마크·채티의 컨테이너 중복과 가입 약관·팀 목록 누락을 처리합니다.
+
+통과 조건: 모든 적용 대상에 구현 위치·테스트 케이스·담당자·수신 증거가 연결됩니다. 선언 존재만으로 정상 수집 판정하지 않습니다.
+
+근거: [aos C8Screen.kt:12](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/core/event/api/src/main/kotlin/com/heyratel/cre8orclub/core/event/C8Screen.kt#lines-12), [ios LogManager.swift:29](https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/AppFoundation/Sources/Logging/LogManager.swift#lines-29), [web routes.ts:41](https://bitbucket.org/cre8orclub/c8c-web/src/de80fc8d25d499c84f35fa34235cdb57b74d7d04/src/constants/routes.ts#lines-41).
+
+## AN-12 · 과거 이름의 조건부 변환과 집계 단위 변경 관리
+
+우선순위 P0 · 담당 데이터·기획·개발
+
+AOS finder는 GalleryRoute를 가리키지만 현재 iOS finder 문자열 호출은 검색 탭으로 복귀하는 코드에 남아 있습니다. 또한 이전 내부 enum에는 작성 완료·중단이 화면 조회와 함께 포함됩니다.
+
+수정할 내용: 플랫폼·버전·발신 위치·이벤트 종류를 포함해 변환합니다. 변환 근거가 없으면 unknown으로 남기며 홈에 합치지 않습니다. 기존 값이 같아도 의미가 다르면 합산하지 않습니다.
+
+통과 조건: 알파 예제와 과거 표본에서 finder·proposal_detail·작성 완료 값이 각각 올바른 화면 또는 행동으로 분리됩니다. 변경 전후 집계 차이를 설명할 수 있습니다.
+
+근거: [aos MainTab.kt:16](https://bitbucket.org/cre8orclub/c8c-aos/src/b135a94143c455b3251c83332ab05451f849f9db/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt#lines-16), [ios MainTabView.swift:226](https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift#lines-226), [ios ScreenDurationTypeDomain.swift:12](https://bitbucket.org/cre8orclub/c8c-swift/src/34ad6c9dbe92b49383c8d20ca4eced3f5ca7c8ac/Projects/Domain/Sources/App/Model/ScreenDurationTypeDomain.swift#lines-12).
+

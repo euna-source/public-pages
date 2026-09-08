@@ -1,0 +1,22 @@
+{
+  "event_name": "screen_view",
+  "parameters": {
+    "screen_name": "profile_home",
+    "screen_schema_version": "alpha-proposal-20260909.1",
+    "screen_instance_id": "00000000-0000-4000-8000-000000000001",
+    "event_id": "00000000-0000-4000-8000-000000000002",
+    "platform": "ios",
+    "surface": "webview",
+    "environment": "alpha",
+    "app_version": "3.0.2",
+    "app_build": "EXAMPLE_BUILD_ONLY",
+    "web_build": "EXAMPLE_WEB_BUILD_ONLY",
+    "previous_screen": "home_discovery",
+    "navigation_type": "forward",
+    "entry_point": "home",
+    "content_state": "ready",
+    "profile_owner": "other",
+    "view_mode": "resume",
+    "screen_class": "WebView"
+  }
+}

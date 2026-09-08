@@ -1,0 +1,43 @@
+{
+  "registry_rows": 184,
+  "policies": {
+    "primary_screen": 176,
+    "container_only": 4,
+    "component_event_only": 1,
+    "state_event_only": 3
+  },
+  "definition_status": {
+    "proposed_for_team_review": 165,
+    "legacy_entry_requires_confirmation": 19
+  },
+  "platform_rows": {
+    "aos": 132,
+    "ios": 116,
+    "web": 47
+  },
+  "ga_source_name_counts": {
+    "aos_enum_definitions": 66,
+    "ios_explicit_screen_names": 17,
+    "web_explicit_tracked_names": 7
+  },
+  "legacy_internal_types": 64,
+  "inherited_source_rows": 741,
+  "source_dispositions": {
+    "component_or_modal_reviewed_outside_primary_screen_registry": 347,
+    "registry_mapped": 338,
+    "legacy_or_unresolved_not_activated": 29,
+    "webview_host_use_resolved_web_destination": 2,
+    "removed_or_replaced_see_source_audit": 9,
+    "startup_diagnostic_not_product_visit": 2,
+    "os_owned_picker_not_product_screen": 5,
+    "full_task_overlay_mapped": 3,
+    "os_owned_composer_not_product_screen": 1,
+    "system_preview_under_media_viewer": 1,
+    "os_owned_share_sheet_not_product_screen": 1,
+    "replaced_by_team_list": 1,
+    "mapped_to_reviewed_contact_tab": 1,
+    "redirect_or_development_login_not_product_visit": 1
+  },
+  "source_new_candidates": 139,
+  "live_verification": "not_performed"
+}

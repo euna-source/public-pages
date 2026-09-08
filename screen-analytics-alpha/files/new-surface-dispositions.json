@@ -1,0 +1,1258 @@
+[
+  {
+    "platform": "aos",
+    "symbol": "initView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/member/MemberDetailActivity.kt",
+    "line": 232,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "initView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/member/ProfileDetailBottomSheetFragment.kt",
+    "line": 47,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "initView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/base/BaseActivity.kt",
+    "line": 54,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "initView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/feed/inspiration/InspirationDetailActivity.kt",
+    "line": 145,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "WebView",
+    "file": "data/data-api/src/main/kotlin/com/heyratel/cre8orclub/data/discovery/model/DiscoverySlotEntity.kt",
+    "line": 100,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "WebView",
+    "file": "feature/home/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/home/discovery/model/DiscoveryFeedItemUiModel.kt",
+    "line": 102,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "prepareLoungePage",
+    "file": "data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/chatty/group/GroupChatHomeSnapshotCoordinator.kt",
+    "line": 54,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "prepareProjectPage",
+    "file": "data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/chatty/group/GroupChatHomeSnapshotCoordinator.kt",
+    "line": 57,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "persistLoungePage",
+    "file": "data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/chatty/group/GroupChatHomeSnapshotCoordinator.kt",
+    "line": 60,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "persistProjectPage",
+    "file": "data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/chatty/group/GroupChatHomeSnapshotCoordinator.kt",
+    "line": 73,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "preparePage",
+    "file": "data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/chatty/group/GroupChatHomeSnapshotCoordinator.kt",
+    "line": 119,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "persistPage",
+    "file": "data/data-impl/src/main/kotlin/com/heyratel/cre8orclub/data/impl/chatty/group/GroupChatHomeSnapshotCoordinator.kt",
+    "line": 142,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "renderPage",
+    "file": "core/designsystem/src/main/kotlin/com/heyratel/cre8orclub/core/designsystem/component/media/pdf/C8PdfFirstPageDecoder.kt",
+    "line": 51,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "DiscoveryContentDetailRoute",
+    "file": "feature/detail/ui/src/main/kotlin/com/heyratel/cre8orclub/feature/detail/ui/DiscoveryContentDetailRoute.kt",
+    "line": 76,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "DetailPdfFirstPage",
+    "file": "feature/detail/ui/src/main/kotlin/com/heyratel/cre8orclub/feature/detail/ui/component/media/DetailPdfFirstPage.kt",
+    "line": 33,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ProjectGroupChatRoomActivityRoute",
+    "file": "feature/chatty/api/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/api/ProjectGroupChatRoomActivityRoute.kt",
+    "line": 6,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ChatRoomActivityRoute",
+    "file": "feature/chatty/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/room/ChatRoomActivityRoute.kt",
+    "line": 10,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "applyPage",
+    "file": "feature/chatty/ui/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/ui/multiuser/ChattyMultiUserViewModel.kt",
+    "line": 619,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ChattyMultiUserListRoute",
+    "file": "feature/chatty/ui/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/ui/multiuser/ChattyMultiUserListRoute.kt",
+    "line": 35,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ChatRoomRoute",
+    "file": "feature/chatty/ui/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/ui/room/ChatRoomRoute.kt",
+    "line": 57,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ChattyProfileKnockDialogFragment",
+    "file": "feature/chatty/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/knock/ChattyProfileKnockDialogFragment.kt",
+    "line": 31,
+    "change": "R085",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "onCreateView",
+    "file": "feature/chatty/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/chatty/knock/ChattyProfileKnockDialogFragment.kt",
+    "line": 42,
+    "change": "R085",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "onCreateView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/birth/BirthBottomSheetFragment.kt",
+    "line": 50,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "openWebViewActivityRoute",
+    "file": "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/deeplink/OpenWebRoute.kt",
+    "line": 23,
+    "change": "R081",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "UserResumeActivityRoute",
+    "file": "feature/member/api/src/main/kotlin/com/heyratel/cre8orclub/feature/member/api/UserResumeActivityRoute.kt",
+    "line": 9,
+    "change": "A",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "SelfDescriptionInfoActivityRoute",
+    "file": "feature/member/api/src/main/kotlin/com/heyratel/cre8orclub/feature/member/api/SelfDescriptionInfoActivityRoute.kt",
+    "line": 9,
+    "change": "A",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "logScreenView",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/ContactViewModel.kt",
+    "line": 740,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "logScreenView",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/search/ContactSearchViewModel.kt",
+    "line": 242,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "TeamHomeActivityRoute",
+    "file": "feature/contact/api/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/api/TeamHomeActivityRoute.kt",
+    "line": 10,
+    "change": "A",
+    "classification": "mapped",
+    "screen_name": "team_list",
+    "reason": "독립 팀 목록 및 그 구성"
+  },
+  {
+    "platform": "aos",
+    "symbol": "selectPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/ContactViewModel.kt",
+    "line": 308,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactInitialPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/ContactViewModel.kt",
+    "line": 764,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/ContactViewModel.kt",
+    "line": 776,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/ContactScreenDurationTracker.kt",
+    "line": 65,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/component/ContactEmptyContent.kt",
+    "line": 64,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/component/ContactEmptyContent.kt",
+    "line": 71,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/component/ContactEmptyContent.kt",
+    "line": 79,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/component/ContactEmptyContent.kt",
+    "line": 85,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/component/ContactTabRow.kt",
+    "line": 111,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ContactPage",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/search/ContactSearchViewModel.kt",
+    "line": 269,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "TeamHomeScreen",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/teamhome/TeamHomeScreen.kt",
+    "line": 58,
+    "change": "A",
+    "classification": "mapped",
+    "screen_name": "team_list",
+    "reason": "독립 팀 목록 및 그 구성"
+  },
+  {
+    "platform": "aos",
+    "symbol": "TeamHomeActivity",
+    "file": "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/teamhome/TeamHomeActivity.kt",
+    "line": 18,
+    "change": "A",
+    "classification": "mapped",
+    "screen_name": "team_list",
+    "reason": "독립 팀 목록 및 그 구성"
+  },
+  {
+    "platform": "aos",
+    "symbol": "HomeActivityRoute",
+    "file": "feature/home/api/src/main/kotlin/com/heyratel/cre8orclub/feature/home/api/HomeActivityRoute.kt",
+    "line": 6,
+    "change": "A",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ChattyRoute",
+    "file": "feature/home/api/src/main/kotlin/com/heyratel/cre8orclub/feature/home/api/ChattyRoute.kt",
+    "line": 7,
+    "change": "A",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "WithdrawConfirmRoute",
+    "file": "feature/settings/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/settings/account/withdraw/WithdrawConfirmActivity.kt",
+    "line": 66,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ToMyPage",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt",
+    "line": 199,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "launchMyNotificationWebView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt",
+    "line": 1451,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "launchClubWebView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt",
+    "line": 1485,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "launchWebSheetActivity",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt",
+    "line": 1516,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "launchWebView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt",
+    "line": 1529,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "Route",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt",
+    "line": 10,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "CastingPreviewScreen",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/casting/CastingDetailActivity.kt",
+    "line": 105,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "ComponentActivity",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/base/LegacySessionExpiredRelogin.kt",
+    "line": 23,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "VideoPreView",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/crop/VideoCropActivity.kt",
+    "line": 105,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "createContactReportRoute",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/presentation/contact/search/ContactSearchReportBottomSheetScreen.kt",
+    "line": 31,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "aos",
+    "symbol": "launchMaintenanceActivity",
+    "file": "app/src/main/java/com/heyratel/cre8orclub/data/di/MaintenanceInterceptor.kt",
+    "line": 159,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamRoute",
+    "file": "Projects/AppRoute/Sources/Route/TeamRoute.swift",
+    "line": 8,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ContactRoute",
+    "file": "Projects/AppRoute/Sources/Route/ContactRoute.swift",
+    "line": 8,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CommentListView",
+    "file": "Projects/SharedFeature/Surface/SharedFeed/Sources/Feed/Comment/CommentListView.swift",
+    "line": 24,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ProfileCardBackgroundVideoCropViewPreviewView",
+    "file": "Projects/SharedFeature/Surface/SharedProfileEdit/Sources/ProfileDataEditFlow/Video/ProfileCardBackgroundVideoCropView.swift",
+    "line": 168,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CreatorContentHeaderView",
+    "file": "Projects/SharedFeature/Capability/SharedCreatorSummary/Sources/CreatorContentHeaderView.swift",
+    "line": 41,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CreatorRespectPhraseSectionView",
+    "file": "Projects/SharedFeature/Capability/SharedCreatorSummary/Sources/CreatorRespectPhraseSectionView.swift",
+    "line": 21,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CreatorParticipantsRowView",
+    "file": "Projects/SharedFeature/Capability/SharedCreatorSummary/Sources/CreatorParticipantsRowView.swift",
+    "line": 7,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ToastPassthroughHostView",
+    "file": "Projects/UIComponents/Sources/Utility/OverWindowPresenter.swift",
+    "line": 19,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamWorkBadgeView",
+    "file": "Projects/UIComponents/Sources/Component/Chip/TeamWorkBadgeView.swift",
+    "line": 12,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CommentComposerView",
+    "file": "Projects/UIComponents/Sources/Component/Feed/CommentComposerView.swift",
+    "line": 11,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "PortfolioGridItemDisplayView",
+    "file": "Projects/UIComponents/Sources/Component/Portfolio/PortfolioGridItemDisplayView.swift",
+    "line": 14,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "PortfolioThumbnailImageView",
+    "file": "Projects/UIComponents/Sources/Component/Portfolio/PortfolioThumbnailImageView.swift",
+    "line": 23,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ModalChromeView",
+    "file": "Projects/UIComponents/Sources/Component/Modal/Modal.swift",
+    "line": 135,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ModalOverlaySheetPanelView",
+    "file": "Projects/UIComponents/Sources/Component/Modal/ModalOverlaySheet.swift",
+    "line": 261,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ProjectCardGridItemDisplayView",
+    "file": "Projects/UIComponents/Sources/Component/ProjectCard/ProjectCardGridItemDisplayView.swift",
+    "line": 14,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "VideoLooperView",
+    "file": "Projects/UIComponents/Sources/Component/Media/VideoLooperView.swift",
+    "line": 29,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ProfileCardBackgroundImageEditFlowViewPreviewView",
+    "file": "Projects/UIComponents/Sources/Component/ProfileDataEditFlow/Image/ProfileCardBackgroundImageEditFlowView.swift",
+    "line": 249,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportVideoEditorView",
+    "file": "Projects/Features/QAReport/Sources/Capture/QAReportVideoEditorView.swift",
+    "line": 11,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportPhotoPickerView",
+    "file": "Projects/Features/QAReport/Sources/Capture/QAReportPhotoPickerView.swift",
+    "line": 12,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportMarkupPreviewView",
+    "file": "Projects/Features/QAReport/Sources/Capture/QAReportMarkupPreviewView.swift",
+    "line": 15,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportProgressBarView",
+    "file": "Projects/Features/QAReport/Sources/View/QAReportProgressBarView.swift",
+    "line": 12,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportSheetView",
+    "file": "Projects/Features/QAReport/Sources/View/QAReportSheetView.swift",
+    "line": 13,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportPresentationRootView",
+    "file": "Projects/Features/QAReport/Sources/Presentation/QAReportPresentationRootView.swift",
+    "line": 13,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "QAReportRecordingBadgeView",
+    "file": "Projects/Features/QAReport/Sources/Presentation/QAReportRecordingBadgeView.swift",
+    "line": 12,
+    "change": "A",
+    "classification": "internal_qa_excluded",
+    "reason": "QA 도구 전용 표면"
+  },
+  {
+    "platform": "ios",
+    "symbol": "ProjectCardIDOnlyLoadingView",
+    "file": "Projects/Features/My/Sources/ProjectCardDetail/ProjectCardDetailView.swift",
+    "line": 279,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ProjectCardDetailViewContentView",
+    "file": "Projects/Features/My/Sources/ProjectCardDetail/ProjectCardDetailView.swift",
+    "line": 444,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "MyBasicInfoRouteView",
+    "file": "Projects/Features/My/Sources/CommonMy/BasicInfo/MyBasicInfoRouteView.swift",
+    "line": 19,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "BasicInfoRowView",
+    "file": "Projects/Features/My/Sources/CommonMy/Components/BasicInfoSheet/BasicInfoSheetView.swift",
+    "line": 316,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "RefreshedPage",
+    "file": "Projects/Features/My/Sources/CommonMy/ProfileList/Grid/Portfolio/ProfileListPortfolioGridViewModel.swift",
+    "line": 120,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "FinderSearchBarView",
+    "file": "Projects/Features/Finder/Sources/View/FinderSearchViews/FinderSearchView.swift",
+    "line": 429,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamDetailTabScrollView",
+    "file": "Projects/Features/Team/Sources/Detail/TeamDetailTabScrollView.swift",
+    "line": 20,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamMoreRowView",
+    "file": "Projects/Features/Team/Sources/List/TeamMoreRowView.swift",
+    "line": 11,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamListContentView",
+    "file": "Projects/Features/Team/Sources/List/TeamListContentView.swift",
+    "line": 21,
+    "change": "R068",
+    "classification": "mapped",
+    "screen_name": "team_list",
+    "reason": "독립 팀 목록 및 그 구성"
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamListEmptyView",
+    "file": "Projects/Features/Team/Sources/List/TeamListEmptyView.swift",
+    "line": 18,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamListView",
+    "file": "Projects/Features/Team/Sources/List/TeamListView.swift",
+    "line": 20,
+    "change": "A",
+    "classification": "mapped",
+    "screen_name": "team_list",
+    "reason": "독립 팀 목록 및 그 구성"
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamJoinRequestRowView",
+    "file": "Projects/Features/Team/Sources/List/TeamJoinRequestRowView.swift",
+    "line": 27,
+    "change": "R089",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamDetailHeaderView",
+    "file": "Projects/Features/Team/Sources/Detail/Components/TeamDetailHeaderView.swift",
+    "line": 18,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamDetailTabBarView",
+    "file": "Projects/Features/Team/Sources/Detail/Components/TeamDetailTabBarView.swift",
+    "line": 16,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatBubbleRowView",
+    "file": "Projects/Features/Chatty/Sources/Chat/ChatBubbleRowView.swift",
+    "line": 16,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatRoomLiveView",
+    "file": "Projects/Features/Chatty/Sources/Chat/ChatRoomView.swift",
+    "line": 27,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatOwnerCrownView",
+    "file": "Projects/Features/Chatty/Sources/Component/ChatOwnerCrownView.swift",
+    "line": 15,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "SuggestChattyRowView",
+    "file": "Projects/Features/Chatty/Sources/Component/SuggestChattyRowView.swift",
+    "line": 13,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamChattyRowView",
+    "file": "Projects/Features/Chatty/Sources/Component/TeamChattyRowView.swift",
+    "line": 15,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChattyEmptyStateView",
+    "file": "Projects/Features/Chatty/Sources/EmptyState/ChattyEmptyStateView.swift",
+    "line": 21,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "View",
+    "file": "Projects/Features/Chatty/Sources/ChatRoomMenu/ChatRoomMenuView.swift",
+    "line": 562,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChattyChipHalationView",
+    "file": "Projects/Features/Chatty/Sources/View/ChattyChipHalationView.swift",
+    "line": 25,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "SpinningHalationLightView",
+    "file": "Projects/Features/Chatty/Sources/View/ChattyChipHalationView.swift",
+    "line": 62,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "HalationLightView",
+    "file": "Projects/Features/Chatty/Sources/View/ChattyChipHalationView.swift",
+    "line": 74,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChattyTabChipRowView",
+    "file": "Projects/Features/Chatty/Sources/View/ChattyTabChipRowView.swift",
+    "line": 13,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatRoomMenuCoverView",
+    "file": "Projects/Features/Chatty/Sources/ChatRoomMenu/Components/ChatRoomMenuCoverView.swift",
+    "line": 13,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ProjectRoomCardView",
+    "file": "Projects/Features/Chatty/Sources/Project/Component/ProjectRoomCardView.swift",
+    "line": 16,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "LoungeJoinedRowView",
+    "file": "Projects/Features/Chatty/Sources/Lounge/Component/LoungeJoinedRowView.swift",
+    "line": 16,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "LoungeRecommendRowView",
+    "file": "Projects/Features/Chatty/Sources/Lounge/Component/LoungeRecommendRowView.swift",
+    "line": 13,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatAudioBubbleView",
+    "file": "Projects/Features/Chatty/Sources/Chat/Components/ChatAudioBubbleView.swift",
+    "line": 15,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatImageBubbleView",
+    "file": "Projects/Features/Chatty/Sources/Chat/Components/ChatImageBubbleView.swift",
+    "line": 34,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatBubbleSideMetaView",
+    "file": "Projects/Features/Chatty/Sources/Chat/Components/ChatBubbleSideMetaView.swift",
+    "line": 13,
+    "change": "A",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ChatVideoBubbleView",
+    "file": "Projects/Features/Chatty/Sources/Chat/Components/ChatVideoBubbleView.swift",
+    "line": 19,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CommonWebViewProfileEditBottomSectionView",
+    "file": "Projects/Features/WebView/Sources/CommonWebView.swift",
+    "line": 284,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CommonWebViewTOCropViewControllerWrapperView",
+    "file": "Projects/Features/WebView/Sources/CommonWebView.swift",
+    "line": 420,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CommonWebFullScreenCoverView",
+    "file": "Projects/Features/WebView/Sources/CommonWebView.swift",
+    "line": 580,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "MoreRowView",
+    "file": "Projects/Features/Contact/Sources/Component/UserRow/MoreRowView.swift",
+    "line": 14,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TeamContactRowView",
+    "file": "Projects/Features/Contact/Sources/Component/UserRow/TeamContactRowView.swift",
+    "line": 19,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "HomeFeedDiscoveryProjectCardSurfaceView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/HomeFeedDiscoveryProjectCardSurfaceView.swift",
+    "line": 12,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "CardView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/HomeFeedDiscoveryProjectCardSurfaceView.swift",
+    "line": 172,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "HomeFeedDiscoveryProjectCardDetailTapOverlayView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/HomeFeedDiscoveryProjectCardSurfaceView.swift",
+    "line": 491,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "DiscoveryCardActionBarView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/DiscoveryCardActionBarView.swift",
+    "line": 8,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "DiscoveryBannerRowView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/Interstitial/DiscoveryBannerRowView.swift",
+    "line": 34,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "DiscoveryProfileCardView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/Profile/DiscoveryProfileCardView.swift",
+    "line": 39,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "HomeFeedDiscoveryPortfolioCardSurfaceView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/Portfolio/HomeFeedDiscoveryPortfolioCardSurfaceView.swift",
+    "line": 16,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "HomeFeedDiscoveryPortfolioCardOverlayView",
+    "file": "Projects/Features/Home/Sources/Discovery/Feed/Cards/Portfolio/HomeFeedDiscoveryPortfolioCardOverlayView.swift",
+    "line": 16,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "ContentView",
+    "file": "Projects/App/Cre8orClub/Sources/View/ContentView.swift",
+    "line": 42,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "MainTabView",
+    "file": "Projects/App/Cre8orClub/Sources/View/MainTab/MainTabView.swift",
+    "line": 32,
+    "change": "M",
+    "classification": "routing_or_host",
+    "reason": "목적지 연결 또는 기존 화면 호스트입니다. 별도 화면으로 더하지 않습니다."
+  },
+  {
+    "platform": "ios",
+    "symbol": "TransparentBackgroundView",
+    "file": "Projects/App/Cre8orClub/Sources/View/MainTab/WorkRegisterModifier.swift",
+    "line": 166,
+    "change": "M",
+    "classification": "component_or_existing_surface",
+    "reason": "기존 화면 내부 구성·미리보기·이름 이동입니다. UI 선언 수를 화면 수로 세지 않습니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "ApplyFormPage",
+    "file": "src/App.tsx",
+    "line": 14,
+    "change": "M",
+    "classification": "existing_route_or_component",
+    "reason": "App.tsx의 기존 경로 또는 그 내부 구성입니다. 별도 신규 경로가 아닙니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "ProposalFormPage",
+    "file": "src/App.tsx",
+    "line": 37,
+    "change": "M",
+    "classification": "existing_route_or_component",
+    "reason": "App.tsx의 기존 경로 또는 그 내부 구성입니다. 별도 신규 경로가 아닙니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "getScreenNameFromRoute",
+    "file": "src/constants/routes.ts",
+    "line": 71,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "DiscoveryNetworkRoutePage",
+    "file": "src/pages/discovery/network/index.tsx",
+    "line": 32,
+    "change": "M",
+    "classification": "existing_route_or_component",
+    "reason": "App.tsx의 기존 경로 또는 그 내부 구성입니다. 별도 신규 경로가 아닙니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "DetailSpinnerView",
+    "file": "src/pages/discovery/network/components/DetailSpinnerView.tsx",
+    "line": 204,
+    "change": "M",
+    "classification": "existing_route_or_component",
+    "reason": "App.tsx의 기존 경로 또는 그 내부 구성입니다. 별도 신규 경로가 아닙니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "onScreen",
+    "file": "src/pages/discovery/network/hooks/useDialShowcase.ts",
+    "line": 145,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "loadNextPage",
+    "file": "src/pages/discovery/network/hooks/useDialSeatSupply.ts",
+    "line": 72,
+    "change": "A",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "isDetailPage",
+    "file": "src/pages/discovery/network/hooks/useDetailSpinner.ts",
+    "line": 213,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "LazyPage",
+    "file": "src/lib/pdf/reactPdf.tsx",
+    "line": 23,
+    "change": "M",
+    "classification": "existing_route_or_component",
+    "reason": "App.tsx의 기존 경로 또는 그 내부 구성입니다. 별도 신규 경로가 아닙니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "Page",
+    "file": "src/lib/pdf/reactPdf.tsx",
+    "line": 32,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  },
+  {
+    "platform": "web",
+    "symbol": "scrollThumbnailIntoView",
+    "file": "src/components/profile/_skins/template-c/TemplateCPortfolio/index.public.tsx",
+    "line": 46,
+    "change": "M",
+    "classification": "not_a_screen_declaration",
+    "reason": "함수·상태·기반 타입 이름에 따른 후보입니다."
+  }
+]

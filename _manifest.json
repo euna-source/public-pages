@@ -6,5 +6,13 @@
     "last_kind": "new",
     "last_sha256": "88356f1928a359deb9addbcacfa2aaad88ffc2fe8eff243b1951f546dfa3d07c",
     "timestamp": "2026-09-08T15:06:07.765109Z"
+  },
+  "screen-analytics-alpha": {
+    "slug": "screen-analytics-alpha",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/screen-analytics-alpha/",
+    "last_kind": "new",
+    "last_sha256": "c0a372ef797cca05897c0470fb19845f767391d50e6cedd1be9cd713e985329b",
+    "timestamp": "2026-09-08T16:04:22.452517Z"
   }
 }

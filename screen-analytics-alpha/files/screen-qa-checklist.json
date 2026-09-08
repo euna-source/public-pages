@@ -1,0 +1,5280 @@
+[
+  {
+    "screen_name": "media_image_crop",
+    "label_ko": "이미지 자르기",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ImageCropScreen",
+        "route": "ImageCropScreen",
+        "condition": "작성 유형(포트폴리오/프로젝트/인스피레이션), 신규/수정 모드 및 첨부 유형에 따라 단계 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "CommonWebViewImageCropModalView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ImageCropModalView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "project_apply",
+    "label_ko": "프로젝트 참여 신청",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ProjectJoinApplicationActivity",
+        "route": "ProjectJoinApplicationActivity",
+        "condition": "작성 유형(포트폴리오/프로젝트/인스피레이션), 신규/수정 모드 및 첨부 유형에 따라 단계 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "upload_home",
+    "label_ko": "콘텐츠 작성",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContentUploadActivity",
+        "route": "ContentUploadActivity",
+        "condition": "작성 유형(포트폴리오/프로젝트/인스피레이션), 신규/수정 모드 및 첨부 유형에 따라 단계 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadOverlayView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "UploadWorkScreen",
+        "route": "UploadWorkScreen",
+        "condition": "작성 유형(포트폴리오/프로젝트/인스피레이션), 신규/수정 모드 및 첨부 유형에 따라 단계 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "content_type",
+      "mode=create|edit"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "upload_inspiration",
+    "label_ko": "영감 작성",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "INSPIRATION(",
+        "route": "ContentUploadWorkType.INSPIRATION",
+        "condition": "동일 ContentUploadActivity의 콘텐츠 유형 모드; 호스트와 중복 집계 금지"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadInspirationBodyView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "upload_portfolio",
+    "label_ko": "포트폴리오 작성",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PORTFOLIO(",
+        "route": "ContentUploadWorkType.PORTFOLIO",
+        "condition": "동일 ContentUploadActivity의 콘텐츠 유형 모드; 호스트와 중복 집계 금지"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadPortfolioPageView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit",
+      "content_type=image|video|audio|pdf|youtube|text"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "upload_project",
+    "label_ko": "프로젝트 작성",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PROJECT(",
+        "route": "ContentUploadWorkType.PROJECT",
+        "condition": "동일 ContentUploadActivity의 콘텐츠 유형 모드; 호스트와 중복 집계 금지"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadProjectPageView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "chat_list_direct",
+    "label_ko": "채티 · 채팅 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "Chat",
+        "route": "HomeSection.Chat",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "ChattyChatListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "chat_list_lounge",
+    "label_ko": "채티 · 라운지 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "Lounge",
+        "route": "HomeSection.Lounge",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "LoungeListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "chat_list_project",
+    "label_ko": "채티 · 프로젝트 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "Project",
+        "route": "HomeSection.Project",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProjectRoomListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "chat_lounge_form",
+    "label_ko": "라운지 만들기·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "LoungeCreateScreen",
+        "route": "LoungeCreateScreen",
+        "condition": "로그인 후 방 종류(1:1/Lounge/Project), 참여 여부, 방장/일반 사용자 권한에 따라 표시·액션 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "LoungeEditScreen",
+        "route": "LoungeEditScreen",
+        "condition": "로그인 후 방 종류(1:1/Lounge/Project), 참여 여부, 방장/일반 사용자 권한에 따라 표시·액션 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "LoungeComposeView",
+        "route": "ChattyRoute.loungeCompose",
+        "condition": [
+          "create/edit 모드; 수정은 팀장/방장 권한에 따른 진입"
+        ]
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "chat_room",
+    "label_ko": "채팅방",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ChatRoomActivity",
+        "route": "ChatRoomActivity",
+        "condition": "로그인 후 방 종류(1:1/Lounge/Project), 참여 여부, 방장/일반 사용자 권한에 따라 표시·액션 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "entry<ChattyListNavKey.LoungeRoom>",
+        "route": "ChattyListNavKey.LoungeRoom",
+        "condition": "방 종류·멤버/방장 권한에 따라 액션 변경"
+      },
+      {
+        "platform": "aos",
+        "symbol": "entry<ChattyListNavKey.ProjectRoom>",
+        "route": "ChattyListNavKey.ProjectRoom",
+        "condition": "방 종류·멤버/방장 권한에 따라 액션 변경"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ChatRoomView",
+        "route": "ChattyRoute.chatRoom",
+        "condition": [
+          "roomType 및 참여/방장/차단/퇴장 상태에 따른 화면 구성; 개인/라운지/프로젝트/팀 공유 구현"
+        ]
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "room_type=direct|lounge|project|team",
+      "membership_state=preview|joined"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "chat_room_manage",
+    "label_ko": "채팅방 관리",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "DirectRoomMenuScreen",
+        "route": "DirectRoomMenuScreen",
+        "condition": "로그인 후 방 종류(1:1/Lounge/Project), 참여 여부, 방장/일반 사용자 권한에 따라 표시·액션 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "entry<ChattyListNavKey.LoungeManagement>",
+        "route": "ChattyListNavKey.LoungeManagement",
+        "condition": "방 종류·멤버/방장 권한에 따라 액션 변경"
+      },
+      {
+        "platform": "aos",
+        "symbol": "entry<ChattyListNavKey.ProjectManagement>",
+        "route": "ChattyListNavKey.ProjectManagement",
+        "condition": "방 종류·멤버/방장 권한에 따라 액션 변경"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ChatRoomMenuView",
+        "route": "ChattyRoute.chatRoomMenu",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "role",
+      "room_type=direct|lounge|project|team"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "knock_compose",
+    "label_ko": "대화 제안 입력",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ChattyProfileKnockDialogFragment",
+        "route": "chatty profile knock dialog",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "knock_select",
+    "label_ko": "노크 목적 선택",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "KnockTypeSelectionView",
+        "route": "KnockActionModifier.fullScreenCover",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "media_viewer",
+    "label_ko": "미디어 보기",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "ChatImagePreviewView",
+        "route": "ChattyRoute.chatImagePreview",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "MediaViewerActivity",
+        "route": "MediaViewerActivity",
+        "condition": "상위 콘텐츠·채팅·프로필 작성에서 선택한 미디어 유형/파일과 편집 요청이 있을 때"
+      },
+      {
+        "platform": "aos",
+        "symbol": "PdfViewerScreen",
+        "route": "PdfViewerScreen",
+        "condition": "콘텐츠 유형(PORTFOLIO/INSPIRATION/PROJECT), 작성자 여부, 삭제/차단 및 지원 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "SinglePDFViewerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ImageViewerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "MediaPlayerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "VideoViewerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "CastingDetailActivity",
+        "route": "CastingDetailActivity",
+        "condition": "WebView preview 요청에서 image·video·audio·pdf·youtube 유형과 URL을 전달할 때"
+      },
+      {
+        "platform": "ios",
+        "symbol": "AVPlayerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "PDFViewerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadPortfolioPDFViewerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadPortfolioYoutubeMediaView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadPortfolioVideoViewerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "content_type=image|video|audio|pdf",
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "project_applicants",
+    "label_ko": "프로젝트 지원자 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ProjectApplicantListDestination",
+        "route": "ChattyListNavKey.ProjectApplicants",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "ChatRoomApplicantListView",
+        "route": "ChattyRoute.projectApplicants",
+        "condition": [
+          "프로젝트 방장에게만 메뉴 진입 제공"
+        ]
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_detail",
+    "label_ko": "제안 상세",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalDetailSwipe",
+        "route": "/message-box/proposal/detail",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_form",
+    "label_ko": "제안 작성·수정",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalFormMain",
+        "route": "/message-box/proposal/form?id={id}",
+        "condition": "내가 보낸 제안 옵션 → 네이티브 바텀시트"
+      },
+      {
+        "platform": "web",
+        "symbol": "ProposalFormMain",
+        "route": "/message-box/proposal/form",
+        "condition": "부모 폼 컨텍스트와 castingId/uid 또는 proposal id 필요. 네이티브 바텀시트에서 SPA 단계 이동."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_form_email",
+    "label_ko": "제안 이메일 입력",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalEmailStep",
+        "route": "/message-box/proposal/form/email",
+        "condition": "부모 폼 컨텍스트와 castingId/uid 또는 proposal id 필요. 네이티브 바텀시트에서 SPA 단계 이동."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_form_phone",
+    "label_ko": "제안 전화번호 입력",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalPhoneStep",
+        "route": "/message-box/proposal/form/phone",
+        "condition": "부모 폼 컨텍스트와 castingId/uid 또는 proposal id 필요. 네이티브 바텀시트에서 SPA 단계 이동."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_form_portfolio",
+    "label_ko": "제안 포트폴리오 선택",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalPortfolioStep",
+        "route": "/message-box/proposal/form/portfolio",
+        "condition": "부모 폼 컨텍스트와 castingId/uid 또는 proposal id 필요. 네이티브 바텀시트에서 SPA 단계 이동."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_form_type",
+    "label_ko": "제안 유형 선택",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalTypeStep",
+        "route": "/message-box/proposal/form/type",
+        "condition": "부모 폼 컨텍스트와 castingId/uid 또는 proposal id 필요. 네이티브 바텀시트에서 SPA 단계 이동."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "proposal_inbox",
+    "label_ko": "인박스 제안 탭",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "MessageBoxMain",
+        "route": "/message-box",
+        "condition": "lineTabId 기본 PROPOSAL; chipTabId ALL/RECEIVED/SENT"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "contact_follower",
+    "label_ko": "팔로워 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContactPage.FOLLOWER",
+        "route": "ContactActivity selectedPage=FOLLOWER",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContactListType.follower",
+        "route": "ContactView selectedContactListType=follower",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "contact_following",
+    "label_ko": "팔로잉 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContactPage.FOLLOWING",
+        "route": "ContactActivity selectedPage=FOLLOWING",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContactListType.following",
+        "route": "ContactView selectedContactListType=following",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "contact_first",
+    "label_ko": "일촌 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContactPage.FIRST_CONNECTION",
+        "route": "ContactActivity selectedPage=FIRST_CONNECTION",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContactListType.firstConnection",
+        "route": "ContactView selectedContactListType=firstConnection",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "contact_search",
+    "label_ko": "인맥 검색",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContactSearchActivity",
+        "route": "ContactSearchActivity",
+        "condition": "팔로잉/팔로워/1촌 관계 및 차단 상태에 따라 사용자 액션 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContactSearchView",
+        "route": "ContactRoute.search",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "support_report",
+    "label_ko": "사용자 신고 직접 입력",
+    "platforms": [
+      "aos",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContactReportDetailScreen",
+        "route": "ContactReportDetailScreen",
+        "condition": "팔로잉/팔로워/1촌 관계 및 차단 상태에 따라 사용자 액션 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "GroupChatReportDirectInputScreen",
+        "route": "GroupChatReportDirectInputScreen",
+        "condition": "로그인 후 방 종류(1:1/Lounge/Project), 참여 여부, 방장/일반 사용자 권한에 따라 표시·액션 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "ReportProjectCardDetailScreen",
+        "route": "ReportProjectCardDetailScreen",
+        "condition": "콘텐츠 유형(PORTFOLIO/INSPIRATION/PROJECT), 작성자 여부, 삭제/차단 및 지원 상태에 따라 분기"
+      },
+      {
+        "platform": "web",
+        "symbol": "ReportPage",
+        "route": "/report",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_list",
+    "label_ko": "내 팀·팀 초대 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamHomeActivity",
+        "route": "TeamHomeActivityRoute",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamListView",
+        "route": "TeamRoute.list",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "inspiration_comment_list",
+    "label_ko": "뮤즈 코멘트 목록",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "MuseCommentListView",
+        "route": "HomeRoute.museCommentList",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "inspiration_detail",
+    "label_ko": "영감 상세",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InspirationDetailActivity",
+        "route": "InspirationDetailActivity",
+        "condition": "콘텐츠 유형(PORTFOLIO/INSPIRATION/PROJECT), 작성자 여부, 삭제/차단 및 지원 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "InspirationDetailView",
+        "route": "HomeRoute.inspirationDetail",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "portfolio_detail",
+    "label_ko": "포트폴리오 상세",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "FeedDetailActivity",
+        "route": "FeedDetailActivity",
+        "condition": "콘텐츠 유형(PORTFOLIO/INSPIRATION/PROJECT), 작성자 여부, 삭제/차단 및 지원 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "FeedDetailView",
+        "route": "HomeRoute.feedDetail",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "content_type=image|video|audio|pdf|youtube|text",
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "respect_select",
+    "label_ko": "리스펙트 메시지 선택",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "C8RespectMessageSheet",
+        "route": "respect message dialog",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "DiscoveryRespectPhraseSheetView",
+        "route": "respect phrase overlay",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "content_type",
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "home_creator_list",
+    "label_ko": "추천 크리에이터 전체보기",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "DiscoveryCreatorModuleView",
+        "route": "HomeRoute.discoveryCreatorModule",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "home_discovery",
+    "label_ko": "디스커버리 홈",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "DiscoveryV2FeedScreen",
+        "route": "DiscoveryV2FeedScreen",
+        "condition": "홈 피드 응답의 카드·추천·웹 슬롯 종류에 따라 노출. 서버 응답과 딥링크 액션으로 다음 화면 결정"
+      },
+      {
+        "platform": "ios",
+        "symbol": "HomeSectionView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "home_inspiration_feed",
+    "label_ko": "영감 연속 목록",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "InspirationListView",
+        "route": "HomeRoute.inspirationList",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_agreement_update",
+    "label_ko": "갱신 약관 동의",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PendingAgreementActivity",
+        "route": "PendingAgreementActivity",
+        "condition": "로그인·시작 시 미동의 약관이 있을 때 표시"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_email_login",
+    "label_ko": "이메일 로그인",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "EmailInputScreen",
+        "route": "EmailInputScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "EmailLoginView",
+        "route": "JoinNavigation.emailLogin",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_email_verification",
+    "label_ko": "가입·로그인 이메일 인증",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "EmailVerificationScreen",
+        "route": "EmailVerificationScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "VerifyEmailView",
+        "route": "JoinNavigation.verifyEmail",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "VerificationEmailInputScreen",
+        "route": "VerificationEmailInputScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "auth_flow=signup|login|password_reset"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_entry",
+    "label_ko": "로그인·가입 시작",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "LoginMethodSelectionScreen",
+        "route": "LoginMethodSelectionScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "JoinLandingView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_login_2fa",
+    "label_ko": "로그인 2단계 이메일 인증",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TwoFactorLoginActivity",
+        "route": "TwoFactorLoginActivity",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TwoFactorAuthEmailLoginView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_login_password",
+    "label_ko": "로그인 비밀번호 입력",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PasswordInputScreen",
+        "route": "PasswordInputScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_password_setup",
+    "label_ko": "비밀번호 설정·재설정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SignUpPasswordInputScreen",
+        "route": "SignUpPasswordInputScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ConfigPasswordView",
+        "route": "JoinNavigation.configurePassword",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "PasswordResetScreen",
+        "route": "PasswordResetScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "auth_flow=signup|password_reset"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_permission",
+    "label_ko": "앱 권한 안내",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PermissionSettingScreen",
+        "route": "PermissionSettingScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "PermissionView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_privacy_agreement",
+    "label_ko": "개인정보 이용 동의",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "PersonalInfoUsageAgreementView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_signup_id",
+    "label_ko": "가입 ID 입력",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SignUpIdInputScreen",
+        "route": "SignUpIdInputScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "JoinIDView",
+        "route": "JoinNavigation.joinID",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_signup_keyword",
+    "label_ko": "가입 대표 키워드 선택",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "OnboardingSignatureKeywordScreen",
+        "route": "OnboardingSignatureKeywordScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_signup_name",
+    "label_ko": "가입 이름 입력",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SignUpNameInputScreen",
+        "route": "SignUpNameInputScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "JoinNameView",
+        "route": "JoinNavigation.joinName",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_signup_onboarding",
+    "label_ko": "가입 후 프로필 온보딩",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SignUpOnboardingActivity",
+        "route": "SignUpOnboardingActivity",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_signup_terms",
+    "label_ko": "가입 약관 동의",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SignUpTermsOfServiceBottomSheet",
+        "route": "LoginActivity TermsOfServiceBottomSheet",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "TermsOfUseBottomSheetView",
+        "route": "가입 약관 시트",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "auth_provider"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "auth_tutorial",
+    "label_ko": "첫 이용 튜토리얼",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TutorialActivity",
+        "route": "TutorialActivity",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TutorialIntroView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "TutorialTextScreen",
+        "route": "TutorialTextScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "TutorialWelcomeMessageScreen",
+        "route": "TutorialWelcomeMessageScreen",
+        "condition": "비로그인·가입 여부, 소셜 로그인 공급자, 이메일 인증 유형(JOIN/PASSWORD_RESET), 2단계 인증 요구에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TutorialCompletionView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "gallery_home",
+    "label_ko": "갤러리",
+    "platforms": [
+      "aos",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "/gallery",
+        "route": "/gallery",
+        "condition": "하단 탭 슬롯 없음. 정상 custom scheme tab/finder는 typed router의 FinderActivityRoute가 우선 처리하며 갤러리 방문으로 집계하면 안 됨. legacy GalleryRoute의 실제 유입 조건은 별도 확인."
+      },
+      {
+        "platform": "web",
+        "symbol": "GalleryPage",
+        "route": "/gallery",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "media_image_edit",
+    "label_ko": "이미지 편집",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "MediaEditorActivity",
+        "route": "MediaEditorActivity",
+        "condition": "상위 콘텐츠·채팅·프로필 작성에서 선택한 미디어 유형/파일과 편집 요청이 있을 때"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentUploadImageEditFlowView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "media_image_video_selection",
+    "label_ko": "이미지·영상 선택",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ImageVideoSelectionScreen",
+        "route": "ImageVideoSelectionScreen",
+        "condition": "로그인한 본인 프로필. 포트폴리오·소개 탭과 정보 완성 상태에 따라 표시 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "media_profile_image_edit",
+    "label_ko": "웹 요청 프로필 이미지 편집",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "CommonWebViewProfileImageEditFlowView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileCardBackgroundImageEditFlowView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileImageEditFlowView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "media_profile_video_edit",
+    "label_ko": "프로필 배경 동영상 편집",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "ProfileCardBackgroundVideoEditFlowView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "media_video_crop",
+    "label_ko": "동영상 자르기",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "MediaEditorVideoCropActivity",
+        "route": "MediaEditorVideoCropActivity",
+        "condition": "상위 콘텐츠·채팅·프로필 작성에서 선택한 미디어 유형/파일과 편집 요청이 있을 때"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileCardBackgroundVideoCropView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "VideoCropActivity",
+        "route": "VideoCropActivity",
+        "condition": "로그인한 본인 프로필. 포트폴리오·소개 탭과 정보 완성 상태에 따라 표시 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "notification_home",
+    "label_ko": "내 알림",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "/my-notification",
+        "route": "/my-notification",
+        "condition": ""
+      },
+      {
+        "platform": "web",
+        "symbol": "NotificationPage",
+        "route": "/my-notification",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      },
+      {
+        "platform": "ios",
+        "symbol": "AlarmCenterView",
+        "route": "ChattyRoute.alarmCenter",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "notification_proposal",
+    "label_ko": "제안 새 소식",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "ProposalNewsPage",
+        "route": "/my-notification/proposal-news",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "arcade_game",
+    "label_ko": "아케이드 게임",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ArcadeGameScreen",
+        "route": "ArcadeGameScreen",
+        "condition": "Discovery 카드의 아케이드 빠른 액션 선택 시 전체 화면 게임 오버레이"
+      },
+      {
+        "platform": "ios",
+        "symbol": "CardBreakoutGameView",
+        "route": "HomeFeedCardLongPressOverlayView game",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "game_type"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_home",
+    "label_ko": "커리어 프로필·온보딩",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "ResumeWebView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "UserResumeActivity",
+        "route": "UserResumeActivity",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "ResumeExperienceActivity",
+        "route": "ResumeExperienceActivity",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ResumeManagementView",
+        "route": "MyRoute.resumeManagement",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=view|onboarding"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_inspiration",
+    "label_ko": "프로필 · 영감",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "INSPIRATION",
+        "route": "ProfileResumeTab.INSPIRATION",
+        "condition": "동일 프로필 하위 탭. Front 렌더 경로와 통합 필요"
+      },
+      {
+        "platform": "aos",
+        "symbol": "INSPIRATION",
+        "route": "MemberProfileResumeTab.INSPIRATION",
+        "condition": "목록 딥링크로 공개된 탭 계약. 소개는 공통 프로필 렌더에서 별도 노출 가능"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileListInspirationGridView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "profile_owner=self|other"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_intro",
+    "label_ko": "프로필 · 소개",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "INTRO",
+        "route": "ProfileResumeTab.INTRO",
+        "condition": "동일 프로필 하위 탭. Front 렌더 경로와 통합 필요"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "web",
+        "symbol": "ProfileIntroPage",
+        "route": "/profile/intro",
+        "condition": "3.0 네이티브 소개 탭 WebView. uid 유무로 나/타인 구분."
+      },
+      {
+        "platform": "web",
+        "symbol": "MemberProfileIntroPage",
+        "route": "/profile/intro/:uid",
+        "condition": "3.0 네이티브 소개 탭 WebView. uid 유무로 나/타인 구분."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "profile_owner=self|other"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_portfolio",
+    "label_ko": "프로필 · 포트폴리오",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PORTFOLIO",
+        "route": "ProfileResumeTab.PORTFOLIO",
+        "condition": "동일 프로필 하위 탭. Front 렌더 경로와 통합 필요"
+      },
+      {
+        "platform": "aos",
+        "symbol": "PORTFOLIO",
+        "route": "MemberProfileResumeTab.PORTFOLIO",
+        "condition": "목록 딥링크로 공개된 탭 계약. 소개는 공통 프로필 렌더에서 별도 노출 가능"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileListPortfolioGridView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "profile_owner=self|other"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_project",
+    "label_ko": "프로필 · 프로젝트",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PROJECT",
+        "route": "ProfileResumeTab.PROJECT",
+        "condition": "동일 프로필 하위 탭. Front 렌더 경로와 통합 필요"
+      },
+      {
+        "platform": "aos",
+        "symbol": "PROJECT",
+        "route": "MemberProfileResumeTab.PROJECT",
+        "condition": "목록 딥링크로 공개된 탭 계약. 소개는 공통 프로필 렌더에서 별도 노출 가능"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileListProjectGridView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "profile_owner=self|other"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_respect_list",
+    "label_ko": "웹 프로필 리스펙트",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "WebViewRespectScreen",
+        "route": "WebViewRespectScreen",
+        "condition": "로그인한 본인 프로필. 포트폴리오·소개 탭과 정보 완성 상태에 따라 표시 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_share_preview",
+    "label_ko": "프로필 공유 미리보기",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "MyResumePreview",
+        "route": "MyRoute.resumePreview",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "MyWebPreViewActivity",
+        "route": "MyWebPreViewActivity",
+        "condition": "로그인한 본인 프로필. 포트폴리오·소개 탭과 정보 완성 상태에 따라 표시 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_visitor_list",
+    "label_ko": "오늘 방문자 목록",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TodayVisitorListScreen",
+        "route": "TodayVisitorListScreen",
+        "condition": "로그인한 본인 프로필. 포트폴리오·소개 탭과 정보 완성 상태에 따라 표시 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_award_form",
+    "label_ko": "자격·수상 추가·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ModifyResumeCertificationsScreen",
+        "route": "ModifyResumeCertificationsScreen",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "AwardsRegisterView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_award_list",
+    "label_ko": "자격·수상 목록",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ResumeCertificationsActivity",
+        "route": "ResumeCertificationsActivity",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_education_form",
+    "label_ko": "학력 추가·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ModifyResumeEducationScreen",
+        "route": "ModifyResumeEducationScreen",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ResumeEducationRegisterView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_education_list",
+    "label_ko": "학력 목록",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ResumeEducationActivity",
+        "route": "ResumeEducationActivity",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_experience_form",
+    "label_ko": "경력 추가·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ModifyResumeCareerScreen",
+        "route": "ModifyResumeCareerScreen",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ResumeCareerRegisterView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_language",
+    "label_ko": "언어 능력",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ResumeLanguageActivity",
+        "route": "ResumeLanguageActivity",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_school_search",
+    "label_ko": "학교·전공 검색",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "SchoolOrMajorSearcherView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "career_skill",
+    "label_ko": "스킬",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ResumeSkillActivity",
+        "route": "ResumeSkillActivity",
+        "condition": "내 이력서에서 목록/신규 항목/수정 항목 선택 상태에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_basic",
+    "label_ko": "필수 기본 정보 입력",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "RequiredBasicInfoActivity",
+        "route": "RequiredBasicInfoActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_basic_done",
+    "label_ko": "필수 정보 입력 완료",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "CardInfoCompleteActivity",
+        "route": "CardInfoCompleteActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_cover",
+    "label_ko": "프로필 커버 만들기·편집",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ConfigureProfileCoverActivity",
+        "route": "ConfigureProfileCoverActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "PROFESSION(",
+        "route": "ConfigureProfileCoverStep.PROFESSION",
+        "condition": "FIRST_CONFIGURE_PROFILE_COVER 또는 EDIT_PROFILE 모드. 단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "NICKNAME(",
+        "route": "ConfigureProfileCoverStep.NICKNAME",
+        "condition": "FIRST_CONFIGURE_PROFILE_COVER 또는 EDIT_PROFILE 모드. 단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "KO_NAME(",
+        "route": "ConfigureProfileCoverStep.KO_NAME",
+        "condition": "FIRST_CONFIGURE_PROFILE_COVER 또는 EDIT_PROFILE 모드. 단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "TAGLINE(",
+        "route": "ConfigureProfileCoverStep.TAGLINE",
+        "condition": "FIRST_CONFIGURE_PROFILE_COVER 또는 EDIT_PROFILE 모드. 단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "MEDIA(",
+        "route": "ConfigureProfileCoverStep.MEDIA",
+        "condition": "FIRST_CONFIGURE_PROFILE_COVER 또는 EDIT_PROFILE 모드. 단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "PROFILE_IMAGE(",
+        "route": "ConfigureProfileCoverStep.PROFILE_IMAGE",
+        "condition": "FIRST_CONFIGURE_PROFILE_COVER 또는 EDIT_PROFILE 모드. 단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ConfigureProfileCoverView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "web",
+        "symbol": "OnboardingIntroPage",
+        "route": "/onboarding/intro",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      },
+      {
+        "platform": "web",
+        "symbol": "OnboardingIntroPage",
+        "route": "/onboarding/intro?mode=edit",
+        "condition": "mode edit→네이티브 cover form, onboarding milestone에 따라 저장 경로 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit",
+      "step"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_email",
+    "label_ko": "개인정보 이메일 입력",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputEmailFragment",
+        "route": "InputEmailFragment",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "RegisterEmailView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_email_verify",
+    "label_ko": "프로필 이메일 인증",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputEmailVerificationFragment",
+        "route": "InputEmailVerificationFragment",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "EmailRegistrationVerifyEmailView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_id",
+    "label_ko": "ID 변경",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "IdModifyActivity",
+        "route": "IdModifyActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "IDView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_info_menu",
+    "label_ko": "프로필 정보 관리 항목 선택",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ManageInfoSelectionScreen",
+        "route": "ManageInfoSelectionScreen",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_intro",
+    "label_ko": "프로필 소개 작성·편집",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ProfileExpressionActivity",
+        "route": "ProfileExpressionActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "KEYWORD_PERSONA(",
+        "route": "ProfileExpressionStep.KEYWORD_PERSONA",
+        "condition": "단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "KEYWORD_WORKING_PREFERENCE(",
+        "route": "ProfileExpressionStep.KEYWORD_WORKING_PREFERENCE",
+        "condition": "단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "KEYWORD_AMBITION(",
+        "route": "ProfileExpressionStep.KEYWORD_AMBITION",
+        "condition": "단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "IMAGES(",
+        "route": "ProfileExpressionStep.IMAGES",
+        "condition": "단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "aos",
+        "symbol": "DESCRIPTION(",
+        "route": "ProfileExpressionStep.DESCRIPTION",
+        "condition": "단계형 폼; 독립 screen_view 적용 여부 추후 결정"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileExpressionView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit",
+      "step"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_intro_info",
+    "label_ko": "자기소개 정보 관리",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SelfDescriptionInfoActivity",
+        "route": "SelfDescriptionInfoActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_keyword_goal",
+    "label_ko": "추구 방향 키워드",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "AmbitionKeywordActivity",
+        "route": "AmbitionKeywordActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_keyword_signature",
+    "label_ko": "시그니처 키워드 관리",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SignatureKeywordListActivity",
+        "route": "SignatureKeywordListActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "SignatureKeywordListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "OneMinuteKeywordPickerView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_keyword_style",
+    "label_ko": "작업 스타일 키워드",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PersonaKeywordActivity",
+        "route": "PersonaKeywordActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_keyword_work",
+    "label_ko": "작업 방식 키워드",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "WorkingPreferenceKeywordActivity",
+        "route": "WorkingPreferenceKeywordActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_link",
+    "label_ko": "링크 등록·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "LinkModifyActivity",
+        "route": "LinkModifyActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "LinkView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_name_en",
+    "label_ko": "영문 이름 입력·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputEnNameActivity",
+        "route": "InputEnNameActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "EnNameView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_name_ko",
+    "label_ko": "한글 이름 입력·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputKoNameActivity",
+        "route": "InputKoNameActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "KoNameView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_personal_info",
+    "label_ko": "개인정보 관리",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PersonalInfoActivity",
+        "route": "PersonalInfoActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_phone",
+    "label_ko": "전화번호 등록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputPhoneNumberActivity",
+        "route": "InputPhoneNumberActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "PhoneView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_profession",
+    "label_ko": "직업 관리",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "ProfessionListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_profession_custom",
+    "label_ko": "직업 직접 입력",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "DirectProfessionRegisterView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_profession_search",
+    "label_ko": "직업 검색",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "ProfessionSearchListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_profession_select",
+    "label_ko": "직업 선택",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "NewProfessionListActivity",
+        "route": "NewProfessionListActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfessionSelectionListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_recommend",
+    "label_ko": "추천 정보 설정",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "RecommendationInfoActivity",
+        "route": "RecommendationInfoActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_region",
+    "label_ko": "지역 관리",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "RegionListActivity",
+        "route": "RegionListActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "RegionListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_region_city",
+    "label_ko": "국내 시·도 선택",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputLocalCityScreen",
+        "route": "InputLocalCityScreen",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_region_county",
+    "label_ko": "국내 시·군·구 선택",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputLocalCountyScreen",
+        "route": "InputLocalCountyScreen",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_edit_region_global",
+    "label_ko": "해외 도시 입력",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "InputGlobalRegionActivity",
+        "route": "InputGlobalRegionActivity",
+        "condition": "내 프로필에서 작성/수정 권한을 가진 경우. 최초 설정·기존 정보 수정 모드와 필수 항목 충족 여부에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "GlobalCityInputView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "project_detail",
+    "label_ko": "프로젝트 상세",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ProjectCardDetailActivity",
+        "route": "ProjectCardDetailActivity",
+        "condition": "콘텐츠 유형(PORTFOLIO/INSPIRATION/PROJECT), 작성자 여부, 삭제/차단 및 지원 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProjectCardDetailView",
+        "route": "MyRoute.projectCardDetail; MyRoute.projectCardFeedDetail",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "project_list",
+    "label_ko": "프로젝트 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ProjectListActivity",
+        "route": "ProjectListActivity",
+        "condition": "앱 시작·네트워크·점검·권한 또는 호출부 상태에 따른 공통 UI"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProjectCardListView",
+        "route": "MyRoute.projectCardList",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_filter",
+    "label_ko": "검색 필터",
+    "platforms": [
+      "aos"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "FinderFilterActivity",
+        "route": "FinderFilterActivity",
+        "condition": "검색 진입·검색어 입력·결과 유형 선택 상태. 필터/정렬 조건과 결과 유무에 따라 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_keyword",
+    "label_ko": "키워드 추천",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "/discovery/keywords",
+        "route": "/discovery/keywords",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "KeywordRecommendationView",
+        "route": "FinderRoute.keywordRecommendation",
+        "condition": []
+      },
+      {
+        "platform": "web",
+        "symbol": "KeywordsDiscoveryPage",
+        "route": "/discovery/keywords",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_result_creator",
+    "label_ko": "검색 결과 · 크리에이터",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "CREATOR(",
+        "route": "SearchResultTab.CREATOR",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "SearchedCreatorListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_result_portfolio",
+    "label_ko": "검색 결과 · 포트폴리오",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PORTFOLIO(",
+        "route": "SearchResultTab.PORTFOLIO",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "SearchedPortfolioListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_result_project",
+    "label_ko": "검색 결과 · 프로젝트",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "PROJECT(",
+        "route": "SearchResultTab.PROJECT",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "SearchedProjectListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_search",
+    "label_ko": "파인더 검색",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "FinderScreen",
+        "route": "FinderScreen",
+        "condition": "검색 진입·검색어 입력·결과 유형 선택 상태. 필터/정렬 조건과 결과 유무에 따라 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "FinderSearchActivity",
+        "route": "FinderSearchActivity",
+        "condition": "검색 진입·검색어 입력·결과 유형 선택 상태. 필터/정렬 조건과 결과 유무에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "FinderSearchView",
+        "route": "FinderRoute.search",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "finder_shuffle_result",
+    "label_ko": "셔플 키워드 묶음 결과",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ShuffleBundleActivity",
+        "route": "ShuffleBundleActivity",
+        "condition": "홈 피드 응답의 카드·추천·웹 슬롯 종류에 따라 노출. 서버 응답과 딥링크 액션으로 다음 화면 결정"
+      },
+      {
+        "platform": "ios",
+        "symbol": "KeywordBundleView",
+        "route": "FinderRoute.keywordBundle",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "network_dial",
+    "label_ko": "인맥 다이얼",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "/discovery/network",
+        "route": "/discovery/network",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "NetworkBrowseView",
+        "route": "ChattyRoute.networkBrowse",
+        "condition": []
+      },
+      {
+        "platform": "web",
+        "symbol": "DiscoveryNetworkPage",
+        "route": "/discovery/network/:uid?",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "network_dial_guide",
+    "label_ko": "인맥 다이얼 사용 안내",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "DialShowcasePage",
+        "route": "/discovery/network/:uid?",
+        "condition": "팔로잉 수<8: 소개→사용조건→팔로우 CTA 3단계 자동 안내"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "network_dial_path",
+    "label_ko": "인맥 다이얼 파도타기",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "NetworkDialRoute",
+        "route": "/discovery/network/:uid",
+        "condition": "팔로잉>=8, 좌석 인물 눌러 uid 변경. 같은 컴포넌트 유지"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "navigation_depth"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "profile_home",
+    "label_ko": "프로필 개요",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "SearchedCreatorDetailView",
+        "route": "FinderRoute.searchedCreatorDetails",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "MemberDetailActivity",
+        "route": "MemberDetailActivity",
+        "condition": "다른 회원 ID를 가진 검색·피드·딥링크 진입. 본인/차단/탈퇴 여부에 따라 표시 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "MyPageScreen",
+        "route": "MyPageScreen",
+        "condition": "로그인한 본인 프로필. 포트폴리오·소개 탭과 정보 완성 상태에 따라 표시 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ProfileDetailView",
+        "route": "MyRoute.profile",
+        "condition": [
+          "uid, isMyTab, 초기 segment에 따라 내/다른 사람 및 포트폴리오/소개 상태 분기"
+        ]
+      },
+      {
+        "platform": "web",
+        "symbol": "ProfileRoute",
+        "route": "/profile",
+        "condition": "isProfileV3Supported(): 앱 >=3.0.0; 개발 환경은 항상 true. A~E skin 표현 변형."
+      },
+      {
+        "platform": "web",
+        "symbol": "MemberProfileRoute",
+        "route": "/profile/:uid",
+        "condition": "isProfileV3Supported(): 앱 >=3.0.0; 개발 환경은 항상 true. A~E skin 표현 변형."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "profile_owner=self|other",
+      "view_mode=card|resume",
+      "entry_point"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "activity_bookmark_creator",
+    "label_ko": "북마크·크리에이터",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "BookmarkCreatorView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "BookmarkTab.CREATOR",
+        "route": "BookmarkActivity tab=CREATOR",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "activity_bookmark_portfolio",
+    "label_ko": "북마크·포트폴리오",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "BookMarkPortfolioView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "BookmarkTab.PORTFOLIO",
+        "route": "BookmarkActivity tab=PORTFOLIO",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "activity_comment",
+    "label_ko": "내 댓글·답글",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "MyCommentsAndRepliesListView",
+        "route": "SettingRoute.contentsComments",
+        "condition": []
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentsCommentsListView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "CommentListActivity",
+        "route": "CommentListActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "activity_home",
+    "label_ko": "내 활동 콘텐츠",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ContentsActivity",
+        "route": "ContentsActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ContentsListView",
+        "route": "SettingRoute.contentsList",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "activity_like",
+    "label_ko": "좋아요한 영감",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "LikedInspirationsView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "LikeListActivity",
+        "route": "LikeListActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "LikedListView",
+        "route": "SettingRoute.contentsLiked",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "activity_respect",
+    "label_ko": "리스펙트한 콘텐츠",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "RespectListActivity",
+        "route": "RespectListActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "RespectedPortfoliosView",
+        "route": "SettingRoute.contentsRespected",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_2fa",
+    "label_ko": "2단계 인증 설정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TwoFactorAuthenticationSettingActivity",
+        "route": "TwoFactorAuthenticationSettingActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TwoFactorUnAuthView",
+        "route": "SettingRoute.account2FA",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_2fa_complete",
+    "label_ko": "2단계 인증 완료",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TwoFactorAuthenticationCompleteActivity",
+        "route": "TwoFactorAuthenticationCompleteActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TwoFactorCompleteView",
+        "route": "SettingRoute.account2FACompleted",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_2fa_email",
+    "label_ko": "2단계 인증 등록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TwoFactorAuthenticationActivity",
+        "route": "TwoFactorAuthenticationActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TwoFactorEmailManageView",
+        "route": "SettingRoute.account2FAEmail",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_2fa_verify",
+    "label_ko": "2단계 인증 이메일 확인",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TwoFactorEmailValidateActivity",
+        "route": "TwoFactorEmailValidateActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TwoFactorAuthEmailVerifyView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_account",
+    "label_ko": "계정 관리",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "AccountActivity",
+        "route": "AccountActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "AccountListView",
+        "route": "SettingRoute.account",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_blocked_users",
+    "label_ko": "차단한 사용자",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "BlockedUsersActivity",
+        "route": "BlockedUsersActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "BlockedUserListView",
+        "route": "SettingRoute.blockedMembers",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_email_unsubscribe",
+    "label_ko": "이메일 마케팅 수신거부",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "UnsubscribePage",
+        "route": "/unsubscribe",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_home",
+    "label_ko": "설정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "SettingsActivity",
+        "route": "SettingsActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "SettingListView",
+        "route": "SettingRoute.home",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_notification",
+    "label_ko": "알림 설정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "AlertSettingActivity",
+        "route": "AlertSettingActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "NotiListView",
+        "route": "SettingRoute.notiList",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_password_change",
+    "label_ko": "비밀번호 변경",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ChangePasswordActivity",
+        "route": "ChangePasswordActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ChangePasswordView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_password_reset",
+    "label_ko": "비밀번호 재설정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ResetPasswordActivity",
+        "route": "ResetPasswordActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ResetPasswordView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_password_verify",
+    "label_ko": "비밀번호 재설정 이메일 확인",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ResetPasswordEmailCheckActivity",
+        "route": "ResetPasswordEmailCheckActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "VerifyEmailView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "ChangePasswordValidateActivity",
+        "route": "ChangePasswordValidateActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_privacy_agreement",
+    "label_ko": "개인정보 동의 변경",
+    "platforms": [
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "PersonalInfoAgreementView",
+        "route": "SettingRoute.personalInfoAgreement",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_visibility",
+    "label_ko": "공개 범위 설정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "VisibilitySettingsActivity",
+        "route": "VisibilitySettingsActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "OpenScaleListView",
+        "route": "SettingRoute.manageVisibility",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_visibility_profile",
+    "label_ko": "프로필 공개 범위",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ProfileVisibilitySettingActivity",
+        "route": "ProfileVisibilitySettingActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "OpenScaleProfileView",
+        "route": "SettingRoute.manageProfileCardVisibility; SettingRoute.manageProfileCardVisibilityFromProfileShare",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_withdraw_confirm",
+    "label_ko": "회원 탈퇴 최종 확인",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "WithdrawConfirmActivity",
+        "route": "WithdrawConfirmActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "WithdrwalCompletionView",
+        "route": "SettingRoute.accountDeleteConfirm",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_withdraw_reason",
+    "label_ko": "탈퇴 사유 직접 입력",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "ios",
+        "symbol": "WithdrawalReasonInputView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "aos",
+        "symbol": "WithdrawReasonActivity",
+        "route": "WithdrawReasonActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "settings_withdraw_verify",
+    "label_ko": "회원 탈퇴 본인 확인",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "WithdrawPasswordActivity",
+        "route": "WithdrawPasswordActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "DeleteAccountView",
+        "route": "SettingRoute.accountDelete",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "support_agreement_detail",
+    "label_ko": "약관 상세",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "AgreementWebDetailActivity",
+        "route": "AgreementWebDetailActivity",
+        "condition": "콘텐츠 유형(PORTFOLIO/INSPIRATION/PROJECT), 작성자 여부, 삭제/차단 및 지원 상태에 따라 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ServiceAgreementDocumentView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "support_agreement_list",
+    "label_ko": "이용약관 목록",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "ServiceAgreementActivity",
+        "route": "ServiceAgreementActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "ServiceAgreementView",
+        "route": "SettingRoute.serviceAgreement",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "support_home",
+    "label_ko": "고객센터",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "CustomerCenterActivity",
+        "route": "CustomerCenterActivity",
+        "condition": "로그인 사용자 설정. 이메일 계정/소셜 계정 및 2단계 인증 상태에 따라 계정 메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "CustomerServiceListView",
+        "route": "SettingRoute.customerService",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "support_privilege",
+    "label_ko": "회원 등급별 혜택",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "GuestPrivilegesPage",
+        "route": "/guest/privileges",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      },
+      {
+        "platform": "web",
+        "symbol": "MemberPrivilegesPage",
+        "route": "/member/privileges",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      },
+      {
+        "platform": "web",
+        "symbol": "MusePrivilegesPage",
+        "route": "/muse/privileges",
+        "condition": "앱 인증·네이티브 주입 컨텍스트 필요. 라우트 등록 확인; 실제 배포·사용자 노출은 런타임 미검증."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "member_grade=guest|member|muse"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "share_portfolio",
+    "label_ko": "공유 포트폴리오 상세",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "SharedFeedDetailPage",
+        "route": "/share/feed/:id",
+        "condition": "외부 공개 링크 또는 앱내 미리보기. :id 대신 des query 별칭 지원."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "share_profile",
+    "label_ko": "공유 프로필 3.0·미리보기",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "SharedProfileRoute",
+        "route": "/share/profile/:id",
+        "condition": "외부 공개 링크 또는 앱내 미리보기. :id 대신 des query 별칭 지원."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "share_project",
+    "label_ko": "공유 프로젝트 3.0",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "SharedProjectRoute",
+        "route": "/share/project/:id",
+        "condition": "외부 공개 링크 또는 앱내 미리보기. :id 대신 des query 별칭 지원."
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "system_app_download",
+    "label_ko": "앱 다운로드 안내",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "AppDownloadPage",
+        "route": "/app-download",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "system_error",
+    "label_ko": "화면 불러오기 오류",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "GlobalErrorPage",
+        "route": "Provider ErrorBoundary fallback",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "error_reason"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "system_maintenance",
+    "label_ko": "서비스 점검 안내",
+    "platforms": [
+      "aos",
+      "ios",
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "MaintenanceActivity",
+        "route": "MaintenanceActivity",
+        "condition": "앱 시작·네트워크·점검·권한 또는 호출부 상태에 따른 공통 UI"
+      },
+      {
+        "platform": "ios",
+        "symbol": "MaintenanceView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      },
+      {
+        "platform": "web",
+        "symbol": "ServiceMaintenancePage",
+        "route": "/maintenance",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "system_not_found",
+    "label_ko": "화면을 찾을 수 없음",
+    "platforms": [
+      "web"
+    ],
+    "entry_routes": [
+      {
+        "platform": "web",
+        "symbol": "NotFoundPage",
+        "route": "* / route errorElement",
+        "condition": ""
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "error_reason"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_form",
+    "label_ko": "팀 만들기·수정",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamEditActivity",
+        "route": "TeamEditActivity",
+        "condition": "팀 생성자/멤버/외부인 역할과 초대·가입·해체 상태에 따라 버튼·메뉴 분기"
+      },
+      {
+        "platform": "aos",
+        "symbol": "TeamCreateActivity",
+        "route": "TeamCreateActivity",
+        "condition": "팀 생성자/멤버/외부인 역할과 초대·가입·해체 상태에 따라 버튼·메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamFormView",
+        "route": "TeamRoute.form",
+        "condition": [
+          "create/edit 모드; 수정은 팀장/방장 권한에 따른 진입"
+        ]
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [
+      "mode=create|edit"
+    ],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_intro",
+    "label_ko": "팀 · 소개",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamProfileScreenModel.Tab.INTRODUCTION",
+        "route": "TeamProfile.Tab.INTRODUCTION",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamIntroductionTabView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_member_invite",
+    "label_ko": "팀 멤버 초대",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamInviteScreen",
+        "route": "TeamInviteScreen",
+        "condition": "팀 생성자/멤버/외부인 역할과 초대·가입·해체 상태에 따라 버튼·메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamInviteView",
+        "route": "TeamRoute.invite",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_members",
+    "label_ko": "팀 · 멤버",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamProfileScreenModel.Tab.MEMBERS",
+        "route": "TeamProfile.Tab.MEMBERS",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamMemberTabView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_portfolio",
+    "label_ko": "팀 · 포트폴리오",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamProfileScreenModel.Tab.PORTFOLIO",
+        "route": "TeamProfile.Tab.PORTFOLIO",
+        "condition": ""
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamPortfolioTabView",
+        "route": "로컬 presentation/상위 화면 구성",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  },
+  {
+    "screen_name": "team_profile",
+    "label_ko": "팀 프로필",
+    "platforms": [
+      "aos",
+      "ios"
+    ],
+    "entry_routes": [
+      {
+        "platform": "aos",
+        "symbol": "TeamProfileActivity",
+        "route": "TeamProfileActivity",
+        "condition": "팀 생성자/멤버/외부인 역할과 초대·가입·해체 상태에 따라 버튼·메뉴 분기"
+      },
+      {
+        "platform": "ios",
+        "symbol": "TeamDetailView",
+        "route": "TeamRoute.detail",
+        "condition": []
+      }
+    ],
+    "checks": [
+      "visible entry once",
+      "back reentry once",
+      "hidden preload zero",
+      "GA field and count",
+      "internal field and count"
+    ],
+    "expected_context": [],
+    "status": "not_run",
+    "actual_build": null,
+    "evidence": []
+  }
+]

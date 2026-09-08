@@ -1,0 +1,19 @@
+{
+  "00-start-here.md": "6a60ca1d9a5a658b508c383fa8cb75ecc8d04f0e7369fee05a4ee7b9385334aa",
+  "01-screen-policy.md": "58ff8aff7daabf2b0c5f9233ab17a5c258bf51b61832ffb5a2420e5d2edb5b4b",
+  "02-screen-list.md": "6ca84f8a90d58cc8370e871bb426ab0dba31a7acad282c7d5d8a6b058f277e62",
+  "03-collection-contract.md": "2a6876717659939bcc9a21c3e243afc1f2b8636e9bed4cd57b254569bf0e76f4",
+  "04-development-backlog.md": "b929d0e8a1021ff2c33be4fb52cc98150e13b84316b44bd626cf470414771241",
+  "05-qa-and-release.md": "8db93bdbd5defed0798b6081b3699f268bd5f882a602908a29c24c40ae9ff267",
+  "06-evidence-and-status.md": "63dac9cf76b9d7053de67dd31902e1a7db5ec04a372477cecd68db5d3562652d",
+  "development-backlog.json": "6c4fa3b093ecfd1c720c67ddba468f7c3f321e57be660ff9165180d0d3037af8",
+  "example-ga-screen-event.json": "73977dd697336f06374d38fb853f128ddb061d3d8694bcbd9728dd65e769a434",
+  "example-internal-screen-event.json": "e90010514bc758103b4f8a38090d5cf5d30dbf04ec7fde2aa4fb1783046f463c",
+  "ga-name-mapping.json": "041008ddb11af95adb9b3261f5c85495627cc7edee36f6501dd3ba752e4fd1ea",
+  "internal-name-mapping.json": "e28a7de3ea4084a8b971a02e574a242e38c90d2e57dc83f6b186ff0b750beb53",
+  "new-surface-dispositions.json": "ada3c86e6015f4ac2305c0e923dfb4d2712c6baaaee68e5377bcc8feff013aec",
+  "screen-qa-checklist.json": "a074c9bebf6ac86292718d4366d99ba197ac6ab89a6744ad450cb5ee89bee036",
+  "screen-registry.alpha-proposal.json": "a4d6447433e5e9651cc4888b6e7aa4e2105270eb4234577246475bce36224c01",
+  "source-dispositions.json": "4a7b1c8a7ef46205aa13e7e6acf50fb72b413fe5f6cce5d1bcb0d42aa9844832",
+  "summary.json": "6358b4d63acc432c1cd12dde8e3f77791db0f3577549cc7c88fdb7f33f614787"
+}

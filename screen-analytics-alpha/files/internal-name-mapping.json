@@ -1,0 +1,450 @@
+[
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_IMAGE_CREATE_COMPLETE",
+    "label_ko": "대표 포트폴리오 이미지 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_IMAGE_DETAIL",
+    "label_ko": "대표 포트폴리오 이미지 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_IMAGE_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 이미지 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_IMAGE_DETAIL",
+    "label_ko": "포트폴리오 이미지 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_IMAGE_CREATE_QUIT",
+    "label_ko": "포트폴리오 이미지 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_VIDEO_CREATE_COMPLETE",
+    "label_ko": "대표 포트폴리오 비디오 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_VIDEO_DETAIL",
+    "label_ko": "대표 포트폴리오 비디오 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_VIDEO_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 비디오 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_VIDEO_DETAIL",
+    "label_ko": "포트폴리오 비디오 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_VIDEO_CREATE_QUIT",
+    "label_ko": "포트폴리오 비디오 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_YOUTUBE_CREATE_COMPLETE",
+    "label_ko": "대표 포트폴리오 유튜브 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_YOUTUBE_DETAIL",
+    "label_ko": "대표 포트폴리오 유튜브 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_YOUTUBE_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 유튜브 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_YOUTUBE_DETAIL",
+    "label_ko": "포트폴리오 유튜브 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_YOUTUBE_CREATE_QUIT",
+    "label_ko": "포트폴리오 유튜브 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_AUDIO_CREATE_COMPLETE",
+    "label_ko": "대표 포트폴리오 오디오 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_AUDIO_DETAIL",
+    "label_ko": "대표 포트폴리오 오디오 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_AUDIO_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 오디오 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_AUDIO_DETAIL",
+    "label_ko": "포트폴리오 오디오 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_AUDIO_CREATE_QUIT",
+    "label_ko": "포트폴리오 오디오 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_PDF_CREATE_COMPLETE",
+    "label_ko": "대표 포트폴리오 PDF 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_PDF_DETAIL",
+    "label_ko": "대표 포트폴리오 PDF 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_PDF_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 PDF 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_PDF_DETAIL",
+    "label_ko": "포트폴리오 PDF 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_PDF_CREATE_QUIT",
+    "label_ko": "포트폴리오 PDF 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_TEXT_CREATE_COMPLETE",
+    "label_ko": "대표 포트폴리오 텍스트 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "REPRESENTATIVE_PORTFOLIO_TEXT_DETAIL",
+    "label_ko": "대표 포트폴리오 텍스트 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_TEXT_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 텍스트 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_TEXT_DETAIL",
+    "label_ko": "포트폴리오 텍스트 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "PORTFOLIO_TEXT_CREATE_QUIT",
+    "label_ko": "포트폴리오 텍스트 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PROJECT_CARD_CREATE_COMPLETE",
+    "label_ko": "프로젝트 카드 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PROJECT_CARD_CREATE_QUIT",
+    "label_ko": "프로젝트 카드 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "PROJECT_CARD_DETAIL",
+    "label_ko": "프로젝트 카드 상세 조회",
+    "screen_name": "project_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "INSPIRATION_CREATE_COMPLETE",
+    "label_ko": "영감 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "INSPIRATION_CREATE_QUIT",
+    "label_ko": "영감 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "INSPIRATION_DETAIL",
+    "label_ko": "영감 상세 조회",
+    "screen_name": "inspiration_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CASTING_CREATE_COMPLETE",
+    "label_ko": "캐스팅 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "CASTING_CREATE_QUIT",
+    "label_ko": "캐스팅 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "CASTING_LIST",
+    "label_ko": "캐스팅 목록 조회",
+    "screen_name": "casting_list",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CASTING_DETAIL",
+    "label_ko": "캐스팅 상세 조회",
+    "screen_name": "casting_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CONTACT_MY_CLUB",
+    "label_ko": "연락처 내 클럽",
+    "screen_name": null,
+    "classification": "legacy_context_required",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CONTACT_FIRST_CONNECTION",
+    "label_ko": "연락처 일촌",
+    "screen_name": "contact_first",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CONTACT_FOLLOWER",
+    "label_ko": "연락처 팔로워",
+    "screen_name": "contact_follower",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CONTACT_FOLLOWING",
+    "label_ko": "연락처 팔로잉",
+    "screen_name": "contact_following",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "CONTACT_CARD_SHARE",
+    "label_ko": "연락처 카드 교환",
+    "screen_name": null,
+    "classification": "legacy_context_required",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "INBOX_SOCIAL",
+    "label_ko": "인박스 소셜",
+    "screen_name": null,
+    "classification": "legacy_context_required",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "INBOX_PROPOSAL",
+    "label_ko": "인박스 제안",
+    "screen_name": "proposal_inbox",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "FINDER_SEARCH_RESULT_CREATOR",
+    "label_ko": "파인더 검색 결과 크리에이터",
+    "screen_name": "finder_result_creator",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "FINDER_SEARCH_RESULT_PORTFOLIO",
+    "label_ko": "파인더 검색 결과 포트폴리오",
+    "screen_name": "finder_result_portfolio",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "FINDER_SEARCH_RESULT_PROJECT",
+    "label_ko": "파인더 검색 결과 프로젝트",
+    "screen_name": "finder_result_project",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "USER_DETAIL_RESUME",
+    "label_ko": "유저 상세 이력서 뷰",
+    "screen_name": "profile_home",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "USER_DETAIL_CARD",
+    "label_ko": "유저 상세 카드 뷰",
+    "screen_name": "profile_home",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "MY_PAGE_RESUME",
+    "label_ko": "마이페이지 이력서 뷰",
+    "screen_name": "profile_home",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "MY_PAGE_CARD",
+    "label_ko": "마이페이지 카드 뷰",
+    "screen_name": "profile_home",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "HOME",
+    "label_ko": "홈 2.0 조회",
+    "screen_name": null,
+    "classification": "legacy_context_required",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "HOME_FEED_LIST",
+    "label_ko": "홈 피드 목록 조회",
+    "screen_name": "home_discovery",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "FEED_CREATE_COMPLETE",
+    "label_ko": "포트폴리오 작성 완료",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "FEED_CREATE_QUIT",
+    "label_ko": "포트폴리오 작성 이탈",
+    "screen_name": null,
+    "classification": "action_not_screen_visit",
+    "note": "작성 완료·중단 기록을 화면 방문 수로 세지 않습니다."
+  },
+  {
+    "old_value": "FEED_DETAIL",
+    "label_ko": "포트폴리오 상세 조회",
+    "screen_name": "portfolio_detail",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "FINDER_LIST",
+    "label_ko": "파인더 목록 조회",
+    "screen_name": "gallery_home",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "DISCOVERY",
+    "label_ko": "디스커버리 메인",
+    "screen_name": "home_discovery",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "NETWORK",
+    "label_ko": "인맥 둘러보기",
+    "screen_name": "network_dial",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "GALLERY",
+    "label_ko": "갤러리",
+    "screen_name": "gallery_home",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  },
+  {
+    "old_value": "SHUFFLE",
+    "label_ko": "셔플",
+    "screen_name": "finder_shuffle_result",
+    "classification": "mapped_with_context",
+    "note": "버전·플랫폼·발신 위치·프로필 주체·표현 방식별 조건이 필요합니다. 과거 데이터 전체에 일괄 적용하지 않습니다."
+  }
+]
