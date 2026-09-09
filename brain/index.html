@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f5f7f7">
-<title>지식 지도 — 기록이 판단이 되는 흐름</title>
+<title>지식 지도 · 기록이 판단이 되는 흐름</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,8 +11,8 @@
 <main>
 <div class="intro"><div><p class="eyebrow">KNOWLEDGE OBSERVATORY</p><h1>기록이 쌓이고,<br>판단으로 이어지는 곳.</h1><p class="lead">어디에 지식이 쌓이는지, 어느 연결을 확인해야 하는지 한눈에 봅니다.</p></div><div class="devices" role="group" aria-label="관측 기기"><button data-device="home">집 <small id="home-age">불러오는 중</small></button><button data-device="work" aria-pressed="true">회사 <small id="work-age">불러오는 중</small></button></div></div>
 <div id="notice" class="notice" role="status">최근 관측을 확인하고 있습니다.</div>
-<section class="metrics" aria-label="축적량"><div><span>색인된 메시지</span><strong id="messages">—</strong><small>현재 선택한 기기</small></div><div><span>기억 문서</span><strong id="memory">—</strong><small>교훈 · 지식 · 결정 · 과제 · 관점</small></div><div><span>확인할 항목</span><strong id="issues">—</strong><small>현재 관측 기준</small></div><div><span>관측 기간의 변화</span><strong id="delta">—</strong><small id="period">기록이 쌓이면 비교합니다</small></div></section>
-<section class="flow-section" aria-labelledby="flow-title"><div class="section-top"><div><p class="eyebrow">01 / FLOW</p><h2 id="flow-title">전체 지식 흐름</h2></div><p class="legend"><span>● 확인</span><span>◐ 주의</span><span>○ 미확인</span><span>— 대상 외</span></p></div><p class="hint">항목을 선택하면 근거와 다음 확인을 볼 수 있습니다. 실선은 실행·자료 확인, 점선은 설정된 연결입니다.</p><div class="map-layout"><div class="graph" id="graph"><svg id="wires" aria-hidden="true"></svg><div id="columns" class="columns"></div></div><aside id="inspector" aria-live="polite"><p class="eyebrow">CONNECTION DETAIL</p><h3>흐름의 한 곳을 선택하세요</h3><p>연결이 있다는 것과 지식이 제대로 쓰였다는 것은 다릅니다. 확인한 범위를 나누어 보여드립니다.</p></aside></div></section>
+<section class="metrics" aria-label="축적량"><div><span>색인된 메시지</span><strong id="messages">미확인</strong><small>현재 선택한 기기</small></div><div><span>기억 문서</span><strong id="memory">미확인</strong><small>교훈 · 지식 · 결정 · 과제 · 관점</small></div><div><span>확인할 항목</span><strong id="issues">미확인</strong><small>현재 관측 기준</small></div><div><span>관측 기간의 변화</span><strong id="delta">미확인</strong><small id="period">기록이 쌓이면 비교합니다</small></div></section>
+<section class="flow-section" aria-labelledby="flow-title"><div class="section-top"><div><p class="eyebrow">01 / FLOW</p><h2 id="flow-title">전체 지식 흐름</h2></div><p class="legend"><span>● 확인</span><span>◐ 주의</span><span>○ 미확인</span><span>대상 외</span></p></div><p class="hint">항목을 선택하면 근거와 다음 확인을 볼 수 있습니다. 실선은 실행·자료 확인, 점선은 설정된 연결입니다.</p><div class="map-layout"><div class="graph" id="graph"><svg id="wires" aria-hidden="true"></svg><div id="columns" class="columns"></div></div><aside id="inspector" aria-live="polite"><p class="eyebrow">CONNECTION DETAIL</p><h3>선택한 연결</h3><p>연결이 있다는 것과 지식이 제대로 쓰였다는 것은 다릅니다. 확인한 범위를 나누어 보여드립니다.</p></aside></div></section>
 <section class="lower"><div><p class="eyebrow">02 / ATTENTION</p><h2>지금 확인할 곳</h2><div id="attention" class="attention">관측 기록 대기 중</div></div><div><p class="eyebrow">03 / ACCUMULATION</p><h2>기억이 쌓인 자리</h2><div id="bars" class="bars"></div><p class="hint">문서 개수이며, 지식의 정확성이나 재사용 성과 점수는 아닙니다.</p></div></section>
 <footer><p>15분마다 기기에서 점검 · 이 화면은 1분마다 갱신</p><p>45분 이상 관측이 없으면 미확인으로 표시합니다. 절전과 장애를 단정하지 않습니다.<br>대화 본문과 문서 내용은 공개하지 않고, 집계·상태만 표시합니다.</p></footer>
 </main><script src="app.js"></script>
