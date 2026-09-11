@@ -11,8 +11,8 @@
     "slug": "demo-310-feedback",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/demo-310-feedback/",
-    "last_kind": "new",
-    "last_sha256": "8b2d6be83b468fdc6367794900d2fa99056b76b52f57be05fa2841a9775344e1",
-    "timestamp": "2026-09-11T04:34:46.074583Z"
+    "last_kind": "redeploy",
+    "last_sha256": "d21f9ef5e69d6bd58a2d95269451e2414be1b4b26cf5bb4f2e00b5e5aa4bfd41",
+    "timestamp": "2026-09-11T04:39:38.587434Z"
   }
 }

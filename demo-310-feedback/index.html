@@ -6,89 +6,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>3.1.0 — 지난 피드백 반영</title>
 <style>
-  :root { --ink:#111; --sub:#666; --line:#e4e4e4; --bg:#fff; --mark:#111; }
+  :root { --ink:#111; --sub:#8a8a8a; --line:#e6e6e6; --bg:#fff; }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif; line-height:1.5; }
-  main { max-width:1080px; margin:0 auto; padding:48px 40px 64px; }
-  header { display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:28px; }
-  h1 { font-size:28px; margin:0; letter-spacing:-0.01em; }
-  header span { font-size:15px; color:var(--sub); }
-  table { width:100%; border-collapse:collapse; font-size:17px; }
-  th { text-align:left; font-weight:600; color:var(--sub); font-size:13px; letter-spacing:0.04em; padding:0 12px 10px; border-bottom:1px solid var(--ink); }
-  td { padding:16px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
-  td:nth-child(1) { width:34%; color:var(--sub); }
-  td:nth-child(2) { width:52%; }
-  td:nth-child(3) { width:14%; white-space:nowrap; font-weight:600; }
-  section { margin-top:36px; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
-  section div { border-top:2px solid var(--ink); padding-top:12px; }
-  section h2 { font-size:13px; color:var(--sub); letter-spacing:0.04em; margin:0 0 8px; font-weight:600; }
-  section p { margin:0; font-size:17px; }
-  @media (max-width:720px){ main{padding:28px 20px;} section{grid-template-columns:1fr;} td:nth-child(3){white-space:normal;} }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif; line-height:1.35; }
+  main { max-width:1040px; margin:0 auto; padding:56px 40px 72px; }
+  header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:40px; }
+  h1 { font-size:22px; margin:0; font-weight:600; letter-spacing:-0.01em; }
+  header span { font-size:14px; color:var(--sub); }
+  ol { list-style:none; margin:0; padding:0; }
+  li { display:grid; grid-template-columns:5fr 7fr; gap:32px; padding:22px 0; border-top:1px solid var(--line); align-items:baseline; }
+  li:last-child { border-bottom:1px solid var(--line); }
+  .was { font-size:20px; color:var(--sub); }
+  .now { font-size:26px; font-weight:700; letter-spacing:-0.01em; }
+  .now small { display:block; font-size:16px; font-weight:400; color:var(--sub); margin-top:4px; }
+  footer { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:44px; }
+  footer div { border-top:2px solid var(--ink); padding-top:12px; }
+  footer h2 { font-size:13px; color:var(--sub); letter-spacing:0.04em; margin:0 0 6px; font-weight:600; }
+  footer p { margin:0; font-size:22px; font-weight:700; }
+  footer p small { display:block; font-size:15px; font-weight:400; color:var(--sub); margin-top:4px; }
+  @media (max-width:720px){ main{padding:32px 20px;} li{grid-template-columns:1fr; gap:6px;} .now{font-size:22px;} footer{grid-template-columns:1fr;} }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <h1>3.1.0 — 지난 피드백, 이렇게 반영했습니다</h1>
+    <h1>3.1.0 — 지난주 지적, 이번 반영</h1>
     <span>크리에이터클럽 · 2026. 9. 11</span>
   </header>
 
-  <table>
-    <thead><tr><th>지난 시연에서</th><th>3.1.0에서</th><th>볼 곳</th></tr></thead>
-    <tbody>
-      <tr>
-        <td>팀을 앞으로. 오픈채팅과 다른 건 소속이다. 팀을 만들면 팀 채팅이 같이 생겨야 한다.</td>
-        <td>채팅 상단 우측에 팀 메뉴. 팀 만들기 → 팀 채팅 자동 생성 → 멤버 초대 → 팀 포트폴리오 등록까지 한 흐름.</td>
-        <td>팀</td>
-      </tr>
-      <tr>
-        <td>채팅 화면에서 바로 새 대화를 열 수 있어야 한다. 인맥이면 절차 없이 대화.</td>
-        <td>새 채팅 — 내 인맥과 바로 대화 시작, 라운지 개설.</td>
-        <td>연결</td>
-      </tr>
-      <tr>
-        <td>라운지가 더 보여야 한다. 들어오게 만드는 요소가 필요하다.</td>
-        <td>채팅 &gt; 라운지 배치 변경, 라운지 배너.</td>
-        <td>연결</td>
-      </tr>
-      <tr>
-        <td>노크한 다음 뭘 해야 하는지 알려줘라. 토스트는 상단에, 버튼을 넣어라.</td>
-        <td>토스트를 상단으로 옮기고 다음 행동 버튼을 붙였다 — 포트폴리오·영감·프로젝트 등록 후, 노크 후, 팀 만든 후, 팀 참여 수락 후.</td>
-        <td>만들기 · 연결 · 팀</td>
-      </tr>
-      <tr>
-        <td>다이얼 아이콘이 안 읽힌다. 닫기·새로고침·이전을 나눠라. 첫 진입 안내가 없다.</td>
-        <td>다이얼 아이콘 개선, 안내 문구 추가, 처음으로·뒤로·나가기 경로 분리.</td>
-        <td>다이얼</td>
-      </tr>
-      <tr>
-        <td>O/X를 누르면 반응이 있어야 한다.</td>
-        <td>답하면 닫히는 인터랙션.</td>
-        <td>첫 화면</td>
-      </tr>
-      <tr>
-        <td>시그니처 키워드가 모호하다. 고르고 나면 끝난 게 보여야 한다.</td>
-        <td>키워드 문구 수정, 선택 종료 액션 개선.</td>
-        <td>첫 화면</td>
-      </tr>
-      <tr>
-        <td>행동을 유도하는 문구가 없다.</td>
-        <td>모션배너 문구를 크리에이터클럽 톤으로 — 짧고 당당하게, 판단은 창작자에게.</td>
-        <td>첫 화면</td>
-      </tr>
-    </tbody>
-  </table>
+  <ol>
+    <li><span class="was">팀이 안 보인다.</span><span class="now">채팅 상단에 팀.<small>만들기 → 팀 채팅 자동 → 초대 → 팀포폴</small></span></li>
+    <li><span class="was">노크하고 뭘 하라는 건지.</span><span class="now">토스트 위로, 다음 행동 버튼.<small>등록 후 · 노크 후 · 팀 만든 후 · 참여 수락 후</small></span></li>
+    <li><span class="was">대화 시작이 멀다.</span><span class="now">새 채팅. 인맥이면 바로.</span></li>
+    <li><span class="was">라운지가 안 보인다.</span><span class="now">라운지 위로, 배너.</span></li>
+    <li><span class="was">다이얼 — 닫기·뒤로를 나눠라.</span><span class="now">처음으로 · 뒤로 · 나가기.<small>첫 진입 안내 문구</small></span></li>
+    <li><span class="was">O/X 눌러도 반응이 없다.</span><span class="now">답하면 닫힌다.</span></li>
+    <li><span class="was">키워드가 모호하다.</span><span class="now">문구 수정. 고르면 끝.</span></li>
+    <li><span class="was">행동을 유도하는 문구가 없다.</span><span class="now">모션배너, 클럽 톤으로.</span></li>
+  </ol>
 
-  <section>
-    <div>
-      <h2>추가한 것</h2>
-      <p>앱 흔들기 — 화면 캡처와 함께 바로 보내는 피드백 창구. 서포터즈 기간에 먼저 써 본다.</p>
-    </div>
-    <div>
-      <h2>이번에 안 들어간 것</h2>
-      <p>유튜브 연동(내 채널에서 골라 포트폴리오로) — 3.5.</p>
-    </div>
-  </section>
+  <footer>
+    <div><h2>추가</h2><p>앱 흔들기<small>캡처와 함께 바로 피드백. 서포터즈 기간에 먼저.</small></p></div>
+    <div><h2>안 함</h2><p>유튜브 연동 → 3.5<small>내 채널에서 골라 포트폴리오로</small></p></div>
+  </footer>
 </main>
 </body>
 </html>
