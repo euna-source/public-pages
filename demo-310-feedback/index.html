@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3.1.0 — 지난 피드백 반영</title>
+<style>
+  :root { --ink:#111; --sub:#666; --line:#e4e4e4; --bg:#fff; --mark:#111; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif; line-height:1.5; }
+  main { max-width:1080px; margin:0 auto; padding:48px 40px 64px; }
+  header { display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid var(--ink); padding-bottom:14px; margin-bottom:28px; }
+  h1 { font-size:28px; margin:0; letter-spacing:-0.01em; }
+  header span { font-size:15px; color:var(--sub); }
+  table { width:100%; border-collapse:collapse; font-size:17px; }
+  th { text-align:left; font-weight:600; color:var(--sub); font-size:13px; letter-spacing:0.04em; padding:0 12px 10px; border-bottom:1px solid var(--ink); }
+  td { padding:16px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  td:nth-child(1) { width:34%; color:var(--sub); }
+  td:nth-child(2) { width:52%; }
+  td:nth-child(3) { width:14%; white-space:nowrap; font-weight:600; }
+  section { margin-top:36px; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  section div { border-top:2px solid var(--ink); padding-top:12px; }
+  section h2 { font-size:13px; color:var(--sub); letter-spacing:0.04em; margin:0 0 8px; font-weight:600; }
+  section p { margin:0; font-size:17px; }
+  @media (max-width:720px){ main{padding:28px 20px;} section{grid-template-columns:1fr;} td:nth-child(3){white-space:normal;} }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>3.1.0 — 지난 피드백, 이렇게 반영했습니다</h1>
+    <span>크리에이터클럽 · 2026. 9. 11</span>
+  </header>
+
+  <table>
+    <thead><tr><th>지난 시연에서</th><th>3.1.0에서</th><th>볼 곳</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>팀을 앞으로. 오픈채팅과 다른 건 소속이다. 팀을 만들면 팀 채팅이 같이 생겨야 한다.</td>
+        <td>채팅 상단 우측에 팀 메뉴. 팀 만들기 → 팀 채팅 자동 생성 → 멤버 초대 → 팀 포트폴리오 등록까지 한 흐름.</td>
+        <td>팀</td>
+      </tr>
+      <tr>
+        <td>채팅 화면에서 바로 새 대화를 열 수 있어야 한다. 인맥이면 절차 없이 대화.</td>
+        <td>새 채팅 — 내 인맥과 바로 대화 시작, 라운지 개설.</td>
+        <td>연결</td>
+      </tr>
+      <tr>
+        <td>라운지가 더 보여야 한다. 들어오게 만드는 요소가 필요하다.</td>
+        <td>채팅 &gt; 라운지 배치 변경, 라운지 배너.</td>
+        <td>연결</td>
+      </tr>
+      <tr>
+        <td>노크한 다음 뭘 해야 하는지 알려줘라. 토스트는 상단에, 버튼을 넣어라.</td>
+        <td>토스트를 상단으로 옮기고 다음 행동 버튼을 붙였다 — 포트폴리오·영감·프로젝트 등록 후, 노크 후, 팀 만든 후, 팀 참여 수락 후.</td>
+        <td>만들기 · 연결 · 팀</td>
+      </tr>
+      <tr>
+        <td>다이얼 아이콘이 안 읽힌다. 닫기·새로고침·이전을 나눠라. 첫 진입 안내가 없다.</td>
+        <td>다이얼 아이콘 개선, 안내 문구 추가, 처음으로·뒤로·나가기 경로 분리.</td>
+        <td>다이얼</td>
+      </tr>
+      <tr>
+        <td>O/X를 누르면 반응이 있어야 한다.</td>
+        <td>답하면 닫히는 인터랙션.</td>
+        <td>첫 화면</td>
+      </tr>
+      <tr>
+        <td>시그니처 키워드가 모호하다. 고르고 나면 끝난 게 보여야 한다.</td>
+        <td>키워드 문구 수정, 선택 종료 액션 개선.</td>
+        <td>첫 화면</td>
+      </tr>
+      <tr>
+        <td>행동을 유도하는 문구가 없다.</td>
+        <td>모션배너 문구를 크리에이터클럽 톤으로 — 짧고 당당하게, 판단은 창작자에게.</td>
+        <td>첫 화면</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <section>
+    <div>
+      <h2>추가한 것</h2>
+      <p>앱 흔들기 — 화면 캡처와 함께 바로 보내는 피드백 창구. 서포터즈 기간에 먼저 써 본다.</p>
+    </div>
+    <div>
+      <h2>이번에 안 들어간 것</h2>
+      <p>유튜브 연동(내 채널에서 골라 포트폴리오로) — 3.5.</p>
+    </div>
+  </section>
+</main>
+</body>
+</html>
