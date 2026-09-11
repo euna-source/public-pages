@@ -9,45 +9,69 @@
   :root { --ink:#111; --sub:#8a8a8a; --line:#e6e6e6; --bg:#fff; }
   * { box-sizing:border-box; }
   body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif; line-height:1.35; }
-  main { max-width:1040px; margin:0 auto; padding:56px 40px 72px; }
-  header { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:40px; }
-  h1 { font-size:22px; margin:0; font-weight:600; letter-spacing:-0.01em; }
+  main { max-width:1040px; margin:0 auto; padding:52px 40px 72px; }
+  header { margin-bottom:36px; }
   header span { font-size:14px; color:var(--sub); }
+  h1 { font-size:30px; margin:6px 0 0; font-weight:700; letter-spacing:-0.01em; }
+  h1 b { color:var(--sub); font-weight:400; margin:0 6px; }
+  section { margin-top:28px; }
+  h2 { font-size:15px; color:var(--sub); font-weight:600; letter-spacing:0.04em; margin:0 0 4px; }
+  h2 em { font-style:normal; color:var(--ink); font-size:20px; margin-right:8px; }
   ol { list-style:none; margin:0; padding:0; }
-  li { display:grid; grid-template-columns:5fr 7fr; gap:32px; padding:22px 0; border-top:1px solid var(--line); align-items:baseline; }
-  li:last-child { border-bottom:1px solid var(--line); }
-  .was { font-size:20px; color:var(--sub); }
-  .now { font-size:26px; font-weight:700; letter-spacing:-0.01em; }
-  .now small { display:block; font-size:16px; font-weight:400; color:var(--sub); margin-top:4px; }
+  li { display:grid; grid-template-columns:5fr 7fr; gap:28px; padding:16px 0; border-top:1px solid var(--line); align-items:baseline; }
+  .was { font-size:18px; color:var(--sub); }
+  .now { font-size:24px; font-weight:700; letter-spacing:-0.01em; }
+  .now small { display:block; font-size:15px; font-weight:400; color:var(--sub); margin-top:3px; }
   footer { display:grid; grid-template-columns:1fr 1fr; gap:32px; margin-top:44px; }
   footer div { border-top:2px solid var(--ink); padding-top:12px; }
-  footer h2 { font-size:13px; color:var(--sub); letter-spacing:0.04em; margin:0 0 6px; font-weight:600; }
+  footer h3 { font-size:13px; color:var(--sub); letter-spacing:0.04em; margin:0 0 6px; font-weight:600; }
   footer p { margin:0; font-size:22px; font-weight:700; }
   footer p small { display:block; font-size:15px; font-weight:400; color:var(--sub); margin-top:4px; }
-  @media (max-width:720px){ main{padding:32px 20px;} li{grid-template-columns:1fr; gap:6px;} .now{font-size:22px;} footer{grid-template-columns:1fr;} }
+  @media (max-width:720px){ main{padding:32px 20px;} li{grid-template-columns:1fr; gap:4px;} .now{font-size:21px;} footer{grid-template-columns:1fr;} h1{font-size:22px;} }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <h1>3.1.0 — 지난주 지적, 이번 반영</h1>
-    <span>크리에이터클럽 · 2026. 9. 11</span>
+    <span>크리에이터클럽 3.1.0 · 2026. 9. 11 · 지난주 지적 → 이번 반영</span>
+    <h1>발견<b>→</b>노크<b>→</b>채팅<b>→</b>라운지<b>→</b>팀</h1>
   </header>
 
-  <ol>
-    <li><span class="was">팀이 안 보인다.</span><span class="now">채팅 상단에 팀.<small>만들기 → 팀 채팅 자동 → 초대 → 팀포폴</small></span></li>
-    <li><span class="was">노크하고 뭘 하라는 건지.</span><span class="now">토스트 위로, 다음 행동 버튼.<small>등록 후 · 노크 후 · 팀 만든 후 · 참여 수락 후</small></span></li>
-    <li><span class="was">대화 시작이 멀다.</span><span class="now">새 채팅. 인맥이면 바로.</span></li>
-    <li><span class="was">라운지가 안 보인다.</span><span class="now">라운지 위로, 배너.</span></li>
-    <li><span class="was">다이얼 — 닫기·뒤로를 나눠라.</span><span class="now">처음으로 · 뒤로 · 나가기.<small>첫 진입 안내 문구</small></span></li>
-    <li><span class="was">O/X 눌러도 반응이 없다.</span><span class="now">답하면 닫힌다.</span></li>
-    <li><span class="was">키워드가 모호하다.</span><span class="now">문구 수정. 고르면 끝.</span></li>
-    <li><span class="was">행동을 유도하는 문구가 없다.</span><span class="now">모션배너, 클럽 톤으로.</span></li>
-  </ol>
+  <section>
+    <h2><em>1</em>발견 — 디스커버리에서 팀 작업물을 본다</h2>
+    <ol>
+      <li><span class="was">행동을 유도하는 문구가 없다.</span><span class="now">모션배너, 클럽 톤으로.</span></li>
+      <li><span class="was">O/X 눌러도 반응이 없다.</span><span class="now">답하면 닫힌다.</span></li>
+      <li><span class="was">키워드가 모호하다.</span><span class="now">문구 수정. 고르면 끝.</span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><em>2</em>노크 — 만든 사람에게 말을 건다</h2>
+    <ol>
+      <li><span class="was">노크하고 뭘 하라는 건지.</span><span class="now">토스트 위로, 다음 행동 버튼.<small>등록 후 · 노크 후 · 팀 만든 후 · 참여 수락 후, 전부 같은 규칙</small></span></li>
+      <li><span class="was">다이얼 — 닫기·뒤로를 나눠라.</span><span class="now">처음으로 · 뒤로 · 나가기.<small>첫 진입 안내 문구</small></span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><em>3</em>채팅 · 라운지 — 대화를 연다</h2>
+    <ol>
+      <li><span class="was">대화 시작이 멀다.</span><span class="now">새 채팅. 인맥이면 바로.</span></li>
+      <li><span class="was">라운지가 안 보인다.</span><span class="now">라운지 위로, 배너.<small>새 채팅에서 라운지 개설</small></span></li>
+    </ol>
+  </section>
+
+  <section>
+    <h2><em>4</em>팀 — 초대받고, 같이 올린다</h2>
+    <ol>
+      <li><span class="was">팀이 안 보인다.</span><span class="now">채팅 상단에 팀.<small>만들기 → 팀 채팅 자동 → 초대 → 팀포폴 → 다시 디스커버리에</small></span></li>
+    </ol>
+  </section>
 
   <footer>
-    <div><h2>추가</h2><p>앱 흔들기<small>캡처와 함께 바로 피드백. 서포터즈 기간에 먼저.</small></p></div>
-    <div><h2>안 함</h2><p>유튜브 연동 → 3.5<small>내 채널에서 골라 포트폴리오로</small></p></div>
+    <div><h3>추가</h3><p>앱 흔들기<small>캡처와 함께 바로 피드백. 서포터즈 기간에 먼저.</small></p></div>
+    <div><h3>안 함</h3><p>유튜브 연동 → 3.5<small>내 채널에서 골라 포트폴리오로</small></p></div>
   </footer>
 </main>
 </body>
