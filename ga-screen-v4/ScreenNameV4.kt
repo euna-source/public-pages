@@ -33,8 +33,6 @@ object ScreenNameV4 {
     const val SIGNUP_NAME_KO = "signup_name_ko"
     /** 가입 · 영문 이름 */
     const val SIGNUP_NAME_EN = "signup_name_en"
-    /** 가입 · 직업 선택 */
-    const val SIGNUP_PROFESSION = "signup_profession"
     /** 가입 · 키워드(성향) */
     const val SIGNUP_KEYWORD_PERSONAL = "signup_keyword_personal"
     /** 가입 · 키워드(업무 성향) */
@@ -67,10 +65,6 @@ object ScreenNameV4 {
     const val HOME_CREATOR_LIST = "home_creator_list"
     /** 영감 · 목록(딥링크) */
     const val INSPIRATION_LIST = "inspiration_list"
-    /** Muse 한 마디 · 목록 */
-    const val MUSE_COMMENT_LIST = "muse_comment_list"
-    /** Muse 한 마디 · 작성·수정 */
-    const val MUSE_COMMENT_INPUT = "muse_comment_input"
     /** 포트폴리오 · 상세 */
     const val PORTFOLIO_DETAIL = "portfolio_detail"
     /** 영감 · 상세 */
@@ -111,8 +105,6 @@ object ScreenNameV4 {
     const val FIRST_CONNECTION_MUTUAL = "first_connection_mutual"
     /** 노크 · 용건 선택 */
     const val KNOCK_TYPE_SELECT = "knock_type_select"
-    /** 노크 · 메시지 입력 */
-    const val KNOCK_COMPOSE = "knock_compose"
     /** 신고 · 사유 선택 */
     const val REPORT_REASON = "report_reason"
     /** 신고 · 상세 사유 입력 */
@@ -133,12 +125,6 @@ object ScreenNameV4 {
     const val MY_INFO_NAME_KO = "my_info_name_ko"
     /** 내 정보 · 영문 이름 */
     const val MY_INFO_NAME_EN = "my_info_name_en"
-    /** 내 정보 · 직업 관리 */
-    const val MY_INFO_PROFESSION = "my_info_profession"
-    /** 내 정보 · 직업 선택 */
-    const val MY_INFO_PROFESSION_SELECT = "my_info_profession_select"
-    /** 내 정보 · 직업 직접 추가 */
-    const val MY_INFO_PROFESSION_DIRECT = "my_info_profession_direct"
     /** 내 정보 · 활동 지역 관리 */
     const val MY_INFO_REGION = "my_info_region"
     /** 내 정보 · 해외 도시 입력 */
@@ -155,8 +141,6 @@ object ScreenNameV4 {
     const val MY_INFO_BIRTH_GENDER = "my_info_birth_gender"
     /** 내 정보 · 개인정보 공개설정 */
     const val MY_INFO_VISIBILITY = "my_info_visibility"
-    /** 계정 · 이메일 강제 등록 */
-    const val ACCOUNT_EMAIL_REQUIRED = "account_email_required"
     /** 커리어 · 이력 관리(내 이력서) */
     const val RESUME_HOME = "resume_home"
     /** 커리어 · 경력 입력 */
@@ -213,12 +197,6 @@ object ScreenNameV4 {
     const val PROJECT_APPLICATION_COMPOSE = "project_application_compose"
     /** 프로젝트 · 지원자 목록 */
     const val PROJECT_APPLICANTS = "project_applicants"
-    /** 협업 제안 · 상세(웹) */
-    const val PROPOSAL_DETAIL = "proposal_detail"
-    /** 협업 제안 · 작성(웹) */
-    const val PROPOSAL_CREATE = "proposal_create"
-    /** 협업 제안 · 수정(웹) */
-    const val PROPOSAL_EDIT = "proposal_edit"
     /** 팀 · 내 팀과 합류 요청 */
     const val TEAM_LIST = "team_list"
     /** 팀 · 상세 */
@@ -283,8 +261,6 @@ object ScreenNameV4 {
     const val ARCADE_BREAKOUT = "arcade_breakout"
     /** 앱 이용 · 필수 업데이트 */
     const val APP_UPDATE_REQUIRED = "app_update_required"
-    /** 로그인 · 세션 종료 안내 */
-    const val AUTH_SESSION_EXPIRED = "auth_session_expired"
     /** 업로드 · 커버 등록 필요 */
     const val PROFILE_COVER_REQUIRED = "profile_cover_required"
     /** 채티 · 대화 목록 */
@@ -295,26 +271,12 @@ object ScreenNameV4 {
     const val PROJECT_CHAT_LIST = "project_chat_list"
     /** 회원 탈퇴 · 기타 사유 입력 */
     const val ACCOUNT_DELETE_REASON_INPUT = "account_delete_reason_input"
-    /** 설정 · 개인정보 이용 동의 */
-    const val SETTINGS_PERSONAL_INFO_CONSENT = "settings_personal_info_consent"
-    /** 설정 · 개인정보 이용 동의 철회 */
-    const val SETTINGS_PERSONAL_INFO_WITHDRAW = "settings_personal_info_withdraw"
-    /** 협업 제안 · 제안함 목록(웹) */
-    const val PROPOSAL_LIST = "proposal_list"
-    /** 알림 · 제안 소식(웹) */
-    const val NOTIFICATION_PROPOSAL_NEWS = "notification_proposal_news"
     /** 갤러리 · 작품 전시(웹) */
     const val HOME_GALLERY = "home_gallery"
-    /** 가입 · 회원 혜택 안내(웹) */
-    const val SIGNUP_PRIVILEGES = "signup_privileges"
-    /** 설정 · 마케팅 수신 거부(웹) */
-    const val SETTINGS_MARKETING_UNSUBSCRIBE = "settings_marketing_unsubscribe"
     /** 커리어 · 스킬 입력 */
     const val RESUME_SKILL_FORM = "resume_skill_form"
     /** 커리어 · 언어 능력 입력 */
     const val RESUME_LANGUAGE_FORM = "resume_language_form"
-    /** 내 정보 · 추천정보 등록 */
-    const val MY_INFO_RECOMMENDATION = "my_info_recommendation"
     /** 자기소개 · 관리 홈 */
     const val MY_INFO_INTRO_HOME = "my_info_intro_home"
     /** 아케이드 · 두더지잡기 */

@@ -9,10 +9,6 @@ export const SCREEN_NAME_V4 = {
   PROFILE_COVER_EDIT: 'profile_cover_edit',
   /** 포트폴리오 · 상세 */
   PORTFOLIO_DETAIL: 'portfolio_detail',
-  /** 파인더 · 검색 입력 */
-  FINDER_SEARCH: 'finder_search',
-  /** 파인더 · 프로젝트 검색 결과 */
-  FINDER_RESULT_PROJECT: 'finder_result_project',
   /** 추천 · Shuffle! 키워드 추천(웹) */
   FINDER_KEYWORD_RECOMMEND: 'finder_keyword_recommend',
   /** 추천 · 인맥 둘러보기(웹) */
@@ -25,20 +21,12 @@ export const SCREEN_NAME_V4 = {
   MY_PROFILE: 'my_profile',
   /** MY · 프로필 미리보기(웹) */
   MY_PROFILE_PREVIEW: 'my_profile_preview',
-  /** 프로젝트 카드 · 작성 */
-  PROJECT_CREATE: 'project_create',
-  /** 프로젝트 카드 · 수정 */
-  PROJECT_EDIT: 'project_edit',
   /** 알림 · 내 알림 */
   NOTIFICATION_CENTER: 'notification_center',
   /** 프로젝트 · 상세 */
   PROJECT_DETAIL: 'project_detail',
-  /** 프로젝트 · 목록(딥링크) */
-  PROJECT_LIST: 'project_list',
   /** 프로젝트 · 지원 작성 */
   PROJECT_APPLICATION_COMPOSE: 'project_application_compose',
-  /** 프로젝트 · 지원자 목록 */
-  PROJECT_APPLICANTS: 'project_applicants',
   /** 협업 제안 · 상세(웹) */
   PROPOSAL_DETAIL: 'proposal_detail',
   /** 협업 제안 · 작성(웹) */

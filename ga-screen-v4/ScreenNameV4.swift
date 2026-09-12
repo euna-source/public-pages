@@ -19,8 +19,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case login_password = "login_password"
     /// 로그인 · 2단계 인증 코드
     case login_2fa_email = "login_2fa_email"
-    /// 비밀번호 재설정 · 이메일 입력
-    case reset_password_email = "reset_password_email"
     /// 비밀번호 재설정 · 인증번호
     case reset_password_verify = "reset_password_verify"
     /// 비밀번호 재설정 · 새 비밀번호
@@ -29,16 +27,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case signup_id = "signup_id"
     /// 가입 · 이름 입력(한글)
     case signup_name_ko = "signup_name_ko"
-    /// 가입 · 영문 이름
-    case signup_name_en = "signup_name_en"
-    /// 가입 · 직업 선택
-    case signup_profession = "signup_profession"
-    /// 가입 · 키워드(성향)
-    case signup_keyword_personal = "signup_keyword_personal"
-    /// 가입 · 키워드(업무 성향)
-    case signup_keyword_work_preference = "signup_keyword_work_preference"
-    /// 가입 · 키워드(목표)
-    case signup_keyword_ambition = "signup_keyword_ambition"
     /// 첫 이용 · 접근 권한 안내
     case onboarding_permission = "onboarding_permission"
     /// 첫 이용 · 튜토리얼
@@ -109,8 +97,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case first_connection_mutual = "first_connection_mutual"
     /// 노크 · 용건 선택
     case knock_type_select = "knock_type_select"
-    /// 노크 · 메시지 입력
-    case knock_compose = "knock_compose"
     /// 신고 · 사유 선택
     case report_reason = "report_reason"
     /// 신고 · 상세 사유 입력
@@ -211,8 +197,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case project_application_compose = "project_application_compose"
     /// 프로젝트 · 지원자 목록
     case project_applicants = "project_applicants"
-    /// 협업 제안 · 상세(웹)
-    case proposal_detail = "proposal_detail"
     /// 협업 제안 · 작성(웹)
     case proposal_create = "proposal_create"
     /// 협업 제안 · 수정(웹)
@@ -297,28 +281,4 @@ public enum ScreenNameV4: String, CaseIterable {
     case settings_personal_info_consent = "settings_personal_info_consent"
     /// 설정 · 개인정보 이용 동의 철회
     case settings_personal_info_withdraw = "settings_personal_info_withdraw"
-    /// 협업 제안 · 제안함 목록(웹)
-    case proposal_list = "proposal_list"
-    /// 알림 · 제안 소식(웹)
-    case notification_proposal_news = "notification_proposal_news"
-    /// 갤러리 · 작품 전시(웹)
-    case home_gallery = "home_gallery"
-    /// 가입 · 회원 혜택 안내(웹)
-    case signup_privileges = "signup_privileges"
-    /// 설정 · 마케팅 수신 거부(웹)
-    case settings_marketing_unsubscribe = "settings_marketing_unsubscribe"
-    /// 커리어 · 스킬 입력
-    case resume_skill_form = "resume_skill_form"
-    /// 커리어 · 언어 능력 입력
-    case resume_language_form = "resume_language_form"
-    /// 내 정보 · 추천정보 등록
-    case my_info_recommendation = "my_info_recommendation"
-    /// 자기소개 · 관리 홈
-    case my_info_intro_home = "my_info_intro_home"
-    /// 아케이드 · 두더지잡기
-    case arcade_whack = "arcade_whack"
-    /// 아케이드 · 퍼즐
-    case arcade_puzzle = "arcade_puzzle"
-    /// 아케이드 · 플래피
-    case arcade_flappy = "arcade_flappy"
 }
