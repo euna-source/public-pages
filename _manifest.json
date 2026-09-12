@@ -35,9 +35,9 @@
     "slug": "ga-screen-unify",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/ga-screen-unify/",
-    "last_kind": "new",
-    "last_sha256": "9c6892aafc0e625566d7840d68573b386c5607e704776ae4c6832c5e850aab9a",
-    "timestamp": "2026-09-12T05:02:17.649163Z"
+    "last_kind": "redeploy",
+    "last_sha256": "da965025ebeb1feca07e1ea6b8cb0c1ede17ab8e5039c5efddbf6bf73a2e50fe",
+    "timestamp": "2026-09-12T07:27:43.315101Z"
   },
   "workflow-knowledge-guide": {
     "slug": "workflow-knowledge-guide",
