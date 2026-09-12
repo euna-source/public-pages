@@ -30,5 +30,13 @@
     "last_kind": "redeploy",
     "last_sha256": "9caa98ef2528f3ab9ca2a9b2bb077eae9ad2b43060c4681c4fa9191f0e18f947",
     "timestamp": "2026-09-12T04:11:34.302303Z"
+  },
+  "ga-screen-unify": {
+    "slug": "ga-screen-unify",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/ga-screen-unify/",
+    "last_kind": "new",
+    "last_sha256": "9c6892aafc0e625566d7840d68573b386c5607e704776ae4c6832c5e850aab9a",
+    "timestamp": "2026-09-12T05:02:17.649163Z"
   }
 }

@@ -1,0 +1,233 @@
+No,화면명(한글),화면 유형,iOS 제안·현행명,GA 현황,도달,판정,확정 screen_name,분류,사유·대응
+1,서비스 점검 안내,fullScreenCover,maintenance,제안,도달 가능,채택,maintenance,제안 채택,
+2,스플래시,fullScreenCover,splash,제안,도달 가능,채택,app_entry,제안 개명,splash → app_entry
+3,접근 권한 안내,fullScreenCover,onboarding_permission,제안,도달 가능,채택,onboarding_permission,제안 채택,
+4,개인정보 이용 재동의 약관 전문,sheet,personal_info_reconsent_document,제안,도달 가능,채택,agreement_document,통합 발송,→ agreement_document
+5,강제 로그아웃 안내,팝업,app_force_logout,제안,도달 가능,제외,,확인·안내 팝업,버튼 하나로 닫히는 알림. 필요하면 이벤트(예: app_update_gate)로 셉니다.
+6,강제 업데이트 안내,팝업,app_force_update,제안,도달 가능,제외,,확인·안내 팝업,버튼 하나로 닫히는 알림. 필요하면 이벤트(예: app_update_gate)로 셉니다.
+7,개인정보 수집 및 이용 동의 안내,팝업,personal_info_agreement,제안,도달 가능,채택,pending_agreement_detail,제안 개명,personal_info_agreement → pending_agreement_detail
+8,권장 업데이트 안내,팝업,app_recommended_update,제안,도달 가능,제외,,확인·안내 팝업,버튼 하나로 닫히는 알림. 필요하면 이벤트(예: app_update_gate)로 셉니다.
+9,커버 등록 유도 팝업 (업로드 전 프로필 커버 등록),팝업,upload_cover_required_popup,제안,도달 가능,제외,,유도·완료 팝업,행동의 결과 알림. 완료는 행동 이벤트로 이미 잡힙니다.
+10,포트폴리오 등록 완료 팝업,팝업,portfolio_registered_popup,제안,도달 가능,제외,,유도·완료 팝업,행동의 결과 알림. 완료는 행동 이벤트로 이미 잡힙니다.
+11,비밀번호 설정 / 재설정 입력,push,signup_password,제안,도달 가능,채택,signup_password,제안 채택,
+12,사용자 ID 만들기,push,signup_user_id,제안,도달 가능,채택,basic_info_id,제안 개명,signup_user_id → basic_info_id
+13,이름 입력하기 (회원가입 완료),push,signup_name,제안,도달 가능,채택,basic_info_ko_name,제안 개명,signup_name → basic_info_ko_name
+14,이메일 로그인 (이메일 입력 → 비밀번호 입력),push,login_email,제안,도달 가능,채택,login_email,제안 채택,
+15,이메일 인증번호 입력,push,signup_email_verification,제안,도달 가능,채택,signup_email_verification,제안 채택,
+16,2단계 인증 이메일 코드 입력,fullScreenCover,login_2fa_email,제안,도달 가능,채택,login_2fa_email,제안 채택,
+17,로그인·가입 랜딩 (소셜/이메일 선택),fullScreenCover,join_landing,제안,도달 가능,채택,signup_method,제안 개명,join_landing → signup_method
+18,튜토리얼 완료 (입장 영상),fullScreenCover,onboarding_tutorial_complete,제안,도달 가능,채택,onboarding_tutorial_complete,제안 채택,
+19,튜토리얼 인트로 (온보딩 가이드),fullScreenCover,tutorial_intro,제안,도달 가능,채택,onboarding_tutorial,제안 개명,tutorial_intro → onboarding_tutorial
+20,가입 약관 전문 보기 (동의 시트 위 전체 높이 시트),sheet,signup_terms_document,제안,도달 가능,채택,agreement_document,통합 발송,→ agreement_document
+21,이용약관 동의 바텀시트 (가입),sheet,signup_terms,현행,도달 가능,채택,signup_terms,현행 유지,
+22,자기소개 만들기 (키워드·이미지·소개글 온보딩),fullScreenCover,profile_expression_onboarding,제안,도달 가능,채택,profile_expression_onboarding,제안 채택,
+23,자기소개 수정,fullScreenCover,profile_expression_edit,제안,도달 가능,채택,profile_expression_edit,제안 채택,
+24,자기소개(표현) 편집 — 첨부 이미지 전체보기,fullScreenCover,profile_expression_image_viewer,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+25,프로필 커버 만들기 (첫 온보딩),fullScreenCover,profile_cover_onboarding,제안,도달 가능,채택,onboarding_cover_intro_profession · onboarding_cover_intro_nickname · onboarding_cover_intro_ko_name · onboarding_cover_intro_tagline · onboarding_cover_intro_media · onboarding_cover_intro_profile_image,단계별 발송,"→ onboarding_cover_intro_profession, onboarding_cover_intro_nickname, onboarding_cover_intro_ko_name, onboarding_cover_intro_tagline, onboarding_cover_intro_media, onboarding_cover_intro_profile_image"
+26,프로필 커버 만들기 — 첨부 동영상 전체화면 재생,fullScreenCover,profile_cover_video_player,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+27,프로필 커버 만들기 — 첨부 이미지 전체보기,fullScreenCover,profile_cover_image_viewer,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+28,프로필 커버 수정,fullScreenCover,profile_cover_edit,제안,도달 가능,채택,profile_cover_edit,제안 채택,
+29,자기소개 이미지 선택 (시스템 피커),sheet,profile_expression_photo_picker,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+30,홈(디스커버리 피드) 탭,탭 루트,home,현행,도달 가능,채택,home,현행 유지,
+31,Muse 한 마디 목록,push,muse_comment_list,제안,딥링크 전용,채택,muse_comment_list,제안 채택,
+32,디스커버리 크리에이터 모듈 전체보기,push,discovery_creator_module,제안,도달 가능,채택,discovery_creator_module,제안 채택,
+33,영감 목록,push,inspiration_list,제안,딥링크 전용,채택,inspiration_list,제안 채택,
+34,영감 상세,push,inspiration_detail,현행,도달 가능,채택,inspiration_detail,현행 유지,
+35,포트폴리오 상세,push,portfolio_detail,현행,도달 가능,채택,portfolio_detail,현행 유지,
+36,포트폴리오 사진 전체보기 뷰어,fullScreenCover,portfolio_image_viewer,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+37,Muse 한 마디 관리 시트,sheet,muse_comment_manage,제안,도달 가능,채택,muse_comment_manage,제안 채택,
+38,Muse 한 마디 작성/수정 시트,sheet,muse_comment_input,제안,도달 가능,채택,muse_comment_input,제안 채택,
+39,내 영감 옵션 시트 (수정·삭제·공유),sheet,inspiration_option_owner,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+40,내 작업물 소유자 액션 시트 (대표작·수정·삭제·공유),sheet,portfolio_option_owner,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+41,내 포트폴리오 옵션 (수정·삭제),sheet,home_portfolio_option_my,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+42,내 프로젝트 카드 더보기 (수정·삭제·공유),sheet,home_project_card_option_my,제안,도달 불가,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+43,영감 댓글 바텀시트 (디스커버리 카드),sheet,home_inspiration_comment,제안,도달 가능,채택,inspiration_comment_list,통합 발송,→ inspiration_comment_list
+44,영감 상세 댓글 바텀시트,sheet,inspiration_detail_comment,제안,도달 가능,채택,inspiration_comment_list,통합 발송,→ inspiration_comment_list
+45,타인 영감 옵션 시트 (프로필 저장·공유·차단·신고),sheet,inspiration_option_other,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+46,타인 포트폴리오 더보기 옵션 시트,sheet,portfolio_option_other,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+47,포트폴리오 댓글 바텀시트 (디스커버리 카드),sheet,home_portfolio_comment,제안,도달 가능,채택,portfolio_comment_list,통합 발송,→ portfolio_comment_list
+48,포트폴리오 상세 댓글 바텀시트,sheet,portfolio_detail_comment,제안,도달 가능,채택,portfolio_comment_list,통합 발송,→ portfolio_comment_list
+49,리스펙트 한마디 고르기,팝업,portfolio_respect_phrase,제안,도달 가능,채택,respect_select,제안 개명,portfolio_respect_phrase → respect_select
+50,카드 롱프레스 액션 오버레이,팝업,home_card_long_press,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+51,상세를 열 수 없어요 (탐색 세션 만료 안내),push,detail_browse_unavailable,제안,도달 가능,제외,,오류 상태,같은 목적지의 오류 문구. 오류 이벤트로 셉니다.
+52,콘텐츠 상세 페이저 (스와이프 브라우징 컨테이너),push,-,제안,도달 가능,제외,,컨테이너,안에 든 화면이 이름을 냅니다. 컨테이너는 이름을 내지 않습니다.
+53,MY 탭 (내 프로필 루트),탭 루트,my_profile_card,현행,도달 가능,채택,my_profile_card,현행 유지,
+54,MY 탭 온보딩 인트로 (커버 미선택 회원),탭 루트,my_onboarding_intro,제안,도달 가능,채택,my_onboarding_intro,제안 채택,
+55,ID 변경,push,basic_info_id,제안,도달 가능,채택,my_info_id,제안 개명,basic_info_id → my_info_id
+56,경력 추가 · 수정,push,resume_career_register,제안,도달 가능,채택,resume_career_register,제안 채택,
+57,내 프로필 미리보기,push,my_profile_preview,제안,도달 가능,채택,my_profile_preview,제안 채택,
+58,링크 등록,push,basic_info_link_register,제안,도달 가능,채택,my_info_link_register,제안 개명,basic_info_link_register → my_info_link_register
+59,수상 · 자격 추가 · 수정,push,resume_awards_register,제안,도달 가능,채택,resume_awards_register,제안 채택,
+60,시그니처 키워드 등록,push,basic_info_signature_keyword_register,제안,도달 불가,채택,my_info_signature_keyword_register,보류(도달 불가),도달 불가 화면. 이름만 예약하고 발송하지 않습니다.
+61,시그니처 키워드 목록,push,basic_info_signature_keyword,제안,도달 불가,채택,my_info_signature_keyword,보류(도달 불가),도달 불가 화면. 이름만 예약하고 발송하지 않습니다.
+62,영문 이름 입력,push,basic_info_name_en,제안,도달 가능,채택,my_info_name_en,제안 개명,basic_info_name_en → my_info_name_en
+63,이메일 인증번호 입력,push,basic_info_email_verify,제안,도달 가능,채택,my_info_email_verify,제안 개명,basic_info_email_verify → my_info_email_verify
+64,전화번호 입력,push,basic_info_phone_register,제안,도달 가능,채택,my_info_phone_register,제안 개명,basic_info_phone_register → my_info_phone_register
+65,직업 · 전문분야 목록,push,basic_info_profession,제안,도달 가능,채택,my_info_profession,제안 개명,basic_info_profession → my_info_profession
+66,커리어 관리,push,resume_management,제안,도달 가능,채택,user_resume,제안 개명,resume_management → user_resume
+67,프로젝트 카드 목록,push,project_card_list,제안,딥링크 전용,채택,project_card_list,제안 채택,
+68,프로젝트 카드 상세,push,project_detail,현행,도달 가능,채택,project_detail,현행 유지,
+69,프로필 상세 (다른 사용자),push,profile_detail,제안,도달 가능,채택,user_detail,통합 발송,→ user_detail
+70,프로필 소개 탭 (프로필 카드 세그먼트 4번째 탭),push,profile_introduction,제안,도달 가능,채택,user_detail,통합 발송,→ user_detail
+71,학력 추가 · 수정,push,resume_education_register,제안,도달 가능,채택,resume_education_register,제안 채택,
+72,한글 이름 입력,push,basic_info_name_ko,제안,도달 가능,채택,my_info_name_ko,제안 개명,basic_info_name_ko → my_info_name_ko
+73,해외 도시 직접 입력,push,basic_info_region_global_city,제안,도달 가능,채택,my_info_region_global_city,제안 개명,basic_info_region_global_city → my_info_region_global_city
+74,활동 지역 (기본 정보 관리),push,basic_info_region,제안,도달 가능,채택,my_info_region,제안 개명,basic_info_region → my_info_region
+75,기본 정보 관리,fullScreenCover,basic_info_management,제안,도달 가능,채택,my_info_management,제안 개명,basic_info_management → my_info_management
+76,연락 이메일 입력,fullScreenCover,basic_info_email_register,제안,도달 가능,채택,my_info_email_register,제안 개명,basic_info_email_register → my_info_email_register
+77,이메일 등록 (계정 이메일 미보유 강제 등록),fullScreenCover,register_email,제안,도달 가능,채택,register_email,제안 채택,
+78,직업 · 전문분야 선택,fullScreenCover,basic_info_profession_select,제안,도달 가능,채택,my_info_profession_select,제안 개명,basic_info_profession_select → my_info_profession_select
+79,프로젝트 지원 작성,fullScreenCover,project_application_compose,제안,도달 가능,채택,project_application_compose,제안 채택,
+80,프로필 사진 등록(사진 선택 대기),fullScreenCover,basic_info_profile_image_register,제안,도달 불가,채택,my_info_profile_image_register,보류(도달 불가),도달 불가 화면. 이름만 예약하고 발송하지 않습니다.
+81,개인정보 공개설정 시트,sheet,basic_info_visibility,제안,도달 가능,채택,my_info_visibility,제안 개명,basic_info_visibility → my_info_visibility
+82,노크 수신 설정 바텀시트,sheet,profile_collaboration_status,제안,도달 가능,채택,profile_collaboration_status,제안 채택,
+83,링크 관리 시트,sheet,basic_info_link,제안,도달 가능,채택,my_info_link,제안 개명,basic_info_link → my_info_link
+84,생년월일 · 성별,sheet,basic_info_birth_gender,제안,도달 가능,채택,my_info_birth_gender,제안 개명,basic_info_birth_gender → my_info_birth_gender
+85,오늘 방문한 사용자 바텀시트,sheet,profile_today_visitor,제안,도달 가능,채택,visitor_today_bottom_sheet,제안 개명,profile_today_visitor → visitor_today_bottom_sheet
+86,이름 언어 선택 시트,sheet,basic_info_name,제안,도달 가능,채택,my_info_name,제안 개명,basic_info_name → my_info_name
+87,이메일 관리 시트,sheet,basic_info_email,제안,도달 가능,채택,my_info_email,제안 개명,basic_info_email → my_info_email
+88,전화번호 관리 시트,sheet,basic_info_phone,제안,도달 가능,채택,my_info_phone,제안 개명,basic_info_phone → my_info_phone
+89,직업 직접 추가,sheet,basic_info_profession_direct,제안,도달 가능,채택,my_info_profession_direct,제안 개명,basic_info_profession_direct → my_info_profession_direct
+90,프로필 사진 변경 시트,sheet,basic_info_profile_image,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+91,프로필 상세 포트폴리오 댓글 바텀시트,sheet,profile_portfolio_comment,제안,도달 가능,채택,portfolio_comment_list,통합 발송,→ portfolio_comment_list
+92,활동 지역 (프로필 상세 바텀시트),sheet,profile_activity_region,제안,도달 가능,제외,,정보 표시 시트,읽기만 하는 짧은 정보. 과업이 없습니다.
+93,파인더 검색 입력 화면 (최근 검색어·최근 본 크리에이터·인기 검색어·추천 카테고리),탭 루트,finder_search,현행,도달 가능,채택,finder_search,현행 유지,
+94,파인더 탭 (검색 홈),탭 루트,finder,현행,도달 가능,채택,finder,현행 유지,
+95,Shuffle 키워드 묶음 목록,push,finder_shuffle_bundle,제안,딥링크 전용,채택,shuffle_bundle,제안 개명,finder_shuffle_bundle → shuffle_bundle
+96,Shuffle! 키워드 추천,push,finder_shuffle,제안,도달 가능,채택,discovery_recommend_keywords,제안 개명,finder_shuffle → discovery_recommend_keywords
+97,검색 결과 - 작업물(포트폴리오) 탭,push,finder_result_portfolio,현행,도달 가능,채택,finder_result_portfolio,현행 유지,
+98,검색 결과 - 크리에이터 탭,push,finder_result_creator,현행,도달 가능,채택,finder_result_creator,현행 유지,
+99,검색 결과 - 프로젝트 탭,push,finder_result_project,현행,도달 가능,채택,finder_result_project,현행 유지,
+100,검색 결과 크리에이터 프로필 페이저 (좌우로 넘겨 보는 프로필),push,finder_creator_detail,제안,도달 가능,채택,user_detail,통합 발송,→ user_detail
+101,작업물 검색 결과 정렬 바텀시트,sheet,finder_result_portfolio_sort,제안,도달 가능,제외,,정렬·첨부·메뉴 시트,같은 화면의 보조 조작. 화면이 바뀌지 않습니다.
+102,크리에이터 검색 결과 정렬 바텀시트,sheet,finder_result_creator_sort,제안,도달 가능,제외,,정렬·첨부·메뉴 시트,같은 화면의 보조 조작. 화면이 바뀌지 않습니다.
+103,프로젝트 검색 결과 정렬 바텀시트,sheet,finder_result_project_sort,제안,도달 가능,제외,,정렬·첨부·메뉴 시트,같은 화면의 보조 조작. 화면이 바뀌지 않습니다.
+104,필터 > 지역 추가,push,finder_filter_region,제안,도달 가능,채택,finder_filter,통합 발송,→ finder_filter
+105,필터 > 직업 추가,push,finder_filter_profession,제안,도달 가능,채택,finder_filter,통합 발송,→ finder_filter
+106,필터 > 해시태그 추가,push,finder_filter_tag,제안,도달 가능,채택,finder_filter,통합 발송,→ finder_filter
+107,크리에이터·포트폴리오·프로젝트 필터 시트,sheet,finder_filter,제안,도달 가능,채택,finder_filter,통합 발송,→ finder_filter
+108,채티 - 라운지 목록,탭 루트,chatty_lounge,제안,도달 가능,채택,chatty,통합 발송,→ chatty
+109,채티 - 채팅 목록 (탭 기본),탭 루트,chatty_chat,제안,도달 가능,채택,chatty,통합 발송,→ chatty
+110,채티 - 프로젝트 목록,탭 루트,chatty_project,제안,도달 가능,채택,chatty,통합 발송,→ chatty
+111,채티 탭,탭 루트,chatty,제안,도달 가능,채택,chatty,통합 발송,→ chatty
+112,라운지 만들기,push,lounge_create,제안,도달 가능,채택,lounge_create,제안 채택,
+113,라운지 수정,push,lounge_edit,제안,도달 가능,채택,lounge_edit,제안 채택,
+114,알림 센터,push,alarm_center,제안,도달 가능,채택,notification_center,제안 개명,alarm_center → notification_center
+115,인맥 둘러보기,push,network_browse,제안,도달 가능,채택,discovery_recommend_network,제안 개명,network_browse → discovery_recommend_network
+116,지원자 리스트,push,project_applicants,제안,도달 가능,채택,project_applicants,제안 채택,
+117,채팅 이미지 뷰어,push,chat_image_preview,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+118,채팅방,push,chat_room,제안,도달 가능,채택,chat_room_direct · chat_room_lounge · chat_room_project · chat_room_team,유형별 발송,"→ chat_room_direct, chat_room_lounge, chat_room_project, chat_room_team"
+119,채팅방 메뉴,push,chat_room_menu,제안,도달 가능,채택,chat_room_menu,제안 채택,
+120,채티 만들기 패널 (새 채팅·라운지 만들기·프로젝트 만들기),fullScreenCover,chatty_create_menu,제안,도달 가능,제외,,정렬·첨부·메뉴 시트,같은 화면의 보조 조작. 화면이 바뀌지 않습니다.
+121,채팅 미디어 전체화면 재생 (동영상·오디오),fullScreenCover,chat_media_player,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+122,라운지 커버 사진 선택 (시스템 피커),sheet,lounge_cover_photo_picker,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+123,채팅 첨부 — 동영상 선택 (시스템 피커),sheet,chat_video_picker,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+124,채팅 첨부 — 오디오 파일 선택 (시스템 파일 피커),sheet,chat_audio_picker,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+125,채팅 첨부 — 이미지 선택 (시스템 피커),sheet,chat_image_picker,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+126,채팅방 신고 사유 선택 바텀시트,sheet,chat_room_report_reason,제안,도달 가능,채택,report_reason,통합 발송,→ report_reason
+127,채팅방 신고 상세 입력 모달,sheet,chat_room_report_detail,제안,도달 가능,채택,report_detail_input,통합 발송,→ report_detail_input
+128,채팅방 첨부 바텀시트 (이미지·동영상·오디오),sheet,chat_attachment,제안,도달 가능,제외,,정렬·첨부·메뉴 시트,같은 화면의 보조 조작. 화면이 바뀌지 않습니다.
+129,라운지 만들기 완료 팝업,팝업,lounge_create_complete,제안,도달 가능,제외,,유도·완료 팝업,행동의 결과 알림. 완료는 행동 이벤트로 이미 잡힙니다.
+130,인맥 검색 (검색 입력 모드),push,contacts_search,제안,도달 가능,채택,contacts_search,통합 발송,→ contacts_search
+131,인맥 검색 결과 - 일촌,push,contacts_search_result_first_connections,제안,도달 가능,채택,contacts_search,통합 발송,→ contacts_search
+132,인맥 검색 결과 - 팔로워,push,contacts_search_result_follower,제안,도달 가능,채택,contacts_search,통합 발송,→ contacts_search
+133,인맥 검색 결과 - 팔로잉,push,contacts_search_result_following,제안,도달 가능,채택,contacts_search,통합 발송,→ contacts_search
+134,인맥 관리 - 일촌 탭,push,contacts_first_connections,현행,도달 가능,채택,contacts_first_connections,현행 유지,
+135,인맥 관리 - 팔로워 탭,push,contacts_follower,현행,도달 가능,채택,contacts_follower,현행 유지,
+136,인맥 관리 - 팔로잉 탭,push,contacts_following,현행,도달 가능,채택,contacts_following,현행 유지,
+137,인맥 관리 - 마이클럽 탭,push,contacts_my_club,제안,도달 가능,채택,contacts_my_club,제안 채택,
+138,팀 더보기 바텀시트 (알림/팔로우/신고),sheet,contacts_team_actions,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+139,팀 만들기,push,team_create,제안,도달 가능,채택,team_create,제안 채택,
+140,팀 멤버 초대,push,team_invite,제안,도달 가능,채택,team_invite,제안 채택,
+141,팀 목록 (내 팀 · 합류 요청 인박스),push,team_list,현행,도달 가능,채택,team_list,현행 유지,
+142,팀 상세 (팀 페이지),push,team_detail,제안,도달 가능,채택,team_detail,통합 발송,→ team_detail
+143,팀 상세 — 멤버 탭,push,team_detail_member,제안,도달 가능,채택,team_detail,통합 발송,→ team_detail
+144,팀 상세 — 소개 탭,push,team_detail_introduction,제안,도달 가능,채택,team_detail,통합 발송,→ team_detail
+145,팀 수정 (팀 해체 진입점),push,team_edit,제안,도달 가능,채택,team_edit,제안 채택,
+146,2단계 인증 (2FA),push,setting_2fa,제안,도달 가능,채택,setting_2fa,제안 채택,
+147,2단계 인증 설정 완료,push,setting_2fa_completed,제안,도달 가능,채택,setting_2fa_completed,제안 채택,
+148,2단계 인증(2FA) 추가 — 이메일 인증 관리,push,setting_2fa_email,제안,도달 가능,채택,setting_2fa_email,제안 채택,
+149,개인정보 이용 동의 철회,push,setting_personal_info_disagree,제안,딥링크 전용,채택,setting_personal_info_agreement,통합 발송,→ setting_personal_info_agreement
+150,개인정보 이용 동의하기,push,setting_personal_info_agree,제안,딥링크 전용,채택,setting_personal_info_agreement,통합 발송,→ setting_personal_info_agreement
+151,계정,push,setting_account,제안,도달 가능,채택,setting_account,제안 채택,
+152,계정 삭제 비밀번호 확인,push,setting_account_delete_password,제안,도달 가능,채택,setting_account_delete_password,제안 채택,
+153,계정 삭제 최종 확인,push,setting_account_delete_confirm,제안,도달 가능,채택,setting_account_delete_confirm,제안 채택,
+154,고객센터,push,setting_customer_service,제안,도달 가능,채택,setting_customer_service,제안 채택,
+155,공개 범위,push,setting_visibility,제안,도달 가능,채택,setting_visibility,제안 채택,
+156,내 댓글 및 답글,push,setting_contents_comments,제안,도달 가능,채택,setting_contents_comments,제안 채택,
+157,리스펙트한 포트폴리오,push,setting_contents_respected,제안,도달 가능,채택,setting_contents_respected,제안 채택,
+158,북마크 — 크리에이터 탭,push,bookmark_creator,현행,도달 가능,채택,bookmark_creator,현행 유지,
+159,북마크 — 포트폴리오 탭,push,bookmark_portfolio,현행,도달 가능,채택,bookmark_portfolio,현행 유지,
+160,비밀번호 재설정 — 새 비밀번호 입력,push,setting_reset_password,제안,도달 가능,채택,reset_password_new,제안 개명,setting_reset_password → reset_password_new
+161,서비스 동의,push,setting_service_agreement,제안,도달 가능,채택,service_agreement,제안 개명,setting_service_agreement → service_agreement
+162,설정 홈,push,setting_home,제안,도달 가능,채택,my_page_menu,제안 개명,setting_home → my_page_menu
+163,알림 설정,push,setting_notification,제안,도달 가능,채택,setting_notification,제안 채택,
+164,좋아요한 콘텐츠,push,setting_contents_liked,제안,도달 가능,채택,setting_contents_liked,제안 채택,
+165,차단한 사용자,push,setting_blocked_members,제안,도달 가능,채택,setting_blocked_members,제안 채택,
+166,콘텐츠,push,setting_contents,제안,도달 가능,채택,setting_contents,제안 채택,
+167,프로필 공개 범위,push,setting_visibility_profile,제안,도달 가능,채택,setting_visibility_profile,제안 채택,
+168,2FA 이메일 인증번호 입력,fullScreenCover,setting_2fa_email_verify,제안,도달 가능,채택,setting_2fa_email_verify,제안 채택,
+169,Muse 특권 안내 (웹뷰),fullScreenCover,setting_muse_privileges,제안,도달 가능,채택,setting_muse_privileges,제안 채택,
+170,개인정보 수집ㆍ이용 안내 문서,fullScreenCover,setting_personal_info_document,제안,딥링크 전용,채택,agreement_document,통합 발송,→ agreement_document
+171,개인정보 처리방침 전문,fullScreenCover,setting_privacy_policy,제안,도달 가능,채택,agreement_document,통합 발송,→ agreement_document
+172,광고성 정보 수신 동의 안내 문서,fullScreenCover,setting_ad_info_agreement_document,제안,도달 가능,채택,agreement_document,통합 발송,→ agreement_document
+173,비밀번호 변경,fullScreenCover,setting_change_password,제안,도달 가능,채택,setting_change_password,제안 채택,
+174,비밀번호 재설정 — 이메일 인증번호 입력,fullScreenCover,setting_reset_password_verify_email,제안,도달 가능,채택,reset_password_verify,제안 개명,setting_reset_password_verify_email → reset_password_verify
+175,이용 약관 전문,fullScreenCover,setting_terms_of_service,제안,도달 가능,채택,agreement_document,통합 발송,→ agreement_document
+176,탈퇴 사유 직접 입력 (기타),fullScreenCover,setting_account_delete_reason_input,제안,도달 가능,채택,setting_account_delete_reason,통합 발송,→ setting_account_delete_reason
+177,이메일 문의 작성 (시스템 메일 작성기),sheet,setting_customer_service_email,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+178,회원 탈퇴 사유 선택 (바텀시트),sheet,setting_account_delete_reason,제안,도달 가능,채택,setting_account_delete_reason,통합 발송,→ setting_account_delete_reason
+179,업로드 이미지 편집(크롭·비율),fullScreenCover,upload_image_edit,제안,도달 가능,채택,media_image_edit,통합 발송,→ media_image_edit
+180,업로드 첨부 PDF 미리보기,fullScreenCover,upload_preview_pdf,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+181,업로드 첨부 동영상 미리보기,fullScreenCover,upload_preview_video,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+182,업로드 첨부 오디오 재생,fullScreenCover,upload_preview_audio,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+183,업로드 첨부 유튜브 미리보기,fullScreenCover,upload_preview_youtube,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+184,업로드 첨부 이미지 미리보기,fullScreenCover,upload_preview_image,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+185,영감 수정,fullScreenCover,inspiration_edit,제안,도달 가능,채택,inspiration_edit,제안 채택,
+186,영감 작성,fullScreenCover,inspiration_create,제안,도달 가능,채택,inspiration_create,제안 채택,
+187,포트폴리오 수정,fullScreenCover,portfolio_edit,제안,도달 가능,채택,text_portfolio_edit · img_portfolio_edit · video_portfolio_edit · audio_portfolio_edit · pdf_portfolio_edit · youtube_portfolio_edit,단계별 발송,"→ text_portfolio_edit, img_portfolio_edit, video_portfolio_edit, audio_portfolio_edit, pdf_portfolio_edit, youtube_portfolio_edit"
+188,포트폴리오 작성,fullScreenCover,portfolio_create,제안,도달 가능,채택,portfolio_create · text_portfolio_create · img_portfolio_create · video_portfolio_create · audio_portfolio_create · pdf_portfolio_create · youtube_portfolio_create,단계별 발송,"→ portfolio_create, text_portfolio_create, img_portfolio_create, video_portfolio_create, audio_portfolio_create, pdf_portfolio_create, youtube_portfolio_create"
+189,프로젝트 수정,fullScreenCover,project_edit,제안,도달 가능,채택,project_card_edit,제안 개명,project_edit → project_card_edit
+190,프로젝트 작성,fullScreenCover,project_create,제안,도달 가능,채택,project_card_create,제안 개명,project_create → project_card_create
+191,업로드 PDF 파일 선택,sheet,upload_media_picker_pdf,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+192,업로드 동영상 선택(시스템 피커),sheet,upload_media_picker_video,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+193,업로드 사진 선택(시스템 피커),sheet,upload_media_picker_photo,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+194,업로드 오디오 파일 선택,sheet,upload_media_picker_audio,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+195,웹뷰 전체화면 (로그인 후 openWeb),push,web_page,제안,도달 가능,채택,web_page,통합 발송,→ web_page
+196,웹뷰 전체화면 — 로그인 전(가입 스택),push,join_web,제안,딥링크 전용,채택,web_page,통합 발송,→ web_page
+197,"클럽 대기 랜딩 (웹, lineup/club/<des>)",push,club_waiting_web,제안,도달 가능,채택,club_waiting_web,제안 채택,
+198,"클럽 입장 랜딩 (웹, lineup/club-entry)",push,club_entry_web,제안,도달 가능,채택,club_entry_web,제안 채택,
+199,웹 첨부파일 미리보기 (이미지·영상·PDF·유튜브),fullScreenCover,web_attachment_preview,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+200,프로필 사진 등록 (자르기·회전 편집),fullScreenCover,web_profile_image_edit,제안,도달 가능,채택,media_image_edit,통합 발송,→ media_image_edit
+201,프로필 사진 자르기,fullScreenCover,web_profile_image_crop,제안,도달 가능,채택,media_image_edit,통합 발송,→ media_image_edit
+202,사진 선택 (시스템 포토 피커),sheet,web_photo_picker,제안,도달 가능,제외,,시스템 피커,OS가 그리는 사진·파일·메일 선택기. 앱 화면이 아닙니다.
+203,웹 안에서 띄우는 잠금 바텀시트 웹뷰 (제안 작성/수정),sheet,proposal_edit,제안,도달 가능,채택,proposal_create · proposal_edit,유형별 발송,"→ proposal_create, proposal_edit"
+204,웹뷰 바텀시트 (presentWeb),sheet,web_sheet,제안,도달 가능,채택,web_page,통합 발송,→ web_page
+205,커스텀 웹 바텀시트 (custombottomsheet),커스텀 웹 오버레이,web_custom_bottom_sheet,제안,딥링크 전용,채택,web_page,통합 발송,→ web_page
+206,신고 상세 사유 입력 (기타),fullScreenCover,report_detail_input,제안,도달 가능,채택,report_detail_input,통합 발송,→ report_detail_input
+207,게시물 신고 사유 선택 시트,sheet,report_reason_content,제안,도달 가능,채택,report_reason,통합 발송,→ report_reason
+208,작업물 리스펙트 보낸 사람 목록,sheet,respect_list,제안,도달 가능,채택,respect_list,통합 발송,→ respect_list
+209,내 댓글 옵션 시트 (삭제),overlaySheet,comment_option_mine,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+210,타인 댓글 옵션 시트,overlaySheet,comment_option_other,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+211,포트폴리오 PDF 전체보기 (QuickLook 문서 뷰어),fullScreenCover,portfolio_pdf_viewer,제안,도달 가능,채택,media_viewer,통합 발송,→ media_viewer
+212,남의 프로젝트 카드 옵션 시트 (프로필 저장·공유·차단·신고),sheet,project_card_option_other,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+213,리스펙트 준 사람 전체 목록 시트,sheet,respect_user_all,제안,도달 가능,채택,respect_list,통합 발송,→ respect_list
+214,배경 영상 편집 (동영상 편집),fullScreenCover,background_video_edit,제안,도달 가능,채택,media_video_edit,통합 발송,→ media_video_edit
+215,프로필 사진 등록 (사진 선택 → 이미지 편집),fullScreenCover,profile_image_edit,제안,도달 가능,채택,media_image_edit,통합 발송,→ media_image_edit
+216,프로필 카드 배경 등록 (선택 → 이미지 편집),fullScreenCover,profile_card_background_image_edit,제안,도달 가능,채택,media_image_edit,통합 발송,→ media_image_edit
+217,프로필 카드 배경 영상 구간 자르기,fullScreenCover,profile_card_background_video_crop,제안,도달 가능,채택,media_video_edit,통합 발송,→ media_video_edit
+218,관계 세그먼트 시트 (일촌·팔로워·팔로잉),sheet,relation_follower / relation_following / relation_first_connections,제안,도달 가능,채택,relation_list,통합 발송,→ relation_list
+219,함께 아는 일촌 목록 시트,sheet,first_connection_mutual,제안,도달 가능,채택,first_connection_mutual,제안 채택,
+220,노크 용건 선택,fullScreenCover,knock_type_select,제안,도달 가능,채택,knock_type_select,제안 채택,
+221,사용자 신고 사유 선택 시트,sheet,report_reason_user,제안,도달 가능,채택,report_reason,통합 발송,→ report_reason
+222,사용자 액션 바텀시트 (더보기: 팔로우·1촌·노크·저장·차단·신고),sheet,member_option,제안,도달 가능,제외,,옵션(더보기) 시트,선택지 메뉴. 고른 행동은 행동 이벤트로 셉니다.
+223,노크 전송 완료 팝업 (채팅에서 확인하기),팝업,knock_sent_popup,제안,도달 가능,제외,,유도·완료 팝업,행동의 결과 알림. 완료는 행동 이벤트로 이미 잡힙니다.
+224,프로필 사진 자르기 (네이티브 편집 플로우),fullScreenCover,profile_image_crop,제안,도달 가능,채택,media_image_edit,통합 발송,→ media_image_edit
+225,업데이트 안내 (신기능 소개),팝업,app_update_notice,제안,도달 가능,제외,,확인·안내 팝업,버튼 하나로 닫히는 알림. 필요하면 이벤트(예: app_update_gate)로 셉니다.
+226,QA 리포트 영상 트림 편집기,fullScreenCover,qa_report_video_trim,제안,도달 가능,제외,,내부 QA 도구,알파·QA 전용 도구. 수집하지 않습니다.
+227,QA 리포트 첨부 마크업 미리보기,fullScreenCover,qa_report_markup,제안,도달 가능,제외,,내부 QA 도구,알파·QA 전용 도구. 수집하지 않습니다.
+228,QA 리포트 네트워크 로그 콘솔 (Pulse),sheet,qa_report_network_console,제안,도달 가능,제외,,내부 QA 도구,알파·QA 전용 도구. 수집하지 않습니다.
+229,QA 리포트 사진·영상 피커,sheet,qa_report_media_picker,제안,도달 가능,제외,,내부 QA 도구,알파·QA 전용 도구. 수집하지 않습니다.
+230,QA 리포트 작성 시트,sheet,qa_report_sheet,제안,도달 가능,제외,,내부 QA 도구,알파·QA 전용 도구. 수집하지 않습니다.
+231,카드 보스전 (프로필 카드),팝업,card_game_boss,제안,도달 가능,채택,card_game_boss,제안 채택,
+232,카드 블록깨기 게임,팝업,card_game_breakout,제안,도달 가능,채택,card_game_breakout,제안 채택,
