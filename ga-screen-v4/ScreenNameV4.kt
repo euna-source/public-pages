@@ -101,6 +101,42 @@ object ScreenNameV4 {
     const val MY_PROFILE = "my_profile"
     /** [마이] MY · 프로필 미리보기(웹) */
     const val MY_PROFILE_PREVIEW = "my_profile_preview"
+    /** [마이] MY · 오늘 방문자 */
+    const val MY_PROFILE_VISITORS = "my_profile_visitors"
+    /** [마이] MY · 노크 수신 설정 */
+    const val MY_KNOCK_SETTINGS = "my_knock_settings"
+    /** [마이] 내 정보 · 관리 홈 */
+    const val MY_INFO_HOME = "my_info_home"
+    /** [마이] 내 정보 · ID 변경 */
+    const val MY_INFO_ID = "my_info_id"
+    /** [마이] 내 정보 · 한글 이름 */
+    const val MY_INFO_NAME_KO = "my_info_name_ko"
+    /** [마이] 내 정보 · 영문 이름 */
+    const val MY_INFO_NAME_EN = "my_info_name_en"
+    /** [마이] 내 정보 · 활동 지역 관리 */
+    const val MY_INFO_REGION = "my_info_region"
+    /** [마이] 내 정보 · 해외 도시 입력 */
+    const val MY_INFO_REGION_GLOBAL_CITY = "my_info_region_global_city"
+    /** [마이] 내 정보 · 이메일 입력 */
+    const val MY_INFO_EMAIL_REGISTER = "my_info_email_register"
+    /** [마이] 내 정보 · 이메일 인증 */
+    const val MY_INFO_EMAIL_VERIFY = "my_info_email_verify"
+    /** [마이] 내 정보 · 전화번호 입력 */
+    const val MY_INFO_PHONE_REGISTER = "my_info_phone_register"
+    /** [마이] 내 정보 · 링크 입력 */
+    const val MY_INFO_LINK_REGISTER = "my_info_link_register"
+    /** [마이] 내 정보 · 생년월일·성별 */
+    const val MY_INFO_BIRTH_GENDER = "my_info_birth_gender"
+    /** [마이] 내 정보 · 개인정보 공개설정 */
+    const val MY_INFO_VISIBILITY = "my_info_visibility"
+    /** [마이] 커리어 · 이력 관리(내 이력서) */
+    const val RESUME_HOME = "resume_home"
+    /** [마이] 커리어 · 경력 입력 */
+    const val RESUME_CAREER_FORM = "resume_career_form"
+    /** [마이] 커리어 · 학력 입력 */
+    const val RESUME_EDUCATION_FORM = "resume_education_form"
+    /** [마이] 커리어 · 자격·수상 입력 */
+    const val RESUME_AWARDS_FORM = "resume_awards_form"
     /** [마이] 첨부 · 이미지 편집(자르기·회전) */
     const val MEDIA_IMAGE_EDIT = "media_image_edit"
     /** [마이] 첨부 · 동영상 편집(구간 자르기) */
@@ -207,6 +243,10 @@ object ScreenNameV4 {
     const val BOOKMARK_CREATOR = "bookmark_creator"
     /** [설정] 북마크 · 포트폴리오 */
     const val BOOKMARK_PORTFOLIO = "bookmark_portfolio"
+    /** [디스커버리(홈)] 클럽 · 대기 랜딩(웹) */
+    const val CLUB_WAITING = "club_waiting"
+    /** [디스커버리(홈)] 클럽 · 입장 랜딩(웹) */
+    const val CLUB_ENTRY = "club_entry"
     /** [디스커버리(홈)] 아케이드 · 카드 보스전 */
     const val ARCADE_CARD_BOSS = "arcade_card_boss"
     /** [디스커버리(홈)] 아케이드 · 블록깨기 */
@@ -225,6 +265,14 @@ object ScreenNameV4 {
     const val ACCOUNT_DELETE_REASON_INPUT = "account_delete_reason_input"
     /** [채티] 협업 제안 · 제안함 목록(웹) */
     const val PROPOSAL_LIST = "proposal_list"
+    /** [디스커버리(홈)] 갤러리 · 작품 전시(웹) */
+    const val HOME_GALLERY = "home_gallery"
+    /** [마이] 커리어 · 스킬 입력 */
+    const val RESUME_SKILL_FORM = "resume_skill_form"
+    /** [마이] 커리어 · 언어 능력 입력 */
+    const val RESUME_LANGUAGE_FORM = "resume_language_form"
+    /** [마이] 자기소개 · 관리 홈 */
+    const val MY_INFO_INTRO_HOME = "my_info_intro_home"
     /** [디스커버리(홈)] 아케이드 · 두더지잡기 */
     const val ARCADE_WHACK = "arcade_whack"
     /** [디스커버리(홈)] 아케이드 · 퍼즐 */

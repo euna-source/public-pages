@@ -3701,7 +3701,7 @@
      ],
      "evidence": "",
      "note": "",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.TodayVisitorList / CollaborationStatus",
@@ -3720,7 +3720,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -3758,7 +3758,7 @@
       "feature/member/ui/src/main/kotlin/com/heyratel/cre8orclub/feature/member/ui/MemberCollaborationStatusBottomSheet.kt:MemberCollaborationStatusBottomSheet:45"
      ],
      "note": "노크 수신 가능/불가를 저장하는 독립 설정 시트가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.TodayVisitorList / CollaborationStatus",
@@ -3777,7 +3777,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -3816,7 +3816,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/PersonalInfoActivity.kt:PersonalInfoActivity:69"
      ],
      "note": "개인정보 관리 허브 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -3836,7 +3836,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -3874,7 +3874,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/onboarding/id/IdModifyActivity.kt:IdModifyActivity:11"
      ],
      "note": "ID 변경 전용 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -3894,7 +3894,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -3932,7 +3932,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/name/InputKoNameActivity.kt:InputKoNameActivity:62"
      ],
      "note": "한글 이름 입력·수정 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -3952,7 +3952,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -3990,7 +3990,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/name/InputEnNameActivity.kt:InputEnNameActivity:65"
      ],
      "note": "영문 이름 입력·수정 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4010,7 +4010,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4222,7 +4222,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/SignatureKeywordListActivity.kt:SignatureKeywordListActivity:40"
      ],
      "note": "현재 진입점은 끊겼지만 프로덕션 Manifest에 등록된 관리 Activity가 소스에 존재한다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4242,7 +4242,7 @@
    "status": "reserved",
    "os_state": {
     "ios": "legacy",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4282,7 +4282,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/AmbitionKeywordActivity.kt:AmbitionKeywordActivity:46"
      ],
      "note": "세 갈래 키워드 선택·저장 Activity가 각각 존재하지만 상위 목록의 현행 진입점은 확인되지 않는다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4302,7 +4302,7 @@
    "status": "reserved",
    "os_state": {
     "ios": "legacy",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4343,7 +4343,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/region/RegionListActivity.kt:RegionListActivity:15"
      ],
      "note": "활동 지역 목록 관리 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4363,7 +4363,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4401,7 +4401,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/region/InputGlobalRegionActivity.kt:InputGlobalRegionActivity:13"
      ],
      "note": "해외 국가·도시 직접 입력 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4421,7 +4421,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4461,7 +4461,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/email/InputEmailFragment.kt:InputEmailFragment:15"
      ],
      "note": "연락용 이메일 입력 Activity/Fragment가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4481,7 +4481,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4519,7 +4519,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/email/InputEmailVerificationFragment.kt:InputEmailVerificationFragment:13"
      ],
      "note": "연락용 이메일 인증번호 입력 단계가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4539,7 +4539,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4577,7 +4577,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/phone/InputPhoneNumberActivity.kt:InputPhoneNumberActivity:16"
      ],
      "note": "국가번호와 전화번호를 입력하는 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4597,7 +4597,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4635,7 +4635,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/onboarding/link/LinkModifyActivity.kt:LinkModifyActivity:12"
      ],
      "note": "프로필 링크 등록·수정 Activity가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4655,7 +4655,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4694,7 +4694,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/birth/GenderBottomSheetFragment.kt:GenderBottomSheetFragment:38"
      ],
      "note": "생년월일과 성별을 수정하는 두 선택 시트가 개인정보 허브에서 열린다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4714,7 +4714,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4752,7 +4752,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/bottomsheet/PublicSettingBottomSheetFragment.kt:PublicSettingBottomSheetFragment:21"
      ],
      "note": "개인정보별 공개 범위를 선택·저장하는 시트가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/MyPageWebView.kt:WebPresentationRequest.UserInfoManagement",
@@ -4772,7 +4772,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4862,7 +4862,7 @@
      ],
      "evidence": "",
      "note": "",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
@@ -4882,7 +4882,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4925,7 +4925,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/ResumeExperienceActivity.kt:ModifyResumeCareerScreen:415"
      ],
      "note": "경력 추가·수정 입력 화면이 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
@@ -4945,7 +4945,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -4988,7 +4988,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/ResumeEducationActivity.kt:ModifyResumeEducationScreen:514"
      ],
      "note": "학력 추가·수정 입력 화면이 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
@@ -5008,7 +5008,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -5051,7 +5051,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/ResumeCertificationsActivity.kt:ModifyResumeCertificationScreen:329"
      ],
      "note": "자격·수상 추가·수정 입력 화면이 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
@@ -5071,7 +5071,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "마이"
@@ -8455,7 +8455,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/member/MemberClubWebRouteFactory.kt:waiting route:21"
      ],
      "note": "회원/게스트별 클럽 대기 웹 목적지 분기가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:club deep-link branch",
@@ -8475,7 +8475,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "디스커버리(홈)"
@@ -8512,7 +8512,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:club entry destination:1038"
      ],
      "note": "클럽 입장 링크를 인앱 웹 목적지로 여는 분기가 있다.",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:club deep-link branch",
@@ -8532,7 +8532,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "디스커버리(홈)"
@@ -9302,7 +9302,7 @@
     "aos": {
      "status": "yes",
      "evidence": "feature/home/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/home/gallery/GalleryNavGraph.kt:HomeNavKey.Gallery:33",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:MainBottomNavigationSlots excludes FINDER",
@@ -9331,7 +9331,7 @@
    "status": "active",
    "os_state": {
     "ios": "unobserved",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "needed"
    },
    "flow_group": "디스커버리(홈)"
@@ -9633,7 +9633,7 @@
     "aos": {
      "status": "yes",
      "evidence": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/ResumeSkillActivity.kt:ResumeSkillActivity:53",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
@@ -9659,16 +9659,11 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "retired",
+   "status": "active",
    "os_state": {
     "ios": "absent",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
-   },
-   "retired_in": {
-    "aos": "3.1.0 (develop b135a94)",
-    "ios": "3.0.2 (alpha 34ad6c9)",
-    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "마이"
   },
@@ -9692,7 +9687,7 @@
     "aos": {
      "status": "yes",
      "evidence": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/ResumeLanguageActivity.kt:ResumeLanguageActivity:54",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
@@ -9718,16 +9713,11 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "retired",
+   "status": "active",
    "os_state": {
     "ios": "absent",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
-   },
-   "retired_in": {
-    "aos": "3.1.0 (develop b135a94)",
-    "ios": "3.0.2 (alpha 34ad6c9)",
-    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "마이"
   },
@@ -9810,7 +9800,7 @@
     "aos": {
      "status": "yes",
      "evidence": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/SelfDescriptionInfoActivity.kt:SelfDescriptionInfoActivity:44",
-     "reach": "dead",
+     "reach": "ui_via_web",
      "legacy_marker": true,
      "reach_evidence": [
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/self-description/update",
@@ -9836,16 +9826,11 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "retired",
+   "status": "active",
    "os_state": {
     "ios": "absent",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
-   },
-   "retired_in": {
-    "aos": "3.1.0 (develop b135a94)",
-    "ios": "3.0.2 (alpha 34ad6c9)",
-    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "마이"
   },
@@ -21196,8 +21181,8 @@
    "unobserved": 3
   },
   "aos": {
-   "needed": 114,
-   "legacy": 38,
+   "needed": 140,
+   "legacy": 12,
    "absent": 14,
    "unobserved": 1
   },
@@ -21208,8 +21193,8 @@
   }
  },
  "status_summary": {
-  "active": 148,
-  "retired": 10,
+  "active": 151,
+  "retired": 7,
   "reserved": 7,
   "gated": 2
  }
