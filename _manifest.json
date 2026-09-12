@@ -62,5 +62,13 @@
     "last_kind": "new",
     "last_sha256": "5f3754452311a2f9b993ff651c0736e5642071d2e5a068c3ea1464b0c33e0b6c",
     "timestamp": "2026-09-12T08:48:43.887166Z"
+  },
+  "agent-space-v03": {
+    "slug": "agent-space-v03",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/agent-space-v03/",
+    "last_kind": "new",
+    "last_sha256": "f2fe879fcb602b49a6caf79bcf7eb9bbbe78a0afdd01513869f0fa78e7c3728b",
+    "timestamp": "2026-09-12T10:54:52.609808Z"
   }
 }
