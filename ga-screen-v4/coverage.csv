@@ -1,0 +1,359 @@
+platform,source,original_name,original_label,disposition,rules,unified_key,reason
+ios,IOS-001,maintenance,서비스 점검 안내,screen,S3,S002,점검으로 앱 전체를 이용할 수 없고 닫는 방법도 없는 관문입니다. 잠시 표시되는 오류 알림과 달리 앱 목적지를 대신하므로 별도 이름을 둡니다.
+ios,IOS-002,splash,스플래시,screen,S1,S001,로그인 여부와 무관하게 앱을 준비하는 시작 목적지입니다. 인트로 영상의 재생·사라짐은 같은 시작 방문의 상태로 보고 이름을 늘리지 않습니다.
+ios,IOS-003,onboarding_permission,접근 권한 안내,screen,S1,S020,시스템 권한 요청 전에 앱이 이유를 설명하고 확인을 받는 첫 이용 목적지입니다. 이어지는 OS 권한 팝업은 시스템 조작으로 기록합니다.
+ios,IOS-004,personal_info_reconsent_document,개인정보 이용 재동의 약관 전문,screen,M1 S1,S024,약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.
+ios,IOS-005,app_force_logout,강제 로그아웃 안내,screen,S3,S149,인증이 풀려 로그인 상태를 계속할 수 없고 로그아웃·재로그인으로 이어지는 관문입니다.
+ios,IOS-006,app_force_update,강제 업데이트 안내,screen,S3,S148,현재 버전으로 앱 이용을 계속할 수 없고 업데이트 외 진행 경로가 없습니다. 일반 권장 안내와 구분합니다.
+ios,IOS-007,personal_info_agreement,개인정보 수집 및 이용 동의 안내,screen,S3,S023,기존 회원이 개정 약관에 동의해야 앱 이용을 계속할 수 있는 관문입니다. 신규 가입 동의와 나누고 전문을 열면 agreement_document를 보냅니다.
+ios,IOS-008,app_recommended_update,권장 업데이트 안내,action,A2,,권장 안내나 완료 사실만 알려 주는 표면입니다. 페이지 크기여도 화면 조회에서 제외하며 노출·결과·이어가기 행동을 별도로 기록합니다.
+ios,IOS-009,upload_cover_required_popup,커버 등록 유도 팝업 (업로드 전 프로필 커버 등록),screen,S3,S150,요청한 업로드가 커버 미등록 조건에 막혔음을 알리고 커버 등록으로 보냅니다. 업로드 포기와 등록 전환을 확인합니다.
+ios,IOS-010,portfolio_registered_popup,포트폴리오 등록 완료 팝업,action,A2,,권장 안내나 완료 사실만 알려 주는 표면입니다. 페이지 크기여도 화면 조회에서 제외하며 노출·결과·이어가기 행동을 별도로 기록합니다.
+ios,IOS-011,signup_password,비밀번호 설정 / 재설정 입력,screen,S1,S006 S012,signup_password: 새 계정의 비밀번호를 정하는 가입 단계입니다. 같은 입력 화면을 재설정에 쓰면 reset_password_new를 보내 가입 전환과 계정 복구가 섞이지 않게 합니다. reset_password_new: 계정 복구를 위해 새 비밀번호를 확정합니다. 현재 비밀번호 확인부터 시작하는 설정의 비밀번호 변경과 구분합니다.
+ios,IOS-012,signup_user_id,사용자 ID 만들기,screen,S1,S013,AOS 원본의 ‘온보딩 · 기본정보 입력’ 그룹과 iOS 12행의 ‘사용자 ID 만들기’가 근거입니다. 신규 가입에서 ID를 처음 정하므로 기존 프로필 링크를 바꾸는 my_info_id와 분리합니다.
+ios,IOS-013,signup_name,이름 입력하기 (회원가입 완료),screen,S1,S014,AOS 온보딩 기본정보의 한글 이름과 iOS 가입 완료 단계의 이름 입력을 대응시킵니다. 기존 회원의 이름 수정은 my_info_name_ko로 구분합니다.
+ios,IOS-014,login_email,이메일 로그인 (이메일 입력 → 비밀번호 입력),screen,S1,S007 S008,login_email: 로그인 계정을 이메일로 식별하는 단계입니다. iOS는 비밀번호 단계와 같은 화면을 쓰지만 입력 대상과 다음 분기가 바뀌는 인증 체크포인트여서 이름을 나눕니다. login_password: 입력한 계정의 비밀번호로 로그인합니다. 이메일 단계와 구분하고 오류·재입력만으로 새 조회를 만들지 않습니다.
+ios,IOS-015,signup_email_verification,이메일 인증번호 입력,screen,S2 M2,S005 S011,같은 인증번호 입력 뷰라도 가입 확인과 비밀번호 재설정은 서로 다른 과업입니다. 호출 맥락으로 이름을 나눕니다.
+ios,IOS-016,login_2fa_email,2단계 인증 이메일 코드 입력,screen,S1,S009,2단계 인증을 켠 계정이 로그인을 마치기 위해 코드를 입력합니다. 설정에서 추가 인증을 처음 켜는 이메일 확인과 결과가 달라 나눕니다.
+ios,IOS-017,join_landing,로그인·가입 랜딩 (소셜/이메일 선택),screen,S1,S003,소셜·이메일 중 인증 방법을 고르는 공통 출발점입니다. AOS 가입 방법 선택과 iOS 로그인·가입 랜딩의 역할을 대응시킵니다.
+ios,IOS-018,onboarding_tutorial_complete,튜토리얼 완료 (입장 영상),screen,S1,S022,가이드 뒤 입장 영상을 감상하고 앱으로 들어가는 목적지입니다. 완료 사실만 보여 주는 알림과 구분해 채택한 정책이며 영상의 독립 분석 필요성은 의미 검토 때 확인합니다.
+ios,IOS-019,tutorial_intro,튜토리얼 인트로 (온보딩 가이드),screen,S1,S021,서비스 소개 그림을 탐색하는 가이드입니다. 그림을 넘기는 것은 내부 단계로 기록하고 전체 가이드 진입에만 화면 조회를 보냅니다.
+ios,IOS-020,signup_terms_document,가입 약관 전문 보기 (동의 시트 위 전체 높이 시트),screen,M1 S1,S024,약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.
+ios,IOS-021,signup_terms,이용약관 동의 바텀시트 (가입),screen,S2,S004,신규 가입에 필요한 동의를 선택·제출합니다. 약관 전문 읽기와 기존 회원 재동의는 목적이 달라 나눕니다.
+ios,IOS-022,profile_expression_onboarding,자기소개 만들기 (키워드·이미지·소개글 온보딩),screen,S1,S027,키워드·이미지·소개글을 처음 등록하는 자기소개 과업입니다. 스크롤하며 열리는 각 항목은 내부 단계로 기록해 하나의 등록 방문으로 묶습니다.
+ios,IOS-023,profile_expression_edit,자기소개 수정,screen,S1,S028,등록된 자기소개 내용을 고쳐 저장합니다. 배경 갱신 중 토스트만 뜨고 편집기가 열리지 않으면 이 화면 조회를 보내지 않습니다.
+ios,IOS-024,profile_expression_image_viewer,자기소개(표현) 편집 — 첨부 이미지 전체보기,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-025,profile_cover_onboarding,프로필 커버 만들기 (첫 온보딩),screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다.
+ios,IOS-026,profile_cover_video_player,프로필 커버 만들기 — 첨부 동영상 전체화면 재생,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-027,profile_cover_image_viewer,프로필 커버 만들기 — 첨부 이미지 전체보기,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-028,profile_cover_edit,프로필 커버 수정,screen,S1,S026,이미 저장된 커버를 바꿔 저장합니다. 특정 미디어 항목만 바로 여는 진입도 같은 수정 목적이며 새 커버 만들기와 나눕니다.
+ios,IOS-029,profile_expression_photo_picker,자기소개 이미지 선택 (시스템 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-030,home,홈(디스커버리 피드) 탭,screen,S1,S030,크리에이터·작업물 카드를 둘러보는 홈 피드입니다. AOS 홈과 iOS 디스커버리의 역할을 맞추며 피드의 개별 카드 노출을 홈 재진입으로 세지 않습니다.
+ios,IOS-031,muse_comment_list,Muse 한 마디 목록,screen,S1,S033,Muse의 한마디를 모아 읽는 목록입니다. 각 카드의 수정·삭제 메뉴는 보조 조작이며 목록의 새 방문으로 세지 않습니다.
+ios,IOS-032,discovery_creator_module,디스커버리 크리에이터 모듈 전체보기,screen,S1,S031,홈 추천 줄의 크리에이터를 모두 펼쳐 보는 목록입니다. 피드 안의 가로 줄과 나누며 서버가 바꾸는 묶음 제목은 화면 이름에 넣지 않습니다.
+ios,IOS-033,inspiration_list,영감 목록,screen,S1,S032,링크로 지정한 영감에서 이어 탐색하는 목록입니다. 딥링크로만 열려도 읽고 상세로 이동하는 목적지가 있어 채택하며 링크별 이름은 만들지 않습니다.
+ios,IOS-034,inspiration_detail,영감 상세,screen,S1,S037,영감 한 편을 읽고 반응합니다. 홈·해시태그·좋아요 목록·업로드 완료 뒤의 진입을 같은 이름으로 맞춥니다.
+ios,IOS-035,portfolio_detail,포트폴리오 상세,screen,S1,S036,작업물 한 편을 읽는 목적지입니다. 미디어 종류와 진입 위치는 이름을 나누지 않으며 다른 작업물로 넘기면 새 방문입니다.
+ios,IOS-036,portfolio_image_viewer,포트폴리오 사진 전체보기 뷰어,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-037,muse_comment_manage,Muse 한 마디 관리 시트,action,A1,,수정하기·삭제하기 두 명령만 고르는 메뉴입니다. 실제 글 입력은 Muse 한 마디 작성·수정 화면에서 하므로 이 메뉴는 ui_action으로 기록합니다.
+ios,IOS-038,muse_comment_input,Muse 한 마디 작성/수정 시트,screen,S2,S035,한마디를 작성하거나 불러와 수정해 저장하는 입력 과업입니다. 작성·수정은 mode로 구분하고 명령만 고르는 37행 메뉴와 나눕니다.
+ios,IOS-039,inspiration_option_owner,내 영감 옵션 시트 (수정·삭제·공유),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-040,portfolio_option_owner,내 작업물 소유자 액션 시트 (대표작·수정·삭제·공유),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-041,home_portfolio_option_my,내 포트폴리오 옵션 (수정·삭제),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-042,home_project_card_option_my,내 프로젝트 카드 더보기 (수정·삭제·공유),action,A1 V1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다. 현재 원본에는 도달 불가로 적혀 있어 실제 도달 증거 전까지 발송하지 않습니다.
+ios,IOS-043,home_inspiration_comment,영감 댓글 바텀시트 (디스커버리 카드),screen,S2,S039,영감의 댓글·답글을 읽고 씁니다. 피드에서 바로 연 시트와 상세에서 연 시트의 차이는 진입 위치이며 같은 이름을 사용합니다.
+ios,IOS-044,inspiration_detail_comment,영감 상세 댓글 바텀시트,screen,S2,S039,영감의 댓글·답글을 읽고 씁니다. 피드에서 바로 연 시트와 상세에서 연 시트의 차이는 진입 위치이며 같은 이름을 사용합니다.
+ios,IOS-045,inspiration_option_other,타인 영감 옵션 시트 (프로필 저장·공유·차단·신고),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-046,portfolio_option_other,타인 포트폴리오 더보기 옵션 시트,action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-047,home_portfolio_comment,포트폴리오 댓글 바텀시트 (디스커버리 카드),screen,S2,S038,작업물의 댓글 전체를 읽고 씁니다. 피드·상세·프로필에서 연 댓글은 같은 대상과 기능이므로 하나로 합칩니다.
+ios,IOS-048,portfolio_detail_comment,포트폴리오 상세 댓글 바텀시트,screen,S2,S038,작업물의 댓글 전체를 읽고 씁니다. 피드·상세·프로필에서 연 댓글은 같은 대상과 기능이므로 하나로 합칩니다.
+ios,IOS-049,portfolio_respect_phrase,리스펙트 한마디 고르기,screen,S2,S040,작업물에 보낼 리스펙트 문구를 선택·제출합니다. 선택 자체가 사용자 반응을 정하는 과업이므로 다음 기능만 고르는 메뉴와 구분해 셉니다.
+ios,IOS-050,home_card_long_press,카드 롱프레스 액션 오버레이,action,A1,,"카드를 길게 눌러 게임을 시작하는 제스처 오버레이입니다. 카드 조작은 ui_action, 실제 게임이 열리면 해당 게임 화면 조회를 보냅니다. 수정·삭제 옵션 메뉴라고 적었던 이전 분류 사유를 정정합니다."
+ios,IOS-051,detail_browse_unavailable,상세를 열 수 없어요 (탐색 세션 만료 안내),action,A3,,로딩·빈 목록·실패는 현재 목적지의 상태입니다. 대상이 없어 목적지를 표시하지 못하면 실패 행동만 보내고 가짜 상세 조회를 만들지 않습니다.
+ios,IOS-052,-,콘텐츠 상세 페이저 (스와이프 브라우징 컨테이너),container,X2,,탭·페이저·웹뷰의 바깥 틀입니다. 실제 보이는 자식 목적지에서 한 번 보냅니다. 웹 목적지를 모르면 진단 기록 후 이름을 등록합니다.
+ios,IOS-053,my_profile_card,MY 탭 (내 프로필 루트),screen,M1 M4 S1,S059,MY 바깥 탭과 안쪽 프로필에서 중복 발송하지 않습니다. 실제 전면 목적지 한 곳에서만 보냅니다.
+ios,IOS-054,my_onboarding_intro,MY 탭 온보딩 인트로 (커버 미선택 회원),screen,S1,S029,커버 미등록 회원에게 프로필 대신 보이는 만들기 안내입니다. 이력·작업물·공유 기능이 없는 상태여서 정상 내 프로필 방문과 나눕니다.
+ios,IOS-055,basic_info_id,ID 변경,screen,S1,S064,기존 회원이 공개 ID를 바꿉니다. 이전 링크 단절·변경 간격 제한이 있는 수정이므로 가입 ID를 처음 만드는 signup_id와 합치지 않습니다.
+ios,IOS-056,resume_career_register,경력 추가 · 수정,screen,S1,S086,경력 한 줄의 프로젝트·역할·기간을 입력합니다. 새 행·기존 행은 같은 서식으로 묶어 mode로 구분하고 저장·삭제는 결과로 기록합니다.
+ios,IOS-057,my_profile_preview,내 프로필 미리보기,screen,S1,S060,내 프로필이 타인에게 보이는 모습을 확인하고 공유합니다. 정상 MY 관리와 나누며 비공개 안내만 뜨고 미리보기가 열리지 않으면 보내지 않습니다.
+ios,IOS-058,basic_info_link_register,링크 등록,screen,S1,S080,프로필 링크 주소와 제목을 저장합니다. 기존 링크 수정도 같은 입력 과업이며 링크 열기·삭제 명령만 고르는 메뉴는 제외합니다.
+ios,IOS-059,resume_awards_register,수상 · 자격 추가 · 수정,screen,S1,S088,수상·자격 한 줄의 종류·명칭·날짜를 입력합니다. 종류와 추가·수정 상태로 이름을 늘리지 않고 구분 값을 씁니다.
+ios,IOS-060,basic_info_signature_keyword_register,시그니처 키워드 등록,reserved,S1 V1,S071,한 갈래의 키워드를 골라 등록합니다. 유일한 입구가 도달 불가 목록이므로 선택 화면도 예약하고 발송하지 않습니다.
+ios,IOS-061,basic_info_signature_keyword,시그니처 키워드 목록,reserved,S1 V1,S070,시그니처 키워드를 갈래별로 관리하는 목록입니다. 원본에 여는 입구가 없다고 적혀 있어 이름만 예약하고 도달 확인 전 보내지 않습니다.
+ios,IOS-062,basic_info_name_en,영문 이름 입력,screen,S1,S066,기존 프로필의 성·이름·미들네임을 입력합니다. 한글 이름과 입력 구조가 다르며 가입 단계가 확인되면 signup_name_en을 씁니다.
+ios,IOS-063,basic_info_email_verify,이메일 인증번호 입력,screen,S1,S076,연락용 이메일의 사용 권한을 코드로 확인합니다. 가입·로그인·2단계 인증 설정과 확인 대상이 달라 나눕니다.
+ios,IOS-064,basic_info_phone_register,전화번호 입력,screen,S1,S078,국가번호와 연락 전화번호를 저장합니다. 기존 번호 유무에 따른 진입 메뉴 차이는 같은 입력 목적의 차이로 보지 않습니다.
+ios,IOS-065,basic_info_profession,직업 · 전문분야 목록,screen,S1,S067,등록 직업의 추가·삭제·대표 지정을 관리합니다. 새 직업 후보를 고르는 선택 화면과 관리 대상·할 일이 달라 나눕니다.
+ios,IOS-066,resume_management,커리어 관리,screen,S1,S085,학력·경력·수상·자격을 관리하는 이력 허브입니다. AOS user_resume과 iOS 커리어 관리를 대응시키고 이력을 타인에게 보여 주는 프로필과 나눕니다.
+ios,IOS-067,project_card_list,프로젝트 카드 목록,screen,S1,S111,프로젝트 여러 건을 훑고 상세로 이동합니다. 앱 버튼이 없어도 딥링크로 실제 열리는 목록을 채택하며 개별 카드 조회와 나눕니다.
+ios,IOS-068,project_detail,프로젝트 카드 상세,screen,S1,S110,프로젝트 한 건의 모집 정보·작성자·지원 상태를 읽습니다. 지원서 작성·지원자 관리와 나누고 유입 경로로 이름을 늘리지 않습니다.
+ios,IOS-069,profile_detail,프로필 상세 (다른 사용자),screen,M1 M4 S1,S052,타인 프로필의 이력·작업물·영감·소개를 봅니다. AOS에서 영감 탭만 별도 이름으로 보내던 예외를 없애고 양 OS 모두 같은 이름과 tab 값을 씁니다.
+ios,IOS-070,profile_introduction,프로필 소개 탭 (프로필 카드 세그먼트 4번째 탭),screen,M1 M4 S1,S052 S059,타인 프로필의 이력·작업물·영감·소개를 봅니다. AOS에서 영감 탭만 별도 이름으로 보내던 예외를 없애고 양 OS 모두 같은 이름과 tab 값을 씁니다. MY 바깥 탭과 안쪽 프로필에서 중복 발송하지 않습니다. 실제 전면 목적지 한 곳에서만 보냅니다.
+ios,IOS-071,resume_education_register,학력 추가 · 수정,screen,S1,S087,학력 한 줄의 학교·전공·상태·기간을 입력합니다. 추가·수정은 mode로 구분하고 이력 관리 허브와 입력 방문은 나눕니다.
+ios,IOS-072,basic_info_name_ko,한글 이름 입력,screen,S1,S065,기존 프로필의 한글 이름을 저장합니다. 가입 완료 단계와 목적이 달라 my_info 영역으로 구분합니다.
+ios,IOS-073,basic_info_region_global_city,해외 도시 직접 입력,screen,S1,S073,해외 활동 지역을 직접 입력합니다. 국내 목록 선택과 다른 입력 목적지가 열리므로 나누며 나라·도시·지역 칸은 내부 항목입니다.
+ios,IOS-074,basic_info_region,활동 지역 (기본 정보 관리),screen,M1 S2,S072,iOS 74행과 92행은 같은 RegionListView로 지역 추가·삭제·대표 지정을 합니다. 92행을 읽기 전용으로 제외했던 판단을 정정하고 진입 경로만 previous_screen으로 구분합니다.
+ios,IOS-075,basic_info_management,기본 정보 관리,screen,S1,S063,기본 프로필 항목을 확인하고 편집할 항목을 고르는 허브입니다. 조회·개별 입력과 나누고 데이터를 새로 읽었다고 허브 방문을 재발송하지 않습니다.
+ios,IOS-076,basic_info_email_register,연락 이메일 입력,screen,S1,S075,가입 계정과 별개인 연락용 이메일을 입력합니다. 계정 이메일 강제 등록과 나누고 후속 인증은 my_info_email_verify로 기록합니다.
+ios,IOS-077,register_email,이메일 등록 (계정 이메일 미보유 강제 등록),screen,S1,S084,계정 이메일 등록·인증을 끝내야 앱으로 돌아가는 관문입니다. 선택적인 연락처 수정과 달리 앱 이용을 막는 조건이므로 나눕니다.
+ios,IOS-078,basic_info_profession_select,직업 · 전문분야 선택,screen,S1,S068,직업 후보에서 추가할 항목들을 골라 저장합니다. 찾지 못해 직접 입력할 때는 my_info_profession_direct로 이동합니다.
+ios,IOS-079,project_application_compose,프로젝트 지원 작성,screen,S1,S112,프로젝트 리더에게 자기소개를 적어 지원합니다. 모집 내용을 읽는 상세와 나누고 제출 실패·재시도는 같은 작성 방문의 상태입니다.
+ios,IOS-080,basic_info_profile_image_register,프로필 사진 등록(사진 선택 대기),container,A3,,"사진첩을 기다리는 빈 대기 표면이며 원본에도 도달 불가로 적혀 있습니다. 실제 사진 선택은 시스템 선택기, 자르기는 이미지 편집 화면에서 처리합니다. 이름 예약 대상에서도 제외합니다."
+ios,IOS-081,basic_info_visibility,개인정보 공개설정 시트,screen,S2,S082,프로필 항목의 공개 대상을 바꿉니다. 생년월일·지역·연락처마다 이름을 늘리지 않고 대상 항목을 구분 값으로 남깁니다.
+ios,IOS-082,profile_collaboration_status,노크 수신 설정 바텀시트,screen,S2,S062,앞으로 받을 대화 요청의 허용 여부를 바꿉니다. 현재 목록 표시만 바꾸는 정렬과 달리 이후 상대방의 요청 가능성에 영향을 주는 설정 과업입니다.
+ios,IOS-083,basic_info_link,링크 관리 시트,action,A1,,"링크의 수정하기·삭제하기 명령 메뉴입니다. 값을 입력하는 목적지는 별도로 있으며, 여기서는 선택한 명령을 ui_action으로 기록합니다."
+ios,IOS-084,basic_info_birth_gender,생년월일 · 성별,screen,S2,S081,등록 생년월일·성별을 확인·수정·삭제합니다. 실제 값 관리가 있으므로 안내와 나누고 날짜·성별 선택은 내부 조작으로 둡니다.
+ios,IOS-085,profile_today_visitor,오늘 방문한 사용자 바텀시트,screen,S2,S061,오늘 내 프로필을 방문한 사람과 방문 수를 확인합니다. 시트 형태와 무관하게 목록 탐색이 있으며 타인 프로필에도 같은 기능이 있다고 가정하지 않습니다.
+ios,IOS-086,basic_info_name,이름 언어 선택 시트,action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다. 이전 표의 화면 채택을 철회했습니다.
+ios,IOS-087,basic_info_email,이메일 관리 시트,action,A1,,"이메일의 수정하기·삭제하기 명령 메뉴입니다. 값을 입력하는 목적지는 별도로 있으며, 여기서는 선택한 명령을 ui_action으로 기록합니다."
+ios,IOS-088,basic_info_phone,전화번호 관리 시트,action,A1,,"전화번호의 수정하기·삭제하기 명령 메뉴입니다. 값을 입력하는 목적지는 별도로 있으며, 여기서는 선택한 명령을 ui_action으로 기록합니다."
+ios,IOS-089,basic_info_profession_direct,직업 직접 추가,screen,S2,S069,목록에 없는 직업을 입력·추가합니다. 제시된 후보 선택과 결과가 달라 나누고 입력 중 추천 갱신은 같은 방문으로 봅니다.
+ios,IOS-090,basic_info_profile_image,프로필 사진 변경 시트,action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-091,profile_portfolio_comment,프로필 상세 포트폴리오 댓글 바텀시트,screen,S2,S038,작업물의 댓글 전체를 읽고 씁니다. 피드·상세·프로필에서 연 댓글은 같은 대상과 기능이므로 하나로 합칩니다.
+ios,IOS-092,profile_activity_region,활동 지역 (프로필 상세 바텀시트),screen,M1 S2,S072,iOS 74행과 92행은 같은 RegionListView로 지역 추가·삭제·대표 지정을 합니다. 92행을 읽기 전용으로 제외했던 판단을 정정하고 진입 경로만 previous_screen으로 구분합니다.
+ios,IOS-093,finder_search,파인더 검색 입력 화면 (최근 검색어·최근 본 크리에이터·인기 검색어·추천 카테고리),screen,S1,S044,검색어를 정하며 최근 검색·추천 카테고리를 봅니다. 검색창 초점만으로 추정하지 않고 실제 입력 화면이 나타날 때 보냅니다.
+ios,IOS-094,finder,파인더 탭 (검색 홈),screen,S1,S043,검색어 입력 전 콘텐츠를 둘러보는 탐색 출발점입니다. 검색 입력 보조 화면과 검색어를 적용한 결과는 나눕니다.
+ios,IOS-095,finder_shuffle_bundle,Shuffle 키워드 묶음 목록,screen,S1,S050,고른 키워드의 콘텐츠 목록입니다. 가변 키워드 문자열은 이름에서 빼고 키워드를 고르는 추천 화면과 나눕니다.
+ios,IOS-096,finder_shuffle,Shuffle! 키워드 추천,screen,S1,S049,키워드 카드를 섞어 볼거리를 고르는 추천 목적지입니다. 웹이어도 기능이 식별되므로 공용 웹뷰 이름 대신 이 이름을 보냅니다.
+ios,IOS-097,finder_result_portfolio,검색 결과 - 작업물(포트폴리오) 탭,screen,S1,S046,검색어로 찾은 작업물 목록입니다. 정렬은 보는 방법만 바꾸므로 행동으로 기록하고 조회를 추가하지 않습니다.
+ios,IOS-098,finder_result_creator,검색 결과 - 크리에이터 탭,screen,S1,S045,검색어로 찾은 크리에이터 목록입니다. 작업물·프로젝트와 대상이 달라 나누고 해시태그 유입도 같은 결과 이름을 사용합니다.
+ios,IOS-099,finder_result_project,검색 결과 - 프로젝트 탭,screen,S1,S047,검색어로 찾은 프로젝트 목록입니다. 크리에이터·작업물 결과와 대상 및 지원 경로가 달라 독립 이름을 둡니다.
+ios,IOS-100,finder_creator_detail,검색 결과 크리에이터 프로필 페이저 (좌우로 넘겨 보는 프로필),screen,M1 M4 S1,S052,타인 프로필의 이력·작업물·영감·소개를 봅니다. AOS에서 영감 탭만 별도 이름으로 보내던 예외를 없애고 양 OS 모두 같은 이름과 tab 값을 씁니다.
+ios,IOS-101,finder_result_portfolio_sort,작업물 검색 결과 정렬 바텀시트,action,A1,,정렬 값을 고르고 적용하는 조작입니다. 완료 버튼과 선택 상태가 있어도 이번 분석 질문은 어떤 정렬을 적용했는지이므로 sort_apply 행동으로 충분하다고 판단했습니다. 필터 전체 편집과의 경계는 설계 선택이며 담당자 재검토 대상입니다.
+ios,IOS-102,finder_result_creator_sort,크리에이터 검색 결과 정렬 바텀시트,action,A1,,정렬 값을 고르고 적용하는 조작입니다. 완료 버튼과 선택 상태가 있어도 이번 분석 질문은 어떤 정렬을 적용했는지이므로 sort_apply 행동으로 충분하다고 판단했습니다. 필터 전체 편집과의 경계는 설계 선택이며 담당자 재검토 대상입니다.
+ios,IOS-103,finder_result_project_sort,프로젝트 검색 결과 정렬 바텀시트,action,A1,,정렬 값을 고르고 적용하는 조작입니다. 완료 버튼과 선택 상태가 있어도 이번 분석 질문은 어떤 정렬을 적용했는지이므로 sort_apply 행동으로 충분하다고 판단했습니다. 필터 전체 편집과의 경계는 설계 선택이며 담당자 재검토 대상입니다.
+ios,IOS-104,finder_filter_region,필터 > 지역 추가,screen,M3 S2,S048,검색 조건을 여러 항목에 걸쳐 편집하고 적용·취소합니다. 정렬처럼 한 명령을 즉시 고르는 메뉴와 달리 편집 중인 상태와 제출 결과가 있습니다. 내부 선택 단계는 step으로 기록합니다.
+ios,IOS-105,finder_filter_profession,필터 > 직업 추가,screen,M3 S2,S048,검색 조건을 여러 항목에 걸쳐 편집하고 적용·취소합니다. 정렬처럼 한 명령을 즉시 고르는 메뉴와 달리 편집 중인 상태와 제출 결과가 있습니다. 내부 선택 단계는 step으로 기록합니다.
+ios,IOS-106,finder_filter_tag,필터 > 해시태그 추가,screen,M3 S2,S048,검색 조건을 여러 항목에 걸쳐 편집하고 적용·취소합니다. 정렬처럼 한 명령을 즉시 고르는 메뉴와 달리 편집 중인 상태와 제출 결과가 있습니다. 내부 선택 단계는 step으로 기록합니다.
+ios,IOS-107,finder_filter,크리에이터·포트폴리오·프로젝트 필터 시트,screen,M3 S2,S048,검색 조건을 여러 항목에 걸쳐 편집하고 적용·취소합니다. 정렬처럼 한 명령을 즉시 고르는 메뉴와 달리 편집 중인 상태와 제출 결과가 있습니다. 내부 선택 단계는 step으로 기록합니다.
+ios,IOS-108,chatty_lounge,채티 - 라운지 목록,screen,M4 S1,S152,참여·추천 라운지를 탐색하는 목록입니다. 일반 대화 목록과 방문 목적이 달라 구분합니다.
+ios,IOS-109,chatty_chat,채티 - 채팅 목록 (탭 기본),screen,M4 S1,S151,1:1·팀·프로젝트 대화가 모인 목록입니다. 바깥 채티 탭과 중복 발송하지 않습니다.
+ios,IOS-110,chatty_project,채티 - 프로젝트 목록,screen,M4 S1,S153,참여·지원·추천 프로젝트를 보고 대화방 또는 상세로 이동하는 목록입니다.
+ios,IOS-111,chatty,채티 탭,container,X2,,채티는 세 하위 목록을 담는 바깥 틀입니다. 선택한 목록에서 chat_list·lounge_list·project_chat_list 중 하나만 보내며 바깥 틀은 별도로 보내지 않습니다.
+ios,IOS-112,lounge_create,라운지 만들기,screen,S1,S102,새 라운지 이름·소개·커버를 넣고 개설합니다. 생성 후 목록은 새 목적지이고 완료 안내는 결과여서 작성 재진입으로 세지 않습니다.
+ios,IOS-113,lounge_edit,라운지 수정,screen,S1,S103,기존 라운지 정보를 고쳐 저장합니다. 권한이 있어 실제 열린 편집기만 세고 이름 정의만으로 발송을 추정하지 않습니다.
+ios,IOS-114,alarm_center,알림 센터,screen,S1,S104,받은 알림을 읽고 관련 목적지로 이동합니다. 웹 본문도 알림 센터로 식별하되 내부 이동과 호스트의 중복은 별도 확인합니다.
+ios,IOS-115,network_browse,인맥 둘러보기,screen,S1,S051,인맥 다이얼에서 크리에이터를 둘러봅니다. 웹 안의 다이얼·미리보기는 같은 탐색으로 묶고 실제 앱 프로필로 이동하면 profile_detail을 보냅니다.
+ios,IOS-116,project_applicants,지원자 리스트,screen,S1,S113,지원자를 확인하고 수락·거절하는 목록입니다. 원본은 수락·거절이 서버에 반영되지 않는다고 하므로 화면 채택과 기능 성공 검증을 구분합니다.
+ios,IOS-117,chat_image_preview,채팅 이미지 뷰어,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-118,chat_room,채팅방,screen,S1,S097 S098 S099 S100,chat_room_direct: 상대와 1:1 메시지를 주고받습니다. 공통 대화 UI를 써도 라운지·프로젝트·팀과 참여 맥락이 달라 방 유형으로 나눕니다. chat_room_lounge: 라운지 참여자끼리 대화합니다. 다른 방 유형과 구분하고 메시지 추가·읽음은 새 방문으로 세지 않습니다. chat_room_project: 프로젝트 협업에 연결된 대화방입니다. 프로젝트 상세 조회와 나누고 공통 대화 UI에서도 실제 방 유형으로 이름을 고릅니다. chat_room_team: 팀 구성원이 대화합니다. 팀 정보를 읽는 상세와 나누고 방·팀 이름을 화면 키에 넣지 않습니다.
+ios,IOS-119,chat_room_menu,채팅방 메뉴,screen,S1,S101,방 정보와 참여자 목록을 읽고 관리하는 독립 목적지입니다. 단순 더보기 명령 메뉴와 구분합니다.
+ios,IOS-120,chatty_create_menu,채티 만들기 패널 (새 채팅·라운지 만들기·프로젝트 만들기),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-121,chat_media_player,채팅 미디어 전체화면 재생 (동영상·오디오),screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-122,lounge_cover_photo_picker,라운지 커버 사진 선택 (시스템 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-123,chat_video_picker,채팅 첨부 — 동영상 선택 (시스템 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-124,chat_audio_picker,채팅 첨부 — 오디오 파일 선택 (시스템 파일 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-125,chat_image_picker,채팅 첨부 — 이미지 선택 (시스템 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-126,chat_room_report_reason,채팅방 신고 사유 선택 바텀시트,screen,M1 S2,S057,신고 사유를 선택·제출합니다. 대상은 target_type으로 구분하고 기타 사유를 직접 쓰는 입력 과업은 나눕니다.
+ios,IOS-127,chat_room_report_detail,채팅방 신고 상세 입력 모달,screen,M1 S2,S058,기타 사유를 직접 적어 신고를 완성합니다. 실제 입력 목적지만 세며 확인 알럿과 접수 결과는 조회에서 제외합니다.
+ios,IOS-128,chat_attachment,채팅방 첨부 바텀시트 (이미지·동영상·오디오),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-129,lounge_create_complete,라운지 만들기 완료 팝업,action,A2,,권장 안내나 완료 사실만 알려 주는 표면입니다. 페이지 크기여도 화면 조회에서 제외하며 노출·결과·이어가기 행동을 별도로 기록합니다.
+ios,IOS-130,contacts_search,인맥 검색 (검색 입력 모드),action,A1 M4,,"검색창이 펼쳐진 기존 인맥 목록의 상태입니다. 직접 진입해 목록이 처음 표시되면 해당 인맥 목록 이름을 보내고, 검색 모드 전환 자체는 ui_action으로 기록합니다. 결과가 실제로 뜨면 contacts_search_results를 보냅니다."
+ios,IOS-131,contacts_search_result_first_connections,인맥 검색 결과 - 일촌,screen,M1 S1,S109,검색어에 맞는 인맥 관계를 확인합니다. 세 관계 칩은 tab으로 구분하고 기존 목록 검색창에 초점만 준 130행은 새 조회로 세지 않습니다.
+ios,IOS-132,contacts_search_result_follower,인맥 검색 결과 - 팔로워,screen,M1 S1,S109,검색어에 맞는 인맥 관계를 확인합니다. 세 관계 칩은 tab으로 구분하고 기존 목록 검색창에 초점만 준 130행은 새 조회로 세지 않습니다.
+ios,IOS-133,contacts_search_result_following,인맥 검색 결과 - 팔로잉,screen,M1 S1,S109,검색어에 맞는 인맥 관계를 확인합니다. 세 관계 칩은 tab으로 구분하고 기존 목록 검색창에 초점만 준 130행은 새 조회로 세지 않습니다.
+ios,IOS-134,contacts_first_connections,인맥 관리 - 일촌 탭,screen,S1,S105,일촌 요청과 맺어진 일촌을 관리합니다. 타인의 관계를 조회하는 relation_list와 나누며 빈 목록도 같은 목적지입니다.
+ios,IOS-135,contacts_follower,인맥 관리 - 팔로워 탭,screen,S1,S106,나를 팔로우한 사람들을 확인합니다. 내가 팔로우하는 대상과 관계 방향이 달라 나누고 공유 안내는 빈 목록의 상태로 둡니다.
+ios,IOS-136,contacts_following,인맥 관리 - 팔로잉 탭,screen,S1,S107,내가 팔로우한 사람·팀을 관리합니다. 팔로워와 대상 집합이 다르며 팀 상세를 실제 열면 team_detail로 이동합니다.
+ios,IOS-137,contacts_my_club,인맥 관리 - 마이클럽 탭,reserved,V1,S108,상태 열과 본문 설명이 충돌합니다. 실제로 열리는 탭인지 확인 전까지 예약 이름만 두며 발송하지 않습니다.
+ios,IOS-138,contacts_team_actions,팀 더보기 바텀시트 (알림/팔로우/신고),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-139,team_create,팀 만들기,screen,S1,S119,이름·소개·이미지를 넣어 새 팀을 만듭니다. 빈 목록·상단 추가·목록 끝 안내의 진입을 같은 과업으로 합칩니다.
+ios,IOS-140,team_invite,팀 멤버 초대,screen,S1,S121,인맥·최근 대화·검색에서 여러 사람을 골라 초대합니다. 대상 선택·제출이 있는 독립 과업이므로 팀 멤버 조회와 나눕니다.
+ios,IOS-141,team_list,팀 목록 (내 팀 · 합류 요청 인박스),screen,M1 S1,S117,AOS 팀 홈과 iOS 팀 목록은 내 팀·합류 요청을 보고 응답하는 목적지입니다. 9/8 양쪽 코드에서 해당 구성을 확인했으며 3.0 실기기 일치는 별도 확인합니다.
+ios,IOS-142,team_detail,팀 상세 (팀 페이지),screen,M4 S1,S118,한 팀의 포트폴리오·소개·멤버를 탐색합니다. 탭은 tab으로 구분하고 특정 탭 딥링크도 상세 진입에 한 번 보냅니다.
+ios,IOS-143,team_detail_member,팀 상세 — 멤버 탭,screen,M4 S1,S118,한 팀의 포트폴리오·소개·멤버를 탐색합니다. 탭은 tab으로 구분하고 특정 탭 딥링크도 상세 진입에 한 번 보냅니다.
+ios,IOS-144,team_detail_introduction,팀 상세 — 소개 탭,screen,M4 S1,S118,한 팀의 포트폴리오·소개·멤버를 탐색합니다. 탭은 tab으로 구분하고 특정 탭 딥링크도 상세 진입에 한 번 보냅니다.
+ios,IOS-145,team_edit,팀 수정 (팀 해체 진입점),screen,S1,S120,팀 정보를 바꾸거나 해체를 시작합니다. 팀 조회와 나누고 해체 확인 알럿을 수정 화면 재진입으로 세지 않습니다.
+ios,IOS-146,setting_2fa,2단계 인증 (2FA),screen,S1,S129,추가 이메일 인증의 상태를 확인하고 설정합니다. 로그인 관문과 나누고 설정 완료 안내는 결과로 기록합니다.
+ios,IOS-147,setting_2fa_completed,2단계 인증 설정 완료,action,A2,,권장 안내나 완료 사실만 알려 주는 표면입니다. 페이지 크기여도 화면 조회에서 제외하며 노출·결과·이어가기 행동을 별도로 기록합니다. 이전 표의 화면 채택을 철회했습니다.
+ios,IOS-148,setting_2fa_email,2단계 인증(2FA) 추가 — 이메일 인증 관리,screen,S1,S130,추가 인증에 쓰는 이메일·사용 여부를 관리합니다. 연락용 이메일과 나누고 다시 켤 때의 코드 입력은 별도 목적지입니다.
+ios,IOS-149,setting_personal_info_disagree,개인정보 이용 동의 철회,screen,M2 S2,S156,동의 철회로 이용 가능 기능이 달라지는 과업입니다. 동의하기와 분리합니다.
+ios,IOS-150,setting_personal_info_agree,개인정보 이용 동의하기,screen,M2 S2,S155,기존 계정의 동의 과업입니다. 동의 철회 및 로그인 후 강제 재동의와 결과가 다릅니다.
+ios,IOS-151,setting_account,계정,screen,S1,S123,로그인 계정과 인증·탈퇴 설정을 관리합니다. 프로필 연락처와 계정 자격 관리는 과업이 달라 나눕니다.
+ios,IOS-152,setting_account_delete_password,계정 삭제 비밀번호 확인,screen,S1,S132,이메일 가입자의 탈퇴 전 본인 확인입니다. 소셜 재인증·복구 분기를 이 비밀번호 화면으로 추정하지 않습니다.
+ios,IOS-153,setting_account_delete_confirm,계정 삭제 최종 확인,screen,S1,S134,계정 삭제의 되돌릴 수 없는 결과를 확인하고 최종 결정합니다. 선택이 삭제를 결정하므로 일반 완료 알림과 구분해 셉니다.
+ios,IOS-154,setting_customer_service,고객센터,screen,S1,S135,문의 채널과 도움말로 이동하는 지원 목록입니다. 메일 작성 선택과 OS 메일 작성기 자체를 고객센터 조회에 합치지 않습니다.
+ios,IOS-155,setting_visibility,공개 범위,screen,S1,S125,프로필 공개·차단 관리로 이동하는 허브입니다. 공개 값을 직접 바꾸는 프로필 공개 과업과 나눕니다.
+ios,IOS-156,setting_contents_comments,내 댓글 및 답글,screen,S1,S139,내 댓글·답글을 모아 봅니다. 포트폴리오·영감 칩은 대상 구분이며 특정 콘텐츠의 전체 댓글 조회와 나눕니다.
+ios,IOS-157,setting_contents_respected,리스펙트한 포트폴리오,screen,S1,S140,내가 리스펙트한 작업물 목록입니다. 한 작업물에 반응한 사람 목록과 질문이 달라 respect_list와 나눕니다.
+ios,IOS-158,bookmark_creator,북마크 — 크리에이터 탭,screen,S1,S142,저장한 크리에이터를 다시 찾습니다. 저장 작업물과 대상이 다르며 저장 완료 토스트는 목록 방문으로 세지 않습니다.
+ios,IOS-159,bookmark_portfolio,북마크 — 포트폴리오 탭,screen,S1,S143,저장한 작업물을 다시 찾습니다. 설정·저장 안내의 유입은 합치고 작품 상세 방문과 나눕니다.
+ios,IOS-160,setting_reset_password,비밀번호 재설정 — 새 비밀번호 입력,screen,S1,S012,계정 복구를 위해 새 비밀번호를 확정합니다. 현재 비밀번호 확인부터 시작하는 설정의 비밀번호 변경과 구분합니다.
+ios,IOS-161,setting_service_agreement,서비스 동의,screen,S1,S136,선택 동의의 현재 상태를 바꾸는 설정입니다. AOS 이름만 보면 전문 읽기처럼 보여 실제 토글 기능의 대응을 확인해야 합니다.
+ios,IOS-162,setting_home,설정 홈,screen,S1,S122,계정·알림·인맥·북마크 설정의 출발점입니다. AOS my_page_menu와 iOS 162행이 같은 허브이므로 settings_home으로 통일합니다.
+ios,IOS-163,setting_notification,알림 설정,screen,S1,S124,앱 알림의 종류별 수신 여부를 바꿉니다. OS 푸시 설정으로 이동하는 조작은 기록하되 시스템 화면에 앱 이름을 만들지 않습니다.
+ios,IOS-164,setting_contents_liked,좋아요한 콘텐츠,screen,S1,S141,내가 좋아요한 콘텐츠 목록입니다. 현재 영감뿐이어도 개인 활동으로 모은 집합이므로 일반 영감 탐색과 나눕니다.
+ios,IOS-165,setting_blocked_members,차단한 사용자,screen,S1,S127,차단한 사람을 확인·해제합니다. 빈 목록은 같은 목적지이고 해제 결과를 새 화면으로 만들지 않습니다.
+ios,IOS-166,setting_contents,콘텐츠,screen,S1,S138,내 댓글·리스펙트·좋아요 목록으로 이동하는 활동 허브입니다. 콘텐츠를 직접 보는 하위 목록과 나눕니다.
+ios,IOS-167,setting_visibility_profile,프로필 공개 범위,screen,S1,S126,프로필 전체 공개·비공개를 정합니다. 설정·공유 흐름의 진입 차이는 같은 과업으로 합칩니다.
+ios,IOS-168,setting_2fa_email_verify,2FA 이메일 인증번호 입력,screen,S1,S131,추가 인증을 켤 권한을 이메일 코드로 확인합니다. 로그인 때 거치는 추가 인증과 목적이 달라 나눕니다.
+ios,IOS-169,setting_muse_privileges,Muse 특권 안내 (웹뷰),screen,S1,S137,Muse 혜택을 설명하는 웹 목적지입니다. 다른 URL을 같은 웹뷰로 열었다는 이유만으로 이 이름을 보내지 않습니다.
+ios,IOS-170,setting_personal_info_document,개인정보 수집ㆍ이용 안내 문서,screen,M1 S1,S024,약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.
+ios,IOS-171,setting_privacy_policy,개인정보 처리방침 전문,screen,M1 S1,S024,약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.
+ios,IOS-172,setting_ad_info_agreement_document,광고성 정보 수신 동의 안내 문서,screen,M1 S1,S024,약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.
+ios,IOS-173,setting_change_password,비밀번호 변경,screen,S1,S128,현재 비밀번호를 확인하고 새 값을 저장합니다. 세 입력 단계는 하나의 변경 과업이며 인증을 잃어 복구하는 재설정과 나눕니다.
+ios,IOS-174,setting_reset_password_verify_email,비밀번호 재설정 — 이메일 인증번호 입력,screen,S1,S011,비밀번호 재설정 권한을 인증번호로 확인합니다. 가입 인증과 입력 화면이 같아도 계정 복구 목적이므로 이름을 나눕니다.
+ios,IOS-175,setting_terms_of_service,이용 약관 전문,screen,M1 S1,S024,약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.
+ios,IOS-176,setting_account_delete_reason_input,탈퇴 사유 직접 입력 (기타),screen,M2 S2,S154,사유 선택 뒤 기타를 고른 경우 별도로 열리는 입력 목적지입니다. 선택 화면과 입력 이탈을 구분합니다.
+ios,IOS-177,setting_customer_service_email,이메일 문의 작성 (시스템 메일 작성기),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-178,setting_account_delete_reason,회원 탈퇴 사유 선택 (바텀시트),screen,S2,S133,탈퇴 이유를 선택해 삭제 절차를 시작합니다. 본인 확인·최종 삭제 결정과 나누고 기타 직접 입력도 별도 목적지입니다.
+ios,IOS-179,upload_image_edit,업로드 이미지 편집(크롭·비율),screen,M1 S2,S089,이미지를 자르거나 회전해 사용할 결과를 확정합니다. 프로필·커버·업로드는 purpose로 나누고 내부 자르기 도구로 조회를 추가하지 않습니다.
+ios,IOS-180,upload_preview_pdf,업로드 첨부 PDF 미리보기,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-181,upload_preview_video,업로드 첨부 동영상 미리보기,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-182,upload_preview_audio,업로드 첨부 오디오 재생,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-183,upload_preview_youtube,업로드 첨부 유튜브 미리보기,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-184,upload_preview_image,업로드 첨부 이미지 미리보기,screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-185,inspiration_edit,영감 수정,screen,S1,S096,게시된 영감을 고칩니다. 새 게시와 나누고 본문·미디어 수정 단계는 같은 방문으로 봅니다.
+ios,IOS-186,inspiration_create,영감 작성,screen,S1,S095,새 영감 콘텐츠를 게시합니다. 포트폴리오로 게시 종류를 바꾸면 목적지가 달라져 portfolio_create로 전환합니다.
+ios,IOS-187,portfolio_edit,포트폴리오 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다.
+ios,IOS-188,portfolio_create,포트폴리오 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다.
+ios,IOS-189,project_edit,프로젝트 수정,screen,S1,S094,게시된 프로젝트의 모집 정보를 고칩니다. 신규 모집 게시와 나누되 진입 경로·미디어 종류별로 수정 이름을 늘리지 않습니다.
+ios,IOS-190,project_create,프로젝트 작성,screen,S1,S093,새 프로젝트 카드로 모집 정보를 게시합니다. 제안·작업물 게시와 결과 대상이 다르며 배경·본문 입력은 내부 단계입니다.
+ios,IOS-191,upload_media_picker_pdf,업로드 PDF 파일 선택,system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-192,upload_media_picker_video,업로드 동영상 선택(시스템 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-193,upload_media_picker_photo,업로드 사진 선택(시스템 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-194,upload_media_picker_audio,업로드 오디오 파일 선택,system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-195,web_page,웹뷰 전체화면 (로그인 후 openWeb),container,X2,,공용 웹뷰 껍데기입니다. 열린 URL의 등록된 목적지 이름을 호스트 앱에서 한 번 보냅니다. 미등록 URL은 화면 조회 대신 unmapped_destination 진단 기록을 남기고 목적지를 등록합니다.
+ios,IOS-196,join_web,웹뷰 전체화면 — 로그인 전(가입 스택),container,X2,,공용 웹뷰 껍데기입니다. 열린 URL의 등록된 목적지 이름을 호스트 앱에서 한 번 보냅니다. 미등록 URL은 화면 조회 대신 unmapped_destination 진단 기록을 남기고 목적지를 등록합니다.
+ios,IOS-197,club_waiting_web,"클럽 대기 랜딩 (웹, lineup/club/<des>)",screen,S1,S144,클럽 입장 전 대기 상태를 확인하는 웹 목적지입니다. 입장 기능이 있는 랜딩과 다음 행동이 달라 나눕니다.
+ios,IOS-198,club_entry_web,"클럽 입장 랜딩 (웹, lineup/club-entry)",screen,S1,S145,클럽 입장 내용을 확인하는 웹 목적지입니다. 대기 랜딩과 나누며 실제 URL 목적지 확인 후 보냅니다.
+ios,IOS-199,web_attachment_preview,웹 첨부파일 미리보기 (이미지·영상·PDF·유튜브),screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-200,web_profile_image_edit,프로필 사진 등록 (자르기·회전 편집),screen,M1 S2,S089,이미지를 자르거나 회전해 사용할 결과를 확정합니다. 프로필·커버·업로드는 purpose로 나누고 내부 자르기 도구로 조회를 추가하지 않습니다.
+ios,IOS-201,web_profile_image_crop,프로필 사진 자르기,screen,M1 S2,S089,이미지를 자르거나 회전해 사용할 결과를 확정합니다. 프로필·커버·업로드는 purpose로 나누고 내부 자르기 도구로 조회를 추가하지 않습니다.
+ios,IOS-202,web_photo_picker,사진 선택 (시스템 포토 피커),system,X1,,OS 사진·파일 선택기나 메일 작성기입니다. 앱은 열기·선택 결과만 기록하고 시스템 화면 이름을 만들지 않습니다.
+ios,IOS-203,proposal_edit,웹 안에서 띄우는 잠금 바텀시트 웹뷰 (제안 작성/수정),screen,S1,S115 S116,proposal_create: 새 협업 제안을 작성합니다. AOS 원본에는 이름만 있고 발송은 없으므로 실제 화면과 진입 경로를 확인한 뒤 구현합니다. proposal_edit: 기존 협업 제안을 고칩니다. AOS는 이름만 정의돼 수집 중으로 해석할 수 없으며 생성·수정의 실제 분기를 확인해야 합니다.
+ios,IOS-204,web_sheet,웹뷰 바텀시트 (presentWeb),screen,S1,S137,Muse 혜택을 설명하는 웹 목적지입니다. 다른 URL을 같은 웹뷰로 열었다는 이유만으로 이 이름을 보내지 않습니다.
+ios,IOS-205,web_custom_bottom_sheet,커스텀 웹 바텀시트 (custombottomsheet),container,X2,,공용 웹뷰 껍데기입니다. 열린 URL의 등록된 목적지 이름을 호스트 앱에서 한 번 보냅니다. 미등록 URL은 화면 조회 대신 unmapped_destination 진단 기록을 남기고 목적지를 등록합니다.
+ios,IOS-206,report_detail_input,신고 상세 사유 입력 (기타),screen,M1 S2,S058,기타 사유를 직접 적어 신고를 완성합니다. 실제 입력 목적지만 세며 확인 알럿과 접수 결과는 조회에서 제외합니다.
+ios,IOS-207,report_reason_content,게시물 신고 사유 선택 시트,screen,M1 S2,S057,신고 사유를 선택·제출합니다. 대상은 target_type으로 구분하고 기타 사유를 직접 쓰는 입력 과업은 나눕니다.
+ios,IOS-208,respect_list,작업물 리스펙트 보낸 사람 목록,screen,S2,S041,리스펙트를 보낸 사람들을 확인하고 프로필로 탐색합니다. 대상 종류는 구분 값으로 두고 목록을 연 위치로 이름을 늘리지 않습니다.
+ios,IOS-209,comment_option_mine,내 댓글 옵션 시트 (삭제),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-210,comment_option_other,타인 댓글 옵션 시트,action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-211,portfolio_pdf_viewer,포트폴리오 PDF 전체보기 (QuickLook 문서 뷰어),screen,M1 S1,S042,미디어를 크게 열어 확인하는 동일 목적지입니다. 첨부 종류와 사용 맥락은 별도 값으로 구분합니다.
+ios,IOS-212,project_card_option_other,남의 프로젝트 카드 옵션 시트 (프로필 저장·공유·차단·신고),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-213,respect_user_all,리스펙트 준 사람 전체 목록 시트,screen,S2,S041,리스펙트를 보낸 사람들을 확인하고 프로필로 탐색합니다. 대상 종류는 구분 값으로 두고 목록을 연 위치로 이름을 늘리지 않습니다.
+ios,IOS-214,background_video_edit,배경 영상 편집 (동영상 편집),screen,M1 S2,S090,영상의 사용할 구간을 정해 확정합니다. 편집과 구간 자르기를 하나로 묶고 진입 용도만 구분 값으로 남깁니다.
+ios,IOS-215,profile_image_edit,프로필 사진 등록 (사진 선택 → 이미지 편집),screen,M1 S2,S089,이미지를 자르거나 회전해 사용할 결과를 확정합니다. 프로필·커버·업로드는 purpose로 나누고 내부 자르기 도구로 조회를 추가하지 않습니다.
+ios,IOS-216,profile_card_background_image_edit,프로필 카드 배경 등록 (선택 → 이미지 편집),screen,M1 S2,S089,이미지를 자르거나 회전해 사용할 결과를 확정합니다. 프로필·커버·업로드는 purpose로 나누고 내부 자르기 도구로 조회를 추가하지 않습니다.
+ios,IOS-217,profile_card_background_video_crop,프로필 카드 배경 영상 구간 자르기,screen,M1 S2,S090,영상의 사용할 구간을 정해 확정합니다. 편집과 구간 자르기를 하나로 묶고 진입 용도만 구분 값으로 남깁니다.
+ios,IOS-218,relation_follower / relation_following / relation_first_connections,관계 세그먼트 시트 (일촌·팔로워·팔로잉),screen,M1 S1,S053,한 사용자의 일촌·팔로워·팔로잉을 확인합니다. 세 탭은 같은 관계 조회의 선택이므로 tab으로 구분합니다.
+ios,IOS-219,first_connection_mutual,함께 아는 일촌 목록 시트,screen,S2,S054,나와 상대가 함께 아는 일촌만 확인합니다. 상대의 전체 관계 목록과 집합의 의미가 달라 별도 이름을 둡니다.
+ios,IOS-220,knock_type_select,노크 용건 선택,screen,S1,S055,대화 요청의 용건을 골라 노크를 보냅니다. 상대가 수신을 막아 안내만 뜨면 선택 목적지 진입으로 세지 않습니다.
+ios,IOS-221,report_reason_user,사용자 신고 사유 선택 시트,screen,M1 S2,S057,신고 사유를 선택·제출합니다. 대상은 target_type으로 구분하고 기타 사유를 직접 쓰는 입력 과업은 나눕니다.
+ios,IOS-222,member_option,사용자 액션 바텀시트 (더보기: 팔로우·1촌·노크·저장·차단·신고),action,A1,,정렬·첨부 종류·수정/삭제·언어 종류처럼 다음 명령을 고르는 메뉴입니다. 독립 입력 상태나 제출 결과가 없어 화면 조회 대신 선택 행동을 셉니다.
+ios,IOS-223,knock_sent_popup,노크 전송 완료 팝업 (채팅에서 확인하기),action,A2,,권장 안내나 완료 사실만 알려 주는 표면입니다. 페이지 크기여도 화면 조회에서 제외하며 노출·결과·이어가기 행동을 별도로 기록합니다.
+ios,IOS-224,profile_image_crop,프로필 사진 자르기 (네이티브 편집 플로우),screen,M1 S2,S089,이미지를 자르거나 회전해 사용할 결과를 확정합니다. 프로필·커버·업로드는 purpose로 나누고 내부 자르기 도구로 조회를 추가하지 않습니다.
+ios,IOS-225,app_update_notice,업데이트 안내 (신기능 소개),action,A2,,권장 안내나 완료 사실만 알려 주는 표면입니다. 페이지 크기여도 화면 조회에서 제외하며 노출·결과·이어가기 행동을 별도로 기록합니다.
+ios,IOS-226,qa_report_video_trim,QA 리포트 영상 트림 편집기,qa,X3,,QA 도구는 제품 화면 집계에서 제외합니다. 필요 시 별도 테스트용 측정으로 분리합니다.
+ios,IOS-227,qa_report_markup,QA 리포트 첨부 마크업 미리보기,qa,X3,,QA 도구는 제품 화면 집계에서 제외합니다. 필요 시 별도 테스트용 측정으로 분리합니다.
+ios,IOS-228,qa_report_network_console,QA 리포트 네트워크 로그 콘솔 (Pulse),qa,X3,,QA 도구는 제품 화면 집계에서 제외합니다. 필요 시 별도 테스트용 측정으로 분리합니다.
+ios,IOS-229,qa_report_media_picker,QA 리포트 사진·영상 피커,qa,X3,,QA 도구는 제품 화면 집계에서 제외합니다. 필요 시 별도 테스트용 측정으로 분리합니다.
+ios,IOS-230,qa_report_sheet,QA 리포트 작성 시트,qa,X3,,QA 도구는 제품 화면 집계에서 제외합니다. 필요 시 별도 테스트용 측정으로 분리합니다.
+ios,IOS-231,card_game_boss,카드 보스전 (프로필 카드),screen,S1,S146,프로필 카드를 보스로 삼아 플레이합니다. 길게 누르기·밀기는 행동이고 게임이 시작될 때 목적지 방문을 보냅니다.
+ios,IOS-232,card_game_breakout,카드 블록깨기 게임,screen,S1,S147,작업물 카드의 벽돌을 깨는 게임입니다. 보스전과 방식이 달라 나누고 다음 카드로 새 판을 시작하면 새 방문입니다.
+aos,AOS-home,home,홈 탭,screen,S1,S030,크리에이터·작업물 카드를 둘러보는 홈 피드입니다. AOS 홈과 iOS 디스커버리의 역할을 맞추며 피드의 개별 카드 노출을 홈 재진입으로 세지 않습니다.
+aos,AOS-finder,finder,파인더 탭,screen,S1,S043,검색어 입력 전 콘텐츠를 둘러보는 탐색 출발점입니다. 검색 입력 보조 화면과 검색어를 적용한 결과는 나눕니다.
+aos,AOS-finder_search,finder_search,검색 탭 · 검색 화면(검색 전용 화면에서도 같은 이름),screen,S1,S044,검색어를 정하며 최근 검색·추천 카테고리를 봅니다. 검색창 초점만으로 추정하지 않고 실제 입력 화면이 나타날 때 보냅니다.
+aos,AOS-chatty,chatty,채티 탭 (대화방 상세는 별도 이름 없음),screen,M4 S1,S151 S152 S153,1:1·팀·프로젝트 대화가 모인 목록입니다. 바깥 채티 탭과 중복 발송하지 않습니다. 참여·추천 라운지를 탐색하는 목록입니다. 일반 대화 목록과 방문 목적이 달라 구분합니다. 참여·지원·추천 프로젝트를 보고 대화방 또는 상세로 이동하는 목록입니다.
+aos,AOS-my_page,my_page,마이페이지 탭,container,M1 M4 S1,,바깥 MY 탭의 발송을 제거하고 실제 내 프로필에서 my_profile을 한 번 보냅니다. 기존 my_page를 my_profile로 단순 치환하면 중복이 남으므로 호출부 한 곳을 제거해야 합니다.
+aos,AOS-finder_result_creator,finder_result_creator,검색 결과 · 크리에이터 탭,screen,S1,S045,검색어로 찾은 크리에이터 목록입니다. 작업물·프로젝트와 대상이 달라 나누고 해시태그 유입도 같은 결과 이름을 사용합니다.
+aos,AOS-finder_result_portfolio,finder_result_portfolio,검색 결과 · 작업물 탭,screen,S1,S046,검색어로 찾은 작업물 목록입니다. 정렬은 보는 방법만 바꾸므로 행동으로 기록하고 조회를 추가하지 않습니다.
+aos,AOS-finder_result_project,finder_result_project,검색 결과 · 프로젝트 탭,screen,S1,S047,검색어로 찾은 프로젝트 목록입니다. 크리에이터·작업물 결과와 대상 및 지원 경로가 달라 독립 이름을 둡니다.
+aos,AOS-user_detail,user_detail,타인 프로필 상세. 화면 안에서 다른 회원으로 넘기면 다시 발송,screen,M1 M4 S1,S052,타인 프로필의 이력·작업물·영감·소개를 봅니다. AOS에서 영감 탭만 별도 이름으로 보내던 예외를 없애고 양 OS 모두 같은 이름과 tab 값을 씁니다.
+aos,AOS-portfolio_detail,portfolio_detail,작업물 상세,screen,S1,S036,작업물 한 편을 읽는 목적지입니다. 미디어 종류와 진입 위치는 이름을 나누지 않으며 다른 작업물로 넘기면 새 방문입니다.
+aos,AOS-inspiration_detail,inspiration_detail,인스퍼레이션 상세,screen,S1,S037,영감 한 편을 읽고 반응합니다. 홈·해시태그·좋아요 목록·업로드 완료 뒤의 진입을 같은 이름으로 맞춥니다.
+aos,AOS-project_detail,project_detail,프로젝트 카드 상세,screen,S1,S110,프로젝트 한 건의 모집 정보·작성자·지원 상태를 읽습니다. 지원서 작성·지원자 관리와 나누고 유입 경로로 이름을 늘리지 않습니다.
+aos,AOS-proposal_detail,proposal_detail,제안 상세,screen,S1,S114,협업 제안 한 건을 읽는 웹 목적지입니다. 실제 제안임이 확인될 때 쓰며 미등록 웹을 제안으로 추정하지 않습니다.
+aos,AOS-my_profile_card,my_profile_card,내 프로필 카드,screen,M1 M4 S1,S059,MY 바깥 탭과 안쪽 프로필에서 중복 발송하지 않습니다. 실제 전면 목적지 한 곳에서만 보냅니다.
+aos,AOS-my_profile_preview,my_profile_preview,내 프로필 미리보기(웹),screen,S1,S060,내 프로필이 타인에게 보이는 모습을 확인하고 공유합니다. 정상 MY 관리와 나누며 비공개 안내만 뜨고 미리보기가 열리지 않으면 보내지 않습니다.
+aos,AOS-my_page_menu,my_page_menu,설정 · 마이페이지 메뉴,screen,S1,S122,계정·알림·인맥·북마크 설정의 출발점입니다. AOS my_page_menu와 iOS 162행이 같은 허브이므로 settings_home으로 통일합니다.
+aos,AOS-user_resume,user_resume,이력서 화면,screen,S1,S085,학력·경력·수상·자격을 관리하는 이력 허브입니다. AOS user_resume과 iOS 커리어 관리를 대응시키고 이력을 타인에게 보여 주는 프로필과 나눕니다.
+aos,AOS-visitor_today_bottom_sheet,visitor_today_bottom_sheet,오늘 방문자 바텀시트,screen,S2,S061,오늘 내 프로필을 방문한 사람과 방문 수를 확인합니다. 시트 형태와 무관하게 목록 탐색이 있으며 타인 프로필에도 같은 기능이 있다고 가정하지 않습니다.
+aos,AOS-service_agreement,service_agreement,서비스 약관,screen,S1,S136,선택 동의의 현재 상태를 바꾸는 설정입니다. AOS 이름만 보면 전문 읽기처럼 보여 실제 토글 기능의 대응을 확인해야 합니다.
+aos,AOS-pending_agreement_detail,pending_agreement_detail,대기 중 약관 상세,screen,S1,S023,기존 회원이 개정 약관에 동의해야 앱 이용을 계속할 수 있는 관문입니다. 신규 가입 동의와 나누고 전문을 열면 agreement_document를 보냅니다.
+aos,AOS-shuffle_bundle,shuffle_bundle,셔플 묶음 화면,screen,S1,S050,고른 키워드의 콘텐츠 목록입니다. 가변 키워드 문자열은 이름에서 빼고 키워드를 고르는 추천 화면과 나눕니다.
+aos,AOS-member_profile_inspiration,member_profile_inspiration,타인 프로필 · 인스퍼레이션 탭,screen,M1 M4 S1,S052,타인 프로필의 이력·작업물·영감·소개를 봅니다. AOS에서 영감 탭만 별도 이름으로 보내던 예외를 없애고 양 OS 모두 같은 이름과 tab 값을 씁니다.
+aos,AOS-bookmark_creator,bookmark_creator,북마크 · 크리에이터 탭,screen,S1,S142,저장한 크리에이터를 다시 찾습니다. 저장 작업물과 대상이 다르며 저장 완료 토스트는 목록 방문으로 세지 않습니다.
+aos,AOS-bookmark_portfolio,bookmark_portfolio,북마크 · 작업물 탭,screen,S1,S143,저장한 작업물을 다시 찾습니다. 설정·저장 안내의 유입은 합치고 작품 상세 방문과 나눕니다.
+aos,AOS-contacts_first_connections,contacts_first_connections,연락처 · 1촌 탭,screen,S1,S105,일촌 요청과 맺어진 일촌을 관리합니다. 타인의 관계를 조회하는 relation_list와 나누며 빈 목록도 같은 목적지입니다.
+aos,AOS-contacts_follower,contacts_follower,연락처 · 팔로워 탭,screen,S1,S106,나를 팔로우한 사람들을 확인합니다. 내가 팔로우하는 대상과 관계 방향이 달라 나누고 공유 안내는 빈 목록의 상태로 둡니다.
+aos,AOS-contacts_following,contacts_following,연락처 · 팔로잉 탭,screen,S1,S107,내가 팔로우한 사람·팀을 관리합니다. 팔로워와 대상 집합이 다르며 팀 상세를 실제 열면 team_detail로 이동합니다.
+aos,AOS-contacts_team,contacts_team,팀 홈,screen,M1 S1,S117,AOS 팀 홈과 iOS 팀 목록은 내 팀·합류 요청을 보고 응답하는 목적지입니다. 9/8 양쪽 코드에서 해당 구성을 확인했으며 3.0 실기기 일치는 별도 확인합니다.
+aos,AOS-discovery_recommend_keywords,discovery_recommend_keywords,키워드 추천,screen,S1,S049,키워드 카드를 섞어 볼거리를 고르는 추천 목적지입니다. 웹이어도 기능이 식별되므로 공용 웹뷰 이름 대신 이 이름을 보냅니다.
+aos,AOS-discovery_recommend_network,discovery_recommend_network,네트워크 추천,screen,S1,S051,인맥 다이얼에서 크리에이터를 둘러봅니다. 웹 안의 다이얼·미리보기는 같은 탐색으로 묶고 실제 앱 프로필로 이동하면 profile_detail을 보냅니다.
+aos,AOS-app_entry,app_entry,앱 첫 진입(스플래시),screen,S1,S001,로그인 여부와 무관하게 앱을 준비하는 시작 목적지입니다. 인트로 영상의 재생·사라짐은 같은 시작 방문의 상태로 보고 이름을 늘리지 않습니다.
+aos,AOS-signup_method,signup_method,가입 방법 선택,screen,S1,S003,소셜·이메일 중 인증 방법을 고르는 공통 출발점입니다. AOS 가입 방법 선택과 iOS 로그인·가입 랜딩의 역할을 대응시킵니다.
+aos,AOS-signup_terms,signup_terms,가입 약관 동의,screen,S2,S004,신규 가입에 필요한 동의를 선택·제출합니다. 약관 전문 읽기와 기존 회원 재동의는 목적이 달라 나눕니다.
+aos,AOS-portfolio_create,portfolio_create,작업물 종류를 고르기 전 진입 화면 (신규 작성에만 존재),screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다.
+aos,AOS-text_portfolio_create,text_portfolio_create,텍스트 작업물 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-img_portfolio_create,img_portfolio_create,이미지 작업물 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-video_portfolio_create,video_portfolio_create,영상 작업물 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-audio_portfolio_create,audio_portfolio_create,오디오 작업물 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-pdf_portfolio_create,pdf_portfolio_create,PDF 작업물 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-youtube_portfolio_create,youtube_portfolio_create,유튜브 작업물 작성,screen,M1 M3 S2,S091,미디어 여섯 종류를 같은 작성 화면 안에서 선택합니다. AOS 유형별 이름을 통합하고 media_type·step으로 종류와 단계를 구분합니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-text_portfolio_edit,text_portfolio_edit,텍스트 작업물 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-img_portfolio_edit,img_portfolio_edit,이미지 작업물 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-video_portfolio_edit,video_portfolio_edit,영상 작업물 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-audio_portfolio_edit,audio_portfolio_edit,오디오 작업물 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-pdf_portfolio_edit,pdf_portfolio_edit,PDF 작업물 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-youtube_portfolio_edit,youtube_portfolio_edit,유튜브 작업물 수정,screen,M1 S2,S092,기존 포트폴리오를 수정하는 과업입니다. 콘텐츠 유형마다 다른 화면명을 보내지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-project_card_create,project_card_create,프로젝트 카드 작성,screen,S1,S093,새 프로젝트 카드로 모집 정보를 게시합니다. 제안·작업물 게시와 결과 대상이 다르며 배경·본문 입력은 내부 단계입니다.
+aos,AOS-project_card_edit,project_card_edit,프로젝트 카드 수정,screen,S1,S094,게시된 프로젝트의 모집 정보를 고칩니다. 신규 모집 게시와 나누되 진입 경로·미디어 종류별로 수정 이름을 늘리지 않습니다.
+aos,AOS-inspiration_create,inspiration_create,인스퍼레이션 작성,screen,S1,S095,새 영감 콘텐츠를 게시합니다. 포트폴리오로 게시 종류를 바꾸면 목적지가 달라져 portfolio_create로 전환합니다.
+aos,AOS-inspiration_edit,inspiration_edit,인스퍼레이션 수정,screen,S1,S096,게시된 영감을 고칩니다. 새 게시와 나누고 본문·미디어 수정 단계는 같은 방문으로 봅니다.
+aos,AOS-basic_info_id,basic_info_id,아이디 입력,screen,S1,S013,AOS 원본의 ‘온보딩 · 기본정보 입력’ 그룹과 iOS 12행의 ‘사용자 ID 만들기’가 근거입니다. 신규 가입에서 ID를 처음 정하므로 기존 프로필 링크를 바꾸는 my_info_id와 분리합니다.
+aos,AOS-basic_info_ko_name,basic_info_ko_name,한글 이름 입력,screen,S1,S014,AOS 온보딩 기본정보의 한글 이름과 iOS 가입 완료 단계의 이름 입력을 대응시킵니다. 기존 회원의 이름 수정은 my_info_name_ko로 구분합니다.
+aos,AOS-basic_info_en_name,basic_info_en_name,영문 이름 입력,screen,S1,S015,AOS 온보딩 기본정보에 속한 영문 이름 입력입니다. iOS에는 같은 가입 단계가 확인되지 않아 대응 검토가 필요하며 기존 영문 이름 편집과 합치지 않습니다.
+aos,AOS-basic_info_jobs,basic_info_jobs,직업 선택,screen,S1,S016,AOS 가입 기본정보에서 직업을 고르는 단계입니다. iOS 기존 직업 관리·추가와 목적이 다르며 실제 가입 단계가 있는지 확인해야 합니다.
+aos,AOS-basic_info_keyword_personal,basic_info_keyword_personal,키워드 · 성향,screen,S1,S017,AOS 가입 기본정보의 성향 키워드 단계입니다. 자기소개 전체를 만드는 과업의 내부 선택과 구분하고 iOS 가입 과정의 대응 여부를 확인합니다.
+aos,AOS-basic_info_keyword_working_preference,basic_info_keyword_working_preference,키워드 · 업무 성향,screen,S1,S018,AOS 가입 과정의 업무 성향 선택입니다. 성향·목표와 수집 항목이 달라 가입 퍼널에서 나누며 기존 자기소개 편집 탭에 이 이름을 보내지 않습니다.
+aos,AOS-basic_info_keyword_ambition,basic_info_keyword_ambition,키워드 · 목표,screen,S1,S019,AOS 가입 과정의 목표 키워드 선택입니다. 원본의 온보딩 그룹이 가입용이라는 근거이며 iOS 자기소개 등록과 자동으로 대응시키지 않습니다.
+aos,AOS-onboarding_cover_intro_profession,onboarding_cover_intro_profession,커버 소개 · 직업,screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-onboarding_cover_intro_nickname,onboarding_cover_intro_nickname,커버 소개 · 닉네임,screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-onboarding_cover_intro_ko_name,onboarding_cover_intro_ko_name,커버 소개 · 한글 이름,screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-onboarding_cover_intro_tagline,onboarding_cover_intro_tagline,커버 소개 · 한 줄 소개,screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-onboarding_cover_intro_media,onboarding_cover_intro_media,커버 소개 · 미디어,screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-onboarding_cover_intro_profile_image,onboarding_cover_intro_profile_image,커버 소개 · 프로필 이미지,screen,M1 M3 S2,S025,두 OS의 커버 만들기를 하나의 과업으로 셉니다. AOS 여섯 단계가 iOS에 모두 존재한다고 가정하지 않습니다. 실제 단계는 step으로 기록하며 단계마다 화면 조회를 늘리지 않습니다. 문자열 치환만 하면 기존 단계·유형별 호출 횟수가 남습니다. 호출 생명주기도 공통 과업 진입 기준으로 바꿉니다.
+aos,AOS-proposal_create,proposal_create,협업 제안 · 작성(웹),screen,S1,S115,새 협업 제안을 작성합니다. AOS 원본에는 이름만 있고 발송은 없으므로 실제 화면과 진입 경로를 확인한 뒤 구현합니다.
+aos,AOS-proposal_edit,proposal_edit,협업 제안 · 수정(웹),screen,S1,S116,기존 협업 제안을 고칩니다. AOS는 이름만 정의돼 수집 중으로 해석할 수 없으며 생성·수정의 실제 분기를 확인해야 합니다.
+web,/?web_url=:url,,LandingPage,excluded,A2,,"Production renders no destination content of its own; this is a redirect carrier, so the destination page should be counted instead"
+web,/my-notification,,MyNotificationLayout > NotificationPage,screen,"M1,S1",notification_center,The contract definition explicitly says this notification list body is rendered by web
+web,/my-notification/proposal-news,,MyNotificationLayout > ProposalNewsPage,screen,"S1,M2",notification_proposal_news,A dedicated new-proposal list in a native bottom sheet; it is narrower than the general notification center and absent from the 151-key contract
+web,/profile,my_resume,ProfileRoute -> ProfilePageV3 or ProfilePage,screen,"M1,M4",my_profile,The web resume/profile tab is a child presentation of the MY profile destination; current my_resume is not in the contract
+web,/profile/intro,,ProfileIntroPage,screen,M4,my_profile,"The intro URL is an internal tab of the same MY profile destination, not a new screen name"
+web,/profile/intro/:uid,,MemberProfileIntroPage,screen,M4,profile_detail,The intro URL is an internal tab of the member profile destination
+web,/profile/:uid,user_detail,MemberProfileRoute -> MemberProfilePageV3 or MemberProfilePage,screen,"M1,S1",profile_detail,Current user_detail is not in the contract; same member-profile purpose maps to profile_detail
+web,/casting,,MainPage,screen,"M1,V1",project_list,"Legacy casting route is alive in App.tsx and has child navigation, but no current normal-journey caller to the root route was found in this web snapshot"
+web,/casting/apply,,ApplyFormPage > ApplyFormMain,screen,"M1,M3,S2",project_application_compose,Legacy casting application is the project application composition task
+web,/casting/apply/portfolio,,ApplyFormPage > ApplyPortfolioStep,screen,M3,project_application_compose,"Portfolio attachment is a form step, not a separate screen name"
+web,/casting/apply/email,,ApplyFormPage > ApplyEmailStep,screen,M3,project_application_compose,"Email attachment is a form step, not a separate screen name"
+web,/casting/apply/phone,,ApplyFormPage > ApplyPhoneStep,screen,M3,project_application_compose,"Phone attachment is a form step, not a separate screen name"
+web,/casting/detail/:id,,CastingDetailPage,screen,"M1,S1,V1",project_detail,Legacy casting detail has the same recruitment/project detail purpose; route remains active despite legacy journey status
+web,/casting/drafts,,DraftsPage,reserved,"S1,V1",project_draft_list,Independent list of saved recruitment drafts; legacy route is alive but normal alpha journey was not confirmed
+web,/casting/form (id absent or ?temporaryCastingId=:id),,FormFunnel,screen,"M1,M3,S2,V1",project_create,Create and resumed-draft modes are the same project creation task; preview is an internal funnel step
+web,/casting/form?id=:id,,FormFunnel,screen,"M1,M3,S2,V1",project_edit,Query-dependent edit purpose is separated from create under M2; legacy route remains registered
+web,/casting/my-castings,,MyCastingsPage,reserved,"S1,M4,V1",my_project_list,Applied and posted are tabs/parameters of one personal project list; legacy route is alive but current normal entry was not confirmed
+web,/casting/search,,SearchPage,screen,"M1,V1",finder_search,Project-only legacy search is the same search-input purpose; content type belongs in a parameter
+web,/casting/search-result,,SearchResultPage,screen,"M1,V1",finder_result_project,Legacy casting search results are project search results
+web,/message-box?lineTabId=PROPOSAL (also lineTabId absent),inbox_suggestion,MessageBoxMain > ProposalTabContent,screen,"S1,M4",proposal_list,The container must not own one name for both tabs; current inbox_suggestion is absent from the contract
+web,/message-box?lineTabId=CASTING,inbox_suggestion,MessageBoxMain > CastingTabContent,reserved,"M1,M4",my_project_list,Applied/posted are tabs of the same personal project list; current inbox_suggestion incorrectly labels this content as proposals
+web,/message-box/proposal/form (id absent),proposal_create,ProposalFormPage > ProposalFormMain,screen,"M1,S2",proposal_create,Current and contract names already match
+web,/message-box/proposal/form?id=:id,proposal_edit,ProposalFormPage > ProposalFormMain,screen,"M1,S2",proposal_edit,Current and contract names already match
+web,/message-box/proposal/form/type (id absent),,ProposalFormPage > ProposalTypeStep,screen,M3,proposal_create,Type selection is a step of proposal creation
+web,/message-box/proposal/form/type?id=:id,,ProposalFormPage > ProposalTypeStep,screen,M3,proposal_edit,Type selection is a step of proposal editing
+web,/message-box/proposal/form/portfolio (id absent),,ProposalFormPage > ProposalPortfolioStep,screen,M3,proposal_create,Portfolio attachment is a step of proposal creation
+web,/message-box/proposal/form/portfolio?id=:id,,ProposalFormPage > ProposalPortfolioStep,screen,M3,proposal_edit,Portfolio attachment is a step of proposal editing
+web,/message-box/proposal/form/email (id absent),,ProposalFormPage > ProposalEmailStep,screen,M3,proposal_create,Email attachment is a step of proposal creation
+web,/message-box/proposal/form/email?id=:id,,ProposalFormPage > ProposalEmailStep,screen,M3,proposal_edit,Email attachment is a step of proposal editing
+web,/message-box/proposal/form/phone (id absent),,ProposalFormPage > ProposalPhoneStep,screen,M3,proposal_create,Phone attachment is a step of proposal creation
+web,/message-box/proposal/form/phone?id=:id,,ProposalFormPage > ProposalPhoneStep,screen,M3,proposal_edit,Phone attachment is a step of proposal editing
+web,/message-box/proposal/detail,proposal_detail,ProposalDetailSwipe,screen,"M1,S1",proposal_detail,Current and contract names already match
+web,/message-box/casting-applications,,CastingApplicationsSwipe,screen,"M1,S1,V1",project_applicants,Legacy casting applicant list has the same project-applicant-list purpose
+web,/message-box/casting-application/detail,,CastingApplicationDetailSwipe,reserved,"S1,M2,V1",project_applicant_detail,Individual applicant review is a separate destination from the applicant overview list
+web,/message-box/my-casting-application/detail,,MyCastingApplicationDetailSwipe,reserved,"S1,M2,V1",my_project_application_detail,Own submitted application detail is distinct from composing an application and from leader-side applicant review
+web,/gallery,,GalleryPage,screen,"S1,M2",home_gallery,Immersive exhibition/gallery with intro/outro/shutter states is a distinct destination from ordinary portfolio_detail
+web,/report,,ReportPage,screen,"M1,S2",report_detail_input,"The route is the 직접입력 report screen, not the preceding reason-selection sheet"
+web,/share/casting/:id,,SharedCastingDetailPage,screen,"M1,S1,V1",project_detail,Path-parameter form of the legacy shared casting/project detail
+web,/share/casting?des=:id,,SharedCastingDetailPage,screen,"M1,S1,V1",project_detail,Query-parameter compatibility form of the same legacy shared casting/project detail
+web,/share/feed/:id,,SharedFeedDetailPage,screen,"M1,S1",portfolio_detail,Shared and authenticated presentations of one portfolio have the same purpose
+web,/share/feed?des=:id,,SharedFeedDetailPage,screen,"M1,S1",portfolio_detail,Query-parameter compatibility form of the same shared portfolio detail
+web,/share/profile/:id (mode!=preview),,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",profile_detail,Non-preview shared profile is the public presentation of a creator profile
+web,/share/profile/:id?mode=preview,,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",my_profile_preview,"Explicit preview mode is the contract's MY profile preview, not generic profile_detail"
+web,/share/profile?des=:id (mode!=preview),,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",profile_detail,Query-parameter compatibility form of the public creator profile
+web,/share/profile?des=:id&mode=preview,,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",my_profile_preview,Query-parameter compatibility form of MY profile preview
+web,/share/project/:id,,SharedProjectRoute -> SharedProjectPageV3 or SharedProjectPage,screen,"M1,S1",project_detail,Shared presentation of the same project destination
+web,/share/project?des=:id,,SharedProjectRoute -> SharedProjectPageV3 or SharedProjectPage,screen,"M1,S1",project_detail,Query-parameter compatibility form of the same shared project detail
+web,/unsubscribe?token=:token,,UnsubscribePage,screen,"S2,M2",settings_marketing_unsubscribe,Direct marketing opt-out is a distinct task from the contract's settings_agreements list and from granting consent
+web,/muse/privileges,,MusePrivilegesPage,screen,"M1,S1",settings_muse_privileges,Exact web destination already described by the contract
+web,/member/privileges,,MemberPrivilegesPage,screen,"M1,S1",signup_privileges,Uses the same general/Beta privileges content as guest privileges; current key vocabulary already exists in routes.ts but is absent from the 151-key contract
+web,/guest/privileges?code=:inviteCode,signup_general_privileges,GuestPrivilegesPage,screen,"M1,S1",signup_privileges,"Current GA name is suitable as the proposed contract key, but launch surface remains unproven in this snapshot"
+web,/discovery/keywords,,KeywordsDiscoveryPage,screen,"M1,S1",finder_keyword_recommend,The Shuffle keyword recommendation web screen matches the contract exactly
+web,/discovery/network/:uid?,,DiscoveryNetworkRoutePage,screen,"M1,M4,S1",network_browse,Optional uid changes the dial's focused person inside the same network-browse destination
+web,/discovery/quiz,,QuizDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen"
+web,/discovery/tag-cloud,,TagCloudDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen"
+web,/discovery/ticker,,TickerDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen"
+web,/onboarding/intro (mode absent or mode=create),,OnboardingIntroPage,screen,"M3,S2",profile_cover_create,Cover-template selection is the first step of profile-cover creation
+web,/onboarding/intro?mode=edit,,OnboardingIntroPage,screen,"M2,M3,S2",profile_cover_edit,"The query changes the result from first creation to editing, while template choice remains an internal form step"
+web,/app-download,,AppDownloadPage,excluded,A2,,Transient 'moving to app store' progress surface; measure UTM click/redirect result rather than a screen
+web,/maintenance,,ServiceMaintenancePage,screen,"M1,S3",app_maintenance,The web route is browser-only in the coded flow; the same logical maintenance destination is a native overlay inside the app
+web,*,,NotFoundPage,excluded,A3,,"Missing/unauthorized/deleted destination is an error state, not a screen name"
