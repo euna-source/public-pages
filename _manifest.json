@@ -78,5 +78,13 @@
     "last_kind": "new",
     "last_sha256": "13cc4e5f7d2dd8a8e1f77e27c9abf8b1fafb9d156ddd37f57ad0c9eaae0e65e6",
     "timestamp": "2026-09-12T11:37:26.820616Z"
+  },
+  "agent-space-two-worlds": {
+    "slug": "agent-space-two-worlds",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/agent-space-two-worlds/",
+    "last_kind": "new",
+    "last_sha256": "1cf90080ada196411e3ae2bd7ff21351d99c855a8f1924a8b3ca2ffab5606c43",
+    "timestamp": "2026-09-12T14:21:18.618405Z"
   }
 }
