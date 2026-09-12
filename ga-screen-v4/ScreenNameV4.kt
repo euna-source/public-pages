@@ -267,6 +267,8 @@ object ScreenNameV4 {
     const val PROPOSAL_LIST = "proposal_list"
     /** [디스커버리(홈)] 갤러리 · 작품 전시(웹) */
     const val HOME_GALLERY = "home_gallery"
+    /** [마이] 회원 혜택 안내(베타·Muse) */
+    const val MEMBER_PRIVILEGES = "member_privileges"
     /** [마이] 커리어 · 스킬 입력 */
     const val RESUME_SKILL_FORM = "resume_skill_form"
     /** [마이] 커리어 · 언어 능력 입력 */

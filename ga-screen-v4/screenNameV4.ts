@@ -25,8 +25,6 @@ export const SCREEN_NAME_V4 = {
   NOTIFICATION_CENTER: 'notification_center',
   /** [디스커버리(홈)] 프로젝트 · 상세 */
   PROJECT_DETAIL: 'project_detail',
-  /** [디스커버리(홈)] 프로젝트 · 지원 작성 */
-  PROJECT_APPLICATION_COMPOSE: 'project_application_compose',
   /** [채티] 협업 제안 · 상세(웹) */
   PROPOSAL_DETAIL: 'proposal_detail',
   /** [채티] 협업 제안 · 작성(웹) */
@@ -41,8 +39,8 @@ export const SCREEN_NAME_V4 = {
   NOTIFICATION_PROPOSAL_NEWS: 'notification_proposal_news',
   /** [디스커버리(홈)] 갤러리 · 작품 전시(웹) */
   HOME_GALLERY: 'home_gallery',
-  /** [회원가입] 가입 · 회원 혜택 안내(웹) */
-  SIGNUP_PRIVILEGES: 'signup_privileges',
+  /** [마이] 회원 혜택 안내(베타·Muse) */
+  MEMBER_PRIVILEGES: 'member_privileges',
   /** [설정] 설정 · 마케팅 수신 거부(웹) */
   SETTINGS_MARKETING_UNSUBSCRIBE: 'settings_marketing_unsubscribe',
 } as const;

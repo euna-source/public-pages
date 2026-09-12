@@ -1997,7 +1997,7 @@
      "reach_evidence": [
       "DeepLinkHandler.swift:247/252/254 only pushes of .home(.museCommentList) (rg whole repo)"
      ],
-     "reach_note": ""
+     "reach_note": "앱 안 어디에도 이 화면으로 가는 버튼·메뉴가 없습니다. DeepLinkHandler의 muse-comments 케이스가 유일한 진입이며 딥링크·푸시로만 옵니다. 그런 푸시가 지금도 발송되는지는 미확인입니다."
     },
     "aos": {
      "status": "no",
@@ -2006,7 +2006,8 @@
       "app/detekt-baseline.xml:MuseCommentListActivity stale baseline:857"
      ],
      "note": "실행 소스와 Manifest 등록은 없고 제거된 MuseCommentListActivity 이름만 정적분석 baseline에 남아 있다.",
-     "reach": "absent"
+     "reach": "absent",
+     "reach_note": "AOS는 이 기능이 전부 삭제됐습니다(과거 패키지 com.heyratel.cre8orclub.presentation.home.muse.* 전체, detekt-baseline.xml에 정리 안 된 스테일 억제 25건만 남음). 일반 댓글의 뮤즈 배지(isMuse)와는 다른 기능입니다."
     },
     "web": {
      "status": "absent",
@@ -2053,7 +2054,7 @@
       "MuseCommentListView.swift:26-28 initialSheet param; DeepLinkHandler.swift:252 muse-comment/create passes .create",
       "MuseCommentManageBottomSheetView.swift:95 .onUpdate → input sheet, but parent MuseCommentListView is deeplink-only"
      ],
-     "reach_note": "transitively deeplink-only via muse_comment_list"
+     "reach_note": "transitively deeplink-only via muse_comment_list 독립 진입이 없고 muse_comment_list 화면 안 모달로만 열리거나 같은 딥링크의 initialSheet=create로 옵니다. 목록과 같은 상태(딥링크 전용)입니다."
     },
     "aos": {
      "status": "no",
@@ -2062,7 +2063,8 @@
       "app/detekt-baseline.xml:MuseCommentEditBottomSheet stale baseline:856"
      ],
      "note": "실행 가능한 Fragment/route는 없고 제거된 심볼 흔적만 baseline에 남아 있다.",
-     "reach": "absent"
+     "reach": "absent",
+     "reach_note": "AOS는 이 기능이 전부 삭제됐습니다. muse_comment_list와 같습니다."
     },
     "web": {
      "status": "absent",
@@ -5438,7 +5440,7 @@
       "/casting/form (id absent or ?temporaryCastingId=:id)"
      ],
      "reach": "dead",
-     "reach_note": "Create and resumed-draft modes are the same project creation task; preview is an internal funnel step"
+     "reach_note": "이 라우트(/casting/form)는 캐스팅(구인 공고) 작성이며 네이티브 '프로젝트 카드 작성'과 다른 기능입니다. 네이티브 진입 경로가 없어 발송하지 않습니다(reach=dead 유지)."
     }
    },
    "origin": "v3",
@@ -5500,7 +5502,7 @@
       "/casting/form?id=:id"
      ],
      "reach": "dead",
-     "reach_note": "Query-dependent edit purpose is separated from create under M2; legacy route remains registered"
+     "reach_note": "이 라우트(/casting/form?id=)는 캐스팅(구인 공고) 수정이며 네이티브 '프로젝트 카드 수정'과 다른 기능입니다. 네이티브 진입 경로가 없어 발송하지 않습니다(reach=dead 유지)."
     }
    },
    "origin": "v3",
@@ -6295,8 +6297,8 @@
    "key": "contacts_my_club",
    "label": "인맥 · 마이클럽",
    "stage": "chat",
-   "kind": "예약",
-   "reserved": true,
+   "kind": "화면",
+   "reserved": false,
    "definition": "이름과 로그 값만 코드에 남아 있고 실제로는 열리지 않는 목록 탭. 인맥 관리 화면의 칩은 일촌·팔로워·팔로잉 셋뿐이라 여기로 가는 자리가 없다.",
    "rationale": "내 클럽 목록을 예약합니다. 도달 가능 표기와 입구가 없다는 원본 설명이 충돌하므로 확인 전 발송하지 않습니다.",
    "rules": [
@@ -6309,12 +6311,12 @@
      "rows": [
       137
      ],
-     "reach": "ui",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "ContactListType.swift:11 case myClub; ContactViewModel.swift:388 type == .myClub branch; chip in ContactView"
      ],
-     "reach_note": "chip switch inside contact list"
+     "reach_note": "ContactListType.myClub 케이스는 선언만 있고 어떤 탭·칩도 이 값을 대입하지 않아 실행될 수 없는 죽은 분기입니다(ContactView.swift TabView, ContactViewModel.swift:385-394)."
     },
     "aos": {
      "status": "no",
@@ -6324,7 +6326,8 @@
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/ContactViewModel.kt:tab mapping:777"
      ],
      "note": "현행 인맥 탭은 일촌·팔로워·팔로잉 세 개뿐이며 마이클럽 route/탭은 없다.",
-     "reach": "absent"
+     "reach": "dead",
+     "reach_note": "ContactPage enum(ContactTabRow가 읽는 실제 탭 목록)에 MY_CLUB 케이스 자체가 없습니다. 서버가 주는 myMuseClubMembers는 ContactSearchScreenModelMapper에서 UI 모델로 넘어가기 전에 버려집니다. AOS의 'MyClubChip'(프로필 카드의 뮤즈 클럽 배지)은 다른 기능이며 이 탭의 AOS 대응이 아닙니다."
     },
     "web": {
      "status": "absent",
@@ -6334,11 +6337,16 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "reserved",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
-    "aos": "absent",
+    "ios": "legacy",
+    "aos": "legacy",
     "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "채티"
   },
@@ -6580,8 +6588,8 @@
       "/casting/apply/email",
       "/casting/apply/phone"
      ],
-     "reach": "ui",
-     "reach_note": "Legacy casting application is the project application composition task"
+     "reach": "absent",
+     "reach_note": "/casting/apply* 4개 라우트 모두 캐스팅(구인) 전용이며 네이티브 어디에도 진입 경로가 없습니다. 이 화면(프로젝트 카드 지원 작성)의 실제 웹 대응은 없습니다."
     }
    },
    "origin": "v3",
@@ -6590,7 +6598,7 @@
    "os_state": {
     "ios": "needed",
     "aos": "needed",
-    "web": "needed"
+    "web": "absent"
    },
    "flow_group": "디스커버리(홈)"
   },
@@ -6643,7 +6651,7 @@
       "/message-box/casting-applications"
      ],
      "reach": "dead",
-     "reach_note": "Legacy casting applicant list has the same project-applicant-list purpose"
+     "reach_note": "이 라우트(/message-box/casting-applications)는 캐스팅 지원자 목록이며, 실제 이 화면이 쓰는 네이티브 지원자 목록(Chatty 프로젝트 섹션 ProjectApplicantListDestination)과는 다른 별개 구현입니다. 네이티브 진입 경로가 없어 발송하지 않습니다(reach=dead 유지)."
     }
    },
    "origin": "v3",
@@ -9337,28 +9345,38 @@
    "flow_group": "디스커버리(홈)"
   },
   {
-   "key": "signup_privileges",
-   "label": "가입 · 회원 혜택 안내(웹)",
-   "stage": "start",
+   "key": "member_privileges",
+   "label": "회원 혜택 안내(베타·Muse)",
+   "stage": "my",
    "kind": "웹",
    "rules": [
     "S1",
     "M1"
    ],
    "legacy_keys": [
+    "signup_privileges",
     "signup_general_privileges"
    ],
-   "definition": "가입 전후에 회원이 받는 혜택을 설명하는 안내 페이지입니다. 초대 코드가 있는 손님용과 회원용 두 URL이 같은 목적입니다.",
-   "rationale": "웹이 signup_general_privileges로 보내던 화면입니다. 손님·회원 두 경로를 같은 이름으로 합칩니다.",
-   "when": "혜택 안내 페이지가 표시될 때 한 번. 브라우저에서 직접 열렸으면 웹이, 앱 안이면 앱이 보냅니다.",
+   "definition": "베타 배지 또는 뮤즈 등급 등 회원 자격에 따라 받는 혜택을 설명하는 웹 페이지입니다. 가입 초대 코드로도 같은 페이지를 볼 수 있습니다.",
+   "rationale": "원래 가입·초대장 전용 페이지(signup_general_privileges)로만 알려졌으나, 2026-09-13 소스 확인으로 내 프로필·타인 프로필의 베타 배지 안내 시트(iOS ProfileDetailView.swift .betaBadgeInfo onConfirm, AOS MyPageContainer.kt onShowBetaBenefitBottomSheet / MemberProfileDetailModals.kt onOpenMemberBenefit)가 똑같이 \"${webViewBaseUrl}/member/privileges\"를 여는 것을 확인했습니다. 이름을 실제 쓰임에 맞춰 바꿉니다.",
+   "when": "베타 배지 정보 시트의 \"혜택 보기\"를 눌렀을 때, 또는 가입 초대장 링크로 열렸을 때 한 번 보냅니다.",
    "platforms": {
     "ios": {
-     "status": "unknown",
-     "reach": "absent"
+     "status": "absent",
+     "reach": "gated",
+     "reach_note": "베타 배지를 가진 계정에서만 노출되는 안내 시트의 버튼. ProfileDetailView.swift:688-697 onConfirm → router.presentSheet(.openWeb(\"${AppLink.frontDomain}/member/privileges\"))",
+     "reach_evidence": [
+      "ios/Projects/Features/My/Sources/CommonMy/ProfileDetailView.swift:688-697"
+     ]
     },
     "aos": {
-     "status": "unknown",
-     "reach": "absent"
+     "status": "absent",
+     "reach": "gated",
+     "reach_note": "베타 배지를 가진 계정에서만 노출. MyPageContainer.kt onShowBetaBenefitBottomSheet → launchWebSheetActivity(\"${WEBVIEW_URL}/member/privileges\")(내 프로필), MemberProfileDetailModals.kt onOpenMemberBenefit → MemberWebRequestFactory.createBenefit() 같은 URL(타인 프로필)",
+     "reach_evidence": [
+      "aos/app/.../presentation/main/MainActivity.kt:712-714",
+      "aos/app/.../presentation/member/MemberWebRequestFactory.kt:85-87"
+     ]
     },
     "web": {
      "status": "both",
@@ -9378,18 +9396,18 @@
    },
    "source": "B",
    "uncertainty": [
-    "운영에서 어느 진입면으로 열리는지 미확인"
+    "운영에서 어느 진입면(베타 배지/초대장)이 더 많이 쓰이는지 미확인"
    ],
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
    "status": "active",
    "os_state": {
-    "ios": "absent",
-    "aos": "absent",
+    "ios": "needed",
+    "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "회원가입"
+   "flow_group": "마이"
   },
   {
    "key": "settings_marketing_unsubscribe",
@@ -9438,7 +9456,7 @@
    "key": "my_project_list",
    "label": "프로젝트 · 내 캐스팅 목록(웹·예약)",
    "stage": "project",
-   "kind": "예약",
+   "kind": "화면",
    "rules": [
     "S1",
     "V1"
@@ -9462,20 +9480,26 @@
       "/casting/my-castings",
       "/message-box?lineTabId=CASTING"
      ],
-     "reach": "ui",
-     "reach_note": "Applied/posted are tabs of the same personal project list; current inbox_suggestion incorrectly labels this content as proposals"
+     "reach": "absent",
+     "reach_note": "/casting/my-castings·/message-box?lineTabId=CASTING 둘 다 캐스팅 전용이며 네이티브 진입 경로가 없습니다. 네이티브의 '내 프로젝트 카드'는 MY 프로필의 프로젝트 탭으로 이미 my_profile이 담당하므로 별도 화면이 아닙니다."
     }
    },
    "params": {},
    "source": "B",
-   "reserved": true,
+   "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "reserved",
+   "note": "어느 플랫폼 소스에서도 목적지를 찾지 못했습니다(v3 계약의 잔여 이름). 이름만 동결합니다.",
+   "status": "retired",
    "os_state": {
     "ios": "absent",
     "aos": "absent",
-    "web": "needed"
+    "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "마이"
   },
@@ -9483,7 +9507,7 @@
    "key": "project_draft_list",
    "label": "프로젝트 · 임시저장 목록(웹·예약)",
    "stage": "project",
-   "kind": "예약",
+   "kind": "화면",
    "rules": [
     "S1",
     "V1"
@@ -9512,14 +9536,19 @@
    },
    "params": {},
    "source": "B",
-   "reserved": true,
+   "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "reserved",
+   "status": "retired",
    "os_state": {
     "ios": "absent",
     "aos": "absent",
     "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "디스커버리(홈)"
   },
@@ -9527,7 +9556,7 @@
    "key": "project_applicant_detail",
    "label": "프로젝트 · 지원자 상세(웹·예약)",
    "stage": "project",
-   "kind": "예약",
+   "kind": "화면",
    "rules": [
     "S1",
     "M2",
@@ -9557,14 +9586,19 @@
    },
    "params": {},
    "source": "B",
-   "reserved": true,
+   "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "reserved",
+   "status": "retired",
    "os_state": {
     "ios": "absent",
     "aos": "absent",
     "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "디스커버리(홈)"
   },
@@ -9572,7 +9606,7 @@
    "key": "my_project_application_detail",
    "label": "프로젝트 · 내 지원 상세(웹·예약)",
    "stage": "project",
-   "kind": "예약",
+   "kind": "화면",
    "rules": [
     "S1",
     "M2",
@@ -9602,14 +9636,19 @@
    },
    "params": {},
    "source": "B",
-   "reserved": true,
+   "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "reserved",
+   "status": "retired",
    "os_state": {
     "ios": "absent",
     "aos": "absent",
     "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "마이"
   },
@@ -21176,26 +21215,26 @@
  "os_state_summary": {
   "ios": {
    "needed": 141,
-   "absent": 21,
-   "legacy": 2,
+   "absent": 20,
+   "legacy": 3,
    "unobserved": 3
   },
   "aos": {
-   "needed": 140,
-   "legacy": 12,
-   "absent": 14,
+   "needed": 141,
+   "legacy": 13,
+   "absent": 12,
    "unobserved": 1
   },
   "web": {
-   "absent": 135,
-   "needed": 23,
+   "absent": 137,
+   "needed": 21,
    "legacy": 9
   }
  },
  "status_summary": {
   "active": 151,
-  "retired": 7,
-  "reserved": 7,
+  "retired": 12,
+  "reserved": 2,
   "gated": 2
  }
 }

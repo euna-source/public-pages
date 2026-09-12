@@ -281,4 +281,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case settings_personal_info_consent = "settings_personal_info_consent"
     /// [설정] 설정 · 개인정보 이용 동의 철회
     case settings_personal_info_withdraw = "settings_personal_info_withdraw"
+    /// [마이] 회원 혜택 안내(베타·Muse)
+    case member_privileges = "member_privileges"
 }
