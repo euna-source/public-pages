@@ -27,36 +27,32 @@ public enum ScreenNameV4: String, CaseIterable {
     case signup_id = "signup_id"
     /// [회원가입] 가입 · 이름 입력(한글)
     case signup_name_ko = "signup_name_ko"
-    /// [회원가입] 첫 이용 · 접근 권한 안내
+    /// [회원가입] 가입 직후 · 접근 권한 안내
     case onboarding_permission = "onboarding_permission"
-    /// [회원가입] 첫 이용 · 튜토리얼
+    /// [회원가입] 가입 직후 · 튜토리얼
     case onboarding_tutorial = "onboarding_tutorial"
-    /// [회원가입] 첫 이용 · 환영 영상
+    /// [회원가입] 가입 직후 · 환영 영상
     case onboarding_welcome = "onboarding_welcome"
     /// [회원가입] 약관 · 개인정보 처리방침 재동의
     case agreement_reconsent = "agreement_reconsent"
     /// [회원가입] 약관 · 전문 보기(웹)
     case agreement_document = "agreement_document"
-    /// [회원가입] 프로필 커버 · 만들기
+    /// [마이] 프로필 커버 · 등록(한 줄 소개·직업·배경·프로필 사진)
     case profile_cover_create = "profile_cover_create"
     /// [마이] 프로필 커버 · 수정
     case profile_cover_edit = "profile_cover_edit"
-    /// [회원가입] 자기소개 · 만들기
+    /// [마이] 자기소개 · 만들기(커버 등록 뒤)
     case profile_intro_create = "profile_intro_create"
     /// [마이] 자기소개 · 수정
     case profile_intro_edit = "profile_intro_edit"
     /// [회원가입] MY · 프로필 커버 없음 상태
     case my_profile_intro = "my_profile_intro"
     /// [디스커버리] 디스커버리 · 피드
-    case home_feed = "home_feed"
+    case discovery_feed = "discovery_feed"
     /// [디스커버리] 디스커버리 · 추천 크리에이터 전체보기
-    case home_creator_list = "home_creator_list"
+    case discovery_creator_list = "discovery_creator_list"
     /// [디스커버리] 영감 · 목록(딥링크)
     case inspiration_list = "inspiration_list"
-    /// [디스커버리] Muse 한 마디 · 목록(딥링크)
-    case muse_comment_list = "muse_comment_list"
-    /// [디스커버리] Muse 한 마디 · 작성·수정
-    case muse_comment_input = "muse_comment_input"
     /// [디스커버리] 포트폴리오 · 상세
     case portfolio_detail = "portfolio_detail"
     /// [디스커버리] 영감 · 상세
@@ -83,12 +79,12 @@ public enum ScreenNameV4: String, CaseIterable {
     case finder_result_project = "finder_result_project"
     /// [파인더] 파인더 · 필터 지역 검색
     case finder_filter = "finder_filter"
-    /// [파인더] 파인더 · Shuffle! 키워드 추천(웹)
-    case finder_keyword_recommend = "finder_keyword_recommend"
-    /// [파인더] 파인더 · 키워드 묶음 결과
-    case finder_keyword_bundle = "finder_keyword_bundle"
-    /// [파인더] 채티 · 인맥 둘러보기(웹)
-    case network_browse = "network_browse"
+    /// [파인더] 파인더 · Shuffle 메인(웹)
+    case finder_shuffle_home = "finder_shuffle_home"
+    /// [파인더] 파인더 · Shuffle 키워드 상세
+    case finder_shuffle_keyword = "finder_shuffle_keyword"
+    /// [채티] 채티 · 다이얼 홈(팔로잉 크리에이터 판)
+    case dial_home = "dial_home"
     /// [디스커버리] 크리에이터 · 프로필
     case profile_detail = "profile_detail"
     /// [디스커버리] 크리에이터 · 관계 목록(일촌·팔로워·팔로잉)
@@ -191,7 +187,7 @@ public enum ScreenNameV4: String, CaseIterable {
     case contacts_search_results = "contacts_search_results"
     /// [디스커버리] 프로젝트 · 상세
     case project_detail = "project_detail"
-    /// [디스커버리] 프로젝트 · 목록(딥링크)
+    /// [디스커버리] 프로젝트 카드 · ID 목록(딥링크)
     case project_list = "project_list"
     /// [디스커버리] 프로젝트 · 지원 작성
     case project_application_compose = "project_application_compose"
@@ -255,10 +251,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case bookmark_creator = "bookmark_creator"
     /// [설정] 북마크 · 포트폴리오
     case bookmark_portfolio = "bookmark_portfolio"
-    /// [디스커버리] 클럽 · 대기 랜딩(웹)
-    case club_waiting = "club_waiting"
-    /// [디스커버리] 클럽 · 입장 랜딩(웹)
-    case club_entry = "club_entry"
     /// [디스커버리] 아케이드 · 카드 보스전
     case arcade_card_boss = "arcade_card_boss"
     /// [디스커버리] 아케이드 · 블록깨기
@@ -281,8 +273,14 @@ public enum ScreenNameV4: String, CaseIterable {
     case settings_personal_info_consent = "settings_personal_info_consent"
     /// [설정] 설정 · 개인정보 이용 동의 철회(딥링크)
     case settings_personal_info_withdraw = "settings_personal_info_withdraw"
-    /// [디스커버리] 갤러리 · 작품 전시(웹)
-    case home_gallery = "home_gallery"
+    /// [디스커버리] 디스커버리 · 갤러리(웹·미출시)
+    case discovery_gallery = "discovery_gallery"
     /// [마이] 회원 자격 · 베타 혜택 안내(웹)
     case member_privileges = "member_privileges"
+    /// [채티] 채티 · 다이얼 안내(팔로잉 8명 미만)
+    case dial_guide = "dial_guide"
+    /// [채티] 채티 · 다이얼 파도타기(크리에이터 판)
+    case dial_creator = "dial_creator"
+    /// [마이] 프로필 커버 · 디자인 선택(웹)
+    case profile_cover_design = "profile_cover_design"
 }

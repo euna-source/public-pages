@@ -31,30 +31,30 @@ object ScreenNameV4 {
     const val SIGNUP_ID = "signup_id"
     /** [회원가입] 가입 · 이름 입력(한글) */
     const val SIGNUP_NAME_KO = "signup_name_ko"
-    /** [회원가입] 첫 이용 · 접근 권한 안내 */
+    /** [회원가입] 가입 직후 · 접근 권한 안내 */
     const val ONBOARDING_PERMISSION = "onboarding_permission"
-    /** [회원가입] 첫 이용 · 튜토리얼 */
+    /** [회원가입] 가입 직후 · 튜토리얼 */
     const val ONBOARDING_TUTORIAL = "onboarding_tutorial"
-    /** [회원가입] 첫 이용 · 환영 영상 */
+    /** [회원가입] 가입 직후 · 환영 영상 */
     const val ONBOARDING_WELCOME = "onboarding_welcome"
     /** [회원가입] 약관 · 개인정보 처리방침 재동의 */
     const val AGREEMENT_RECONSENT = "agreement_reconsent"
     /** [회원가입] 약관 · 전문 보기(웹) */
     const val AGREEMENT_DOCUMENT = "agreement_document"
-    /** [회원가입] 프로필 커버 · 만들기 */
+    /** [마이] 프로필 커버 · 등록(한 줄 소개·직업·배경·프로필 사진) */
     const val PROFILE_COVER_CREATE = "profile_cover_create"
     /** [마이] 프로필 커버 · 수정 */
     const val PROFILE_COVER_EDIT = "profile_cover_edit"
-    /** [회원가입] 자기소개 · 만들기 */
+    /** [마이] 자기소개 · 만들기(커버 등록 뒤) */
     const val PROFILE_INTRO_CREATE = "profile_intro_create"
     /** [마이] 자기소개 · 수정 */
     const val PROFILE_INTRO_EDIT = "profile_intro_edit"
     /** [회원가입] MY · 프로필 커버 없음 상태 */
     const val MY_PROFILE_INTRO = "my_profile_intro"
     /** [디스커버리] 디스커버리 · 피드 */
-    const val HOME_FEED = "home_feed"
+    const val DISCOVERY_FEED = "discovery_feed"
     /** [디스커버리] 디스커버리 · 추천 크리에이터 전체보기 */
-    const val HOME_CREATOR_LIST = "home_creator_list"
+    const val DISCOVERY_CREATOR_LIST = "discovery_creator_list"
     /** [디스커버리] 포트폴리오 · 상세 */
     const val PORTFOLIO_DETAIL = "portfolio_detail"
     /** [디스커버리] 영감 · 상세 */
@@ -81,12 +81,12 @@ object ScreenNameV4 {
     const val FINDER_RESULT_PROJECT = "finder_result_project"
     /** [파인더] 파인더 · 필터 지역 검색 */
     const val FINDER_FILTER = "finder_filter"
-    /** [파인더] 파인더 · Shuffle! 키워드 추천(웹) */
-    const val FINDER_KEYWORD_RECOMMEND = "finder_keyword_recommend"
-    /** [파인더] 파인더 · 키워드 묶음 결과 */
-    const val FINDER_KEYWORD_BUNDLE = "finder_keyword_bundle"
-    /** [파인더] 채티 · 인맥 둘러보기(웹) */
-    const val NETWORK_BROWSE = "network_browse"
+    /** [파인더] 파인더 · Shuffle 메인(웹) */
+    const val FINDER_SHUFFLE_HOME = "finder_shuffle_home"
+    /** [파인더] 파인더 · Shuffle 키워드 상세 */
+    const val FINDER_SHUFFLE_KEYWORD = "finder_shuffle_keyword"
+    /** [채티] 채티 · 다이얼 홈(팔로잉 크리에이터 판) */
+    const val DIAL_HOME = "dial_home"
     /** [디스커버리] 크리에이터 · 프로필 */
     const val PROFILE_DETAIL = "profile_detail"
     /** [디스커버리] 크리에이터 · 관계 목록(일촌·팔로워·팔로잉) */
@@ -245,10 +245,6 @@ object ScreenNameV4 {
     const val BOOKMARK_CREATOR = "bookmark_creator"
     /** [설정] 북마크 · 포트폴리오 */
     const val BOOKMARK_PORTFOLIO = "bookmark_portfolio"
-    /** [디스커버리] 클럽 · 대기 랜딩(웹) */
-    const val CLUB_WAITING = "club_waiting"
-    /** [디스커버리] 클럽 · 입장 랜딩(웹) */
-    const val CLUB_ENTRY = "club_entry"
     /** [디스커버리] 아케이드 · 카드 보스전 */
     const val ARCADE_CARD_BOSS = "arcade_card_boss"
     /** [디스커버리] 아케이드 · 블록깨기 */
@@ -267,8 +263,8 @@ object ScreenNameV4 {
     const val ACCOUNT_DELETE_REASON_INPUT = "account_delete_reason_input"
     /** [채티] 협업 제안 · 제안함 목록(웹) */
     const val PROPOSAL_LIST = "proposal_list"
-    /** [디스커버리] 갤러리 · 작품 전시(웹) */
-    const val HOME_GALLERY = "home_gallery"
+    /** [디스커버리] 디스커버리 · 갤러리(웹·미출시) */
+    const val DISCOVERY_GALLERY = "discovery_gallery"
     /** [마이] 회원 자격 · 베타 혜택 안내(웹) */
     const val MEMBER_PRIVILEGES = "member_privileges"
     /** [마이] 커리어 · 스킬 입력 */
@@ -283,4 +279,10 @@ object ScreenNameV4 {
     const val ARCADE_PUZZLE = "arcade_puzzle"
     /** [디스커버리] 아케이드 · 플래피 */
     const val ARCADE_FLAPPY = "arcade_flappy"
+    /** [채티] 채티 · 다이얼 안내(팔로잉 8명 미만) */
+    const val DIAL_GUIDE = "dial_guide"
+    /** [채티] 채티 · 다이얼 파도타기(크리에이터 판) */
+    const val DIAL_CREATOR = "dial_creator"
+    /** [마이] 프로필 커버 · 디자인 선택(웹) */
+    const val PROFILE_COVER_DESIGN = "profile_cover_design"
 }

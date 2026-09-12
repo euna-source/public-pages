@@ -1184,7 +1184,7 @@
   },
   {
    "key": "onboarding_permission",
-   "label": "첫 이용 · 접근 권한 안내",
+   "label": "가입 직후 · 접근 권한 안내",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
@@ -1233,6 +1233,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "첫 이용 · 접근 권한 안내",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1243,7 +1244,7 @@
   },
   {
    "key": "onboarding_tutorial",
-   "label": "첫 이용 · 튜토리얼",
+   "label": "가입 직후 · 튜토리얼",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
@@ -1292,6 +1293,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "첫 이용 · 튜토리얼",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1302,7 +1304,7 @@
   },
   {
    "key": "onboarding_welcome",
-   "label": "첫 이용 · 환영 영상",
+   "label": "가입 직후 · 환영 영상",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
@@ -1494,11 +1496,11 @@
   },
   {
    "key": "profile_cover_create",
-   "label": "프로필 커버 · 만들기",
+   "label": "프로필 커버 · 등록(한 줄 소개·직업·배경·프로필 사진)",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
-   "definition": "프로필 커버를 처음 만드는 화면으로, 직업(최대 5개)·커버에 들어갈 한 줄 소개·표지 이미지나 영상·프로필 사진을 순서대로 하나씩 채운다. 「등록하기」로 마치면 「프로필 만들기를 완료했어요.」 토스트와 함께 프로필 탭으로 옮겨 간다.",
+   "definition": "네이티브 풀스크린 커버 정보 입력 폼입니다. 온보딩(first_onboarding) 모드는 직업 → 한 줄 소개 → 커버 배경(이미지/영상) → 프로필 사진 순으로 한 화면 안에서 블록이 펼쳐지는 단계형이며, 마지막 블록에서 '등록하기'로 제출합니다. 수정(edit_profile) 모드는 같은 화면이 개요(ID·이름·직업·한 줄 소개·표지 이미지/영상·프로필 사진 + 커버 종류 피커) 또는 단일 블록으로 열립니다.",
    "rationale": "새 커버 한 개를 완성하는 과업입니다. AOS 여섯 단계와 iOS 네 단계 차이는 단계 이벤트로 남기고 커버 작성 방문은 한 번 보냅니다.",
    "rules": [
     "S2",
@@ -1506,14 +1508,10 @@
     "M3"
    ],
    "params": {
-    "step": [
-     "profession",
-     "nickname",
-     "name_ko",
-     "tagline",
-     "media",
-     "profile_image"
-    ]
+    "mode": "first_onboarding|edit_profile",
+    "source": "web_onboarding|my_profile|deeplink",
+    "step": "profession|nickname|ko_name|tagline|media|profile_image (intro는 profession으로 정규화)",
+    "coverTemplateId": "선택한 템플릿 id"
    },
    "platforms": {
     "ios": {
@@ -1553,23 +1551,23 @@
      "reach_note": "하단 + 진입의 커버 자격 판정과 확인 팝업 뒤 신규·수정 모드로 열린다."
     },
     "web": {
-     "status": "webview",
-     "routes": [
-      "/onboarding/intro (mode absent or mode=create)"
-     ],
-     "reach": "ui",
-     "reach_note": "Cover-template selection is the first step of profile-cover creation"
+     "status": "absent",
+     "routes": [],
+     "reach": "absent",
+     "reach_note": "웹에는 커버 등록 폼 페이지가 없습니다. /onboarding/intro는 디자인 선택(profile_cover_design)이고 폼은 openCoverForm 브리지로 네이티브가 엽니다."
     }
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "프로필 커버 · 만들기",
+   "when": "디자인 선택 페이지의 '이 스타일로 시작하기'(openCoverForm, mode=create) → 네이티브가 템플릿 확정/등록 분기 뒤 엽니다. 커버 편집 버튼(openCoverForm mode=edit), 업로드 진입 게이트의 커버 등록 유도 팝업, 딥링크 onboarding/cover-intro·profile/cover/update로도 열립니다. 완료 시 MY 탭으로 이동하고 '프로필 만들기를 완료했어요' 토스트가 뜹니다.",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
-    "web": "needed"
+    "web": "absent"
    },
-   "flow_group": "회원가입"
+   "flow_group": "마이"
   },
   {
    "key": "profile_cover_edit",
@@ -1616,12 +1614,10 @@
      "reach_note": "하단 + 진입의 커버 자격 판정과 확인 팝업 뒤 신규·수정 모드로 열린다."
     },
     "web": {
-     "status": "webview",
-     "routes": [
-      "/onboarding/intro?mode=edit"
-     ],
-     "reach": "ui",
-     "reach_note": "The query changes the result from first creation to editing, while template choice remains an internal form step"
+     "status": "absent",
+     "routes": [],
+     "reach": "absent",
+     "reach_note": "같은 이유. /onboarding/intro?mode=edit는 디자인 선택 페이지의 수정 모드입니다."
     }
    },
    "origin": "v3",
@@ -1630,22 +1626,25 @@
    "os_state": {
     "ios": "needed",
     "aos": "needed",
-    "web": "needed"
+    "web": "absent"
    },
    "flow_group": "마이"
   },
   {
    "key": "profile_intro_create",
-   "label": "자기소개 · 만들기",
+   "label": "자기소개 · 만들기(커버 등록 뒤)",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
-   "definition": "프로필의 자기소개를 처음 채우는 온보딩으로, 나를 나타내는 키워드(스타일·작업 방식·일하는 이유)를 고른 뒤 자기소개 이미지를 1장 이상 올리고 소개 글을 적는다. 한 화면을 스크롤하며 단계가 하나씩 열리고 마지막에 「등록하기」로 저장한다.",
+   "definition": "네이티브 풀스크린 자기소개(프로필 표현) 폼입니다. 스타일·작업 방식·일하는 이유 키워드 3단계 → 소개 이미지 → 소개 글 순으로 진행합니다. 커버 등록 플로우와는 별도 목적지이며, 커버 완료 후 자동으로 이어지지 않습니다.",
    "rationale": "키워드·이미지·소개글을 처음 등록하는 자기소개 과업입니다. 스크롤하며 열리는 각 항목은 내부 단계로 기록해 하나의 등록 방문으로 묶습니다.",
    "rules": [
     "S1"
    ],
-   "params": {},
+   "params": {
+    "mode": "create(first_onboarding)|edit",
+    "initialStep": "keyword|body_images|body_description"
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -1685,13 +1684,14 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "자기소개 · 만들기(첫 온보딩)",
+   "when": "MY 프로필 웹(스킨별 SelfIntro 섹션)의 '자기소개 만들기'/편집 버튼이 openSelfIntroForm(mode create|edit) 브릿지를 보낼 때, 웹 소개 관리(introductionManagement) 오버레이 요청, 딥링크 profile/self-description/update(iOS)·cover/profile-expression(AOS)로 열립니다. 커버 등록 완료 뒤에는 MY 탭으로 돌아갈 뿐 이 화면으로 연결되지 않습니다.",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "회원가입"
+   "flow_group": "마이"
   },
   {
    "key": "profile_intro_edit",
@@ -1813,7 +1813,7 @@
    "flow_group": "회원가입"
   },
   {
-   "key": "home_feed",
+   "key": "discovery_feed",
    "label": "디스커버리 · 피드",
    "stage": "home",
    "kind": "탭",
@@ -1862,6 +1862,9 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "home_feed"
+   ],
    "label_before": "홈 · 디스커버리 피드",
    "status": "active",
    "os_state": {
@@ -1872,7 +1875,7 @@
    "flow_group": "디스커버리"
   },
   {
-   "key": "home_creator_list",
+   "key": "discovery_creator_list",
    "label": "디스커버리 · 추천 크리에이터 전체보기",
    "stage": "home",
    "kind": "화면",
@@ -1925,6 +1928,9 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "home_creator_list"
+   ],
    "label_before": "홈 · 크리에이터 모듈 전체보기",
    "status": "active",
    "os_state": {
@@ -2015,12 +2021,12 @@
      "rows": [
       31
      ],
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "DeepLinkHandler.swift:247/252/254 only pushes of .home(.museCommentList) (rg whole repo)"
      ],
-     "reach_note": "앱 안 어디에도 이 화면으로 가는 버튼·메뉴가 없습니다. DeepLinkHandler의 muse-comments 케이스가 유일한 진입이며 딥링크·푸시로만 옵니다. 그런 푸시가 지금도 발송되는지는 미확인입니다."
+     "reach_note": "사용자 확인(2026-09-13): 3.x에 없는 2.0 Muse 한마디 잔재. 딥링크 케이스만 코드에 남음."
     },
     "aos": {
      "status": "no",
@@ -2046,11 +2052,17 @@
     "category": "legacy_removed_on_other_platform"
    },
    "label_before": "Muse 한 마디 · 목록",
-   "status": "active",
+   "legacy_family": "muse",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
+    "ios": "legacy",
     "aos": "absent",
     "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "디스커버리"
   },
@@ -2077,13 +2089,13 @@
      "rows": [
       38
      ],
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "MuseCommentListView.swift:26-28 initialSheet param; DeepLinkHandler.swift:252 muse-comment/create passes .create",
       "MuseCommentManageBottomSheetView.swift:95 .onUpdate → input sheet, but parent MuseCommentListView is deeplink-only"
      ],
-     "reach_note": "transitively deeplink-only via muse_comment_list 독립 진입이 없고 muse_comment_list 화면 안 모달로만 열리거나 같은 딥링크의 initialSheet=create로 옵니다. 목록과 같은 상태(딥링크 전용)입니다."
+     "reach_note": "사용자 확인(2026-09-13): 3.x에 없는 2.0 Muse 한마디 잔재. 딥링크 케이스만 코드에 남음."
     },
     "aos": {
      "status": "no",
@@ -2108,11 +2120,17 @@
     "reason": "목록과 같은 이유입니다. AOS는 Muse 한 마디 작성·수정 시트의 소스가 삭제되었고, iOS는 목록 화면을 거쳐서만 시트가 열립니다.",
     "category": "legacy_removed_on_other_platform"
    },
-   "status": "active",
+   "legacy_family": "muse",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
+    "ios": "legacy",
     "aos": "absent",
     "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "디스커버리"
   },
@@ -2938,12 +2956,12 @@
    "flow_group": "파인더"
   },
   {
-   "key": "finder_keyword_recommend",
-   "label": "파인더 · Shuffle! 키워드 추천(웹)",
+   "key": "finder_shuffle_home",
+   "label": "파인더 · Shuffle 메인(웹)",
    "stage": "finder",
    "kind": "웹",
    "reserved": false,
-   "definition": "여러 키워드 카드를 보여 주고 다시 섞어 가며 볼거리를 추천하는 화면으로, 키워드를 고르면 그 키워드로 묶인 목록이 열린다. 제목과 뒤로가기만 앱이 그리고 본문은 웹이며, 파인더 홈 위쪽의 키워드 추천 아이콘으로만 들어간다(검색 결과를 보는 중에는 그 아이콘이 사라진다).",
+   "definition": "키워드 카드·Shuffle 버튼을 웹(/discovery/keywords)이 그리고 네이티브가 헤더/호스트만 담당하는 셔플 메인 화면입니다. 칩을 누르면 서버가 내려준 deepLink(cre8orclub://shuffle-keyword?id=&contentType=)를 그대로 호출해 키워드 묶음 화면으로 넘어갑니다.",
    "rationale": "키워드 카드를 섞어 볼거리를 고르는 추천 목적지입니다. 웹이어도 기능이 식별되므로 공용 웹뷰 이름 대신 이 이름을 보냅니다.",
    "rules": [
     "S1"
@@ -2989,6 +3007,10 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "finder_keyword_recommend"
+   ],
+   "when": "Finder(검색) 홈 헤더의 키워드 추천(스파클) 아이콘을 누를 때, 딥링크 shuffle-keyword-list로 열릴 때 표시됩니다.",
    "label_before": "추천 · Shuffle! 키워드 추천(웹)",
    "status": "active",
    "os_state": {
@@ -2999,17 +3021,20 @@
    "flow_group": "파인더"
   },
   {
-   "key": "finder_keyword_bundle",
-   "label": "파인더 · 키워드 묶음 결과",
+   "key": "finder_shuffle_keyword",
+   "label": "파인더 · Shuffle 키워드 상세",
    "stage": "finder",
    "kind": "화면",
    "reserved": false,
-   "definition": "하나의 키워드로 묶인 크리에이터·작업물·프로젝트·영감 중 한 종류를 2열 격자로 모아 보는 목록으로, 화면 제목은 그 키워드 이름이다. Shuffle! 화면에서 키워드를 누르면 들어오고, 그 링크 말고 앱 안에서 이 화면으로 가는 버튼은 없다.",
+   "definition": "셔플 키워드 하나에 묶인 콘텐츠(크리에이터·포트폴리오·프로젝트·인스피레이션 중 한 유형) 목록을 키워드 라벨을 제목으로 보여주는 네이티브 화면입니다. 없는 키워드나 항목 부족은 첫 페이지 응답 뒤 모달/오류 상태로 알립니다.",
    "rationale": "고른 키워드의 콘텐츠 목록입니다. 가변 키워드 문자열은 이름에서 빼고 키워드를 고르는 추천 화면과 나눕니다.",
    "rules": [
     "S1"
    ],
-   "params": {},
+   "params": {
+    "id": "키워드 id",
+    "contentType": "creator|portfolio|project|inspiration"
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -3048,6 +3073,10 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "finder_keyword_bundle"
+   ],
+   "when": "Shuffle 메인의 키워드 칩을 눌러 웹이 cre8orclub://shuffle-keyword?id=&contentType= 딥링크를 호출할 때만 열립니다. 네이티브 탭 경로에서 직접 도달하는 진입은 없습니다.",
    "label_before": "추천 · 키워드 묶음 결과",
    "status": "active",
    "os_state": {
@@ -3058,12 +3087,12 @@
    "flow_group": "파인더"
   },
   {
-   "key": "network_browse",
-   "label": "채티 · 인맥 둘러보기(웹)",
+   "key": "dial_home",
+   "label": "채티 · 다이얼 홈(팔로잉 크리에이터 판)",
    "stage": "finder",
    "kind": "웹",
    "reserved": false,
-   "definition": "크리에이터들을 원형 다이얼 위에 펼쳐 놓고 훑다가 눌러 상대를 확인하는 화면으로, 채티 헤더 첫 아이콘이나 일촌이 하나도 없을 때 뜨는 「인맥 둘러보기」 버튼, 딥링크로 들어온다. 본문이 웹이라 다이얼과 상대 상세가 한 화면 안에서 오가고, 사람을 길게 누르면 프로필 미리보기 메뉴가 선다.",
+   "definition": "팔로잉 8명 이상인 회원의 다이얼 첫 판입니다. 가운데에 내 얼굴(memberQueries.me), 둘레에 내가 팔로우한 크리에이터 12명이 좌석으로 돌고, 12명을 넘는 팔로잉은 판이 도는 동안 뒤에서 한 자리씩 갈립니다(useDialSeatSupply). 손짓은 판 돌리기·좌석 누르기·뒤로가기 스와이프 세 가지이고, 좌석을 누르면 그 사람의 판으로 파고듭니다(dial_creator). 네이티브 헤더 제목은 «다이얼» 로 고정됩니다.",
    "rationale": "인맥 다이얼에서 크리에이터를 둘러봅니다. 웹 안의 다이얼·미리보기는 같은 탐색으로 묶고 실제 앱 프로필로 이동하면 profile_detail을 보냅니다.",
    "rules": [
     "S1"
@@ -3111,6 +3140,10 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "network_browse"
+   ],
+   "when": "웹이 팔로잉 수 ≥ 8 을 확인하고 NetworkDialRoute → DiscoveryNetworkPage 를 uid 없이(URL 에 본인 uid 를 얹지 않음) 그린 순간입니다. 파고든 뒤 «처음으로» 버튼이나 뒤로가기로 본인 판에 되돌아온 순간도 다시 이 화면입니다. 이 화면에서 뒤로가기는 웹뷰를 닫습니다.",
    "label_before": "추천 · 인맥 둘러보기(웹)",
    "status": "active",
    "os_state": {
@@ -3118,7 +3151,7 @@
     "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "파인더"
+   "flow_group": "채티"
   },
   {
    "key": "profile_detail",
@@ -6558,16 +6591,19 @@
   },
   {
    "key": "project_list",
-   "label": "프로젝트 · 목록(딥링크)",
+   "label": "프로젝트 카드 · ID 목록(딥링크)",
    "stage": "project",
    "kind": "화면",
    "reserved": false,
-   "definition": "프로젝트 카드 여러 건을 2열 그리드로 훑어보고, 카드를 누르면 상세로 들어가며 오른쪽 아래 동그란 버튼으로 새 프로젝트를 올린다. 앱 화면에는 이 목록으로 가는 버튼이 없고 딥링크로만 열린다.",
+   "definition": "딥링크 `project-list?ids=1,2,3`으로만 열리는 화면입니다. iOS는 전달받은 ids로 `POST /v1/api/projects/list`를 호출해 프로젝트 카드 2열 그리드(헤더 \"프로젝트 카드\")를 그리고 카드 탭 시 프로젝트 카드 상세로 이동합니다. 캐스팅(2.0) 기능이 아니라 현행 프로젝트 카드 기능입니다.",
    "rationale": "프로젝트 여러 건을 훑고 상세로 이동합니다. 앱 버튼이 없어도 딥링크로 실제 열리는 목록을 채택하며 개별 카드 조회와 나눕니다.",
    "rules": [
     "S1"
    ],
-   "params": {},
+   "params": {
+    "ids": "쉼표 구분 프로젝트 카드 ID 목록. iOS만 해석함(DeepLinkHandler.swift:268-269). AOS는 무시함.",
+    "uid": "AOS만 해석함(MainActivity.kt:1404). iOS는 무시함. 두 앱의 쿼리 계약이 서로 다름."
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -6612,6 +6648,8 @@
     "reason": "AOS의 ProjectListActivity는 매니페스트 등록만 남고 호출부가 없으며, project-list 딥링크도 프로필의 프로젝트 탭으로 돌려보냅니다. 웹의 /casting 경로도 현행 여정에서 끊긴 레거시입니다. iOS만 딥링크로 이 화면을 엽니다.",
     "category": "legacy_removed_on_other_platform"
    },
+   "label_before": "프로젝트 · 목록(딥링크)",
+   "when": "클라이언트 세 곳(iOS·AOS·웹) 어디에도 `project-list?ids=` 링크를 만들어 내는 코드가 없습니다. 열리는 경로는 서버·마케팅이 내려주는 완성형 딥링크(FCM `deepLink` 데이터, AppsFlyer `deep_link_value`, 디스커버리 배너·알림 DTO의 `deepLink` 문자열)를 통해서거나, 사람이 직접 주소를 입력하는 경우뿐입니다. 클라이언트 코드만 보면 사실상 손으로 입력해야 도달하는 화면입니다.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8527,7 +8565,7 @@
   },
   {
    "key": "club_waiting",
-   "label": "클럽 · 대기 랜딩(웹)",
+   "label": "클럽 · 대기 랜딩(웹·2.0)",
    "stage": "misc",
    "kind": "웹",
    "reserved": false,
@@ -8543,13 +8581,13 @@
      "rows": [
       197
      ],
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "ShortUniversalLinkHandler.swift:86 case \"club\", \"club_waiting\" → openWeb lineup/{member|guest}/club/<des>",
       "no in-app caller; universal/campaign link only"
      ],
-     "reach_note": "universal link only"
+     "reach_note": "사용자 확인(2026-09-13): 2.0 클럽 잔재. 유니버설 링크 케이스만 코드에 남음."
     },
     "aos": {
      "status": "yes",
@@ -8559,14 +8597,14 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/member/MemberClubWebRouteFactory.kt:waiting route:21"
      ],
      "note": "회원/게스트별 클럽 대기 웹 목적지 분기가 있다.",
-     "reach": "ui_via_web",
+     "reach": "dead",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:club deep-link branch",
       "app/src/main/java/com/heyratel/cre8orclub/presentation/member/MemberClubWebRouteFactory.kt:waiting / entry route",
       "feature/webview/api/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/api/WebCapabilityProfile.kt:legacyNativeBridgeEnabled"
      ],
-     "reach_note": "클럽 딥링크는 있으나 legacyNativeBridgeEnabled 웹 요청으로만 이어져 dead다."
+     "reach_note": "사용자 확인(2026-09-13): 2.0 클럽 잔재."
     },
     "web": {
      "status": "absent",
@@ -8576,17 +8614,24 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "label_before": "클럽 · 대기 랜딩(웹)",
+   "legacy_family": "club",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "legacy",
+    "aos": "legacy",
     "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "디스커버리"
   },
   {
    "key": "club_entry",
-   "label": "클럽 · 입장 랜딩(웹)",
+   "label": "클럽 · 입장 랜딩(웹·2.0)",
    "stage": "misc",
    "kind": "웹",
    "reserved": false,
@@ -8602,12 +8647,12 @@
      "rows": [
       198
      ],
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "ShortUniversalLinkHandler.swift:77-79 case \"club_entry\" → openWeb lineup/{member|guest}/club-entry"
      ],
-     "reach_note": "universal link only"
+     "reach_note": "사용자 확인(2026-09-13): 2.0 클럽 잔재. 유니버설 링크 케이스만 코드에 남음."
     },
     "aos": {
      "status": "yes",
@@ -8616,14 +8661,14 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:club entry destination:1038"
      ],
      "note": "클럽 입장 링크를 인앱 웹 목적지로 여는 분기가 있다.",
-     "reach": "ui_via_web",
+     "reach": "dead",
      "legacy_marker": true,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:club deep-link branch",
       "app/src/main/java/com/heyratel/cre8orclub/presentation/member/MemberClubWebRouteFactory.kt:waiting / entry route",
       "feature/webview/api/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/api/WebCapabilityProfile.kt:legacyNativeBridgeEnabled"
      ],
-     "reach_note": "클럽 딥링크는 있으나 legacyNativeBridgeEnabled 웹 요청으로만 이어져 dead다."
+     "reach_note": "사용자 확인(2026-09-13): 2.0 클럽 잔재."
     },
     "web": {
      "status": "absent",
@@ -8633,11 +8678,18 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "label_before": "클럽 · 입장 랜딩(웹)",
+   "legacy_family": "club",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "legacy",
+    "aos": "legacy",
     "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "디스커버리"
   },
@@ -9410,14 +9462,16 @@
    "flow_group": "채티"
   },
   {
-   "key": "home_gallery",
-   "label": "갤러리 · 작품 전시(웹)",
+   "key": "discovery_gallery",
+   "label": "디스커버리 · 갤러리(웹·미출시)",
    "stage": "home",
    "kind": "웹",
    "rules": [
     "S1"
    ],
-   "legacy_keys": [],
+   "legacy_keys": [
+    "home_gallery"
+   ],
    "definition": "작품을 전시 형식으로 넘겨 보는 갤러리 페이지입니다. 인트로·작품 설명·아웃트로는 이 화면의 상태입니다.",
    "rationale": "9/9 여정 정의에는 있었는데 3.0 계약에서 빠졌습니다. 웹 라우트가 살아 있어 되살립니다. AOS 홈 영역에도 같은 갤러리 목적지가 있습니다.",
    "when": "갤러리가 전면에 표시될 때 앱이 한 번 보냅니다. 인트로·아웃트로 전환에는 보내지 않습니다.",
@@ -9464,6 +9518,7 @@
     "reason": "갤러리는 웹 페이지(/gallery)이지만 AOS는 파인더 탭 자리에서 네이티브 호스트(GalleryNavGraph)로 이 웹을 띄우는 진입이 살아 있고, iOS에는 갤러리를 여는 코드가 전혀 없습니다. 게다가 계약 파일에는 iOS가 '필요'로, 이번 정의 목록에는 '미관측'으로 서로 다르게 적혀 있어 어느 쪽이 맞는지 담당자가 정해야 합니다.",
     "category": "real_gap_needs_product_decision"
    },
+   "label_before": "갤러리 · 작품 전시(웹)",
    "status": "gated",
    "os_state": {
     "ios": "needed",
@@ -9618,6 +9673,7 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "legacy_family": "casting",
    "note": "어느 플랫폼 소스에서도 목적지를 찾지 못했습니다(v3 계약의 잔여 이름). 이름만 동결합니다.",
    "status": "retired",
    "os_state": {
@@ -9668,6 +9724,7 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "legacy_family": "casting",
    "status": "retired",
    "os_state": {
     "ios": "absent",
@@ -9718,6 +9775,7 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "legacy_family": "casting",
    "status": "retired",
    "os_state": {
     "ios": "absent",
@@ -9768,6 +9826,7 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "legacy_family": "casting",
    "status": "retired",
    "os_state": {
     "ios": "absent",
@@ -10191,6 +10250,150 @@
     "web": "absent"
    },
    "flow_group": "디스커버리"
+  },
+  {
+   "key": "dial_guide",
+   "label": "채티 · 다이얼 안내(팔로잉 8명 미만)",
+   "stage": "chat",
+   "kind": "웹",
+   "rules": [
+    "S3",
+    "M2"
+   ],
+   "legacy_keys": [],
+   "definition": "팔로잉이 8명 미만인 회원이 /discovery/network 에 들어왔을 때 실제 다이얼 대신 서는 권유 화면입니다. 목(mock) 좌석 12장으로 채운 다이얼이 스스로 돌며 «다이얼을 돌리면서 팔로잉을 만나보세요 → 8명의 팔로잉을 만들면 시작돼요 → 8명을 팔로우해 다이얼을 돌려봐요» 세 단계 문구를 얹고, 마지막 단계에만 「첫 팔로우 시작」(팔로잉 0명) 또는 「N명 더 팔로우 하기」 버튼이 서서 네이티브 파인더 탭(tab/finder)으로 보냅니다. 영상은 없습니다 — 안내 매체는 webp 목 좌석으로 굴리는 실제 다이얼 물리(orbitPhysics) 한 벌이며, «영상» 이라는 낱말은 useDialGateRefreshOnReturn.ts 주석에만 남은 옛 흔적입니다. 헤더 제목은 다이얼 홈과 같은 «다이얼» 입니다.",
+   "rationale": "2026-09-13 사용자 지시로 워크플로(소스 대조)를 거쳐 새로 정의했습니다.",
+   "when": "웹이 followQueries.myFollowingCount 를 받아 followingCount < REQUIRED_FOLLOW_COUNT(8) 이면 DialShowcasePage 를 그리는 순간입니다. 파인더에서 팔로우하고 웹뷰로 돌아오면(webviewVisible true) 팔로잉 수·판을 다시 물어 8명을 넘겼으면 같은 라우트에서 dial_home 으로 스스로 갈립니다.",
+   "platforms": {
+    "ios": {
+     "status": "absent",
+     "reach": "gated",
+     "reach_note": "네이티브 진입은 dial_home 과 같은 NetworkBrowseView(웹뷰 하나)이고, 이 화면이 서는지는 웹이 서버 팔로잉 수로 가릅니다(게이트: 팔로잉 < 8). 네이티브는 어느 갈래가 섰는지 모릅니다 — 웹이 보내는 것은 changeHeader('다이얼') 뿐이라 iOS 화면 이름으로는 구분할 수 없습니다."
+    },
+    "aos": {
+     "status": "absent",
+     "reach": "gated",
+     "reach_note": "DiscoveryRecommendWebActivity(target=Network) 웹뷰 하나 안에서 웹이 팔로잉 < 8 로 가릅니다. 네이티브 화면 이름은 C8Screen.DiscoveryRecommendNetwork(\"discovery_recommend_network\") 하나로 세 상태를 모두 덮으므로 AOS 쪽에서도 안내/홈을 구분하지 못합니다. 버튼이 쏘는 tab/finder 는 앱 스킴 허용 목록(allowedExternalSchemes)으로 나갑니다."
+    },
+    "web": {
+     "status": "webview",
+     "routes": [
+      "/discovery/network"
+     ],
+     "reach": "gated",
+     "reach_note": "라우트는 dial_home 과 같습니다. 갈래 조건은 followingCount.followingCount < 8 (index.tsx:64, constants.ts:120). 문구 3단계는 showcaseCopy.ts:23-53, 버튼 라벨은 showcaseFollowButtonLabel(showcaseCopy.ts:62-63): 0명이면 '첫 팔로우 시작', 아니면 `${8-followingCount}명 더 팔로우 하기`. 목 좌석 이미지는 assets/showcase/seat-1~16.webp, 이름·직업 목은 showcaseSeats.ts. 현재 getScreenNameFromRoute 가 null 이라 screen_view 를 보내지 않습니다."
+    }
+   },
+   "params": {
+    "following_count": "진입 시 내 팔로잉 수(0~7)"
+   },
+   "source": "G",
+   "reserved": false,
+   "origin": "v4",
+   "semantic_review": "pending",
+   "status": "gated",
+   "os_state": {
+    "ios": "needed",
+    "aos": "needed",
+    "web": "needed"
+   },
+   "flow_group": "채티"
+  },
+  {
+   "key": "dial_creator",
+   "label": "채티 · 다이얼 파도타기(크리에이터 판)",
+   "stage": "chat",
+   "kind": "웹",
+   "rules": [
+    "S1"
+   ],
+   "legacy_keys": [],
+   "definition": "다이얼에서 좌석 하나를 눌러 «파도타기» 로 파고든 화면입니다. 그 크리에이터가 가운데(기준 인물)에 서고 그가 팔로우한 크리에이터들이 둘레에 돕니다. 같은 방식으로 계속 파고들 수 있고, «처음으로»(BackToStartButton) 버튼으로 내 판(dial_home)까지 한 번에 되돌아오거나 뒤로가기·스와이프로 한 단계씩 돌아옵니다. 가운데 얼굴을 누르면 네이티브 프로필(profile?uid=)로 나가고, 위성을 꾹 누르면 네이티브 프로필 프리뷰(openOverlay profilePreview)가 뜹니다. 헤더 제목은 여전히 «다이얼» 이고 헤더에 그 사람을 올리지 않습니다(changeHeaderUser 미사용). 팔로우한 크리에이터가 없는 사람은 파고들지 못하고 토스트 '팔로우한 크리에이터가 없어 볼 수 없어요' 가 뜹니다.",
+   "rationale": "2026-09-13 사용자 지시로 워크플로(소스 대조)를 거쳐 새로 정의했습니다.",
+   "when": "웹이 navigate(`/discovery/network/${uid}`) 로 URL 에 uid 를 얹은 순간입니다(좌석 누름 → 사전 조회 성공 후). 파고든 uid 를 보여줄 수 없으면 replace 로 /discovery/network(dial_home)로 되돌립니다.",
+   "platforms": {
+    "ios": {
+     "status": "absent",
+     "reach": "ui_via_web",
+     "reach_note": "네이티브 route 는 .networkBrowse 하나이고 uid 를 싣지 않습니다(싣으면 스택과 웹 히스토리가 이중이 됨). 네이티브가 라우트 변화로 읽는 것은 WKWebView.canGoBack 관측(shouldTrackWebHistory)뿐이며 이것은 엣지 스와이프 허용 판정(EdgeBackAvailability)에만 쓰입니다 — uid 는 브리지로 오지 않습니다. 딥링크로 특정 크리에이터 판을 직접 열 수 없습니다(host \"network\" 만). 이 화면을 GA 로 구분하려면 웹이 직접 screen_view 를 보내야 합니다."
+    },
+    "aos": {
+     "status": "absent",
+     "reach": "ui_via_web",
+     "reach_note": "공용 WebViewClient 는 doUpdateVisitedHistory 로 현재 URL(uid 포함)을 onCurrentUrlChanged 로 올리지만, 다이얼 호스트(DiscoveryRecommendWebScreen)가 소비하는 것은 canGoBack 과 onHeaderUserChanged(changeHeaderUser)뿐입니다. 웹 다이얼은 changeHeaderUser 를 보내지 않으므로(DiscoveryNetworkPage.tsx:89) 헤더 유저 칩·옵션 버튼은 다이얼에서 실제로 서지 않습니다(키워드 화면 유산). 딥링크 rule 은 경로 세그먼트가 있으면 거부해 uid 딥링크가 없습니다. 네이티브 screen 이름은 여전히 discovery_recommend_network 하나입니다."
+    },
+    "web": {
+     "status": "webview",
+     "routes": [
+      "/discovery/network/:uid"
+     ],
+     "reach": "ui_via_web",
+     "reach_note": "파고들기: useDetailSpinner.ts:317 및 :359 navigate(`${DISCOVERY_NETWORK}/${uid}`). 한 단계 뒤로: :371 navigate(-1). 처음으로: :410 replace 또는 :415 navigate(-depth). 볼 수 없는 uid: :709-715 replace → /discovery/network. 가운데 얼굴 → openScheme(`profile?uid=`)(:331). 팔로우한 크리에이터 없음 토스트: DiscoveryNetworkPage.tsx:27,66-68. BackToStartButton 은 파고든 동안만 보임(DiscoveryNetworkPage.tsx:197). 라우트는 홈과 한 컴포넌트라 리마운트 없이 URL 만 바뀝니다(App.tsx:227)."
+    }
+   },
+   "params": {
+    "creator_uid": "가운데 선 크리에이터",
+    "from_uid": "직전 판의 인물"
+   },
+   "source": "G",
+   "reserved": false,
+   "origin": "v4",
+   "semantic_review": "pending",
+   "status": "active",
+   "os_state": {
+    "ios": "needed",
+    "aos": "needed",
+    "web": "needed"
+   },
+   "flow_group": "채티"
+  },
+  {
+   "key": "profile_cover_design",
+   "label": "프로필 커버 · 디자인 선택(웹)",
+   "stage": "my",
+   "kind": "웹",
+   "rules": [
+    "S1"
+   ],
+   "legacy_keys": [],
+   "definition": "커버 템플릿(스타일) 캐러셀에서 하나를 고르고 '이 스타일로 시작하기'를 누르는 웹 페이지(/onboarding/intro)입니다. 네이티브 화면이 아니라 MY 탭 웹뷰가 커버 미등록 상태에서 루트로 띄우는 페이지이며, 버튼이 openCoverForm 브릿지로 네이티브 커버 등록 폼을 엽니다. 온보딩을 이미 마친 회원이 create 모드로 오면 폼을 열지 않고 템플릿만 저장한 뒤 /profile로 교체 이동합니다.",
+   "rationale": "2026-09-13 사용자 지시로 워크플로(소스 대조)를 거쳐 새로 정의했습니다.",
+   "when": "MY 탭 진입 시 커버 템플릿 미확정(COVER_TEMPLATE_SELECTION 마일스톤 없음)이거나 커버 4항이 전부 비어 있을 때 MY 탭 루트로 표시됩니다. 업로드 진입 게이트가 커버 없음으로 판정하면 MY 탭으로 보내 이 페이지를 다시 띄웁니다.",
+   "platforms": {
+    "ios": {
+     "status": "absent",
+     "reach": "ui",
+     "reach_note": "네이티브 전용 화면 없음. MY 탭 ProfileDetailViewModel이 커버 진입 판정 .intro일 때 resumeURL을 StaticURL.Web.onboardingIntro(/onboarding/intro)로 세워 웹으로 렌더합니다. 업로드 게이트(.intro)와 profile/cover/update 딥링크(.intro 판정)도 MY 탭 선택 후 requestCoverRegistrationEntry로 이 페이지를 띄웁니다. ConfigureProfileCoverView 안의 템플릿 썸네일 피커는 수정 개요(editFull) 헤더에만 있는 부속 UI이지 별도 목적지가 아닙니다."
+    },
+    "aos": {
+     "status": "absent",
+     "reach": "ui",
+     "reach_note": "네이티브 전용 화면 없음. MyPageWebView가 MyCoverEntryPolicy.resolveTabEntryDestination이 Intro이면 WEBVIEW_URL + /onboarding/intro를 MY 탭 루트로 렌더합니다(템플릿 확정+커버 4항 등록이면 /profile). 업로드 게이트 StayOnMyTab/MyTab 분기도 MY 탭에 머물게 하여 이 페이지를 보게 합니다. AOS 딥링크 onboarding/cover-intro는 이 페이지가 아니라 네이티브 커버 폼(ConfigureProfileCoverActivity)을 바로 엽니다."
+    },
+    "web": {
+     "status": "webview",
+     "routes": [
+      "/onboarding/intro (mode absent or mode=create)",
+      "/onboarding/intro?mode=edit"
+     ],
+     "reach": "ui",
+     "reach_note": "pages/onboarding/intro: 제목 '분위기도, 당신의 작업이니까 / 프로필 커버를 골라보세요', CoverCarousel로 템플릿 선택, 버튼 '이 스타일로 시작하기'가 sendMessageToNative({action:'openCoverForm', option:{mode, coverType}})를 보냅니다. 온보딩 완료 회원의 create 모드는 putProfileCover 후 navigate('/profile', replace). GA_TRACKED_ROUTES에 screen_view 태깅이 없습니다."
+    }
+   },
+   "params": {
+    "mode": "create|edit"
+   },
+   "source": "G",
+   "reserved": false,
+   "origin": "v4",
+   "semantic_review": "pending",
+   "status": "active",
+   "os_state": {
+    "ios": "needed",
+    "aos": "needed",
+    "web": "needed"
+   },
+   "flow_group": "마이"
   }
  ],
  "v3_carry": {
@@ -20787,7 +20990,7 @@
    "tracking_hook": "PageViewTracker/useTrackPageView is mounted, but getScreenNameFromRoute() returns null; no explicit screen_view or page_title is sent",
    "entry": "webview",
    "entry_evidence": "src/pages/onboarding/intro/index.tsx calls native openCoverForm in create mode, receives native completion, and then navigates within the same WebView",
-   "contract_key": "profile_cover_create",
+   "contract_key": "profile_cover_design",
    "proposed_key": null,
    "rule": "M3,S2",
    "note": "Cover-template selection is the first step of profile-cover creation"
@@ -20799,7 +21002,7 @@
    "tracking_hook": "PageViewTracker/useTrackPageView is mounted, but getScreenNameFromRoute() returns null; no explicit screen_view or page_title is sent",
    "entry": "webview",
    "entry_evidence": "src/pages/onboarding/intro/index.tsx passes mode=edit to the native openCoverForm bridge and receives its completion callback",
-   "contract_key": "profile_cover_edit",
+   "contract_key": "profile_cover_design",
    "proposed_key": null,
    "rule": "M2,M3,S2",
    "note": "The query changes the result from first creation to editing, while template choice remains an internal form step"
@@ -21368,27 +21571,27 @@
  },
  "os_state_summary": {
   "ios": {
-   "needed": 142,
+   "needed": 141,
    "absent": 20,
-   "legacy": 3,
+   "legacy": 7,
    "unobserved": 2
   },
   "aos": {
-   "needed": 142,
-   "legacy": 12,
+   "needed": 143,
+   "legacy": 14,
    "absent": 12,
    "unobserved": 1
   },
   "web": {
-   "absent": 137,
-   "needed": 21,
+   "absent": 139,
+   "needed": 22,
    "legacy": 9
   }
  },
  "status_summary": {
-  "active": 150,
-  "retired": 12,
+  "active": 148,
+  "retired": 16,
   "reserved": 2,
-  "gated": 3
+  "gated": 4
  }
 }

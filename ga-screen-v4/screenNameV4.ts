@@ -3,16 +3,12 @@ export const SCREEN_SCHEMA_VERSION = 4 as const;
 export const SCREEN_NAME_V4 = {
   /** [로그인] 앱 · 점검 안내 */
   APP_MAINTENANCE: 'app_maintenance',
-  /** [회원가입] 프로필 커버 · 만들기 */
-  PROFILE_COVER_CREATE: 'profile_cover_create',
-  /** [마이] 프로필 커버 · 수정 */
-  PROFILE_COVER_EDIT: 'profile_cover_edit',
   /** [디스커버리] 포트폴리오 · 상세 */
   PORTFOLIO_DETAIL: 'portfolio_detail',
-  /** [파인더] 파인더 · Shuffle! 키워드 추천(웹) */
-  FINDER_KEYWORD_RECOMMEND: 'finder_keyword_recommend',
-  /** [파인더] 채티 · 인맥 둘러보기(웹) */
-  NETWORK_BROWSE: 'network_browse',
+  /** [파인더] 파인더 · Shuffle 메인(웹) */
+  FINDER_SHUFFLE_HOME: 'finder_shuffle_home',
+  /** [채티] 채티 · 다이얼 홈(팔로잉 크리에이터 판) */
+  DIAL_HOME: 'dial_home',
   /** [디스커버리] 크리에이터 · 프로필 */
   PROFILE_DETAIL: 'profile_detail',
   /** [디스커버리] 채팅방 신고 · 사유 직접 입력 */
@@ -37,11 +33,17 @@ export const SCREEN_NAME_V4 = {
   PROPOSAL_LIST: 'proposal_list',
   /** [채티] 알림함 · 협업 제안 소식(웹) */
   NOTIFICATION_PROPOSAL_NEWS: 'notification_proposal_news',
-  /** [디스커버리] 갤러리 · 작품 전시(웹) */
-  HOME_GALLERY: 'home_gallery',
+  /** [디스커버리] 디스커버리 · 갤러리(웹·미출시) */
+  DISCOVERY_GALLERY: 'discovery_gallery',
   /** [마이] 회원 자격 · 베타 혜택 안내(웹) */
   MEMBER_PRIVILEGES: 'member_privileges',
   /** [설정] 설정 · 마케팅 수신 거부(웹) */
   SETTINGS_MARKETING_UNSUBSCRIBE: 'settings_marketing_unsubscribe',
+  /** [채티] 채티 · 다이얼 안내(팔로잉 8명 미만) */
+  DIAL_GUIDE: 'dial_guide',
+  /** [채티] 채티 · 다이얼 파도타기(크리에이터 판) */
+  DIAL_CREATOR: 'dial_creator',
+  /** [마이] 프로필 커버 · 디자인 선택(웹) */
+  PROFILE_COVER_DESIGN: 'profile_cover_design',
 } as const;
 export type ScreenNameV4 = (typeof SCREEN_NAME_V4)[keyof typeof SCREEN_NAME_V4];

@@ -331,7 +331,7 @@ web,/message-box/proposal/detail,proposal_detail,ProposalDetailSwipe,screen,"M1,
 web,/message-box/casting-applications,,CastingApplicationsSwipe,excluded,"M1,S1,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Legacy casting applicant list has the same project-applicant-list purpose,
 web,/message-box/casting-application/detail,,CastingApplicationDetailSwipe,excluded,"S1,M2,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Individual applicant review is a separate destination from the applicant overview list,
 web,/message-box/my-casting-application/detail,,MyCastingApplicationDetailSwipe,excluded,"S1,M2,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Own submitted application detail is distinct from composing an application and from leader-side applicant review,
-web,/gallery,,GalleryPage,screen,"S1,M2",home_gallery,Immersive exhibition/gallery with intro/outro/shutter states is a distinct destination from ordinary portfolio_detail,디스커버리
+web,/gallery,,GalleryPage,screen,"S1,M2",discovery_gallery,Immersive exhibition/gallery with intro/outro/shutter states is a distinct destination from ordinary portfolio_detail,디스커버리
 web,/report,,ReportPage,screen,"M1,S2",report_detail_input,"The route is the 직접입력 report screen, not the preceding reason-selection sheet",디스커버리
 web,/share/casting/:id,,SharedCastingDetailPage,excluded,"M1,S1,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Path-parameter form of the legacy shared casting/project detail,
 web,/share/casting?des=:id,,SharedCastingDetailPage,excluded,"M1,S1,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Query-parameter compatibility form of the same legacy shared casting/project detail,
@@ -347,13 +347,13 @@ web,/unsubscribe?token=:token,,UnsubscribePage,screen,"S2,M2",settings_marketing
 web,/muse/privileges,,MusePrivilegesPage,screen,"M1,S1",settings_muse_privileges,Exact web destination already described by the contract,설정
 web,/member/privileges,,MemberPrivilegesPage,screen,"M1,S1",member_privileges,Uses the same general/Beta privileges content as guest privileges; current key vocabulary already exists in routes.ts but is absent from the 151-key contract,마이
 web,/guest/privileges?code=:inviteCode,signup_general_privileges,GuestPrivilegesPage,screen,"M1,S1",member_privileges,"Current GA name is suitable as the proposed contract key, but launch surface remains unproven in this snapshot",마이
-web,/discovery/keywords,,KeywordsDiscoveryPage,screen,"M1,S1",finder_keyword_recommend,The Shuffle keyword recommendation web screen matches the contract exactly,파인더
-web,/discovery/network/:uid?,,DiscoveryNetworkRoutePage,screen,"M1,M4,S1",network_browse,Optional uid changes the dial's focused person inside the same network-browse destination,파인더
+web,/discovery/keywords,,KeywordsDiscoveryPage,screen,"M1,S1",finder_shuffle_home,The Shuffle keyword recommendation web screen matches the contract exactly,파인더
+web,/discovery/network/:uid?,,DiscoveryNetworkRoutePage,screen,"M1,M4,S1",dial_home,Optional uid changes the dial's focused person inside the same network-browse destination,채티
 web,/discovery/quiz,,QuizDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen",
 web,/discovery/tag-cloud,,TagCloudDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen",
 web,/discovery/ticker,,TickerDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen",
-web,/onboarding/intro (mode absent or mode=create),,OnboardingIntroPage,screen,"M3,S2",profile_cover_create,Cover-template selection is the first step of profile-cover creation,회원가입
-web,/onboarding/intro?mode=edit,,OnboardingIntroPage,screen,"M2,M3,S2",profile_cover_edit,"The query changes the result from first creation to editing, while template choice remains an internal form step",마이
+web,/onboarding/intro (mode absent or mode=create),,OnboardingIntroPage,screen,"M3,S2",profile_cover_design,Cover-template selection is the first step of profile-cover creation,마이
+web,/onboarding/intro?mode=edit,,OnboardingIntroPage,screen,"M2,M3,S2",profile_cover_design,"The query changes the result from first creation to editing, while template choice remains an internal form step",마이
 web,/app-download,,AppDownloadPage,excluded,A2,,Transient 'moving to app store' progress surface; measure UTM click/redirect result rather than a screen,
 web,/maintenance,,ServiceMaintenancePage,screen,"M1,S3",app_maintenance,The web route is browser-only in the coded flow; the same logical maintenance destination is a native overlay inside the app,로그인
 web,*,,NotFoundPage,excluded,A3,,"Missing/unauthorized/deleted destination is an error state, not a screen name",
