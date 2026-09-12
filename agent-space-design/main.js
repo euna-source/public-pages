@@ -44,16 +44,17 @@ function selectView(key){
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>selectView(b.dataset.view)));
 document.querySelectorAll('[data-area]').forEach(b=>b.addEventListener('click',()=>{if(activeView!=='whole')selectView('whole');setContext(b.dataset.area);}));
+const storyImages={discovery:{image:'assets/discovery.webp',alt:'키티가 입력 양식의 불편을 발견하고 사서 먼지의 이전 기준을 확인하는 장면'},handoff:{image:'assets/handoff.webp',alt:'키티가 결과물을 넘기고 쿠로미가 독립적으로 검증하며 사서 먼지가 확인된 부분을 정리하는 장면'}};
 const story=[
- {title:'지시를 기다리지 않고 발견합니다.',description:'키티가 사용자가 다음 입력으로 넘어가기 어려운 지점을 발견했습니다. 기존 개선 목표 안에서 확인할 일을 고릅니다.',image:'parallel',ribbon:'키티가 다음 개선을 발견합니다.',branches:[['키티','입력 흐름의 불편을 확인','다음 일 발견'],['사서 먼지','관련된 이전 기준을 연결','근거 확인'],['하울','다른 목표의 방향을 검토','별도 업무 계속']]},
+ {title:'지시를 기다리지 않고 발견합니다.',description:'키티가 사용자가 다음 입력으로 넘어가기 어려운 지점을 발견했습니다. 기존 개선 목표 안에서 확인할 일을 고릅니다.',image:'discovery',ribbon:'키티가 다음 개선을 발견합니다.',branches:[['키티','입력 흐름의 불편을 확인','다음 일 발견'],['사서 먼지','관련된 이전 기준을 연결','근거 확인'],['하울','다른 목표의 방향을 검토','별도 업무 계속']]},
  {title:'여러 갈래가 동시에 시작합니다.',description:'근거 조사, 사용자 문구, 실패 조건 확인을 나눕니다. 각 담당자는 자기 범위에서 시작하고 준비된 자료부터 공유합니다.',image:'parallel',ribbon:'같은 캐릭터의 분신이 서로 다른 일을 맡습니다.',branches:[['연구 먼지','관련 근거를 조사','독립 진행'],['키티 분신','문구와 입력 흐름을 개선','독립 진행'],['쿠로미 분신','실패 조건과 검증 방법 준비','독립 진행'],['초코캣','중복 작업과 합류 대기를 살핌','흐름 관찰']]},
  {title:'차이가 생기면 필요한 대표가 모입니다.',description:'설명 문구를 늘릴지, 입력 순서를 바꿀지 의견이 갈렸습니다. 세 담당자가 독립안을 대조하는 동안 다른 분신은 검증 준비를 이어갑니다.',image:'meeting',ribbon:'원탁에서는 조율하고, 바깥에서는 계속 준비합니다.',branches:[['키티 대표','사용자 관점의 개선안 제시','원탁에서 조율'],['연구 먼지','각 선택의 근거를 대조','원탁에서 조율'],['쿠로미 대표','반례와 확인할 조건 제시','원탁에서 조율'],['쿠로미 분신','별도 검증 자료를 준비','작업실에서 계속']]},
- {title:'준비된 결과부터 넘깁니다.',description:'합의한 작은 개선을 적용하고 별도의 담당자가 확인합니다. 먼저 끝난 결과를 버전과 함께 넘겨 전체 합류 대기를 줄입니다.',image:'parallel',ribbon:'한 갈래를 기다리는 동안 다른 결과를 확인합니다.',branches:[['키티','개선한 화면과 문구를 전달','부분 결과 인계'],['쿠로미','완료 조건과 실제 결과를 대조','독립 검증'],['사서 먼지','사용한 근거와 결과를 연결','기록 준비'],['초코캣','개선 전후의 대기·재작업 관찰','효과 근거 확인']]},
+ {title:'준비된 결과부터 넘깁니다.',description:'합의한 작은 개선을 적용하고 별도의 담당자가 확인합니다. 먼저 끝난 결과를 버전과 함께 넘겨 전체 합류 대기를 줄입니다.',image:'handoff',ribbon:'한 갈래를 기다리는 동안 다른 결과를 확인합니다.',branches:[['키티','개선한 화면과 문구를 전달','부분 결과 인계'],['쿠로미','완료 조건과 실제 결과를 대조','독립 검증'],['사서 먼지','사용한 근거와 결과를 연결','기록 준비'],['초코캣','개선 전후의 대기·재작업 관찰','효과 근거 확인']]},
  {title:'남은 질문에서 다음 일을 찾습니다.',description:'확인된 결과를 아젠다에 남깁니다. 사서 먼지는 다음에 꺼낼 지식으로 연결하고, 담당자는 아직 풀리지 않은 질문을 고릅니다.',image:'knowledge',ribbon:'검증한 결과가 다음 판단의 근거가 됩니다.',branches:[['사서 먼지','원문·적용·검증 결과 연결','지식 정리'],['키티','남은 사용자 불편을 확인','다음 일 선택'],['하울','다른 업무에 적용할 조건 검토','지식 총괄'],['초코캣','실제로 도움이 됐는지 대조','효과 확인']]}
 ];
 function renderStory(){
  const s=story[step];$('story-stage').textContent=`입력 흐름 개선 · ${step+1}/5`;$('story-title').textContent=s.title;$('story-description').textContent=s.description;
- $('story-image').src=views[s.image].image;$('story-image').alt=views[s.image].alt;
+ const scene=storyImages[s.image]||views[s.image];$('story-image').src=scene.image;$('story-image').alt=scene.alt;$('story-image').dataset.step=String(step);
  $('story-ribbon').textContent=externalWait?'연구 한 갈래는 응답 대기, 나머지 작업은 계속됩니다.':s.ribbon;
  document.querySelectorAll('[data-step]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.step)===step)));
  const branches=s.branches.map(b=>b.slice());

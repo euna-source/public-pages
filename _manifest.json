@@ -107,8 +107,8 @@
     "slug": "agent-space-design",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/agent-space-design/",
-    "last_kind": "new",
-    "last_sha256": "7ba7c41fbaaf144ee487e7b6571dc531a183a24ea8caefbf84f56310c10aa18c",
-    "timestamp": "2026-09-12T19:53:10.794300Z"
+    "last_kind": "redeploy",
+    "last_sha256": "4fb064b21f8a0deff1a46e8ade1cf6a4855dcfc0be8ebfbb9d26a00453738ca0",
+    "timestamp": "2026-09-12T20:31:17.481155Z"
   }
 }
