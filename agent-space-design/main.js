@@ -40,10 +40,10 @@ function selectView(key){
   activeView=key;const view=views[key];
   document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===key)));
   $('map-pins').hidden=key!=='whole';$('view-caption').textContent=view.caption;
-  setContext(view.area);loadWorldImage(view);
+  setContext(view.area);loadWorldImage(view);window.dispatchEvent(new CustomEvent("space-view",{detail:key}));
 }
 document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>selectView(b.dataset.view)));
-document.querySelectorAll('[data-area]').forEach(b=>b.addEventListener('click',()=>{if(activeView!=='whole')selectView('whole');setContext(b.dataset.area);}));
+document.querySelectorAll('[data-area]').forEach(b=>b.addEventListener('click',()=>{if(activeView!=='whole')selectView('whole');setContext(b.dataset.area);window.dispatchEvent(new CustomEvent("space-area",{detail:b.dataset.area}));}));
 const storyImages={discovery:{image:'assets/discovery.webp',alt:'키티가 입력 양식의 불편을 발견하고 사서 먼지의 이전 기준을 확인하는 장면'},handoff:{image:'assets/handoff.webp',alt:'키티가 결과물을 넘기고 쿠로미가 독립적으로 검증하며 사서 먼지가 확인된 부분을 정리하는 장면'}};
 const story=[
  {title:'지시를 기다리지 않고 발견합니다.',description:'키티가 사용자가 다음 입력으로 넘어가기 어려운 지점을 발견했습니다. 기존 개선 목표 안에서 확인할 일을 고릅니다.',image:'discovery',ribbon:'키티가 다음 개선을 발견합니다.',branches:[['키티','입력 흐름의 불편을 확인','다음 일 발견'],['사서 먼지','관련된 이전 기준을 연결','근거 확인'],['하울','다른 목표의 방향을 검토','별도 업무 계속']]},
@@ -53,17 +53,18 @@ const story=[
  {title:'남은 질문에서 다음 일을 찾습니다.',description:'확인된 결과를 아젠다에 남깁니다. 사서 먼지는 다음에 꺼낼 지식으로 연결하고, 담당자는 아직 풀리지 않은 질문을 고릅니다.',image:'knowledge',ribbon:'검증한 결과가 다음 판단의 근거가 됩니다.',branches:[['사서 먼지','원문·적용·검증 결과 연결','지식 정리'],['키티','남은 사용자 불편을 확인','다음 일 선택'],['하울','다른 업무에 적용할 조건 검토','지식 총괄'],['초코캣','실제로 도움이 됐는지 대조','효과 확인']]}
 ];
 function renderStory(){
+ window.dispatchEvent(new CustomEvent('space-phase',{detail:{step,wait:externalWait}}));
  const s=story[step];$('story-stage').textContent=`입력 흐름 개선 · ${step+1}/5`;$('story-title').textContent=s.title;$('story-description').textContent=s.description;
  const scene=storyImages[s.image]||views[s.image];$('story-image').src=scene.image;$('story-image').alt=scene.alt;$('story-image').dataset.step=String(step);
  $('story-ribbon').textContent=externalWait?'연구 한 갈래는 응답 대기, 나머지 작업은 계속됩니다.':s.ribbon;
- document.querySelectorAll('[data-step]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.step)===step)));
+ document.querySelectorAll('button[data-step]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.step)===step)));
  const branches=s.branches.map(b=>b.slice());
  if(externalWait){branches.unshift(['연구 분신','추가 자료의 외부 응답을 기다림','이 갈래만 대기']);if(step===4){$('story-description').textContent='검증이 끝난 부분만 아젠다에 연결합니다. 외부 자료를 기다리는 갈래는 미완료로 남겨 두고, 다른 담당자는 다음 유효한 일을 이어갑니다.';}}
  $('branch-list').replaceChildren(...branches.map(([owner,work,state])=>{const li=document.createElement('li');const name=document.createElement('span');name.className='owner';name.textContent=owner;const copy=document.createElement('span');copy.textContent=work;const status=document.createElement('span');status.className='state';status.textContent=state;copy.append(status);li.append(name,copy);return li;}));
  $('next-story').textContent=step===4?'처음 장면으로 ↺':'다음 장면 →';
  $('toggle-wait').textContent=externalWait?'대기 상황 해제':'한 갈래가 막힌 상황 보기';$('toggle-wait').setAttribute('aria-pressed',String(externalWait));
 }
-document.querySelectorAll('[data-step]').forEach(b=>b.addEventListener('click',()=>{step=Number(b.dataset.step);renderStory();}));
+document.querySelectorAll('button[data-step]').forEach(b=>b.addEventListener('click',()=>{step=Number(b.dataset.step);renderStory();}));
 $('next-story').addEventListener('click',()=>{step=(step+1)%story.length;renderStory();});
 $('reset-story').addEventListener('click',()=>{step=0;externalWait=false;renderStory();});
 const waitButton=document.createElement('button');waitButton.id='toggle-wait';waitButton.className='quiet-button';waitButton.style.marginTop='var(--sp-3)';waitButton.setAttribute('aria-pressed','false');waitButton.textContent='한 갈래가 막힌 상황 보기';$('workflow').querySelector('.story-note').after(waitButton);
@@ -91,7 +92,10 @@ for(const id of ['story-image','dialog-image']){
  image.addEventListener('load',()=>{image.hidden=false;status.hidden=true;});
 }
 function openImage(image,title,caption,trigger){dialogTrigger=trigger;$('dialog-title').textContent=title;$('dialog-image').src=image;$('dialog-image').alt=title;$('dialog-caption').textContent=caption;dialog.showModal();$('close-dialog').focus();}
-$('expand-space').addEventListener('click',e=>{const v=views[activeView];openImage(v.image,v.title,v.caption,e.currentTarget);});
+const spaceDialog=$('space-dialog');
+$('expand-space').addEventListener('click',e=>{if(window.agentSpace?.ready&&!$('simulation').hidden){$('space-dialog-body').append($('simulation'));spaceDialog.showModal();$('close-space-dialog').focus();}else{const v=views[activeView];openImage(v.image,v.title,v.caption,e.currentTarget);}});
+$('close-space-dialog').addEventListener('click',()=>spaceDialog.close());spaceDialog.addEventListener('close',()=>{$('map-frame').prepend($('simulation'));$('expand-space').focus();});
+window.addEventListener('simulation-next',()=>{step=(step+1)%story.length;renderStory();});window.addEventListener('simulation-ready',()=>{window.dispatchEvent(new CustomEvent('space-phase',{detail:{step,wait:externalWait}}));});
 $('expand-chococat').addEventListener('click',e=>openImage('assets/chococat.webp','초코캣의 관찰·기록·전달 동작','공식 원본을 바탕으로 맞춘 형태와 역할 동작 시안입니다.',e.currentTarget));
 $('close-dialog').addEventListener('click',()=>dialog.close());
 dialog.addEventListener('keydown',e=>{if(e.key==='Tab'){e.preventDefault();$('close-dialog').focus();}});
