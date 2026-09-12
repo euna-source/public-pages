@@ -102,5 +102,13 @@
     "last_kind": "redeploy",
     "last_sha256": "187c543a60aa8be9dc5d84b4c920a5a8c1f641b71d4840887cd28fd3b39f63bf",
     "timestamp": "2026-09-12T17:40:14.244059Z"
+  },
+  "agent-space-design": {
+    "slug": "agent-space-design",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/agent-space-design/",
+    "last_kind": "new",
+    "last_sha256": "7ba7c41fbaaf144ee487e7b6571dc531a183a24ea8caefbf84f56310c10aa18c",
+    "timestamp": "2026-09-12T19:53:10.794300Z"
   }
 }
