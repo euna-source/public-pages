@@ -99,8 +99,8 @@
     "slug": "agent-space-originals",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/agent-space-originals/",
-    "last_kind": "new",
-    "last_sha256": "13abd617610bcd5900ad44bcbb4ee06c1c5662c88d5c6f87c85a920b6d8c20f3",
-    "timestamp": "2026-09-12T17:25:41.674961Z"
+    "last_kind": "redeploy",
+    "last_sha256": "40e58de63220ca2b76058522854e9ea46d9b0f7e9b2c8fc70848de4cec920102",
+    "timestamp": "2026-09-12T17:27:28.102839Z"
   }
 }
