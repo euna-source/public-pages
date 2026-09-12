@@ -43,8 +43,8 @@
     "slug": "workflow-knowledge-guide",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/workflow-knowledge-guide/",
-    "last_kind": "new",
-    "last_sha256": "349ca55d36db6ca929ff6d1271e796b6d251342979e78bc304b4d5d7db708621",
-    "timestamp": "2026-09-12T06:35:36.278744Z"
+    "last_kind": "redeploy",
+    "last_sha256": "3d75d461be2672a675c2154667c6bd44eb3b23ab5dae598e15f03647ac07603f",
+    "timestamp": "2026-09-12T06:38:45.673441Z"
   }
 }
