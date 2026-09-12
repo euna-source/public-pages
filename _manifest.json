@@ -67,8 +67,8 @@
     "slug": "agent-space-v03",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/agent-space-v03/",
-    "last_kind": "new",
-    "last_sha256": "f2fe879fcb602b49a6caf79bcf7eb9bbbe78a0afdd01513869f0fa78e7c3728b",
-    "timestamp": "2026-09-12T10:54:52.609808Z"
+    "last_kind": "redeploy",
+    "last_sha256": "0d74dd78e2ec5fe5d4e64329529ebec76cf278c432e7ff0c1294f1c85f37b06d",
+    "timestamp": "2026-09-12T10:57:26.588012Z"
   }
 }
