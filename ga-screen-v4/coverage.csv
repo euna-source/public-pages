@@ -301,9 +301,9 @@ web,/my-notification,,MyNotificationLayout > NotificationPage,screen,"M1,S1",not
 web,/my-notification/proposal-news,,MyNotificationLayout > ProposalNewsPage,screen,"S1,M2",notification_proposal_news,A dedicated new-proposal list in a native bottom sheet; it is narrower than the general notification center and absent from the 151-key contract,채티
 web,/profile,my_resume,ProfileRoute -> ProfilePageV3 or ProfilePage,screen,"M1,M4",my_profile,The web resume/profile tab is a child presentation of the MY profile destination; current my_resume is not in the contract,마이
 web,/profile/intro,,ProfileIntroPage,screen,M4,my_profile,"The intro URL is an internal tab of the same MY profile destination, not a new screen name",마이
-web,/profile/intro/:uid,,MemberProfileIntroPage,screen,M4,profile_detail,The intro URL is an internal tab of the member profile destination,디스커버리(홈)
-web,/profile/:uid,user_detail,MemberProfileRoute -> MemberProfilePageV3 or MemberProfilePage,screen,"M1,S1",profile_detail,Current user_detail is not in the contract; same member-profile purpose maps to profile_detail,디스커버리(홈)
-web,/casting,,MainPage,screen,"M1,V1",project_list,"Legacy casting route is alive in App.tsx and has child navigation, but no current normal-journey caller to the root route was found in this web snapshot",디스커버리(홈)
+web,/profile/intro/:uid,,MemberProfileIntroPage,screen,M4,profile_detail,The intro URL is an internal tab of the member profile destination,디스커버리
+web,/profile/:uid,user_detail,MemberProfileRoute -> MemberProfilePageV3 or MemberProfilePage,screen,"M1,S1",profile_detail,Current user_detail is not in the contract; same member-profile purpose maps to profile_detail,디스커버리
+web,/casting,,MainPage,screen,"M1,V1",project_list,"Legacy casting route is alive in App.tsx and has child navigation, but no current normal-journey caller to the root route was found in this web snapshot",디스커버리
 web,/casting/apply,,ApplyFormPage > ApplyFormMain,excluded,"M1,M3,S2",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Legacy casting application is the project application composition task,
 web,/casting/apply/portfolio,,ApplyFormPage > ApplyPortfolioStep,excluded,M3,,"2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Portfolio attachment is a form step, not a separate screen name",
 web,/casting/apply/email,,ApplyFormPage > ApplyEmailStep,excluded,M3,,"2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Email attachment is a form step, not a separate screen name",
@@ -331,18 +331,18 @@ web,/message-box/proposal/detail,proposal_detail,ProposalDetailSwipe,screen,"M1,
 web,/message-box/casting-applications,,CastingApplicationsSwipe,excluded,"M1,S1,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Legacy casting applicant list has the same project-applicant-list purpose,
 web,/message-box/casting-application/detail,,CastingApplicationDetailSwipe,excluded,"S1,M2,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Individual applicant review is a separate destination from the applicant overview list,
 web,/message-box/my-casting-application/detail,,MyCastingApplicationDetailSwipe,excluded,"S1,M2,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Own submitted application detail is distinct from composing an application and from leader-side applicant review,
-web,/gallery,,GalleryPage,screen,"S1,M2",home_gallery,Immersive exhibition/gallery with intro/outro/shutter states is a distinct destination from ordinary portfolio_detail,디스커버리(홈)
-web,/report,,ReportPage,screen,"M1,S2",report_detail_input,"The route is the 직접입력 report screen, not the preceding reason-selection sheet",디스커버리(홈)
+web,/gallery,,GalleryPage,screen,"S1,M2",home_gallery,Immersive exhibition/gallery with intro/outro/shutter states is a distinct destination from ordinary portfolio_detail,디스커버리
+web,/report,,ReportPage,screen,"M1,S2",report_detail_input,"The route is the 직접입력 report screen, not the preceding reason-selection sheet",디스커버리
 web,/share/casting/:id,,SharedCastingDetailPage,excluded,"M1,S1,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Path-parameter form of the legacy shared casting/project detail,
 web,/share/casting?des=:id,,SharedCastingDetailPage,excluded,"M1,S1,V1",,2026-09-13 감사: 캐스팅(구인) 전용 웹 SPA이며 AOS·iOS 어디에도 네이티브 진입 경로(탭·딥링크·푸시·배너)가 없는 2.0 잔재입니다. Query-parameter compatibility form of the same legacy shared casting/project detail,
-web,/share/feed/:id,,SharedFeedDetailPage,screen,"M1,S1",portfolio_detail,Shared and authenticated presentations of one portfolio have the same purpose,디스커버리(홈)
-web,/share/feed?des=:id,,SharedFeedDetailPage,screen,"M1,S1",portfolio_detail,Query-parameter compatibility form of the same shared portfolio detail,디스커버리(홈)
-web,/share/profile/:id (mode!=preview),,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",profile_detail,Non-preview shared profile is the public presentation of a creator profile,디스커버리(홈)
+web,/share/feed/:id,,SharedFeedDetailPage,screen,"M1,S1",portfolio_detail,Shared and authenticated presentations of one portfolio have the same purpose,디스커버리
+web,/share/feed?des=:id,,SharedFeedDetailPage,screen,"M1,S1",portfolio_detail,Query-parameter compatibility form of the same shared portfolio detail,디스커버리
+web,/share/profile/:id (mode!=preview),,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",profile_detail,Non-preview shared profile is the public presentation of a creator profile,디스커버리
 web,/share/profile/:id?mode=preview,,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",my_profile_preview,"Explicit preview mode is the contract's MY profile preview, not generic profile_detail",마이
-web,/share/profile?des=:id (mode!=preview),,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",profile_detail,Query-parameter compatibility form of the public creator profile,디스커버리(홈)
+web,/share/profile?des=:id (mode!=preview),,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",profile_detail,Query-parameter compatibility form of the public creator profile,디스커버리
 web,/share/profile?des=:id&mode=preview,,SharedProfileRoute -> SharedProfilePageV3 or SharedProfilePage,screen,"M1,S1",my_profile_preview,Query-parameter compatibility form of MY profile preview,마이
-web,/share/project/:id,,SharedProjectRoute -> SharedProjectPageV3 or SharedProjectPage,screen,"M1,S1",project_detail,Shared presentation of the same project destination,디스커버리(홈)
-web,/share/project?des=:id,,SharedProjectRoute -> SharedProjectPageV3 or SharedProjectPage,screen,"M1,S1",project_detail,Query-parameter compatibility form of the same shared project detail,디스커버리(홈)
+web,/share/project/:id,,SharedProjectRoute -> SharedProjectPageV3 or SharedProjectPage,screen,"M1,S1",project_detail,Shared presentation of the same project destination,디스커버리
+web,/share/project?des=:id,,SharedProjectRoute -> SharedProjectPageV3 or SharedProjectPage,screen,"M1,S1",project_detail,Query-parameter compatibility form of the same shared project detail,디스커버리
 web,/unsubscribe?token=:token,,UnsubscribePage,screen,"S2,M2",settings_marketing_unsubscribe,Direct marketing opt-out is a distinct task from the contract's settings_agreements list and from granting consent,설정
 web,/muse/privileges,,MusePrivilegesPage,screen,"M1,S1",settings_muse_privileges,Exact web destination already described by the contract,설정
 web,/member/privileges,,MemberPrivilegesPage,screen,"M1,S1",member_privileges,Uses the same general/Beta privileges content as guest privileges; current key vocabulary already exists in routes.ts but is absent from the 151-key contract,마이

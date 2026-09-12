@@ -79,7 +79,7 @@
  "screens": [
   {
    "key": "app_splash",
-   "label": "앱 실행 · 스플래시",
+   "label": "앱 · 스플래시",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -126,6 +126,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "앱 실행 · 스플래시",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -136,7 +137,7 @@
   },
   {
    "key": "app_maintenance",
-   "label": "서비스 · 점검 안내",
+   "label": "앱 · 점검 안내",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -186,6 +187,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "서비스 · 점검 안내",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -196,7 +198,7 @@
   },
   {
    "key": "auth_entry",
-   "label": "로그인·가입 · 방법 선택",
+   "label": "로그인 · 방법 선택(가입 시작 포함)",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -245,6 +247,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "로그인·가입 · 방법 선택",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -314,7 +317,7 @@
   },
   {
    "key": "signup_email_verify",
-   "label": "가입 · 이메일 인증번호",
+   "label": "가입 · 인증번호 입력",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -364,6 +367,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "가입 · 이메일 인증번호",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -552,7 +556,7 @@
   },
   {
    "key": "login_2fa_email",
-   "label": "로그인 · 2단계 인증 코드",
+   "label": "로그인 · 2단계 인증번호 입력",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -601,6 +605,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "로그인 · 2단계 인증 코드",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -652,6 +657,11 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "AOS는 비밀번호 입력 화면에서 「비밀번호 재설정」을 누르면 재설정용 이메일을 새로 적는 화면(VerificationEmailInput)을 한 단계 거칩니다. iOS는 로그인 화면에 이미 적어 둔 이메일을 그대로 들고 바로 인증번호 화면으로 넘어가도록 만들어져 있어, 이메일 입력 화면 자체가 설계상 없습니다.",
+    "category": "platform_exclusive_by_design"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
@@ -662,7 +672,7 @@
   },
   {
    "key": "reset_password_verify",
-   "label": "비밀번호 재설정 · 인증번호",
+   "label": "비밀번호 재설정 · 인증번호 입력",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -714,6 +724,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "비밀번호 재설정 · 인증번호",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -724,7 +735,7 @@
   },
   {
    "key": "reset_password_new",
-   "label": "비밀번호 재설정 · 새 비밀번호",
+   "label": "비밀번호 재설정 · 새 비밀번호 설정",
    "stage": "start",
    "kind": "화면",
    "reserved": false,
@@ -775,6 +786,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "비밀번호 재설정 · 새 비밀번호",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -877,13 +889,12 @@
      ],
      "evidence": "",
      "note": "",
-     "reach": "dead",
+     "reach": "ui",
      "legacy_marker": false,
      "reach_evidence": [
-      "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/RequiredBasicInfoActivity.kt:RequiredBasicInfoActivity",
-      "feature/auth/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/auth/login/LoginActivity.kt:SignUpNameInput"
+      "aos/feature/auth/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/auth/login/LoginActivity.kt:462-467"
      ],
-     "reach_note": "구형 RequiredBasicInfoActivity 호출부가 없고 현행 가입은 단일 이름 화면만 사용한다."
+     "reach_note": "현행 가입의 「이름 입력하기」 화면이 살아 있습니다(LoginActivity.kt:462-467 SignUpNameInput 목적지). 앞선 dead 판정은 구형 RequiredBasicInfoActivity를 본 것이라 정정합니다."
     },
     "web": {
      "status": "absent",
@@ -896,7 +907,7 @@
    "status": "active",
    "os_state": {
     "ios": "needed",
-    "aos": "legacy",
+    "aos": "needed",
     "web": "absent"
    },
    "flow_group": "회원가입"
@@ -1291,7 +1302,7 @@
   },
   {
    "key": "onboarding_welcome",
-   "label": "첫 이용 · 입장 영상",
+   "label": "첫 이용 · 환영 영상",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
@@ -1339,6 +1350,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "첫 이용 · 입장 영상",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1349,7 +1361,7 @@
   },
   {
    "key": "agreement_reconsent",
-   "label": "갱신 약관 · 재동의",
+   "label": "약관 · 개인정보 처리방침 재동의",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
@@ -1396,6 +1408,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "갱신 약관 · 재동의",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1406,7 +1419,7 @@
   },
   {
    "key": "agreement_document",
-   "label": "약관 · 전문 보기",
+   "label": "약관 · 전문 보기(웹)",
    "stage": "onboarding",
    "kind": "웹",
    "reserved": false,
@@ -1470,6 +1483,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "약관 · 전문 보기",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1622,7 +1636,7 @@
   },
   {
    "key": "profile_intro_create",
-   "label": "자기소개 · 만들기(첫 온보딩)",
+   "label": "자기소개 · 만들기",
    "stage": "onboarding",
    "kind": "화면",
    "reserved": false,
@@ -1670,6 +1684,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "자기소개 · 만들기(첫 온보딩)",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1738,7 +1753,7 @@
   },
   {
    "key": "my_profile_intro",
-   "label": "MY 탭 · 온보딩 인트로(커버 미등록)",
+   "label": "MY · 프로필 커버 없음 상태",
    "stage": "onboarding",
    "kind": "탭",
    "reserved": false,
@@ -1788,6 +1803,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "MY 탭 · 온보딩 인트로(커버 미등록)",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1798,7 +1814,7 @@
   },
   {
    "key": "home_feed",
-   "label": "홈 · 디스커버리 피드",
+   "label": "디스커버리 · 피드",
    "stage": "home",
    "kind": "탭",
    "reserved": false,
@@ -1846,17 +1862,18 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "홈 · 디스커버리 피드",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "home_creator_list",
-   "label": "홈 · 크리에이터 모듈 전체보기",
+   "label": "디스커버리 · 추천 크리에이터 전체보기",
    "stage": "home",
    "kind": "화면",
    "reserved": false,
@@ -1908,13 +1925,14 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "홈 · 크리에이터 모듈 전체보기",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "inspiration_list",
@@ -1966,17 +1984,22 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "AOS는 inspiration-list 딥링크(앱 밖에서 특정 화면으로 바로 여는 링크)를 받아도 이 목록 화면이 아니라 프로필의 영감 탭으로 돌려보내도록 바뀌었고, 화면 자체는 개발자용 레거시 카탈로그에만 남았습니다. iOS만 아직 딥링크로 이 화면을 엽니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "legacy",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "muse_comment_list",
-   "label": "Muse 한 마디 · 목록",
+   "label": "Muse 한 마디 · 목록(딥링크)",
    "stage": "home",
    "kind": "화면",
    "reserved": false,
@@ -2017,13 +2040,19 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "AOS에서는 Muse 한 마디 기능의 소스(패키지 presentation.home.muse)가 통째로 삭제되어 정적 분석 억제 목록에 옛 파일 이름만 남았습니다. iOS만 딥링크로 열 수 있는 상태입니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
+   "label_before": "Muse 한 마디 · 목록",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "absent",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "muse_comment_input",
@@ -2074,13 +2103,18 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "목록과 같은 이유입니다. AOS는 Muse 한 마디 작성·수정 시트의 소스가 삭제되었고, iOS는 목록 화면을 거쳐서만 시트가 열립니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "absent",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "portfolio_detail",
@@ -2142,7 +2176,7 @@
     "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "inspiration_detail",
@@ -2199,7 +2233,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "portfolio_comment_list",
@@ -2260,7 +2294,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "inspiration_comment_list",
@@ -2319,11 +2353,11 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "respect_select",
-   "label": "리스펙트 · 한마디 선택",
+   "label": "리스펙트 · 함께 보낼 한마디 선택",
    "stage": "home",
    "kind": "시트",
    "reserved": false,
@@ -2370,13 +2404,14 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "리스펙트 · 한마디 선택",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "respect_list",
@@ -2441,11 +2476,11 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "media_viewer",
-   "label": "첨부 · 미디어 전체보기",
+   "label": "첨부 · 이미지 전체 화면 보기(자기소개)",
    "stage": "home",
    "kind": "화면",
    "reserved": false,
@@ -2522,17 +2557,18 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "첨부 · 미디어 전체보기",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "finder_home",
-   "label": "파인더 · 탭 홈",
+   "label": "파인더 · 홈",
    "stage": "finder",
    "kind": "탭",
    "reserved": false,
@@ -2581,6 +2617,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "파인더 · 탭 홈",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -2827,7 +2864,7 @@
   },
   {
    "key": "finder_filter",
-   "label": "파인더 · 필터",
+   "label": "파인더 · 필터 지역 검색",
    "stage": "finder",
    "kind": "시트",
    "reserved": false,
@@ -2891,6 +2928,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "파인더 · 필터",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -2901,7 +2939,7 @@
   },
   {
    "key": "finder_keyword_recommend",
-   "label": "추천 · Shuffle! 키워드 추천(웹)",
+   "label": "파인더 · Shuffle! 키워드 추천(웹)",
    "stage": "finder",
    "kind": "웹",
    "reserved": false,
@@ -2951,6 +2989,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "추천 · Shuffle! 키워드 추천(웹)",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -2961,7 +3000,7 @@
   },
   {
    "key": "finder_keyword_bundle",
-   "label": "추천 · 키워드 묶음 결과",
+   "label": "파인더 · 키워드 묶음 결과",
    "stage": "finder",
    "kind": "화면",
    "reserved": false,
@@ -3009,6 +3048,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "추천 · 키워드 묶음 결과",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -3019,7 +3059,7 @@
   },
   {
    "key": "network_browse",
-   "label": "추천 · 인맥 둘러보기(웹)",
+   "label": "채티 · 인맥 둘러보기(웹)",
    "stage": "finder",
    "kind": "웹",
    "reserved": false,
@@ -3071,6 +3111,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "추천 · 인맥 둘러보기(웹)",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -3154,7 +3195,7 @@
     "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "relation_list",
@@ -3219,7 +3260,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "first_connection_mutual",
@@ -3276,7 +3317,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "knock_type_select",
@@ -3335,7 +3376,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "knock_compose",
@@ -3384,11 +3425,11 @@
     "ios": "3.0.2 (alpha 34ad6c9)",
     "web": "alpha 2026.08.AS548"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "report_reason",
-   "label": "신고 · 사유 선택",
+   "label": "채팅방 신고 · 사유 선택",
    "stage": "creator",
    "kind": "시트",
    "reserved": false,
@@ -3450,17 +3491,18 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "신고 · 사유 선택",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "report_detail_input",
-   "label": "신고 · 상세 사유 입력",
+   "label": "채팅방 신고 · 사유 직접 입력",
    "stage": "creator",
    "kind": "화면",
    "reserved": false,
@@ -3522,13 +3564,14 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "신고 · 상세 사유 입력",
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "my_profile",
@@ -3786,7 +3829,7 @@
   },
   {
    "key": "my_info_home",
-   "label": "내 정보 · 관리 홈",
+   "label": "내 정보 · 관리 홈(기본 정보 관리)",
    "stage": "my",
    "kind": "화면",
    "reserved": false,
@@ -3835,6 +3878,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "내 정보 · 관리 홈",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4067,6 +4111,11 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "AOS는 기본 정보 관리의 「직업·전문분야」 행을 누르면 별도 직업 관리 화면이 아니라 프로필 커버 설정 흐름(ConfigureProfileCover, 수정 모드)으로 보내도록 바뀌었고, 옛 NewProfessionListActivity를 다시 부르지 않는지 테스트로 막아 두었습니다. iOS만 기존 직업 관리 화면 세 벌을 그대로 씁니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4125,6 +4174,11 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "직업 관리와 같은 이유입니다. AOS의 직업 선택 화면(NewProfessionsScreen)은 이제 구형 필수정보 관문 안에서만 호출되고 현행 기본 정보 관리에서는 커버 설정 흐름으로 대체되었습니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4183,6 +4237,11 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "직업 선택 화면의 하위 단계이므로 같은 이유입니다. AOS는 직접 입력 단계가 구형 관문 안에만 남았고, iOS는 직업 선택 화면에서 시트로 엽니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4430,7 +4489,7 @@
   },
   {
    "key": "my_info_email_register",
-   "label": "내 정보 · 이메일 입력",
+   "label": "내 정보 · 연락용 이메일 입력",
    "stage": "my",
    "kind": "화면",
    "reserved": false,
@@ -4480,6 +4539,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "내 정보 · 이메일 입력",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4490,7 +4550,7 @@
   },
   {
    "key": "my_info_email_verify",
-   "label": "내 정보 · 이메일 인증",
+   "label": "내 정보 · 연락용 이메일 인증번호 입력",
    "stage": "my",
    "kind": "화면",
    "reserved": false,
@@ -4538,6 +4598,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "내 정보 · 이메일 인증",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4723,7 +4784,7 @@
   },
   {
    "key": "my_info_visibility",
-   "label": "내 정보 · 개인정보 공개설정",
+   "label": "내 정보 · 항목별 공개 범위",
    "stage": "my",
    "kind": "시트",
    "reserved": false,
@@ -4771,6 +4832,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "내 정보 · 개인정보 공개설정",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -4781,7 +4843,7 @@
   },
   {
    "key": "account_email_required",
-   "label": "계정 · 이메일 강제 등록",
+   "label": "앱 · 계정 이메일 필수 등록",
    "stage": "my",
    "kind": "화면",
    "reserved": false,
@@ -4822,6 +4884,12 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "iOS는 로그인 직후 내 정보의 가입 이메일이 비어 있으면 닫을 수 없는 「연락받을 이메일 주소를 확인해 주세요」 화면을 전체로 덮습니다. AOS도 소셜 로그인을 지원해 가입 이메일이 빈 계정이 생길 수 있는데, 같은 관문이 없고 필수 기본정보 관문은 ID·이름·직업·키워드만 다룹니다. 이 차이를 의도한 것인지는 소스만으로 알 수 없습니다.",
+    "category": "real_gap_needs_product_decision"
+   },
+   "label_before": "계정 · 이메일 강제 등록",
    "status": "gated",
    "os_state": {
     "ios": "needed",
@@ -4832,7 +4900,7 @@
   },
   {
    "key": "resume_home",
-   "label": "커리어 · 이력 관리(내 이력서)",
+   "label": "커리어 · 관리 홈",
    "stage": "my",
    "kind": "화면",
    "reserved": false,
@@ -4881,6 +4949,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "커리어 · 이력 관리(내 이력서)",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -5392,7 +5461,7 @@
   },
   {
    "key": "project_create",
-   "label": "프로젝트 카드 · 작성",
+   "label": "프로젝트 · 작성",
    "stage": "upload",
    "kind": "화면",
    "reserved": false,
@@ -5445,6 +5514,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "프로젝트 카드 · 작성",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -5455,7 +5525,7 @@
   },
   {
    "key": "project_edit",
-   "label": "프로젝트 카드 · 수정",
+   "label": "프로젝트 · 수정",
    "stage": "upload",
    "kind": "화면",
    "reserved": false,
@@ -5507,6 +5577,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "프로젝트 카드 · 수정",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6061,7 +6132,7 @@
   },
   {
    "key": "notification_center",
-   "label": "알림 · 내 알림",
+   "label": "알림함 · 받은 알림 목록",
    "stage": "chat",
    "kind": "화면",
    "reserved": false,
@@ -6113,6 +6184,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "알림 · 내 알림",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6123,7 +6195,7 @@
   },
   {
    "key": "contacts_first_connections",
-   "label": "인맥 · 일촌",
+   "label": "인맥 관리 · 일촌",
    "stage": "chat",
    "kind": "탭",
    "reserved": false,
@@ -6171,6 +6243,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "인맥 · 일촌",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6181,7 +6254,7 @@
   },
   {
    "key": "contacts_follower",
-   "label": "인맥 · 팔로워",
+   "label": "인맥 관리 · 팔로워",
    "stage": "chat",
    "kind": "탭",
    "reserved": false,
@@ -6228,6 +6301,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "인맥 · 팔로워",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6238,7 +6312,7 @@
   },
   {
    "key": "contacts_following",
-   "label": "인맥 · 팔로잉",
+   "label": "인맥 관리 · 팔로잉",
    "stage": "chat",
    "kind": "탭",
    "reserved": false,
@@ -6285,6 +6359,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "인맥 · 팔로잉",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6352,7 +6427,7 @@
   },
   {
    "key": "contacts_search_results",
-   "label": "인맥 · 검색 결과",
+   "label": "인맥 관리 · 검색 결과",
    "stage": "chat",
    "kind": "화면",
    "reserved": false,
@@ -6408,6 +6483,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "인맥 · 검색 결과",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6478,7 +6554,7 @@
     "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "project_list",
@@ -6531,13 +6607,18 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "AOS의 ProjectListActivity는 매니페스트 등록만 남고 호출부가 없으며, project-list 딥링크도 프로필의 프로젝트 탭으로 돌려보냅니다. 웹의 /casting 경로도 현행 여정에서 끊긴 레거시입니다. iOS만 딥링크로 이 화면을 엽니다.",
+    "category": "legacy_removed_on_other_platform"
+   },
    "status": "active",
    "os_state": {
     "ios": "needed",
     "aos": "legacy",
     "web": "legacy"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "project_application_compose",
@@ -6600,7 +6681,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "project_applicants",
@@ -6662,7 +6743,7 @@
     "aos": "needed",
     "web": "legacy"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "proposal_detail",
@@ -6708,6 +6789,11 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "협업 제안 상세는 웹 페이지(/message-box/proposal/detail)이고 화면 이름은 웹이 직접 보냅니다. AOS는 open-web 딥링크로 이 웹 URL을 여는 통로만 있고, iOS도 공용 웹뷰에서 제안 웹 화면을 띄우고 있어(proposal_edit 종료 로그) 네이티브 화면이 없다는 점은 두 플랫폼이 같습니다. 계약에서 iOS가 '없음', 제안함 목록은 '미관측'으로 적힌 것은 표기 차이일 뿐 결정 사항은 아닙니다.",
+    "category": "web_only_feature"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
@@ -6845,7 +6931,7 @@
   },
   {
    "key": "team_list",
-   "label": "팀 · 내 팀과 합류 요청",
+   "label": "팀 · 목록(내 팀과 받은 초대)",
    "stage": "project",
    "kind": "화면",
    "reserved": false,
@@ -6895,6 +6981,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "팀 · 내 팀과 합류 요청",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7266,7 +7353,7 @@
   },
   {
    "key": "settings_notification",
-   "label": "설정 · 알림",
+   "label": "설정 · 알림 수신 설정",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -7315,6 +7402,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "설정 · 알림",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7325,7 +7413,7 @@
   },
   {
    "key": "settings_visibility",
-   "label": "설정 · 공개 범위",
+   "label": "설정 · 공개 범위 메뉴",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -7373,6 +7461,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "설정 · 공개 범위",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7616,7 +7705,7 @@
   },
   {
    "key": "settings_2fa_email",
-   "label": "설정 · 인증 이메일 관리",
+   "label": "설정 · 2단계 인증 이메일 관리",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -7663,6 +7752,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "설정 · 인증 이메일 관리",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7673,7 +7763,7 @@
   },
   {
    "key": "settings_2fa_email_verify",
-   "label": "설정 · 인증 이메일 확인",
+   "label": "설정 · 2단계 인증번호 입력(인증 켜기)",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -7721,6 +7811,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "설정 · 인증 이메일 확인",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7731,7 +7822,7 @@
   },
   {
    "key": "account_delete_password",
-   "label": "회원 탈퇴 · 본인 확인",
+   "label": "회원 탈퇴 · 비밀번호 확인",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -7779,6 +7870,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "회원 탈퇴 · 본인 확인",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7789,7 +7881,7 @@
   },
   {
    "key": "account_delete_reason",
-   "label": "회원 탈퇴 · 사유",
+   "label": "회원 탈퇴 · 사유 선택",
    "stage": "account",
    "kind": "시트",
    "reserved": false,
@@ -7837,6 +7929,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "회원 탈퇴 · 사유",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -7905,7 +7998,7 @@
   },
   {
    "key": "support_home",
-   "label": "고객센터",
+   "label": "고객센터 · 홈",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -7953,6 +8046,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "고객센터",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8085,7 +8179,7 @@
   },
   {
    "key": "settings_contents",
-   "label": "내 활동 · 모아보기",
+   "label": "내 활동 · 홈",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -8133,6 +8227,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "내 활동 · 모아보기",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8200,7 +8295,7 @@
   },
   {
    "key": "settings_contents_respected",
-   "label": "내 활동 · 리스펙트한 작업물",
+   "label": "내 활동 · 리스펙트한 포트폴리오",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -8247,6 +8342,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "내 활동 · 리스펙트한 작업물",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8486,7 +8582,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "club_entry",
@@ -8543,7 +8639,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "arcade_card_boss",
@@ -8603,7 +8699,7 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "arcade_breakout",
@@ -8663,11 +8759,11 @@
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "app_update_required",
-   "label": "앱 이용 · 필수 업데이트",
+   "label": "앱 · 필수 업데이트",
    "stage": "start",
    "kind": "관문",
    "reserved": false,
@@ -8715,6 +8811,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "앱 이용 · 필수 업데이트",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8725,7 +8822,7 @@
   },
   {
    "key": "auth_session_expired",
-   "label": "로그인 · 세션 종료 안내",
+   "label": "앱 · 로그인 만료 안내",
    "stage": "start",
    "kind": "관문",
    "reserved": false,
@@ -8766,6 +8863,12 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "iOS는 토큰 갱신에 실패하면 「로그아웃」 버튼 하나짜리 안내 알럿을 띄운 뒤 로그인으로 보냅니다. AOS는 세션 만료 이벤트를 받으면 안내 없이 곧바로 로그인 화면으로 이동하도록 만들어져 있어 안내 화면 자체가 없습니다.",
+    "category": "platform_exclusive_by_design"
+   },
+   "label_before": "로그인 · 세션 종료 안내",
    "status": "gated",
    "os_state": {
     "ios": "needed",
@@ -8776,7 +8879,7 @@
   },
   {
    "key": "profile_cover_required",
-   "label": "업로드 · 커버 등록 필요",
+   "label": "프로필 커버 · 등록 필요(업로드 진입 시)",
    "stage": "upload",
    "kind": "관문",
    "reserved": false,
@@ -8825,6 +8928,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "업로드 · 커버 등록 필요",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8953,7 +9057,7 @@
   },
   {
    "key": "project_chat_list",
-   "label": "채티 · 프로젝트 목록",
+   "label": "채티 · 프로젝트 현황(참여·지원·새로 열림)",
    "stage": "chat",
    "kind": "탭",
    "reserved": false,
@@ -9002,6 +9106,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "채티 · 프로젝트 목록",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -9012,7 +9117,7 @@
   },
   {
    "key": "account_delete_reason_input",
-   "label": "회원 탈퇴 · 기타 사유 입력",
+   "label": "회원 탈퇴 · 사유 직접 입력",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -9061,6 +9166,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "회원 탈퇴 · 기타 사유 입력",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -9071,7 +9177,7 @@
   },
   {
    "key": "settings_personal_info_consent",
-   "label": "설정 · 개인정보 이용 동의",
+   "label": "설정 · 개인정보 이용 동의(딥링크)",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -9113,6 +9219,12 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "iOS는 딥링크로만 여는 개인정보 이용 동의 화면을 갖고 있습니다. AOS는 설정 딥링크 규칙에서 personal-info/agree 경로를 명시적으로 '미지원'으로 테스트해 두었고, 동의가 필요한 순간에는 화면 대신 동의 요구 바텀시트(PersonalInfoAgreeRequireBottomSheetFragment)로 처리합니다. 양쪽 모두 앱 안에 진입 버튼이 없습니다.",
+    "category": "platform_exclusive_by_design"
+   },
+   "label_before": "설정 · 개인정보 이용 동의",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -9123,7 +9235,7 @@
   },
   {
    "key": "settings_personal_info_withdraw",
-   "label": "설정 · 개인정보 이용 동의 철회",
+   "label": "설정 · 개인정보 이용 동의 철회(딥링크)",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
@@ -9165,6 +9277,12 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "iOS만",
+    "reason": "동의 화면과 같은 이유입니다. AOS는 personal-info/disagree 딥링크를 미지원으로 못 박았고 철회 목적지 구현도 없습니다. iOS만 딥링크로 철회 화면을 엽니다.",
+    "category": "platform_exclusive_by_design"
+   },
+   "label_before": "설정 · 개인정보 이용 동의 철회",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -9222,6 +9340,11 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "제안함 목록은 웹 페이지(/message-box, PROPOSAL 탭)이고 화면 이름은 웹이 보냅니다. AOS는 open-web 딥링크로 여는 통로만 있고, iOS는 채티 탭의 알림센터가 공용 웹뷰를 품고 있어 같은 웹 페이지가 뜰 수 있습니다. 어느 쪽도 네이티브 화면이 없으므로 결정할 사항이 아닙니다.",
+    "category": "web_only_feature"
+   },
    "status": "active",
    "os_state": {
     "ios": "unobserved",
@@ -9232,7 +9355,7 @@
   },
   {
    "key": "notification_proposal_news",
-   "label": "알림 · 제안 소식(웹)",
+   "label": "알림함 · 협업 제안 소식(웹)",
    "stage": "chat",
    "kind": "웹",
    "rules": [
@@ -9277,6 +9400,7 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "label_before": "알림 · 제안 소식(웹)",
    "status": "active",
    "os_state": {
     "ios": "unobserved",
@@ -9300,32 +9424,31 @@
    "platforms": {
     "ios": {
      "status": "webview_host",
-     "reach": "unknown",
+     "reach": "gated",
      "legacy_marker": false,
      "reach_evidence": [
       "no ios_rows; rg -i 'gallery' matches only a mock string in CreatorCredentialSectionView.swift:92"
      ],
-     "reach_note": "no native counterpart in this build"
+     "reach_note": "미출시 메뉴(사용자 확인). 이 빌드에 네이티브 대응은 없고, 출시 시 웹뷰로 열릴 예정으로 봅니다."
     },
     "aos": {
      "status": "yes",
      "evidence": "feature/home/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/home/gallery/GalleryNavGraph.kt:HomeNavKey.Gallery:33",
-     "reach": "ui_via_web",
+     "reach": "gated",
      "legacy_marker": true,
      "reach_evidence": [
-      "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:MainBottomNavigationSlots excludes FINDER",
-      "feature/home/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/home/gallery/GalleryNavGraph.kt:HomeNavKey.Gallery",
-      "feature/webview/api/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/api/WebCapabilityProfile.kt:legacyNativeBridgeEnabled"
+      "aos/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:16 FINDER(GalleryRoute)",
+      "aos/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:41-45 MainBottomNavigationSlots excludes FINDER"
      ],
-     "reach_note": "바텀 슬롯에서 제외됐고 남은 딥링크도 legacyNativeBridgeEnabled 갤러리 웹 경로뿐이라 dead다."
+     "reach_note": "미출시 메뉴. MainTab.kt에서 갤러리(FINDER 슬롯)가 MainBottomNavigationSlots에 들어 있지 않아 하단 탭에 노출되지 않습니다(사용자 확인 2026-09-13: 아직 오픈하지 않은 숨긴 메뉴). 출시되면 슬롯에 추가되는 것으로 열립니다."
     },
     "web": {
      "status": "webview",
      "routes": [
       "/gallery"
      ],
-     "reach": "ui",
-     "reach_note": "Immersive exhibition/gallery with intro/outro/shutter states is a distinct destination from ordinary portfolio_detail"
+     "reach": "gated",
+     "reach_note": "/gallery 웹 페이지는 존재하지만 앱이 메뉴를 숨겨 두어 현재 사용자가 도달할 수 없습니다(미출시). 출시 시 앱 웹뷰에서 열립니다."
     }
    },
    "params": {},
@@ -9336,17 +9459,22 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
-   "status": "active",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "갤러리는 웹 페이지(/gallery)이지만 AOS는 파인더 탭 자리에서 네이티브 호스트(GalleryNavGraph)로 이 웹을 띄우는 진입이 살아 있고, iOS에는 갤러리를 여는 코드가 전혀 없습니다. 게다가 계약 파일에는 iOS가 '필요'로, 이번 정의 목록에는 '미관측'으로 서로 다르게 적혀 있어 어느 쪽이 맞는지 담당자가 정해야 합니다.",
+    "category": "real_gap_needs_product_decision"
+   },
+   "status": "gated",
    "os_state": {
-    "ios": "unobserved",
+    "ios": "needed",
     "aos": "needed",
     "web": "needed"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "member_privileges",
-   "label": "회원 혜택 안내(베타·Muse)",
+   "label": "회원 자격 · 베타 혜택 안내(웹)",
    "stage": "my",
    "kind": "웹",
    "rules": [
@@ -9357,7 +9485,7 @@
     "signup_privileges",
     "signup_general_privileges"
    ],
-   "definition": "베타 배지 또는 뮤즈 등급 등 회원 자격에 따라 받는 혜택을 설명하는 웹 페이지입니다. 가입 초대 코드로도 같은 페이지를 볼 수 있습니다.",
+   "definition": "베타 배지를 가진 회원이 받는 혜택을 설명하는 웹 페이지입니다. 가입 초대 코드로도 같은 페이지를 볼 수 있습니다. Muse 등급 혜택은 별도 페이지(settings_muse_privileges)입니다.",
    "rationale": "원래 가입·초대장 전용 페이지(signup_general_privileges)로만 알려졌으나, 2026-09-13 소스 확인으로 내 프로필·타인 프로필의 베타 배지 안내 시트(iOS ProfileDetailView.swift .betaBadgeInfo onConfirm, AOS MyPageContainer.kt onShowBetaBenefitBottomSheet / MemberProfileDetailModals.kt onOpenMemberBenefit)가 똑같이 \"${webViewBaseUrl}/member/privileges\"를 여는 것을 확인했습니다. 이름을 실제 쓰임에 맞춰 바꿉니다.",
    "when": "베타 배지 정보 시트의 \"혜택 보기\"를 눌렀을 때, 또는 가입 초대장 링크로 열렸을 때 한 번 보냅니다.",
    "platforms": {
@@ -9401,6 +9529,7 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "label_before": "회원 혜택 안내(베타·Muse)",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -9550,7 +9679,7 @@
     "ios": "3.0.2 (alpha 34ad6c9)",
     "web": "alpha 2026.08.AS548"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "project_applicant_detail",
@@ -9600,7 +9729,7 @@
     "ios": "3.0.2 (alpha 34ad6c9)",
     "web": "alpha 2026.08.AS548"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "my_project_application_detail",
@@ -9698,6 +9827,11 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "AOS 이력 관리(UserResumeActivity)에는 스킬 입력 화면(ResumeSkillActivity)이 있지만, iOS 이력 관리의 입력 화면은 경력·학력·자격·수상 세 가지뿐이고 스킬 입력 화면이 없습니다. iOS 도메인 모델에는 SkillDomain이 있어 데이터는 다루므로, 화면을 iOS에 추가할지는 제품 결정입니다.",
+    "category": "real_gap_needs_product_decision"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
@@ -9865,6 +9999,11 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "같은 딥링크 경로(profile/self-description/update)가 AOS에서는 「자기소개 관리」 허브 화면(시그니처 키워드·나에 대한 한마디 항목을 모아 각 편집으로 보내는 SelfDescriptionInfoActivity)을 열고, iOS에서는 자기소개 수정 편집기(profile_intro_edit)를 바로 엽니다. 기능은 하나인데 AOS만 중간 허브를 두고 있어, 이 허브를 별도 화면으로 셀지 iOS와 같은 수정 화면으로 묶을지 정해야 합니다.",
+    "category": "naming_split_same_feature"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
@@ -9920,13 +10059,18 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "AOS 아케이드는 별도 모듈(feature/arcade)에서 두더지잡기·블록깨기·퍼즐·슈터·플래피 다섯 게임을 카탈로그에 두고 무작위로 고릅니다. iOS의 게임은 카드 롱프레스에 붙은 CardBreakout 모듈이며 모드가 블록깨기와 카드 보스전 둘뿐이라, 나머지 게임은 iOS에 설계상 없습니다. 계약은 iOS '없음'이 사실과 맞으므로 결정이 필요하지 않습니다.",
+    "category": "platform_exclusive_by_design"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "arcade_puzzle",
@@ -9975,13 +10119,18 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "두더지잡기와 같은 이유입니다. 퍼즐은 AOS 아케이드 카탈로그에만 있고 iOS CardBreakout 모듈에는 해당 모드가 없습니다.",
+    "category": "platform_exclusive_by_design"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   },
   {
    "key": "arcade_flappy",
@@ -10030,13 +10179,18 @@
    "reserved": false,
    "origin": "v4",
    "semantic_review": "pending",
+   "asymmetry": {
+    "side": "AOS만",
+    "reason": "두더지잡기와 같은 이유입니다. 플래피는 AOS 아케이드 카탈로그에만 있고 iOS에는 해당 모드가 없습니다.",
+    "category": "platform_exclusive_by_design"
+   },
    "status": "active",
    "os_state": {
     "ios": "absent",
     "aos": "needed",
     "web": "absent"
    },
-   "flow_group": "디스커버리(홈)"
+   "flow_group": "디스커버리"
   }
  ],
  "v3_carry": {
@@ -21214,14 +21368,14 @@
  },
  "os_state_summary": {
   "ios": {
-   "needed": 141,
+   "needed": 142,
    "absent": 20,
    "legacy": 3,
-   "unobserved": 3
+   "unobserved": 2
   },
   "aos": {
-   "needed": 141,
-   "legacy": 13,
+   "needed": 142,
+   "legacy": 12,
    "absent": 12,
    "unobserved": 1
   },
@@ -21232,9 +21386,9 @@
   }
  },
  "status_summary": {
-  "active": 151,
+  "active": 150,
   "retired": 12,
   "reserved": 2,
-  "gated": 2
+  "gated": 3
  }
 }
