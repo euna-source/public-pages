@@ -51,9 +51,9 @@
     "slug": "ga-screen-v3",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/ga-screen-v3/",
-    "last_kind": "new",
-    "last_sha256": "6ba4b07d0359d435f12b7f297eaf4c8686357b0fd408a76b6d8ec01cc7f6cd24",
-    "timestamp": "2026-09-12T07:26:58.281283Z"
+    "last_kind": "redeploy",
+    "last_sha256": "01ed10a78c2d7071e7f6e543e8908d1fceee09dbbe1b7253735596bac17de7f0",
+    "timestamp": "2026-09-12T14:00:53.078012Z"
   },
   "agent-space-v02": {
     "slug": "agent-space-v02",
