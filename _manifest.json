@@ -1,18 +1,34 @@
 {
+  "planning-workflow-editor": {
+    "slug": "planning-workflow-editor",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/planning-workflow-editor/",
+    "last_kind": "new",
+    "last_sha256": "88356f1928a359deb9addbcacfa2aaad88ffc2fe8eff243b1951f546dfa3d07c",
+    "timestamp": "2026-09-08T15:06:07.765109Z"
+  },
+  "screen-analytics-alpha": {
+    "slug": "screen-analytics-alpha",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/screen-analytics-alpha/",
+    "last_kind": "redeploy",
+    "last_sha256": "2de6fbdca28b6d56aa364c05ee6698b3e7438e196f93a048687f6c92cba377b4",
+    "timestamp": "2026-09-08T17:28:43.161361Z"
+  },
+  "planning-workflow-guide": {
+    "slug": "planning-workflow-guide",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/planning-workflow-guide/",
+    "last_kind": "redeploy",
+    "last_sha256": "458f8fca41fd7d6c3b14bbbb7886e80863c7b8c3f0c1a05991a107c02b7d5135",
+    "timestamp": "2026-09-08T17:17:48.723608Z"
+  },
   "brain": {
     "slug": "brain",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/brain/",
     "last_kind": "redeploy",
-    "last_sha256": "545072b0a5af592fce31f99f71f5c14b56f2455b9ae9d23f4485d1148a1c3c07",
-    "timestamp": "2026-09-09T07:07:07.403027Z"
-  },
-  "demo-310-feedback": {
-    "slug": "demo-310-feedback",
-    "mode": "main",
-    "url": "https://euna-source.github.io/public-pages/demo-310-feedback/",
-    "last_kind": "redeploy",
-    "last_sha256": "d4d9731a5b650d82fe689f3cd780321b97f5e68da83240a73c060b84a66b66f8",
-    "timestamp": "2026-09-11T05:22:58.723660Z"
+    "last_sha256": "9caa98ef2528f3ab9ca2a9b2bb077eae9ad2b43060c4681c4fa9191f0e18f947",
+    "timestamp": "2026-09-12T04:11:34.302303Z"
   }
 }

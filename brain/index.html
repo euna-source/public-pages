@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#f5f7f7">
-<title>지식 지도 · 기록이 판단이 되는 흐름</title>
+<title>먼지맵 · 기록이 판단이 되는 흐름</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><a class="brand" href="./" aria-label="지식 지도 홈"><span class="mark">◉</span> 지식 지도</a><span class="live" id="updated">관측 기록을 불러오는 중</span><button id="refresh" class="quiet">새로고침 ↻</button></header>
+<header><a class="brand" href="./" aria-label="먼지맵 홈"><span class="mark">◉</span> 먼지맵</a><span class="live" id="updated">관측 기록을 불러오는 중</span><button id="refresh" class="quiet">새로고침 ↻</button></header>
 <main>
 <div class="intro"><div><p class="eyebrow">KNOWLEDGE OBSERVATORY</p><h1>기록이 쌓이고,<br>판단으로 이어지는 곳.</h1><p class="lead">어디에 지식이 쌓이는지, 어느 연결을 확인해야 하는지 한눈에 봅니다.</p></div><div class="devices" role="group" aria-label="관측 기기"><button data-device="home">집 <small id="home-age">불러오는 중</small></button><button data-device="work" aria-pressed="true">회사 <small id="work-age">불러오는 중</small></button></div></div>
 <div id="notice" class="notice" role="status">최근 관측을 확인하고 있습니다.</div>
-<section class="topology" aria-label="집맥과 공유 지식센터와 회맥"><a href="http://127.0.0.1:8766/#view=records&amp;device=home"><small>HOME</small><h2>집맥</h2><span id="top-home">최근 사본 확인 중</span><em>저장 기록 확대 ↗</em></a><div class="wire">수집 · 전달<br>⇄</div><a class="hub" href="http://127.0.0.1:8766/"><small>SHARED KNOWLEDGE CENTER</small><h2>공유 지식센터</h2><span>양쪽 Mac에 복제된 자료</span><em>저장 · 열람 · 활용 · 부족 보기 ↗</em></a><div class="wire">수집 · 전달<br>⇄</div><a href="http://127.0.0.1:8766/#view=records&amp;device=work"><small>WORK</small><h2>회맥</h2><span id="top-work">최근 사본 확인 중</span><em>저장 기록 확대 ↗</em></a></section>
+<section class="topology" aria-label="집맥과 공유 자료 저장소와 회맥"><a href="http://127.0.0.1:8766/#view=records&amp;device=home"><small>HOME</small><h2>집맥</h2><span id="top-home">최근 사본 확인 중</span><em>저장 기록 확대 ↗</em></a><div class="wire">수집 · 전달<br>⇄</div><a class="hub" href="http://127.0.0.1:8766/"><small>SHARED DATA STORE</small><h2>공유 자료 저장소</h2><span>양쪽 Mac에 복제된 자료</span><em>저장 · 열람 · 활용 · 부족 보기 ↗</em></a><div class="wire">수집 · 전달<br>⇄</div><a href="http://127.0.0.1:8766/#view=records&amp;device=work"><small>WORK</small><h2>회맥</h2><span id="top-work">최근 사본 확인 중</span><em>저장 기록 확대 ↗</em></a></section>
 <p class="hint">확대하면 현재 Mac의 비공개 기록 뷰어로 연결됩니다. 처음에는 먼지의 뇌 아이콘으로 열어 주세요. 집맥·회맥에서만 원문을 볼 수 있습니다.</p>
 <section class="reading-entry"><div><p class="eyebrow">READ · REFLECT</p><h2>읽고 난 뒤, 한 줄 회고.</h2><p>유용했던 점, 아쉬웠거나 참고하기 어려웠던 점을 원문 아래에 짧게 남깁니다.<br>회고는 해당 출처에 연결해 두 Mac에서 다시 볼 수 있습니다.</p></div><div><a href="http://127.0.0.1:8766/#view=records">저장 기록 열기 ↗</a><a href="http://127.0.0.1:8766/#view=reflections">남긴 회고 보기 ↗</a><small>원문·회고는 비공개 · 처음에는 먼지 뇌 아이콘에서 연결</small></div></section>
 <section class="metrics" aria-label="축적량"><div><span>색인된 메시지</span><strong id="messages">미확인</strong><small>현재 선택한 기기</small></div><div><span>기억 문서</span><strong id="memory">미확인</strong><small>교훈 · 지식 · 결정 · 과제 · 관점</small></div><div><span>확인할 항목</span><strong id="issues">미확인</strong><small>현재 관측 기준</small></div><div><span>관측 기간의 변화</span><strong id="delta">미확인</strong><small id="period">기록이 쌓이면 비교합니다</small></div></section>
