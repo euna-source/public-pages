@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#10140f">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="같은 연구 공방을 여러 시점과 일곱 가지 시간·날씨로 둘러보는 Agent Space 공간 탐색 관문입니다.">
+  <title>살아 있는 연구 공방 · Agent Space</title>
+  <link rel="stylesheet" href="explore.css">
+  <style>
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body { max-width: 100%; line-height: 1.7; word-break: keep-all; overflow-wrap: break-word; }
+    img { max-width: 100%; height: auto; }
+    p { orphans: 2; widows: 2; }
+    button { min-height: 44px; }
+    .scene-media { max-width: 2200px; margin-inline: auto; }
+    @media (max-width: 768px) { .scene-info { max-width: calc(100% - 28px); } }
+    @media (max-width: 480px) { .scene-info h2 { font-size: 25px; } }
+    @media print { .control-deck, .scene-topbar, .scene-info, canvas { display: none; } }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#viewer">공간 탐색으로 건너뛰기</a>
+
+  <main class="experience" id="viewer" data-weather="morning" data-view="center">
+    <section class="scene" aria-labelledby="scene-title" aria-describedby="scene-description">
+      <h1 class="sr-only" id="scene-title">살아 있는 연구 공방</h1>
+      <p class="sr-only" id="scene-description">여러 카메라 위치와 시간, 날씨를 선택하고 드래그와 확대 기능으로 연구 공방을 살펴봅니다.</p>
+
+      <div class="scene-media" id="scene-media" tabindex="0" aria-label="연구 공방. 화살표 키로 화면을 움직이고 더하기와 빼기 버튼으로 확대할 수 있습니다.">
+        <img class="scene-image scene-image-a is-visible" id="scene-image-a" src="../assets/rebuild/day.jpg" alt="왼쪽 창가 독서대, 중앙 원탁, 난로, 곡선 계단, 위층 자료 회랑과 오른쪽 표본실이 이어진 연구 공방의 중앙 시점" draggable="false">
+        <img class="scene-image scene-image-b" id="scene-image-b" src="../assets/rebuild/day.jpg" alt="" draggable="false">
+        <div class="weather-grade" aria-hidden="true"></div>
+        <div class="sky-wash" aria-hidden="true"></div>
+        <div class="light-beam" aria-hidden="true"></div>
+        <div class="lamp-glow lamp-glow-stove" aria-hidden="true"></div>
+        <div class="lamp-glow lamp-glow-desk" aria-hidden="true"></div>
+        <div class="glass-sheen" aria-hidden="true"></div>
+        <canvas id="weather-canvas" class="weather-canvas" aria-hidden="true"></canvas>
+        <canvas id="contact-canvas" class="contact-canvas" aria-hidden="true"></canvas>
+        <div class="contact-label" id="contact-label" hidden>임시 접촉 리그 · 최종 캐릭터 아님</div>
+
+        <div class="scene-topbar">
+          <a class="brand" href="../rebuild/" aria-label="공간 설계 검수판으로 돌아가기">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20H8a4 4 0 0 1-4-4V6m0 0 4 4M4 6l4-4"/></svg>
+            <span>Agent Space</span>
+          </a>
+          <div class="scene-status" aria-live="polite">
+            <span class="status-light" aria-hidden="true"></span>
+            <span id="status-text">아침 · 중앙</span>
+          </div>
+          <button class="info-toggle" id="info-toggle" type="button" aria-expanded="true" aria-controls="scene-info">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 10v7M12 7h.01"/></svg>
+            <span>공간 설명</span>
+          </button>
+        </div>
+
+        <aside class="scene-info" id="scene-info">
+          <p class="info-index" id="view-index">01 / 05</p>
+          <h2 id="view-title">방 전체가 이어지는 중앙</h2>
+          <p id="view-copy">원탁을 중심에 두되 오른쪽 표본실까지 걷는 통로는 비워 두었습니다. 위층 회의와 아래층 개인 작업이 동시에 보입니다.</p>
+          <dl class="continuity-list">
+            <div><dt>고정물</dt><dd id="view-anchor">창가 독서대 · 원탁 · 계단 · 표본실 문</dd></div>
+            <div><dt>가까운 흔적</dt><dd id="view-props">지도 · 지형 모형 · 제도 도구 · 표본통</dd></div>
+          </dl>
+          <p class="gate-note" id="gate-note">승인된 기준 시점</p>
+        </aside>
+
+        <div class="zoom-controls" role="group" aria-label="화면 확대 조작">
+          <button type="button" id="zoom-out" aria-label="축소">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 12h12"/></svg>
+          </button>
+          <button type="button" id="reset-view">맞춤</button>
+          <button type="button" id="zoom-in" aria-label="확대">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12M6 12h12"/></svg>
+          </button>
+        </div>
+
+        <p class="drag-hint"><span aria-hidden="true"></span>드래그해 가까이 살펴보기</p>
+      </div>
+    </section>
+
+    <section class="control-deck" aria-label="공간 탐색 조작">
+      <div class="control-group view-group">
+        <div class="control-heading">
+          <span>카메라 위치</span>
+          <span id="view-quality">기준 시점</span>
+        </div>
+        <div class="control-scroll" role="group" aria-label="카메라 위치 선택">
+          <button class="segment is-active" type="button" data-view-key="center" aria-pressed="true"><span>중앙</span><small>전체 구조</small></button>
+          <button class="segment" type="button" data-view-key="left" aria-pressed="false"><span>왼쪽</span><small>독서대 쪽</small></button>
+          <button class="segment" type="button" data-view-key="right" aria-pressed="false"><span>오른쪽</span><small>창가 맞은편</small></button>
+          <button class="segment" type="button" data-view-key="upper" aria-pressed="false"><span>위층</span><small>회랑 높이</small></button>
+          <button class="segment" type="button" data-view-key="props" aria-pressed="false"><span>소품</span><small>손 닿는 거리</small></button>
+        </div>
+      </div>
+
+      <div class="control-group weather-group">
+        <div class="control-heading">
+          <span>시간과 날씨</span>
+          <button class="ambient-toggle" id="ambient-toggle" type="button" aria-pressed="false">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 7 8 5-8 5V7Z"/></svg>
+            <span>환경 재생</span>
+          </button>
+        </div>
+        <div class="weather-list" role="group" aria-label="시간과 날씨 선택">
+          <button class="weather-chip is-active" type="button" data-weather-key="morning" aria-pressed="true"><span class="weather-mark"></span>아침</button>
+          <button class="weather-chip" type="button" data-weather-key="day" aria-pressed="false"><span class="weather-mark"></span>낮</button>
+          <button class="weather-chip" type="button" data-weather-key="predawn" aria-pressed="false"><span class="weather-mark"></span>새벽</button>
+          <button class="weather-chip" type="button" data-weather-key="sunset" aria-pressed="false"><span class="weather-mark"></span>노을</button>
+          <button class="weather-chip" type="button" data-weather-key="rain" aria-pressed="false"><span class="weather-mark"></span>비</button>
+          <button class="weather-chip" type="button" data-weather-key="snow" aria-pressed="false"><span class="weather-mark"></span>눈</button>
+          <button class="weather-chip" type="button" data-weather-key="firstlight" aria-pressed="false"><span class="weather-mark"></span>첫빛</button>
+        </div>
+      </div>
+
+      <div class="control-group proof-group">
+        <div class="control-heading"><span>움직임 관문</span><span>진단용</span></div>
+        <button class="contact-toggle" id="contact-toggle" type="button" aria-pressed="false">
+          <span class="contact-icon" aria-hidden="true"><i></i><i></i></span>
+          <span><strong>발 접촉과 그림자 보기</strong><small>임시 리그로 중력·보행·광원 방향만 확인</small></span>
+        </button>
+      </div>
+    </section>
+
+    <div class="load-status" id="load-status" role="status" aria-live="polite"></div>
+  </main>
+
+  <noscript><p class="noscript">이 공간 탐색은 JavaScript가 필요합니다. <a href="../rebuild/">정적 공간 설계 검수판 보기</a></p></noscript>
+  <script src="explore.js"></script>
+</body>
+</html>
