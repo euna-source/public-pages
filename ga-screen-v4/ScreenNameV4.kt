@@ -131,8 +131,6 @@ object ScreenNameV4 {
     const val MY_INFO_BIRTH_GENDER = "my_info_birth_gender"
     /** [마이] 내 정보 · 항목별 공개 범위 */
     const val MY_INFO_VISIBILITY = "my_info_visibility"
-    /** [마이] 앱 · 계정 이메일 필수 등록 — 미출시(기획 결정) */
-    const val ACCOUNT_EMAIL_REQUIRED = "account_email_required"
     /** [마이] 커리어 · 관리 홈 */
     const val RESUME_MAIN = "resume_main"
     /** [마이] 커리어 · 경력 입력 */
@@ -265,8 +263,6 @@ object ScreenNameV4 {
     const val ACCOUNT_DELETE_REASON_INPUT = "account_delete_reason_input"
     /** [채티] 협업 제안 · 제안함 목록(웹) */
     const val PROPOSAL_LIST = "proposal_list"
-    /** [디스커버리] 디스커버리 · 갤러리(웹·미출시) */
-    const val DISCOVERY_GALLERY = "discovery_gallery"
     /** [마이] 회원 자격 · 베타 혜택 안내(웹) */
     const val MEMBER_PRIVILEGES = "member_privileges"
     /** [마이] 커리어 · 스킬 입력 */
@@ -355,7 +351,6 @@ object ScreenGroupV4 {
         "my_info_link_register" to "my",
         "my_info_birth_gender" to "my",
         "my_info_visibility" to "my",
-        "account_email_required" to "my",
         "resume_main" to "my",
         "resume_career_form" to "my",
         "resume_education_form" to "my",
@@ -422,7 +417,6 @@ object ScreenGroupV4 {
         "project_chat_list" to "chatty",
         "account_delete_reason_input" to "settings",
         "proposal_list" to "chatty",
-        "discovery_gallery" to "discovery",
         "member_privileges" to "my",
         "resume_skill_form" to "my",
         "resume_language_form" to "my",

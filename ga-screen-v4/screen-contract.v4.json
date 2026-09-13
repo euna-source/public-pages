@@ -33,7 +33,7 @@
   {
    "id": "M3",
    "title": "폼 안의 단계",
-   "test": "커버 만들기·포트폴리오 작성·필터·미디어 편집의 내부 단계나 종류 선택은 같은 과업입니다. form_step_view와 step으로 기록합니다. 가입·로그인의 명시된 인증 체크포인트는 계약에 등록한 각 목적지 이름을 따릅니다."
+   "test": "커버 만들기·포트폴리오 작성·필터·미디어 편집의 내부 단계나 종류 선택은 같은 과업입니다. form_step_view와 step으로 기록합니다. 가입·로그인의 명시된 인증 체크포인트는 계약에 등록한 각 목적지 이름을 따릅니다. (2026-09-14: form_step_view 발송 여부는 이벤트 설계 단계에서 정한다. 이 계약은 화면이 열린 사실만 센다.)"
   },
   {
    "id": "M4",
@@ -1942,7 +1942,6 @@
    "params": {
     "mode": "first_onboarding|edit_profile",
     "source": "web_onboarding|my_profile|deeplink",
-    "step": "profession|nickname|ko_name|tagline|media|profile_image (intro는 profession으로 정규화)",
     "coverTemplateId": "선택한 템플릿 id"
    },
    "platforms": {
@@ -2000,6 +1999,10 @@
     "web": "absent"
    },
    "flow_group": "마이",
+   "params_moved_to_events": {
+    "step": "profession|nickname|ko_name|tagline|media|profile_image (intro는 profession으로 정규화)"
+   },
+   "params_moved_note": "단계 이탈 이벤트",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -2110,8 +2113,7 @@
     "S1"
    ],
    "params": {
-    "mode": "create(first_onboarding)|edit",
-    "initialStep": "keyword|body_images|body_description"
+    "mode": "create(first_onboarding)|edit"
    },
    "platforms": {
     "ios": {
@@ -2160,6 +2162,10 @@
     "web": "absent"
    },
    "flow_group": "마이",
+   "params_moved_to_events": {
+    "initialStep": "keyword|body_images|body_description"
+   },
+   "params_moved_note": "단계 이탈 이벤트",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -3800,12 +3806,6 @@
      "creator",
      "portfolio",
      "project"
-    ],
-    "step": [
-     "main",
-     "region",
-     "profession",
-     "tag"
     ]
    },
    "platforms": {
@@ -3857,6 +3857,15 @@
     "web": "absent"
    },
    "flow_group": "파인더",
+   "params_moved_to_events": {
+    "step": [
+     "main",
+     "region",
+     "profession",
+     "tag"
+    ]
+   },
+   "params_moved_note": "단계 이탈 이벤트",
    "content_group": {
     "mode": "fixed",
     "value": "finder"
@@ -6407,8 +6416,8 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/RequiredBasicInfoActivity.kt:RequiredBasicInfoType:78"
      ],
      "note": "강제 기본정보 관문은 ID·한/영문 이름·직업·세 키워드만 다루며 계정 이메일 강제 등록·인증 목적지는 없다.",
-     "reach": "planned",
-     "reach_note": "기획 결정(2026-09-13): AOS에도 같은 관문을 둔다. 아직 미출시라 구현 시점에 이 이름으로 보낸다."
+     "reach": "unreleased",
+     "reach_note": "기획 결정(2026-09-13): AOS에도 같은 관문을 둔다. 구현·출시 후 이 이름으로 보낸다."
     },
     "web": {
      "status": "absent",
@@ -6424,10 +6433,10 @@
     "category": "real_gap_needs_product_decision"
    },
    "label_before": "계정 · 이메일 강제 등록",
-   "status": "active",
+   "status": "gated",
    "os_state": {
     "ios": "needed",
-    "aos": "needed",
+    "aos": "unreleased",
     "web": "absent"
    },
    "flow_group": "마이",
@@ -6439,7 +6448,7 @@
     "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱 · AOS: 앱(구현 시)",
+    "owner": "iOS: 앱",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -6976,23 +6985,7 @@
     "M1",
     "M3"
    ],
-   "params": {
-    "media_type": [
-     "none",
-     "text",
-     "image",
-     "video",
-     "audio",
-     "pdf",
-     "youtube"
-    ],
-    "step": [
-     "title",
-     "detail",
-     "output",
-     "output_backdrop"
-    ]
-   },
+   "params": {},
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -7046,6 +7039,24 @@
     "web": "absent"
    },
    "flow_group": "마이",
+   "params_moved_to_events": {
+    "media_type": [
+     "none",
+     "text",
+     "image",
+     "video",
+     "audio",
+     "pdf",
+     "youtube"
+    ],
+    "step": [
+     "title",
+     "detail",
+     "output",
+     "output_backdrop"
+    ]
+   },
+   "params_moved_note": "등록 완료 행동 이벤트의 파라미터(media_type) · 단계 이탈 이벤트(step)",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -12375,26 +12386,26 @@
      "reach_evidence": [
       "no ios_rows; rg -i 'gallery' matches only a mock string in CreatorCredentialSectionView.swift:92"
      ],
-     "reach_note": "기획 결정(2026-09-13): iOS는 갤러리를 열지 않는다. 출시 결정이 나면 상태만 바꾼다."
+     "reach_note": "기획 결정(2026-09-13): iOS는 갤러리를 열지 않는다."
     },
     "aos": {
      "status": "yes",
      "evidence": "feature/home/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/home/gallery/GalleryNavGraph.kt:HomeNavKey.Gallery:33",
-     "reach": "gated",
+     "reach": "unreleased",
      "legacy_marker": true,
      "reach_evidence": [
       "aos/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:16 FINDER(GalleryRoute)",
       "aos/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:41-45 MainBottomNavigationSlots excludes FINDER"
      ],
-     "reach_note": "미출시 메뉴. MainTab.kt에서 갤러리(FINDER 슬롯)가 MainBottomNavigationSlots에 들어 있지 않아 하단 탭에 노출되지 않습니다(사용자 확인 2026-09-13: 아직 오픈하지 않은 숨긴 메뉴). 출시되면 슬롯에 추가되는 것으로 열립니다."
+     "reach_note": "미출시 숨김 메뉴(MainTab 하단 탭 목록에 없음). 출시되면 상태만 바꾼다."
     },
     "web": {
      "status": "webview",
      "routes": [
       "/gallery"
      ],
-     "reach": "gated",
-     "reach_note": "/gallery 웹 페이지는 존재하지만 앱이 메뉴를 숨겨 두어 현재 사용자가 도달할 수 없습니다(미출시). 출시 시 앱 웹뷰에서 열립니다."
+     "reach": "unreleased",
+     "reach_note": "AOS 갤러리 호스트가 여는 웹 페이지. 출시 전."
     }
    },
    "params": {},
@@ -12411,11 +12422,11 @@
     "category": "real_gap_needs_product_decision"
    },
    "label_before": "갤러리 · 작품 전시(웹)",
-   "status": "gated",
+   "status": "unreleased",
    "os_state": {
     "ios": "absent",
-    "aos": "needed",
-    "web": "needed"
+    "aos": "unreleased",
+    "web": "unreleased"
    },
    "flow_group": "디스커버리",
    "content_group": {
@@ -12423,10 +12434,10 @@
     "value": "discovery"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "AOS: 앱 · 웹: 앱(브리지)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -24676,6 +24687,42 @@
   },
   "received_gate": "권한·DebugView 접근 확인(9/13) · 맞춤 측정기준 2개 등록 확인(9/13) → 스파이크 빌드 종류 확인(알파/dev) → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct, 디버그 모드 ON) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
  },
+ "event_design_backlog": {
+  "note": "2026-09-14 기획 결정: 작성 폼 내부 단계(step)와 결과물 종류(media_type)는 화면 조회가 아니라 이벤트 설계에서 다룬다. 이유: 어디서 망설이는지는 보고 싶지만 화면 계약에 섞으면 과다 수집·해석 혼선. 이 계약은 '화면이 열렸다'만 센다.",
+  "moved": [
+   {
+    "from": "portfolio_create",
+    "params": [
+     "media_type",
+     "step"
+    ],
+    "to": "등록 완료 행동 이벤트의 파라미터(media_type) · 단계 이탈 이벤트(step)"
+   },
+   {
+    "from": "profile_cover_create",
+    "params": [
+     "step"
+    ],
+    "to": "단계 이탈 이벤트"
+   },
+   {
+    "from": "profile_intro_create",
+    "params": [
+     "initialStep"
+    ],
+    "to": "단계 이탈 이벤트"
+   },
+   {
+    "from": "finder_filter",
+    "params": [
+     "step"
+    ],
+    "to": "단계 이탈 이벤트"
+   }
+  ],
+  "rule_note": "M3의 form_step_view 발송 여부는 이벤트 설계 단계에서 결정한다. 화면 계약은 form_step_view를 요구하지 않는다."
+ },
+ "first_screen_note": "탭·업로드 화면의 기본 선택 화면(inspiration_create, finder_main tab=creator, chat_list)은 진입만으로 찍히므로 수가 크다. 이것은 '그 화면이 열렸다'는 사실이라 그대로 센다. 의도는 전환 화면(portfolio_create 등)과 행동 이벤트로 나눠 본다. 첫 진입 화면을 안 세면 탭 진입 수 자체가 사라진다.",
  "product_decisions": [
   {
    "key": "account_email_required",
@@ -25005,21 +25052,24 @@
    "unobserved": 2
   },
   "aos": {
-   "needed": 143,
+   "needed": 141,
    "legacy": 14,
    "absent": 11,
+   "unreleased": 2,
    "unobserved": 1
   },
   "web": {
    "absent": 138,
-   "needed": 22,
-   "legacy": 9
+   "needed": 21,
+   "legacy": 9,
+   "unreleased": 1
   }
  },
  "status_summary": {
-  "active": 148,
+  "active": 147,
   "retired": 16,
   "reserved": 2,
-  "gated": 3
+  "gated": 3,
+  "unreleased": 1
  }
 }
