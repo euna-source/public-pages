@@ -79,7 +79,7 @@ object ScreenNameV4 {
     const val FINDER_RESULT_PORTFOLIO = "finder_result_portfolio"
     /** [파인더] 파인더 · 프로젝트 검색 결과 */
     const val FINDER_RESULT_PROJECT = "finder_result_project"
-    /** [파인더] 파인더 · 필터 지역 검색 */
+    /** [파인더] 파인더 · 필터 */
     const val FINDER_FILTER = "finder_filter"
     /** [파인더] 파인더 · Shuffle 메인(웹) */
     const val FINDER_SHUFFLE_MAIN = "finder_shuffle_main"

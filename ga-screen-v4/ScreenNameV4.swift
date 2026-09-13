@@ -77,7 +77,7 @@ public enum ScreenNameV4: String, CaseIterable {
     case finder_result_portfolio = "finder_result_portfolio"
     /// [파인더] 파인더 · 프로젝트 검색 결과
     case finder_result_project = "finder_result_project"
-    /// [파인더] 파인더 · 필터 지역 검색
+    /// [파인더] 파인더 · 필터
     case finder_filter = "finder_filter"
     /// [파인더] 파인더 · Shuffle 메인(웹)
     case finder_shuffle_main = "finder_shuffle_main"

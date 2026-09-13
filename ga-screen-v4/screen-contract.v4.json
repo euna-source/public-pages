@@ -3800,11 +3800,11 @@
   },
   {
    "key": "finder_filter",
-   "label": "파인더 · 필터 지역 검색",
+   "label": "파인더 · 필터",
    "stage": "finder",
    "kind": "시트",
    "reserved": false,
-   "definition": "크리에이터 필터 안에서 지역을 검색해 조건으로 담는 페이지. 최대 5개까지 담을 수 있고, 다 채우면 검색창이 잠기며 「모두 추가했습니다.」 안내가 뜬다.",
+   "definition": "파인더 검색 결과의 필터 버튼으로 여는 조건 편집 시트. 직업·지역·해시태그 등 여러 조건을 한 시트 안에서 고르고 「적용」으로 결과를 좁힌다. 각 조건을 누르면 그 조건의 선택 페이지(예: 지역 검색, 최대 5개)로 들어갔다가 시트로 돌아온다. iOS 원본 4행(필터 시트·지역·직업·해시태그 추가)이 이 한 이름에 대응한다.",
    "rationale": "여러 검색 조건을 조합·적용하는 과업입니다. 단일 정렬 옵션과 구분해 채택하며 조건 항목 이동은 내부 단계입니다.",
    "rules": [
     "S2",
@@ -3859,6 +3859,7 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "파인더 · 필터",
+   "when": "필터 시트가 열리는 순간 1회. 직업·지역·해시태그 선택 페이지로 들어가는 것은 같은 과업의 내부 단계라 screen_view를 다시 보내지 않는다(단계 기록 여부는 이벤트 설계에서 결정). 적용·취소는 행동 이벤트.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -3866,14 +3867,7 @@
     "web": "absent"
    },
    "flow_group": "파인더",
-   "params_moved_to_events": {
-    "step": [
-     "main",
-     "region",
-     "profession",
-     "tag"
-    ]
-   },
+   "params_moved_to_events": {},
    "params_moved_note": "단계 이탈 이벤트",
    "content_group": {
     "mode": "fixed",
