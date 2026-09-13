@@ -9500,7 +9500,7 @@
    "kind": "화면",
    "reserved": false,
    "definition": "계정·알림·인맥 관리·북마크·콘텐츠와 고객센터·로그아웃이 늘어선 설정 첫 화면으로, 맨 아래에 사업자 정보와 이용약관·개인정보 처리방침·앱 버전이 붙는다. Muse 등급인 사용자에게만 맨 위에 Muse 특권 안내 섹션이 더 보인다.",
-   "rationale": "계정·알림·인맥·북마크 설정의 출발점입니다. AOS my_page_menu와 iOS 162행이 같은 허브이므로 settings_home으로 통일합니다.",
+   "rationale": "계정·알림·인맥·북마크 설정의 출발점입니다. AOS my_page_menu와 iOS 162행이 같은 허브이므로 settings_main으로 통일합니다.",
    "rules": [
     "S1"
    ],
