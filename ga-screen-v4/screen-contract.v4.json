@@ -24674,7 +24674,7 @@
    "aggregated": "not_started",
    "improved": "not_started"
   },
-  "received_gate": "권한 2건(알파 Firebase 열람, GA4 알파 속성 편집자) → 맞춤 측정기준 3개 등록 → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
+  "received_gate": "권한: 열람 확인(9/13) · 편집자 필요 → 맞춤 측정기준 2개 등록(previous_screen·screen_schema_version) → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
  },
  "product_decisions": [
   {
@@ -24803,47 +24803,79 @@
   "properties": "알파 속성 먼저, 운영 속성은 운영 적용 전.",
   "custom_dimensions": [
    {
-    "name": "screen_name",
-    "scope": "event",
-    "param": "screen_name",
-    "why": "웹 page_view의 화면 이름을 앱 screen_view와 한 열로"
-   },
-   {
     "name": "previous_screen",
     "scope": "event",
     "param": "previous_screen",
-    "why": "유입 직전 화면"
+    "why": "유입 직전 화면. 앱 screen_view 파라미터라 등록 없이는 보고서·탐색에서 못 봄",
+    "needed_now": true
    },
    {
     "name": "screen_schema_version",
     "scope": "event",
     "param": "screen_schema_version",
-    "why": "새 계약 빌드만 거르는 필터"
+    "why": "새 계약 빌드만 거르는 필터",
+    "needed_now": true
+   },
+   {
+    "name": "screen_name",
+    "scope": "event",
+    "param": "screen_name",
+    "why": "웹 page_view의 화면 이름용. 앱 screen_view의 screen_name은 내장 측정기준이라 등록 불필요",
+    "needed_now": false,
+    "defer_reason": "알파 속성에 웹 스트림이 없다. 웹 스트림을 붙일 때 등록하거나, 웹이 page_title에 screen_name을 넣어 내장 '페이지 제목 및 화면 이름'으로 합치는 방식을 검토"
    }
   ],
   "builtin_no_register": [
-   "content_group",
+   "screen_name(앱 screen_view)",
    "screen_class",
-   "screen_name(앱 screen_view)"
+   "content_group"
   ],
   "limit_note": "이벤트 범위 맞춤 측정기준은 속성당 50개. 등록 전 남은 수를 확인한다.",
   "access": [
    {
-    "item": "알파 Firebase 프로젝트 열람",
-    "status": "없음(2026-09-12 확인)",
-    "owner": "미정"
+    "item": "GA4 알파 속성 열람(서비스 계정)",
+    "status": "확인(2026-09-13, Admin API 200)",
+    "owner": "기획"
    },
    {
-    "item": "GA4 알파 속성 편집자",
-    "status": "미확인",
-    "owner": "미정"
+    "item": "GA4 알파 속성 편집자(맞춤 측정기준 등록용)",
+    "status": "서비스 계정은 뷰어라 API 등록 403. 사용자 계정으로 UI 등록 또는 서비스 계정 편집자 승격 필요",
+    "owner": "기획"
+   },
+   {
+    "item": "알파 Firebase 프로젝트(DebugView)",
+    "status": "미확인 — GA4 속성은 Firebase 기본 계정 소속이라 같은 프로젝트로 추정, 콘솔 접근은 사람이 확인",
+    "owner": "기획"
    },
    {
     "item": "두 앱 저장소 SSH",
     "status": "거절(2026-09-12)",
     "owner": "미정"
    }
-  ]
+  ],
+  "property": {
+   "id": "properties/544271522",
+   "display_name": "cre8orclub-alpha-5323c",
+   "account": "accounts/333244863 (Default Account for Firebase)",
+   "time_zone": "Etc/GMT-9 (KST)",
+   "streams": [
+    "iOS com.ratel.Cre8orClub.Alpha",
+    "Android com.heyratel.cre8orclub.alpha"
+   ],
+   "web_stream": "없음",
+   "custom_dimensions": 0,
+   "custom_metrics": 0,
+   "verified_on": "2026-09-13",
+   "verified_by": "Admin API v1beta, 서비스 계정 firebase-adminsdk-7xew0@cre8orclub-57889 (뷰어)"
+  },
+  "not_a_dimension": [
+   "screen_visit_id — 값이 방문마다 달라 측정기준으로 등록하지 않는다(카디널리티). BigQuery 대조용."
+  ],
+  "registration_attempt": {
+   "on": "2026-09-13",
+   "method": "Admin API customDimensions.create",
+   "result": "403 PERMISSION_DENIED (서비스 계정 뷰어)"
+  }
  },
  "content_group_policy": {
   "rule": "1depth는 screen_name에 넣지 않는다. 앱은 screen_class, 세 플랫폼 공통 content_group에 아래 7개 코드 중 하나를 싣는다. 화면마다 mode가 fixed면 상수표의 값, active_tab이면 화면이 뜬 순간의 활성 하단 탭 코드를 보낸다.",
