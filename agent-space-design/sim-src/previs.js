@@ -16,7 +16,7 @@ const calibration=query.get('calibrate')==='1';
 
 // All actors use metres in one perspective camera. Screen anchors only choose
 // where a camera ray meets a support plane; they never set actor scale.
-const CAMERA={fov:47,position:[0,1.68,11.4],target:[0,1.62,-5.8],near:.1,far:80};
+const CAMERA={fov:47,position:[0,1.68,11.4],target:[0,.60,-5.8],near:.1,far:80};
 const CAST={
  howl:{name:'하울',height:1.78,foot:[.405,.755],support:0,look:[-2.8,.76,9.0]},
  kitty:{name:'키티',height:.72,foot:[.905,.845],support:0,look:[5.0,.62,10.4]},
