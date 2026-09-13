@@ -3492,7 +3492,7 @@
   },
   {
    "key": "finder_search",
-   "label": "파인더 · 검색 입력",
+   "label": "파인더 · 검색 모드(입력·추천·최근·인기)",
    "stage": "finder",
    "kind": "화면",
    "reserved": false,
@@ -3544,6 +3544,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "label_before": "파인더 · 검색 입력",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -3556,9 +3557,9 @@
     "value": "finder"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "trigger": "검색창을 눌러 검색 모드로 전환되며 추천 키워드·인기 검색어·최근 검색어 화면이 나타나는 순간 1회. 결과를 보다가 검색창을 다시 눌러 열어도 새 방문 1회.",
+    "no_trigger": "키보드 포커스만 잡히고 화면이 안 바뀐 경우, 입력 중 글자 변화, 추천·최근 항목 스크롤.",
+    "expected": "파인더 진입 → 검색창 탭(1) → 검색어 제출 → 결과(finder_result_creator 1) → 검색창 다시 탭(finder_search +1).",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"

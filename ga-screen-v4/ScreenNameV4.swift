@@ -69,7 +69,7 @@ public enum ScreenNameV4: String, CaseIterable {
     case media_viewer = "media_viewer"
     /// [파인더] 파인더 · 홈
     case finder_main = "finder_main"
-    /// [파인더] 파인더 · 검색 입력
+    /// [파인더] 파인더 · 검색 모드(입력·추천·최근·인기)
     case finder_search = "finder_search"
     /// [파인더] 파인더 · 크리에이터 검색 결과
     case finder_result_creator = "finder_result_creator"

@@ -71,7 +71,7 @@ object ScreenNameV4 {
     const val MEDIA_VIEWER = "media_viewer"
     /** [파인더] 파인더 · 홈 */
     const val FINDER_MAIN = "finder_main"
-    /** [파인더] 파인더 · 검색 입력 */
+    /** [파인더] 파인더 · 검색 모드(입력·추천·최근·인기) */
     const val FINDER_SEARCH = "finder_search"
     /** [파인더] 파인더 · 크리에이터 검색 결과 */
     const val FINDER_RESULT_CREATOR = "finder_result_creator"
