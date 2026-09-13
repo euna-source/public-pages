@@ -13332,12 +13332,12 @@
    "legacy_keys": [],
    "definition": "팔로잉이 8명 미만인 회원이 /discovery/network 에 들어왔을 때 실제 다이얼 대신 서는 권유 화면입니다. 목(mock) 좌석 12장으로 채운 다이얼이 스스로 돌며 «다이얼을 돌리면서 팔로잉을 만나보세요 → 8명의 팔로잉을 만들면 시작돼요 → 8명을 팔로우해 다이얼을 돌려봐요» 세 단계 문구를 얹고, 마지막 단계에만 「첫 팔로우 시작」(팔로잉 0명) 또는 「N명 더 팔로우 하기」 버튼이 서서 네이티브 파인더 탭(tab/finder)으로 보냅니다. 영상은 없습니다 — 안내 매체는 webp 목 좌석으로 굴리는 실제 다이얼 물리(orbitPhysics) 한 벌이며, «영상» 이라는 낱말은 useDialGateRefreshOnReturn.ts 주석에만 남은 옛 흔적입니다. 헤더 제목은 다이얼 홈과 같은 «다이얼» 입니다.",
    "rationale": "2026-09-13 사용자 지시로 워크플로(소스 대조)를 거쳐 새로 정의했습니다.",
-   "when": "웹이 followQueries.myFollowingCount 를 받아 followingCount < REQUIRED_FOLLOW_COUNT(8) 이면 DialShowcasePage 를 그리는 순간입니다. 파인더에서 팔로우하고 웹뷰로 돌아오면(webviewVisible true) 팔로잉 수·판을 다시 물어 8명을 넘겼으면 같은 라우트에서 dial_home 으로 스스로 갈립니다.",
+   "when": "웹이 followQueries.myFollowingCount 를 받아 followingCount < REQUIRED_FOLLOW_COUNT(8) 이면 DialShowcasePage 를 그리는 순간입니다. 파인더에서 팔로우하고 웹뷰로 돌아오면(webviewVisible true) 팔로잉 수·판을 다시 물어 8명을 넘겼으면 같은 라우트에서 dial_main 으로 스스로 갈립니다.",
    "platforms": {
     "ios": {
      "status": "absent",
      "reach": "gated",
-     "reach_note": "네이티브 진입은 dial_home 과 같은 NetworkBrowseView(웹뷰 하나)이고, 이 화면이 서는지는 웹이 서버 팔로잉 수로 가릅니다(게이트: 팔로잉 < 8). 네이티브는 어느 갈래가 섰는지 모릅니다 — 웹이 보내는 것은 changeHeader('다이얼') 뿐이라 iOS 화면 이름으로는 구분할 수 없습니다."
+     "reach_note": "네이티브 진입은 dial_main 과 같은 NetworkBrowseView(웹뷰 하나)이고, 이 화면이 서는지는 웹이 서버 팔로잉 수로 가릅니다(게이트: 팔로잉 < 8). 네이티브는 어느 갈래가 섰는지 모릅니다 — 웹이 보내는 것은 changeHeader('다이얼') 뿐이라 iOS 화면 이름으로는 구분할 수 없습니다."
     },
     "aos": {
      "status": "absent",
@@ -13350,7 +13350,7 @@
       "/discovery/network"
      ],
      "reach": "gated",
-     "reach_note": "라우트는 dial_home 과 같습니다. 갈래 조건은 followingCount.followingCount < 8 (index.tsx:64, constants.ts:120). 문구 3단계는 showcaseCopy.ts:23-53, 버튼 라벨은 showcaseFollowButtonLabel(showcaseCopy.ts:62-63): 0명이면 '첫 팔로우 시작', 아니면 `${8-followingCount}명 더 팔로우 하기`. 목 좌석 이미지는 assets/showcase/seat-1~16.webp, 이름·직업 목은 showcaseSeats.ts. 현재 getScreenNameFromRoute 가 null 이라 screen_view 를 보내지 않습니다."
+     "reach_note": "라우트는 dial_main 과 같습니다. 갈래 조건은 followingCount.followingCount < 8 (index.tsx:64, constants.ts:120). 문구 3단계는 showcaseCopy.ts:23-53, 버튼 라벨은 showcaseFollowButtonLabel(showcaseCopy.ts:62-63): 0명이면 '첫 팔로우 시작', 아니면 `${8-followingCount}명 더 팔로우 하기`. 목 좌석 이미지는 assets/showcase/seat-1~16.webp, 이름·직업 목은 showcaseSeats.ts. 현재 getScreenNameFromRoute 가 null 이라 screen_view 를 보내지 않습니다."
     }
    },
    "params": {
@@ -13395,9 +13395,9 @@
     "S1"
    ],
    "legacy_keys": [],
-   "definition": "다이얼에서 좌석 하나를 눌러 «파도타기» 로 파고든 화면입니다. 그 크리에이터가 가운데(기준 인물)에 서고 그가 팔로우한 크리에이터들이 둘레에 돕니다. 같은 방식으로 계속 파고들 수 있고, «처음으로»(BackToStartButton) 버튼으로 내 판(dial_home)까지 한 번에 되돌아오거나 뒤로가기·스와이프로 한 단계씩 돌아옵니다. 가운데 얼굴을 누르면 네이티브 프로필(profile?uid=)로 나가고, 위성을 꾹 누르면 네이티브 프로필 프리뷰(openOverlay profilePreview)가 뜹니다. 헤더 제목은 여전히 «다이얼» 이고 헤더에 그 사람을 올리지 않습니다(changeHeaderUser 미사용). 팔로우한 크리에이터가 없는 사람은 파고들지 못하고 토스트 '팔로우한 크리에이터가 없어 볼 수 없어요' 가 뜹니다.",
+   "definition": "다이얼에서 좌석 하나를 눌러 «파도타기» 로 파고든 화면입니다. 그 크리에이터가 가운데(기준 인물)에 서고 그가 팔로우한 크리에이터들이 둘레에 돕니다. 같은 방식으로 계속 파고들 수 있고, «처음으로»(BackToStartButton) 버튼으로 내 판(dial_main)까지 한 번에 되돌아오거나 뒤로가기·스와이프로 한 단계씩 돌아옵니다. 가운데 얼굴을 누르면 네이티브 프로필(profile?uid=)로 나가고, 위성을 꾹 누르면 네이티브 프로필 프리뷰(openOverlay profilePreview)가 뜹니다. 헤더 제목은 여전히 «다이얼» 이고 헤더에 그 사람을 올리지 않습니다(changeHeaderUser 미사용). 팔로우한 크리에이터가 없는 사람은 파고들지 못하고 토스트 '팔로우한 크리에이터가 없어 볼 수 없어요' 가 뜹니다.",
    "rationale": "2026-09-13 사용자 지시로 워크플로(소스 대조)를 거쳐 새로 정의했습니다.",
-   "when": "웹이 navigate(`/discovery/network/${uid}`) 로 URL 에 uid 를 얹은 순간입니다(좌석 누름 → 사전 조회 성공 후). 파고든 uid 를 보여줄 수 없으면 replace 로 /discovery/network(dial_home)로 되돌립니다.",
+   "when": "웹이 navigate(`/discovery/network/${uid}`) 로 URL 에 uid 를 얹은 순간입니다(좌석 누름 → 사전 조회 성공 후). 파고든 uid 를 보여줄 수 없으면 replace 로 /discovery/network(dial_main)로 되돌립니다.",
    "platforms": {
     "ios": {
      "status": "absent",
