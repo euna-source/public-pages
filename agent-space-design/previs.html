@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#171a16">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="승인된 아침 연구 공방에서 다섯 캐릭터의 접지, 가림, 시선과 비동기 생활 연기를 확인하는 실시간 동작 프리비즈입니다.">
+  <title>아침 공방 동작 프리비즈 · Agent Space</title>
+  <link rel="stylesheet" href="previs.css">
+</head>
+<body>
+  <a class="skip-link" href="#motion-stage">동작 장면으로 건너뛰기</a>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="back-link" href="explore/" aria-label="공간 탐색으로 돌아가기">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20H8a4 4 0 0 1-4-4V6m0 0 4 4M4 6l4-4"/></svg>
+        <span>공간 탐색</span>
+      </a>
+      <div class="title-lockup"><p>동작 설계 검수본</p><h1>아침 공방이 숨 쉬는가</h1></div>
+      <span class="cost-lock" aria-label="이번 프리비즈에 fal.ai 유료 호출 없음"><i aria-hidden="true"></i>Fal 0건</span>
+    </header>
+    <section class="viewer" id="motion-stage" aria-labelledby="stage-title">
+      <h2 class="sr-only" id="stage-title">다섯 캐릭터의 실시간 생활 연기</h2>
+      <div class="stage" id="stage" tabindex="0" aria-label="아침 연구 공방. 다섯 캐릭터가 서로 다른 리듬으로 일합니다. 스페이스바로 재생과 정지를 바꿀 수 있습니다.">
+        <div class="world" id="world">
+          <img class="room" src="assets/explore/weather-morning.jpg" alt="창가 독서대, 중앙 원탁, 난로, 곡선 계단과 위층 회의실이 이어진 아침 연구 공방">
+          <div class="sun-volume" aria-hidden="true"></div>
+          <div class="render-layer" id="render-layer" aria-hidden="true"></div>
+          <div class="occlusion occlusion-desk" aria-hidden="true"></div>
+          <div class="occlusion occlusion-table" aria-hidden="true"></div>
+          <div class="occlusion occlusion-right" aria-hidden="true"></div>
+          <div class="dust-light" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="stage-head">
+          <span class="live-mark"><i aria-hidden="true"></i>실시간 프리비즈</span>
+          <span id="elapsed">00:00 / 03:00</span>
+        </div>
+        <div class="beat-card" aria-live="polite">
+          <p id="beat-kicker">하울 · 01 / 05</p>
+          <strong id="beat-label">읽으며 호흡하기</strong>
+          <span id="beat-copy">손보다 시선이 먼저 문장에 머뭅니다.</span>
+        </div>
+        <div class="loading" id="loading" role="status" aria-live="polite">기존 캐릭터 자산을 불러오는 중 · 0 / 4</div>
+      </div>
+    </section>
+    <section class="control-rail" aria-label="프리비즈 조작">
+      <div class="playback">
+        <button class="primary-control" id="play-toggle" type="button" aria-pressed="false">
+          <svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12"/></svg>
+          <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6V6Z"/></svg>
+          <span>움직임 정지</span>
+        </button>
+        <p><strong>먼저 볼 것</strong><span>발이 미끄러지지 않는지, 가구 뒤에서 몸이 자연스럽게 가려지는지, 모두 한꺼번에 움직이지 않는지 봅니다.</span></p>
+      </div>
+      <div class="focus-group">
+        <p>가까이 보기</p>
+        <div class="focus-list" role="group" aria-label="가까이 볼 캐릭터 선택">
+          <button type="button" data-focus="all" aria-pressed="true">전체</button>
+          <button type="button" data-focus="howl" aria-pressed="false">하울</button>
+          <button type="button" data-focus="kitty" aria-pressed="false">키티</button>
+          <button type="button" data-focus="kuromi" aria-pressed="false">쿠로미</button>
+          <button type="button" data-focus="chococat" aria-pressed="false">초코캣</button>
+          <button type="button" data-focus="dust" aria-pressed="false">스스와타리</button>
+        </div>
+      </div>
+      <aside class="scope-note"><span>이 화면의 범위</span><p>기존 3D 캐릭터로 동작의 무게와 타이밍을 확인합니다. 외형·재질의 최종 교체는 이 움직임이 통과한 뒤 한 번만 생성합니다.</p></aside>
+    </section>
+  </main>
+  <noscript><p class="noscript">동작 프리비즈에는 JavaScript가 필요합니다. <a href="explore/">정지 공간 보기</a></p></noscript>
+  <script src="previs.js"></script>
+</body>
+</html>
