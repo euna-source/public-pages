@@ -39,7 +39,7 @@
         <div class="lamp-glow lamp-glow-desk" aria-hidden="true"></div>
         <div class="glass-sheen" aria-hidden="true"></div>
         <canvas id="weather-canvas" class="weather-canvas" aria-hidden="true"></canvas>
-        <canvas id="contact-canvas" class="contact-canvas" aria-hidden="true"></canvas>
+        <canvas id="contact-canvas" class="contact-canvas" aria-hidden="true" hidden></canvas>
         <div class="contact-label" id="contact-label" hidden>임시 접촉 리그 · 최종 캐릭터 아님</div>
 
         <div class="scene-topbar">
@@ -66,6 +66,7 @@
             <div><dt>가까운 흔적</dt><dd id="view-props">지도 · 지형 모형 · 제도 도구 · 표본통</dd></div>
           </dl>
           <p class="gate-note" id="gate-note">승인된 기준 시점</p>
+          <p class="character-status">현재 공개본은 공간·환경 관문입니다. 실제 캐릭터 모션은 바닥 마스크와 가구 가림을 통과하기 전까지 배치하지 않습니다.</p>
         </aside>
 
         <div class="zoom-controls" role="group" aria-label="화면 확대 조작">
@@ -116,11 +117,11 @@
         </div>
       </div>
 
-      <div class="control-group proof-group">
+      <div class="control-group proof-group" hidden>
         <div class="control-heading"><span>움직임 관문</span><span>진단용</span></div>
-        <button class="contact-toggle" id="contact-toggle" type="button" aria-pressed="false">
+        <button class="contact-toggle" id="contact-toggle" type="button" aria-pressed="false" disabled>
           <span class="contact-icon" aria-hidden="true"><i></i><i></i></span>
-          <span><strong>발 접촉과 그림자 보기</strong><small>임시 리그로 중력·보행·광원 방향만 확인</small></span>
+          <span><strong>캐릭터 모션 제작 전</strong><small>실제 바닥·가구 접촉 검증 뒤 공개</small></span>
         </button>
       </div>
     </section>

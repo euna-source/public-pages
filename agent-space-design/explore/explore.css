@@ -544,6 +544,15 @@ button { color: inherit; }
   --beam-alpha: .2; --lamp-alpha: .72; --light-angle: -24deg; --weather-dot: #d7a298;
 }
 
+.experience[data-environment-plate="true"] {
+  --scene-filter: none;
+  --grade-alpha: 0;
+  --sky-alpha: 0;
+  --beam-alpha: 0;
+  --lamp-alpha: 0;
+  --glass-alpha: 0;
+}
+
 @media (max-width: 1080px) {
   .control-deck { grid-template-columns: 1fr 1fr; }
   .proof-group { grid-column: 1 / -1; border-top: 1px solid var(--line); }
@@ -561,7 +570,7 @@ button { color: inherit; }
   .scene-info h2 { font-size: 25px; }
   .drag-hint { bottom: 90px; }
   .zoom-controls { left: 14px; bottom: 22px; }
-  .contact-label { bottom: 76px; max-width: 220px; text-align: center; }
+  .contact-label { top: 70px; bottom: auto; max-width: 220px; text-align: center; }
   .control-deck { display: block; min-height: auto; }
   .control-group { padding: 18px 14px; border-right: 0; border-bottom: 1px solid var(--line); }
   .control-group:last-child { padding-bottom: calc(18px + var(--safe-bottom)); border-bottom: 0; }

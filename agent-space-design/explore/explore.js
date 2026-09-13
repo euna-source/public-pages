@@ -2,6 +2,15 @@ const views = {
   center: {
     src: "../assets/rebuild/day.jpg",
     rainSrc: "../assets/rebuild/evening.jpg",
+    weatherSrc: {
+      morning: "../assets/explore/weather-morning.jpg",
+      day: "../assets/rebuild/day.jpg",
+      predawn: "../assets/explore/weather-predawn.jpg",
+      sunset: "../assets/explore/weather-sunset.jpg",
+      rain: "../assets/rebuild/evening.jpg",
+      snow: "../assets/explore/weather-snow.jpg",
+      firstlight: "../assets/explore/weather-firstlight.jpg",
+    },
     alt: "왼쪽 창가 독서대, 중앙 원탁, 난로, 곡선 계단, 위층 자료 회랑과 오른쪽 표본실이 이어진 연구 공방의 중앙 시점",
     title: "방 전체가 이어지는 중앙",
     copy: "원탁을 중심에 두되 오른쪽 표본실까지 걷는 통로는 비워 두었습니다. 위층 회의와 아래층 개인 작업이 동시에 보입니다.",
@@ -52,8 +61,8 @@ const weather = {
   day: { label: "낮", particle: "dust", shadow: [-16, 7] },
   predawn: { label: "새벽", particle: "mist", shadow: [8, 5] },
   sunset: { label: "노을", particle: "dust", shadow: [39, 14] },
-  rain: { label: "비", particle: "rain", shadow: [-10, 5] },
-  snow: { label: "눈", particle: "snow", shadow: [-7, 4] },
+  rain: { label: "비", particle: "mist", shadow: [-10, 5] },
+  snow: { label: "눈", particle: "mist", shadow: [-7, 4] },
   firstlight: { label: "첫빛", particle: "mist", shadow: [-42, 13] },
 };
 
@@ -82,6 +91,7 @@ let autoplayTimer = 0;
 let toastTimer = 0;
 let imageRequestGeneration = 0;
 let displayedViewKey = "center";
+const contactSupportedView = "center";
 
 if (compactLayout.matches) {
   info.hidden = true;
@@ -96,6 +106,7 @@ function announce(message) {
 
 function sourceFor(key, environment) {
   const selected = views[key];
+  if (selected.weatherSrc?.[environment]) return selected.weatherSrc[environment];
   return environment === "rain" && selected.rainSrc ? selected.rainSrc : selected.src;
 }
 
@@ -118,14 +129,18 @@ function resetTransform() {
 
 function updateInfo() {
   const selected = views[viewKey];
+  const hasEnvironmentPlate = Boolean(selected.weatherSrc?.[weatherKey]);
   const index = Object.keys(views).indexOf(viewKey) + 1;
+  experience.dataset.environmentPlate = String(hasEnvironmentPlate);
   document.querySelector("#view-index").textContent = `${String(index).padStart(2, "0")} / 05`;
   document.querySelector("#view-title").textContent = selected.title;
   document.querySelector("#view-copy").textContent = selected.copy;
   document.querySelector("#view-anchor").textContent = selected.anchor;
   document.querySelector("#view-props").textContent = selected.props;
-  document.querySelector("#gate-note").textContent = selected.quality;
-  document.querySelector("#view-quality").textContent = selected.quality;
+  document.querySelector("#gate-note").textContent = hasEnvironmentPlate
+    ? `${selected.quality} · 실제 환경 플레이트`
+    : `${selected.quality} · 다각도 환경 합성`;
+  document.querySelector("#view-quality").textContent = hasEnvironmentPlate ? "실제 환경 플레이트" : "환경 합성 프리뷰";
   statusText.textContent = `${weather[weatherKey].label} · ${document.querySelector(`[data-view-key="${viewKey}"] span`).textContent}`;
 }
 
@@ -178,6 +193,10 @@ function setPressed(selector, key, datasetKey) {
 
 function chooseView(key) {
   if (!views[key] || key === viewKey) return;
+  if (contactWalker?.active && key !== contactSupportedView) {
+    contactWalker.setActive(false);
+    announce("접촉 리그는 중앙 시점의 비어 있는 바닥에서만 검증합니다");
+  }
   viewKey = key;
   experience.dataset.view = key;
   setPressed("[data-view-key]", key, "viewKey");
@@ -416,6 +435,10 @@ class ContactWalker {
     this.drawCosts = [];
     this.previousFrame = 0;
     this.contactSamples = [];
+    this.boneErrors = [];
+    this.overextensions = 0;
+    this.firstOverextension = null;
+    this.kneeFlips = 0;
     this.previousContact = null;
     this.resizeObserver = new ResizeObserver(() => this.resize());
     this.resizeObserver.observe(media);
@@ -444,6 +467,10 @@ class ContactWalker {
       this.intervals = [];
       this.drawCosts = [];
       this.contactSamples = [];
+      this.boneErrors = [];
+      this.overextensions = 0;
+      this.firstOverextension = null;
+      this.kneeFlips = 0;
       this.previousContact = null;
       this.loop(this.started);
     } else {
@@ -466,38 +493,59 @@ class ContactWalker {
     this.frame = requestAnimationFrame((next) => this.loop(next));
   }
 
-  leg(context, hip, foot, forward, stroke) {
-    const upper = 43;
-    const lower = 44;
+  leg(context, hip, foot, forward, stroke, scale) {
+    const upper = 60 * scale;
+    const lower = 61 * scale;
     const dx = foot.x - hip.x;
     const dy = foot.y - hip.y;
-    const distance = Math.min(upper + lower - .01, Math.max(8, Math.hypot(dx, dy)));
+    const rawDistance = Math.hypot(dx, dy);
+    const minimum = Math.abs(upper - lower) + .01;
+    const maximum = upper + lower - .01;
+    const distance = Math.min(maximum, Math.max(minimum, rawDistance));
+    if (rawDistance > maximum || rawDistance < minimum) {
+      this.overextensions += 1;
+      this.firstOverextension ??= {
+        raw_distance_px: Number(rawDistance.toFixed(3)),
+        minimum_px: Number(minimum.toFixed(3)),
+        maximum_px: Number(maximum.toFixed(3)),
+      };
+    }
     const baseAngle = Math.atan2(dy, dx);
     const kneeOffset = Math.acos(Math.max(-1, Math.min(1, (upper * upper + distance * distance - lower * lower) / (2 * upper * distance))));
     const kneeAngle = baseAngle - kneeOffset * forward;
     const knee = { x: hip.x + Math.cos(kneeAngle) * upper, y: hip.y + Math.sin(kneeAngle) * upper };
+    const solvedFoot = rawDistance === distance ? foot : {
+      x: hip.x + Math.cos(baseAngle) * distance,
+      y: hip.y + Math.sin(baseAngle) * distance,
+    };
+    const upperError = Math.abs(Math.hypot(knee.x - hip.x, knee.y - hip.y) - upper);
+    const lowerError = Math.abs(Math.hypot(solvedFoot.x - knee.x, solvedFoot.y - knee.y) - lower);
+    this.boneErrors.push(Math.max(upperError, lowerError));
+    if (this.boneErrors.length > 1800) this.boneErrors.shift();
+    const bend = (knee.x - hip.x) * (solvedFoot.y - hip.y) - (knee.y - hip.y) * (solvedFoot.x - hip.x);
+    if (Math.sign(bend || forward) !== Math.sign(forward)) this.kneeFlips += 1;
     context.strokeStyle = stroke;
-    context.lineWidth = 8;
+    context.lineWidth = 8 * scale;
     context.lineCap = "round";
     context.lineJoin = "round";
     context.beginPath();
     context.moveTo(hip.x, hip.y);
     context.lineTo(knee.x, knee.y);
-    context.lineTo(foot.x, foot.y);
+    context.lineTo(solvedFoot.x, solvedFoot.y);
     context.stroke();
-    context.lineWidth = 5;
+    context.lineWidth = 5 * scale;
     context.beginPath();
-    context.moveTo(foot.x - 2, foot.y);
-    context.lineTo(foot.x + 13, foot.y);
+    context.moveTo(solvedFoot.x - 2 * scale, solvedFoot.y);
+    context.lineTo(solvedFoot.x + 13 * scale * forward, solvedFoot.y);
     context.stroke();
   }
 
-  arm(context, shoulder, phase, direction, stroke) {
-    const swing = Math.sin(phase * Math.PI * 2) * 13 * direction;
-    const elbow = { x: shoulder.x + swing * .48, y: shoulder.y + 30 };
-    const hand = { x: shoulder.x - swing * .32, y: shoulder.y + 58 - Math.abs(swing) * .12 };
+  arm(context, shoulder, phase, direction, stroke, scale) {
+    const swing = Math.sin(phase * Math.PI * 2) * 13 * scale * direction;
+    const elbow = { x: shoulder.x + swing * .48, y: shoulder.y + 30 * scale };
+    const hand = { x: shoulder.x - swing * .32, y: shoulder.y + 58 * scale - Math.abs(swing) * .12 };
     context.strokeStyle = stroke;
-    context.lineWidth = 6;
+    context.lineWidth = 6 * scale;
     context.lineCap = "round";
     context.lineJoin = "round";
     context.beginPath();
@@ -510,31 +558,31 @@ class ContactWalker {
   draw(time) {
     const context = this.context;
     context.clearRect(0, 0, this.width, this.height);
-    const leftBound = this.width * .18;
-    const rightBound = this.width * .73;
+    const scale = Math.max(.58, Math.min(1, this.width / 960));
+    const leftBound = this.width * (this.width < 720 ? .08 : .14);
+    const rightBound = this.width * (this.width < 720 ? .46 : .48);
     const route = rightBound - leftBound;
-    const speed = Math.max(48, this.width * .055);
+    const speed = Math.max(18, this.width * .035);
     const rawDistance = time * speed;
     const routeCycle = Math.floor(rawDistance / route);
     const forward = routeCycle % 2 === 0;
     const distance = rawDistance % route;
     const rootX = forward ? leftBound + distance : rightBound - distance;
     const direction = forward ? 1 : -1;
-    const ground = this.height * (this.width < 720 ? .74 : .79);
-    const halfStep = Math.max(32, Math.min(46, this.width * .034));
-    const travel = forward ? distance : route - distance;
+    const ground = this.height * (this.width < 720 ? .86 : .84);
+    const halfStep = 22 * scale;
+    const travel = distance;
     const stepNumber = Math.floor(travel / halfStep);
     const u = (travel % halfStep) / halfStep;
     const ease = u * u * (3 - 2 * u);
-    const segmentOrigin = (forward ? leftBound : leftBound) + stepNumber * halfStep;
-    const stanceWorld = segmentOrigin + halfStep * .5;
-    const swingWorld = segmentOrigin - halfStep * .5 + ease * halfStep * 2;
+    const stanceWorld = stepNumber * halfStep + halfStep * .5;
+    const swingWorld = stepNumber * halfStep - halfStep * .5 + ease * halfStep * 2;
     const leftStance = stepNumber % 2 === 0;
     const leftWorld = leftStance ? stanceWorld : swingWorld;
     const rightWorld = leftStance ? swingWorld : stanceWorld;
-    const mapX = (worldX) => forward ? worldX : leftBound + rightBound - worldX;
-    const leftFoot = { x: mapX(leftWorld), y: ground - (leftStance ? 0 : Math.sin(Math.PI * u) * 17) };
-    const rightFoot = { x: mapX(rightWorld), y: ground - (leftStance ? Math.sin(Math.PI * u) * 17 : 0) };
+    const mapX = (worldX) => forward ? leftBound + worldX : rightBound - worldX;
+    const leftFoot = { x: mapX(leftWorld), y: ground - (leftStance ? 0 : Math.sin(Math.PI * u) * 17 * scale) };
+    const rightFoot = { x: mapX(rightWorld), y: ground - (leftStance ? Math.sin(Math.PI * u) * 17 * scale : 0) };
     const contactKey = `${routeCycle}:${stepNumber}`;
     const stanceFoot = leftStance ? leftFoot : rightFoot;
     if (this.previousContact?.key === contactKey) {
@@ -542,47 +590,47 @@ class ContactWalker {
       if (this.contactSamples.length > 900) this.contactSamples.shift();
     }
     this.previousContact = { key: contactKey, x: stanceFoot.x };
-    const bob = Math.sin(u * Math.PI) * 2.2;
-    const pelvis = { x: rootX, y: ground - 86 + bob };
-    const shoulder = { x: rootX, y: pelvis.y - 58 };
+    const bob = Math.sin(u * Math.PI) * 2.2 * scale;
+    const pelvis = { x: rootX, y: ground - 112 * scale + bob };
+    const shoulder = { x: rootX, y: pelvis.y - 53 * scale };
     const [shadowX, shadowY] = weather[weatherKey].shadow;
 
     context.save();
     context.translate(rootX, ground + 4);
     context.rotate(Math.atan2(shadowY, shadowX));
     context.scale(1, .25);
-    const shadowGradient = context.createRadialGradient(0, 0, 1, 0, 0, 74);
+    const shadowGradient = context.createRadialGradient(0, 0, 1, 0, 0, 74 * scale);
     shadowGradient.addColorStop(0, "rgba(12,10,7,.42)");
     shadowGradient.addColorStop(1, "rgba(12,10,7,0)");
     context.fillStyle = shadowGradient;
     context.beginPath();
-    context.ellipse(22, 0, 76, 24, 0, 0, Math.PI * 2);
+    context.ellipse(22 * scale, 0, 76 * scale, 24 * scale, 0, 0, Math.PI * 2);
     context.fill();
     context.restore();
 
     const stroke = "rgba(244,229,193,.86)";
     const fill = "rgba(36,42,34,.82)";
-    this.leg(context, { x: pelvis.x - 7, y: pelvis.y }, leftFoot, direction, stroke);
-    this.leg(context, { x: pelvis.x + 7, y: pelvis.y }, rightFoot, direction, stroke);
+    this.leg(context, { x: pelvis.x - 7 * scale, y: pelvis.y }, leftFoot, direction, stroke, scale);
+    this.leg(context, { x: pelvis.x + 7 * scale, y: pelvis.y }, rightFoot, direction, stroke, scale);
     context.strokeStyle = stroke;
-    context.lineWidth = 16;
+    context.lineWidth = 16 * scale;
     context.lineCap = "round";
     context.beginPath();
     context.moveTo(pelvis.x, pelvis.y);
     context.lineTo(shoulder.x, shoulder.y);
     context.stroke();
-    this.arm(context, { x: shoulder.x - 8, y: shoulder.y + 4 }, u, direction, stroke);
-    this.arm(context, { x: shoulder.x + 8, y: shoulder.y + 4 }, u + .5, direction, stroke);
+    this.arm(context, { x: shoulder.x - 8 * scale, y: shoulder.y + 4 * scale }, u, direction, stroke, scale);
+    this.arm(context, { x: shoulder.x + 8 * scale, y: shoulder.y + 4 * scale }, u + .5, direction, stroke, scale);
     context.fillStyle = fill;
     context.strokeStyle = stroke;
-    context.lineWidth = 3;
+    context.lineWidth = 3 * scale;
     context.beginPath();
-    context.arc(shoulder.x + direction * 1.5, shoulder.y - 26, 17, 0, Math.PI * 2);
+    context.arc(shoulder.x + direction * 1.5 * scale, shoulder.y - 24 * scale, 17 * scale, 0, Math.PI * 2);
     context.fill();
     context.stroke();
     context.fillStyle = stroke;
     context.beginPath();
-    context.arc(shoulder.x + direction * 6, shoulder.y - 29, 1.6, 0, Math.PI * 2);
+    context.arc(shoulder.x + direction * 6 * scale, shoulder.y - 27 * scale, 1.6 * scale, 0, Math.PI * 2);
     context.fill();
   }
 
@@ -593,11 +641,18 @@ class ContactWalker {
     const drawP95 = sortedCosts.length ? sortedCosts[Math.floor(sortedCosts.length * .95)] : 0;
     const sortedContact = [...this.contactSamples].sort((a, b) => a - b);
     const contactP95 = sortedContact.length ? sortedContact[Math.floor(sortedContact.length * .95)] : null;
+    const boneError = this.boneErrors.length ? Math.max(...this.boneErrors) : null;
     return {
       active: this.active,
       frame_interval_p95_ms: Number(p95.toFixed(2)),
       draw_cost_p95_ms: Number(drawP95.toFixed(2)),
       model_stance_anchor_drift_p95_px: contactP95 === null ? null : Number(contactP95.toFixed(3)),
+      max_bone_length_error_px: boneError === null ? null : Number(boneError.toFixed(3)),
+      overextension_frames: this.overextensions,
+      first_overextension: this.firstOverextension,
+      knee_flip_frames: this.kneeFlips,
+      shadow_vector: weather[weatherKey].shadow,
+      route: "center_foreground_floor",
       projected_floor_error_px: null,
       note: "temporary_2d_contact_rig; final_character_and_3d_floor_contact_unverified",
     };
@@ -610,6 +665,12 @@ const contactWalker = new ContactWalker(document.querySelector("#contact-canvas"
 contactToggle.addEventListener("click", () => {
   if (reducedMotion.matches) {
     announce("움직임 줄이기 설정에서는 접촉 리그를 재생하지 않습니다");
+    return;
+  }
+  if (!contactWalker.active && viewKey !== contactSupportedView) {
+    chooseView(contactSupportedView);
+    window.setTimeout(() => contactWalker.setActive(true), 240);
+    announce("중앙 시점의 비어 있는 바닥에서 접촉을 검증합니다");
     return;
   }
   contactWalker.setActive(!contactWalker.active);
@@ -664,6 +725,5 @@ images[activeImage].alt = views[viewKey].alt;
 updateInfo();
 applyTransform();
 weatherRenderer.setMode(weather[weatherKey].particle);
-if (initialParams.get("contact") === "1" && !reducedMotion.matches) contactWalker.setActive(true);
 if ("requestIdleCallback" in window) requestIdleCallback(preloadViews, { timeout: 3500 });
 else window.setTimeout(preloadViews, 1800);
