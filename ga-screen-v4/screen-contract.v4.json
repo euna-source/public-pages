@@ -8053,7 +8053,19 @@
    "rules": [
     "S1"
    ],
-   "params": {},
+   "params": {
+    "tab": {
+     "values": [
+      "all",
+      "reaction",
+      "relation",
+      "news"
+     ],
+     "default": "all",
+     "required": true,
+     "note": "진입 시 기본값 all도 전송. 칩 전환은 screen_tab_select"
+    }
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -8097,6 +8109,7 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "알림 · 내 알림",
+   "when": "알림함이 열리는 순간 1회(기본 탭 전체). 전체·반응·관계·소식 칩 전환은 같은 목적지의 필터라 screen_tab_select(tab)로 기록하고 screen_view를 다시 보내지 않는다. 알림 항목을 눌러 이동한 목적지가 다음 screen_view.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -8109,9 +8122,9 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "trigger": "디스커버리 헤더의 종 아이콘 또는 알림 딥링크로 알림함이 열리는 순간 1회.",
+    "no_trigger": "전체·반응·관계·소식 칩 전환(screen_tab_select), 모두 읽기, 스크롤.",
+    "expected": "진입 1회 = 1건. 칩 4개를 다 눌러도 1건.",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브) · 웹: 앱(브리지)",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
@@ -9169,9 +9182,9 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "trigger": "현재 빌드: 팀 목록 화면 진입 시 1회. 개편 후: 채티 팀 탭 전환 시 1회.",
+    "no_trigger": "같은 탭 안의 스크롤·읽음 처리·알림 끄기. 채티 탭 4개는 서로 다른 대상이라 탭 전환마다 각 이름의 screen_view 1회(M4).",
+    "expected": "채티 진입 → 탭 4개 순회 = 4건(각 1건).",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
@@ -11815,9 +11828,9 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "trigger": "현재 빌드: 채티 탭 진입 시 기본 1회. 개편 후: 채팅 탭 전환 시 1회.",
+    "no_trigger": "같은 탭 안의 스크롤·읽음 처리·알림 끄기. 채티 탭 4개는 서로 다른 대상이라 탭 전환마다 각 이름의 screen_view 1회(M4).",
+    "expected": "채티 진입 → 탭 4개 순회 = 4건(각 1건).",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
@@ -11892,9 +11905,9 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "trigger": "현재 빌드: 채티 상단 칩으로 전환 시 1회. 개편 후: 채티 탭 진입 시 기본 탭으로 1회.",
+    "no_trigger": "같은 탭 안의 스크롤·읽음 처리·알림 끄기. 채티 탭 4개는 서로 다른 대상이라 탭 전환마다 각 이름의 screen_view 1회(M4).",
+    "expected": "채티 진입 → 탭 4개 순회 = 4건(각 1건).",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
@@ -11970,9 +11983,9 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "trigger": "채티 프로젝트 탭 전환 시 1회(개편 전후 동일).",
+    "no_trigger": "같은 탭 안의 스크롤·읽음 처리·알림 끄기. 채티 탭 4개는 서로 다른 대상이라 탭 전환마다 각 이름의 screen_view 1회(M4).",
+    "expected": "채티 진입 → 탭 4개 순회 = 4건(각 1건).",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
@@ -24852,6 +24865,15 @@
    "item": "inspiration_list 딥링크",
    "question": "iOS DeepLinkHandler.swift:274가 여는 inspiration-list 목록 화면을 유지할 것인가. 서버·푸시가 이 링크를 지금도 보내는가(AOS는 프로필 영감 탭으로 우회)",
    "why": "앱 안에서 여는 자리가 없고 iOS만 딥링크 핸들러가 남아 있다. 링크가 안 오면 iOS도 레거시로 내린다.",
+   "blocking": false,
+   "owner": "미정",
+   "due": "미정"
+  },
+  {
+   "platform": "Front + iOS·AOS",
+   "item": "알림함 소식 탭과 notification_proposal_news",
+   "question": "알림함의 '소식' 칩이 notification_proposal_news(웹 /… 협업 제안 소식) 페이지로 라우트가 바뀌는 별도 페이지인가, 같은 목록의 필터인가",
+   "why": "같은 목록의 필터면 notification_center tab=news로 흡수하고 notification_proposal_news는 미사용으로 내린다. 별도 페이지면 브리지로 이름을 알려야 한다.",
    "blocking": false,
    "owner": "미정",
    "due": "미정"
