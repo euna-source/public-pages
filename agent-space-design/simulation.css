@@ -4,3 +4,5 @@
 @media print{.simulation{display:none!important}.map-frame #world-image{display:block!important}.space-display-tools{display:none}}
 
 .simulation:not(.ready){position:absolute;inset:0;z-index:2;pointer-events:none;background:transparent}.simulation:not(.ready)>:not(.sim-status){visibility:hidden}.simulation:not(.ready) .sim-status{pointer-events:auto}
+
+.sim-scenes{display:flex;flex-wrap:wrap;gap:6px;padding:14px 16px 16px;background:#f7f5ef;border-top:1px solid #cbd0c2;align-items:center}.sim-scenes>span{font-size:12px;color:#536254;margin-right:6px}.sim-scenes button{min-height:44px;padding:8px 12px;border:1px solid #c6cdbf;border-radius:6px;font:inherit;font-size:12px;color:#293f33;background:#f7f5ef}.sim-scenes button:hover{background:#e4eadc}.sim-scenes button[aria-pressed=true]{background:#dce5d4;border-color:#617a62}.sim-scenes button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}@media(max-width:600px){.sim-scenes{padding:12px 10px}.sim-scenes>span{flex-basis:100%}.sim-scenes button{flex:1 1 145px}}
