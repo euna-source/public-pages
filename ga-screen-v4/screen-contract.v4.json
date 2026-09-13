@@ -1,6 +1,6 @@
 {
  "schema_version": 4,
- "revision": "4.6-review.1",
+ "revision": "4.7-review.1",
  "status": "review_required",
  "decision_date": "2026-09-13",
  "decision": "iOS·AOS·Front 세 플랫폼이 같은 목적지에 같은 영문 screen_name을 보냅니다. Front는 앱 WebView 안에서는 앱이 발송하고 독립 브라우저에서만 웹이 page_view로 같은 이름을 보냅니다.",
@@ -3383,7 +3383,7 @@
    }
   },
   {
-   "key": "finder_home",
+   "key": "finder_main",
    "label": "파인더 · 홈",
    "stage": "finder",
    "kind": "탭",
@@ -3393,7 +3393,18 @@
    "rules": [
     "S1"
    ],
-   "params": {},
+   "params": {
+    "tab": {
+     "values": [
+      "creator",
+      "portfolio",
+      "project"
+     ],
+     "default": "creator",
+     "required": true,
+     "note": "진입 시 기본값도 반드시 전송"
+    }
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -3433,6 +3444,10 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "finder_home"
+   ],
+   "when": "파인더 탭 진입 시 1회. 첫 진입은 크리에이터 탭이 선택된 상태이며 tab=creator를 함께 보낸다. 크리에이터·포트폴리오·프로젝트 탭 전환은 screen_tab_select로 기록하고 screen_view를 다시 보내지 않는다.",
    "label_before": "파인더 · 탭 홈",
    "status": "active",
    "os_state": {
@@ -3862,7 +3877,7 @@
    }
   },
   {
-   "key": "finder_shuffle_home",
+   "key": "finder_shuffle_main",
    "label": "파인더 · Shuffle 메인(웹)",
    "stage": "finder",
    "kind": "웹",
@@ -3914,7 +3929,8 @@
    "origin": "v3",
    "semantic_review": "pending",
    "legacy_keys": [
-    "finder_keyword_recommend"
+    "finder_keyword_recommend",
+    "finder_shuffle_home"
    ],
    "when": "Finder(검색) 홈 헤더의 키워드 추천(스파클) 아이콘을 누를 때, 딥링크 shuffle-keyword-list로 열릴 때 표시됩니다.",
    "label_before": "추천 · Shuffle! 키워드 추천(웹)",
@@ -4029,7 +4045,7 @@
    }
   },
   {
-   "key": "dial_home",
+   "key": "dial_main",
    "label": "채티 · 다이얼 홈(팔로잉 크리에이터 판)",
    "stage": "finder",
    "kind": "웹",
@@ -4083,7 +4099,8 @@
    "origin": "v3",
    "semantic_review": "pending",
    "legacy_keys": [
-    "network_browse"
+    "network_browse",
+    "dial_home"
    ],
    "when": "웹이 팔로잉 수 ≥ 8 을 확인하고 NetworkDialRoute → DiscoveryNetworkPage 를 uid 없이(URL 에 본인 uid 를 얹지 않음) 그린 순간입니다. 파고든 뒤 «처음으로» 버튼이나 뒤로가기로 본인 판에 되돌아온 순간도 다시 이 화면입니다. 이 화면에서 뒤로가기는 웹뷰를 닫습니다.",
    "label_before": "추천 · 인맥 둘러보기(웹)",
@@ -5035,7 +5052,7 @@
    }
   },
   {
-   "key": "my_info_home",
+   "key": "my_info_main",
    "label": "내 정보 · 관리 홈(기본 정보 관리)",
    "stage": "my",
    "kind": "화면",
@@ -5085,6 +5102,9 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "my_info_home"
+   ],
    "label_before": "내 정보 · 관리 홈",
    "status": "active",
    "os_state": {
@@ -6431,7 +6451,7 @@
    }
   },
   {
-   "key": "resume_home",
+   "key": "resume_main",
    "label": "커리어 · 관리 홈",
    "stage": "my",
    "kind": "화면",
@@ -6481,6 +6501,9 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "resume_home"
+   ],
    "label_before": "커리어 · 이력 관리(내 이력서)",
    "status": "active",
    "os_state": {
@@ -9471,7 +9494,7 @@
    }
   },
   {
-   "key": "settings_home",
+   "key": "settings_main",
    "label": "설정 · 홈",
    "stage": "account",
    "kind": "화면",
@@ -9520,6 +9543,9 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "settings_home"
+   ],
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -10466,7 +10492,7 @@
    }
   },
   {
-   "key": "support_home",
+   "key": "support_main",
    "label": "고객센터 · 홈",
    "stage": "account",
    "kind": "화면",
@@ -10515,6 +10541,9 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "legacy_keys": [
+    "support_home"
+   ],
    "label_before": "고객센터",
    "status": "active",
    "os_state": {

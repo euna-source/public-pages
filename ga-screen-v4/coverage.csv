@@ -347,8 +347,8 @@ web,/unsubscribe?token=:token,,UnsubscribePage,screen,"S2,M2",settings_marketing
 web,/muse/privileges,,MusePrivilegesPage,screen,"M1,S1",settings_muse_privileges,Exact web destination already described by the contract,설정
 web,/member/privileges,,MemberPrivilegesPage,screen,"M1,S1",member_privileges,Uses the same general/Beta privileges content as guest privileges; current key vocabulary already exists in routes.ts but is absent from the 151-key contract,마이
 web,/guest/privileges?code=:inviteCode,signup_general_privileges,GuestPrivilegesPage,screen,"M1,S1",member_privileges,"Current GA name is suitable as the proposed contract key, but launch surface remains unproven in this snapshot",마이
-web,/discovery/keywords,,KeywordsDiscoveryPage,screen,"M1,S1",finder_shuffle_home,The Shuffle keyword recommendation web screen matches the contract exactly,파인더
-web,/discovery/network/:uid?,,DiscoveryNetworkRoutePage,screen,"M1,M4,S1",dial_home,Optional uid changes the dial's focused person inside the same network-browse destination,채티
+web,/discovery/keywords,,KeywordsDiscoveryPage,screen,"M1,S1",finder_shuffle_main,The Shuffle keyword recommendation web screen matches the contract exactly,파인더
+web,/discovery/network/:uid?,,DiscoveryNetworkRoutePage,screen,"M1,M4,S1",dial_main,Optional uid changes the dial's focused person inside the same network-browse destination,채티
 web,/discovery/quiz,,QuizDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen",
 web,/discovery/tag-cloud,,TagCloudDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen",
 web,/discovery/ticker,,TickerDiscoveryPage,excluded,X2,,"Discovery feed module state; count home_feed, not a separate screen",

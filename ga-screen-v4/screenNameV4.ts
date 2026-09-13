@@ -6,9 +6,9 @@ export const SCREEN_NAME_V4 = {
   /** [디스커버리] 포트폴리오 · 상세 */
   PORTFOLIO_DETAIL: 'portfolio_detail',
   /** [파인더] 파인더 · Shuffle 메인(웹) */
-  FINDER_SHUFFLE_HOME: 'finder_shuffle_home',
+  FINDER_SHUFFLE_MAIN: 'finder_shuffle_main',
   /** [채티] 채티 · 다이얼 홈(팔로잉 크리에이터 판) */
-  DIAL_HOME: 'dial_home',
+  DIAL_MAIN: 'dial_main',
   /** [디스커버리] 크리에이터 · 프로필 */
   PROFILE_DETAIL: 'profile_detail',
   /** [디스커버리] 채팅방 신고 · 사유 직접 입력 */
@@ -53,8 +53,8 @@ export const SCREEN_GROUP_VALUES = ['login', 'signup', 'discovery', 'finder', 'c
 export const SCREEN_GROUP_V4: Record<ScreenNameV4, string | null> = {
   app_maintenance: 'login',
   portfolio_detail: null,
-  finder_shuffle_home: 'finder',
-  dial_home: 'chatty',
+  finder_shuffle_main: 'finder',
+  dial_main: 'chatty',
   profile_detail: null,
   report_detail_input: 'discovery',
   my_profile: 'my',

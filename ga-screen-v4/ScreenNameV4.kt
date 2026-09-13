@@ -70,7 +70,7 @@ object ScreenNameV4 {
     /** [디스커버리] 첨부 · 이미지 전체 화면 보기(자기소개) */
     const val MEDIA_VIEWER = "media_viewer"
     /** [파인더] 파인더 · 홈 */
-    const val FINDER_HOME = "finder_home"
+    const val FINDER_MAIN = "finder_main"
     /** [파인더] 파인더 · 검색 입력 */
     const val FINDER_SEARCH = "finder_search"
     /** [파인더] 파인더 · 크리에이터 검색 결과 */
@@ -82,11 +82,11 @@ object ScreenNameV4 {
     /** [파인더] 파인더 · 필터 지역 검색 */
     const val FINDER_FILTER = "finder_filter"
     /** [파인더] 파인더 · Shuffle 메인(웹) */
-    const val FINDER_SHUFFLE_HOME = "finder_shuffle_home"
+    const val FINDER_SHUFFLE_MAIN = "finder_shuffle_main"
     /** [파인더] 파인더 · Shuffle 키워드 상세 */
     const val FINDER_SHUFFLE_KEYWORD = "finder_shuffle_keyword"
     /** [채티] 채티 · 다이얼 홈(팔로잉 크리에이터 판) */
-    const val DIAL_HOME = "dial_home"
+    const val DIAL_MAIN = "dial_main"
     /** [디스커버리] 크리에이터 · 프로필 */
     const val PROFILE_DETAIL = "profile_detail"
     /** [디스커버리] 크리에이터 · 관계 목록(일촌·팔로워·팔로잉) */
@@ -108,7 +108,7 @@ object ScreenNameV4 {
     /** [마이] MY · 노크 수신 설정 */
     const val MY_KNOCK_SETTINGS = "my_knock_settings"
     /** [마이] 내 정보 · 관리 홈(기본 정보 관리) */
-    const val MY_INFO_HOME = "my_info_home"
+    const val MY_INFO_MAIN = "my_info_main"
     /** [마이] 내 정보 · ID 변경 */
     const val MY_INFO_ID = "my_info_id"
     /** [마이] 내 정보 · 한글 이름 */
@@ -134,7 +134,7 @@ object ScreenNameV4 {
     /** [마이] 앱 · 계정 이메일 필수 등록 — 미출시(기획 결정) */
     const val ACCOUNT_EMAIL_REQUIRED = "account_email_required"
     /** [마이] 커리어 · 관리 홈 */
-    const val RESUME_HOME = "resume_home"
+    const val RESUME_MAIN = "resume_main"
     /** [마이] 커리어 · 경력 입력 */
     const val RESUME_CAREER_FORM = "resume_career_form"
     /** [마이] 커리어 · 학력 입력 */
@@ -204,7 +204,7 @@ object ScreenNameV4 {
     /** [채티] 팀 · 멤버 초대 */
     const val TEAM_INVITE = "team_invite"
     /** [설정] 설정 · 홈 */
-    const val SETTINGS_HOME = "settings_home"
+    const val SETTINGS_MAIN = "settings_main"
     /** [설정] 설정 · 계정 */
     const val SETTINGS_ACCOUNT = "settings_account"
     /** [설정] 설정 · 알림 수신 설정 */
@@ -230,7 +230,7 @@ object ScreenNameV4 {
     /** [설정] 회원 탈퇴 · 최종 확인 */
     const val ACCOUNT_DELETE_CONFIRM = "account_delete_confirm"
     /** [설정] 고객센터 · 홈 */
-    const val SUPPORT_HOME = "support_home"
+    const val SUPPORT_MAIN = "support_main"
     /** [설정] 설정 · 서비스 동의(약관 목록) */
     const val SETTINGS_AGREEMENTS = "settings_agreements"
     /** [설정] Muse 특권 안내(웹) */
@@ -324,15 +324,15 @@ object ScreenGroupV4 {
         "respect_select" to "discovery",
         "respect_list" to null,
         "media_viewer" to null,
-        "finder_home" to "finder",
+        "finder_main" to "finder",
         "finder_search" to "finder",
         "finder_result_creator" to "finder",
         "finder_result_portfolio" to "finder",
         "finder_result_project" to "finder",
         "finder_filter" to "finder",
-        "finder_shuffle_home" to "finder",
+        "finder_shuffle_main" to "finder",
         "finder_shuffle_keyword" to "finder",
-        "dial_home" to "chatty",
+        "dial_main" to "chatty",
         "profile_detail" to null,
         "relation_list" to null,
         "first_connection_mutual" to "discovery",
@@ -343,7 +343,7 @@ object ScreenGroupV4 {
         "my_profile_preview" to "my",
         "my_profile_visitors" to "my",
         "my_knock_settings" to "my",
-        "my_info_home" to "my",
+        "my_info_main" to "my",
         "my_info_id" to "my",
         "my_info_name_ko" to "my",
         "my_info_name_en" to "my",
@@ -356,7 +356,7 @@ object ScreenGroupV4 {
         "my_info_birth_gender" to "my",
         "my_info_visibility" to "my",
         "account_email_required" to "my",
-        "resume_home" to "my",
+        "resume_main" to "my",
         "resume_career_form" to "my",
         "resume_education_form" to "my",
         "resume_awards_form" to "my",
@@ -391,7 +391,7 @@ object ScreenGroupV4 {
         "team_create" to "chatty",
         "team_edit" to "chatty",
         "team_invite" to "chatty",
-        "settings_home" to "settings",
+        "settings_main" to "settings",
         "settings_account" to "settings",
         "settings_notification" to "settings",
         "settings_visibility" to "settings",
@@ -404,7 +404,7 @@ object ScreenGroupV4 {
         "account_delete_password" to "settings",
         "account_delete_reason" to "settings",
         "account_delete_confirm" to "settings",
-        "support_home" to "settings",
+        "support_main" to "settings",
         "settings_agreements" to "settings",
         "settings_muse_privileges" to "settings",
         "settings_contents" to "settings",

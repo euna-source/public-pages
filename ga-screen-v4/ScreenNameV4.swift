@@ -68,7 +68,7 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [디스커버리] 첨부 · 이미지 전체 화면 보기(자기소개)
     case media_viewer = "media_viewer"
     /// [파인더] 파인더 · 홈
-    case finder_home = "finder_home"
+    case finder_main = "finder_main"
     /// [파인더] 파인더 · 검색 입력
     case finder_search = "finder_search"
     /// [파인더] 파인더 · 크리에이터 검색 결과
@@ -80,11 +80,11 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [파인더] 파인더 · 필터 지역 검색
     case finder_filter = "finder_filter"
     /// [파인더] 파인더 · Shuffle 메인(웹)
-    case finder_shuffle_home = "finder_shuffle_home"
+    case finder_shuffle_main = "finder_shuffle_main"
     /// [파인더] 파인더 · Shuffle 키워드 상세
     case finder_shuffle_keyword = "finder_shuffle_keyword"
     /// [채티] 채티 · 다이얼 홈(팔로잉 크리에이터 판)
-    case dial_home = "dial_home"
+    case dial_main = "dial_main"
     /// [디스커버리] 크리에이터 · 프로필
     case profile_detail = "profile_detail"
     /// [디스커버리] 크리에이터 · 관계 목록(일촌·팔로워·팔로잉)
@@ -106,7 +106,7 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [마이] MY · 노크 수신 설정
     case my_knock_settings = "my_knock_settings"
     /// [마이] 내 정보 · 관리 홈(기본 정보 관리)
-    case my_info_home = "my_info_home"
+    case my_info_main = "my_info_main"
     /// [마이] 내 정보 · ID 변경
     case my_info_id = "my_info_id"
     /// [마이] 내 정보 · 한글 이름
@@ -138,7 +138,7 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [마이] 앱 · 계정 이메일 필수 등록
     case account_email_required = "account_email_required"
     /// [마이] 커리어 · 관리 홈
-    case resume_home = "resume_home"
+    case resume_main = "resume_main"
     /// [마이] 커리어 · 경력 입력
     case resume_career_form = "resume_career_form"
     /// [마이] 커리어 · 학력 입력
@@ -208,7 +208,7 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [채티] 팀 · 멤버 초대
     case team_invite = "team_invite"
     /// [설정] 설정 · 홈
-    case settings_home = "settings_home"
+    case settings_main = "settings_main"
     /// [설정] 설정 · 계정
     case settings_account = "settings_account"
     /// [설정] 설정 · 알림 수신 설정
@@ -234,7 +234,7 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [설정] 회원 탈퇴 · 최종 확인
     case account_delete_confirm = "account_delete_confirm"
     /// [설정] 고객센터 · 홈
-    case support_home = "support_home"
+    case support_main = "support_main"
     /// [설정] 설정 · 서비스 동의(약관 목록)
     case settings_agreements = "settings_agreements"
     /// [설정] Muse 특권 안내(웹)
@@ -320,15 +320,15 @@ public enum ScreenGroupV4 {
         .respect_select: "discovery",
         .respect_list: nil,
         .media_viewer: nil,
-        .finder_home: "finder",
+        .finder_main: "finder",
         .finder_search: "finder",
         .finder_result_creator: "finder",
         .finder_result_portfolio: "finder",
         .finder_result_project: "finder",
         .finder_filter: "finder",
-        .finder_shuffle_home: "finder",
+        .finder_shuffle_main: "finder",
         .finder_shuffle_keyword: "finder",
-        .dial_home: "chatty",
+        .dial_main: "chatty",
         .profile_detail: nil,
         .relation_list: nil,
         .first_connection_mutual: "discovery",
@@ -339,7 +339,7 @@ public enum ScreenGroupV4 {
         .my_profile_preview: "my",
         .my_profile_visitors: "my",
         .my_knock_settings: "my",
-        .my_info_home: "my",
+        .my_info_main: "my",
         .my_info_id: "my",
         .my_info_name_ko: "my",
         .my_info_name_en: "my",
@@ -355,7 +355,7 @@ public enum ScreenGroupV4 {
         .my_info_birth_gender: "my",
         .my_info_visibility: "my",
         .account_email_required: "my",
-        .resume_home: "my",
+        .resume_main: "my",
         .resume_career_form: "my",
         .resume_education_form: "my",
         .resume_awards_form: "my",
@@ -390,7 +390,7 @@ public enum ScreenGroupV4 {
         .team_create: "chatty",
         .team_edit: "chatty",
         .team_invite: "chatty",
-        .settings_home: "settings",
+        .settings_main: "settings",
         .settings_account: "settings",
         .settings_notification: "settings",
         .settings_visibility: "settings",
@@ -403,7 +403,7 @@ public enum ScreenGroupV4 {
         .account_delete_password: "settings",
         .account_delete_reason: "settings",
         .account_delete_confirm: "settings",
-        .support_home: "settings",
+        .support_main: "settings",
         .settings_agreements: "settings",
         .settings_muse_privileges: "settings",
         .settings_contents: "settings",
