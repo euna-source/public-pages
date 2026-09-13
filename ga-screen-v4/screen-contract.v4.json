@@ -7241,7 +7241,7 @@
     "value": "my"
    },
    "collection": {
-    "trigger": "업로드 화면 상단 메뉴에서 프로젝트로 갈아탄 순간, 또는 프로젝트 목록 등록 버튼·채티 만들기 메뉴·내 프로필로 바로 열린 순간 1회.",
+    "trigger": "업로드 화면 상단 메뉴에서 프로젝트로 갈아탄 순간, 프로젝트 목록 등록 버튼·내 프로필로 바로 열린 순간, 또는 채티 헤더 「프로젝트 만들기」로 업로드 레이어가 프로젝트 탭 선택 상태로 열린 순간 1회.",
     "no_trigger": "내부 단계 이동(form_step_view), 등록하기. 등록 성공은 행동 이벤트.",
     "expected": "진입 1회 = 1건.",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
@@ -12323,30 +12323,30 @@
    "platforms": {
     "ios": {
      "status": "webview_host",
-     "reach": "unknown",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "no ios_rows; AlarmCenterView.swift:90 CommonWebView(StaticURL.Web.myNotification) hosts the whole notification web — sub-page not distinguishable natively"
      ],
-     "reach_note": "web-only inside notification_center webview"
+     "reach_note": "기획 결정(2026-09-14): 2.0 잔재. 알림함은 전체·반응·관계·소식 칩 하나로 통합되며 협업 제안 소식 별도 페이지는 쓰지 않는다."
     },
     "aos": {
      "status": "webview_host",
-     "reach": "unknown",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainActivity.kt:launchMyNotificationWebView",
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/WebViewActivity.kt:WebViewActivity"
      ],
-     "reach_note": "알림센터 루트는 열리지만 AOS 소스에는 제안 소식 하위 화면의 URL·브리지·호출 근거가 없다."
+     "reach_note": "기획 결정(2026-09-14): 2.0 잔재. 알림함은 전체·반응·관계·소식 칩 하나로 통합되며 협업 제안 소식 별도 페이지는 쓰지 않는다."
     },
     "web": {
      "status": "webview",
      "routes": [
       "/my-notification/proposal-news"
      ],
-     "reach": "ui",
-     "reach_note": "A dedicated new-proposal list in a native bottom sheet; it is narrower than the general notification center and absent from the 151-key contract"
+     "reach": "dead",
+     "reach_note": "기획 결정(2026-09-14): 2.0 잔재. 알림함은 전체·반응·관계·소식 칩 하나로 통합되며 협업 제안 소식 별도 페이지는 쓰지 않는다."
     }
    },
    "params": {},
@@ -12355,11 +12355,11 @@
    "origin": "v4",
    "semantic_review": "pending",
    "label_before": "알림 · 제안 소식(웹)",
-   "status": "active",
+   "status": "retired",
    "os_state": {
-    "ios": "unobserved",
-    "aos": "unobserved",
-    "web": "needed"
+    "ios": "legacy",
+    "aos": "legacy",
+    "web": "legacy"
    },
    "flow_group": "채티",
    "content_group": {
@@ -12367,10 +12367,10 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "웹: 앱(브리지)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -13536,6 +13536,79 @@
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
     "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브) · 웹: 앱(브리지)",
+    "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
+    "observed": "미확인(실수신 0건, 2026-09-13)"
+   },
+   "verification": {
+    "defined": "done",
+    "received": "unverified",
+    "aggregated": "unverified",
+    "improved": "unverified"
+   }
+  },
+  {
+   "key": "chat_create",
+   "label": "채팅 · 새 대화 시작(미출시)",
+   "stage": "chat",
+   "kind": "화면",
+   "rules": [
+    "S2"
+   ],
+   "legacy_keys": [],
+   "definition": "채티 헤더 「채팅 만들기」 메뉴의 「새로운 채팅」으로 여는 화면. 대화할 상대를 골라 1:1 대화방을 새로 연다. 채티 개편(2026-09-14 예고)에서 추가되며 현재 빌드에는 없다.",
+   "rationale": "헤더 메뉴의 네 항목 중 라운지·프로젝트·팀은 기존 이름(lounge_create·project_create·team_create)이 있지만 새 1:1 대화 시작 화면은 없었다. 상대 선택과 개설이 끝나는 독립 과업이라 이름을 미리 잡는다.",
+   "when": "화면이 열리는 순간 1회. 상대를 고른 뒤 열리는 대화방은 chat_room_direct.",
+   "platforms": {
+    "ios": {
+     "status": "planned",
+     "rows": [],
+     "reach": "unreleased",
+     "reach_note": "채티 개편 예정 화면. 출시 빌드에서 상태만 바꾼다."
+    },
+    "aos": {
+     "status": "planned",
+     "legacy_keys": [],
+     "evidence": "",
+     "note": "개편 예정",
+     "reach": "unreleased",
+     "reach_note": "채티 개편 예정 화면. 출시 빌드에서 상태만 바꾼다."
+    },
+    "web": {
+     "status": "absent",
+     "routes": [],
+     "reach": "absent"
+    }
+   },
+   "params": {},
+   "source": "plan",
+   "evidence_short": [
+    "채티 개편 시안 2026-09-14"
+   ],
+   "reserved": false,
+   "origin": "v4",
+   "semantic_review": "pending",
+   "note": "어느 플랫폼 소스에서도 목적지를 찾지 못했습니다(v3 계약의 잔여 이름). 이름만 동결합니다.",
+   "status": "unreleased",
+   "os_state": {
+    "ios": "unreleased",
+    "aos": "unreleased",
+    "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
+   },
+   "flow_group": "채티",
+   "content_group": {
+    "mode": "fixed",
+    "value": "chatty"
+   },
+   "collection": {
+    "trigger": "보내지 않습니다.",
+    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
+    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -24785,6 +24858,15 @@
    "why": "세 클라이언트 어디에도 생성부가 없고 서버 발송 이력만 남은 근거다. 아니오면 폐기.",
    "decided_by": "",
    "decided_on": ""
+  },
+  {
+   "key": "notification_proposal_news",
+   "question": "알림함 '소식' 칩과 별개인 협업 제안 소식(웹) 페이지를 유지할까",
+   "decision": "미사용(종료)",
+   "applied": "3플랫폼 reach=dead, 상태 retired. 알림함 탭은 notification_center tab=news",
+   "why": "2.0 잔재. 알림함 탭 구조로 대체.",
+   "decided_by": "기획(사용자)",
+   "decided_on": "2026-09-14"
   }
  ],
  "dev_confirm": [
@@ -24865,15 +24947,6 @@
    "item": "inspiration_list 딥링크",
    "question": "iOS DeepLinkHandler.swift:274가 여는 inspiration-list 목록 화면을 유지할 것인가. 서버·푸시가 이 링크를 지금도 보내는가(AOS는 프로필 영감 탭으로 우회)",
    "why": "앱 안에서 여는 자리가 없고 iOS만 딥링크 핸들러가 남아 있다. 링크가 안 오면 iOS도 레거시로 내린다.",
-   "blocking": false,
-   "owner": "미정",
-   "due": "미정"
-  },
-  {
-   "platform": "Front + iOS·AOS",
-   "item": "알림함 소식 탭과 notification_proposal_news",
-   "question": "알림함의 '소식' 칩이 notification_proposal_news(웹 /… 협업 제안 소식) 페이지로 라우트가 바뀌는 별도 페이지인가, 같은 목록의 필터인가",
-   "why": "같은 목록의 필터면 notification_center tab=news로 흡수하고 notification_proposal_news는 미사용으로 내린다. 별도 페이지면 브리지로 이름을 알려야 한다.",
    "blocking": false,
    "owner": "미정",
    "due": "미정"
@@ -25074,28 +25147,28 @@
   "ios": {
    "needed": 140,
    "absent": 20,
-   "legacy": 7,
-   "unobserved": 2
+   "legacy": 8,
+   "unobserved": 1,
+   "unreleased": 1
   },
   "aos": {
    "needed": 141,
-   "legacy": 14,
+   "legacy": 15,
    "absent": 11,
-   "unreleased": 2,
-   "unobserved": 1
+   "unreleased": 3
   },
   "web": {
-   "absent": 138,
-   "needed": 21,
-   "legacy": 9,
+   "absent": 139,
+   "needed": 20,
+   "legacy": 10,
    "unreleased": 1
   }
  },
  "status_summary": {
-  "active": 147,
-  "retired": 16,
+  "active": 146,
+  "retired": 17,
   "reserved": 2,
   "gated": 3,
-  "unreleased": 1
+  "unreleased": 2
  }
 }

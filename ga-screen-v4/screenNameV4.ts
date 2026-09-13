@@ -31,8 +31,6 @@ export const SCREEN_NAME_V4 = {
   SETTINGS_MUSE_PRIVILEGES: 'settings_muse_privileges',
   /** [채티] 협업 제안 · 제안함 목록(웹) */
   PROPOSAL_LIST: 'proposal_list',
-  /** [채티] 알림함 · 협업 제안 소식(웹) */
-  NOTIFICATION_PROPOSAL_NEWS: 'notification_proposal_news',
   /** [마이] 회원 자격 · 베타 혜택 안내(웹) */
   MEMBER_PRIVILEGES: 'member_privileges',
   /** [설정] 설정 · 마케팅 수신 거부(웹) */
@@ -64,7 +62,6 @@ export const SCREEN_GROUP_V4: Record<ScreenNameV4, string | null> = {
   proposal_edit: 'chatty',
   settings_muse_privileges: 'settings',
   proposal_list: 'chatty',
-  notification_proposal_news: 'chatty',
   member_privileges: 'my',
   settings_marketing_unsubscribe: 'settings',
   dial_guide: 'chatty',
