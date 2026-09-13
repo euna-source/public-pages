@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#171a16">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="description" content="승인된 아침 연구 공방에서 다섯 캐릭터의 접지, 가림, 시선과 비동기 생활 연기를 확인하는 실시간 동작 프리비즈입니다.">
-  <title>아침 공방 동작 프리비즈 · Agent Space</title>
+  <meta name="description" content="한 카메라와 실제 깊이 좌표로 다섯 캐릭터의 전신, 접지, 크기, 시선과 생활 연기를 확인하는 아침 연구 공방 프리비즈입니다.">
+  <title>공간 통합 프리비즈 V2 · Agent Space</title>
   <link rel="stylesheet" href="previs.css">
 </head>
 <body>
@@ -17,7 +17,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 20H8a4 4 0 0 1-4-4V6m0 0 4 4M4 6l4-4"/></svg>
         <span>공간 탐색</span>
       </a>
-      <div class="title-lockup"><p>동작 설계 검수본</p><h1>아침 공방이 숨 쉬는가</h1></div>
+      <div class="title-lockup"><p>공간 통합 검수본 V2</p><h1>모두 같은 바닥에 서 있는가</h1></div>
       <span class="cost-lock" aria-label="이번 프리비즈에 fal.ai 유료 호출 없음"><i aria-hidden="true"></i>Fal 0건</span>
     </header>
     <section class="viewer" id="motion-stage" aria-labelledby="stage-title">
@@ -27,13 +27,10 @@
           <img class="room" src="assets/explore/weather-morning.jpg" alt="창가 독서대, 중앙 원탁, 난로, 곡선 계단과 위층 회의실이 이어진 아침 연구 공방">
           <div class="sun-volume" aria-hidden="true"></div>
           <div class="render-layer" id="render-layer" aria-hidden="true"></div>
-          <div class="occlusion occlusion-desk" aria-hidden="true"></div>
-          <div class="occlusion occlusion-table" aria-hidden="true"></div>
-          <div class="occlusion occlusion-right" aria-hidden="true"></div>
           <div class="dust-light" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         </div>
         <div class="stage-head">
-          <span class="live-mark"><i aria-hidden="true"></i>실시간 프리비즈</span>
+          <span class="live-mark"><i aria-hidden="true"></i>카메라 보정 프리비즈</span>
           <span id="elapsed">00:00 / 03:00</span>
         </div>
         <div class="beat-card" aria-live="polite">
@@ -51,7 +48,7 @@
           <svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m9 6 9 6-9 6V6Z"/></svg>
           <span>움직임 정지</span>
         </button>
-        <p><strong>먼저 볼 것</strong><span>발이 미끄러지지 않는지, 가구 뒤에서 몸이 자연스럽게 가려지는지, 모두 한꺼번에 움직이지 않는지 봅니다.</span></p>
+        <p><strong>먼저 볼 것</strong><span>전신이 온전히 보이는지, 발과 그림자가 같은 바닥에 붙는지, 몸과 얼굴이 작업 대상을 자연스럽게 향하는지 봅니다.</span></p>
       </div>
       <div class="focus-group">
         <p>가까이 보기</p>
@@ -64,7 +61,7 @@
           <button type="button" data-focus="dust" aria-pressed="false">스스와타리</button>
         </div>
       </div>
-      <aside class="scope-note"><span>이 화면의 범위</span><p>기존 3D 캐릭터로 동작의 무게와 타이밍을 확인합니다. 외형·재질의 최종 교체는 이 움직임이 통과한 뒤 한 번만 생성합니다.</p></aside>
+      <aside class="scope-note"><span>이번에 바꾼 기준</span><p>화면 위에 캐릭터를 붙이지 않습니다. 한 원근 카메라, 바닥 높이, 실제 키와 접촉 그림자를 공유합니다. Fal 생성은 이 검수가 통과한 뒤 판단합니다.</p></aside>
     </section>
   </main>
   <noscript><p class="noscript">동작 프리비즈에는 JavaScript가 필요합니다. <a href="explore/">정지 공간 보기</a></p></noscript>

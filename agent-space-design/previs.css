@@ -48,15 +48,11 @@ button { color: inherit; }
 .stage { position: relative; width: min(100%, 1800px); margin: 0 auto; aspect-ratio: 2752 / 1536; min-height: 430px; overflow: hidden; outline: none; background: #201c19; }
 .stage:focus-visible { box-shadow: inset 0 0 0 3px var(--moss); }
 .world { position: absolute; inset: 0; isolation: isolate; transform: scale(var(--view-scale)); transform-origin: var(--origin-x) var(--origin-y); transition: transform var(--motion-slow) var(--ease-out), transform-origin var(--motion-slow) var(--ease-out); }
-.room, .render-layer, .occlusion, .sun-volume, .dust-light { position: absolute; inset: 0; width: 100%; height: 100%; }
+.room, .render-layer, .sun-volume, .dust-light { position: absolute; inset: 0; width: 100%; height: 100%; }
 .room { z-index: 0; display: block; object-fit: fill; user-select: none; }
 .sun-volume { z-index: 1; pointer-events: none; background: linear-gradient(104deg, rgba(255, 232, 183, .15), transparent 29%); mix-blend-mode: screen; }
 .render-layer { z-index: 2; pointer-events: none; }
-.render-layer canvas { display: block; width: 100%; height: 100%; filter: saturate(.86) sepia(.04) brightness(.91) contrast(.96); }
-.occlusion { z-index: 3; background: url("assets/explore/weather-morning.jpg") 0 0 / 100% 100% no-repeat; pointer-events: none; }
-.occlusion-desk { clip-path: polygon(5% 66%, 34% 60%, 40% 64%, 38% 71%, 5% 73%); }
-.occlusion-table { clip-path: polygon(50% 66%, 86% 63%, 90% 84%, 73% 96%, 52% 88%); }
-.occlusion-right { clip-path: polygon(83% 56%, 100% 55%, 100% 100%, 89% 100%); }
+.render-layer canvas { display: block; width: 100%; height: 100%; filter: saturate(.82) sepia(.035) brightness(.94) contrast(.94); }
 .dust-light { z-index: 4; pointer-events: none; overflow: hidden; }
 .dust-light i { position: absolute; left: var(--x); top: var(--y); width: var(--s); height: var(--s); border-radius: 50%; background: rgba(255, 231, 177, .55); box-shadow: 0 0 9px rgba(255, 225, 158, .5); opacity: .35; animation: mote var(--d) ease-in-out infinite alternate; }
 .dust-light i:nth-child(1) { --x: 29%; --y: 39%; --s: 3px; --d: 4.7s; }
@@ -108,7 +104,6 @@ button { color: inherit; }
   .cost-lock { display: none; }
   .stage { width: 100%; height: min(72svh, 520px); min-height: 420px; aspect-ratio: auto; }
   .room { object-fit: cover; object-position: 50% 0; }
-  .occlusion { background-size: auto 100%; background-position: 50% 0; }
   .control-rail { grid-template-columns: 1fr; gap: 20px; }
   .scope-note { grid-column: auto; }
   .playback { grid-template-columns: 1fr; }
