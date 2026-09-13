@@ -47,3 +47,30 @@ export const SCREEN_NAME_V4 = {
   PROFILE_COVER_DESIGN: 'profile_cover_design',
 } as const;
 export type ScreenNameV4 = (typeof SCREEN_NAME_V4)[keyof typeof SCREEN_NAME_V4];
+
+/** 1depth 구분값(content_group). null이면 앱 브리지 쪽에서 활성 탭을 넣는다(독립 웹은 fixed 값만 존재). */
+export const SCREEN_GROUP_VALUES = ['login', 'signup', 'discovery', 'finder', 'chatty', 'my', 'settings'] as const;
+export const SCREEN_GROUP_V4: Record<ScreenNameV4, string | null> = {
+  app_maintenance: 'login',
+  portfolio_detail: null,
+  finder_shuffle_home: 'finder',
+  dial_home: 'chatty',
+  profile_detail: null,
+  report_detail_input: 'discovery',
+  my_profile: 'my',
+  my_profile_preview: 'my',
+  notification_center: 'chatty',
+  project_detail: null,
+  proposal_detail: 'chatty',
+  proposal_create: 'chatty',
+  proposal_edit: 'chatty',
+  settings_muse_privileges: 'settings',
+  proposal_list: 'chatty',
+  notification_proposal_news: 'chatty',
+  discovery_gallery: 'discovery',
+  member_privileges: 'my',
+  settings_marketing_unsubscribe: 'settings',
+  dial_guide: 'chatty',
+  dial_creator: 'chatty',
+  profile_cover_design: 'my',
+};
