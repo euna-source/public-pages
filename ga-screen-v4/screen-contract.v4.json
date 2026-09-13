@@ -24674,7 +24674,7 @@
    "aggregated": "not_started",
    "improved": "not_started"
   },
-  "received_gate": "권한: 열람 확인(9/13) · 편집자 필요 → 맞춤 측정기준 2개 등록(previous_screen·screen_schema_version) → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
+  "received_gate": "권한 확인(9/13) · 맞춤 측정기준 2개 등록 확인(9/13) → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
  },
  "product_decisions": [
   {
@@ -24807,14 +24807,20 @@
     "scope": "event",
     "param": "previous_screen",
     "why": "유입 직전 화면. 앱 screen_view 파라미터라 등록 없이는 보고서·탐색에서 못 봄",
-    "needed_now": true
+    "needed_now": true,
+    "status": "등록 확인",
+    "resource": "properties/544271522/customDimensions/15769019141",
+    "registered_on": "2026-09-13"
    },
    {
     "name": "screen_schema_version",
     "scope": "event",
     "param": "screen_schema_version",
     "why": "새 계약 빌드만 거르는 필터",
-    "needed_now": true
+    "needed_now": true,
+    "status": "등록 확인",
+    "resource": "properties/544271522/customDimensions/15768755843",
+    "registered_on": "2026-09-13"
    },
    {
     "name": "screen_name",
@@ -24822,7 +24828,8 @@
     "param": "screen_name",
     "why": "웹 page_view의 화면 이름용. 앱 screen_view의 screen_name은 내장 측정기준이라 등록 불필요",
     "needed_now": false,
-    "defer_reason": "알파 속성에 웹 스트림이 없다. 웹 스트림을 붙일 때 등록하거나, 웹이 page_title에 screen_name을 넣어 내장 '페이지 제목 및 화면 이름'으로 합치는 방식을 검토"
+    "defer_reason": "알파 속성에 웹 스트림이 없다. 웹 스트림을 붙일 때 등록하거나, 웹이 page_title에 screen_name을 넣어 내장 '페이지 제목 및 화면 이름'으로 합치는 방식을 검토",
+    "status": "보류"
    }
   ],
   "builtin_no_register": [
@@ -24838,8 +24845,8 @@
     "owner": "기획"
    },
    {
-    "item": "GA4 알파 속성 편집자(맞춤 측정기준 등록용)",
-    "status": "서비스 계정은 뷰어라 API 등록 403. 사용자 계정으로 UI 등록 또는 서비스 계정 편집자 승격 필요",
+    "item": "GA4 알파 속성 편집자(서비스 계정)",
+    "status": "확인(2026-09-13, 사용자 승격 → API 등록 200)",
     "owner": "기획"
    },
    {
@@ -24863,7 +24870,7 @@
     "Android com.heyratel.cre8orclub.alpha"
    ],
    "web_stream": "없음",
-   "custom_dimensions": 0,
+   "custom_dimensions": 2,
    "custom_metrics": 0,
    "verified_on": "2026-09-13",
    "verified_by": "Admin API v1beta, 서비스 계정 firebase-adminsdk-7xew0@cre8orclub-57889 (뷰어)"
@@ -24874,7 +24881,7 @@
   "registration_attempt": {
    "on": "2026-09-13",
    "method": "Admin API customDimensions.create",
-   "result": "403 PERMISSION_DENIED (서비스 계정 뷰어)"
+   "result": "1차 403(뷰어) → 편집자 승격 후 2건 200, 재조회로 확인. 보고서 반영은 24~48시간"
   }
  },
  "content_group_policy": {
