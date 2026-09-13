@@ -28,11 +28,11 @@ public enum ScreenNameV4: String, CaseIterable {
     /// [회원가입] 가입 · 이름 입력(한글)
     case signup_name_ko = "signup_name_ko"
     /// [회원가입] 가입 직후 · 접근 권한 안내
-    case onboarding_permission = "onboarding_permission"
+    case welcome_permission = "welcome_permission"
     /// [회원가입] 가입 직후 · 튜토리얼
-    case onboarding_tutorial = "onboarding_tutorial"
+    case welcome_tutorial = "welcome_tutorial"
     /// [회원가입] 가입 직후 · 환영 영상
-    case onboarding_welcome = "onboarding_welcome"
+    case welcome_video = "welcome_video"
     /// [회원가입] 약관 · 개인정보 처리방침 재동의
     case agreement_reconsent = "agreement_reconsent"
     /// [회원가입] 약관 · 전문 보기(웹)
@@ -300,9 +300,9 @@ public enum ScreenGroupV4 {
         .reset_password_new: "login",
         .signup_id: "signup",
         .signup_name_ko: "signup",
-        .onboarding_permission: "signup",
-        .onboarding_tutorial: "signup",
-        .onboarding_welcome: "signup",
+        .welcome_permission: "signup",
+        .welcome_tutorial: "signup",
+        .welcome_video: "signup",
         .agreement_reconsent: "signup",
         .agreement_document: "signup",
         .profile_cover_create: "my",

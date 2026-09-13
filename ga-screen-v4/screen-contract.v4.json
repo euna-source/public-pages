@@ -1,6 +1,6 @@
 {
  "schema_version": 4,
- "revision": "4.7-review.1",
+ "revision": "4.9-review.1",
  "status": "review_required",
  "decision_date": "2026-09-13",
  "decision": "iOS·AOS·Front 세 플랫폼이 같은 목적지에 같은 영문 screen_name을 보냅니다. Front는 앱 WebView 안에서는 앱이 발송하고 독립 브라우저에서만 웹이 page_view로 같은 이름을 보냅니다.",
@@ -1525,7 +1525,7 @@
    }
   },
   {
-   "key": "onboarding_permission",
+   "key": "welcome_permission",
    "label": "가입 직후 · 접근 권한 안내",
    "stage": "onboarding",
    "kind": "화면",
@@ -1576,6 +1576,9 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "첫 이용 · 접근 권한 안내",
+   "legacy_keys": [
+    "onboarding_permission"
+   ],
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1603,7 +1606,7 @@
    }
   },
   {
-   "key": "onboarding_tutorial",
+   "key": "welcome_tutorial",
    "label": "가입 직후 · 튜토리얼",
    "stage": "onboarding",
    "kind": "화면",
@@ -1654,6 +1657,9 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "첫 이용 · 튜토리얼",
+   "legacy_keys": [
+    "onboarding_tutorial"
+   ],
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -1681,7 +1687,7 @@
    }
   },
   {
-   "key": "onboarding_welcome",
+   "key": "welcome_video",
    "label": "가입 직후 · 환영 영상",
    "stage": "onboarding",
    "kind": "화면",
@@ -1704,7 +1710,7 @@
       "TutorialIntroView.swift:63-64 `if endingView { TutorialCompletionView() }`",
       "TutorialIntroView reached only via ContentView.swift:74-78 presentTutorial gate"
      ],
-     "reach_note": "flag: same server isTutorialEnabled gate as onboarding_tutorial; internal struct, only caller TutorialIntroView"
+     "reach_note": "flag: same server isTutorialEnabled gate as welcome_tutorial; internal struct, only caller TutorialIntroView"
     },
     "aos": {
      "status": "yes",
@@ -1731,6 +1737,9 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "첫 이용 · 입장 영상",
+   "legacy_keys": [
+    "onboarding_welcome"
+   ],
    "status": "active",
    "os_state": {
     "ios": "needed",

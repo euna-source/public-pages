@@ -32,11 +32,11 @@ object ScreenNameV4 {
     /** [회원가입] 가입 · 이름 입력(한글) */
     const val SIGNUP_NAME_KO = "signup_name_ko"
     /** [회원가입] 가입 직후 · 접근 권한 안내 */
-    const val ONBOARDING_PERMISSION = "onboarding_permission"
+    const val WELCOME_PERMISSION = "welcome_permission"
     /** [회원가입] 가입 직후 · 튜토리얼 */
-    const val ONBOARDING_TUTORIAL = "onboarding_tutorial"
+    const val WELCOME_TUTORIAL = "welcome_tutorial"
     /** [회원가입] 가입 직후 · 환영 영상 */
-    const val ONBOARDING_WELCOME = "onboarding_welcome"
+    const val WELCOME_VIDEO = "welcome_video"
     /** [회원가입] 약관 · 개인정보 처리방침 재동의 */
     const val AGREEMENT_RECONSENT = "agreement_reconsent"
     /** [회원가입] 약관 · 전문 보기(웹) */
@@ -301,9 +301,9 @@ object ScreenGroupV4 {
         "reset_password_new" to "login",
         "signup_id" to "signup",
         "signup_name_ko" to "signup",
-        "onboarding_permission" to "signup",
-        "onboarding_tutorial" to "signup",
-        "onboarding_welcome" to "signup",
+        "welcome_permission" to "signup",
+        "welcome_tutorial" to "signup",
+        "welcome_video" to "signup",
         "agreement_reconsent" to "signup",
         "agreement_document" to "signup",
         "profile_cover_create" to "my",
