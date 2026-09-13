@@ -7,8 +7,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case app_maintenance = "app_maintenance"
     /// [로그인] 로그인 · 방법 선택(가입 시작 포함)
     case auth_entry = "auth_entry"
-    /// [회원가입] 가입 · 약관 동의
-    case signup_terms = "signup_terms"
     /// [회원가입] 가입 · 인증번호 입력
     case signup_email_verify = "signup_email_verify"
     /// [회원가입] 가입 · 비밀번호 설정
@@ -61,8 +59,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case portfolio_comment_list = "portfolio_comment_list"
     /// [디스커버리] 영감 · 댓글
     case inspiration_comment_list = "inspiration_comment_list"
-    /// [디스커버리] 리스펙트 · 함께 보낼 한마디 선택
-    case respect_select = "respect_select"
     /// [디스커버리] 리스펙트 · 보낸 사람 목록
     case respect_list = "respect_list"
     /// [디스커버리] 첨부 · 이미지 전체 화면 보기(자기소개)
@@ -77,8 +73,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case finder_result_portfolio = "finder_result_portfolio"
     /// [파인더] 파인더 · 프로젝트 검색 결과
     case finder_result_project = "finder_result_project"
-    /// [파인더] 파인더 · 필터
-    case finder_filter = "finder_filter"
     /// [파인더] 파인더 · Shuffle 메인(웹)
     case finder_shuffle_main = "finder_shuffle_main"
     /// [파인더] 파인더 · Shuffle 키워드 상세
@@ -93,8 +87,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case first_connection_mutual = "first_connection_mutual"
     /// [디스커버리] 노크 · 용건 선택
     case knock_type_select = "knock_type_select"
-    /// [디스커버리] 채팅방 신고 · 사유 선택
-    case report_reason = "report_reason"
     /// [디스커버리] 채팅방 신고 · 사유 직접 입력
     case report_detail_input = "report_detail_input"
     /// [마이] MY · 내 프로필
@@ -103,8 +95,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case my_profile_preview = "my_profile_preview"
     /// [마이] MY · 오늘 방문자
     case my_profile_visitors = "my_profile_visitors"
-    /// [마이] MY · 노크 수신 설정
-    case my_knock_settings = "my_knock_settings"
     /// [마이] 내 정보 · 관리 홈(기본 정보 관리)
     case my_info_main = "my_info_main"
     /// [마이] 내 정보 · ID 변경
@@ -117,8 +107,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case my_info_profession = "my_info_profession"
     /// [마이] 내 정보 · 직업 선택
     case my_info_profession_select = "my_info_profession_select"
-    /// [마이] 내 정보 · 직업 직접 추가
-    case my_info_profession_direct = "my_info_profession_direct"
     /// [마이] 내 정보 · 활동 지역 관리
     case my_info_region = "my_info_region"
     /// [마이] 내 정보 · 해외 도시 입력
@@ -131,10 +119,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case my_info_phone_register = "my_info_phone_register"
     /// [마이] 내 정보 · 링크 입력
     case my_info_link_register = "my_info_link_register"
-    /// [마이] 내 정보 · 생년월일·성별
-    case my_info_birth_gender = "my_info_birth_gender"
-    /// [마이] 내 정보 · 항목별 공개 범위
-    case my_info_visibility = "my_info_visibility"
     /// [마이] 앱 · 계정 이메일 필수 등록
     case account_email_required = "account_email_required"
     /// [마이] 커리어 · 관리 홈
@@ -229,8 +213,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case settings_2fa_email_verify = "settings_2fa_email_verify"
     /// [설정] 회원 탈퇴 · 비밀번호 확인
     case account_delete_password = "account_delete_password"
-    /// [설정] 회원 탈퇴 · 사유 선택
-    case account_delete_reason = "account_delete_reason"
     /// [설정] 회원 탈퇴 · 최종 확인
     case account_delete_confirm = "account_delete_confirm"
     /// [설정] 고객센터 · 홈
@@ -290,7 +272,6 @@ public enum ScreenGroupV4 {
         .app_splash: "login",
         .app_maintenance: "login",
         .auth_entry: "login",
-        .signup_terms: "signup",
         .signup_email_verify: "signup",
         .signup_password: "signup",
         .login_email: "login",
@@ -317,7 +298,6 @@ public enum ScreenGroupV4 {
         .inspiration_detail: nil,
         .portfolio_comment_list: nil,
         .inspiration_comment_list: nil,
-        .respect_select: "discovery",
         .respect_list: nil,
         .media_viewer: nil,
         .finder_main: "finder",
@@ -325,7 +305,6 @@ public enum ScreenGroupV4 {
         .finder_result_creator: "finder",
         .finder_result_portfolio: "finder",
         .finder_result_project: "finder",
-        .finder_filter: "finder",
         .finder_shuffle_main: "finder",
         .finder_shuffle_keyword: "finder",
         .dial_main: "chatty",
@@ -333,27 +312,22 @@ public enum ScreenGroupV4 {
         .relation_list: nil,
         .first_connection_mutual: "discovery",
         .knock_type_select: "discovery",
-        .report_reason: "discovery",
         .report_detail_input: "discovery",
         .my_profile: "my",
         .my_profile_preview: "my",
         .my_profile_visitors: "my",
-        .my_knock_settings: "my",
         .my_info_main: "my",
         .my_info_id: "my",
         .my_info_name_ko: "my",
         .my_info_name_en: "my",
         .my_info_profession: "my",
         .my_info_profession_select: "my",
-        .my_info_profession_direct: "my",
         .my_info_region: "my",
         .my_info_region_global_city: "my",
         .my_info_email_register: "my",
         .my_info_email_verify: "my",
         .my_info_phone_register: "my",
         .my_info_link_register: "my",
-        .my_info_birth_gender: "my",
-        .my_info_visibility: "my",
         .account_email_required: "my",
         .resume_main: "my",
         .resume_career_form: "my",
@@ -401,7 +375,6 @@ public enum ScreenGroupV4 {
         .settings_2fa_email: "settings",
         .settings_2fa_email_verify: "settings",
         .account_delete_password: "settings",
-        .account_delete_reason: "settings",
         .account_delete_confirm: "settings",
         .support_main: "settings",
         .settings_agreements: "settings",

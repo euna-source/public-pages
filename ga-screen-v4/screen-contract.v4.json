@@ -1,6 +1,6 @@
 {
  "schema_version": 4,
- "revision": "4.9-review.1",
+ "revision": "5.0-review.1",
  "status": "review_required",
  "decision_date": "2026-09-13",
  "decision": "iOS·AOS·Front 세 플랫폼이 같은 목적지에 같은 영문 screen_name을 보냅니다. Front는 앱 WebView 안에서는 앱이 발송하고 독립 브라우저에서만 웹이 page_view로 같은 이름을 보냅니다.",
@@ -13,7 +13,7 @@
   {
    "id": "S2",
    "title": "독립 과업",
-   "test": "입력·선택 내용을 만들고 수정하거나 제출하는 과업입니다. 창의 크기와 무관합니다. 편집 중인 상태 없이 다음 명령만 고르는 메뉴는 A1입니다."
+   "test": "입력·선택 내용을 만들고 수정하거나 제출하는 과업입니다. 전체 화면이거나, 그 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있는 시트입니다. 입력·선택·제출만 하고 닫히는 시트는 A1입니다(2026-09-14). 편집 중인 상태 없이 다음 명령만 고르는 메뉴는 A1입니다."
   },
   {
    "id": "S3",
@@ -43,7 +43,7 @@
   {
    "id": "A1",
    "title": "보조 조작",
-   "test": "수정·삭제·첨부 종류처럼 다음 명령을 고르는 메뉴와 정렬 같은 단일 목록 표시 옵션은 행동으로 기록합니다. 완료 버튼 유무만으로 판단하지 않습니다. 정렬 화면 자체의 이탈 분석이 필요해지면 양 OS를 함께 재검토합니다."
+   "test": "수정·삭제·첨부 종류처럼 다음 명령을 고르는 메뉴와 정렬 같은 단일 목록 표시 옵션은 행동으로 기록합니다. 완료 버튼 유무만으로 판단하지 않습니다. 정렬 화면 자체의 이탈 분석이 필요해지면 양 OS를 함께 재검토합니다. 입력·선택·제출만 하고 닫히는 과업 시트(약관 동의·사유 선택·설정 토글·항목 추가)는 열림·제출·취소 행동 이벤트로 기록합니다(2026-09-14)."
   },
   {
    "id": "A2",
@@ -76,6 +76,34 @@
    "test": "원본에 도달 불가라고 적혀 있으면 이름을 예약할 수 있지만 실제 발송 대상에 넣지 않습니다. 존재·의미·구현·수신의 확인 상태를 따로 남깁니다."
   }
  ],
+ "sheet_policy": {
+  "note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+  "keep_screen": [
+   "relation_list",
+   "first_connection_mutual",
+   "respect_list",
+   "my_profile_visitors",
+   "portfolio_comment_list",
+   "inspiration_comment_list"
+  ],
+  "to_action": [
+   "signup_terms",
+   "respect_select",
+   "finder_filter",
+   "report_reason",
+   "my_knock_settings",
+   "my_info_profession_direct",
+   "my_info_birth_gender",
+   "my_info_visibility",
+   "account_delete_reason"
+  ],
+  "parent_resend": "하지 않음. 시트 닫힘에 부모 screen_view 재발송 없음(visit_policy 유지). 시트 체류가 필요해지면 그때 검토.",
+  "weakest": "함께 아는 일촌·오늘 방문자 목록 건수 중앙값이 2~3 미만이면 행동으로 강등(백엔드 확인 항목).",
+  "rule_changes": {
+   "S2": "'창의 크기와 무관합니다' 삭제 → '전체 화면 또는 그 안에서 다른 화면으로 나가는 목록·본문 시트입니다. 입력·선택·제출만 하고 닫히는 시트는 A1입니다.'",
+   "A1": "'입력·선택·제출만 하고 닫히는 과업 시트(약관 동의·사유 선택·설정 토글·항목 추가)는 열림·제출·취소 행동 이벤트로 기록합니다.' 추가"
+  }
+ },
  "screens": [
   {
    "key": "app_splash",
@@ -361,22 +389,23 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "회원가입",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "signup"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -3166,22 +3195,23 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "리스펙트 · 한마디 선택",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "디스커버리",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "discovery"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -3861,13 +3891,14 @@
    "semantic_review": "pending",
    "label_before": "파인더 · 필터",
    "when": "필터 시트가 열리는 순간 1회. 직업·지역·해시태그 선택 페이지로 들어가는 것은 같은 과업의 내부 단계라 screen_view를 다시 보내지 않는다(단계 기록 여부는 이벤트 설계에서 결정). 적용·취소는 행동 이벤트.",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "파인더",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "params_moved_to_events": {},
    "params_moved_note": "단계 이탈 이벤트",
    "content_group": {
@@ -3875,10 +3906,10 @@
     "value": "finder"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -4346,7 +4377,7 @@
    "definition": "나와 상대가 함께 아는 일촌을 총 인원수와 함께 목록으로 보여 주고, 누르면 그 사람 프로필로 이동한다. 상대 프로필 화면이나 프로필 카드 앞면에서 연다.",
    "rationale": "나와 상대가 함께 아는 일촌만 확인합니다. 상대의 전체 관계 목록과 집합의 의미가 달라 별도 이름을 둡니다.",
    "rules": [
-    "S2"
+    "S1"
    ],
    "params": {},
    "platforms": {
@@ -4621,22 +4652,23 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "신고 · 사유 선택",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "디스커버리",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "discovery"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -5038,22 +5070,23 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "마이",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송) · AOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -5590,22 +5623,23 @@
     "reason": "직업 선택 화면의 하위 단계이므로 같은 이유입니다. AOS는 직접 입력 단계가 구형 관문 안에만 남았고, iOS는 직업 선택 화면에서 시트로 엽니다.",
     "category": "legacy_removed_on_other_platform"
    },
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
+    "ios": "action",
     "aos": "legacy",
     "web": "absent"
    },
    "flow_group": "마이",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -6284,22 +6318,23 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "마이",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송) · AOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -6361,22 +6396,23 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "내 정보 · 개인정보 공개설정",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "마이",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송) · AOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -10417,22 +10453,23 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "회원 탈퇴 · 사유",
-   "status": "active",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
+    "ios": "action",
+    "aos": "action",
     "web": "absent"
    },
    "flow_group": "설정",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "settings"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -24808,6 +24845,21 @@
      "step"
     ],
     "to": "단계 이탈 이벤트"
+   },
+   {
+    "from": "(과업 시트 9)",
+    "params": [
+     "signup_terms",
+     "respect_select",
+     "finder_filter",
+     "report_reason",
+     "my_knock_settings",
+     "my_info_profession_direct",
+     "my_info_birth_gender",
+     "my_info_visibility",
+     "account_delete_reason"
+    ],
+    "to": "각 시트의 열림·제출·취소 행동 이벤트 + 결과 파라미터(예: report_reason→report_submit{reason}, finder_filter→filter_apply{conditions})"
    }
   ],
   "rule_note": "M3의 form_step_view 발송 여부는 이벤트 설계 단계에서 결정한다. 화면 계약은 form_step_view를 요구하지 않는다."
@@ -24947,6 +24999,15 @@
    "item": "inspiration_list 딥링크",
    "question": "iOS DeepLinkHandler.swift:274가 여는 inspiration-list 목록 화면을 유지할 것인가. 서버·푸시가 이 링크를 지금도 보내는가(AOS는 프로필 영감 탭으로 우회)",
    "why": "앱 안에서 여는 자리가 없고 iOS만 딥링크 핸들러가 남아 있다. 링크가 안 오면 iOS도 레거시로 내린다.",
+   "blocking": false,
+   "owner": "미정",
+   "due": "미정"
+  },
+  {
+   "platform": "백엔드",
+   "item": "함께 아는 일촌·오늘 방문자 목록 길이",
+   "question": "first_connection_mutual·my_profile_visitors 목록 건수의 중앙값",
+   "why": "2~3 미만이면 탐색 목록이 아니라 한 번 보고 닫는 시트라 행동으로 강등.",
    "blocking": false,
    "owner": "미정",
    "due": "미정"
@@ -25145,14 +25206,16 @@
  },
  "os_state_summary": {
   "ios": {
-   "needed": 140,
+   "needed": 131,
+   "action": 9,
    "absent": 20,
    "legacy": 8,
    "unobserved": 1,
    "unreleased": 1
   },
   "aos": {
-   "needed": 141,
+   "needed": 133,
+   "action": 8,
    "legacy": 15,
    "absent": 11,
    "unreleased": 3
@@ -25165,7 +25228,8 @@
   }
  },
  "status_summary": {
-  "active": 146,
+  "active": 137,
+  "action": 9,
   "retired": 17,
   "reserved": 2,
   "gated": 3,

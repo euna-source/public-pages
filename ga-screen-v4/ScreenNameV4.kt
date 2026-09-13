@@ -9,8 +9,6 @@ object ScreenNameV4 {
     const val APP_MAINTENANCE = "app_maintenance"
     /** [로그인] 로그인 · 방법 선택(가입 시작 포함) */
     const val AUTH_ENTRY = "auth_entry"
-    /** [회원가입] 가입 · 약관 동의 */
-    const val SIGNUP_TERMS = "signup_terms"
     /** [회원가입] 가입 · 인증번호 입력 */
     const val SIGNUP_EMAIL_VERIFY = "signup_email_verify"
     /** [회원가입] 가입 · 비밀번호 설정 */
@@ -63,8 +61,6 @@ object ScreenNameV4 {
     const val PORTFOLIO_COMMENT_LIST = "portfolio_comment_list"
     /** [디스커버리] 영감 · 댓글 */
     const val INSPIRATION_COMMENT_LIST = "inspiration_comment_list"
-    /** [디스커버리] 리스펙트 · 함께 보낼 한마디 선택 */
-    const val RESPECT_SELECT = "respect_select"
     /** [디스커버리] 리스펙트 · 보낸 사람 목록 */
     const val RESPECT_LIST = "respect_list"
     /** [디스커버리] 첨부 · 이미지 전체 화면 보기(자기소개) */
@@ -79,8 +75,6 @@ object ScreenNameV4 {
     const val FINDER_RESULT_PORTFOLIO = "finder_result_portfolio"
     /** [파인더] 파인더 · 프로젝트 검색 결과 */
     const val FINDER_RESULT_PROJECT = "finder_result_project"
-    /** [파인더] 파인더 · 필터 */
-    const val FINDER_FILTER = "finder_filter"
     /** [파인더] 파인더 · Shuffle 메인(웹) */
     const val FINDER_SHUFFLE_MAIN = "finder_shuffle_main"
     /** [파인더] 파인더 · Shuffle 키워드 상세 */
@@ -95,8 +89,6 @@ object ScreenNameV4 {
     const val FIRST_CONNECTION_MUTUAL = "first_connection_mutual"
     /** [디스커버리] 노크 · 용건 선택 */
     const val KNOCK_TYPE_SELECT = "knock_type_select"
-    /** [디스커버리] 채팅방 신고 · 사유 선택 */
-    const val REPORT_REASON = "report_reason"
     /** [디스커버리] 채팅방 신고 · 사유 직접 입력 */
     const val REPORT_DETAIL_INPUT = "report_detail_input"
     /** [마이] MY · 내 프로필 */
@@ -105,8 +97,6 @@ object ScreenNameV4 {
     const val MY_PROFILE_PREVIEW = "my_profile_preview"
     /** [마이] MY · 오늘 방문자 */
     const val MY_PROFILE_VISITORS = "my_profile_visitors"
-    /** [마이] MY · 노크 수신 설정 */
-    const val MY_KNOCK_SETTINGS = "my_knock_settings"
     /** [마이] 내 정보 · 관리 홈(기본 정보 관리) */
     const val MY_INFO_MAIN = "my_info_main"
     /** [마이] 내 정보 · ID 변경 */
@@ -127,10 +117,6 @@ object ScreenNameV4 {
     const val MY_INFO_PHONE_REGISTER = "my_info_phone_register"
     /** [마이] 내 정보 · 링크 입력 */
     const val MY_INFO_LINK_REGISTER = "my_info_link_register"
-    /** [마이] 내 정보 · 생년월일·성별 */
-    const val MY_INFO_BIRTH_GENDER = "my_info_birth_gender"
-    /** [마이] 내 정보 · 항목별 공개 범위 */
-    const val MY_INFO_VISIBILITY = "my_info_visibility"
     /** [마이] 커리어 · 관리 홈 */
     const val RESUME_MAIN = "resume_main"
     /** [마이] 커리어 · 경력 입력 */
@@ -223,8 +209,6 @@ object ScreenNameV4 {
     const val SETTINGS_2FA_EMAIL_VERIFY = "settings_2fa_email_verify"
     /** [설정] 회원 탈퇴 · 비밀번호 확인 */
     const val ACCOUNT_DELETE_PASSWORD = "account_delete_password"
-    /** [설정] 회원 탈퇴 · 사유 선택 */
-    const val ACCOUNT_DELETE_REASON = "account_delete_reason"
     /** [설정] 회원 탈퇴 · 최종 확인 */
     const val ACCOUNT_DELETE_CONFIRM = "account_delete_confirm"
     /** [설정] 고객센터 · 홈 */
@@ -290,7 +274,6 @@ object ScreenGroupV4 {
         "app_splash" to "login",
         "app_maintenance" to "login",
         "auth_entry" to "login",
-        "signup_terms" to "signup",
         "signup_email_verify" to "signup",
         "signup_password" to "signup",
         "login_email" to "login",
@@ -317,7 +300,6 @@ object ScreenGroupV4 {
         "inspiration_detail" to null,
         "portfolio_comment_list" to null,
         "inspiration_comment_list" to null,
-        "respect_select" to "discovery",
         "respect_list" to null,
         "media_viewer" to null,
         "finder_main" to "finder",
@@ -325,7 +307,6 @@ object ScreenGroupV4 {
         "finder_result_creator" to "finder",
         "finder_result_portfolio" to "finder",
         "finder_result_project" to "finder",
-        "finder_filter" to "finder",
         "finder_shuffle_main" to "finder",
         "finder_shuffle_keyword" to "finder",
         "dial_main" to "chatty",
@@ -333,12 +314,10 @@ object ScreenGroupV4 {
         "relation_list" to null,
         "first_connection_mutual" to "discovery",
         "knock_type_select" to "discovery",
-        "report_reason" to "discovery",
         "report_detail_input" to "discovery",
         "my_profile" to "my",
         "my_profile_preview" to "my",
         "my_profile_visitors" to "my",
-        "my_knock_settings" to "my",
         "my_info_main" to "my",
         "my_info_id" to "my",
         "my_info_name_ko" to "my",
@@ -349,8 +328,6 @@ object ScreenGroupV4 {
         "my_info_email_verify" to "my",
         "my_info_phone_register" to "my",
         "my_info_link_register" to "my",
-        "my_info_birth_gender" to "my",
-        "my_info_visibility" to "my",
         "resume_main" to "my",
         "resume_career_form" to "my",
         "resume_education_form" to "my",
@@ -397,7 +374,6 @@ object ScreenGroupV4 {
         "settings_2fa_email" to "settings",
         "settings_2fa_email_verify" to "settings",
         "account_delete_password" to "settings",
-        "account_delete_reason" to "settings",
         "account_delete_confirm" to "settings",
         "support_main" to "settings",
         "settings_agreements" to "settings",
