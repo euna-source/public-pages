@@ -24674,7 +24674,7 @@
    "aggregated": "not_started",
    "improved": "not_started"
   },
-  "received_gate": "권한 확인(9/13) · 맞춤 측정기준 2개 등록 확인(9/13) → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
+  "received_gate": "권한·DebugView 접근 확인(9/13) · 맞춤 측정기준 2개 등록 확인(9/13) → 스파이크 빌드 종류 확인(알파/dev) → 한 플랫폼 화면 3개 스파이크(discovery_feed·portfolio_detail·chat_room_direct, 디버그 모드 ON) → DebugView 캡처 1장 → screen_class 오염 0건 확인"
  },
  "product_decisions": [
   {
@@ -24850,8 +24850,8 @@
     "owner": "기획"
    },
    {
-    "item": "알파 Firebase 프로젝트(DebugView)",
-    "status": "미확인 — GA4 속성은 Firebase 기본 계정 소속이라 같은 프로젝트로 추정, 콘솔 접근은 사람이 확인",
+    "item": "DebugView(알파 속성)",
+    "status": "확인(2026-09-13, 사용자 콘솔 접속 — 디버그 기기 0, 이벤트 대기 중)",
     "owner": "기획"
    },
    {
@@ -24873,7 +24873,20 @@
    "custom_dimensions": 2,
    "custom_metrics": 0,
    "verified_on": "2026-09-13",
-   "verified_by": "Admin API v1beta, 서비스 계정 firebase-adminsdk-7xew0@cre8orclub-57889 (뷰어)"
+   "verified_by": "Admin API v1beta, 서비스 계정 firebase-adminsdk-7xew0@cre8orclub-57889 (뷰어)",
+   "sibling_properties": [
+    {
+     "name": "cre8orclub-57889",
+     "id": "463382576",
+     "guess": "운영(미확인, 서비스 계정 접근 없음)"
+    },
+    {
+     "name": "cre8orclub-dev-5e174",
+     "id": "466621396",
+     "guess": "개발(미확인)"
+    }
+   ],
+   "note": "스파이크 빌드가 알파 패키지가 아니라 dev 빌드면 dev 속성(466621396)에도 맞춤 측정기준 2개를 등록해야 한다. 빌드 종류를 개발자에게 먼저 확인."
   },
   "not_a_dimension": [
    "screen_visit_id — 값이 방문마다 달라 측정기준으로 등록하지 않는다(카디널리티). BigQuery 대조용."
