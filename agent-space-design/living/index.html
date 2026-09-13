@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light">
+  <title>Agent Space · 살아 있는 작업실</title>
+  <meta name="description" content="여러 캐릭터의 일이 서로 다른 리듬으로 이어지는 살아 있는 작업실">
+  <link rel="stylesheet" href="living.css">
+</head>
+<body>
+  <main>
+    <section class="living-room" aria-labelledby="page-title">
+      <header class="room-header">
+        <div class="brand-lockup">
+          <a class="back-link" href="../" aria-label="Agent Space 설계 보드로 돌아가기">Agent Space</a>
+          <span aria-hidden="true">/</span>
+          <h1 id="page-title">살아 있는 작업실</h1>
+        </div>
+        <div class="room-controls">
+          <span class="room-presence"><i aria-hidden="true"></i><span id="presence-label">조용히 일하는 중</span></span>
+          <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false">
+            <span class="pause-icon" aria-hidden="true"></span>
+            <span id="motion-label">움직임 멈추기</span>
+          </button>
+        </div>
+      </header>
+
+      <div class="world-frame" id="world-frame" data-mode="still">
+        <div class="world-media" id="world-media">
+          <img class="world-poster" id="world-poster" src="../assets/whole-space.webp" width="2048" height="1152" alt="곡선 벽과 목재 가구, 서가, 원탁, 창작 책상이 이어진 따뜻한 작업실에서 하울, 헬로키티, 쿠로미, 초코캣과 먼지 요정들이 각자의 일을 하는 모습">
+          <div class="motion-regions" id="motion-regions" aria-hidden="true"></div>
+          <div class="window-breath" aria-hidden="true"></div>
+          <div class="focus-lens" id="focus-lens" aria-hidden="true"></div>
+        </div>
+
+        <div class="scene-copy" aria-live="polite" aria-atomic="true">
+          <p class="scene-kicker" id="scene-kicker">같은 시간, 서로 다른 리듬</p>
+          <p class="scene-line" id="scene-line">하울은 읽고, 키티는 쓰고, 먼지 요정들은 다음 일을 정리하고 있어요.</p>
+        </div>
+
+        <nav class="place-nav" aria-label="작업실 구역 살펴보기">
+          <button type="button" data-place="all" aria-pressed="true">전체</button>
+          <button type="button" data-place="howl" aria-pressed="false">하울의 서재</button>
+          <button type="button" data-place="table" aria-pressed="false">공유 원탁</button>
+          <button type="button" data-place="studio" aria-pressed="false">창작 책상</button>
+          <button type="button" data-place="lab" aria-pressed="false">관찰 작업대</button>
+        </nav>
+
+        <div class="loading-note" id="loading-note" role="status">첫 장면을 준비하고 있어요.</div>
+      </div>
+
+      <div class="room-ledger" aria-label="지금 이어지는 일">
+        <div class="ledger-intro">
+          <p class="eyebrow">지금 이어지는 일</p>
+          <p>모두가 한꺼번에 움직이지 않습니다. 읽기, 기록, 전달, 관찰이 각자의 속도로 이어집니다.</p>
+        </div>
+        <ul class="activity-list" id="activity-list">
+          <li data-person="howl"><span>하울</span><strong>자료의 맥락을 읽는 중</strong><i>집중</i></li>
+          <li data-person="kitty"><span>헬로키티</span><strong>아이디어를 기록하는 중</strong><i>기록</i></li>
+          <li data-person="kuromi"><span>쿠로미</span><strong>두 메모를 비교하는 중</strong><i>검토</i></li>
+          <li data-person="chococat"><span>초코캣</span><strong>작업 결과를 관찰하는 중</strong><i>확인</i></li>
+          <li data-person="soot"><span>먼지 요정들</span><strong>다음 자료를 건네는 중</strong><i>연결</i></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+  <noscript><p class="no-script">움직임을 보려면 JavaScript를 켜 주세요. 공간 이미지는 그대로 볼 수 있습니다.</p></noscript>
+  <script src="living.js" defer></script>
+</body>
+</html>
