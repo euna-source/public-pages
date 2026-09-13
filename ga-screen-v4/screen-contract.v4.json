@@ -2208,16 +2208,10 @@
     },
     "aos": {
      "status": "yes",
-     "legacy_keys": [],
-     "evidence": [
-      "feature/profile-content/profile-experience/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/profileexperience/profileexpression/ProfileExpressionActivity.kt:ProfileExpressionActivity:11"
-     ],
-     "note": "같은 Activity가 기존 데이터가 있는 편집 모드를 처리한다.",
+     "evidence": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/SelfDescriptionInfoActivity.kt:SelfDescriptionInfoActivity:44",
      "reach": "ui_via_web",
-     "legacy_marker": false,
+     "legacy_marker": true,
      "reach_evidence": [
-      "feature/profile-content/profile-experience/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/profileexperience/deeplink/ProfileExpressionDeepLinkRule.kt:ProfileExpressionDeepLinkRule",
-      "feature/profile-content/profile-experience/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/profileexperience/profileexpression/ProfileExpressionActivity.kt:ProfileExpressionActivity",
       "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/self-description/update",
       "app/src/main/java/com/heyratel/cre8orclub/presentation/member/di/MemberLegacyActivityIntentFactoryModule.kt:MemberLegacyActivityIntentFactoryModule",
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/SelfDescriptionInfoActivity.kt:SelfDescriptionInfoActivity"
