@@ -21,16 +21,8 @@ export const SCREEN_NAME_V4 = {
   NOTIFICATION_CENTER: 'notification_center',
   /** [디스커버리] 프로젝트 · 상세 */
   PROJECT_DETAIL: 'project_detail',
-  /** [채티] 협업 제안 · 상세(웹) */
-  PROPOSAL_DETAIL: 'proposal_detail',
-  /** [채티] 협업 제안 · 작성(웹) */
-  PROPOSAL_CREATE: 'proposal_create',
-  /** [채티] 협업 제안 · 수정(웹) */
-  PROPOSAL_EDIT: 'proposal_edit',
   /** [설정] Muse 특권 안내(웹) */
   SETTINGS_MUSE_PRIVILEGES: 'settings_muse_privileges',
-  /** [채티] 협업 제안 · 제안함 목록(웹) */
-  PROPOSAL_LIST: 'proposal_list',
   /** [마이] 회원 자격 · 베타 혜택 안내(웹) */
   MEMBER_PRIVILEGES: 'member_privileges',
   /** [설정] 설정 · 마케팅 수신 거부(웹) */
@@ -41,6 +33,8 @@ export const SCREEN_NAME_V4 = {
   DIAL_CREATOR: 'dial_creator',
   /** [마이] 프로필 커버 · 디자인 선택(웹) */
   PROFILE_COVER_DESIGN: 'profile_cover_design',
+  /** [마이] MY · 피드 뷰 */
+  MY_FEED: 'my_feed',
 } as const;
 export type ScreenNameV4 = (typeof SCREEN_NAME_V4)[keyof typeof SCREEN_NAME_V4];
 
@@ -57,14 +51,11 @@ export const SCREEN_GROUP_V4: Record<ScreenNameV4, string | null> = {
   my_profile_preview: 'my',
   notification_center: 'chatty',
   project_detail: null,
-  proposal_detail: 'chatty',
-  proposal_create: 'chatty',
-  proposal_edit: 'chatty',
   settings_muse_privileges: 'settings',
-  proposal_list: 'chatty',
   member_privileges: 'my',
   settings_marketing_unsubscribe: 'settings',
   dial_guide: 'chatty',
   dial_creator: 'chatty',
   profile_cover_design: 'my',
+  my_feed: 'my',
 };

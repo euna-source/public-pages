@@ -171,12 +171,6 @@ object ScreenNameV4 {
     const val PROJECT_APPLICATION_COMPOSE = "project_application_compose"
     /** [디스커버리] 프로젝트 · 지원자 목록 */
     const val PROJECT_APPLICANTS = "project_applicants"
-    /** [채티] 협업 제안 · 상세(웹) */
-    const val PROPOSAL_DETAIL = "proposal_detail"
-    /** [채티] 협업 제안 · 작성(웹) */
-    const val PROPOSAL_CREATE = "proposal_create"
-    /** [채티] 협업 제안 · 수정(웹) */
-    const val PROPOSAL_EDIT = "proposal_edit"
     /** [채티] 팀 · 목록(내 팀과 받은 초대) */
     const val TEAM_LIST = "team_list"
     /** [채티] 팀 · 상세 */
@@ -245,12 +239,8 @@ object ScreenNameV4 {
     const val PROJECT_CHAT_LIST = "project_chat_list"
     /** [설정] 회원 탈퇴 · 사유 직접 입력 */
     const val ACCOUNT_DELETE_REASON_INPUT = "account_delete_reason_input"
-    /** [채티] 협업 제안 · 제안함 목록(웹) */
-    const val PROPOSAL_LIST = "proposal_list"
     /** [마이] 회원 자격 · 베타 혜택 안내(웹) */
     const val MEMBER_PRIVILEGES = "member_privileges"
-    /** [마이] 커리어 · 스킬 입력 */
-    const val RESUME_SKILL_FORM = "resume_skill_form"
     /** [마이] 커리어 · 언어 능력 입력 */
     const val RESUME_LANGUAGE_FORM = "resume_language_form"
     /** [디스커버리] 아케이드 · 두더지잡기 */
@@ -265,6 +255,8 @@ object ScreenNameV4 {
     const val DIAL_CREATOR = "dial_creator"
     /** [마이] 프로필 커버 · 디자인 선택(웹) */
     const val PROFILE_COVER_DESIGN = "profile_cover_design"
+    /** [마이] MY · 피드 뷰 */
+    const val MY_FEED = "my_feed"
 }
 
 /** 1depth 구분값(content_group·screen_class). null이면 화면이 뜬 순간의 활성 하단 탭 코드를 넣는다. */
@@ -355,9 +347,6 @@ object ScreenGroupV4 {
         "project_detail" to null,
         "project_application_compose" to null,
         "project_applicants" to "discovery",
-        "proposal_detail" to "chatty",
-        "proposal_create" to "chatty",
-        "proposal_edit" to "chatty",
         "team_list" to "chatty",
         "team_detail" to null,
         "team_create" to "chatty",
@@ -392,9 +381,7 @@ object ScreenGroupV4 {
         "lounge_list" to "chatty",
         "project_chat_list" to "chatty",
         "account_delete_reason_input" to "settings",
-        "proposal_list" to "chatty",
         "member_privileges" to "my",
-        "resume_skill_form" to "my",
         "resume_language_form" to "my",
         "arcade_whack" to "discovery",
         "arcade_puzzle" to "discovery",
@@ -402,5 +389,6 @@ object ScreenGroupV4 {
         "dial_guide" to "chatty",
         "dial_creator" to "chatty",
         "profile_cover_design" to "my",
+        "my_feed" to "my",
     )
 }

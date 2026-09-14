@@ -119,8 +119,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case my_info_phone_register = "my_info_phone_register"
     /// [마이] 내 정보 · 링크 입력
     case my_info_link_register = "my_info_link_register"
-    /// [마이] 앱 · 계정 이메일 필수 등록
-    case account_email_required = "account_email_required"
     /// [마이] 커리어 · 관리 홈
     case resume_main = "resume_main"
     /// [마이] 커리어 · 경력 입력
@@ -177,10 +175,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case project_application_compose = "project_application_compose"
     /// [디스커버리] 프로젝트 · 지원자 목록
     case project_applicants = "project_applicants"
-    /// [채티] 협업 제안 · 작성(웹)
-    case proposal_create = "proposal_create"
-    /// [채티] 협업 제안 · 수정(웹)
-    case proposal_edit = "proposal_edit"
     /// [채티] 팀 · 목록(내 팀과 받은 초대)
     case team_list = "team_list"
     /// [채티] 팀 · 상세
@@ -251,10 +245,8 @@ public enum ScreenNameV4: String, CaseIterable {
     case project_chat_list = "project_chat_list"
     /// [설정] 회원 탈퇴 · 사유 직접 입력
     case account_delete_reason_input = "account_delete_reason_input"
-    /// [설정] 설정 · 개인정보 이용 동의(딥링크)
+    /// [설정] 설정 · 개인정보 이용 동의/철회(딥링크)
     case settings_personal_info_consent = "settings_personal_info_consent"
-    /// [설정] 설정 · 개인정보 이용 동의 철회(딥링크)
-    case settings_personal_info_withdraw = "settings_personal_info_withdraw"
     /// [마이] 회원 자격 · 베타 혜택 안내(웹)
     case member_privileges = "member_privileges"
     /// [채티] 채티 · 다이얼 안내(팔로잉 8명 미만)
@@ -263,6 +255,8 @@ public enum ScreenNameV4: String, CaseIterable {
     case dial_creator = "dial_creator"
     /// [마이] 프로필 커버 · 디자인 선택(웹)
     case profile_cover_design = "profile_cover_design"
+    /// [마이] MY · 피드 뷰
+    case my_feed = "my_feed"
 }
 
 /// 1depth 구분값(content_group·screen_class). nil이면 화면이 뜬 순간의 활성 하단 탭 코드를 넣는다.
@@ -328,7 +322,6 @@ public enum ScreenGroupV4 {
         .my_info_email_verify: "my",
         .my_info_phone_register: "my",
         .my_info_link_register: "my",
-        .account_email_required: "my",
         .resume_main: "my",
         .resume_career_form: "my",
         .resume_education_form: "my",
@@ -357,8 +350,6 @@ public enum ScreenGroupV4 {
         .project_list: nil,
         .project_application_compose: nil,
         .project_applicants: "discovery",
-        .proposal_create: "chatty",
-        .proposal_edit: "chatty",
         .team_list: "chatty",
         .team_detail: nil,
         .team_create: "chatty",
@@ -395,10 +386,10 @@ public enum ScreenGroupV4 {
         .project_chat_list: "chatty",
         .account_delete_reason_input: "settings",
         .settings_personal_info_consent: "settings",
-        .settings_personal_info_withdraw: "settings",
         .member_privileges: "my",
         .dial_guide: "chatty",
         .dial_creator: "chatty",
         .profile_cover_design: "my",
+        .my_feed: "my",
     ]
 }

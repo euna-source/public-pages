@@ -838,7 +838,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/base/LegacyRouteEntry.kt:startLegacyRoute",
       "feature/auth/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/auth/login/LoginActivity.kt:EmailInput / PasswordInput / VerificationEmailInput / VerificationCode / PasswordReset"
      ],
-     "reach_note": "현행 이메일 로그인·비밀번호 재설정 흐름에서 사용자 조작으로 도달한다."
+     "reach_note": "현행 이메일 로그인·비밀번호 재설정 흐름에서 사용자 조작으로 도달한다. 추가 진입 경로 확인(#code-question 2026-09-14): 설정→탈퇴→비밀번호 재확인 중 서버가 WITHDRAW_LOCKED를 주면 하단 버튼이 \"비밀번호 재설정\"으로 바뀌며 이 경로로도 열린다(ResetPasswordEmailCheckActivity→ResetPasswordActivity, WithdrawPasswordActivity.kt:219). 일반 로그인 흐름(로그인 화면 비밀번호 찾기)은 사용자 실측으로 이미 확인됨 — 두 경로 모두 유효."
     },
     "web": {
      "status": "absent",
@@ -923,7 +923,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/base/LegacyRouteEntry.kt:startLegacyRoute",
       "feature/auth/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/auth/login/LoginActivity.kt:EmailInput / PasswordInput / VerificationEmailInput / VerificationCode / PasswordReset"
      ],
-     "reach_note": "현행 이메일 로그인·비밀번호 재설정 흐름에서 사용자 조작으로 도달한다."
+     "reach_note": "현행 이메일 로그인·비밀번호 재설정 흐름에서 사용자 조작으로 도달한다. 추가 진입 경로 확인(#code-question 2026-09-14): 설정→탈퇴→비밀번호 재확인 중 서버가 WITHDRAW_LOCKED를 주면 하단 버튼이 \"비밀번호 재설정\"으로 바뀌며 이 경로로도 열린다(ResetPasswordEmailCheckActivity→ResetPasswordActivity, WithdrawPasswordActivity.kt:219). 일반 로그인 흐름(로그인 화면 비밀번호 찾기)은 사용자 실측으로 이미 확인됨 — 두 경로 모두 유효."
     },
     "web": {
      "status": "absent",
@@ -1003,7 +1003,7 @@
       "app/src/main/java/com/heyratel/cre8orclub/presentation/base/LegacyRouteEntry.kt:startLegacyRoute",
       "feature/auth/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/auth/login/LoginActivity.kt:EmailInput / PasswordInput / VerificationEmailInput / VerificationCode / PasswordReset"
      ],
-     "reach_note": "현행 이메일 로그인·비밀번호 재설정 흐름에서 사용자 조작으로 도달한다."
+     "reach_note": "현행 이메일 로그인·비밀번호 재설정 흐름에서 사용자 조작으로 도달한다. 추가 진입 경로 확인(#code-question 2026-09-14): 설정→탈퇴→비밀번호 재확인 중 서버가 WITHDRAW_LOCKED를 주면 하단 버튼이 \"비밀번호 재설정\"으로 바뀌며 이 경로로도 열린다(ResetPasswordEmailCheckActivity→ResetPasswordActivity, WithdrawPasswordActivity.kt:219). 일반 로그인 흐름(로그인 화면 비밀번호 찾기)은 사용자 실측으로 이미 확인됨 — 두 경로 모두 유효."
     },
     "web": {
      "status": "absent",
@@ -4776,22 +4776,14 @@
    "stage": "my",
    "kind": "탭",
    "reserved": false,
-   "definition": "하단 MY 탭을 누르면 열리는 내 프로필로, 내가 쓴 이력과 내가 올린 작업물 카드 두 갈래를 위쪽 세그먼트로 오가며 본다. 오른쪽 위 버튼으로 남에게 보이는 모습을 미리 보거나 공유하고, 설정으로 들어간다.",
-   "rationale": "내 프로필을 조회·관리하는 MY 목적지입니다. AOS 바깥 my_page 호출을 제거하고 실제 프로필 표시 지점 한 곳에서 보내야 중복이 남지 않습니다.",
+   "definition": "하단 MY 탭을 누르면 열리는 기본 뷰로, 커버·자기소개·포트폴리오·프로젝트·기본정보·커리어 영역이 섹션으로 이어지는 한 화면이다. 각 섹션의 「등록/편집」은 그 섹션의 등록·수정 화면을 열고, 포트폴리오·프로젝트의 「전체보기」는 my_feed로 이동한다. 오른쪽 위 버튼으로 미리보기·공유·설정에 들어간다. 오른쪽 위 토글 버튼으로 my_feed와 전환된다.",
+   "rationale": "내 프로필을 섹션별로 조회·관리하는 MY 기본 목적지입니다. 탭이 아니라 토글로 my_feed와 전환되는 별개 화면이라 params.tab을 빼고 나눕니다.",
    "rules": [
     "S1",
     "M1",
     "M4"
    ],
-   "params": {
-    "tab": [
-     "resume",
-     "portfolio",
-     "project",
-     "inspiration",
-     "introduction"
-    ]
-   },
+   "params": {},
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -4806,7 +4798,7 @@
       "MainTabView.swift:290-292 Tab(profile) ProfileDetailView(isMyTab:true) / :384",
       "row 70 ProfileListView.swift:121 ProfileListTabScrollView → :196 '소개' sub tab"
      ],
-     "reach_note": ""
+     "reach_note": "사용자 확인(2026-09-14): MY 기본 뷰는 섹션 나열형(ProfileDetailView, MainTabView.swift:290-292)이고, 피드 뷰(ProfileListView·ProfileListTabScrollView, row 70)는 토글로 전환되는 별개 화면(my_feed)으로 분리 — iOS 근거로 확정, AOS·웹은 사용자 결정으로 미확인 수용."
     },
     "aos": {
      "status": "measured",
@@ -4838,6 +4830,7 @@
    },
    "origin": "v3",
    "semantic_review": "pending",
+   "when": "하단 MY 탭 진입 시, 또는 my_feed에서 토글 버튼으로 되돌아올 때 1회.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -5965,12 +5958,17 @@
    "stage": "my",
    "kind": "화면",
    "reserved": false,
-   "definition": "가입 계정 이메일과 별개로 연락받을 이메일 주소를 입력하는 전체 화면으로, 입력을 마치면 인증 단계로 이어진다. 기본 정보 관리에서 이메일이 비어 있는 항목을 누르거나 이메일 관리 시트의 「수정하기」를 누르면 열린다.",
-   "rationale": "가입 계정과 별개인 연락용 이메일을 입력합니다. 계정 이메일 강제 등록과 나누고 후속 인증은 my_info_email_verify로 기록합니다.",
+   "definition": "이메일 주소를 입력하는 전체 화면으로, 입력을 마치면 인증 단계(my_info_email_verify)로 이어진다. context=normal이면 MY 기본정보의 이메일 항목이나 이메일 관리 시트의 「수정하기」에서 열리고 닫기 버튼이 있다. context=app_gate면 가입 계정에 이메일이 없는 회원이 앱에 들어가는 순간 메인탭 위로 강제로 덮이며 닫기 버튼이 없다 — 이때만 인증 완료 시 member.joinAccountEmail도 같이 채워진다(원래 null일 때만).",
+   "rationale": "이메일을 입력해 profile.email을 갱신하는 같은 화면입니다. member.joinAccountEmail이 null일 때만 같이 채워지는 건 서버의 조건부 동기화일 뿐 다른 화면을 만드는 이유가 아니라서, 진입 맥락(context)만 나눕니다.",
    "rules": [
     "S1"
    ],
-   "params": {},
+   "params": {
+    "context": [
+     "normal",
+     "app_gate"
+    ]
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -5982,9 +5980,11 @@
      "reach_evidence": [
       "BasicInfoSheetView.swift:248/250 → EmailUpdateBottomSheetView.swift:29-30 / ProfileBottomSheetNavigationModifier.swift:309-310 fullScreenCover RegisterEmailNavigationView",
       "BasicInfoSheetView reachable only via web-bridge userInfoManagement (see my_info_home)",
-      "MainTabView.swift:84-85 also shows RegisterEmailNavigationView as app gate (joinAccountEmail empty) — gated branch, see account_email_required"
+      "MainTabView.swift:84-85 also shows RegisterEmailNavigationView as app gate (joinAccountEmail empty) — gated branch, see account_email_required",
+      "MainTabView.swift:84-85 .fullScreenCover(isPresented:$viewModel.presentRegisterEmailNavigationView) RegisterEmailNavigationView",
+      "MainTabViewModel observeMember: me.joinAccountEmail empty → presentRegisterEmailNavigationView = true"
      ],
-     "reach_note": "web-bridge only in My; app-level gate branch is gated"
+     "reach_note": "web-bridge only in My; app-level gate branch is gated [합침 account_email_required] flag: account state joinAccountEmail == nil/empty"
     },
     "aos": {
      "status": "yes",
@@ -6001,7 +6001,7 @@
       "feature/webview/api/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/api/WebCapabilityProfile.kt:legacyNativeBridgeEnabled",
       "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/PersonalInfoActivity.kt:PersonalInfoActivity"
      ],
-     "reach_note": "개인정보 루트와 자식은 현행 네이티브 메뉴 호출이 없고 MY 웹 레거시 브리지에서만 열린다."
+     "reach_note": "개인정보 루트와 자식은 현행 네이티브 메뉴 호출이 없고 MY 웹 레거시 브리지에서만 열린다. 기획 결정(2026-09-13, account_email_required 병합 반영 2026-09-14): AOS도 context=app_gate(가입 계정 이메일 없는 회원이 앱에 진입할 때 강제)에 같은 화면을 둘 계획이나 아직 미출시. context=normal(연락용 이메일 수정)은 InputEmailActivity로 이미 있다."
     },
     "web": {
      "status": "absent",
@@ -6012,6 +6012,7 @@
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "내 정보 · 이메일 입력",
+   "when": "이메일 항목을 눌렀을 때(normal), 또는 가입 계정 이메일이 없는 회원이 앱에 진입할 때(app_gate) 1회. app_gate는 회원 정보가 갱신될 때마다 조건을 재평가하지만 화면이 이미 떠 있으면 재발송하지 않는다.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -6019,6 +6020,13 @@
     "web": "absent"
    },
    "flow_group": "마이",
+   "legacy_keys": [
+    "account_email_required"
+   ],
+   "merged_from": {
+    "account_email_required": "Slack 확인(2026-09-14, #code-question): 두 진입 모두 같은 RegisterEmailNavigationView·같은 updateEmailUseCase.execute()·같은 PATCH /v1/api/personal-infos를 탄다. 서버는 profile.email을 항상 덮어쓰고, member.joinAccountEmail은 null일 때만 같이 채운다(RegisterEmailService.kt:29-36) — 두 필드가 별개가 아니라 조건부 동기화다. UI·행동 기준으로는 같은 화면이라 병합하고, 진입 맥락(app_gate/normal)만 파라미터로 구분한다. 사용자 승인(2026-09-14)."
+   },
+   "note": "Slack 확인(2026-09-14, #code-question): 두 진입 모두 같은 RegisterEmailNavigationView·같은 updateEmailUseCase.execute()·같은 PATCH /v1/api/personal-infos를 탄다. 서버는 profile.email을 항상 덮어쓰고, member.joinAccountEmail은 null일 때만 같이 채운다(RegisterEmailService.kt:29-36) — 두 필드가 별개가 아니라 조건부 동기화다. UI·행동 기준으로는 같은 화면이라 병합하고, 진입 맥락(app_gate/normal)만 파라미터로 구분한다. 사용자 승인(2026-09-14).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -6413,82 +6421,6 @@
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
     "owner": "없음",
-    "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
-    "observed": "미확인(실수신 0건, 2026-09-13)"
-   },
-   "verification": {
-    "defined": "done",
-    "received": "unverified",
-    "aggregated": "unverified",
-    "improved": "unverified"
-   }
-  },
-  {
-   "key": "account_email_required",
-   "label": "앱 · 계정 이메일 필수 등록",
-   "stage": "my",
-   "kind": "화면",
-   "reserved": false,
-   "definition": "가입 계정에 이메일이 없으면 앱에 들어가는 순간 전체 화면으로 덮이는 이메일 등록·인증 화면. 닫기 버튼이 없어 이메일을 등록해 인증을 마쳐야 벗어난다.",
-   "rationale": "계정 이메일 등록·인증을 끝내야 앱으로 돌아가는 관문입니다. 선택적인 연락처 수정과 달리 앱 이용을 막는 조건이므로 나눕니다.",
-   "rules": [
-    "S1"
-   ],
-   "params": {},
-   "platforms": {
-    "ios": {
-     "status": "in_inventory",
-     "rows": [
-      77
-     ],
-     "reach": "gated",
-     "legacy_marker": false,
-     "reach_evidence": [
-      "MainTabView.swift:84-85 .fullScreenCover(isPresented:$viewModel.presentRegisterEmailNavigationView) RegisterEmailNavigationView",
-      "MainTabViewModel observeMember: me.joinAccountEmail empty → presentRegisterEmailNavigationView = true"
-     ],
-     "reach_note": "flag: account state joinAccountEmail == nil/empty"
-    },
-    "aos": {
-     "status": "no",
-     "legacy_keys": [],
-     "evidence": [
-      "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/personalInfo/RequiredBasicInfoActivity.kt:RequiredBasicInfoType:78"
-     ],
-     "note": "강제 기본정보 관문은 ID·한/영문 이름·직업·세 키워드만 다루며 계정 이메일 강제 등록·인증 목적지는 없다.",
-     "reach": "unreleased",
-     "reach_note": "기획 결정(2026-09-13): AOS에도 같은 관문을 둔다. 구현·출시 후 이 이름으로 보낸다."
-    },
-    "web": {
-     "status": "absent",
-     "routes": [],
-     "reach": "absent"
-    }
-   },
-   "origin": "v3",
-   "semantic_review": "pending",
-   "asymmetry": {
-    "side": "iOS만",
-    "reason": "iOS는 로그인 직후 내 정보의 가입 이메일이 비어 있으면 닫을 수 없는 「연락받을 이메일 주소를 확인해 주세요」 화면을 전체로 덮습니다. AOS도 소셜 로그인을 지원해 가입 이메일이 빈 계정이 생길 수 있는데, 같은 관문이 없고 필수 기본정보 관문은 ID·이름·직업·키워드만 다룹니다. 이 차이를 의도한 것인지는 소스만으로 알 수 없습니다.",
-    "category": "real_gap_needs_product_decision"
-   },
-   "label_before": "계정 · 이메일 강제 등록",
-   "status": "gated",
-   "os_state": {
-    "ios": "needed",
-    "aos": "unreleased",
-    "web": "absent"
-   },
-   "flow_group": "마이",
-   "content_group": {
-    "mode": "fixed",
-    "value": "my"
-   },
-   "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -8931,7 +8863,8 @@
     "ios": {
      "status": "absent",
      "rows": [],
-     "reach": "absent"
+     "reach": "dead",
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     },
     "aos": {
      "status": "measured",
@@ -8940,21 +8873,21 @@
      ],
      "evidence": "",
      "note": "",
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/deeplink/OpenWebDeepLinkRule.kt:OpenWebDeepLinkRule",
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/WebViewActivity.kt:WebViewActivity"
      ],
-     "reach_note": "AOS 내부 UI 호출은 없고 외부 open-web target으로만 제안 웹 URL을 열 수 있다."
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     },
     "web": {
      "status": "webview",
      "routes": [
       "/message-box/proposal/detail"
      ],
-     "reach": "ui",
-     "reach_note": "Current and contract names already match"
+     "reach": "dead",
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     }
    },
    "origin": "v3",
@@ -8964,11 +8897,16 @@
     "reason": "협업 제안 상세는 웹 페이지(/message-box/proposal/detail)이고 화면 이름은 웹이 직접 보냅니다. AOS는 open-web 딥링크로 이 웹 URL을 여는 통로만 있고, iOS도 공용 웹뷰에서 제안 웹 화면을 띄우고 있어(proposal_edit 종료 로그) 네이티브 화면이 없다는 점은 두 플랫폼이 같습니다. 계약에서 iOS가 '없음', 제안함 목록은 '미관측'으로 적힌 것은 표기 차이일 뿐 결정 사항은 아닙니다.",
     "category": "web_only_feature"
    },
-   "status": "active",
+   "status": "retired",
    "os_state": {
-    "ios": "absent",
-    "aos": "needed",
-    "web": "needed"
+    "ios": "legacy",
+    "aos": "legacy",
+    "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "채티",
    "content_group": {
@@ -8976,10 +8914,10 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "AOS: 앱(딥링크 라우터) · 웹: 앱(브리지)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -9008,13 +8946,13 @@
      "rows": [
       203
      ],
-     "reach": "ui_via_web",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "CommonWebViewRepresentableView.swift:1179-1184 case \"openBottomSheet\" (web-bridge) → viewModel.presentLockedBottomSheetWebView",
       "CommonWebView.swift:247 .sheet(isPresented:$viewModel.isLockedBottomSheetWebViewPresented) nested CommonWebView"
      ],
-     "reach_note": "web-bridge only; process_name proposal"
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     },
     "aos": {
      "status": "measured",
@@ -9023,13 +8961,13 @@
      ],
      "evidence": "",
      "note": "",
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/deeplink/OpenWebDeepLinkRule.kt:OpenWebDeepLinkRule",
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/WebViewActivity.kt:WebViewActivity"
      ],
-     "reach_note": "AOS 내부 UI 호출은 없고 외부 open-web target으로만 제안 웹 URL을 열 수 있다."
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     },
     "web": {
      "status": "webview",
@@ -9040,17 +8978,22 @@
       "/message-box/proposal/form/email (id absent)",
       "/message-box/proposal/form/phone (id absent)"
      ],
-     "reach": "ui",
-     "reach_note": "Current and contract names already match"
+     "reach": "dead",
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     }
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
-    "web": "needed"
+    "ios": "legacy",
+    "aos": "legacy",
+    "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "채티",
    "content_group": {
@@ -9058,10 +9001,10 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송) · AOS: 앱(딥링크 라우터) · 웹: 앱(브리지)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -9090,12 +9033,12 @@
      "rows": [
       203
      ],
-     "reach": "ui_via_web",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "same as proposal_create; CommonWebView.swift:277-278 exit_process screen_name proposal_edit"
      ],
-     "reach_note": "web-bridge only"
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     },
     "aos": {
      "status": "measured",
@@ -9104,13 +9047,13 @@
      ],
      "evidence": "",
      "note": "",
-     "reach": "deeplink_only",
+     "reach": "dead",
      "legacy_marker": false,
      "reach_evidence": [
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/deeplink/OpenWebDeepLinkRule.kt:OpenWebDeepLinkRule",
       "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/WebViewActivity.kt:WebViewActivity"
      ],
-     "reach_note": "AOS 내부 UI 호출은 없고 외부 open-web target으로만 제안 웹 URL을 열 수 있다."
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     },
     "web": {
      "status": "webview",
@@ -9121,17 +9064,22 @@
       "/message-box/proposal/form/email?id=:id",
       "/message-box/proposal/form/phone?id=:id"
      ],
-     "reach": "ui",
-     "reach_note": "Current and contract names already match"
+     "reach": "dead",
+     "reach_note": "사용자 확인(2026-09-14, 최혜령/웹 담당자 경유): proposal_list와 같은 2.0 잔재 '협업 제안' 계열 화면입니다. 3.0에는 없습니다. 라우트·screenName 문자열이 코드에 남아 있어도 실제로는 도달 불가."
     }
    },
    "origin": "v3",
    "semantic_review": "pending",
-   "status": "active",
+   "status": "retired",
    "os_state": {
-    "ios": "needed",
-    "aos": "needed",
-    "web": "needed"
+    "ios": "legacy",
+    "aos": "legacy",
+    "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "채티",
    "content_group": {
@@ -9139,10 +9087,10 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송) · AOS: 앱(딥링크 라우터) · 웹: 앱(브리지)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -12114,17 +12062,22 @@
   },
   {
    "key": "settings_personal_info_consent",
-   "label": "설정 · 개인정보 이용 동의(딥링크)",
+   "label": "설정 · 개인정보 이용 동의/철회(딥링크)",
    "stage": "account",
    "kind": "화면",
    "reserved": false,
-   "definition": "프로필을 명함처럼 공유하고 파인더·홈 피드에 노출되는 등 동의하면 할 수 있는 일들을 알려 주고 「동의하기」로 개인정보 수집·이용에 동의하는 화면. 앱 안에 여는 자리가 없고 딥링크로만 열리며, 가입 직후 뜨는 강제 동의 화면과는 다른 화면이다.",
-   "rationale": "개인정보 수집·이용에 새로 동의할지 정합니다. 기존 동의를 철회하는 과업과 결과가 반대여서 나눕니다.",
+   "definition": "개인정보 수집·이용 동의 상태를 바꾸는 화면. mode=agree일 땐 프로필을 명함처럼 공유하고 파인더·홈 피드에 노출되는 등 동의하면 할 수 있는 일들을 알려 주고 「동의하기」로 새로 동의하며, mode=disagree일 땐 철회 시 프로필 정보가 모두 삭제되고 프로필 등록·AI 추천사·카드 공유·파인더 일부 기능을 못 쓰게 된다고 안내한 뒤 확인 알럿(비공개 전환 대안 포함)을 거쳐 철회한다. 같은 PersonalInfoAgreementView를 Bool 인자로 여는 한 화면이며, 앱 안에 여는 자리가 없고 딥링크로만 열린다. 가입 직후 뜨는 강제 동의 화면과는 다른 화면이다.",
+   "rationale": "개인정보 수집·이용 동의 상태를 agree/disagree로 바꿉니다. 같은 PersonalInfoAgreementView를 Bool 인자로 여는 한 화면이라 동의·철회를 이름으로 나누지 않고 mode 파라미터로 구분합니다.",
    "rules": [
     "S2",
     "M2"
    ],
-   "params": {},
+   "params": {
+    "mode": [
+     "agree",
+     "disagree"
+    ]
+   },
    "platforms": {
     "ios": {
      "status": "in_inventory",
@@ -12134,9 +12087,10 @@
      "reach": "deeplink_only",
      "legacy_marker": false,
      "reach_evidence": [
-      "DeepLinkHandler.swift:172 only push of .setting(.personalInfoAgreement(true))"
+      "DeepLinkHandler.swift:172 only push of .setting(.personalInfoAgreement(true))",
+      "DeepLinkHandler.swift:174 only push of .setting(.personalInfoAgreement(false))"
      ],
-     "reach_note": ""
+     "reach_note": "[합침 settings_personal_info_withdraw]"
     },
     "aos": {
      "status": "no",
@@ -12162,6 +12116,7 @@
     "category": "platform_exclusive_by_design"
    },
    "label_before": "설정 · 개인정보 이용 동의",
+   "when": "딥링크(service-agreement/personal-info/agree 또는 /disagree)로 열릴 때 mode에 맞춰 1회.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -12169,82 +12124,13 @@
     "web": "absent"
    },
    "flow_group": "설정",
-   "content_group": {
-    "mode": "fixed",
-    "value": "settings"
-   },
-   "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
-    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
-    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱(딥링크 라우터)",
-    "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
-    "observed": "미확인(실수신 0건, 2026-09-13)"
-   },
-   "verification": {
-    "defined": "done",
-    "received": "unverified",
-    "aggregated": "unverified",
-    "improved": "unverified"
-   }
-  },
-  {
-   "key": "settings_personal_info_withdraw",
-   "label": "설정 · 개인정보 이용 동의 철회(딥링크)",
-   "stage": "account",
-   "kind": "화면",
-   "reserved": false,
-   "definition": "동의를 철회하면 프로필 정보가 모두 삭제되고 프로필 등록·AI 추천사·카드 공유·파인더 일부 기능을 못 쓰게 된다고 안내한 뒤, 확인 알럿(프로필을 비공개로 돌리는 대안도 함께 준다)을 거쳐 철회하고 프로필 탭으로 돌려보낸다. 앱 안에 이 화면을 여는 버튼이 없고 딥링크로만 열린다.",
-   "rationale": "이미 한 개인정보 이용 동의를 철회합니다. 같은 안내문을 보여도 바꾸는 상태가 새 동의와 반대이므로 나눕니다.",
-   "rules": [
-    "S2",
-    "M2"
+   "legacy_keys": [
+    "settings_personal_info_withdraw"
    ],
-   "params": {},
-   "platforms": {
-    "ios": {
-     "status": "in_inventory",
-     "rows": [
-      149
-     ],
-     "reach": "deeplink_only",
-     "legacy_marker": false,
-     "reach_evidence": [
-      "DeepLinkHandler.swift:174 only push of .setting(.personalInfoAgreement(false))"
-     ],
-     "reach_note": ""
-    },
-    "aos": {
-     "status": "no",
-     "legacy_keys": [],
-     "evidence": [
-      "feature/settings/impl/src/test/kotlin/com/heyratel/cre8orclub/feature/settings/deeplink/SettingsDeepLinkRuleTest.kt:unsupported disagree route:59",
-      "feature/settings/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/settings/deeplink/SettingsDeepLinkRule.kt:PATH_SERVICE_AGREEMENT:72"
-     ],
-     "note": "personal-info/disagree 딥링크는 명시적으로 미지원이며 동의 철회 목적지 구현도 없다.",
-     "reach": "absent"
-    },
-    "web": {
-     "status": "absent",
-     "routes": [],
-     "reach": "absent"
-    }
+   "merged_from": {
+    "settings_personal_info_withdraw": "iOS 확인(2026-09-14, #code-question): DeepLinkHandler.swift:196-199가 agree(true)/disagree(false)를 Bool 인자로 갈라 같은 PersonalInfoAgreementView 하나를 여는 구조 — 화면은 하나, 결과만 반대다. AOS는 두 경로 모두 테스트로 명시적 unsupported(SettingsDeepLinkRuleTest.kt unsupportedRoutes) — iOS 전용이 확정됐다. 사용자 승인(2026-09-14)으로 병합."
    },
-   "origin": "v3",
-   "semantic_review": "pending",
-   "asymmetry": {
-    "side": "iOS만",
-    "reason": "동의 화면과 같은 이유입니다. AOS는 personal-info/disagree 딥링크를 미지원으로 못 박았고 철회 목적지 구현도 없습니다. iOS만 딥링크로 철회 화면을 엽니다.",
-    "category": "platform_exclusive_by_design"
-   },
-   "label_before": "설정 · 개인정보 이용 동의 철회",
-   "status": "active",
-   "os_state": {
-    "ios": "needed",
-    "aos": "absent",
-    "web": "absent"
-   },
-   "flow_group": "설정",
+   "note": "iOS 확인(2026-09-14, #code-question): DeepLinkHandler.swift:196-199가 agree(true)/disagree(false)를 Bool 인자로 갈라 같은 PersonalInfoAgreementView 하나를 여는 구조 — 화면은 하나, 결과만 반대다. AOS는 두 경로 모두 테스트로 명시적 unsupported(SettingsDeepLinkRuleTest.kt unsupportedRoutes) — iOS 전용이 확정됐다. 사용자 승인(2026-09-14)으로 병합.",
    "content_group": {
     "mode": "fixed",
     "value": "settings"
@@ -12280,32 +12166,21 @@
    "when": "메시지함에서 제안 탭이 실제로 표시될 때 앱이 한 번 보냅니다.",
    "platforms": {
     "ios": {
-     "status": "webview_host",
-     "reach": "unknown",
-     "legacy_marker": false,
-     "reach_evidence": [
-      "no ios_rows in input; rg -i 'proposal' finds only CommonWebView.swift:277-278 exit_process log and ProposalAcceptance domain — no native screen",
-      "web page presumably inside a CommonWebView slot (profile/notification web); not in this snapshot"
-     ],
-     "reach_note": "web-only screen, native counterpart absent"
+     "status": "absent",
+     "reach": "absent",
+     "reach_note": "웹 담당자 확인(2026-09-14)으로 제안함 목록 자체가 2.0 잔재로 확정됨에 따라, 별도 근거가 없던 iOS의 '미확인'도 '없음'으로 정리(iOS 네이티브 화면·웹뷰 호스트 어디에도 이 기능을 여는 자리가 없었다)."
     },
     "aos": {
-     "status": "webview_host",
-     "reach": "deeplink_only",
-     "legacy_marker": false,
-     "reach_evidence": [
-      "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/deeplink/OpenWebDeepLinkRule.kt:OpenWebDeepLinkRule",
-      "feature/webview/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/webview/WebViewActivity.kt:WebViewActivity"
-     ],
-     "reach_note": "AOS 내부 UI 호출은 없고 외부 open-web target으로만 제안 웹 URL을 열 수 있다."
+     "status": "no",
+     "reach": "absent"
     },
     "web": {
      "status": "webview",
      "routes": [
       "/message-box?lineTabId=PROPOSAL"
      ],
-     "reach": "ui",
-     "reach_note": "The container must not own one name for both tabs; current inbox_suggestion is absent from the contract"
+     "reach": "dead",
+     "reach_note": "웹 담당자(최혜령) 확인(2026-09-14, 슬랙 DM): '제안목록인데 없어진 화면'입니다 — 2.0 화면이고 3.0에는 없습니다. /message-box?lineTabId=PROPOSAL 라우트는 남아 있을 수 있으나 실제로는 도달할 수 없는 화면입니다."
     }
    },
    "params": {},
@@ -12318,11 +12193,16 @@
     "reason": "제안함 목록은 웹 페이지(/message-box, PROPOSAL 탭)이고 화면 이름은 웹이 보냅니다. AOS는 open-web 딥링크로 여는 통로만 있고, iOS는 채티 탭의 알림센터가 공용 웹뷰를 품고 있어 같은 웹 페이지가 뜰 수 있습니다. 어느 쪽도 네이티브 화면이 없으므로 결정할 사항이 아닙니다.",
     "category": "web_only_feature"
    },
-   "status": "active",
+   "status": "retired",
    "os_state": {
-    "ios": "unobserved",
-    "aos": "needed",
-    "web": "needed"
+    "ios": "absent",
+    "aos": "absent",
+    "web": "legacy"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "채티",
    "content_group": {
@@ -12330,10 +12210,10 @@
     "value": "chatty"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "AOS: 앱(딥링크 라우터) · 웹: 앱(브리지)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -12451,7 +12331,7 @@
       "aos/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:16 FINDER(GalleryRoute)",
       "aos/app/src/main/java/com/heyratel/cre8orclub/presentation/main/MainTab.kt:41-45 MainBottomNavigationSlots excludes FINDER"
      ],
-     "reach_note": "미출시 숨김 메뉴(MainTab 하단 탭 목록에 없음). 출시되면 상태만 바꾼다."
+     "reach_note": "미출시 숨김 메뉴(MainTab 하단 탭 목록에 없음). 출시되면 상태만 바꾼다. #code-question 2026-09-14 재확인: 화면(GalleryTabRoute.kt)은 완성돼 있고 tab 딥링크의 /finder·creator 경로로 열린다(MainActivity.kt:1263,1290). 주의: creator·tab?/finder 딥링크는 이름과 달리 크리에이터 검색이 아니라 갤러리를 연다 — MainTab enum 이름과 실제 화면이 어긋나 있다."
     },
     "web": {
      "status": "webview",
@@ -12944,14 +12824,13 @@
     "aos": {
      "status": "yes",
      "evidence": "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/ResumeSkillActivity.kt:ResumeSkillActivity:53",
-     "reach": "ui_via_web",
+     "reach": "dead",
      "legacy_marker": true,
      "reach_evidence": [
-      "feature/contact/impl/src/main/kotlin/com/heyratel/cre8orclub/feature/contact/deeplink/ProfileDeepLinkRule.kt:profile/credential/manage",
-      "app/src/main/java/com/heyratel/cre8orclub/presentation/member/di/MemberLegacyActivityIntentFactoryModule.kt:MemberLegacyActivityIntentFactoryModule",
-      "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/UserResumeActivity.kt:UserResumeActivity"
+      "app/src/main/java/com/heyratel/cre8orclub/presentation/mypage/resume/UserResumeActivity.kt:110 onClickSkill 연결부",
+      "ResumeScreen 본문: onClickSkill·onClickLanguage 미호출, onAddClick={} 빈 스텁"
      ],
-     "reach_note": "typed 딥링크가 있어도 MemberLegacyActivityIntentFactoryModule을 통한 구형 이력서 루트만 남아 dead다."
+     "reach_note": "ResumeSkillActivity(스킬·도구 입력 폼) 자체는 있지만 ResumeScreen 본문에서 onClickSkill·onClickLanguage를 한 번도 호출하지 않고, 화면의 \"추가하기\" 버튼도 onAddClick={}로 빈 스텁이라 사용자가 도달할 방법이 없다(#code-question 2026-09-14 확인, main 브랜치)."
     },
     "web": {
      "status": "absent",
@@ -12975,11 +12854,16 @@
     "reason": "AOS 이력 관리(UserResumeActivity)에는 스킬 입력 화면(ResumeSkillActivity)이 있지만, iOS 이력 관리의 입력 화면은 경력·학력·자격·수상 세 가지뿐이고 스킬 입력 화면이 없습니다. iOS 도메인 모델에는 SkillDomain이 있어 데이터는 다루므로, 화면을 iOS에 추가할지는 제품 결정입니다.",
     "category": "real_gap_needs_product_decision"
    },
-   "status": "active",
+   "status": "retired",
    "os_state": {
     "ios": "absent",
-    "aos": "needed",
+    "aos": "legacy",
     "web": "absent"
+   },
+   "retired_in": {
+    "aos": "3.1.0 (develop b135a94)",
+    "ios": "3.0.2 (alpha 34ad6c9)",
+    "web": "alpha 2026.08.AS548"
    },
    "flow_group": "마이",
    "content_group": {
@@ -12987,10 +12871,10 @@
     "value": "my"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "AOS: 앱(웹이 브리지로 이름을 알리고 앱이 발송)",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -13654,6 +13538,87 @@
     "received": "unverified",
     "aggregated": "unverified",
     "improved": "unverified"
+   }
+  },
+  {
+   "key": "my_feed",
+   "label": "MY · 피드 뷰",
+   "stage": "my",
+   "kind": "화면",
+   "definition": "MY 기본 뷰(my_profile) 오른쪽 위 토글 버튼으로 전환되는 두 번째 뷰로, 포트폴리오·프로젝트·영감·소개 4개 탭을 가로로 오가며 본다. 소개 탭 안에는 자기소개·학력·경력·수상자격·기본정보의 등록/편집 진입과 AI 추천사 생성하기가 있다.",
+   "rationale": "my_profile과 토글로 전환되는 별개 화면입니다. iOS 소스의 ProfileListView·ProfileListTabScrollView가 my_profile(ProfileDetailView)과 다른 View 타입임을 근거로 나눕니다.",
+   "rules": [
+    "S1",
+    "M1",
+    "M4"
+   ],
+   "params": {
+    "tab": [
+     "portfolio",
+     "project",
+     "inspiration",
+     "introduction"
+    ]
+   },
+   "platforms": {
+    "ios": {
+     "status": "in_inventory",
+     "rows": [
+      70
+     ],
+     "reach": "ui",
+     "legacy_marker": false,
+     "reach_evidence": [],
+     "reach_note": "ProfileListView.swift:121 ProfileListTabScrollView — my_profile 토글 버튼으로 전환."
+    },
+    "aos": {
+     "status": "yes",
+     "legacy_keys": [],
+     "evidence": "",
+     "note": "",
+     "reach": "ui",
+     "legacy_marker": false,
+     "reach_evidence": [],
+     "reach_note": "사용자 결정(2026-09-14): iOS 근거(ProfileDetailView vs ProfileListView, 두 View 타입 분리 확인)로 화면 분리를 확정하고, AOS·웹의 개별 분리 증거는 확인하지 않기로 함 — my_profile과 같은 값으로 둔다."
+    },
+    "web": {
+     "status": "webview",
+     "routes": [
+      "/profile",
+      "/profile/intro"
+     ],
+     "reach": "ui",
+     "reach_note": "사용자 결정(2026-09-14): iOS 근거(ProfileDetailView vs ProfileListView, 두 View 타입 분리 확인)로 화면 분리를 확정하고, AOS·웹의 개별 분리 증거는 확인하지 않기로 함 — my_profile과 같은 값으로 둔다."
+    }
+   },
+   "origin": "v4",
+   "semantic_review": "pending",
+   "flow_group": "마이",
+   "content_group": {
+    "mode": "fixed",
+    "value": "my"
+   },
+   "collection": {
+    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
+    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "owner": "iOS: 앱(네이티브) · AOS: 앱(네이티브) · 웹: 앱(브리지)",
+    "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
+    "observed": "미확인(실수신 0건, 2026-09-13)"
+   },
+   "verification": {
+    "defined": "done",
+    "received": "unverified",
+    "aggregated": "unverified",
+    "improved": "unverified"
+   },
+   "source": "C",
+   "reserved": false,
+   "status": "active",
+   "os_state": {
+    "ios": "needed",
+    "aos": "needed",
+    "web": "needed"
    }
   }
  ],
@@ -25206,33 +25171,32 @@
  },
  "os_state_summary": {
   "ios": {
-   "needed": 131,
+   "needed": 128,
    "action": 9,
    "absent": 20,
-   "legacy": 8,
-   "unobserved": 1,
+   "legacy": 11,
    "unreleased": 1
   },
   "aos": {
-   "needed": 133,
+   "needed": 129,
    "action": 8,
-   "legacy": 15,
+   "legacy": 19,
    "absent": 11,
-   "unreleased": 3
+   "unreleased": 2
   },
   "web": {
-   "absent": 139,
-   "needed": 20,
-   "legacy": 10,
+   "absent": 137,
+   "needed": 17,
+   "legacy": 14,
    "unreleased": 1
   }
  },
  "status_summary": {
-  "active": 137,
+  "active": 132,
   "action": 9,
-  "retired": 17,
+  "retired": 22,
   "reserved": 2,
-  "gated": 3,
+  "gated": 2,
   "unreleased": 2
  }
 }
