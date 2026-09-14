@@ -35,6 +35,8 @@ export const SCREEN_NAME_V4 = {
   PROFILE_COVER_DESIGN: 'profile_cover_design',
   /** [마이] MY · 피드 뷰 */
   MY_FEED: 'my_feed',
+  /** [디스커버리] 앱 · 서비스 점검 안내 */
+  MAINTENANCE: 'maintenance',
 } as const;
 export type ScreenNameV4 = (typeof SCREEN_NAME_V4)[keyof typeof SCREEN_NAME_V4];
 
@@ -58,4 +60,5 @@ export const SCREEN_GROUP_V4: Record<ScreenNameV4, string | null> = {
   dial_creator: 'chatty',
   profile_cover_design: 'my',
   my_feed: 'my',
+  maintenance: 'discovery',
 };

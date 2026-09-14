@@ -77,7 +77,7 @@
   }
  ],
  "sheet_policy": {
-  "note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+  "note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
   "keep_screen": [
    "relation_list",
    "first_connection_mutual",
@@ -95,7 +95,8 @@
    "my_info_profession_direct",
    "my_info_birth_gender",
    "my_info_visibility",
-   "account_delete_reason"
+   "account_delete_reason",
+   "auth_session_expired"
   ],
   "parent_resend": "하지 않음. 시트 닫힘에 부모 screen_view 재발송 없음(visit_policy 유지). 시트 체류가 필요해지면 그때 검토.",
   "weakest": "함께 아는 일촌·오늘 방문자 목록 건수 중앙값이 2~3 미만이면 행동으로 강등(백엔드 확인 항목).",
@@ -396,7 +397,7 @@
     "web": "absent"
    },
    "flow_group": "회원가입",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "signup"
@@ -1877,8 +1878,8 @@
    "stage": "onboarding",
    "kind": "웹",
    "reserved": false,
-   "definition": "약관 원문을 웹 문서 그대로 띄워 읽게 하는 시트로, 개인정보 재동의 안내 팝업의 「전문보기」를 누르면 열린다. 설정 안의 약관 화면들도 같은 시트를 각기 다른 문서로 띄운다.",
-   "rationale": "약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다.",
+   "definition": "약관 원문을 웹 문서 그대로 띄워 읽게 하는 시트로, 개인정보 재동의 안내 팝업의 「전문보기」를 누르면 열린다. 설정 안의 약관 화면들도 같은 시트를 각기 다른 문서로 띄운다. 문서는 static.cre8orclub.com/policy/의 별도 도메인 순수 HTML이라 SPA GA 코드가 닿지 않아 웹은 발신하지 않고 앱만 보낸다(웹 담당자 확인 2026-09-14).",
+   "rationale": "약관 전문을 읽는 공통 목적지입니다. 가입·재동의·설정에서 여는 경로와 문서 종류는 계약의 구분 값으로 남기고 이름을 늘리지 않습니다. 웹팀이 새로 찾은 마케팅 수신 동의·사용자 콘텐츠 이용약관 2종도 같은 화면의 document_type으로 흡수합니다(2026-09-14).",
    "rules": [
     "S1",
     "M1"
@@ -1890,7 +1891,9 @@
      "privacy_reconsent",
      "ad_info",
      "terms_of_service",
-     "personal_info"
+     "personal_info",
+     "marketing_consent",
+     "user_content_terms"
     ]
    },
    "platforms": {
@@ -1932,12 +1935,14 @@
     "web": {
      "status": "absent",
      "routes": [],
-     "reach": "absent"
+     "reach": "absent",
+     "reach_note": "웹 담당자 확인(2026-09-14): static.cre8orclub.com/policy/의 별도 도메인 순수 HTML이라 SPA GA 코드가 물리적으로 닿지 않는다 — 웹은 발신 불가, 앱만 보낸다."
     }
    },
    "origin": "v3",
    "semantic_review": "pending",
    "label_before": "약관 · 전문 보기",
+   "when": "이 목적지가 실제로 전면에 표시될 때 1회. document_type별로 별도 카운트.",
    "status": "active",
    "os_state": {
     "ios": "needed",
@@ -3202,7 +3207,7 @@
     "web": "absent"
    },
    "flow_group": "디스커버리",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "discovery"
@@ -3898,7 +3903,7 @@
     "web": "absent"
    },
    "flow_group": "파인더",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "params_moved_to_events": {},
    "params_moved_note": "단계 이탈 이벤트",
    "content_group": {
@@ -4238,7 +4243,10 @@
       "/share/profile?des=:id (mode!=preview)"
      ],
      "reach": "ui",
-     "reach_note": "The intro URL is an internal tab of the member profile destination"
+     "reach_note": "웹 목록 대조(2026-09-14, 잠정): No.19 「유저 소개 탭」(route /profile/intro/:uid, MemberProfileIntroPage)이 profile_detail의 소개 탭과 같은 자리로 보인다 — 기존 web.routes에 이미 이 경로가 있었음. 웹은 발신 안 하고 앱이 발신. 최종 확인 필요.",
+     "reach_evidence": [
+      "/profile/intro/:uid — 웹 목록 No.19 MemberProfileIntroPage와 대조"
+     ]
     }
    },
    "origin": "v3",
@@ -4659,7 +4667,7 @@
     "web": "absent"
    },
    "flow_group": "디스커버리",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "discovery"
@@ -5070,7 +5078,7 @@
     "web": "absent"
    },
    "flow_group": "마이",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -5623,7 +5631,7 @@
     "web": "absent"
    },
    "flow_group": "마이",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -6333,7 +6341,7 @@
     "web": "absent"
    },
    "flow_group": "마이",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -6411,7 +6419,7 @@
     "web": "absent"
    },
    "flow_group": "마이",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "my"
@@ -8897,6 +8905,7 @@
     "reason": "협업 제안 상세는 웹 페이지(/message-box/proposal/detail)이고 화면 이름은 웹이 직접 보냅니다. AOS는 open-web 딥링크로 이 웹 URL을 여는 통로만 있고, iOS도 공용 웹뷰에서 제안 웹 화면을 띄우고 있어(proposal_edit 종료 로그) 네이티브 화면이 없다는 점은 두 플랫폼이 같습니다. 계약에서 iOS가 '없음', 제안함 목록은 '미관측'으로 적힌 것은 표기 차이일 뿐 결정 사항은 아닙니다.",
     "category": "web_only_feature"
    },
+   "legacy_family": "casting",
    "status": "retired",
    "os_state": {
     "ios": "legacy",
@@ -10408,7 +10417,7 @@
     "web": "absent"
    },
    "flow_group": "설정",
-   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72). 시트는 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트는 크기와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "settings"
@@ -11646,22 +11655,23 @@
     "category": "platform_exclusive_by_design"
    },
    "label_before": "로그인 · 세션 종료 안내",
-   "status": "gated",
+   "status": "action",
    "os_state": {
-    "ios": "needed",
+    "ios": "action",
     "aos": "absent",
     "web": "absent"
    },
    "flow_group": "로그인",
+   "action_note": "2026-09-14 사용자 승인(절대자 자문 확신도 72; 얼럿 확장 2026-09-14). 시트·얼럿은 안에서 목록·본문을 읽고 다른 화면으로 나갈 수 있을 때만 화면. 입력·선택·제출하고 닫히는 시트나, 안내 문장+버튼 하나로 행동만 하고 닫히는 얼럿은 크기·형태와 무관하게 행동 이벤트(열림→제출/취소 + 결과 파라미터).",
    "content_group": {
     "mode": "fixed",
     "value": "login"
    },
    "collection": {
-    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "trigger": "보내지 않습니다.",
     "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
     "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
-    "owner": "iOS: 앱",
+    "owner": "없음",
     "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
     "observed": "미확인(실수신 0건, 2026-09-13)"
    },
@@ -13588,7 +13598,7 @@
       "/profile/intro"
      ],
      "reach": "ui",
-     "reach_note": "사용자 결정(2026-09-14): iOS 근거(ProfileDetailView vs ProfileListView, 두 View 타입 분리 확인)로 화면 분리를 확정하고, AOS·웹의 개별 분리 증거는 확인하지 않기로 함 — my_profile과 같은 값으로 둔다."
+     "reach_note": "웹 목록 대조(2026-09-14, 잠정): No.18 「내 소개 탭」(route /profile/intro, ProfileIntroPage)이 my_feed의 소개 탭과 같은 자리로 보인다 — iOS 쪽도 같은 ProfileListTabScrollView 컨테이너를 씀. 웹은 발신 안 하고 앱이 발신(웹 확인). 최종 확인 필요."
     }
    },
    "origin": "v4",
@@ -13618,6 +13628,75 @@
    "os_state": {
     "ios": "needed",
     "aos": "needed",
+    "web": "needed"
+   }
+  },
+  {
+   "key": "maintenance",
+   "label": "앱 · 서비스 점검 안내",
+   "stage": "app",
+   "kind": "화면",
+   "definition": "점검 응답을 받으면 어느 화면에 있든 대신 덮는 안내 화면으로, 점검 제목·설명·예정 시간을 서버에서 받아 보여준다. 앱이 직접 감지해 띄우는 경우와, 앱 안 웹뷰가 점검 응답을 감지해 스스로 /maintenance로 옮겨 가는 경우 둘 다 같은 화면으로 센다(사용자 결정 2026-09-14) — 트리거 경로가 다를 뿐 사용자에게는 같은 의미다.",
+   "rationale": "점검 안내는 어떤 경로로 뜨든 사용자에게 같은 의미(지금 서비스 점검 중)라서 이름을 가르지 않습니다.",
+   "rules": [
+    "S1"
+   ],
+   "params": {},
+   "platforms": {
+    "ios": {
+     "status": "in_inventory",
+     "rows": [],
+     "reach": "unknown",
+     "legacy_marker": false,
+     "reach_evidence": [],
+     "reach_note": ""
+    },
+    "aos": {
+     "status": "uncertain",
+     "legacy_keys": [],
+     "evidence": "",
+     "note": "",
+     "reach": "unknown",
+     "legacy_marker": false,
+     "reach_evidence": [],
+     "reach_note": ""
+    },
+    "web": {
+     "status": "webview",
+     "routes": [
+      "/maintenance"
+     ],
+     "reach": "ui",
+     "reach_note": "웹 담당자 확인(2026-09-14): 점검 응답을 받으면 Provider.tsx가 현재 화면과 무관하게 스스로 /maintenance로 이동한다. 앱은 이 전환을 알 수 없다 — 웹이 자체 발신."
+    }
+   },
+   "origin": "v4",
+   "semantic_review": "pending",
+   "source": "web",
+   "flow_group": "디스커버리",
+   "content_group": {
+    "mode": "fixed",
+    "value": "discovery"
+   },
+   "collection": {
+    "trigger": "이 목적지가 실제로 전면에 표시될 때 1회. 새 목적지 진입과 내비게이션 뒤로가기는 새 방문.",
+    "no_trigger": "같은 화면 안의 상태 변화, 시트 닫힘, 백그라운드 복귀, 재렌더, 같은 목적지의 하위 탭 전환(screen_tab_select로 기록).",
+    "expected": "대표 시나리오에서 진입 1회당 1건. 뒤로가기로 돌아오면 +1건.",
+    "owner": "웹: 앱(브리지)",
+    "report": "GA4 보고서 → 참여도 → 페이지 및 화면(측정기준: 화면 이름, 보조: 콘텐츠 그룹). 탭 흐름은 탐색 → 경로 탐색(노드: 화면 클래스). 유입은 previous_screen 맞춤 측정기준.",
+    "observed": "미확인(실수신 0건, 2026-09-13)"
+   },
+   "verification": {
+    "defined": "done",
+    "received": "unverified",
+    "aggregated": "unverified",
+    "improved": "unverified"
+   },
+   "reserved": false,
+   "status": "active",
+   "os_state": {
+    "ios": "unobserved",
+    "aos": "unobserved",
     "web": "needed"
    }
   }
@@ -24825,6 +24904,13 @@
      "account_delete_reason"
     ],
     "to": "각 시트의 열림·제출·취소 행동 이벤트 + 결과 파라미터(예: report_reason→report_submit{reason}, finder_filter→filter_apply{conditions})"
+   },
+   {
+    "from": "(웹 제안 tag_cloud, 화면 아님)",
+    "params": [
+     "tag_cloud"
+    ],
+    "to": "디스커버리 피드 안 임베디드 모듈 — 화면으로 세면 피드 스크롤마다 화면 수가 부풀어 세션당 화면수·이탈률이 깨진다(웹팀 경고). 노출·선택·저장 이벤트로 설계(예: tag_cloud_impression{type}·tag_cloud_select{keyword}). 제품상 중요도가 높아 이벤트 설계 우선순위를 높게 잡는다(사용자 결정 2026-09-14)."
    }
   ],
   "rule_note": "M3의 form_step_view 발송 여부는 이벤트 설계 단계에서 결정한다. 화면 계약은 form_step_view를 요구하지 않는다."
@@ -25171,32 +25257,34 @@
  },
  "os_state_summary": {
   "ios": {
-   "needed": 128,
-   "action": 9,
+   "needed": 127,
+   "action": 10,
    "absent": 20,
    "legacy": 11,
-   "unreleased": 1
+   "unreleased": 1,
+   "unobserved": 1
   },
   "aos": {
    "needed": 129,
    "action": 8,
    "legacy": 19,
    "absent": 11,
-   "unreleased": 2
+   "unreleased": 2,
+   "unobserved": 1
   },
   "web": {
    "absent": 137,
-   "needed": 17,
+   "needed": 18,
    "legacy": 14,
    "unreleased": 1
   }
  },
  "status_summary": {
-  "active": 132,
-  "action": 9,
+  "active": 133,
+  "action": 10,
   "retired": 22,
   "reserved": 2,
-  "gated": 2,
-  "unreleased": 2
+  "unreleased": 2,
+  "gated": 1
  }
 }

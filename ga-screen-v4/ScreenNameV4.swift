@@ -233,8 +233,6 @@ public enum ScreenNameV4: String, CaseIterable {
     case arcade_breakout = "arcade_breakout"
     /// [로그인] 앱 · 필수 업데이트
     case app_update_required = "app_update_required"
-    /// [로그인] 앱 · 로그인 만료 안내
-    case auth_session_expired = "auth_session_expired"
     /// [마이] 프로필 커버 · 등록 필요(업로드 진입 시)
     case profile_cover_required = "profile_cover_required"
     /// [채티] 채티 · 대화 목록
@@ -379,7 +377,6 @@ public enum ScreenGroupV4 {
         .arcade_card_boss: "discovery",
         .arcade_breakout: "discovery",
         .app_update_required: "login",
-        .auth_session_expired: "login",
         .profile_cover_required: "my",
         .chat_list: "chatty",
         .lounge_list: "chatty",
