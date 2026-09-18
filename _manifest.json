@@ -43,8 +43,8 @@
     "slug": "c8-alert-310",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-alert-310/",
-    "last_kind": "new",
-    "last_sha256": "08ee26761d5aecf4c1d01331768a3ee41d41716a77bd619a1efcd3674c7de7e9",
-    "timestamp": "2026-09-18T06:00:37.829160Z"
+    "last_kind": "redeploy",
+    "last_sha256": "c3e308036d99357e6beda0ec0a5f750a43832c2cc96bbf1f1f6a387b5fa52f0a",
+    "timestamp": "2026-09-18T06:56:49.445176Z"
   }
 }
