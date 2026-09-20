@@ -131,8 +131,8 @@
     "slug": "meonji-archive",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/meonji-archive/",
-    "last_kind": "new",
-    "last_sha256": "959847d45cfa1fcb320cb38794dc711e5001da12ad96e81f292ec77db31450e6",
-    "timestamp": "2026-09-20T11:55:00.887061Z"
+    "last_kind": "redeploy",
+    "last_sha256": "cb3631ea9bd6e3014cd35f6724379475db06a7be2dca659d44f2e5c54388029e",
+    "timestamp": "2026-09-20T11:56:36.732865Z"
   }
 }
