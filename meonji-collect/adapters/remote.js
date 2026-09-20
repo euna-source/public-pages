@@ -137,21 +137,23 @@ export class RemoteAdapter {
   async add(partial = {}, files = []) {
     const body = { kind: partial.kind, entry: partial.entry || 'web', source_url: partial.source_url || undefined, title: partial.title || undefined, note: partial.note || undefined, tags: partial.tags && partial.tags.length ? partial.tags : undefined };
     const pending = await this.queue.all();
+    let serverCard = null;
     if (pending.length === 0) {
       try {
         const { card } = await this.request('/api/cards', { method: 'POST', json: body });
+        serverCard = card;
         const withFiles = files && files.length ? await this._uploadFiles(card.id, files) : card;
         await this.cache.set(`card:${withFiles.id}`, withFiles);
         return withFiles;
       } catch (e) {
-        if (!(e instanceof NetworkError)) throw e;
+        if (!serverCard && !(e instanceof NetworkError)) throw e;
       }
     }
     // 오프라인이거나 앞에 밀린 것이 있으면 순서를 지키려고 큐에 넣는다
     const tempId = `tmp_${ulid()}`;
     const card = newCard(partial, { id: tempId });
     card.files = (files || []).map((f, i) => ({ key: `pending/${tempId}/${i + 1}-${f.name || 'file'}`, mime: f.type || 'application/octet-stream', bytes: f.size || 0, thumb_key: null }));
-    await this.queue.push({ op: 'add', card, body, files: (files || []).map((f) => ({ name: f.name || 'file', type: f.type || '', blob: f })) });
+    await this.queue.push({ op: 'add', card, body, server_card: serverCard, files: (files || []).map((f) => ({ name: f.name || 'file', type: f.type || '', blob: f })) });
     this._notify();
     return card;
   }

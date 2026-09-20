@@ -1,6 +1,6 @@
 // 셸 파일만 캐시한다. 데이터·API 응답은 절대 캐시하지 않는다. /share?url= 는 #/add?url= 로 돌린다.
 const PREFIX = `meonji-shell:${self.registration.scope}:`;
-const VERSION = `${PREFIX}1.0.2`;
+const VERSION = `${PREFIX}1.0.3`;
 const SHELL = [
   './', './index.html', './style.css', './app.js', './manifest.webmanifest',
   './lib/ulid.js', './lib/model.js', './lib/db.js', './lib/ui.js',
