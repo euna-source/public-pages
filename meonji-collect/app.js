@@ -9,7 +9,7 @@ import { mountList } from './views/list.js';
 import { mountCriteria } from './views/criteria.js';
 import { mountSettings } from './views/settings.js';
 
-export const VERSION = '1.0.3';
+export const VERSION = '1.1.0';
 const CONN_KEY = 'meonji.connection';
 const WIDGET_MAX = { w: 380, h: 420 };
 
