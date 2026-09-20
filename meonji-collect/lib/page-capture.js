@@ -39,7 +39,7 @@ export async function capturePage(options = {}) {
       const ps = [...row.querySelectorAll('p')].map(p => clean(p.textContent)).filter(Boolean);
       const titleIndex = ps.findIndex(t => t === title);
       const brand = titleIndex > 0 ? ps[titleIndex - 1] : '';
-      const variant = ps.find(t => /^\[[^\]]+\]/.test(t)) || '';
+      const variant = ps.find(t => t !== title && /^\[[^\]]+\]/.test(t)) || '';
       const price = ps.find(t => /(?:[\d,]+\s*원|[₩$€£]\s*[\d,.]+)/.test(t)) || '';
       const image = publicURL(img.currentSrc || img.getAttribute('src'))?.href || null;
       const key = `${url}\n${variant}`;
