@@ -16,6 +16,7 @@ export async function capturePage(options = {}) {
     return u.href;
   };
   const productPath = /\/(products?|goods?|items?|product-detail)\/(?:[^/?]+)|\/goods\/view|[?&](goodsno|goodsNo|itemNo|product_no)=/i;
+  const contentPath = /\/(pins?|posts?|articles?|stories|videos?|watch|dp)\/[^/?]+|[?&]v=/i;
   const skip = el => !!el.closest('header,nav,footer,aside,[data-meonji-capture]');
   function scan() {
     for (const a of document.querySelectorAll('a[href]')) {
@@ -24,12 +25,13 @@ export async function capturePage(options = {}) {
       const url = canonical(a.getAttribute('href'));
       if (!img || !url) continue;
       const isProduct = productPath.test(url) || !!a.closest('[itemtype$="/Product"],[data-product-id]');
-      if (!isProduct) continue;
+      const isContent = contentPath.test(url);
+      if (!isProduct && !isContent) continue;
       let row = a;
       // 같은 상품의 이미지와 설명만 묶고, 옆 상품·주문번호까지 올라가지 않는다.
       for (let depth = 0; depth < 3 && row.parentElement; depth++) {
         const parent = row.parentElement;
-        const other = [...parent.querySelectorAll('a[href]')].some(x => x !== a && x.querySelector('img') && productPath.test(x.href) && canonical(x.href) !== url);
+        const other = [...parent.querySelectorAll('a[href]')].some(x => x !== a && x.querySelector('img') && (productPath.test(x.href) || contentPath.test(x.href)) && canonical(x.href) !== url);
         if (other || parent.tagName === 'BODY') break;
         row = parent;
         if (clean(row.textContent).length > 12) break;
@@ -43,13 +45,45 @@ export async function capturePage(options = {}) {
       const price = ps.find(t => /(?:[\d,]+\s*원|[₩$€£]\s*[\d,.]+)/.test(t)) || '';
       const image = publicURL(img.currentSrc || img.getAttribute('src'))?.href || null;
       const key = `${url}\n${variant}`;
-      const item = { source_url: url, title, brand, variant, price, image_url: image };
+      const item = { kind: isProduct ? 'product' : /\/pins?\//i.test(url) ? 'image' : /\/(video|watch)/i.test(url) ? 'video' : 'other', source_url: url, title: title.slice(0,300), brand, variant, price, image_url: image };
       const old = items.get(key);
       if (old || items.size < 1000) items.set(key, { ...item, image_url: image || old?.image_url || null });
     }
     return items.size;
   }
+  function pageContent() {
+    const meta = name => document.querySelector(`meta[property="${name}"],meta[name="${name}"]`)?.content || '';
+    const main = document.querySelector('article,main,[role="main"]');
+    const heading = main?.querySelector('h1') || document.querySelector('h1');
+    const title = clean(heading?.textContent || meta('og:title') || document.title);
+    const type = meta('og:type');
+    const singleProduct = productPath.test(startURL) || /product/i.test(type);
+    const singleImage = /^image\//.test(document.contentType) || /\/pins?\/[^/]+/.test(new URL(startURL).pathname);
+    const singleVideo = /^video/.test(type) || /(?:youtube\.com\/watch|youtu\.be\/)/.test(startURL);
+    const article = !!document.querySelector('article') || type === 'article';
+    if (!title || /^https?:\/\//i.test(title)) return null;
+    let content = '';
+    if (main) {
+      const clone = main.cloneNode(true);
+      clone.querySelectorAll('script,style,nav,header,footer,aside,form,input,button,[hidden],[aria-hidden="true"],h1').forEach(n=>n.remove());
+      content = [...clone.querySelectorAll('p')].map(n=>clean(n.textContent)).filter(Boolean).join('\n').slice(0,1600);
+    }
+    if (!content) content = clean(meta('og:description') || meta('description')).slice(0,1600);
+    const img = main?.querySelector('img') || (singleImage ? document.querySelector('body > img') : null);
+    const image = publicURL(meta('og:image') || img?.currentSrc || img?.src)?.href || null;
+    if (!singleProduct && !singleImage && !singleVideo && !article && !(heading && content.length >= 80)) return null;
+    if (!image && !content) return null;
+    return { kind: singleProduct ? 'product' : singleImage ? 'image' : singleVideo ? 'video' : 'text',
+      source_url: canonical(startURL), title: title.slice(0,300), body: content, image_url: image,
+      price: clean(meta('product:price:amount')) || '', brand: '', variant: '' };
+  }
+  const pageItem = pageContent();
+  // 상세 페이지에서는 추천 목록보다 해당 상품·글 자체를 담는다.
+  if (pageItem && (productPath.test(startURL) || contentPath.test(startURL) || /^image\//.test(document.contentType))) {
+    return { source_page: startURL, items: [pageItem], complete: true, reason: 'content', passes: 0 };
+  }
   scan();
+  if (!items.size && pageItem) return { source_page: startURL, items: [pageItem], complete: true, reason: 'content', passes: 0 };
   if (items.size < (options.minItems || 1)) return { source_page: startURL, items: [], complete: false, reason: 'not_product_list', passes: 0 };
   let cancelled = false;
   const overlay = document.createElement('div'); overlay.dataset.meonjiCapture = 'true';

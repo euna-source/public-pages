@@ -10,6 +10,9 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
   let busy = false;
   let destroyed = false;
   let revealTimer = null;
+  let draftId = null;
+  let loadVersion = 0;
+  const drafts = new Map();
 
   const stack = h('div', { class: 'deck-stack', role: 'group', 'aria-label': '판정할 카드' });
   const stamp = h('div', { class: 'stamp', 'aria-hidden': 'true' });
@@ -20,14 +23,27 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
   const btnUndo = h('button', { type: 'button', class: 'judge judge-undo', title: '되돌리기 (U)', 'aria-label': '되돌리기', disabled: true, onClick: () => undoLast() }, svg(ICON.undo, { size: 18 }));
   const counter = h('span', { class: 'deck-count', 'aria-live': 'polite' });
   const bar = h('div', { class: 'deck-bar' }, btnX, btnU, btnO, btnUndo);
-  const sheet = h('div', { class: 'sheet', hidden: true });
-  const wrap = h('section', { class: `deck${compact ? ' compact' : ''}` }, h('div', { class: 'deck-head' }, counter), stack, reveal, bar, sheet);
+  const reason = h('input', { type: 'text', class: 'input', placeholder: '이유 한 줄 (선택)', 'aria-label': '이유 한 줄 (선택)', maxlength: 200, autocomplete: 'off' });
+  const basis = h('select', { class: 'input', 'aria-label': '근거 (선택)' },
+    h('option', { value: '' }, '근거 없음'), h('option', { value: 'self' }, '직접 보고'), h('option', { value: 'other' }, '누가 좋다고 해서'));
+  const who = h('input', { type: 'text', class: 'input who', placeholder: '누구', 'aria-label': '누구', maxlength: 60, hidden: true });
+  const basisDetails = h('details', { class: 'deck-basis' }, h('summary', null, '근거 (선택)'), h('div', { class: 'basis' }, basis, who));
+  const notes = h('fieldset', { class: 'deck-notes', 'aria-label': '판정 메모 (선택)' }, reason, basisDetails);
+  const readDraft = () => ({ reason: reason.value, basis: basis.value, who: who.value });
+  const rememberDraft = () => { if (draftId) drafts.set(draftId, readDraft()); };
+  reason.addEventListener('input', rememberDraft);
+  who.addEventListener('input', rememberDraft);
+  basis.addEventListener('change', () => { who.hidden = basis.value !== 'other'; rememberDraft(); });
+  const wrap = h('section', { class: `deck${compact ? ' compact' : ''}` }, h('div', { class: 'deck-head' }, counter), stack, reveal, notes, bar);
   root.append(wrap);
 
   async function load() {
+    if (busy || destroyed) return;
+    const version = ++loadVersion;
     try {
       const settings = await ctx.settings();
       const cards = await ctx.adapter.list({ needs_judgment: 1, limit: 50 });
+      if (destroyed || busy || version !== loadVersion) return;
       // 어댑터가 이미 걸렀지만, 원격 캐시가 섞일 수 있어 다시 한 번.
       queue = cards.filter((c) => c.verdict == null && (!c.guess || !(c.guess.confidence >= settings.jev_threshold)));
     } catch (e) {
@@ -38,6 +54,16 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
   }
 
   function render() {
+    if (destroyed) return;
+    const card = queue[0];
+    notes.hidden = !card;
+    notes.disabled = busy;
+    if ((card?.id || null) !== draftId) {
+      draftId = card?.id || null;
+      const draft = card ? (drafts.get(card.id) || { reason: card.reason || '', basis: card.basis || '', who: card.basis_who || '' }) : {};
+      reason.value = draft.reason || ''; basis.value = draft.basis || ''; who.value = draft.who || '';
+      who.hidden = basis.value !== 'other'; basisDetails.open = false;
+    }
     clear(stack);
     if (queue.length === 0) {
       stack.append(h('div', { class: 'deck-empty' },
@@ -149,28 +175,30 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
   async function judgeTop(verdict, { animated = false } = {}) {
     if (busy || queue.length === 0) return;
     busy = true;
+    notes.disabled = true;
+    const draft = readDraft();
     const card = queue[0];
     const top = stack.querySelector('.card.top');
     if (!animated && top) { flyOut(top, verdict === 'like' ? 'right' : verdict === 'no' ? 'left' : 'up'); showStamp(verdict === 'like' ? 'right' : verdict === 'no' ? 'left' : 'up', 1); }
     const prev = { verdict: card.verdict, reason: card.reason, basis: card.basis, basis_who: card.basis_who, guess_revealed_at: card.guess_revealed_at };
     try {
-      const updated = await ctx.adapter.update(card.id, { verdict });
+      const updated = await ctx.adapter.update(card.id, { verdict, reason: draft.reason.trim() || null, basis: draft.basis || null, basis_who: draft.basis === 'other' ? (draft.who.trim() || null) : null });
       const judged = { ...card, ...updated, verdict };
-      undo = { card: judged, prev };
+      undo = { card: judged, prev, draft };
       btnUndo.disabled = false;
       queue.shift();
       await new Promise((r) => setTimeout(r, animated ? 220 : 260));
       if (destroyed) return;
       showStamp(null, 0);
       render();
-      ctx.emit('cards:changed', { id: card.id });
+      ctx.emit('cards:changed', { id: card.id, source: 'deck' });
       showReveal(judged);
-      openSheet(judged);
     } catch (e) {
       toast(e.message || '저장하지 못했어요');
       render();
     } finally {
       busy = false;
+      notes.disabled = false;
     }
   }
 
@@ -188,53 +216,22 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
     }
   }
 
-  function openSheet(card) {
-    clear(sheet);
-    const reason = h('input', { type: 'text', class: 'input', placeholder: '이유 한 줄 (선택)', maxlength: 200, autocomplete: 'off' });
-    const who = h('input', { type: 'text', class: 'input who', placeholder: '누구', maxlength: 60, hidden: true });
-    const basisSelf = h('input', { type: 'radio', name: 'basis', value: 'self' });
-    const basisOther = h('input', { type: 'radio', name: 'basis', value: 'other' });
-    basisSelf.addEventListener('change', () => { who.hidden = true; });
-    basisOther.addEventListener('change', () => { who.hidden = false; who.focus(); });
-    const submit = async (skip) => {
-      sheet.hidden = true;
-      if (skip) return;
-      const patch = {};
-      if (reason.value.trim()) patch.reason = reason.value.trim();
-      if (basisSelf.checked) patch.basis = 'self';
-      if (basisOther.checked) { patch.basis = 'other'; if (who.value.trim()) patch.basis_who = who.value.trim(); }
-      if (Object.keys(patch).length === 0) return;
-      try { await ctx.adapter.update(card.id, patch); ctx.emit('cards:changed', { id: card.id }); toast('적어 뒀어요'); }
-      catch (e) { toast(e.message || '저장하지 못했어요'); }
-    };
-    const form = h('form', { class: 'sheet-form', onSubmit: (e) => { e.preventDefault(); submit(false); } },
-      h('div', { class: 'sheet-head' }, h('span', { class: `mark ${card.verdict}` }, VERDICT_LABEL[card.verdict]), h('span', { class: 'sheet-title' }, card.title || card.note || card.source_url || '카드')),
-      reason,
-      h('div', { class: 'basis' },
-        h('label', null, basisSelf, ' 직접 보고'),
-        h('label', null, basisOther, ' 누가 좋다고 해서'),
-        who),
-      h('div', { class: 'sheet-actions' },
-        h('button', { type: 'button', class: 'btn ghost', onClick: () => submit(true) }, '나중에'),
-        h('button', { type: 'submit', class: 'btn primary' }, '저장')));
-    sheet.append(form);
-    sheet.hidden = false;
-  }
-
   async function undoLast() {
     if (!undo || busy) return;
     busy = true;
-    const { card, prev } = undo;
+    notes.disabled = true;
+    const { card, prev, draft } = undo;
     try {
       await ctx.adapter.update(card.id, { verdict: null, reason: prev.reason ?? null, basis: prev.basis ?? null, basis_who: prev.basis_who ?? null });
       undo = null; btnUndo.disabled = true;
-      sheet.hidden = true; clearTimeout(revealTimer); reveal.classList.remove('show'); reveal.textContent = '';
-      queue.unshift({ ...card, verdict: null, verdict_by: null, verdict_at: null });
+      clearTimeout(revealTimer); reveal.classList.remove('show'); reveal.textContent = '';
+      drafts.set(card.id, draft);
+      queue.unshift({ ...card, ...prev, verdict: null, verdict_by: null, verdict_at: null });
       render();
-      ctx.emit('cards:changed', { id: card.id });
+      ctx.emit('cards:changed', { id: card.id, source: 'deck' });
       toast('되돌렸어요');
     } catch (e) { toast(e.message || '되돌리지 못했어요'); }
-    finally { busy = false; }
+    finally { busy = false; notes.disabled = false; }
   }
 
   function onKey(e) {

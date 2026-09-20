@@ -1,9 +1,9 @@
 // 셸 파일만 캐시한다. 데이터·API 응답은 절대 캐시하지 않는다. /share?url= 는 #/add?url= 로 돌린다.
 const PREFIX = `meonji-shell:${self.registration.scope}:`;
-const VERSION = `${PREFIX}1.1.2`;
+const VERSION = `${PREFIX}1.2.0`;
 const SHELL = [
   './', './index.html', './style.css', './app.js', './manifest.webmanifest',
-  './lib/page-capture.js', './lib/capture-import.js', './lib/ulid.js', './lib/model.js', './lib/db.js', './lib/ui.js',
+  './lib/taste-profile.js', './lib/page-capture.js', './lib/capture-import.js', './lib/ulid.js', './lib/model.js', './lib/db.js', './lib/ui.js',
   './adapters/local.js', './adapters/remote.js',
   './views/deck.js', './views/add.js', './views/list.js', './views/criteria.js', './views/settings.js',
   './icons/icon.svg', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png',

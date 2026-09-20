@@ -79,10 +79,10 @@ export function mountAdd(root, ctx, params = {}) {
 
   function collectList() {
     const src = url.value.trim();
-    if (!isUrl(src)) { toast('열린 목록 페이지 주소를 먼저 넣어 주세요'); url.focus(); return; }
-    const launch = new URL('susuwatari://collect'); launch.searchParams.set('url', src);
-    location.href = launch.href;
-    toast('먼지가 이 페이지 안의 상품을 담아요');
+    if (!isUrl(src)) { toast('담을 페이지 주소를 먼저 넣어 주세요'); url.focus(); return; }
+    if (!ctx.capturePage) { toast('이 환경에서는 페이지 내용을 읽을 수 없어요'); return; }
+    ctx.capturePage(src);
+    toast('먼지가 페이지의 상품과 내용을 읽고 있어요');
   }
 
   async function save(e) {
@@ -92,7 +92,7 @@ export function mountAdd(root, ctx, params = {}) {
     const hasText = title.value.trim() || note.value.trim();
     if (!src && !hasText && files.length === 0) { toast('링크나 파일, 글 하나는 있어야 해요'); return; }
     if (src && !isUrl(src)) { toast('링크 형식이 아니에요'); url.focus(); return; }
-    if (src && /^https:\/\/(www\.)?29cm\.co\.kr\/order\/my-order\/list(?:[?#]|$)/.test(src)) { collectList(); return; }
+    if (src && files.length === 0) { collectList(); return; }
     saving = true; saveBtn.disabled = true;
     const k = currentKind();
     const partial = {
@@ -118,8 +118,8 @@ export function mountAdd(root, ctx, params = {}) {
 
   const form = h('form', { class: 'add-form', onSubmit: save },
     field('링크', url),
-    h('button', { type: 'button', class: 'btn', onClick: collectList }, '이 목록의 상품 모두 담기'),
-    h('p', { class: 'hint' }, 'Mac의 먼지와 Aside를 사용해 열린 페이지 안에서만 담아요.'),
+    h('button', { type: 'button', class: 'btn', onClick: collectList }, '이 페이지 내용 담기'),
+    h('p', { class: 'hint' }, 'URL은 출처로 남기고 실제 상품·이미지·본문을 담아요. Mac의 먼지와 Aside가 필요해요.'),
     h('div', { class: 'row' },
       h('button', { type: 'button', class: 'btn', onClick: () => fileInput.click() }, svg(ICON.file, { size: 16 }), ' 파일'),
       h('button', { type: 'button', class: 'btn', onClick: () => folderInput.click() }, svg(ICON.folder, { size: 16 }), ' 폴더'),
@@ -134,7 +134,8 @@ export function mountAdd(root, ctx, params = {}) {
   const wrap = h('section', { class: 'view add' }, h('h1', { class: 'view-title' }, '담기'), form);
   root.append(wrap);
   renderKinds();
-  if (params.auto === '1' && (params.url || params.text)) save();
+  if (params.auto === '1' && params.url) toast('페이지 내용을 읽으려면 담기를 눌러 주세요');
+  else if (params.auto === '1' && params.text) save();
   else if (!params.url) setTimeout(() => url.focus(), 50);
 
   return { destroy() { document.removeEventListener('paste', onPaste); wrap.remove(); } };

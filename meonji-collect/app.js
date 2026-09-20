@@ -10,7 +10,7 @@ import { mountList } from './views/list.js';
 import { mountCriteria } from './views/criteria.js';
 import { mountSettings } from './views/settings.js';
 
-export const VERSION = '1.1.2';
+export const VERSION = '1.2.0';
 const CONN_KEY = 'meonji.connection';
 const WIDGET_MAX = { w: 380, h: 420 };
 
@@ -32,6 +32,7 @@ let settingsCache = null;
 
 const ctx = {
   version: VERSION,
+  capturePage(src) { const launch = new URL('susuwatari://collect'); launch.searchParams.set('url', src); location.href = launch.href; },
   get adapter() { return adapter; },
   connection: () => ({ ...conn }),
   async setConnection(next) {
