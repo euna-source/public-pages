@@ -62,7 +62,7 @@ export function mountCriteria(root, ctx) {
       if (c._new) { next = { ...c, ...changes, version: 1, history: [{ at: new Date().toISOString(), what: what.value.trim() || '처음 씀', why: why.value.trim(), evidence_ids: [] }], updated_at: new Date().toISOString() }; delete next._new; }
       else next = reviseCriteria(c, changes, { what: what.value.trim() || '편집', why: why.value.trim() });
       const others = list.filter((x) => x.id !== c.id);
-      try { list = await ctx.adapter.putCriteria([next, ...others]); editing = null; toast('저장했어요'); render(); }
+      try { list = await ctx.adapter.putCriteria([next, ...others]); editing = null; ctx.emit('cards:changed', {}); toast('저장했어요'); render(); }
       catch (err) { toast(err.message || '저장하지 못했어요'); }
     } },
       field('축', axis), field('좋은 예', good), field('나쁜 예', bad), field('갈릴 때', tie),
@@ -70,8 +70,8 @@ export function mountCriteria(root, ctx) {
       field('상태', status),
       h('fieldset', { class: 'hist-ask' }, h('legend', null, '이력에 남길 말'), field('무엇을', what), field('왜', why)),
       h('div', { class: 'detail-actions' },
-        c._new ? null : h('button', { type: 'button', class: 'btn danger ghost', onClick: async () => { if (await confirmDialog('이 기준을 지울까요?')) { list = await ctx.adapter.putCriteria(list.filter((x) => x.id !== c.id)); editing = null; render(); } } }, '지우기'),
-        h('button', { type: 'button', class: 'btn ghost', onClick: () => { editing = null; render(); } }, '취소'),
+        c._new ? null : h('button', { type: 'button', class: 'btn danger ghost', onClick: async () => { if (await confirmDialog('이 기준을 지울까요?')) { list = await ctx.adapter.putCriteria(list.filter((x) => x.id !== c.id)); editing = null; ctx.emit('cards:changed', {}); render(); } } }, '지우기'),
+        h('button', { type: 'button', class: 'btn ghost', onClick: () => { editing = null; ctx.emit('cards:changed', {}); render(); } }, '취소'),
         h('button', { type: 'submit', class: 'btn primary' }, '저장')));
     return form;
   }

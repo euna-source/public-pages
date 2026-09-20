@@ -2,7 +2,7 @@
 import { ulid } from '../lib/ulid.js';
 import * as db from '../lib/db.js';
 import {
-  newCard, applyPatch, applyGuess, applyAutoLabel, filterCards, mergeById, normalizeSettings, exportBundle, DEFAULT_SETTINGS,
+  newCard, applyPatch, applyGuess, applyAutoLabel, invalidateStaleGuesses, filterCards, mergeById, normalizeSettings, exportBundle, DEFAULT_SETTINGS,
 } from '../lib/model.js';
 
 const SETTINGS_KEY = 'main';
@@ -76,7 +76,13 @@ export class LocalAdapter {
     const withIds = (list || []).map((c) => ({ ...c, id: c.id || ulid() }));
     await db.clearStore('criteria');
     if (withIds.length) await db.putMany('criteria', withIds);
+    await this.reconcileCriteria();
     return withIds;
+  }
+
+  async reconcileCriteria() {
+    const [cards, criteria] = await Promise.all([db.getAll('cards'), db.getAll('criteria')]);
+    await db.putMany('cards', invalidateStaleGuesses(cards, criteria));
   }
 
   async getSettings() {
@@ -123,6 +129,7 @@ export class LocalAdapter {
       const { api_base, ...rest } = json.settings;
       await this.putSettings({ ...settings, ...rest });
     }
+    await this.reconcileCriteria();
     return { imported: changed };
   }
 

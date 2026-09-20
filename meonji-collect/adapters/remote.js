@@ -7,6 +7,7 @@ import { newCard, applyPatch, normalizeSettings, DEFAULT_SETTINGS } from '../lib
 export class IdbQueue {
   async all() { const items = await db.getAll('queue'); return items.sort((a, b) => a.seq - b.seq); }
   async push(item) { return db.putOne('queue', item); }
+  async replace(item) { return db.putOne('queue', item); }
   async remove(seq) { return db.delOne('queue', seq); }
   async clear() { return db.clearStore('queue'); }
 }
@@ -15,6 +16,7 @@ export class MemoryQueue {
   constructor() { this.items = []; this.seq = 0; }
   async all() { return this.items.slice(); }
   async push(item) { const rec = { ...item, seq: ++this.seq }; this.items.push(rec); return rec.seq; }
+  async replace(item) { this.items = this.items.map((it) => it.seq === item.seq ? { ...item } : it); }
   async remove(seq) { this.items = this.items.filter((i) => i.seq !== seq); }
   async clear() { this.items = []; }
 }
@@ -195,7 +197,7 @@ export class RemoteAdapter {
     return { ok: true, queued: true };
   }
 
-  // 큐를 앞에서부터 보낸다. 네트워크 오류면 멈추고(순서 보존), 4xx면 그 항목만 버린다.
+  // 큐를 앞에서부터 보낸다. 실패 항목은 원인과 무관하게 보존하고 다음 재시도까지 멈춘다.
   async flush() {
     if (this._flushing) return this._flushing;
     this._flushing = this._flushInner().finally(() => { this._flushing = null; });
@@ -211,12 +213,21 @@ export class RemoteAdapter {
       const real = (id) => idMap.get(id) || id;
       try {
         if (it.op === 'add') {
-          const { card } = await this.request('/api/cards', { method: 'POST', json: it.body });
+          let card = it.server_card;
+          if (!card) {
+            ({ card } = await this.request('/api/cards', { method: 'POST', json: it.body }));
+            it.server_card = card;
+            await this.queue.replace(it);
+          }
           let final = card;
           if (it.files && it.files.length) {
-            try { final = await this._uploadFiles(card.id, it.files); } catch (e) { if (e instanceof NetworkError) throw e; }
+            final = await this._uploadFiles(card.id, it.files);
           }
           idMap.set(it.card.id, final.id);
+          // 생성 항목을 지우기 전에 후속 판정·삭제의 실제 ID를 영속화한다.
+          for (const pending of await this.queue.all()) {
+            if (pending.id === it.card.id) await this.queue.replace({ ...pending, id: final.id });
+          }
           await this.cache.set(`card:${final.id}`, final);
         } else if (it.op === 'update') {
           const id = real(it.id);
@@ -231,9 +242,7 @@ export class RemoteAdapter {
         await this.queue.remove(it.seq);
         sent += 1;
       } catch (e) {
-        if (e instanceof NetworkError) break;
-        await this.queue.remove(it.seq);
-        dropped += 1;
+        break;
       }
     }
     const remaining = (await this.queue.all()).length;

@@ -271,3 +271,12 @@ export function fmtDate(iso) {
   const p = (n) => String(n).padStart(2, '0');
   return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())}`;
 }
+
+// 기준 판본이 달라진 기계 추측은 폐기하고 다시 판정할 덱으로 돌린다.
+export function invalidateStaleGuesses(cards, criteria, now = new Date().toISOString()) {
+  const version = (criteria || []).filter((c) => !c.deleted).map((c) => c.updated_at || '').sort().slice(-1)[0] || null;
+  return cards.map((c) => {
+    if (c.deleted || c.verdict_by === 'user' || !c.guess || (c.guess.criteria_version || null) === version) return c;
+    return applyAutoLabel({ ...c, guess: null, updated_at: now }, DEFAULT_SETTINGS.jev_threshold, now);
+  });
+}
