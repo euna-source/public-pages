@@ -22,3 +22,18 @@ export async function importCapture(bundle, adapter = new LocalAdapter()) {
   }
   return { added, skipped, images, total: bundle.items.length, complete: !!bundle.complete, reason: bundle.reason };
 }
+
+export async function verifyCapture(expected, adapter = new LocalAdapter()) {
+  const cards = await adapter.list({ limit: 100000 });
+  return expected.filter(i => cards.some(c => c.source_url === i.url && c.title === i.title &&
+    ((c.note || '').split('\n').find(x => x.startsWith('옵션: ')) || '') === (i.variant ? `옵션: ${i.variant}` : ''))).length;
+}
+
+// 로그인 탭을 읽는 Mac 도구가 수집함 문서 안에서만 부르는 로컬 저장 입구.
+if (typeof window !== 'undefined') {
+  const localOnly = () => { if (JSON.parse(localStorage.getItem('meonji.connection') || 'null')?.api_base) throw Error('local mode required'); };
+  window.meonjiCapture = Object.freeze({
+    async store(bundle) { localOnly(); return importCapture(bundle); },
+    async verify(items) { localOnly(); return verifyCapture(items); },
+  });
+}

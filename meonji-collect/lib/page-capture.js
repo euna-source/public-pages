@@ -49,6 +49,8 @@ export async function capturePage(options = {}) {
     }
     return items.size;
   }
+  scan();
+  if (items.size < (options.minItems || 1)) return { source_page: startURL, items: [], complete: false, reason: 'not_product_list', passes: 0 };
   let cancelled = false;
   const overlay = document.createElement('div'); overlay.dataset.meonjiCapture = 'true';
   overlay.style.cssText = 'position:fixed;right:16px;bottom:16px;z-index:2147483647';
