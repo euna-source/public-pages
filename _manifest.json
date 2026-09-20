@@ -126,5 +126,13 @@
     "last_kind": "redeploy",
     "last_sha256": "d2d74dfa6848fb7e43324edd732fe5ed216d972a1205c0d9e2d7cda25468994f",
     "timestamp": "2026-09-20T11:30:52.876580Z"
+  },
+  "meonji-archive": {
+    "slug": "meonji-archive",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/meonji-archive/",
+    "last_kind": "new",
+    "last_sha256": "959847d45cfa1fcb320cb38794dc711e5001da12ad96e81f292ec77db31450e6",
+    "timestamp": "2026-09-20T11:55:00.887061Z"
   }
 }
