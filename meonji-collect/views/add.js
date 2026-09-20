@@ -1,5 +1,6 @@
 // 담기: 링크 하나·파일 하나면 저장된다. 나머지는 전부 선택.
 import { h, clear, svg, ICON, toast, chip, field } from '../lib/ui.js';
+import { pendingCaptures, queueCapture, supportsNativeCapture } from '../lib/capture-requests.js';
 import { inferKind, isUrl, KINDS, KIND_LABEL, normalizeTags } from '../lib/model.js';
 
 export function mountAdd(root, ctx, params = {}) {
@@ -77,11 +78,25 @@ export function mountAdd(root, ctx, params = {}) {
   }
   document.addEventListener('paste', onPaste);
 
-  function collectList() {
-    const src = url.value.trim();
-    if (!isUrl(src)) { toast('담을 페이지 주소를 먼저 넣어 주세요'); url.focus(); return; }
-    if (!ctx.capturePage) { toast('이 환경에서는 페이지 내용을 읽을 수 없어요'); return; }
-    ctx.capturePage(src);
+  const pending = h('div', { class: 'capture-pending' });
+  function renderPending() {
+    clear(pending);
+    try {
+      const requests = pendingCaptures();
+      if (!requests.length) return;
+      pending.append(h('h2', null, `내용 읽기 대기 ${requests.length}개`), h('p', { class: 'hint' }, '아직 카드가 아니에요. 실제 내용을 읽은 뒤 덱에 들어가요. 이 브라우저에 보관되며 다른 기기로 자동 동기화되지 않아요.'),
+        ...requests.map(r => h('div', { class: 'pending-request' },
+          h('a', { href: r.url, target: '_blank', rel: 'noopener noreferrer' }, r.title || new URL(r.url).hostname),
+          supportsNativeCapture() ? h('button', { type: 'button', class: 'btn', onClick: () => collectList(r) }, '내용 읽기') : h('span', { class: 'hint' }, 'Mac의 먼지·Aside에서 읽을 수 있어요'))));
+    } catch (e) { pending.append(h('p', { class: 'hint' }, e.message)); }
+  }
+  function collectList(request = null, launch = true) {
+    const r = request?.url ? request : { url: url.value.trim(), title: title.value.trim(), text: note.value.trim(), tags: normalizeTags(tags.value) };
+    if (!isUrl(r.url)) { toast('담을 페이지 주소를 먼저 넣어 주세요'); url.focus(); return; }
+    try { queueCapture(r); renderPending(); }
+    catch (e) { toast(e.message || '대기 목록에 보관하지 못했어요'); return; }
+    if (!launch || !supportsNativeCapture() || !ctx.capturePage) { toast('내용 읽기 대기 목록에 보관했어요'); return; }
+    ctx.capturePage(r.url);
     toast('먼지가 페이지의 상품과 내용을 읽고 있어요');
   }
 
@@ -131,14 +146,16 @@ export function mountAdd(root, ctx, params = {}) {
       field('제목', title), field('메모', note), field('꼬리표', tags)),
     saveBtn,
     fileInput, folderInput);
-  const wrap = h('section', { class: 'view add' }, h('h1', { class: 'view-title' }, '담기'), form);
+  const wrap = h('section', { class: 'view add' }, h('h1', { class: 'view-title' }, '담기'), form, pending);
   root.append(wrap);
   renderKinds();
-  if (params.auto === '1' && params.url) toast('페이지 내용을 읽으려면 담기를 눌러 주세요');
+  if (params.auto === '1' && params.url) collectList(null, false);
   else if (params.auto === '1' && params.text) save();
   else if (!params.url) setTimeout(() => url.focus(), 50);
 
-  return { destroy() { document.removeEventListener('paste', onPaste); wrap.remove(); } };
+  renderPending();
+  window.addEventListener('storage', renderPending);
+  return { destroy() { document.removeEventListener('paste', onPaste); window.removeEventListener('storage', renderPending); wrap.remove(); } };
 }
 
 function fmtBytes(n) {

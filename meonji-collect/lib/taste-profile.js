@@ -13,7 +13,7 @@ export function tasteProfile(cards = []) {
   const axes = TASTE_AXES.map(axis => {
     const evidence = judged.flatMap(c => {
       const text = [c.title, c.note, ...(c.tags || [])].filter(Boolean).join(' ').toLowerCase();
-      const terms = axis.terms.filter(t => /[가-힣]/.test(t) ? text.includes(t) : new RegExp(`\\b${t}\\b`, 'i').test(text));
+      const terms = axis.terms.filter(t => new RegExp(`[\\s\\p{P}]${t}(?:[\\s\\p{P}]|소재|감|한|함|하고|하며|을|를|은|는|이|가|의|에|으로|로|만|도|$)`, 'iu').test(' '+text));
       if (!terms.length) return [];
       matched.add(c.id);
       return [{ id: c.id, title: c.title || '제목 없는 카드', verdict: c.verdict, reason: c.reason || null, terms }];

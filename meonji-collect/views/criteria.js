@@ -2,11 +2,14 @@ import { h, clear, toast, field } from '../lib/ui.js';
 import { newCriteria, reviseCriteria } from '../lib/model.js';
 import { tasteProfile, PREFERENCE_ID } from '../lib/taste-profile.js';
 
+const DRAFTS = new WeakMap();
+
 export function mountCriteria(root, ctx) {
-  let list = [], destroyed = false, saving = false, dirty = false;
+  let list = [], destroyed = false, saving = false, dirty = DRAFTS.has(ctx), refreshVersion = 0;
   const input = h('textarea', { class: 'input preference-input', rows: 4, maxlength: 300,
     placeholder: '어떤 것이 좋고, 어떤 것이 마음에 걸리는지 자유롭게 적어 주세요.' });
-  input.addEventListener('input', () => { dirty = true; });
+  input.value = DRAFTS.get(ctx) || '';
+  input.addEventListener('input', () => { dirty = true; DRAFTS.set(ctx, input.value); });
   const save = h('button', { type: 'submit', class: 'btn primary' }, '기준 저장');
   const feedback = h('p', { class: 'hint', role: 'status' });
   const result = h('div', { class: 'taste-result' });
@@ -23,7 +26,7 @@ export function mountCriteria(root, ctx) {
       const next = prev ? reviseCriteria(prev, { axis: text }, { what: '내 기준 수정' })
         : newCriteria({ axis: text, history: [{ at: new Date().toISOString(), what: '내 기준 작성', why: '', evidence_ids: [] }] }, { id: PREFERENCE_ID });
       list = await ctx.adapter.putCriteria([next, ...latest.filter(c => c.id !== PREFERENCE_ID)]);
-      dirty = false; feedback.textContent = '저장했어요. 앞으로의 판정에 참고할게요.';
+      dirty = false; DRAFTS.delete(ctx); feedback.textContent = '저장했어요. 앞으로의 판정에 참고할게요.';
       ctx.emit('cards:changed', { source: 'criteria' });
       await refresh();
     } catch (err) { feedback.textContent = err.message || '저장하지 못했어요. 적은 내용은 남아 있어요.'; }
@@ -33,9 +36,10 @@ export function mountCriteria(root, ctx) {
   root.append(wrap);
 
   async function refresh() {
+    const version = ++refreshVersion;
     try {
       const [criteria, cards] = await Promise.all([ctx.adapter.listCriteria(), ctx.adapter.list({ limit: 100000 })]);
-      if (destroyed) return;
+      if (destroyed || version !== refreshVersion) return;
       list = criteria;
       if (!dirty && !saving) input.value = list.find(c => c.id === PREFERENCE_ID)?.axis || '';
       renderProfile(tasteProfile(cards));

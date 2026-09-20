@@ -408,3 +408,8 @@ body.widget #toast { bottom: 56px; font-size: 12px; }
 .taste-axis li p { margin: 4px 0; }
 .taste-method, .legacy-criteria { margin-top: 20px; font-size: 13px; color: var(--ink-2); }
 .legacy-criterion { border-top: 1px solid var(--line); margin-top: 12px; }
+.capture-pending { margin-top: 28px; border-top: 1px solid var(--line); padding-top: 16px; }
+.capture-pending h2 { font-size: 17px; }
+.pending-request { display: flex; align-items: center; gap: 12px; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.pending-request a { min-width: 0; overflow-wrap: anywhere; font-size: 14px; }
+.pending-request .btn { flex-shrink: 0; }

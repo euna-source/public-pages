@@ -2,6 +2,7 @@
 import { h, clear, svg, ICON, toast } from '../lib/ui.js';
 import { deckCardView, revealText, KIND_LABEL, ENTRY_LABEL, hostOf, fmtDate, VERDICT_LABEL } from '../lib/model.js';
 
+const DRAFTS = new WeakMap();
 const SWIPE_VERDICT = { right: 'like', left: 'no', up: 'unknown' };
 
 export function mountDeck(root, ctx, { compact = false } = {}) {
@@ -12,7 +13,8 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
   let revealTimer = null;
   let draftId = null;
   let loadVersion = 0;
-  const drafts = new Map();
+  const drafts = DRAFTS.get(ctx) || new Map();
+  DRAFTS.set(ctx, drafts);
 
   const stack = h('div', { class: 'deck-stack', role: 'group', 'aria-label': '판정할 카드' });
   const stamp = h('div', { class: 'stamp', 'aria-hidden': 'true' });
