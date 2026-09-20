@@ -1,5 +1,5 @@
 // 목록: 칩 필터·검색·상세. Jev 표시는 사용자 판정이 있는 카드에서만(visibleGuess).
-import { h, clear, svg, ICON, toast, chip, field, debounce, confirmDialog } from '../lib/ui.js';
+import { collectionTimeNode, h, clear, svg, ICON, toast, chip, field, debounce, confirmDialog } from '../lib/ui.js';
 import { KINDS, ENTRIES, KIND_LABEL, ENTRY_LABEL, VERDICT_LABEL, VERDICT_WORD, visibleGuess, isUrl, hostOf, fmtDate, normalizeTags } from '../lib/model.js';
 
 export function mountList(root, ctx, { embedded = false } = {}) {
@@ -68,7 +68,7 @@ export function mountList(root, ctx, { embedded = false } = {}) {
       thumb(c),
       h('span', { class: 'row-main' },
         h('span', { class: 'row-title' }, c.title || c.note || c.source_url || '제목 없음'),
-        h('span', { class: 'row-sub' }, KIND_LABEL[c.kind] || c.kind, ' · ', hostOf(c.source_url) || ENTRY_LABEL[c.entry] || '', ' · ', fmtDate(c.created_at))),
+        h('span', { class: 'row-sub' }, KIND_LABEL[c.kind] || c.kind, ' · ', hostOf(c.source_url) || ENTRY_LABEL[c.entry] || '', ' · ', collectionTimeNode(c.created_at))),
       c.verdict_by === 'jev' ? h('span', { class: 'badge jev', title: 'Jev가 자동으로 붙인 라벨' }, 'Jev') : g ? h('span', { class: `badge guess ${g.verdict === c.verdict ? 'same' : 'diff'}`, title: `Jev 추측 ${VERDICT_LABEL[g.verdict]} · 확신 ${Number(g.confidence).toFixed(2)}` }, g.verdict === c.verdict ? '=' : '≠') : null);
     return row;
   }
@@ -117,7 +117,7 @@ export function mountList(root, ctx, { embedded = false } = {}) {
     const form = h('form', { class: 'detail-form', onSubmit: (e) => { e.preventDefault(); patch({ title: title.value.trim() || null, note: note.value.trim() || null, reason: reason.value.trim() || null, tags: normalizeTags(tags.value), basis: basis.value || null, basis_who: basis.value === 'other' ? (who.value.trim() || null) : null }, '저장했어요'); } },
       h('div', { class: 'detail-head' },
         h('button', { type: 'button', class: 'icon-btn', 'aria-label': '닫기', onClick: () => { detail.hidden = true; openId = null; renderList(); } }, svg(ICON.back, { size: 18 })),
-        h('span', { class: 'detail-kind' }, KIND_LABEL[c.kind] || c.kind, ' · ', ENTRY_LABEL[c.entry] || c.entry, ' · ', fmtDate(c.created_at)),
+        h('span', { class: 'detail-kind' }, KIND_LABEL[c.kind] || c.kind, ' · ', ENTRY_LABEL[c.entry] || c.entry, ' · ', collectionTimeNode(c.created_at)),
         c.verdict_by === 'jev' ? h('span', { class: 'badge jev' }, 'Jev') : null),
       isUrl(c.source_url) ? h('a', { class: 'source', href: c.source_url, target: '_blank', rel: 'noopener noreferrer' }, svg(ICON.link, { size: 14 }), ' ', c.source_url) : null,
       filesEl,

@@ -1,3 +1,4 @@
+import { collectedTime } from './collected-time.js';
 // 카드·기준·설정의 순수 함수. DOM·저장소를 모른다. 시험은 여기를 겨눈다.
 export const KINDS = ['product', 'image', 'video', 'stock', 'text', 'other'];
 export const ENTRIES = ['share', 'capture', 'folder', 'ticker', 'web', 'mac_pet', 'cli'];
@@ -265,11 +266,7 @@ export function hostOf(url) {
 }
 
 export function fmtDate(iso) {
-  if (!iso) return '';
-  const d = new Date(iso);
-  if (Number.isNaN(d.getTime())) return '';
-  const p = (n) => String(n).padStart(2, '0');
-  return `${d.getFullYear()}.${p(d.getMonth() + 1)}.${p(d.getDate())}`;
+  return collectedTime(iso)?.exact.split(' ')[0] || '';
 }
 
 // 기준 판본이 달라진 기계 추측은 폐기하고 다시 판정할 덱으로 돌린다.

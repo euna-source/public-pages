@@ -1,3 +1,4 @@
+import { collectedTime } from './collected-time.js';
 // 작은 DOM 도우미. innerHTML 대신 노드로 만든다.
 export function h(tag, attrs, ...children) {
   const el = document.createElement(tag);
@@ -83,4 +84,16 @@ export function debounce(fn, ms = 150) {
 
 export function readFileAsDataURL(file) {
   return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = () => rej(r.error); r.readAsDataURL(file); });
+}
+
+export function collectionTimeNode(iso) {
+  const value = collectedTime(iso);
+  if (!value) return h('span', { class: 'collected-time-missing' }, '수집일 미기록');
+  return h('time', { class: 'collected-time', datetime: value.iso, title: `수집 ${value.exact}` }, value.label);
+}
+export function refreshCollectionTimes() {
+  document.querySelectorAll('time.collected-time').forEach(el => {
+    const value = collectedTime(el.dateTime);
+    if (value) el.textContent = value.label;
+  });
 }

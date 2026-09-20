@@ -1,3 +1,4 @@
+import { refreshCollectionTimes } from './lib/ui.js';
 // 앱 셸: 어댑터 고르기, 해시 라우팅, 두 열 레이아웃, 위젯 모드, 서비스 워커.
 import { h, clear, svg, ICON, toast } from './lib/ui.js';
 import { parseHash, normalizeSettings, DEFAULT_SETTINGS } from './lib/model.js';
@@ -10,7 +11,7 @@ import { mountList } from './views/list.js';
 import { mountCriteria } from './views/criteria.js';
 import { mountSettings } from './views/settings.js';
 
-export const VERSION = '1.2.1';
+export const VERSION = '1.2.2';
 const CONN_KEY = 'meonji.connection';
 const WIDGET_MAX = { w: 380, h: 420 };
 
@@ -172,3 +173,6 @@ if ('serviceWorker' in navigator) {
     });
   }).catch(() => {});
 }
+
+setInterval(refreshCollectionTimes, 60000);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) refreshCollectionTimes(); });

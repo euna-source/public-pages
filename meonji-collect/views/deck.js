@@ -1,6 +1,6 @@
 // 덱: 카드 한 장, 스와이프·버튼·키보드. 넘기기 전엔 guess를 DOM에 넣지 않는다(deckCardView).
-import { h, clear, svg, ICON, toast } from '../lib/ui.js';
-import { deckCardView, revealText, KIND_LABEL, ENTRY_LABEL, hostOf, fmtDate, VERDICT_LABEL } from '../lib/model.js';
+import { collectionTimeNode, h, clear, svg, ICON, toast } from '../lib/ui.js';
+import { deckCardView, revealText, KIND_LABEL, ENTRY_LABEL, hostOf, VERDICT_LABEL } from '../lib/model.js';
 
 const DRAFTS = new WeakMap();
 const SWIPE_VERDICT = { right: 'like', left: 'no', up: 'unknown' };
@@ -94,7 +94,7 @@ export function mountDeck(root, ctx, { compact = false } = {}) {
     const meta = h('div', { class: 'card-meta' },
       h('span', { class: 'kind' }, KIND_LABEL[v.kind] || v.kind),
       host ? h('span', { class: 'host' }, host) : null,
-      h('span', { class: 'when' }, fmtDate(v.created_at)));
+      h('span', { class: 'when' }, collectionTimeNode(v.created_at)));
     const title = v.kind === 'stock' && !v.title ? (v.note || v.source_url || '종목') : (v.title || v.note || v.source_url || '제목 없음');
     el.append(h('div', { class: 'card-body' },
       meta,
