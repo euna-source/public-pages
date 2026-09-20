@@ -1,0 +1,28 @@
+{
+  "name": "먼지 수집함",
+  "short_name": "먼지",
+  "description": "본 것을 가볍게 담고, 확신이 낮은 것만 넘겨서 취향을 정리하는 개인 수집함.",
+  "id": "./",
+  "start_url": "./#/deck",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f5f1ea",
+  "theme_color": "#f5f1ea",
+  "lang": "ko",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ],
+  "share_target": {
+    "action": "share",
+    "method": "GET",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": { "title": "title", "text": "text", "url": "url" }
+  },
+  "shortcuts": [
+    { "name": "담기", "url": "./#/add", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
+    { "name": "위젯", "url": "./#/widget", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
+  ]
+}
