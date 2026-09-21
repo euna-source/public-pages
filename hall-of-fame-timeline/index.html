@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명예의 전당 회차 타임라인</title>
+<meta name="description" content="크리에이터클럽 명예의 전당 1회차가 2주 동안 어떻게 돌아가는지 한 장으로 그린 타임라인">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF; --surface:#F5F5F5; --subtle:#EBEBEB; --line:#D9D9D9; --line-strong:#C8C8C8;
+  --t1:#181818; --t2:#444444; --t3:#666666; --t4:#888888;
+  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#CDFBD1;
+  --radius-s:6px; --radius-m:10px; --radius-l:14px;
+  --shadow:0 1px 2px rgba(24,24,24,.06),0 8px 24px rgba(24,24,24,.06);
+  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;font-family:var(--font);color:var(--t1);background:var(--bg);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:34px;letter-spacing:-0.02em;line-height:1.2;margin:0 0 10px;font-weight:700;text-wrap:balance}
+.lede{color:var(--t2);font-size:16px;max-width:640px;margin:0 0 6px}
+.meta{color:var(--t4);font-size:13px;margin:0}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line);vertical-align:middle;margin-left:6px}
+.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:#B7F5BD}
+section{margin-top:56px}
+h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
+.sub{color:var(--t3);font-size:14px;margin:0 0 20px;max-width:720px}
+
+/* 달력 띠 */
+.cal{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:4px;align-items:end}
+.day{position:relative;border-radius:var(--radius-s);border:1px solid var(--line);background:var(--bg);padding:8px 4px 10px;text-align:center;min-height:82px;display:flex;flex-direction:column;justify-content:flex-end;gap:2px}
+.day .wd{font-size:11px;color:var(--t4);letter-spacing:.02em}
+.day .d{font-size:16px;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+.day .lb{font-size:11px;color:var(--t3);line-height:1.25}
+.day.in{background:var(--surface);border-color:var(--line)}
+.day.wed{border-color:var(--brand-text);background:var(--brand-50)}
+.day.wed .wd{color:var(--brand-text);font-weight:600}
+.day.deploy{border-style:dashed;background:var(--bg)}
+.day.weekend .wd{color:var(--t4)}
+.day.weekend .d{color:var(--t3)}
+.day .dot{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:10px;border-radius:50%;background:var(--brand)}
+.day.next{background:var(--bg);border-color:var(--brand-text);border-style:solid}
+.bar{display:grid;grid-template-columns:repeat(16,minmax(0,1fr));gap:4px;margin-top:8px}
+.bar span{height:4px;border-radius:2px;background:var(--subtle)}
+.bar span.on{background:var(--brand)}
+.bar span.on2{background:var(--brand-100)}
+.legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:14px;font-size:13px;color:var(--t3)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.legend .a{background:var(--brand)}.legend .b{background:var(--brand-50);border:1px solid var(--brand-text)}.legend .c{background:var(--bg);border:1px dashed var(--line-strong)}.legend .d2{background:var(--brand-100)}
+
+/* 세로 타임라인 */
+.tl{position:relative;margin-top:8px;display:grid;grid-template-columns:150px 1fr;row-gap:0}
+.tl::before{content:"";position:absolute;left:150px;top:12px;bottom:12px;width:2px;background:var(--line);transform:translateX(-1px)}
+.row{display:contents}
+.when{padding:18px 22px 18px 0;text-align:right;color:var(--t2);font-size:14px;font-variant-numeric:tabular-nums;font-weight:600;align-self:start}
+.when small{display:block;font-weight:400;color:var(--t4);font-size:12px}
+.what{position:relative;padding:14px 0 18px 30px;border-bottom:1px solid var(--subtle)}
+.what::before{content:"";position:absolute;left:-6px;top:22px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--line-strong)}
+.row.key .what::before{background:var(--brand);border-color:var(--brand)}
+.row.key .when{color:var(--t1)}
+.what h3{margin:0 0 4px;font-size:15px;font-weight:700;letter-spacing:-0.005em}
+.what p{margin:0;color:var(--t2);font-size:14px}
+.what .who{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line)}
+.chip.see{background:var(--bg);border-color:var(--line-strong);color:var(--t2)}
+.chip.op{background:var(--subtle);color:var(--t2)}
+
+/* 화면 3상태 */
+.states{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.phone{border:1px solid var(--line);border-radius:var(--radius-l);background:var(--bg);box-shadow:var(--shadow);padding:16px;min-height:250px;display:flex;flex-direction:column}
+.phone .cap{font-size:12px;color:var(--t4);margin-bottom:10px}
+.phone .hd{font-size:13px;font-weight:700;display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.phone .hd em{font-style:normal;color:var(--brand-text);font-size:12px;font-weight:600}
+.tabs{display:flex;gap:6px;margin-bottom:12px}
+.tabs span{font-size:12px;padding:4px 10px;border-radius:999px;border:1px solid var(--line);color:var(--t3)}
+.tabs span.on{background:var(--t1);color:#fff;border-color:var(--t1)}
+.empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:var(--t3);font-size:13px;border:1px dashed var(--line-strong);border-radius:var(--radius-m);padding:14px}
+.empty b{font-size:22px;color:var(--t1);letter-spacing:-0.01em;font-variant-numeric:tabular-nums;display:block;margin-bottom:2px}
+.list{display:flex;flex-direction:column;gap:8px}
+.li{display:grid;grid-template-columns:22px 34px 1fr auto;gap:8px;align-items:center;font-size:13px}
+.li .rk{font-weight:700;font-variant-numeric:tabular-nums;color:var(--t2)}
+.li:first-child .rk{color:var(--brand-text)}
+.li .th{width:34px;height:34px;border-radius:8px;background:var(--subtle)}
+.li .nm{font-weight:600}
+.li .nm small{display:block;font-weight:400;color:var(--t4);font-size:11px}
+.li .v{font-variant-numeric:tabular-nums;color:var(--t2)}
+.win{flex:1;border-radius:var(--radius-m);background:var(--brand-50);border:1px solid #B7F5BD;padding:14px;display:flex;flex-direction:column;justify-content:center}
+.win .k{font-size:11px;color:var(--brand-text);font-weight:600;letter-spacing:.04em}
+.win .n{font-size:18px;font-weight:700;letter-spacing:-0.01em;margin:4px 0 2px}
+.win .r{font-size:13px;color:var(--t2)}
+.win .th{width:100%;height:64px;border-radius:8px;background:#fff;border:1px solid #B7F5BD;margin-top:10px}
+
+/* 가정 카드 */
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.note{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 18px;background:var(--bg)}
+.note h3{margin:0 0 6px;font-size:14px;font-weight:700}
+.note h3 .tag{margin-left:6px}
+.note p{margin:0;color:var(--t2);font-size:13px}
+footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(--subtle);padding-top:16px}
+
+@media (max-width:760px){
+  .wrap{padding:36px 16px 64px}
+  h1{font-size:26px}
+  .cal,.bar{grid-template-columns:repeat(8,minmax(0,1fr))}
+  .day{min-height:70px}
+  .tl{grid-template-columns:96px 1fr}
+  .tl::before{left:96px}
+  .when{padding-right:14px;font-size:13px}
+  .states,.notes{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <p class="meta">크리에이터클럽 · 디스커버리 · 2026-09-21 · 기획 이은희</p>
+    <h1>명예의 전당 회차 한 바퀴</h1>
+    <p class="lede">수요일 0시에 시작해 둘째 주 화요일 밤에 마감하고, 다음 회차는 자정에 곧바로 이어집니다. 발표는 마감 다음 날 수요일 저녁입니다. 참가자가 외울 요일은 하나, 수요일입니다.</p>
+    <p class="meta">수요일과 저녁 8시, 최소 5명은 가안입니다. 세 회차를 돌린 뒤 실측으로 다시 정합니다.<span class="tag brand">1회차 기준</span></p>
+  </header>
+
+  <section>
+    <h2>2주 달력으로 보면</h2>
+    <p class="sub">10월 6일 화요일에 앱이 배포되면 그날은 "내일 0시부터 시작합니다"만 보여 주고, 7일 수요일 0시에 1회차 집계가 시작됩니다. 20일 화요일 밤 11시 59분 59초에 멈추고, 21일 수요일 0시에 2회차가 바로 이어집니다.</p>
+    <div class="cal">
+      <div class="day deploy"><span class="wd">화</span><span class="d">6</span><span class="lb">배포·예고</span></div>
+      <div class="day in wed"><span class="dot"></span><span class="wd">수</span><span class="d">7</span><span class="lb">1회차 시작<br>20시 공지</span></div>
+      <div class="day in"><span class="wd">목</span><span class="d">8</span><span class="lb">&nbsp;</span></div>
+      <div class="day in"><span class="wd">금</span><span class="d">9</span><span class="lb">&nbsp;</span></div>
+      <div class="day in weekend"><span class="wd">토</span><span class="d">10</span><span class="lb">&nbsp;</span></div>
+      <div class="day in weekend"><span class="wd">일</span><span class="d">11</span><span class="lb">&nbsp;</span></div>
+      <div class="day in"><span class="wd">월</span><span class="d">12</span><span class="lb">&nbsp;</span></div>
+      <div class="day in"><span class="wd">화</span><span class="d">13</span><span class="lb">&nbsp;</span></div>
+      <div class="day in wed"><span class="wd">수</span><span class="d">14</span><span class="lb">반환점<br>중간 공지</span></div>
+      <div class="day in"><span class="wd">목</span><span class="d">15</span><span class="lb">&nbsp;</span></div>
+      <div class="day in"><span class="wd">금</span><span class="d">16</span><span class="lb">&nbsp;</span></div>
+      <div class="day in weekend"><span class="wd">토</span><span class="d">17</span><span class="lb">&nbsp;</span></div>
+      <div class="day in weekend"><span class="wd">일</span><span class="d">18</span><span class="lb">&nbsp;</span></div>
+      <div class="day in"><span class="wd">월</span><span class="d">19</span><span class="lb">&nbsp;</span></div>
+      <div class="day in"><span class="wd">화</span><span class="d">20</span><span class="lb">23:59:59<br>마감</span></div>
+      <div class="day next wed"><span class="dot"></span><span class="wd">수</span><span class="d">21</span><span class="lb">2회차 시작<br>20시 발표</span></div>
+    </div>
+    <div class="bar" aria-hidden="true">
+      <span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on2"></span>
+    </div>
+    <div class="legend">
+      <span><i class="a"></i>1회차 집계 기간 14일</span>
+      <span><i class="d2"></i>2회차가 곧바로 이어짐</span>
+      <span><i class="b"></i>수요일, 시작과 발표의 날</span>
+      <span><i class="c"></i>배포일, 집계 전</span>
+    </div>
+  </section>
+
+  <section>
+    <h2>시각 순서로 보면</h2>
+    <p class="sub">왼쪽은 시각, 오른쪽은 그때 참가자에게 보이는 것과 운영이 하는 일입니다. 초록 점이 찍힌 줄이 회차의 마디입니다.</p>
+    <div class="tl">
+      <div class="row">
+        <div class="when">10/6 화<small>배포</small></div>
+        <div class="what"><h3>진입점 오픈</h3><p>디스커버리에서 명예의 전당으로 들어갈 수 있고, 화면에는 "내일 0시부터 1회차가 시작됩니다"만 보입니다.</p><div class="who"><span class="chip see">참가자: 예고 화면</span><span class="chip op">운영: 시작 공지 예약, 서포터즈 시딩 확인</span></div></div>
+      </div>
+      <div class="row key">
+        <div class="when">10/7 수<small>00:00</small></div>
+        <div class="what"><h3>1회차 집계 시작</h3><p>이 시각 이후의 리스펙트와 팔로우만 셉니다. 저녁 8시에 시작 공지와 홍보가 나갑니다.</p><div class="who"><span class="chip see">참가자: 회차 기간, 남은 날, "N명 참여 중 · 집계 중"</span><span class="chip op">운영: 20시 공지·홍보</span></div></div>
+      </div>
+      <div class="row">
+        <div class="when">매일<small>09:00</small></div>
+        <div class="what"><h3>매일 순위 갱신</h3><p>집계 배치가 한 번 돌고, 같은 결과가 순위 화면과 구글 시트 원장과 슬랙 한 줄로 나갑니다. 후보가 5명 이상이면 순위, 미만이면 참여 인원만 보입니다.</p><div class="who"><span class="chip see">참가자: 순위 또는 참여 인원</span><span class="chip op">운영: 슬랙 한 줄 확인 5분, 이상 패턴 표시</span></div></div>
+      </div>
+      <div class="row">
+        <div class="when">10/14 수<small>반환점</small></div>
+        <div class="what"><h3>반환점 중간 공지</h3><p>"지금 참가작 N개, 마감까지 일주일." 신고가 있으면 확인하고, 필요하면 제외 목록 반영을 개발에 요청합니다.</p><div class="who"><span class="chip see">참가자: 중간 공지</span><span class="chip op">운영: 신고 확인, 제외 요청</span></div></div>
+      </div>
+      <div class="row key">
+        <div class="when">10/20 화<small>23:59:59</small></div>
+        <div class="what"><h3>1회차 마감</h3><p>반응이 일어난 시각 기준으로 잘립니다. 화면의 순위는 여기서 멈춥니다.</p><div class="who"><span class="chip see">참가자: 멈춘 순위</span></div></div>
+      </div>
+      <div class="row key">
+        <div class="when">10/21 수<small>00:00</small></div>
+        <div class="what"><h3>2회차 즉시 시작</h3><p>새 회차 화면이 열리고, 상단에 "지난 회차 결과는 오늘 저녁 8시에 발표됩니다"가 보입니다. 0시부터 9시 사이의 반응은 2회차에 들어갑니다.</p><div class="who"><span class="chip see">참가자: 새 회차 화면</span></div></div>
+      </div>
+      <div class="row">
+        <div class="when">10/21 수<small>09:00</small></div>
+        <div class="what"><h3>판정 배치와 확정</h3><p>시트 원장에서 부문별 1위를 확인하고 기록을 남깁니다. 직전 1위 제외와 같은 작품 한 번 규칙은 운영이 제외 목록으로 적용합니다.</p><div class="who"><span class="chip op">운영: 판정·기록</span></div></div>
+      </div>
+      <div class="row">
+        <div class="when">10/21 수<small>12:00까지</small></div>
+        <div class="what"><h3>당첨자 개별 DM</h3><p>개별 DM으로 선정 사실과 공개 동의, 연락처를 받습니다. 회신이 없으면 닉네임만으로 발표합니다. 저녁까지 여덟 시간은 당첨자가 자랑할 화면을 준비할 시간입니다.</p><div class="who"><span class="chip see">당첨자: DM</span><span class="chip op">운영: DM 발송</span></div></div>
+      </div>
+      <div class="row key">
+        <div class="when">10/21 수<small>20:00</small></div>
+        <div class="what"><h3>발표</h3><p>공지와 푸시로 당첨작과 고른 이유를 올립니다. 20대의 앱 이용이 가장 많은 저녁 시간에 맞춘 가설입니다.</p><div class="who"><span class="chip see">참가자: 발표 공지·푸시</span><span class="chip op">운영: 게시(예약 가능 여부 확인 중)</span></div></div>
+      </div>
+      <div class="row">
+        <div class="when">10/22 목<small>~10/23 금</small></div>
+        <div class="what"><h3>보상과 흔적</h3><p>모바일 상품권을 보내고 발송용 정보를 지웁니다. 이의 접수가 14일 동안 열립니다. 프로필과 작품에 남는 선정 표식은 2차 개발입니다.</p><div class="who"><span class="chip see">당첨자: 상품권, 선정 표식(2차)</span><span class="chip op">운영: 발송·파기, 이의 접수</span></div></div>
+      </div>
+      <div class="row">
+        <div class="when">11/3 화<small>23:59:59</small></div>
+        <div class="what"><h3>2회차 마감, 같은 리듬 반복</h3><p>11월 4일 수요일 0시 3회차 시작, 저녁 8시 2회차 발표. 수요일이 공휴일이면 마감은 그대로, 판정과 발표만 다음 영업일입니다.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>참가자 화면은 세 가지 상태만 있습니다</h2>
+    <p class="sub">후보가 적을 때, 순위가 보일 때, 발표될 때입니다. 순위는 전체 공개이지만 후보가 5명이 되기 전에는 숫자만 보여 줍니다.</p>
+    <div class="states">
+      <div class="phone">
+        <div class="cap">① 후보 5명 미만</div>
+        <div class="hd">2026년 10월 1회차 <em>D-11</em></div>
+        <div class="tabs"><span class="on">인기 포트폴리오</span><span>인기 크리에이터</span></div>
+        <div class="empty"><b>3명</b>참여 중 · 집계 중<br>5명이 되면 순위가 보입니다</div>
+      </div>
+      <div class="phone">
+        <div class="cap">② 후보 5명 이상</div>
+        <div class="hd">2026년 10월 1회차 <em>D-4</em></div>
+        <div class="tabs"><span class="on">인기 포트폴리오</span><span>인기 크리에이터</span></div>
+        <div class="list">
+          <div class="li"><span class="rk">1</span><span class="th"></span><span class="nm">밤의 정류장<small>@hyun.draws</small></span><span class="v">리스펙트 27</span></div>
+          <div class="li"><span class="rk">2</span><span class="th"></span><span class="nm">첫 번째 데모<small>@moon_beat</small></span><span class="v">21</span></div>
+          <div class="li"><span class="rk">3</span><span class="th"></span><span class="nm">폰트 스케치 03<small>@seo.type</small></span><span class="v">18</span></div>
+          <div class="li"><span class="rk">4</span><span class="th"></span><span class="nm">리허설<small>@jinah.film</small></span><span class="v">12</span></div>
+          <div class="li"><span class="rk">5</span><span class="th"></span><span class="nm">여름 포스터<small>@ddal.gi</small></span><span class="v">9</span></div>
+        </div>
+      </div>
+      <div class="phone">
+        <div class="cap">③ 발표 (수요일 20시)</div>
+        <div class="hd">1회차 결과 <em>10/21 발표</em></div>
+        <div class="win"><span class="k">인기 포트폴리오</span><div class="n">밤의 정류장 · @hyun.draws</div><div class="r">2주 동안 서로 다른 24명에게서 리스펙트 27개. 설명과 과정이 함께 올라온 작품입니다.</div><div class="th"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>가안과 가설</h2>
+    <p class="sub">이 세 값은 세 회차를 돌린 뒤 실측으로 다시 정합니다.</p>
+    <div class="notes">
+      <div class="note"><h3>수요일 시작·발표<span class="tag">가안</span></h3><p>요일을 정한 이유를 밝힌 사례는 국내외 모두 운영 편의였습니다. 블리자드는 화요일 리셋을 "활동이 적고 공휴일을 피하는 날"이라 설명했습니다. 화요일 마감은 월요일 대체공휴일과 겹치지 않고, 수요일 판정 뒤 목·금이 완충이 됩니다.</p></div>
+      <div class="note"><h3>저녁 8시 발표<span class="tag">가설</span></h3><p>20대의 저녁 8시에서 11시 이용이 가장 많다는 조사(메조미디어 2025)에 기댔습니다. 국내 당첨 발표 관행은 오전 10시나 오후 2시 게시가 많아, 예약 게시가 안 되면 낮에 올리고 푸시만 저녁에 보냅니다.</p></div>
+      <div class="note"><h3>최소 5명<span class="tag">가안</span></h3><p>후보가 5명 미만이면 순위 대신 참여 인원만 보여 줍니다. 서버 설정값으로 두어 회차 중에도 바꿀 수 있습니다.</p></div>
+    </div>
+  </section>
+
+  <footer>한 장 기획 요건 v1.0의 "회차 한 바퀴"를 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.2에 있습니다.</footer>
+</div>
+</body>
+</html>
