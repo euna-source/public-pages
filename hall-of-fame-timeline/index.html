@@ -95,6 +95,35 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .win .r{font-size:13px;color:var(--t2)}
 .win .th{width:100%;height:64px;border-radius:8px;background:#fff;border:1px solid #B7F5BD;margin-top:10px}
 
+
+/* 발표 이후 화면 */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pc{position:relative;border:1px solid var(--line);border-radius:var(--radius-m);padding:8px;background:var(--bg)}
+.pc.muse{border:1.5px solid #E6C64A}
+.pc-th{height:64px;border-radius:8px;background:var(--subtle)}
+.pc-th.tall{height:96px;margin:10px 0}
+.pc-t{font-size:12px;font-weight:600;margin-top:6px}
+.pc-n{font-size:11px;color:var(--t4)}
+.pc-n em{font-style:normal;color:#9A7B00;font-weight:600;margin-left:2px}
+.laurel{position:absolute;top:4px;left:4px;width:22px;height:22px;border-radius:50%;background:var(--t1);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 2px #fff}
+.pc-cap{font-size:12px;color:var(--t3);margin:10px 0 0}
+.band{display:flex;align-items:center;gap:6px;background:var(--t1);color:#fff;font-size:12px;font-weight:600;padding:7px 10px;border-radius:var(--radius-s)}
+.profile{display:flex;gap:10px;align-items:center}
+.av{width:40px;height:40px;border-radius:50%;background:var(--subtle);flex:none}
+.pn{font-size:13px;font-weight:700}.pn small{font-weight:400;color:var(--t4);font-size:11px;margin-left:4px}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.chips .c{font-size:11px;padding:2px 7px;border-radius:999px;border:1px solid var(--line);color:var(--t3)}
+.chips .c.on{background:var(--t1);color:#fff;border-color:var(--t1);display:inline-flex;align-items:center;gap:3px}
+.notice{border:1px solid var(--line);border-radius:var(--radius-m);padding:12px;background:var(--surface)}
+.nk{font-size:12px;color:var(--t3);margin-bottom:8px}
+.nrow{display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
+.nth{width:44px;height:44px;border-radius:8px;background:var(--subtle)}
+.nav2{width:44px;height:44px;border-radius:50%;background:var(--subtle)}
+.nt{font-size:11px;color:var(--brand-text);font-weight:600}
+.nn{font-size:13px;font-weight:700}
+.nr{font-size:12px;color:var(--t2)}
+.nfoot{font-size:11px;color:var(--t4);margin-top:8px}
+
 /* 가정 카드 */
 .notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .note{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 18px;background:var(--bg)}
@@ -169,8 +198,8 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
         <div class="what"><h3>1회차 집계 시작</h3><p>이 시각 이후의 리스펙트와 팔로우만 셉니다. 저녁 8시에 시작 공지와 홍보가 나갑니다.</p><div class="who"><span class="chip see">참가자: 회차 기간, 남은 날, "N명 참여 중 · 집계 중"</span><span class="chip op">운영: 20시 공지·홍보</span></div></div>
       </div>
       <div class="row">
-        <div class="when">매일<small>09:00</small></div>
-        <div class="what"><h3>매일 순위 갱신</h3><p>집계 배치가 한 번 돌고, 같은 결과가 순위 화면과 구글 시트 원장과 슬랙 한 줄로 나갑니다. 후보가 5명 이상이면 순위, 미만이면 참여 인원만 보입니다.</p><div class="who"><span class="chip see">참가자: 순위 또는 참여 인원</span><span class="chip op">운영: 슬랙 한 줄 확인 5분, 이상 패턴 표시</span></div></div>
+        <div class="when">매시 정각<small>+ 매일 09:00</small></div>
+        <div class="what"><h3>매시 순위 갱신, 아침 9시 슬랙 리포트</h3><p>집계 배치가 한 시간마다 돌아 순위 화면을 갱신하고 구글 시트에 시간별 스냅샷을 쌓습니다. 아침 9시에는 슬랙으로 전날 대비 순위 변동, 참여 인원, 부문별 1위를 보고하고, 변동이 없거나 미미하면 노란불을 띄웁니다. 후보가 5명 이상이면 순위, 미만이면 참여 인원만 보입니다.</p><div class="who"><span class="chip see">참가자: 매시 갱신되는 순위</span><span class="chip op">운영: 9시 리포트 확인 5분, 노란불이면 손 성장 추가</span></div></div>
       </div>
       <div class="row">
         <div class="when">10/14 수<small>반환점</small></div>
@@ -186,7 +215,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
       </div>
       <div class="row">
         <div class="when">10/21 수<small>09:00</small></div>
-        <div class="what"><h3>판정 배치와 확정</h3><p>시트 원장에서 부문별 1위를 확인하고 기록을 남깁니다. 직전 1위 제외와 같은 작품 한 번 규칙은 운영이 제외 목록으로 적용합니다.</p><div class="who"><span class="chip op">운영: 판정·기록</span></div></div>
+        <div class="what"><h3>판정과 확정</h3><p>0시 배치가 마감 순위를 확정하고, 9시 리포트로 기획 2명이 시트 원장에서 부문별 1위를 확인해 기록을 남깁니다. 직전 1위 제외와 같은 작품 한 번 규칙은 운영이 제외 목록으로 적용합니다.</p><div class="who"><span class="chip op">운영: 판정·기록</span></div></div>
       </div>
       <div class="row">
         <div class="when">10/21 수<small>12:00까지</small></div>
@@ -198,7 +227,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
       </div>
       <div class="row">
         <div class="when">10/22 목<small>~10/23 금</small></div>
-        <div class="what"><h3>보상과 흔적</h3><p>모바일 상품권을 보내고 발송용 정보를 지웁니다. 이의 접수가 14일 동안 열립니다. 프로필과 작품에 남는 선정 표식은 2차 개발입니다.</p><div class="who"><span class="chip see">당첨자: 상품권, 선정 표식(2차)</span><span class="chip op">운영: 발송·파기, 이의 접수</span></div></div>
+        <div class="what"><h3>보상과 흔적</h3><p>모바일 상품권을 보내고 발송용 정보를 지웁니다. 이의 접수가 14일 동안 열립니다. 작품 카드의 월계관 마크와 프로필의 "명예의 전당" 칩은 2차 개발로 붙고 1회차 수상자에게 소급됩니다.</p><div class="who"><span class="chip see">당첨자: 상품권, 월계관 마크·칩(2차)</span><span class="chip op">운영: 발송·파기, 이의 접수</span></div></div>
       </div>
       <div class="row">
         <div class="when">11/3 화<small>23:59:59</small></div>
@@ -238,6 +267,41 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   </section>
 
   <section>
+    <h2>발표 이후에 보이는 것 — 표식은 새 색 대신 월계관 모양 하나로</h2>
+    <p class="sub">골드는 이미 뮤즈(초대 회원)의 색입니다. 파인더 카드의 골드 아웃라인, 프로필 칩의 골드 변형, VIP 카드가 모두 골드입니다. 그래서 명예의 전당 표식은 새 색을 쓰지 않고 흑백 월계관 마크 하나로 통일합니다. 어떤 커버 이미지 위에서도, 뮤즈의 골드 옆에서도 읽힙니다.</p>
+    <div class="states">
+      <div class="phone">
+        <div class="cap">① 작품 카드 · 디스커버리와 프로필 그리드</div>
+        <div class="grid2">
+          <div class="pc"><span class="laurel" aria-label="명예의 전당 선정작">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg>
+          </span><div class="pc-th"></div><div class="pc-t">밤의 정류장</div><div class="pc-n">@hyun.draws</div></div>
+          <div class="pc muse"><div class="pc-th"></div><div class="pc-t">첫 번째 데모</div><div class="pc-n">@moon_beat <em>뮤즈</em></div></div>
+          <div class="pc muse"><span class="laurel"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg></span><div class="pc-th"></div><div class="pc-t">리허설</div><div class="pc-n">@jinah.film <em>뮤즈</em></div></div>
+          <div class="pc"><div class="pc-th"></div><div class="pc-t">여름 포스터</div><div class="pc-n">@ddal.gi</div></div>
+        </div>
+        <p class="pc-cap">좌상단 검정 원 안의 월계관이 선정작 마크입니다. 뮤즈의 골드 아웃라인과 겹쳐도 서로 가리지 않습니다. 영구.</p>
+      </div>
+      <div class="phone">
+        <div class="cap">② 작품 상세 · 프로필 커버</div>
+        <div class="band"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg> 명예의 전당 · 2026년 10월 1회차 · 인기 포트폴리오</div>
+        <div class="pc-th tall"></div>
+        <div class="profile"><div class="av"></div><div><div class="pn">현이 <small>@hyun.draws</small></div><div class="chips"><span class="c">일러스트</span><span class="c">서울</span><span class="c on"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13 17 22l-5-3-5 3 1.5-9"/></svg> 명예의 전당 ×1</span><span class="c">노크 환영</span></div></div></div>
+        <p class="pc-cap">상세 상단 한 줄 띠와, 기존 프로필 칩 7종 옆에 여덟 번째 칩 "명예의 전당 ×N". 누르면 회차별 수상 목록. 영구.</p>
+      </div>
+      <div class="phone">
+        <div class="cap">③ 발표 공지 · 수요일 20시</div>
+        <div class="notice"><div class="nk">2026년 10월 1회차 결과</div>
+          <div class="nrow"><div class="nth"></div><div><div class="nt">인기 포트폴리오</div><div class="nn">밤의 정류장 · @hyun.draws</div><div class="nr">서로 다른 24명에게서 리스펙트 27개</div></div></div>
+          <div class="nrow"><div class="nav2"></div><div><div class="nt">인기 크리에이터</div><div class="nn">문비트 · @moon_beat</div><div class="nr">2주 동안 팔로워 19명 증가</div></div></div>
+          <div class="nfoot">2회차는 이미 시작됐습니다 · 11월 4일 수요일 발표</div>
+        </div>
+        <p class="pc-cap">공지 자체가 캡처 대상입니다. 이름 공개는 본인이 동의한 경우에만, 아니면 닉네임만.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
     <h2>가안과 가설</h2>
     <p class="sub">이 세 값은 세 회차를 돌린 뒤 실측으로 다시 정합니다.</p>
     <div class="notes">
@@ -247,7 +311,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     </div>
   </section>
 
-  <footer>한 장 기획 요건 v1.0의 "회차 한 바퀴"를 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.2에 있습니다.</footer>
+  <footer>한 장 기획 요건 v1.0의 "회차 한 바퀴"와 흔적 제안 v2.1의 표식을 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.3에 있습니다.</footer>
 </div>
 </body>
 </html>

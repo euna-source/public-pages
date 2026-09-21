@@ -51,8 +51,8 @@
     "slug": "hall-of-fame-timeline",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/hall-of-fame-timeline/",
-    "last_kind": "new",
-    "last_sha256": "e47400816c8d20a90cc08d7f7065f3b1176bd36836e78109083594146284f5fc",
-    "timestamp": "2026-09-21T14:15:59.550585Z"
+    "last_kind": "redeploy",
+    "last_sha256": "384e585344333277f6d334693022a58f8d3495d9e92ed94798f12957d8eec3fe",
+    "timestamp": "2026-09-21T14:54:49.097555Z"
   }
 }
