@@ -138,6 +138,7 @@ button {
 button:disabled {
   cursor: not-allowed;
 }
+input::placeholder, textarea::placeholder { color: var(--muted); opacity: 1; }
 button,
 a {
   transition:
