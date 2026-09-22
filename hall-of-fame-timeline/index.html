@@ -418,10 +418,10 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     <h2>구글 시트에는 이렇게 쌓입니다 · 예시</h2>
     <p class="sub">배치가 매시 정각 두 가지를 만듭니다 — "지금까지의 로그"와 "지금 이 순간의 전체 순위". 아래 탭으로 둘을 바꿔 봅니다. 값은 예시입니다.</p>
     <div class="tabs" id="sheetTabs" role="tablist" aria-label="구글 시트 예시 탭">
-      <span class="on" role="tab" aria-selected="true" data-target="sheet-snapshot">시간별 스냅샷</span>
-      <span role="tab" aria-selected="false" data-target="sheet-candidates">후보 · 전체 순위표</span>
+      <span class="on" role="tab" aria-selected="true" data-target="sheet-candidates">지금 순위 현황판</span>
+      <span role="tab" aria-selected="false" data-target="sheet-snapshot">시간별 스냅샷</span>
     </div>
-    <div class="sheet" id="sheet-snapshot">
+    <div class="sheet" id="sheet-snapshot" hidden>
       <table>
         <thead><tr><th>회차</th><th>기간</th><th>배치 시각</th><th>부문</th><th>순위</th><th>활동명</th><th>작품</th><th>집계값</th></tr></thead>
         <tbody>
@@ -430,7 +430,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
         </tbody>
       </table>
     </div>
-    <div id="sheet-candidates" hidden>
+    <div id="sheet-candidates">
       <p class="sheet-label">인기 포트폴리오</p>
       <div class="sheet">
         <table>
