@@ -54,11 +54,16 @@ strong{font-weight:700}
 .bar{display:flex;height:46px;border-radius:var(--radius-m);overflow:hidden;border:1px solid var(--line);margin:18px 0 10px}
 .bar span{display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
 .bar .b1{background:var(--brand);color:#181818}
-.bar .b2{background:var(--brand-300);color:#181818}
-.bar .b3{background:var(--brand-100);color:#0a5a12}
+.bar .b2{background:var(--t1);color:#FFFFFF}
+.bar .b3{background:var(--line);color:var(--t2)}
 .bar .b0{background:var(--subtle);color:var(--t4)}
-.barlegend{display:flex;gap:18px;flex-wrap:wrap;color:var(--t3);font-size:13px;margin:0 0 4px}
+.barlegend{display:flex;gap:18px;flex-wrap:wrap;color:var(--t3);font-size:13px;margin:0 0 4px;align-items:center}
+.barlegend span{display:inline-flex;align-items:center;gap:7px}
 .barlegend b{color:var(--t1);font-variant-numeric:tabular-nums}
+.chip{width:11px;height:11px;border-radius:3px;display:inline-block;flex:none}
+.chip.c1{background:var(--brand)}
+.chip.c2{background:var(--t1)}
+.chip.c3{background:var(--line)}
 
 /* 표 */
 table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 4px}
@@ -175,9 +180,9 @@ footer p{margin:0 0 6px}
   <p class="sub">단가는 <b>10 · 20 · 40 · 100</b> 네 가지뿐입니다. 표를 안 보고도 외울 수 있게 했습니다. 1회차 기준이며, 결속은 성사 건수가 0에 가까워 2회차부터 켭니다.</p>
 
   <div class="barlegend">
-    <span>① 소통 <b>600</b></span>
-    <span>② 창작 <b>400</b></span>
-    <span>③ 결속 <b>0</b> <span class="tag">2회차부터</span></span>
+    <span><i class="chip c1"></i>① 소통 <b>600</b></span>
+    <span><i class="chip c2"></i>② 창작 <b>400</b></span>
+    <span><i class="chip c3"></i>③ 결속 <b>0</b> <span class="tag">2회차부터</span></span>
   </div>
   <div class="bar" role="img" aria-label="1000점 배분 — 소통 600점, 창작 400점">
     <span class="b1" style="flex:600">소통 600</span>

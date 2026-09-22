@@ -59,8 +59,8 @@
     "slug": "hall-of-fame-metrics",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/hall-of-fame-metrics/",
-    "last_kind": "new",
-    "last_sha256": "0f448b254273ef96738f47197c5da5086c9a75e641e8068c7a6230c0d25127ec",
-    "timestamp": "2026-09-22T12:22:13.012855Z"
+    "last_kind": "redeploy",
+    "last_sha256": "a9090ade303300cb0fb9f34f630ba31b546f9b6387d11109ebc63e9b9d92b60e",
+    "timestamp": "2026-09-22T12:26:58.373748Z"
   }
 }
