@@ -59,6 +59,11 @@ strong{font-weight:700}
 .summary tbody tr:last-child td{border-bottom:none}
 
 
+/* 텍스트 강약 */
+.hi{background:var(--brand-50);color:var(--brand-text);font-weight:700;border-radius:3px;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.mut{color:var(--t4)}
+td .mut,li .mut{font-size:12px}
+
 /* 업데이트 히스토리 레이어 */
 .lbtn{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--brand-text);background:var(--bg);border:1px solid var(--brand-border);border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:background 120ms ease-out}
 .lbtn:hover{background:var(--brand-50)}
@@ -217,18 +222,18 @@ footer p{margin:0 0 6px}
   <p class="sub">아래 카드와 표가 전부다. 이후 장은 운영·개발용 상세다.</p>
   <div class="summary">
   <div class="def in">
-  <p class="q">베스트 크리에이터 선정 대상</p>
+  <p class="q"><b>베스트 크리에이터</b> 선정 대상</p>
   <p class="s">가장 많은 사람에게 리스펙트를 보내고, 가장 자주 채팅방에서 대화하며, 가장 많은 사람이 따르게 된 크리에이터</p>
-  <p class="n">다른 사람의 포트폴리오에 리스펙트를 보내고 채팅방에서 대화하며, 자기 포트폴리오와 소개 탭도 꾸준히 채워 팔로워가 늘어나는 사람</p>
+  <p class="n"><span class="mut">다른 사람의 포트폴리오에 리스펙트를 보내고 채팅방에서 대화하며, 자기 포트폴리오와 소개 탭도 꾸준히 채워 팔로워가 늘어나는 사람</span></p>
 </div>
   <div class="tablewrap">
   <table>
     <thead><tr><th>항목</th><th>내용</th></tr></thead>
     <tbody>
-      <tr><td>배점</td><td>프로젝트 카드 50 · 포트폴리오 40 · 신규 지원자 20 · 신규 팀 멤버 20 · 채팅방 출석체크 10 · 소개 탭 항목 10 · 팔로워 10 · 리스펙트 5 · 영감 글 5 (상한 없음)</td></tr>
-      <tr><td>시행</td><td>2회차(2026-10-21~11-03)부터 · 1회차는 기존 부문 유지</td></tr>
-      <tr><td>동시 수상</td><td>허용. 한 사람이 작품 부문과 활동 부문을 같이 받을 수 있음 · 초반에는 제한을 두지 않고, 회차를 돌려 보며 다시 판단</td></tr>
-      <tr><td>남은 결정</td><td>부문 정의·배점 확정 2건. 부문 이름은 ‘베스트 크리에이터’ 가칭</td></tr>
+      <tr><td>배점</td><td><b>프로젝트 카드 50 · 포트폴리오 40</b> · 신규 지원자 20 · 신규 팀 멤버 20 · 채팅방 출석체크 10 · 소개 탭 항목 10 · 팔로워 10 · 리스펙트 5 · 영감 글 5 (상한 없음)</td></tr>
+      <tr><td>시행</td><td><span class="hi">2회차(2026-10-21~11-03)</span>부터 · <span class="mut">1회차는 기존 부문 유지</span></td></tr>
+      <tr><td>동시 수상</td><td>허용. 한 사람이 <b>작품 부문과 활동 부문</b>을 같이 받을 수 있음 · <span class="mut">초반에는 제한을 두지 않고, 회차를 돌려 보며 다시 판단</span></td></tr>
+      <tr><td>남은 결정</td><td>부문 정의·배점 확정 <b>2건</b>. <span class="mut">부문 이름은 ‘베스트 크리에이터’ 가칭</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -237,7 +242,7 @@ footer p{margin:0 0 6px}
 
 <section id="s-items">
   <h2>무엇을 세나 · 세 가지</h2>
-  <p class="sub">아래 세 가지에 드는 행동만 집계. 판단이 갈릴 때 기준은 한 줄 — <b>다른 사람의 화면에 나타나는 행동만 집계</b>. 혼자 보고 지나가는 행동은 횟수와 관계없이 제외</p>
+  <p class="sub">아래 세 가지에 드는 행동만 집계. 판단이 갈릴 때 기준은 한 줄 — <b><span class="hi">다른 사람의 화면에 나타나는 행동만 집계</span></b>. 혼자 보고 지나가는 행동은 횟수와 관계없이 제외</p>
   <div class="four">
     <div class="q4 accent">
       <p class="k">① 소통</p>
@@ -261,10 +266,10 @@ footer p{margin:0 0 6px}
   <table>
     <thead><tr><th>제외</th><th>이유</th></tr></thead>
     <tbody>
-      <tr><td>노크 보내기</td><td>상금이 걸리면 모르는 사람에게 무작정 보내는 행동을 유도해 C8 노크의 “진짜 용건” 신뢰 훼손. 단, 수락돼 열린 채팅방의 대화는 상대가 응한 결과이므로 집계에 포함</td></tr>
-      <tr><td>친구 초대·외부 공유</td><td>가입자 활동 없이 가입 수만 늘리는 방식이 가장 유리한 구조. 기존 인맥 규모를 재는 초대 수는 상시 추천 이벤트로 분리</td></tr>
-      <tr><td>내가 받은 리스펙트·조회수, 조회·검색·북마크·앱 켜 둔 시간</td><td>본인 행동이 아니거나 다른 사람에게 흔적이 남지 않아 제외. 팔로워만 예외로 회차 중 늘어난 수를 연결에서 집계</td></tr>
-      <tr><td>미출시·웹 전용 기능</td><td>협업 제안·일촌은 출시 후 포함</td></tr>
+      <tr><td>노크 보내기</td><td><span class="mut">상금이 걸리면 모르는 사람에게 무작정 보내는 행동을 유도해 C8 노크의 “진짜 용건” 신뢰 훼손.</span> 단, 수락돼 열린 채팅방의 대화는 상대가 응한 결과이므로 <b>집계에 포함</b></td></tr>
+      <tr><td>친구 초대·외부 공유</td><td><span class="mut">가입자 활동 없이 가입 수만 늘리는 방식이 가장 유리한 구조.</span> 기존 인맥 규모를 재는 초대 수는 <b>상시 추천 이벤트로 분리</b></td></tr>
+      <tr><td>내가 받은 리스펙트·조회수, 조회·검색·북마크·앱 켜 둔 시간</td><td><span class="mut">본인 행동이 아니거나 다른 사람에게 흔적이 남지 않아 제외.</span> <b>팔로워만 예외</b>로 회차 중 늘어난 수를 연결에서 집계</td></tr>
+      <tr><td>미출시·웹 전용 기능</td><td>협업 제안·일촌은 <b>출시 후</b> 포함</td></tr>
     </tbody>
   </table>
   </div>
@@ -272,20 +277,20 @@ footer p{margin:0 0 6px}
 
 <section id="s-period">
   <h2>어떻게 세나 · 기간과 배점</h2>
-  <p class="sub">한 회차는 14일. 점수는 그 안에서만 쌓이고, 1건당 점수는 <b>5 · 10 · 20 · 40 · 50</b> 다섯 가지이며 상한이 없다</p>
+  <p class="sub">한 회차는 <span class="hi">14일</span>. 점수는 그 안에서만 쌓이고, 1건당 점수는 <b>5 · 10 · 20 · 40 · 50</b> 다섯 가지이며 상한이 없다</p>
 
   <h3>집계 기간</h3>
   <div class="tablewrap">
   <table>
     <thead><tr><th>구분</th><th>기준</th></tr></thead>
     <tbody>
-      <tr><td>한 회차 길이</td><td>14일(수요일 00:00 시작 → 2주차 화요일 23:59:59 마감)</td></tr>
-      <tr><td>집계 주기</td><td>매시 정각 24회 · 마감 직후 배치가 최종 순위 확정</td></tr>
-      <tr><td>초기화</td><td>회차 종료와 동시에 전원 0점. 이전 회차 점수는 이월하지 않음</td></tr>
-      <tr><td>공개 상태 판정</td><td>마감 시점 1회. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
-      <tr><td>팔로워 순증</td><td>회차 시작·마감 시점 팔로워 수의 차이(팔로우−언팔로우). 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 0.5명</td></tr>
-      <tr><td>동점 처리</td><td>리스펙트를 보낸 사람 수 → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</td></tr>
-      <tr><td>부문 시행</td><td>2회차부터 · 2026-10-21(수) 00:00 ~ 11-03(화) 23:59:59, 11/04(수) 20:00 발표. 1회차(10/07~10/20)는 기존 부문 기준 유지</td></tr>
+      <tr><td>한 회차 길이</td><td><b>14일</b><span class="mut">(수요일 00:00 시작 → 2주차 화요일 23:59:59 마감)</span></td></tr>
+      <tr><td>집계 주기</td><td>매시 정각 <b>24회</b> · 마감 직후 배치가 최종 순위 확정</td></tr>
+      <tr><td>초기화</td><td>회차 종료와 동시에 전원 <b>0점</b>. 이전 회차 점수는 이월하지 않음</td></tr>
+      <tr><td>공개 상태 판정</td><td>마감 시점 <b>1회</b>. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
+      <tr><td>팔로워 순증</td><td>회차 시작·마감 시점 팔로워 수의 차이<span class="mut">(팔로우−언팔로우)</span>. 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 <b>0.5명</b></td></tr>
+      <tr><td>동점 처리</td><td><b>리스펙트를 보낸 사람 수</b> → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</td></tr>
+      <tr><td>부문 시행</td><td><b>2회차</b>부터 · 2026-10-21(수) 00:00 ~ 11-03(화) 23:59:59, 11/04(수) 20:00 발표. <span class="mut">1회차(10/07~10/20)는 기존 부문 기준 유지</span></td></tr>
     </tbody>
   </table>
   </div>
@@ -305,11 +310,11 @@ footer p{margin:0 0 6px}
     <thead><tr><th>구분</th><th>집계 항목</th><th class="num">1건당</th></tr></thead>
     <tbody>
       <tr><td class="grp" rowspan="2">① 소통</td><td>리스펙트를 보낸 <b>서로 다른 사람</b> <span class="tag">하루 최대 8명</span></td><td class="num">5</td></tr>
-      <tr><td>채팅방에 메시지를 보낸 <b>출석체크 수</b> <span class="tag">하루 1회</span> · 1:1 노크 수락 후 열린 채팅과 그룹채팅 모두 포함, 메시지 개수 무관</td><td class="num">10</td></tr>
+      <tr><td>채팅방에 메시지를 보낸 <b>출석체크 수</b> <span class="tag">하루 1회</span> · <span class="mut">1:1 노크 수락 후 열린 채팅과 그룹채팅 모두 포함, 메시지 개수 무관</span></td><td class="num">10</td></tr>
       <tr><td class="grp" rowspan="4">② 창작</td><td>프로젝트 카드 등록</td><td class="num">50</td></tr>
       <tr><td>포트폴리오 등록</td><td class="num">40</td></tr>
       <tr><td>영감 글 등록</td><td class="num">5</td></tr>
-      <tr><td>소개 탭 항목 작성 <span class="tag">6항목 각 1회</span> · 자기소개·학력·경력·수상/자격·기본정보·AI 추천사, 모두 채우면 60점</td><td class="num">10</td></tr>
+      <tr><td>소개 탭 항목 작성 <span class="tag">6항목 각 1회</span> · <span class="mut">자기소개·학력·경력·수상/자격·기본정보·AI 추천사</span>, 모두 채우면 <b>60점</b></td><td class="num">10</td></tr>
       <tr><td class="grp" rowspan="3">③ 연결</td><td>회차 중 늘어난 <b>팔로워</b> <span class="tag">순증 기준</span></td><td class="num">10</td></tr>
       <tr><td>내 프로젝트 카드의 <b>신규 지원자 수</b></td><td class="num">20</td></tr>
       <tr><td>내 팀의 <b>신규 멤버 참여 수</b></td><td class="num">20</td></tr>
@@ -320,23 +325,23 @@ footer p{margin:0 0 6px}
   <h3>현재 규모 기준 1위 예상</h3>
   <p class="sub">회원 약 300명, 30일 활성 포트폴리오 소유자 7~11명, 앱 안 리스펙트 하루 1.4건 기준</p>
   <div class="sim">
-    <div class="row"><span>20명에게 리스펙트 보내기 (5 × 20)</span><span>100점</span></div>
-    <div class="row"><span>회차 중 늘어난 팔로워 3명 (10 × 3)</span><span>30점</span></div>
-    <div class="row"><span>채팅방 출석체크 8회 (10 × 8)</span><span>80점</span></div>
+    <div class="row"><span>20명에게 리스펙트 보내기 <span class="mut">(5 × 20)</span></span><span>100점</span></div>
+    <div class="row"><span>회차 중 늘어난 팔로워 3명 <span class="mut">(10 × 3)</span></span><span>30점</span></div>
+    <div class="row"><span>채팅방 출석체크 8회 <span class="mut">(10 × 8)</span></span><span>80점</span></div>
     <div class="row"><span>포트폴리오 1건 등록</span><span>40점</span></div>
-    <div class="row"><span>소개 탭 4항목 작성 (10 × 4)</span><span>40점</span></div>
-    <div class="row"><span>예상 1위</span><span>290점 안팎</span></div>
+    <div class="row"><span>소개 탭 4항목 작성 <span class="mut">(10 × 4)</span></span><span>40점</span></div>
+    <div class="row"><span>예상 1위</span><span><b>290점</b> 안팎</span></div>
   </div>
-  <div class="note warn">대화 상대가 없으면 채팅방 항목이 무의미하므로, 회차 시작 전 서포터즈의 그룹채팅 2~3개 개설이 전제다. 9월 23일 개발 확인 때 현재 채팅방 수·최근 메시지 수를 확인한다.</div>
+  <div class="note warn">대화 상대가 없으면 채팅방 항목이 무의미하므로, 회차 시작 전 서포터즈의 <b>그룹채팅 2~3개 개설</b>이 전제다. <b>9월 23일</b> 개발 확인 때 현재 채팅방 수·최근 메시지 수를 확인한다.</div>
 </section>
 
 <section id="s-guard">
   <h2>점수를 부풀리지 못하게 하는 기준</h2>
   <p class="sub">점수를 <b>올리는 단계</b>에서 막는 기준이다. 이미 올린 점수를 없애는 기준은 다음 장에 있다.</p>
   <ul>
-    <li><b>같은 사람에게 반복한 리스펙트는 한 번만 인정</b> · 한 사람에게 하루 8개를 보내면 1명, 여덟 명에게 하나씩 보내면 8명으로 집계. 한 사람에게 집중해도 점수가 늘지 않게 하는 유일한 기준</li>
-    <li><b>채팅방은 출석체크 수만 집계</b> · 메시지 개수는 제외해 5분에 100줄을 채우는 방식의 점수 부풀리기 방지</li>
-    <li><b>마감 시점 전체공개 상태만 인정</b> · 상세 조건은 다음 장 참고</li>
+    <li><b>같은 사람에게 반복한 리스펙트는 한 번만 인정</b> · 한 사람에게 하루 8개를 보내면 1명, 여덟 명에게 하나씩 보내면 8명으로 집계. <span class="mut">한 사람에게 집중해도 점수가 늘지 않게 하는 유일한 기준</span></li>
+    <li><b>채팅방은 출석체크 수만 집계</b> · <span class="mut">메시지 개수는 제외해 5분에 100줄을 채우는 방식의 점수 부풀리기 방지</span></li>
+    <li><b>마감 시점 전체공개 상태만 인정</b> · <span class="mut">상세 조건은 다음 장 참고</span></li>
     <li><b>최소 인정 조건</b> · 프로젝트 카드는 모집 역할·설명을 채운 경우만, 소개 탭은 항목별 내용을 채운 경우만 인정. 회차 중 생긴 계정의 팔로우는 0.5명</li>
     <li><b>회차마다 0에서 시작</b> · 운영진·서포터즈는 순위에서 제외</li>
   </ul>
@@ -344,7 +349,7 @@ footer p{margin:0 0 6px}
 
 <section id="s-forfeit">
   <h2>점수가 사라지는 조건</h2>
-  <p class="sub">되돌린 행동은 점수로 남지 않는다. 시점에 따라 무효·회수·취소 세 단계로 나눈다.</p>
+  <p class="sub">되돌린 행동은 점수로 남지 않는다. 시점에 따라 <span class="hi">무효·회수·취소</span> 세 단계로 나눈다.</p>
 
   <h3>전제 · 전체공개</h3>
   <ul class="tight">
@@ -358,9 +363,9 @@ footer p{margin:0 0 6px}
     <caption>애초에 점수로 세지 않음(0점)</caption>
     <thead><tr><th>구분</th><th>해당하는 경우</th></tr></thead>
     <tbody>
-      <tr><td>공개 범위</td><td>창작물이나 프로필이 전체공개가 아님</td></tr>
+      <tr><td>공개 범위</td><td>창작물이나 프로필이 <b>전체공개</b>가 아님</td></tr>
       <tr><td>존재</td><td>마감 시점에 삭제되고 없음</td></tr>
-      <tr><td>내용</td><td>프로젝트 카드에 모집 역할·설명 없음, 소개 탭 항목이 빈칸</td></tr>
+      <tr><td>내용</td><td>프로젝트 카드에 <b>모집 역할·설명</b> 없음, 소개 탭 항목이 빈칸</td></tr>
     </tbody>
   </table>
   </div>
@@ -371,15 +376,15 @@ footer p{margin:0 0 6px}
     <caption>이미 올라간 점수를 도로 뺌</caption>
     <thead><tr><th>되돌린 것</th><th>사라지는 점수</th></tr></thead>
     <tbody>
-      <tr><td>리스펙트 취소</td><td>그 사람에게서 얻은 5점</td></tr>
-      <tr><td>언팔로우를 당함</td><td>팔로워 순증에서 자동 차감(−10)</td></tr>
-      <tr><td>창작물 삭제·비공개 전환</td><td>그 항목 점수 전액</td></tr>
-      <tr><td>팀 해체 · 멤버 내보내기</td><td>그 팀에서 얻은 신규 멤버 점수 전액</td></tr>
-      <tr><td>프로젝트 카드 삭제 · 조기 종료</td><td>카드 등록 50점과 그 카드의 지원자 점수 전액</td></tr>
+      <tr><td>리스펙트 취소</td><td>그 사람에게서 얻은 <b>5점</b></td></tr>
+      <tr><td>언팔로우를 당함</td><td>팔로워 순증에서 <b>자동 차감</b>(−10)</td></tr>
+      <tr><td>창작물 삭제·비공개 전환</td><td>그 항목 점수 <b>전액</b></td></tr>
+      <tr><td>팀 해체 · 멤버 내보내기</td><td>그 팀에서 얻은 신규 멤버 점수 <b>전액</b></td></tr>
+      <tr><td>프로젝트 카드 삭제 · 조기 종료</td><td>카드 등록 <b>50점</b>과 그 카드의 지원자 점수 전액</td></tr>
     </tbody>
   </table>
   </div>
-  <div class="note">같은 항목에서 되돌림이 회차 중 3회 이상 반복되면, 그 항목은 남은 회차 동안 다시 점수를 얻지 못한다. 올렸다 지우기를 반복해 알림만 띄우는 방식을 막기 위한 조항</div>
+  <div class="note">같은 항목에서 되돌림이 회차 중 <b>3회 이상</b> 반복되면, 그 항목은 남은 회차 동안 다시 점수를 얻지 못한다. <span class="mut">올렸다 지우기를 반복해 알림만 띄우는 방식을 막기 위한 조항</span></div>
 
   <h3>3단계 · 취소 — 발표 뒤에 확인된 경우</h3>
   <div class="tablewrap">
@@ -387,13 +392,13 @@ footer p{margin:0 0 6px}
     <caption>선정 자체를 되돌림</caption>
     <thead><tr><th>확인된 것</th><th>조치</th></tr></thead>
     <tbody>
-      <tr><td>발표 뒤 창작물 삭제·비공개 전환, 팀 해체</td><td>선정 취소 · 상금 회수 · 차순위 재선정</td></tr>
-      <tr><td>여러 계정으로 리스펙트·팔로우·지원을 주고받음</td><td>선정 취소 · 다음 회차 참가 제한</td></tr>
-      <tr><td>리스펙트·팔로우 교환 요청, 타인 작업 도용</td><td>선정 취소 · 다음 회차 참가 제한</td></tr>
+      <tr><td>발표 뒤 창작물 삭제·비공개 전환, 팀 해체</td><td>선정 취소 · <b>상금 회수</b> · 차순위 재선정</td></tr>
+      <tr><td>여러 계정으로 리스펙트·팔로우·지원을 주고받음</td><td>선정 취소 · 다음 회차 <b>참가 제한</b></td></tr>
+      <tr><td>리스펙트·팔로우 교환 요청, 타인 작업 도용</td><td>선정 취소 · 다음 회차 <b>참가 제한</b></td></tr>
     </tbody>
   </table>
   </div>
-  <div class="note">모든 단계에서 제외·취소 전에 본인에게 알리고 소명 기회를 준다. 이의는 운영 시트의 항목별 내역과 대조해 개별 회신한다(이용약관 제16조·제17조, 발표 뒤 14일)</div>
+  <div class="note">모든 단계에서 제외·취소 전에 본인에게 알리고 <b>소명 기회</b>를 준다. 이의는 운영 시트의 항목별 내역과 대조해 개별 회신한다(이용약관 제16조·제17조, 발표 뒤 <b>14일</b>)</div>
 </section>
 
 <section id="s-stage">
@@ -404,9 +409,9 @@ footer p{margin:0 0 6px}
     <div class="head"><span class="num">단계 0</span><h3>MAU ~1천 · 현재, 10/21 2회차 시행</h3><span class="tag brand">현재</span></div>
     <p class="why">리스펙트를 보내는 사람이 3명뿐인 문제에 맞춰 소통에 집중</p>
     <ul class="tight">
-      <li>상한 없음 · 많이 할수록 점수가 계속 오르는 구조. 하루에 몰아서 올려도 감산 없음</li>
-      <li>연결 3항목(팔로워·신규 지원자·신규 팀 멤버) 모두 시행 첫 회차부터 반영</li>
-      <li>보상: 1위 1명 상금. 후보 5명 미만이면 순위표에 “N명 활동 중 · 집계 중” 표시</li>
+      <li><b>상한 없음</b> · 많이 할수록 점수가 계속 오르는 구조. 하루에 몰아서 올려도 <b>감산 없음</b></li>
+      <li>연결 3항목<span class="mut">(팔로워·신규 지원자·신규 팀 멤버)</span> 모두 <b>시행 첫 회차</b>부터 반영</li>
+      <li>보상: <b>1위 1명</b> 상금. 후보 <b>5명 미만</b>이면 순위표에 “N명 활동 중 · 집계 중” 표시</li>
     </ul>
   </div>
 
@@ -414,10 +419,10 @@ footer p{margin:0 0 6px}
     <div class="head"><span class="num">단계 1</span><h3>MAU 5천</h3></div>
     <p class="why">한 번 온 사람이 다시 오지 않는 문제에 맞춰 연결 반영</p>
     <ul class="tight">
-      <li>연결 유지: 팔로워 10 · 신규 지원자 20 · 신규 팀 멤버 20</li>
-      <li>상한은 계속 없음. 1위 점수가 2위의 3배를 넘는 회차가 두 번 이어지면 방어 장치 도입 검토</li>
-      <li>보상: 상위 10명 분할 지급(1위 + 2~10위 소액)</li>
-      <li>검토: 초대한 사람이 첫 활동을 했을 때 점수를 더하는 방안 재검토</li>
+      <li><b>연결 유지</b>: 팔로워 10 · 신규 지원자 20 · 신규 팀 멤버 20</li>
+      <li>상한은 계속 없음. 1위 점수가 2위의 <b>3배</b>를 넘는 회차가 <b>두 번</b> 이어지면 방어 장치 도입 검토</li>
+      <li>보상: <b>상위 10명</b> 분할 지급<span class="mut">(1위 + 2~10위 소액)</span></li>
+      <li>검토: 초대한 사람이 <b>첫 활동</b>을 했을 때 점수를 더하는 방안 재검토</li>
     </ul>
   </div>
 
@@ -425,9 +430,9 @@ footer p{margin:0 0 6px}
     <div class="head"><span class="num">단계 2</span><h3>MAU 1만~3만</h3></div>
     <p class="why">도배와 서로 점수를 주고받는 모임에 대응해 협업 완료 비중 확대</p>
     <ul class="tight">
-      <li>방어: 짧은 시간에 몰린 리스펙트·팔로우 자동 검토</li>
-      <li>연결 확대: 신규 지원자·신규 팀 멤버 20 유지 + 프로젝트 완료 50(신설)</li>
-      <li>구조: 누적 배지 등급제 도입, 부문 분리(리스펙트를 보내는 사람 / 작업을 올리는 사람)</li>
+      <li>방어: 짧은 시간에 몰린 리스펙트·팔로우 <b>자동 검토</b></li>
+      <li>연결 확대: 신규 지원자·신규 팀 멤버 20 유지 + <b>프로젝트 완료 50</b><span class="mut">(신설)</span></li>
+      <li>구조: <b>누적 배지 등급제</b> 도입, 부문 분리<span class="mut">(리스펙트를 보내는 사람 / 작업을 올리는 사람)</span></li>
     </ul>
   </div>
 
@@ -435,32 +440,32 @@ footer p{margin:0 0 6px}
     <div class="head"><span class="num">단계 3</span><h3>MAU 5만+</h3></div>
     <p class="why">활동 점수 순위에 따른 상금 지급 중단</p>
     <ul class="tight">
-      <li>근거: 조사한 해외 프로그램 모두 이 규모에서 폐지·전환(Shorts Fund → 수익 배분, Reels Play 중단, Spotlight 종료, Pinterest Rewards 종료, Medium 박수 → 읽기 시간)</li>
-      <li>작품 부문에만 상금 유지, 활동 부문은 등급 변동·노출 혜택으로 보상</li>
+      <li>근거: 조사한 해외 프로그램 모두 이 규모에서 폐지·전환<span class="mut">(Shorts Fund → 수익 배분, Reels Play 중단, Spotlight 종료, Pinterest Rewards 종료, Medium 박수 → 읽기 시간)</span></li>
+      <li>작품 부문에만 상금 유지, 활동 부문은 <b>등급 변동·노출 혜택</b>으로 보상</li>
     </ul>
   </div>
 
-  <div class="note">전환은 MAU가 아닌 <b>회차 후보 수</b>로 판단하며, 후보 30명 미만은 단계 0, 30~150명은 단계 1, 150~500명은 단계 2, 500명 초과는 단계 3을 적용한다. MAU는 참가자 수와 달라 참고값으로만 표기한다.</div>
+  <div class="note">전환은 MAU가 아닌 <b>회차 후보 수</b>로 판단하며, 후보 30명 미만은 단계 0, 30~150명은 단계 1, 150~500명은 단계 2, 500명 초과는 단계 3을 적용한다. <span class="mut">MAU는 참가자 수와 달라 참고값으로만 표기한다.</span></div>
 </section>
 
 <section id="s-screen">
   <h2>앱 화면 노출 범위</h2>
-  <p class="sub">항목별 내역은 화면에 표시하지 않고 합산 점수만 노출한다.</p>
+  <p class="sub">항목별 내역은 화면에 표시하지 않고 <span class="hi">합산 점수만</span> 노출한다.</p>
   <div class="tablewrap">
   <table>
     <thead><tr><th>위치</th><th>노출</th><th>비노출</th></tr></thead>
     <tbody>
       <tr><td>순위표</td><td>순위 · 활동명 · <b>합산 점수</b></td><td>항목별 점수, 항목별 건수</td></tr>
-      <tr><td>내 점수</td><td>내 합산 점수 · 내 순위</td><td>항목별 내역</td></tr>
-      <tr><td>기준 안내</td><td>점수가 쌓이는 행동 목록(문장)</td><td>1건당 점수, 항목별 배점표</td></tr>
-      <tr><td>운영 시트</td><td>항목별 내역 전체</td><td>—</td></tr>
+      <tr><td>내 점수</td><td>내 <b>합산 점수</b> · 내 순위</td><td>항목별 내역</td></tr>
+      <tr><td>기준 안내</td><td>점수가 쌓이는 행동 목록<span class="mut">(문장)</span></td><td>1건당 점수, 항목별 배점표</td></tr>
+      <tr><td>운영 시트</td><td>항목별 내역 <b>전체</b></td><td>—</td></tr>
     </tbody>
   </table>
   </div>
   <ul class="tight">
-    <li>배점을 공개하면 점수가 가장 큰 항목만 반복하는 방식이 최적 전략이 되어 도배를 유도</li>
-    <li>무엇을 하면 점수가 오르는지는 문장으로 안내해 공정성 확보. 숫자만 비공개</li>
-    <li>이의 제기 시 운영진이 시트 내역으로 확인해 개별 회신</li>
+    <li><span class="mut">배점을 공개하면 점수가 가장 큰 항목만 반복하는 방식이 최적 전략이 되어 도배를 유도</span></li>
+    <li>무엇을 하면 점수가 오르는지는 <b>문장으로 안내</b>해 공정성 확보. <b>숫자만</b> 비공개</li>
+    <li>이의 제기 시 운영진이 시트 내역으로 확인해 <b>개별 회신</b></li>
   </ul>
 </section>
 
@@ -468,7 +473,7 @@ footer p{margin:0 0 6px}
   <h2>참가자 안내 문구</h2>
   <p class="sub">규칙서·순위표에 넣을 문구</p>
   <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
-    <p class="s" style="font-size:18px;line-height:1.5">“리스펙트 보내기(같은 사람에게는 한 번만 인정), 채팅방 대화, 포트폴리오·프로젝트 카드 등록, 소개 탭 채우기로 점수가 쌓여요.<br>회차 동안 늘어난 팔로워도 점수예요. 많이 할수록 계속 올라요.<br>프로필과 작업은 전체공개여야 하고, 지우거나 되돌리면 그 점수는 사라져요.”</p>
+    <p class="s" style="font-size:18px;line-height:1.5">“리스펙트 보내기<span class="mut">(같은 사람에게는 한 번만 인정)</span>, 채팅방 대화, 포트폴리오·프로젝트 카드 등록, 소개 탭 채우기로 점수가 쌓여요.<br>회차 동안 <b>늘어난 팔로워</b>도 점수예요. 많이 할수록 계속 올라요.<br>프로필과 작업은 <b>전체공개</b>여야 하고, 지우거나 되돌리면 그 점수는 <b>사라져요</b>.”</p>
   </div>
 </section>
 
@@ -478,19 +483,19 @@ footer p{margin:0 0 6px}
   <table>
     <thead><tr><th>항목</th><th>상태</th></tr></thead>
     <tbody>
-      <tr><td>부문 시행</td><td>2회차(2026-10-21)부터. 1회차는 기존 부문 기준 유지</td></tr>
-      <tr><td>부문 이름</td><td>‘베스트 크리에이터’ 가칭 적용. 확정 전 대체 후보: 부지런한 크리에이터 · 클럽 메이커 · 분위기 메이커</td></tr>
-      <tr><td>1건당 점수</td><td>창작 단가(프로젝트 50·포폴 40)는 사용자 지정값. 리스펙트 5·채팅 10·팔로워 10·영감 5는 2각 검토(Astra·절대자) 뒤 조정값</td></tr>
-      <tr><td>채팅방 대화 여부</td><td>현재 그룹채팅·1:1 채팅방 수와 최근 메시지 수 미확인, 9/23 개발 확인</td></tr>
-      <tr><td>집계 가능 여부</td><td>채팅방 메시지 작성일·방 ID, 소개 탭 항목별 작성 여부, 지원·팀 합류 시각, 콘텐츠별 공개 범위 · 9/23 개발 확인. 기록이 없으면 첫 회차는 리스펙트와 등록 항목만으로 순위를 정함</td></tr>
+      <tr><td>부문 시행</td><td><b>2회차</b>(2026-10-21)부터. <span class="mut">1회차는 기존 부문 기준 유지</span></td></tr>
+      <tr><td>부문 이름</td><td>‘베스트 크리에이터’ <b>가칭</b> 적용. <span class="mut">확정 전 대체 후보: 부지런한 크리에이터 · 클럽 메이커 · 분위기 메이커</span></td></tr>
+      <tr><td>1건당 점수</td><td>창작 단가(프로젝트 50·포폴 40)는 사용자 지정값. 리스펙트 5·채팅 10·팔로워 10·영감 5는 2각 검토<span class="mut">(Astra·절대자)</span> 뒤 조정값</td></tr>
+      <tr><td>채팅방 대화 여부</td><td>현재 그룹채팅·1:1 채팅방 수와 최근 메시지 수 <b>미확인</b>, 9/23 개발 확인</td></tr>
+      <tr><td>집계 가능 여부</td><td>채팅방 메시지 작성일·방 ID, 소개 탭 항목별 작성 여부, 지원·팀 합류 시각, 콘텐츠별 공개 범위 · 9/23 개발 확인. <b>기록이 없으면</b> 첫 회차는 리스펙트와 등록 항목만으로 순위를 정함</td></tr>
     </tbody>
   </table>
   </div>
   </section>
 
 <footer>
-  <p>근거: 활동량으로 순위를 매겨 보상하는 제도 23곳의 원문(네이버 지식iN 내공·구글 로컬가이드·듀오링고 리그·위키컵·네이버 카페 기여도·치지직·Waze·Discourse·챌린저스 등)과 활동량 보상을 중단한 사례(YouTube Shorts Fund·Meta Reels Play·Snapchat Spotlight·Pinterest·Quora·Medium)를 함께 확인했다.</p>
-  <p>조사 장부 135행 중 123행은 인용문 원문 대조를 통과했다. 12행은 자동 접속 차단·이미지 표·접근 실패로 미검증 상태다.</p>
+  <p>근거: 활동량으로 순위를 매겨 보상하는 제도 <b>23곳</b>의 원문<span class="mut">(네이버 지식iN 내공·구글 로컬가이드·듀오링고 리그·위키컵·네이버 카페 기여도·치지직·Waze·Discourse·챌린저스 등)</span>과 활동량 보상을 중단한 사례<span class="mut">(YouTube Shorts Fund·Meta Reels Play·Snapchat Spotlight·Pinterest·Quora·Medium)</span>를 함께 확인했다.</p>
+  <p>조사 장부 135행 중 <b>123행</b>은 인용문 원문 대조를 통과했다. <b>12행</b>은 자동 접속 차단·이미지 표·접근 실패로 미검증 상태다.</p>
   <p>함께 보기 · <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a></p>
   <p>크리에이터클럽 · 명예의 전당 · 2026-09-22</p>
 </footer>
