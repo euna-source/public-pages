@@ -237,6 +237,7 @@ tr.hl td:first-child{box-shadow:inset 3px 0 0 var(--brand-text)}
 @keyframes hl-fade{0%,60%{opacity:1}100%{opacity:0}}
 @keyframes hl-cell{0%,60%{background:var(--brand-50)}100%{background:transparent}}
 .back-hist{position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:6px;background:var(--t1);color:#fff;border:0;border-radius:999px;padding:9px 14px 9px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(24,24,24,.18),0 12px 28px rgba(24,24,24,.18);opacity:0;transform:translateY(8px);transition:opacity 180ms ease-out,transform 180ms ease-out}
+.back-hist[hidden]{display:none}
 .back-hist.on{opacity:1;transform:none}
 .back-hist:hover{background:#000}
 .back-hist:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
@@ -695,8 +696,8 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   var bg=document.getElementById('drawer-bg'); if(!bg) return; var open=null, last=null;
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pill=document.getElementById('back-hist'), pillT=null, histBtn=document.querySelector('[data-drawer="d-hist"]');
-  function show(id,btn){var d=document.getElementById(id); if(!d) return; if(open) hide({keepFocus:true}); d.hidden=false; requestAnimationFrame(function(){d.classList.add('on'); bg.classList.add('on');}); open=d; if(btn) last=btn; document.body.style.overflow='hidden'; (d.querySelector('.dclose')||d).focus(); hidePill();}
-  function hide(o){o=o||{}; if(!open) return; var d=open; d.classList.remove('on'); bg.classList.remove('on'); document.body.style.overflow=''; setTimeout(function(){d.hidden=true;},230); open=null; if(!o.keepFocus){ if(last) last.focus(); last=null; }}
+  function show(id,btn){var d=document.getElementById(id); if(!d) return; if(open===d) return; if(open) hide({keepFocus:true}); clearTimeout(d._hideT); d.hidden=false; requestAnimationFrame(function(){d.classList.add('on'); bg.classList.add('on');}); open=d; if(btn) last=btn; document.body.style.overflow='hidden'; (d.querySelector('.dclose')||d).focus(); hidePill();}
+  function hide(o){o=o||{}; if(!open) return; var d=open; d.classList.remove('on'); bg.classList.remove('on'); document.body.style.overflow=''; d._hideT=setTimeout(function(){d.hidden=true;},230); open=null; if(!o.keepFocus){ if(last) last.focus(); last=null; }}
   document.querySelectorAll('[data-drawer]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-drawer'),b);});});
   document.querySelectorAll('.dclose').forEach(function(b){b.addEventListener('click',function(){hide();});});
   bg.addEventListener('click',function(){hide();});
@@ -706,7 +707,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   function showPill(){ if(!pill) return; clearTimeout(pillT); pill.hidden=false; requestAnimationFrame(function(){pill.classList.add('on');}); pillT=setTimeout(hidePill,20000); }
   function hidePill(){ if(!pill||pill.hidden) return; clearTimeout(pillT); pill.classList.remove('on'); setTimeout(function(){pill.hidden=true;},200); }
   function pick(t){ if(t.classList.contains('row')) return t.querySelector('.what')||t; if(t.classList.contains('phase')) return t.querySelector('.phase-h')||t; if(t.tagName==='SECTION') return t.querySelector('h2')||t; if(t.classList.contains('boosts')) return t; return t; }
-  function highlight(el){ el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl'); if(!el.hasAttribute('tabindex')) el.setAttribute('tabindex','-1'); try{el.focus({preventScroll:true});}catch(e){} clearTimeout(el._hlT); el._hlT=setTimeout(function(){el.classList.remove('hl');},3200); }
+  function highlight(el){ el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl'); var tmp=!el.hasAttribute('tabindex')&&!el.matches('a[href],button,input,select,textarea,summary'); if(tmp) el.setAttribute('tabindex','-1'); try{el.focus({preventScroll:true});}catch(e){} clearTimeout(el._hlT); el._hlT=setTimeout(function(){el.classList.remove('hl'); if(tmp) el.removeAttribute('tabindex');},3200); }
   function goto(id,inDrawer){
     var t=document.getElementById(id); if(!t) return; var el=pick(t);
     hide({keepFocus:true}); last=histBtn;
