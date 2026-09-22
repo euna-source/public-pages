@@ -189,6 +189,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 .sheet th,.sheet td{padding:9px 12px;border-bottom:1px solid var(--subtle);text-align:left;white-space:nowrap}
 .sheet th{color:var(--t4);font-weight:600;font-size:11px;letter-spacing:.03em;background:var(--surface)}
 .sheet tr:last-child td{border-bottom:none}
+.sheet-label{font-size:12px;font-weight:700;color:var(--t2);margin:0 0 6px}
 </style>
 </head>
 <body>
@@ -427,16 +428,27 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
         </tbody>
       </table>
     </div>
-    <div class="sheet" id="sheet-candidates" hidden>
-      <table>
-        <thead><tr><th>부문</th><th>활동명</th><th>집계값</th><th>현재 순위</th><th>자격 여부</th><th>제외 여부</th></tr></thead>
-        <tbody>
-          <tr><td>인기 포트폴리오</td><td>현이</td><td>리스펙트 27</td><td>1</td><td>예</td><td>아니오</td></tr>
-          <tr><td>인기 포트폴리오</td><td>문비트</td><td>리스펙트 21</td><td>2</td><td>예</td><td>아니오</td></tr>
-          <tr><td>인기 포트폴리오</td><td>서타입</td><td>리스펙트 18</td><td>3</td><td>예</td><td>아니오</td></tr>
-          <tr><td>인기 크리에이터</td><td>문비트</td><td>팔로워 +21</td><td>1</td><td>예</td><td>아니오</td></tr>
-        </tbody>
-      </table>
+    <div id="sheet-candidates" hidden>
+      <p class="sheet-label">인기 포트폴리오</p>
+      <div class="sheet">
+        <table>
+          <thead><tr><th>활동명</th><th>집계값</th><th>현재 순위</th><th>자격 여부</th><th>제외 여부</th></tr></thead>
+          <tbody>
+            <tr><td>현이</td><td>리스펙트 27</td><td>1</td><td>예</td><td>아니오</td></tr>
+            <tr><td>문비트</td><td>리스펙트 21</td><td>2</td><td>예</td><td>아니오</td></tr>
+            <tr><td>서타입</td><td>리스펙트 18</td><td>3</td><td>예</td><td>아니오</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="sheet-label" style="margin-top:16px">인기 크리에이터</p>
+      <div class="sheet">
+        <table>
+          <thead><tr><th>활동명</th><th>집계값</th><th>현재 순위</th><th>자격 여부</th><th>제외 여부</th></tr></thead>
+          <tbody>
+            <tr><td>문비트</td><td>팔로워 +21</td><td>1</td><td>예</td><td>아니오</td></tr>
+          </tbody>
+        </table>
+      </div>
     </div>
     <p class="pc-cap">시간별 스냅샷은 매시 한 줄씩 계속 쌓이는 로그, 후보 표는 매시 덮어써서 "지금 순위"만 남는 표입니다. 순위 웹페이지가 실제로 읽는 건 후보 표 쪽입니다. 상세 컬럼 정의는 Jira <a href="https://cre8orclub.atlassian.net/browse/CCO-121" style="color:inherit">CCO-121</a>과 상세 개발 요건 v1.3 §4에 있습니다.</p>
   </section>
