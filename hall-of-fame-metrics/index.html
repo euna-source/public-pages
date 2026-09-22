@@ -93,6 +93,8 @@ ul.tight li{margin:3px 0}
 /* 주의 박스 */
 .note{border-left:3px solid var(--line-strong);padding:2px 0 2px 16px;color:var(--t2);font-size:14px;margin:16px 0}
 .note.warn{border-left-color:#F59E0B}
+a{color:var(--brand-text);text-decoration:none;border-bottom:1px solid var(--brand-100)}
+a:hover{border-bottom-color:var(--brand-text)}
 footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);color:var(--t4);font-size:13px}
 footer p{margin:0 0 6px}
 
@@ -115,6 +117,7 @@ footer p{margin:0 0 6px}
   <h1>베스트 크리에이터 선정 기준 <span class="tag">가칭</span></h1>
   <p class="lede">받은 관심 대신 본인이 한 행동으로 순위를 정한다.</p>
   <p class="meta">2026-09-22 · 기획 이은희 · CCO-121 · 초안 v3 (대표 결재 전)</p>
+  <p class="meta" style="margin-top:8px"><a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름 →</a> 회차 달력 · 참가자 화면 상태 · 발표 이후 표식</p>
 </header>
 
 <div class="def">
@@ -161,6 +164,25 @@ footer p{margin:0 0 6px}
     <li><b>조회·검색·북마크·앱 켜 둔 시간</b> · 다른 사람에게 남는 흔적이 없어 제외</li>
     <li><b>미출시·웹 전용 기능</b> · 캐스팅 수락(예약), 협업 제안(웹 전용), 일촌(기존 기능)은 출시 후 포함</li>
   </ul>
+</section>
+
+<section>
+  <h2>집계 기간 · 2주 회차</h2>
+  <p class="sub">점수는 회차 안에서만 쌓이고, 회차가 끝나면 0에서 다시 시작한다.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>구분</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td>집계 시작</td><td>회차 첫날 수요일 00:00</td></tr>
+      <tr><td>집계 마감</td><td>둘째 화요일 23:59:59</td></tr>
+      <tr><td>집계 주기</td><td>매시 정각 24회 · 마감 직후 배치가 최종 순위 확정</td></tr>
+      <tr><td>초기화</td><td>회차 종료와 동시에 전원 0점. 이전 회차 점수는 이월하지 않음</td></tr>
+      <tr><td>공개 상태 판정</td><td>마감 시점 1회. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
+      <tr><td>팔로워 순증</td><td>회차 시작 시점 팔로워 수와 마감 시점 팔로워 수의 차이</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">1회차 · 2026-10-07(수) 00:00 ~ 2026-10-20(화) 23:59:59, 10/21(수) 20:00 발표. 회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</div>
 </section>
 
 <section>
@@ -271,6 +293,27 @@ footer p{margin:0 0 6px}
 </section>
 
 <section>
+  <h2>앱 화면 노출 범위</h2>
+  <p class="sub">항목별 내역은 화면에 표시하지 않고 합산 점수만 노출한다.</p>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>위치</th><th>노출</th><th>비노출</th></tr></thead>
+    <tbody>
+      <tr><td>순위표</td><td>순위 · 활동명 · <b>합산 점수</b></td><td>항목별 점수, 항목별 건수</td></tr>
+      <tr><td>내 점수</td><td>내 합산 점수 · 내 순위</td><td>항목별 내역</td></tr>
+      <tr><td>기준 안내</td><td>점수가 쌓이는 행동 목록(문장)</td><td>1건당 점수, 항목별 배점표</td></tr>
+      <tr><td>운영 시트</td><td>항목별 내역 전체</td><td>—</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <ul class="tight">
+    <li>배점을 공개하면 점수가 가장 큰 항목만 반복하는 방식이 최적 전략이 되어 도배를 유도</li>
+    <li>무엇을 하면 점수가 오르는지는 문장으로 안내해 공정성 확보. 숫자만 비공개</li>
+    <li>이의 제기 시 운영진이 시트 내역으로 확인해 개별 회신</li>
+  </ul>
+</section>
+
+<section>
   <h2>참가자 안내 문구</h2>
   <p class="sub">규칙서·순위표에 넣을 문구</p>
   <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
@@ -298,6 +341,7 @@ footer p{margin:0 0 6px}
 <footer>
   <p>근거: 활동량으로 순위를 매겨 보상하는 제도 23곳의 원문(네이버 지식iN 내공·구글 로컬가이드·듀오링고 리그·위키컵·네이버 카페 기여도·치지직·Waze·Discourse·챌린저스 등)과 활동량 보상을 중단한 사례(YouTube Shorts Fund·Meta Reels Play·Snapchat Spotlight·Pinterest·Quora·Medium)를 함께 확인했다.</p>
   <p>조사 장부 135행 중 123행은 인용문 원문 대조를 통과했다. 12행은 자동 접속 차단·이미지 표·접근 실패로 미검증 상태다.</p>
+  <p>함께 보기 · <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a></p>
   <p>크리에이터클럽 · 명예의 전당 · 2026-09-22</p>
 </footer>
 
