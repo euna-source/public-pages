@@ -13,8 +13,8 @@
   color-scheme:light;
   --bg:#FFFFFF; --surface:#F5F5F5; --subtle:#EBEBEB; --line:#D9D9D9; --line-strong:#C8C8C8;
   --t1:#181818; --t2:#444444; --t3:#666666; --t4:#888888;
-  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#CDFBD1;
-  --warn:#B45309; --warn-bg:#FEF3C7; --danger:#DC2626; --danger-bg:#FEE2E2;
+  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#CDFBD1; --brand-border:#B7F5BD;
+  --warn:#B45309; --warn-bg:#FEF3C7; --warn-border:#F4D08A; --danger:#DC2626; --danger-bg:#FEE2E2; --danger-border:#F5B5B5;
   --radius-s:6px; --radius-m:10px; --radius-l:14px;
   --shadow:0 1px 2px rgba(24,24,24,.06),0 8px 24px rgba(24,24,24,.06);
   --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
@@ -27,7 +27,7 @@ h1{font-size:34px;letter-spacing:-0.02em;line-height:1.2;margin:0 0 10px;font-we
 .lede{color:var(--t2);font-size:16px;max-width:680px;margin:0 0 6px}
 .meta{color:var(--t4);font-size:13px;margin:0}
 .tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line);vertical-align:middle;margin-left:6px}
-.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:#B7F5BD}
+.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:var(--brand-border)}
 section{margin-top:56px}
 h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .sub{color:var(--t3);font-size:14px;margin:0 0 20px;max-width:760px}
@@ -113,8 +113,8 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .boosts{display:flex;flex-direction:column;gap:8px}
 .bst{border:1px solid var(--line);border-radius:var(--radius-m);padding:10px 12px;background:var(--bg);display:grid;grid-template-columns:1fr auto;gap:8px;align-items:start}
 .bst.core{border-color:var(--brand-text);background:var(--brand-50)}
-.bst.warn{border-color:#F4D08A;background:var(--warn-bg)}
-.bst.red{border-color:#F5B5B5;background:var(--danger-bg)}
+.bst.warn{border-color:var(--warn-border);background:var(--warn-bg)}
+.bst.red{border-color:var(--danger-border);background:var(--danger-bg)}
 .bst .bt{font-size:13px;font-weight:700;margin:0 0 2px}
 .bst .bd{font-size:12px;color:var(--t2);margin:0}
 .bst .bw{font-size:11px;color:var(--t4);white-space:nowrap;text-align:right}
@@ -166,7 +166,7 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .sns .body{padding:10px 12px;font-size:12px;color:var(--t2)}
 .sns .body b{color:var(--t1)}
 /* 우측 레이어(드로어) */
-.lbtn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:var(--brand-text);background:var(--bg);border:1px solid #B7F5BD;border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:background 120ms ease-out}
+.lbtn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:var(--brand-text);background:var(--bg);border:1px solid var(--brand-border);border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:background 120ms ease-out}
 .lbtn:hover{background:var(--brand-50)}
 .lbtn:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
 .drawer-bg{position:fixed;inset:0;background:rgba(24,24,24,.35);z-index:40;opacity:0;pointer-events:none;transition:opacity 180ms ease-out}
@@ -188,7 +188,7 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .dclose:hover{border-color:var(--t1)}
 .dclose:focus-visible{outline:2px solid var(--brand-text)}
 @media (prefers-reduced-motion:reduce){.drawer,.drawer-bg,.lbtn{transition:none}}
-.jira{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid #B7F5BD}
+.jira{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
 .hbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .lbtn.ghost{color:var(--t3);border-color:var(--line)}
 .lbtn.ghost:hover{background:var(--surface)}
