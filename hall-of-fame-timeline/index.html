@@ -188,6 +188,12 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .dclose:hover{border-color:var(--t1)}
 .dclose:focus-visible{outline:2px solid var(--brand-text)}
 @media (prefers-reduced-motion:reduce){.drawer,.drawer-bg,.lbtn{transition:none}}
+.jira{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid #B7F5BD}
+.hbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.lbtn.ghost{color:var(--t3);border-color:var(--line)}
+.lbtn.ghost:hover{background:var(--surface)}
+.hist li{margin-bottom:10px}
+.hist li b{display:block;color:var(--t1)}
 .notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .note{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 18px;background:var(--bg)}
 .note h3{margin:0 0 6px;font-size:14px;font-weight:700}
@@ -218,10 +224,11 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 <body>
 <div class="wrap">
   <header>
-    <p class="meta">크리에이터클럽 · 디스커버리 · 2026-09-22 · 기획 이은희</p>
+    <p class="meta">크리에이터클럽 · 디스커버리 · 기획 이은희 · <b>최종 업데이트 2026-09-22</b> · 정본 <a class="jira" href="https://cre8orclub.atlassian.net/browse/CCO-121" target="_blank" rel="noopener">Jira CCO-121</a> (2026-09-22 11:42 갱신본 기준)</p>
     <h1>명예의 전당 운영 흐름과 부스팅 계획</h1>
     <p class="lede">개시 전부터 다음 회차 셋팅까지 한 흐름으로 그렸습니다. 국면마다 왼쪽은 회차가 굴러가는 운영 흐름, 오른쪽은 그 흐름이 첫 회차부터 원활하도록 우리가 손으로 하는 부스팅 계획입니다.</p>
     <p class="meta">수요일과 저녁 8시, 최소 5명, D7 후보 10명은 가안입니다. 세 회차를 돌린 뒤 실측으로 다시 정합니다.<span class="tag brand">1회차 기준</span> · <a href="#sheet" style="color:inherit">구글 시트 예시 보기 ↓</a></p>
+    <div class="hbtns"><button type="button" class="lbtn" data-drawer="d-cond">후보 선정 조건 보기 →</button><button type="button" class="lbtn" data-drawer="d-rules">유의사항 문안 →</button><button type="button" class="lbtn" data-drawer="d-consent">당첨자 동의·약관 →</button><button type="button" class="lbtn ghost" data-drawer="d-hist">업데이트 히스토리</button></div>
     <div class="phases" aria-label="네 국면">
       <div class="ph"><div class="n">01</div><div class="t">개시 전</div><div class="d">9/22 ~ 10/6</div></div>
       <div class="ph live"><div class="n">02</div><div class="t">회차 중</div><div class="d">10/7 수 0시 ~ 10/20 화 자정</div></div>
@@ -536,6 +543,44 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     <li>회원 한정 대회에 필요경비 80%(시행령 제87조) 적용 여부</li>
     <li>DM 회신 동의가 제14조 개별 동의와 개인정보 보호법 동의 방법 요건을 채우는지</li>
     <li>처리방침 개정 시 기존 회원 고지 방식</li>
+  </ul>
+</aside>
+<aside class="drawer" id="d-cond" role="dialog" aria-modal="true" aria-labelledby="d-cond-h" hidden>
+  <button type="button" class="dclose" aria-label="닫기">×</button>
+  <h3 id="d-cond-h">후보 선정 조건 · 운영 계획</h3>
+  <p class="dsub">정본은 Jira CCO-121(2026-09-22 11:42 갱신본)입니다. 여기 내용은 그 사본입니다.</p>
+  <table>
+    <tr><th>항목</th><th>규칙</th></tr>
+    <tr><td>후보 대상자</td><td>프로필 커버를 등록한 회원. 운영진과 서포터즈는 제외</td></tr>
+    <tr><td>수상 부문</td><td>① 인기 포트폴리오 ② 인기 크리에이터 (영감·팀은 다음)</td></tr>
+    <tr><td>선정 기준</td><td>① 회차 안에 작품이 받은 리스펙트 수(취소분 제외) ② 회차 안에 늘어난 팔로워 수(총수 아님)</td></tr>
+    <tr><td>선정 방식</td><td>부문마다 1위 한 사람. 동점이면 서로 다른 사람에게서 받은 반응이 많은 쪽, 그다음 먼저 가입한 쪽</td></tr>
+    <tr><td>제외 조건</td><td>직전 회차 1위는 다음 회차 같은 부문에서 제외 · 같은 작품은 한 번만 · 다중 계정·반응 교환·도용은 제외하고 통지(1차는 운영이 손으로 적용)</td></tr>
+    <tr><td>선정 기간</td><td>14일. 수요일 0시 시작, 둘째 화요일 23:59:59 마감, 다음 회차 즉시 시작 (가안)</td></tr>
+    <tr><td>발표</td><td>마감 다음 날 수요일 20시 공지·푸시 (가설)</td></tr>
+    <tr><td>발표 뒤 혜택</td><td>금전 — 부문별 20만 원 모바일 신세계 상품권, 1인당 예산 25만 원(상금 20만+세금 최대 4.4만, 회사 부담) · 앱 내 — 작품 카드 좌상단 메달 마크(회차 번호)와 상세 상단 띠(영구), 프로필 칩 "명예의 전당 ×N"(영구). 참가자 유의사항에는 금액·형태를 적지 않고 회차 시작 공지에 안내</td></tr>
+    <tr><td>판정자</td><td>기획 2명이 판정, 분쟁 시 대표. 이의는 발표 뒤 14일</td></tr>
+    <tr><td>예외</td><td>후보가 5명 미만이면 순위표 대신 "N명 참여 중 · 집계 중"만 표시, 5명이 되면 순위 공개 (가안 5명)</td></tr>
+  </table>
+  <h4>1차 MVP에 포함되지 않는 것</h4>
+  <p>어드민 화면, 실시간 갱신, 중복 수상자 자동 제외 산식(1차는 수동), 갤러리 연출·전광판 효과·복잡한 시상식 UX.</p>
+</aside>
+<aside class="drawer hist" id="d-hist" role="dialog" aria-modal="true" aria-labelledby="d-hist-h" hidden>
+  <button type="button" class="dclose" aria-label="닫기">×</button>
+  <h3 id="d-hist-h">업데이트 히스토리</h3>
+  <p class="dsub">명예의 전당 정책·페이지가 바뀔 때마다 여기에 한 줄씩 남깁니다. 최신이 위입니다.</p>
+  <ul>
+    <li><b>2026-09-22 · 정본 동기화</b>Jira CCO-121(11:42 갱신본)에 맞춰 후보 선정 조건 레이어·구글 시트 예시·유의사항 8줄을 페이지에 반영. 헤더에 최종 업데이트 날짜와 Jira 링크, 이 히스토리 레이어 추가.</li>
+    <li><b>2026-09-22 · 유의사항 v1.3</b>보상은 형태·금액을 적지 않고 회차 시작 공지에 안내, 화면 순위는 잠정이며 심사 뒤 당첨자가 달라질 수 있음 명시, "5명 전 참여 인원만" 문장 삭제.</li>
+    <li><b>2026-09-22 · 약관·처리방침 대조</b>이용약관(2026.09.21) 제5·14·16·17조와 처리방침 대조. 선정작 SNS 소개는 개별 동의 시에만. 당첨자에게 받을 것 넷과 처리방침 추가 항목 정리.</li>
+    <li><b>2026-09-22 · 우측 레이어</b>유의사항 8줄과 당첨자 동의·약관 근거를 오른쪽 레이어로. 스타일 누락 수리.</li>
+    <li><b>2026-09-22 · 부스팅 정정</b>병목은 리스펙트를 주는 쪽. 실측(9/8~21 리스펙트 20건·하루 1.4건)으로 외부 응원 링크를 기본 장치로. 안목의 전당·오늘의 참가작 제외, 김형석 PD님 찬스로 명명, 활동 우수자를 서포터즈 후보로.</li>
+    <li><b>2026-09-22 · 표식 정정</b>골드·월계관은 뮤즈의 것이라 회차 번호 흑백 메달로. 시작 공지·홍보는 10/7 10시(집계는 0시). 표시는 아이디가 아니라 활동명.</li>
+    <li><b>2026-09-22 · 4국면 페이지</b>개시 전·회차 중·마감과 발표·다음 회차 셋팅으로 재구성, 국면별 운영 흐름과 부스팅 계획 병렬, 공식 SNS 게시 루틴, 달력 띠 상단 고정과 날짜·국면 앵커.</li>
+    <li><b>2026-09-21 · 요건 v1.3</b>집계 배치 매시 정각, 구글 시트 시간별 스냅샷, 09:00 슬랙 리포트와 신호등(노란불 규칙).</li>
+    <li><b>2026-09-21 · 회차 리듬 확정</b>수요일 0시 시작·둘째 화요일 23:59:59 마감·수요일 20시 발표(가안). 1회차 10/7~10/20, 발표 10/21.</li>
+    <li><b>2026-09-21 · 한 장 기획 요건</b>운영 계획 표를 먼저, 개발 요건은 1차 MVP 5줄. 최소 후보 5명(가안). 직전 1위 제외는 운영 규칙.</li>
+    <li><b>2026-09-21 · 시작</b>CCO-121 정책 초안을 캠페인 운영 워크플로우(6단계×5갈래)로 확장, 예산안, 개발팀 일정(10/2 심사·10/6 배포) 반영.</li>
   </ul>
 </aside>
 
