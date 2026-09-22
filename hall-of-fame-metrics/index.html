@@ -51,7 +51,7 @@ strong{font-weight:700}
 .q4.accent{background:var(--brand-50);border-color:var(--brand-100)}
 
 /* 1건당 점수 */
-.units{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 26px}
+.units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:20px 0 26px}
 .u{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
 .u:first-child{background:var(--brand-50);border-color:var(--brand-border)}
 .u .v{font-size:30px;font-weight:700;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;line-height:1}
@@ -143,7 +143,7 @@ footer p{margin:0 0 6px}
     <div class="q4">
       <p class="k">③ 연결</p>
       <p class="t">남이 응해서 이어진 것</p>
-      <p class="d">회차 중 <b>늘어난 팔로워</b>, 내 프로젝트 카드에 온 지원서, 내 팀 초대를 수락한 멤버</p>
+      <p class="d">회차 중 <b>늘어난 팔로워</b>, 접수된 <b>지원서</b>, 초대를 수락해 합류한 <b>멤버</b> · 1명당 20점</p>
     </div>
   </div>
 </section>
@@ -187,13 +187,14 @@ footer p{margin:0 0 6px}
 
 <section>
   <h2>점수 · 1건당 점수만 있고 상한 없음</h2>
-  <p class="sub">1건당 점수는 <b>10 · 20 · 40 · 50 · 100</b> 다섯 가지다. 상한이 없어 많이 할수록 계속 오른다. 연결 중 지원서·팀 수락은 성사 건수가 0에 가까워 2회차부터 반영한다.</p>
+  <p class="sub">1건당 점수는 <b>5 · 10 · 20 · 40 · 50</b> 다섯 가지다. 상한이 없어 많이 할수록 계속 오른다. 연결 중 지원서·합류 멤버는 성사 건수가 0에 가까워 2회차부터 반영한다.</p>
 
   <div class="units">
     <div class="u"><span class="v">50</span><span class="l">프로젝트 카드 등록</span></div>
     <div class="u"><span class="v">40</span><span class="l">포트폴리오 등록</span></div>
-    <div class="u"><span class="v">20</span><span class="l">리스펙트를 보낸 사람<br>회차 중 늘어난 팔로워</span></div>
-    <div class="u"><span class="v">10</span><span class="l">영감 글 등록<br>소개 탭 항목 작성<br>채팅방 출석</span></div>
+    <div class="u"><span class="v">20</span><span class="l">리스펙트를 보낸 사람<br>늘어난 팔로워<br>지원서·합류 멤버</span></div>
+    <div class="u"><span class="v">10</span><span class="l">영감 글 등록<br>소개 탭 항목 작성</span></div>
+    <div class="u"><span class="v">5</span><span class="l">채팅방 출석<br>(메시지 보낸 날)</span></div>
   </div>
 
   <div class="tablewrap">
@@ -204,17 +205,19 @@ footer p{margin:0 0 6px}
     </thead>
     <tbody>
       <tr><td class="grp" rowspan="2">① 소통</td><td>리스펙트를 보낸 <b>서로 다른 사람</b></td><td class="num">20</td></tr>
-      <tr><td>채팅방에 메시지를 보낸 날 <span class="tag">하루 1회</span></td><td class="num">10</td></tr>
+      <tr><td>채팅방에 메시지를 보낸 날 <span class="tag">출석 · 하루 1회</span></td><td class="num">5</td></tr>
       <tr><td class="grp" rowspan="4">② 창작</td><td>프로젝트 카드 등록</td><td class="num">50</td></tr>
       <tr><td>포트폴리오 등록</td><td class="num">40</td></tr>
       <tr><td>영감 글 등록</td><td class="num">10</td></tr>
       <tr><td>소개 탭 항목 작성 <span class="tag">6항목 각 1회</span></td><td class="num">10</td></tr>
-      <tr><td class="grp" rowspan="2">③ 연결</td><td>회차 중 늘어난 <b>팔로워</b> <span class="tag">순증 기준</span></td><td class="num">20</td></tr>
-      <tr><td>내 프로젝트 카드에 지원서 1건↑ / 내 팀 초대 수락 1명↑ <span class="tag">1회차 제외</span></td><td class="num">100</td></tr>
+      <tr><td class="grp" rowspan="3">③ 연결</td><td>회차 중 늘어난 <b>팔로워</b> <span class="tag">순증 기준</span></td><td class="num">20</td></tr>
+      <tr><td>내 프로젝트 카드에 접수된 <b>지원서</b> <span class="tag">2회차부터</span></td><td class="num">20</td></tr>
+      <tr><td>내 팀 초대를 수락해 합류한 <b>멤버</b> <span class="tag">2회차부터</span></td><td class="num">20</td></tr>
     </tbody>
   </table>
   </div>
 
+  <div class="note">연결 · 남이 응해 준 사람 1명당 20점으로 통일. 팔로워·지원서·합류 멤버 모두 같은 무게</div>
   <div class="note">팔로워 · 회차 시작 시점과 마감 시점의 팔로워 수 차이(팔로우−언팔로우). 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 0.5명으로 집계</div>
   <div class="note">채팅방 · 1:1 노크 수락 후 열린 채팅과 그룹채팅 모두 포함. 메시지 개수와 관계없이 보낸 날 1일 = 10점. 노크 보내기 자체는 계속 제외</div>
   <div class="note">소개 탭 6항목 · 자기소개 · 학력 · 경력 · 수상/자격 · 기본정보 · AI 추천사. 항목당 1회, 6개 모두 채우면 60점</div>
@@ -225,10 +228,10 @@ footer p{margin:0 0 6px}
   <div class="sim">
     <div class="row"><span>12명에게 리스펙트 보내기 (20 × 12)</span><span>240점</span></div>
     <div class="row"><span>회차 중 늘어난 팔로워 3명 (20 × 3)</span><span>60점</span></div>
-    <div class="row"><span>채팅방 출석 6일 (10 × 6)</span><span>60점</span></div>
+    <div class="row"><span>채팅방 출석 6일 (5 × 6)</span><span>30점</span></div>
     <div class="row"><span>포트폴리오 1건 등록</span><span>40점</span></div>
     <div class="row"><span>소개 탭 4항목 작성 (10 × 4)</span><span>40점</span></div>
-    <div class="row"><span>예상 1위</span><span>440점 안팎</span></div>
+    <div class="row"><span>예상 1위</span><span>410점 안팎</span></div>
   </div>
   <div class="note warn">대화 상대가 없으면 채팅방 항목이 무의미하므로, 회차 시작 전 서포터즈의 그룹채팅 2~3개 개설이 전제다. 9월 23일 개발 확인 때 현재 채팅방 수·최근 메시지 수를 확인한다.</div>
 </section>
@@ -254,7 +257,7 @@ footer p{margin:0 0 6px}
     <p class="why">리스펙트를 보내는 사람이 3명뿐인 문제에 맞춰 소통에 집중</p>
     <ul class="tight">
       <li>상한 없음 · 많이 할수록 점수가 계속 오르는 구조. 창작 비중은 프로젝트 카드 50 · 포트폴리오 40 · 영감 글 10</li>
-      <li>연결은 팔로워만 반영. 지원서·팀 수락은 한 명만 달성해도 순위를 독식하므로 2회차부터</li>
+      <li>연결은 팔로워만 반영. 지원서·합류 멤버는 성사 건수가 0에 가까워 2회차부터</li>
       <li>보상: 1위 1명 상금. 후보 5명 미만이면 순위표에 “N명 활동 중 · 집계 중” 표시</li>
     </ul>
   </div>
@@ -263,7 +266,7 @@ footer p{margin:0 0 6px}
     <div class="head"><span class="num">단계 1</span><h3>MAU 5천</h3></div>
     <p class="why">한 번 온 사람이 다시 오지 않는 문제에 맞춰 연결 반영</p>
     <ul class="tight">
-      <li>연결 확대: 팔로워 20 유지 + 지원서 접수 100 · 팀 초대 수락 100 반영</li>
+      <li>연결 확대: 팔로워·지원서·합류 멤버 각 20으로 전면 반영</li>
       <li>상한은 계속 없음. 1위 점수가 2위의 3배를 넘는 회차가 두 번 이어지면 하루 인정 건수 도입 검토</li>
       <li>보상: 상위 10명 분할 지급(1위 + 2~10위 소액)</li>
       <li>검토: 초대한 사람이 첫 활동을 했을 때 점수를 더하는 방안 재검토</li>
@@ -275,7 +278,7 @@ footer p{margin:0 0 6px}
     <p class="why">도배와 서로 점수를 주고받는 모임에 대응해 협업 완료 비중 확대</p>
     <ul class="tight">
       <li>방어: 짧은 시간에 몰린 리스펙트·팔로우 자동 검토, 하루 인정 건수 도입</li>
-      <li>연결 확대: 지원서 접수 100 · 팀 결성 50 · 프로젝트 완료 50(신설)</li>
+      <li>연결 확대: 지원서·합류 멤버 20 유지 + 프로젝트 완료 50(신설)</li>
       <li>구조: 누적 배지 등급제 도입, 부문 분리(리스펙트를 보내는 사람 / 작업을 올리는 사람)</li>
     </ul>
   </div>
@@ -335,7 +338,7 @@ footer p{margin:0 0 6px}
     </tbody>
   </table>
   </div>
-  <div class="note">집계에 필요한 활동 기록이 없으면 1회차는 리스펙트를 보낸 사람 수와 등록한 항목만으로 순위를 정한다. 채팅방 출석·지원서·팀 수락은 2회차부터 반영한다.</div>
+  <div class="note">집계에 필요한 활동 기록이 없으면 1회차는 리스펙트를 보낸 사람 수와 등록한 항목만으로 순위를 정한다. 채팅방 출석·지원서·합류 멤버는 2회차부터 반영한다.</div>
 </section>
 
 <footer>
