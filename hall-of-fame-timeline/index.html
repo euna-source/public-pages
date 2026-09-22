@@ -62,28 +62,39 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 /* 상단 고정 달력 */
 .calbar{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid transparent;transition:border-color 150ms ease-out,box-shadow 150ms ease-out}
 .calbar.stuck{border-bottom-color:var(--line);box-shadow:0 8px 20px -12px rgba(24,24,24,.18)}
-.calbar.stuck .day{min-height:54px;padding:5px 3px 6px}
-.calbar.stuck .day .lb{display:none}
-.calbar.stuck .bar,.calbar.stuck .legend{display:none}
 .day{cursor:pointer;text-decoration:none;color:inherit;transition:border-color 120ms ease-out,box-shadow 120ms ease-out}
 .day:hover{border-color:var(--t1)}
 .day:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
 .day.now{box-shadow:0 0 0 2px var(--t1)}
 .day.wed.now{box-shadow:0 0 0 2px var(--brand-text)}
-.anchor>.when2,.anchor>.what,.phase.anchor{scroll-margin-top:150px}
+.anchor>.when2,.anchor>.what,.phase.anchor,#sheet{scroll-margin-top:var(--anchor-offset,180px)}
 @media (prefers-reduced-motion:reduce){.calbar,.day{transition:none}}
 
-.pnav{display:grid;grid-template-columns:1fr 14fr 1fr 1.6fr;gap:4px;margin-bottom:6px}
-.pp{display:flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:var(--radius-s);padding:5px 8px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none;background:var(--bg);white-space:nowrap;overflow:hidden;transition:border-color 120ms ease-out,background 120ms ease-out}
+.pnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-bottom:6px}
+.pp{display:flex;align-items:center;gap:6px;min-height:44px;border:1px solid var(--line);border-radius:var(--radius-s);padding:5px 8px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none;background:var(--bg);white-space:nowrap;overflow:hidden;transition:border-color 120ms ease-out,background 120ms ease-out}
 .pp .pn2{font-size:10px;color:var(--t4);letter-spacing:.04em}
 .pp small{font-weight:400;color:var(--t4);font-size:11px;margin-left:auto}
 .pp:hover{border-color:var(--t1)}
 .pp.now{background:var(--t1);color:#fff;border-color:var(--t1)}
 .pp.now .pn2,.pp.now small{color:#C8C8C8}
 .pp:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
-.calbar.stuck .pp{padding:3px 8px}
-.calbar.stuck .pp small{display:none}
-@media (max-width:820px){.pnav{grid-template-columns:1fr 1fr 1fr 1fr}.pp small{display:none}}
+@media (max-width:820px){
+  .pnav{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:2px;padding:2px;gap:6px}
+  .pp{flex:none;padding:8px 12px;overflow:visible}
+  .pp small{display:none}
+  .calbar .cal{grid-template-columns:repeat(16,minmax(48px,1fr));overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:3px;padding:7px 3px 3px;margin-top:0;align-items:stretch}
+  .calbar .day{min-height:52px;padding:5px;justify-content:center}
+  .calbar .day .lb{display:none}
+  .calbar{padding:6px 0}
+  .calendar-progress{display:none}
+  .mobile-nav-hint{display:block;font-size:12px;color:var(--t3);margin:12px 0 4px}
+}
+@media (min-width:821px){.mobile-nav-hint{display:none}}
+@media (max-height:500px){
+  .calbar{padding:6px 0}
+  .calbar .day{min-height:52px;padding:5px;justify-content:center}
+  .calbar .day .lb,.calbar .pp small{display:none}
+}
 
 .phase{margin-top:40px;border-top:2px solid var(--t1);padding-top:18px}
 .phase-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
@@ -202,7 +213,7 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .round-note{margin:16px 0 0;padding:12px 14px;border-radius:var(--radius-s);background:var(--surface);color:var(--t3);font-size:13px;line-height:1.6}
 .round-note strong{color:var(--t2);font-weight:600;margin-right:8px}
 #hdr .phases{margin-top:24px}
-#sheet{scroll-margin-top:150px}
+
 @media (hover:hover) and (pointer:fine){
   .hbtns .lbtn:hover,.hbtns .sheet-link:hover{background:var(--surface);border-color:var(--t1);color:var(--t1)}
   #hdr a:hover{color:var(--t1)}
@@ -282,7 +293,6 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 
 @media (max-width:820px){
   .wrap{padding:36px 16px 64px}
-  #sheet{scroll-margin-top:220px}
   h1{font-size:26px}
   .phases{grid-template-columns:1fr 1fr}
   .cal,.bar{grid-template-columns:repeat(8,minmax(0,1fr))}
@@ -292,6 +302,9 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   .tl::before{left:84px}
   .when2{padding-right:12px;font-size:12px}
   .states,.notes{grid-template-columns:1fr}
+  .lbtn,.hbtns .lbtn,.hbtns .sheet-link{min-height:44px}
+  .dclose{width:44px;height:44px;top:10px;right:10px}
+  #sheetTabs span{display:inline-flex;align-items:center;min-height:44px}
 }
 .tabs span{cursor:pointer;user-select:none}
 .sheet{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-m);background:var(--bg)}
@@ -334,6 +347,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     <p class="round-note"><strong>1회차 기준 · 가안</strong>수요일과 저녁 8시, 최소 5명, D7 후보 10명은 가안입니다. 세 회차를 돌린 뒤 실측으로 다시 정합니다.</p>
   </section>
 
+    <p class="mobile-nav-hint" id="nav-hint">단계 탭과 날짜는 좌우로 밀어 볼 수 있습니다.</p>
     <div class="calbar" id="calbar">
     <div class="pnav" role="navigation" aria-label="국면으로 이동">
       <a class="pp" href="#p1" data-target="p1"><span class="pn2">01</span>개시 전<small>9/22 ~ 10/6</small></a>
@@ -359,7 +373,8 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
       <a class="day in" href="#d1020" data-target="d1020"><span class="wd">화</span><span class="d">20</span><span class="lb">23:59:59<br>마감</span></a>
       <a class="day wed" href="#d1021" data-target="d1021"><span class="dot"></span><span class="wd">수</span><span class="d">21</span><span class="lb">2회차 시작<br>20시 발표</span></a>
     </div>
-    <div class="bar" aria-hidden="true">
+    </div>
+    <div class="bar calendar-progress" aria-hidden="true">
       <span></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on"></span><span class="on2"></span>
     </div>
     <div class="legend">
@@ -368,7 +383,6 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
       <span><i class="b"></i>수요일, 시작·신호·발표의 날</span>
       <span><i class="c"></i>배포일, 집계 전</span>
       <span>날짜를 누르면 그날의 흐름으로 이동합니다</span>
-    </div>
     </div>
 
   <section id="s-flow">
@@ -715,14 +729,69 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 (function(){
   var bar=document.getElementById('calbar'); if(!bar) return;
   var sentinel=document.createElement('div'); sentinel.style.height='1px'; bar.parentNode.insertBefore(sentinel,bar);
-  new IntersectionObserver(function(e){bar.classList.toggle('stuck',!e[0].isIntersecting)},{threshold:0}).observe(sentinel);
-  var days=Array.prototype.slice.call(bar.querySelectorAll('.day, .pp'));
-  function scrollTo(id){var t=document.getElementById(id); if(!t) return; var el=t.querySelector('.when2')||t; var y=el.getBoundingClientRect().top+window.pageYOffset-(bar.offsetHeight+16); window.scrollTo({top:y,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
-  days.forEach(function(d){d.addEventListener('click',function(ev){ev.preventDefault();scrollTo(d.getAttribute('data-target'));history.replaceState(null,'','#'+d.getAttribute('data-target'));});});
-  var anchors=Array.prototype.slice.call(document.querySelectorAll('.anchor')).map(function(a){return {id:a.id,el:a.querySelector('.when2')||a};});
-  function mark(){var top=bar.offsetHeight+24, curD=null, curP=null; anchors.forEach(function(a){if(a.el.getBoundingClientRect().top-top<=0){ if(/^p\d$/.test(a.id)) curP=a.id; else curD=a.id; }}); days.forEach(function(d){var t=d.getAttribute('data-target'); var cur=/^p\d$/.test(t)?curP:curD; d.classList.toggle('now',cur!==null&&t===cur);});}
-  var t; window.addEventListener('scroll',function(){cancelAnimationFrame(t);t=requestAnimationFrame(mark);},{passive:true}); mark();
-  if(location.hash){var id=location.hash.slice(1); setTimeout(function(){scrollTo(id);},50);}
+  new IntersectionObserver(function(e){bar.classList.toggle('stuck',!e[0].isIntersecting);},{threshold:0}).observe(sentinel);
+  var phaseLinks=Array.from(bar.querySelectorAll('.pp'));
+  var dateLinks=Array.from(bar.querySelectorAll('.day'));
+  var links=phaseLinks.concat(dateLinks);
+  var phases=phaseLinks.map(function(link){return document.getElementById(link.dataset.target);});
+  var dateIds=Array.from(new Set(dateLinks.map(function(link){return link.dataset.target;})));
+  var dates=dateIds.map(function(id){var row=document.getElementById(id);return {id:id,row:row,el:row.querySelector('.when2')||row,phase:row.closest('.phase')};});
+  var preferredDate=null, preferredReached=false, frame=0;
+  function offset(){return bar.getBoundingClientRect().height+16;}
+  function reveal(link){
+    var parent=link.parentElement, r=link.getBoundingClientRect(), box=parent.getBoundingClientRect();
+    if(r.left<box.left+3) parent.scrollLeft+=r.left-box.left-3;
+    else if(r.right>box.right-3) parent.scrollLeft+=r.right-box.right+3;
+  }
+  function activate(group,chosen){
+    group.forEach(function(link){
+      var on=link===chosen, changed=on&&!link.classList.contains('now');
+      link.classList.toggle('now',on);
+      if(on) link.setAttribute('aria-current','location'); else link.removeAttribute('aria-current');
+      if(changed) reveal(link);
+    });
+  }
+  function mark(){
+    frame=0;
+    var line=offset()+8, current=null, date=null;
+    phases.forEach(function(phase){var r=phase.getBoundingClientRect();if(r.top<=line) current=phase;});
+    if(current) dates.forEach(function(item){if(item.phase===current&&item.el.getBoundingClientRect().top<=line) date=item.id;});
+    activate(phaseLinks,phaseLinks.find(function(link){return current&&link.dataset.target===current.id;}));
+    var selected=preferredDate&&preferredDate.dataset.target===date?preferredDate:dateLinks.find(function(link){return link.dataset.target===date;});
+    activate(dateLinks,selected);
+    if(preferredDate&&preferredDate.dataset.target===date) preferredReached=true;
+    else if(preferredReached) {preferredDate=null;preferredReached=false;}
+  }
+  function schedule(){if(!frame) frame=requestAnimationFrame(mark);}
+  function measure(){document.documentElement.style.setProperty('--anchor-offset',offset()+'px');bar.querySelectorAll('.now').forEach(reveal);schedule();}
+  function move(id,behavior){
+    var target=document.getElementById(id); if(!target) return;
+    var el=target.classList.contains('row')?(target.querySelector('.when2')||target):target;
+    var y=el.getBoundingClientRect().top+window.scrollY-offset();
+    window.scrollTo({top:Math.max(0,y),behavior:behavior});
+    schedule();
+  }
+  function motion(){return matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth';}
+  links.forEach(function(link){link.addEventListener('click',function(ev){
+    if(ev.button!==0||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+    ev.preventDefault();
+    preferredDate=link.classList.contains('day')?link:null;preferredReached=false;
+    if(location.hash!==link.hash) history.pushState(null,'',link.hash);
+    move(link.dataset.target,motion());
+  });});
+  dateLinks.forEach(function(link){var row=document.getElementById(link.dataset.target), title=row.querySelector('h5');link.setAttribute('aria-label','10월 '+link.querySelector('.d').textContent+'일, '+(title?title.textContent:'운영 흐름'));});
+  var sheetLink=document.querySelector('#hbtns .sheet-link');
+  if(sheetLink) sheetLink.addEventListener('click',function(ev){
+    if(ev.button!==0||ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.altKey) return;
+    ev.preventDefault();if(location.hash!=='#sheet') history.pushState(null,'','#sheet');move('sheet',motion());
+  });
+  window.addEventListener('scroll',schedule,{passive:true});
+  window.addEventListener('resize',measure,{passive:true});
+  new ResizeObserver(measure).observe(bar);
+  function fromHash(){if(location.hash) move(decodeURIComponent(location.hash.slice(1)),'auto');else schedule();}
+  window.addEventListener('hashchange',fromHash);
+  measure();
+  (document.fonts?document.fonts.ready:Promise.resolve()).then(function(){requestAnimationFrame(function(){measure();fromHash();});});
 })();
 (function(){
   var tabs=document.getElementById('sheetTabs'); if(!tabs) return;
@@ -740,7 +809,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   var bg=document.getElementById('drawer-bg'); if(!bg) return; var open=null, last=null;
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   var pill=document.getElementById('back-hist'), pillT=null, histBtn=document.querySelector('[data-drawer="d-hist"]');
-  function show(id,btn){var d=document.getElementById(id); if(!d) return; if(open===d) return; if(open) hide({keepFocus:true}); clearTimeout(d._hideT); d.hidden=false; requestAnimationFrame(function(){d.classList.add('on'); bg.classList.add('on');}); open=d; if(btn) last=btn; document.body.style.overflow='hidden'; (d.querySelector('.dclose')||d).focus(); hidePill();}
+  function show(id,btn){var d=document.getElementById(id); if(!d) return; if(open===d) return; if(open) hide({keepFocus:true}); clearTimeout(d._hideT); d.hidden=false; requestAnimationFrame(function(){if(open!==d) return; d.classList.add('on'); bg.classList.add('on');}); open=d; if(btn) last=btn; document.body.style.overflow='hidden'; (d.querySelector('.dclose')||d).focus(); hidePill();}
   function hide(o){o=o||{}; if(!open) return; var d=open; d.classList.remove('on'); bg.classList.remove('on'); document.body.style.overflow=''; d._hideT=setTimeout(function(){d.hidden=true;},230); open=null; if(!o.keepFocus){ if(last) last.focus(); last=null; }}
   document.querySelectorAll('[data-drawer]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-drawer'),b);});});
   document.querySelectorAll('.dclose').forEach(function(b){b.addEventListener('click',function(){hide();});});
