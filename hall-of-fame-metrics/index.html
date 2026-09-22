@@ -13,8 +13,8 @@
   color-scheme:light;
   --bg:#FFFFFF; --surface:#F5F5F5; --subtle:#EBEBEB; --line:#D9D9D9; --line-strong:#C8C8C8;
   --t1:#181818; --t2:#444444; --t3:#666666; --t4:#888888;
-  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#C2FAC6; --brand-300:#4AEF57;
-  --warn:#B45309; --warn-bg:#FEF3C7; --danger:#DC2626; --danger-bg:#FEE2E2;
+  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#CDFBD1; --brand-border:#B7F5BD;
+  --warn:#B45309; --warn-bg:#FEF3C7; --warn-border:#F4D08A; --danger:#DC2626; --danger-bg:#FEE2E2; --danger-border:#F5B5B5;
   --radius-s:6px; --radius-m:10px; --radius-l:14px;
   --shadow:0 1px 2px rgba(24,24,24,.06),0 8px 24px rgba(24,24,24,.06);
   --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
@@ -23,18 +23,18 @@
 html{background:var(--bg)}
 body{margin:0;font-family:var(--font);color:var(--t1);background:var(--bg);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1080px;margin:0 auto;padding:56px 24px 96px}
-h1{font-size:34px;letter-spacing:-0.022em;line-height:1.2;margin:0 0 12px;font-weight:700;text-wrap:balance}
-.lede{color:var(--t2);font-size:16px;max-width:700px;margin:0 0 8px}
+h1{font-size:34px;letter-spacing:-0.02em;line-height:1.2;margin:0 0 10px;font-weight:700;text-wrap:balance}
+.lede{color:var(--t2);font-size:16px;max-width:680px;margin:0 0 6px}
 .meta{color:var(--t4);font-size:13px;margin:0;font-variant-numeric:tabular-nums}
-section{margin-top:64px}
-h2{font-size:21px;letter-spacing:-0.012em;margin:0 0 6px;font-weight:700}
+section{margin-top:56px}
+h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 h3{font-size:15px;margin:28px 0 8px;font-weight:700}
-.sub{color:var(--t3);font-size:14px;margin:0 0 22px;max-width:780px}
+.sub{color:var(--t3);font-size:14px;margin:0 0 20px;max-width:760px}
 p{margin:0 0 12px}
 strong{font-weight:700}
-.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line);vertical-align:middle}
-.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:var(--brand-100)}
-.tag.warn{background:var(--warn-bg);color:var(--warn);border-color:#FDE68A}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line);vertical-align:middle}
+.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:var(--brand-border)}
+.tag.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-border)}
 
 /* 정의 카드 */
 .def{border:1px solid var(--line);border-radius:var(--radius-l);padding:26px 28px;background:linear-gradient(180deg,var(--brand-50) 0%,var(--bg) 62%);box-shadow:var(--shadow);margin-top:32px}
@@ -53,20 +53,20 @@ strong{font-weight:700}
 /* 1건당 점수 */
 .units{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:20px 0 26px}
 .u{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
-.u:first-child{background:var(--brand-50);border-color:var(--brand-100)}
+.u:first-child{background:var(--brand-50);border-color:var(--brand-border)}
 .u .v{font-size:30px;font-weight:700;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;line-height:1}
 .u .l{font-size:13px;color:var(--t3);line-height:1.5}
 
 
 /* 표 */
-table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 4px}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 4px}
 caption{text-align:left;font-size:13px;color:var(--t4);padding:0 0 8px}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--subtle);vertical-align:top}
-th{font-size:12px;color:var(--t4);font-weight:600;letter-spacing:.01em;border-bottom:1px solid var(--line)}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--subtle);vertical-align:top}
+th{font-size:11px;color:var(--t4);font-weight:600;letter-spacing:.03em;background:var(--surface);border-bottom:1px solid var(--line)}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
 tbody tr:last-child td{border-bottom:1px solid var(--line)}
 tr.total td{font-weight:700;background:var(--surface)}
-.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--radius-m);background:var(--bg)}
 td.grp{font-weight:700;white-space:nowrap}
 
 /* 목록 */
@@ -78,7 +78,7 @@ ul.tight li{margin:3px 0}
 
 /* 단계 */
 .stage{border:1px solid var(--line);border-radius:var(--radius-l);padding:22px 24px;margin-top:14px;background:var(--bg)}
-.stage.now{border-color:var(--brand-300);box-shadow:var(--shadow)}
+.stage.now{border-color:var(--brand-border);box-shadow:var(--shadow)}
 .stage .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:2px}
 .stage .num{font-size:12px;color:var(--t4);letter-spacing:.05em;font-variant-numeric:tabular-nums}
 .stage h3{margin:0;font-size:17px}
@@ -92,8 +92,8 @@ ul.tight li{margin:3px 0}
 
 /* 주의 박스 */
 .note{border-left:3px solid var(--line-strong);padding:2px 0 2px 16px;color:var(--t2);font-size:14px;margin:16px 0}
-.note.warn{border-left-color:#F59E0B}
-a{color:var(--brand-text);text-decoration:none;border-bottom:1px solid var(--brand-100)}
+.note.warn{border-left-color:var(--warn-border)}
+a{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
 a:hover{border-bottom-color:var(--brand-text)}
 footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);color:var(--t4);font-size:13px}
 footer p{margin:0 0 6px}
@@ -101,8 +101,8 @@ footer p{margin:0 0 6px}
 @media (max-width:860px){
   .four{grid-template-columns:repeat(2,minmax(0,1fr))}
   .units{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .wrap{padding:40px 18px 72px}
-  h1{font-size:27px}
+  .wrap{padding:36px 16px 64px}
+  h1{font-size:26px}
   .def .s{font-size:19px}
 }
 @media (max-width:520px){
