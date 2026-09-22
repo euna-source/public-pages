@@ -1,0 +1,1521 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+<meta name="robots" content="noindex, nofollow">
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light" />
+    <meta
+      name="description"
+      content="개발자가 규칙과 예외를 정확히 찾도록 돕는 반응형 웹문서 디자인 체계. 제작 전 아이디어와 세 가지 무드 비교."
+    />
+    <title>읽히고, 찾아지고, 구현되는 문서 — 디자인 시스템 제안</title>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        src: url("./PretendardVariable.woff2") format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      :root {
+        color-scheme: light;
+        --font-text:
+          Pretendard, -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+          "Noto Sans KR", sans-serif;
+        --font-mono: ui-monospace, "SF Mono", Consolas, monospace;
+        --bg-canvas: #f4f4f6;
+        --bg-surface: #fff;
+        --fg-primary: #181818;
+        --fg-secondary: #55555b;
+        --line-soft: #d9d9df;
+        --line-strong: #74747b;
+        --accent: #03670f;
+        --accent-soft: #e6fde8;
+        --sp-1: 4px;
+        --sp-2: 8px;
+        --sp-3: 12px;
+        --sp-4: 16px;
+        --sp-5: 24px;
+        --sp-6: 32px;
+        --sp-7: 48px;
+        --sp-8: 64px;
+        --r-1: 6px;
+        --r-2: 10px;
+        --r-3: 16px;
+        --dur-fast: 150ms;
+        --z-nav: 10;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-padding-top: 6rem;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--bg-canvas);
+        color: var(--fg-primary);
+        font-family: var(--font-text);
+        font-size: 18px;
+        line-height: 1.75;
+        letter-spacing: 0;
+        word-break: keep-all;
+        line-break: strict;
+        overflow-wrap: break-word;
+      }
+      img,
+      svg,
+      video {
+        max-width: 100%;
+        height: auto;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        font-size: 16px;
+      }
+      button {
+        cursor: pointer;
+      }
+      a {
+        color: var(--accent);
+        text-underline-offset: 0.2em;
+      }
+      a:hover {
+        text-decoration-thickness: 2px;
+      }
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible,
+      [tabindex]:focus-visible {
+        outline: 3px solid var(--accent);
+        outline-offset: 4px;
+      }
+      h1,
+      h2,
+      h3,
+      p,
+      ul,
+      ol,
+      dl {
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        line-height: 1.35;
+        font-weight: 700;
+        text-wrap: balance;
+      }
+      h1 {
+        font-size: clamp(36px, 4vw, 48px);
+      }
+      h2 {
+        font-size: 28px;
+      }
+      h3 {
+        font-size: 20px;
+      }
+      p + p {
+        margin-top: var(--sp-4);
+      }
+      p {
+        orphans: 2;
+        widows: 2;
+      }
+      p,
+      li {
+        max-width: 44em;
+      }
+      ul,
+      ol {
+        padding-left: 1.4em;
+      }
+      li + li {
+        margin-top: var(--sp-2);
+      }
+      section[id] {
+        scroll-margin-top: 6rem;
+      }
+      code {
+        font-family: var(--font-mono);
+        font-size: 0.875em;
+        overflow-wrap: anywhere;
+      }
+      small,
+      .meta {
+        font-size: 14px;
+        line-height: 1.5;
+        color: var(--fg-secondary);
+      }
+      .skip {
+        position: absolute;
+        top: -100px;
+        left: 16px;
+        z-index: 20;
+        background: var(--bg-surface);
+        padding: 12px;
+      }
+      .skip:focus {
+        top: 8px;
+      }
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: var(--z-nav);
+        background: var(--bg-canvas);
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .topinner {
+        max-width: 1280px;
+        margin: auto;
+        padding: var(--sp-3) var(--sp-5);
+        padding-top: max(var(--sp-3), env(safe-area-inset-top));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--sp-4);
+      }
+      .brand {
+        font-size: 16px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: var(--sp-3);
+        color: var(--fg-primary);
+        text-decoration: none;
+        min-height: 44px;
+      }
+      .brand i {
+        display: block;
+        width: 12px;
+        height: 12px;
+        background: #07ed21;
+        border: 1px solid var(--accent);
+        border-radius: 50%;
+      }
+      .toplinks {
+        display: flex;
+        gap: var(--sp-4);
+      }
+      .toplinks a {
+        font-size: 14px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        color: var(--fg-primary);
+      }
+      .layout {
+        max-width: 1280px;
+        margin: auto;
+        padding: 0 var(--sp-5);
+        display: grid;
+        grid-template-columns: 176px minmax(0, 1fr);
+        gap: var(--sp-7);
+      }
+      .sidenav {
+        position: sticky;
+        top: 110px;
+        align-self: start;
+        padding-top: var(--sp-7);
+        font-size: 14px;
+      }
+      .sidenav p {
+        font-family: var(--font-mono);
+        color: var(--fg-secondary);
+        margin-bottom: var(--sp-4);
+      }
+      .sidenav a {
+        display: block;
+        min-height: 44px;
+        padding: var(--sp-2) 0;
+        color: var(--fg-secondary);
+        text-decoration: none;
+      }
+      .sidenav a:hover {
+        color: var(--accent);
+      }
+      main {
+        min-width: 0;
+      }
+      .hero {
+        padding: var(--sp-8) 0 var(--sp-7);
+        border-bottom: 1px solid var(--line-strong);
+      }
+      .eyebrow {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: var(--accent);
+        margin-bottom: var(--sp-5);
+      }
+      .hero h1 {
+        max-width: 19em;
+      }
+      .lead {
+        font-size: 20px;
+        color: var(--fg-secondary);
+        margin-top: var(--sp-5);
+        max-width: 35em;
+      }
+      .hero .meta {
+        margin-top: var(--sp-5);
+      }
+      .section {
+        padding: var(--sp-7) 0;
+        border-bottom: 1px solid var(--line-soft);
+      }
+      .sectionhead {
+        display: grid;
+        grid-template-columns: 36px minmax(0, 1fr);
+        gap: var(--sp-4);
+        align-items: start;
+        margin-bottom: var(--sp-5);
+      }
+      .sectionnum {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        color: var(--accent);
+        padding-top: var(--sp-2);
+      }
+      .intro {
+        color: var(--fg-secondary);
+        margin-bottom: var(--sp-5);
+      }
+      .recommend {
+        border-left: 3px solid var(--accent);
+        padding: var(--sp-4) var(--sp-5);
+        background: var(--accent-soft);
+        margin: var(--sp-5) 0;
+      }
+      .recommend p {
+        max-width: 40em;
+      }
+      .scope {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0 var(--sp-6);
+      }
+      .scope div {
+        padding: var(--sp-5) 0;
+        border-top: 1px solid var(--line-soft);
+      }
+      .scope dt {
+        font-weight: 700;
+      }
+      .scope dd {
+        margin: var(--sp-2) 0 0;
+        font-size: 16px;
+        color: var(--fg-secondary);
+      }
+      .source {
+        font-size: 14px;
+        margin-top: var(--sp-4);
+      }
+      .moods {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: var(--sp-4);
+      }
+      .mood {
+        padding: var(--sp-5);
+        border: 1px solid var(--line-soft);
+        border-radius: var(--r-2);
+        background: var(--bg-surface);
+        min-width: 0;
+      }
+      .mood h3 {
+        margin: var(--sp-3) 0;
+      }
+      .mood p {
+        font-size: 16px;
+      }
+      .mood .tag {
+        font-family: var(--font-mono);
+        font-size: 14px;
+      }
+      .swatches {
+        display: flex;
+        height: 52px;
+        margin: var(--sp-5) 0 var(--sp-4);
+        border: 1px solid var(--line-soft);
+        border-radius: var(--r-1);
+        overflow: hidden;
+      }
+      .swatches span {
+        flex: 1;
+      }
+      .mood ul {
+        list-style: none;
+        padding: 0;
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .mood ul li {
+        margin-top: var(--sp-2);
+        display: flex;
+        justify-content: space-between;
+        gap: var(--sp-2);
+      }
+      .mood button,
+      .controls button {
+        min-height: 44px;
+        border: 1px solid var(--line-strong);
+        border-radius: var(--r-1);
+        padding: var(--sp-2) var(--sp-3);
+        background: var(--bg-surface);
+        color: var(--fg-primary);
+      }
+      .mood button {
+        width: 100%;
+        margin-top: var(--sp-5);
+      }
+      button:hover {
+        filter: brightness(0.96);
+      }
+      button[aria-pressed="true"] {
+        background: var(--fg-primary);
+        color: var(--bg-surface);
+        border-color: var(--fg-primary);
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-2);
+        align-items: center;
+        margin: var(--sp-5) 0;
+      }
+      .controls .meta {
+        margin-right: auto;
+      }
+      .demo-shell {
+        background: #e9e9ed;
+        border: 1px solid var(--line-soft);
+        padding: var(--sp-4);
+        border-radius: var(--r-3);
+      }
+      .specimen {
+        --paper: #fff;
+        --ink: #181818;
+        --muted: #666;
+        --signal: #03670f;
+        --tint: #e6fde8;
+        --edge: #c8c8c8;
+        background: var(--paper);
+        color: var(--ink);
+        border: 1px solid var(--edge);
+        border-radius: var(--r-2);
+        margin: auto;
+        width: 100%;
+        container-type: inline-size;
+      }
+      .specimen[data-mood="a"] {
+        --paper: #f8fafc;
+        --ink: #17212b;
+        --muted: #516173;
+        --signal: #2457c5;
+        --tint: #eaf0fd;
+        --edge: #bdc8d5;
+      }
+      .specimen[data-mood="b"] {
+        --paper: #faf8f2;
+        --ink: #282823;
+        --muted: #686653;
+        --signal: #486347;
+        --tint: #edf0e5;
+        --edge: #c7c5b7;
+      }
+      .specimen[data-size="mobile"] {
+        max-width: 390px;
+      }
+      .specimen a {
+        color: var(--signal);
+      }
+      .specimen :focus-visible {
+        outline-color: var(--signal);
+      }
+      .spec-content {
+        padding: var(--sp-6);
+      }
+      .specimen[data-mood="b"] .spec-content {
+        padding: var(--sp-7) var(--sp-6);
+      }
+      .spec-label {
+        font: 14px/1.5 var(--font-mono);
+        color: var(--muted);
+      }
+      .spec-title {
+        font-size: 30px;
+        margin: var(--sp-4) 0;
+      }
+      .spec-summary {
+        font-size: 18px;
+        line-height: 1.75;
+      }
+      .statusrow {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--sp-2);
+        margin: var(--sp-5) 0;
+      }
+      .status {
+        padding: var(--sp-1) var(--sp-2);
+        font-size: 14px;
+        line-height: 1.5;
+        border: 1px solid var(--muted);
+        border-radius: var(--r-1);
+        color: var(--ink);
+      }
+      .status.pending {
+        border-style: dashed;
+      }
+      .spec-facts {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-4);
+        padding: var(--sp-5) 0;
+        border-block: 1px solid var(--edge);
+        font-size: 16px;
+      }
+      .spec-facts dt {
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .spec-facts dd {
+        margin: var(--sp-1) 0 0;
+      }
+      .spec-section {
+        margin-top: var(--sp-6);
+      }
+      .spec-section h4 {
+        font-size: 20px;
+        font-weight: 600;
+        margin: 0 0 var(--sp-3);
+      }
+      .spec-section p,
+      .spec-section li {
+        font-size: 16px;
+        line-height: 1.65;
+      }
+      .spec-note {
+        margin-top: var(--sp-5);
+        padding: var(--sp-4);
+        border-left: 3px solid var(--signal);
+        background: var(--tint);
+      }
+      .spec-note strong {
+        display: block;
+        color: var(--signal);
+        font-size: 16px;
+      }
+      .spec-note p {
+        font-size: 16px;
+        margin-top: var(--sp-2);
+      }
+      .spec-bottom {
+        border-top: 1px solid var(--edge);
+        margin-top: var(--sp-5);
+        padding-top: var(--sp-4);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: var(--sp-3);
+      }
+      .spec-bottom a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 14px;
+      }
+      .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 16px;
+        line-height: 1.6;
+        text-align: left;
+        margin-top: var(--sp-4);
+        font-variant-numeric: tabular-nums;
+      }
+      .compare-table th,
+      .compare-table td {
+        padding: var(--sp-4) var(--sp-3);
+        border-bottom: 1px solid var(--line-soft);
+        vertical-align: top;
+        overflow-wrap: anywhere;
+      }
+      .compare-table th {
+        font-weight: 600;
+      }
+      .compare-table thead {
+        background: var(--bg-surface);
+      }
+      .specimen .compare-table th,
+      .specimen .compare-table td {
+        border-color: var(--edge);
+        padding: var(--sp-3) var(--sp-2);
+      }
+      .specimen .compare-table thead {
+        background: var(--tint);
+      }
+      .specimen .compare-table {
+        table-layout: fixed;
+      }
+      .specimen caption {
+        text-align: left;
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: var(--sp-2);
+      }
+      .steps {
+        list-style: none;
+        padding: 0;
+        counter-reset: steps;
+      }
+      .steps li {
+        position: relative;
+        padding: var(--sp-5) 0 var(--sp-5) var(--sp-7);
+        border-top: 1px solid var(--line-soft);
+        margin: 0;
+        max-width: none;
+        counter-increment: steps;
+      }
+      .steps li:before {
+        content: counter(steps, decimal-leading-zero);
+        position: absolute;
+        left: 0;
+        top: var(--sp-5);
+        font: 14px/1.75 var(--font-mono);
+        color: var(--accent);
+      }
+      .steps strong {
+        display: block;
+        margin-bottom: var(--sp-2);
+        font-size: 20px;
+      }
+      .steps p {
+        font-size: 16px;
+      }
+      .refs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-4) var(--sp-5);
+        list-style: none;
+        padding: 0;
+      }
+      .refs li {
+        margin: 0;
+        font-size: 16px;
+      }
+      .refs small {
+        display: block;
+        margin-top: var(--sp-1);
+      }
+      .refs a {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+      }
+      .footer {
+        padding: var(--sp-7) 0 var(--sp-8);
+        font-size: 14px;
+        color: var(--fg-secondary);
+      }
+      .backtop {
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        margin-top: var(--sp-4);
+      }
+      .js-only {
+        display: none;
+      }
+      .has-js .js-only {
+        display: flex;
+      }
+      .has-js button.js-only {
+        display: block;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+        border: 0;
+      }
+      @container (max-width:480px) {
+        .spec-content,
+        .specimen[data-mood="b"] .spec-content {
+          padding: var(--sp-5) var(--sp-4);
+        }
+        .spec-title {
+          font-size: 26px;
+        }
+        .spec-facts {
+          grid-template-columns: 1fr;
+        }
+        .specimen .compare-table {
+          font-size: 16px;
+        }
+        .specimen .compare-table th,
+        .specimen .compare-table td {
+          padding: var(--sp-3) var(--sp-1);
+        }
+      }
+      @media (max-width: 1100px) {
+        .moods {
+          grid-template-columns: 1fr;
+        }
+        .mood {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          column-gap: var(--sp-5);
+        }
+        .mood .swatches {
+          grid-column: 2;
+          grid-row: 1/4;
+          margin-top: 0;
+        }
+        .mood ul {
+          grid-column: 2;
+          grid-row: 3/6;
+        }
+        .mood p {
+          grid-column: 1;
+        }
+        .mood button {
+          grid-column: 1;
+          align-self: end;
+        }
+        .mood h3 {
+          grid-column: 1;
+        }
+      }
+      @media (max-width: 768px) {
+        .layout {
+          grid-template-columns: 1fr;
+          gap: 0;
+        }
+        .sidenav {
+          position: static;
+          padding: var(--sp-5) 0 var(--sp-3);
+          border-bottom: 1px solid var(--line-soft);
+        }
+        .sidenav p {
+          margin-bottom: var(--sp-2);
+        }
+        .sidenav nav {
+          display: flex;
+          flex-wrap: wrap;
+          column-gap: var(--sp-5);
+        }
+        .sidenav a {
+          padding: var(--sp-2) 0;
+        }
+        .hero {
+          padding: var(--sp-7) 0;
+        }
+        .scope {
+          grid-template-columns: 1fr;
+        }
+        .refs {
+          grid-template-columns: 1fr;
+        }
+        .toplinks a:first-child {
+          display: none;
+        }
+        .responsive-table td,
+        .responsive-table th {
+          padding: var(--sp-3) var(--sp-2);
+        }
+      }
+      @media (max-width: 480px) {
+        html {
+          scroll-padding-top: 5rem;
+        }
+        .layout,
+        .topinner {
+          padding-inline: var(--sp-4);
+        }
+        h1 {
+          font-size: 36px;
+        }
+        h2 {
+          font-size: 24px;
+        }
+        .hero {
+          padding-block: var(--sp-6);
+        }
+        .lead {
+          font-size: 18px;
+        }
+        .section {
+          padding-block: var(--sp-6);
+        }
+        .sectionhead {
+          grid-template-columns: 28px 1fr;
+          gap: var(--sp-2);
+        }
+        .mood {
+          display: block;
+          padding: var(--sp-4);
+        }
+        .mood .swatches {
+          margin-top: var(--sp-4);
+        }
+        .demo-shell {
+          padding: var(--sp-2);
+        }
+        .controls .meta {
+          width: 100%;
+        }
+        .toplinks {
+          gap: var(--sp-2);
+        }
+        .toplinks a {
+          font-size: 14px;
+        }
+        .responsive-table,
+        .responsive-table tbody,
+        .responsive-table tr,
+        .responsive-table th,
+        .responsive-table td {
+          display: block;
+        }
+        .responsive-table thead {
+          display: none;
+        }
+        .responsive-table tr {
+          padding: var(--sp-4) 0;
+          border-bottom: 1px solid var(--line-soft);
+        }
+        .responsive-table td,
+        .responsive-table th {
+          border: 0;
+          padding: var(--sp-1) 0;
+        }
+        .responsive-table td:before {
+          content: attr(data-label) " · ";
+          font-weight: 600;
+        }
+        .recommend {
+          padding: var(--sp-4);
+        }
+        .brand {
+          font-size: 14px;
+        }
+        .spec-content {
+          padding: var(--sp-5) var(--sp-4);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          scroll-behavior: auto !important;
+          transition: none !important;
+        }
+      }
+      @media print {
+        .topbar,
+        .sidenav,
+        .controls,
+        .mood button,
+        .skip,
+        .backtop {
+          display: none !important;
+        }
+        .layout {
+          display: block;
+          max-width: none;
+          padding: 0;
+        }
+        .hero {
+          padding-top: 0;
+        }
+        body {
+          background: #fff;
+          color: #181818;
+          font-size: 12pt;
+        }
+        .section {
+          break-inside: auto;
+        }
+        .mood,
+        .specimen {
+          break-inside: avoid;
+        }
+        .specimen[data-size="mobile"] {
+          max-width: none;
+        }
+        .demo-shell {
+          background: none;
+          border: 0;
+          padding: 0;
+        }
+        .moods {
+          display: block;
+        }
+        .mood {
+          display: block;
+          margin-bottom: 16px;
+        }
+        .refs {
+          display: block;
+        }
+        .footer {
+          padding-bottom: 0;
+        }
+        a {
+          color: inherit;
+        }
+        .section[id] {
+          scroll-margin: 0;
+        }
+        @page {
+          margin: 16mm;
+        }
+      }
+    </style>
+  </head>
+  <body id="top">
+    <a class="skip" href="#main">본문으로 바로 가기</a>
+    <header class="topbar">
+      <div class="topinner">
+        <a class="brand" href="#top"
+          ><i aria-hidden="true"></i>문서 디자인 체계</a
+        >
+        <nav class="toplinks" aria-label="빠른 이동">
+          <a href="#direction">추천 방향</a><a href="#preview">시안 비교 ↗</a>
+        </nav>
+      </div>
+    </header>
+    <div class="layout">
+      <aside class="sidenav">
+        <p>이 문서에서</p>
+        <nav aria-label="문서 목차">
+          <a href="#direction">01 추천 방향</a><a href="#scope">02 설계 범위</a
+          ><a href="#moodboard">03 무드보드</a
+          ><a href="#preview">04 동일 내용 시안</a
+          ><a href="#template">05 기본 양식</a
+          ><a href="#responsive">06 반응형·타입</a
+          ><a href="#delivery">07 제작·검증</a
+          ><a href="#references">08 조사 근거</a>
+        </nav>
+      </aside>
+      <main id="main">
+        <header class="hero">
+          <span class="eyebrow">반응형 웹문서 · 제작 전 제안</span>
+          <h1>읽히고, 찾아지고,<br />구현되는 문서.</h1>
+          <p class="lead">
+            색과 폰트를 맞추는 것에서 한 걸음 더.<br />기획의 흐름부터 개발자가
+            확인할 조건까지, 같은 기준으로 연결합니다.
+          </p>
+          <p class="meta">
+            2026.09.23 · 아이디어 비교안 · 기존 문서나 제품 정책을 변경하지 않은
+            제안입니다.
+          </p>
+        </header>
+        <section class="section" id="direction">
+          <div class="sectionhead">
+            <span class="sectionnum">01</span>
+            <h2>양식은 작게, 본문은 유연하게</h2>
+          </div>
+          <p>
+            모든 기획을 같은 긴 목차에 넣지 않습니다. 문서의 목적과 상태는
+            공통으로 표시하고, 흐름·규칙·화면 문구·예외·검수 기준은 필요한 만큼
+            조합합니다.
+          </p>
+          <div class="recommend">
+            <p>
+              <strong>추천: 차분한 구조 + 절제된 브랜드 그린.</strong><br />이미
+              쓰는 브랜드는 이어가고, 본문 가독성과 정보의 위치를 일관되게
+              만듭니다. ‘정책 승인’과 ‘개발 완료’는 서로 다른 상태로 표시합니다.
+            </p>
+          </div>
+          <p>
+            처음 읽는 사람에게는 목적과 흐름을, 다시 찾는 사람에게는 목차와 조항
+            링크를 제공합니다. 요약과 상세의 수치는 한 곳에서 관리합니다.
+          </p>
+          <p class="source">
+            근거:
+            <a
+              href="https://docs.github.com/en/contributing/style-guide-and-content-model/contents-of-a-github-docs-article"
+              >GitHub의 조건부 문서 구성</a
+            >
+            ·
+            <a href="https://diataxis.fr/how-to-use-diataxis/"
+              >Diátaxis의 유연한 적용</a
+            >
+          </p>
+        </section>
+        <section class="section" id="scope">
+          <div class="sectionhead">
+            <span class="sectionnum">02</span>
+            <h2>함께 설계할 여섯 영역</h2>
+          </div>
+          <p class="intro">
+            모바일 깨짐은 레이아웃 문제일 수 있지만, 반복 질문은
+            내용·상태·버전의 문제일 수도 있습니다.
+          </p>
+          <dl class="scope">
+            <div>
+              <dt>내용의 기준</dt>
+              <dd>사실·제안·확정의 구분. 구현할 동작, 조건, 예외, 용어.</dd>
+            </div>
+            <div>
+              <dt>구조와 탐색</dt>
+              <dd>
+                공통 머리말, 읽기 순서, 목차, 제목이 바뀌어도 유지되는 조항 ID.
+              </dd>
+            </div>
+            <div>
+              <dt>시각적 위계</dt>
+              <dd>역할별 글꼴·크기·색상. 읽는 폭과 비교하는 폭의 분리.</dd>
+            </div>
+            <div>
+              <dt>반응형과 조작</dt>
+              <dd>표의 비교축, 단계의 순서, 키보드·확대·터치에서의 접근.</dd>
+            </div>
+            <div>
+              <dt>개발 전달</dt>
+              <dd>
+                요구사항과 화면·문구·결정·수용 기준의 연결. 승인과 구현 상태
+                분리.
+              </dd>
+            </div>
+            <div>
+              <dt>운영과 검사</dt>
+              <dd>정본, 변경 이력, 공유 권한, 발행 전 반복 검사.</dd>
+            </div>
+          </dl>
+        </section>
+        <section class="section" id="moodboard">
+          <div class="sectionhead">
+            <span class="sectionnum">03</span>
+            <h2>세 방향의 무드보드</h2>
+          </div>
+          <p class="intro">
+            글로벌 사례의 원칙을 참고해 만든 새 팔레트입니다. 사이트 색상을
+            복제한 값이 아닙니다. 한 방향을 기본형으로 정하고, 문서마다 섞지
+            않는 것을 권합니다.
+          </p>
+          <div class="moods">
+            <article class="mood">
+              <span class="tag">A / PRECISION</span>
+              <h3>차분한 정밀함</h3>
+              <p>개발 명세와 QA를 위한 명확한 대비, 얇은 선, 단정한 밀도.</p>
+              <div class="swatches" aria-hidden="true">
+                <span style="background: #f8fafc"></span
+                ><span style="background: #17212b"></span
+                ><span style="background: #516173"></span
+                ><span style="background: #2457c5"></span>
+              </div>
+              <ul>
+                <li>바탕 <code>#F8FAFC</code></li>
+                <li>본문 <code>#17212B</code></li>
+                <li>보조문 <code>#516173</code></li>
+                <li>강조·링크 <code>#2457C5</code></li>
+              </ul>
+              <button
+                class="js-only mood-button"
+                type="button"
+                data-choice="a"
+                aria-pressed="false"
+              >
+                A 시안 보기
+              </button>
+            </article>
+            <article class="mood">
+              <span class="tag">B / EDITORIAL</span>
+              <h3>편안한 편집 문서</h3>
+              <p>
+                따뜻한 종이 바탕과 넉넉한 여백. 배경과 대안을 오래 읽는 문서.
+              </p>
+              <div class="swatches" aria-hidden="true">
+                <span style="background: #faf8f2"></span
+                ><span style="background: #282823"></span
+                ><span style="background: #686653"></span
+                ><span style="background: #486347"></span>
+              </div>
+              <ul>
+                <li>바탕 <code>#FAF8F2</code></li>
+                <li>본문 <code>#282823</code></li>
+                <li>보조문 <code>#686653</code></li>
+                <li>강조·링크 <code>#486347</code></li>
+              </ul>
+              <button
+                class="js-only mood-button"
+                type="button"
+                data-choice="b"
+                aria-pressed="false"
+              >
+                B 시안 보기
+              </button>
+            </article>
+            <article class="mood">
+              <span class="tag">C / BRAND · 추천</span>
+              <h3>절제된 브랜드 그린</h3>
+              <p>
+                기존 브랜드를 이어가되, 밝은 그린은 표식으로, 짙은 그린은
+                글자로.
+              </p>
+              <div class="swatches" aria-hidden="true">
+                <span style="background: #fff"></span
+                ><span style="background: #181818"></span
+                ><span style="background: #03670f"></span
+                ><span style="background: #e6fde8"></span
+                ><span style="background: #07ed21"></span>
+              </div>
+              <ul>
+                <li>바탕·본문 <code>#FFFFFF / #181818</code></li>
+                <li>보조문 <code>#666666</code></li>
+                <li>강조 글자 <code>#03670F</code></li>
+                <li>강조면·표식 <code>#E6FDE8 / #07ED21</code></li>
+              </ul>
+              <button
+                class="js-only mood-button"
+                type="button"
+                data-choice="c"
+                aria-pressed="true"
+              >
+                C 시안 보기
+              </button>
+            </article>
+          </div>
+          <p class="source">
+            본문·보조문·강조문 대 바탕의 계산 대비: A 15.57 / 6.07 / 6.19 · B
+            13.94 / 5.47 / 6.27 · C 17.76 / 5.74 / 7.12. 특정 단색 조합의
+            계산이며 페이지 전체 접근성 판정은 아닙니다.
+          </p>
+        </section>
+        <section class="section" id="preview">
+          <div class="sectionhead">
+            <span class="sectionnum">04</span>
+            <h2 id="preview-title" tabindex="-1">동일 내용으로 비교하는 세 무드</h2>
+          </div>
+          <p class="intro">
+            가상의 ‘내보내기 완료 안내’를 세 무드에 똑같이 담았습니다. 실제 제품
+            정책이 아닙니다. 색을 바꿔도 내용·상태·읽기 순서는 유지됩니다.
+          </p>
+          <div class="controls js-only">
+            <span class="meta" id="theme-label" aria-live="polite"
+              >C · 절제된 브랜드 그린</span
+            ><button type="button" id="wide-button" aria-pressed="true">
+              넓은 배치</button
+            ><button type="button" id="mobile-button" aria-pressed="false">
+              390px 배치
+            </button>
+          </div>
+          <p class="meta">
+            390px 배치는 이 예시의 폭만 바꾸는 시뮬레이션입니다. 실제
+            기기·브라우저 확대 검사를 대신하지 않습니다.
+          </p>
+          <div class="demo-shell">
+            <article
+              class="specimen"
+              data-mood="c"
+              data-size="wide"
+              id="example-req"
+            >
+              <div class="spec-content">
+                <span class="spec-label">REQ-012 · 가상 예시 · v0.1</span>
+                <h3 class="spec-title">내보내기 완료 안내</h3>
+                <p class="spec-summary">
+                  파일 생성이 끝나면 결과를 알리고, 다운로드할 수 있는 다음
+                  행동을 제공합니다.
+                </p>
+                <div class="statusrow">
+                  <span class="status">정책 · 검토 중</span
+                  ><span class="status pending">구현 · 미착수</span
+                  ><span class="status pending">검증 · 미실시</span>
+                </div>
+                <dl class="spec-facts">
+                  <div>
+                    <dt>적용 범위</dt>
+                    <dd>요청한 사용자의 완료 화면</dd>
+                  </div>
+                  <div>
+                    <dt>이번 범위에서 제외</dt>
+                    <dd>일괄 예약 내보내기</dd>
+                  </div>
+                  <div>
+                    <dt>변경 요약</dt>
+                    <dd>완료 안내에 다운로드 경로 추가</dd>
+                  </div>
+                  <div>
+                    <dt>책임자</dt>
+                    <dd>예시 문서 담당자</dd>
+                  </div>
+                </dl>
+                <div class="spec-section">
+                  <h4>조건에 따른 동작</h4>
+                  <table class="compare-table">
+                    <caption>
+                      조건과 결과를 같은 행에서 비교합니다.
+                    </caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">조건</th>
+                        <th scope="col">보여 줄 결과</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">생성 완료</th>
+                        <td>완료 안내 + 다운로드</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">생성 실패</th>
+                        <td>실패 이유 + 재시도</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">아직 처리 중</th>
+                        <td>진행 상태 유지</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div class="spec-note">
+                  <strong>예외도 규칙 가까이에</strong>
+                  <p>
+                    다운로드 링크가 만료되면 완료 안내 대신 새 파일 생성 경로를
+                    제공합니다.
+                  </p>
+                </div>
+                <div class="spec-section">
+                  <h4>완료를 확인하는 방법</h4>
+                  <ul>
+                    <li>생성 완료 전에 다운로드 버튼이 활성화되지 않습니다.</li>
+                    <li>실패했을 때 다시 시도할 경로가 남아 있습니다.</li>
+                    <li>
+                      긴 파일명과 200% 확대에서도 문구·버튼이 잘리지 않습니다.
+                    </li>
+                  </ul>
+                </div>
+                <div class="spec-section">
+                  <h4>남은 결정</h4>
+                  <p>
+                    링크의 유효 기간은 검토 중입니다. 기간이 정해지기 전에는
+                    만료 안내를 확정하지 않습니다.
+                  </p>
+                </div>
+                <div class="spec-bottom">
+                  <a href="#example-req">REQ-012 조항 링크</a
+                  ><a href="#delivery">검증 계획 보기</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+        <section class="section" id="template">
+          <div class="sectionhead">
+            <span class="sectionnum">05</span>
+            <h2>기본 양식의 읽기 순서</h2>
+          </div>
+          <p class="intro">
+            공통 머리말은 유지하고, 본문은 필요한 모듈만 씁니다. 짧은 변경
+            공지에 긴 배경·페르소나·여정 작성을 강요하지 않습니다.
+          </p>
+          <ol class="steps">
+            <li>
+              <strong>이번에 알아야 할 것</strong>
+              <p>
+                제목, 한 문장 목적, 범위·제외, 적용 버전, 문서 수정일, 책임자,
+                결정 상태. 개발 전달 시 구현·검증 상태 추가.
+              </p>
+            </li>
+            <li>
+              <strong>핵심 흐름 또는 규칙</strong>
+              <p>
+                언제, 누가, 무엇을 하면 어떤 결과가 생기는지. 일정이면 순서로,
+                수치면 비교표로 표현합니다.
+              </p>
+            </li>
+            <li>
+              <strong>구현할 상세와 예외</strong>
+              <p>
+                화면·문구·데이터는 해당 규칙 옆에. 필수 예외를 문서 끝이나 닫힌
+                영역에 숨기지 않습니다.
+              </p>
+            </li>
+            <li>
+              <strong>확인 가능한 완료 조건</strong>
+              <p>
+                정상·실패·경계 조건의 기대 결과. 요구사항 ID와 검수 항목을
+                연결합니다.
+              </p>
+            </li>
+            <li>
+              <strong>남은 결정과 변경 근거</strong>
+              <p>
+                질문, 현재 제안, 영향받는 요구사항, 결정 담당과 이력. 선택
+                항목은 생략해도 되지만 필수 정보의 미정은 표시합니다.
+              </p>
+            </li>
+          </ol>
+        </section>
+        <section class="section" id="responsive">
+          <div class="sectionhead">
+            <span class="sectionnum">06</span>
+            <h2>정보 관계를 보존하는 반응형</h2>
+          </div>
+          <p>
+            표를 모두 카드로 바꾸거나 글자를 일괄 축소하지 않습니다. 작은
+            화면에서도 비교 대상, 단계 순서, 조건과 예외의 연결이 남아야 합니다.
+          </p>
+          <table class="compare-table responsive-table">
+            <thead>
+              <tr>
+                <th scope="col">정보</th>
+                <th scope="col">큰 화면</th>
+                <th scope="col">작은 화면</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">일정·단계</th>
+                <td data-label="큰 화면">단계와 행동을 묶음</td>
+                <td data-label="작은 화면">관련 행동이 붙은 세로 순서축</td>
+              </tr>
+              <tr>
+                <th scope="row">숫자·조건 비교</th>
+                <td data-label="큰 화면">같은 열에서 비교</td>
+                <td data-label="작은 화면">
+                  비교축 유지. 필요하면 표만 가로 스크롤
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">긴 항목 대장</th>
+                <td data-label="큰 화면">비교 목록 + 항목 상세</td>
+                <td data-label="작은 화면">
+                  식별·상태 먼저, 라벨 있는 상세. 전체표 경로 유지
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">현재→변경</th>
+                <td data-label="큰 화면">같은 행에서 전후 비교</td>
+                <td data-label="작은 화면">
+                  한 항목 안에서 현재·변경 연속 표시
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="source">
+            근거:
+            <a href="https://designsystem.digital.gov/components/table/"
+              >USWDS 표 유형</a
+            >
+            ·
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+              >W3C Reflow</a
+            >
+          </p>
+          <h3 style="margin-top: var(--sp-6)">타입 스타일 출발안</h3>
+          <table class="compare-table responsive-table">
+            <thead>
+              <tr>
+                <th scope="col">역할</th>
+                <th scope="col">크기·굵기</th>
+                <th scope="col">행간·사용</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">문서 제목</th>
+                <td data-label="크기">36–40px / 700</td>
+                <td data-label="행간">1.25–1.35 · 모바일 30–36px</td>
+              </tr>
+              <tr>
+                <th scope="row">섹션·소제목</th>
+                <td data-label="크기">24px / 700 · 20px / 600</td>
+                <td data-label="행간">1.4–1.5 · 제목만으로 순서 파악</td>
+              </tr>
+              <tr>
+                <th scope="row">본문</th>
+                <td data-label="크기">18px / 400</td>
+                <td data-label="행간">1.75 · 모바일에서도 유지</td>
+              </tr>
+              <tr>
+                <th scope="row">표·UI</th>
+                <td data-label="크기">16px / 400·600</td>
+                <td data-label="행간">1.55–1.65 · 숫자 자릿수 정렬</td>
+              </tr>
+              <tr>
+                <th scope="row">메타·캡션</th>
+                <td data-label="크기">14px / 400·600</td>
+                <td data-label="행간">1.5 · 핵심 조건은 작은 글씨 금지</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="source">
+            기본 글꼴:
+            <a href="https://github.com/orioncactus/pretendard">Pretendard</a> ·
+            대안: Noto Sans KR. 세리프 제목은 편집형에서 별도 시험.
+            <a href="./FONT-LICENSE.txt">동봉 폰트 라이선스</a>
+          </p>
+          <p style="margin-top: var(--sp-5)">
+            본문·링크·선택·초점·경고·오류·미결정은 별도 색상 역할로 정의합니다.
+            의미는 색과 함께 라벨·선·문구로도 전달합니다. 브랜드 그린이 곧
+            ‘개발 완료’를 뜻하지는 않습니다.
+          </p>
+        </section>
+        <section class="section" id="delivery">
+          <div class="sectionhead">
+            <span class="sectionnum">07</span>
+            <h2>가이드를 지킬 수 있는 제작 방식까지</h2>
+          </div>
+          <p>
+            첫 버전은 공통 머리말 하나와 요약·규칙·예외·검수 네 모듈로
+            시작합니다. 내용과 공통 스타일을 분리하고, 반복 값은 한 곳에서
+            관리합니다. 모든 문서를 한 번에 재제작하지 않습니다.
+          </p>
+          <ol class="steps">
+            <li>
+              <strong>대표 구간 두 개에 적용</strong>
+              <p>
+                정책 설명과 복잡한 항목 대장에 먼저 적용합니다. 같은 내용으로
+                기존 문서와 새 양식을 비교합니다.
+              </p>
+            </li>
+            <li>
+              <strong>화면이 버티는지 검사</strong>
+              <p>
+                320·360·390·440·768·1440px, 확대, 키보드, 긴 URL, 폰트 실패,
+                JavaScript 없음, 인쇄. 가로 넘침·앵커 가림·내용 누락을
+                확인합니다.
+              </p>
+            </li>
+            <li>
+              <strong>개발자가 답을 찾는지 확인</strong>
+              <p>
+                이번 변경, 예외, 미결정, 완료 조건을 찾게 합니다. 찾는
+                시간·오답·추가 질문을 비교하고, 효과가 확인된 모듈부터 늘립니다.
+              </p>
+            </li>
+          </ol>
+          <div class="recommend">
+            <p>
+              <strong>현재는 제작 전 제안입니다.</strong><br />이 비교 시안의
+              작동 확인과 실제 개발자 사용성 검증은 다릅니다. 기존 문서의 재작업
+              감소나 이해도 개선은 아직 측정하지 않았습니다.
+            </p>
+          </div>
+          <p>
+            최신 정본과 개발 합의본의 링크를 구분합니다. 공개 문서는 비로그인
+            접근을 확인하고, 기밀 문서는 인증된 경로로 공유합니다. 정책 결정이
+            질문의 주원인이라면 시각 디자인보다 승인 절차를 먼저 개선합니다.
+          </p>
+        </section>
+        <section class="section" id="references">
+          <div class="sectionhead">
+            <span class="sectionnum">08</span>
+            <h2>조사에서 가져온 원칙</h2>
+          </div>
+          <p class="intro">
+            공식 원문 확인일 2026.09.23. 홈페이지의 인상과 업무 문서의 사용
+            규칙을 구분했습니다. 아래 사이트의 모바일 성능을 순위화한 조사는
+            아닙니다.
+          </p>
+          <ul class="refs">
+            <li>
+              <a href="https://linear.app/">Linear 홈페이지·업무 흐름 ↗</a
+              ><small>핵심 설명 가까이에 실제 제품 예시.</small>
+            </li>
+            <li>
+              <a href="https://docs.stripe.com/payments/checkout"
+                >Stripe Checkout 문서 ↗</a
+              ><small>선택지와 비교 기준을 연결.</small>
+            </li>
+            <li>
+              <a href="https://vercel.com/geist/typography"
+                >Vercel Geist 타이포 ↗</a
+              ><small>여러 줄 본문과 단일 행 라벨 구분.</small>
+            </li>
+            <li>
+              <a
+                href="https://carbondesignsystem.com/elements/typography/overview/"
+                >IBM Carbon 타이포 ↗</a
+              ><small>업무용과 표현용 스케일을 구분.</small>
+            </li>
+            <li>
+              <a href="https://www.notion.com/help">Notion Help ↗</a
+              ><small>주제 탐색과 검색을 함께 제공.</small>
+            </li>
+            <li>
+              <a
+                href="https://design-system.service.gov.uk/components/accordion/"
+                >GOV.UK 아코디언 ↗</a
+              ><small>모두 읽어야 할 내용은 숨기지 않기.</small>
+            </li>
+            <li>
+              <a href="https://www.writethedocs.org/guide/docs-as-code/"
+                >Write the Docs ↗</a
+              ><small>문서에도 버전·리뷰·검사 적용.</small>
+            </li>
+            <li>
+              <a
+                href="https://www.gov.uk/service-manual/user-research/using-moderated-usability-testing"
+                >과업 기반 사용성 검증 ↗</a
+              ><small>선호와 실제 수행 결과를 구분.</small>
+            </li>
+          </ul>
+        </section>
+        <footer class="footer">
+          <p>
+            디자인 체계의 제작 전 제안입니다. 예시는 가상이며 실제
+            서비스의 확정 정책이 아닙니다.
+          </p>
+          <a class="backtop" href="#top">처음으로 ↑</a>
+        </footer>
+      </main>
+    </div>
+    <script>
+      document.documentElement.classList.add("has-js");
+      const specimen = document.getElementById("example-req");
+      const label = document.getElementById("theme-label");
+      const names = {
+        a: "A · 차분한 정밀함",
+        b: "B · 편안한 편집 문서",
+        c: "C · 절제된 브랜드 그린",
+      };
+      document.querySelectorAll(".mood-button").forEach((button) =>
+        button.addEventListener("click", () => {
+          specimen.dataset.mood = button.dataset.choice;
+          document
+            .querySelectorAll(".mood-button")
+            .forEach((item) =>
+              item.setAttribute("aria-pressed", String(item === button)),
+            );
+          label.textContent = names[button.dataset.choice];
+          document.getElementById("preview-title").focus({ preventScroll: true });
+          document
+            .getElementById("preview")
+            .scrollIntoView({ behavior: "auto", block: "start" });
+        }),
+      );
+      function setSize(size) {
+        specimen.dataset.size = size;
+        document
+          .getElementById("wide-button")
+          .setAttribute("aria-pressed", String(size === "wide"));
+        document
+          .getElementById("mobile-button")
+          .setAttribute("aria-pressed", String(size === "mobile"));
+      }
+      document
+        .getElementById("wide-button")
+        .addEventListener("click", () => setSize("wide"));
+      document
+        .getElementById("mobile-button")
+        .addEventListener("click", () => setSize("mobile"));
+    </script>
+  </body>
+</html>
