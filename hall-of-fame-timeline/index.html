@@ -183,6 +183,12 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   .when2{padding-right:12px;font-size:12px}
   .states,.notes{grid-template-columns:1fr}
 }
+.tabs span{cursor:pointer;user-select:none}
+.sheet{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-m);background:var(--bg)}
+.sheet table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.sheet th,.sheet td{padding:9px 12px;border-bottom:1px solid var(--subtle);text-align:left;white-space:nowrap}
+.sheet th{color:var(--t4);font-weight:600;font-size:11px;letter-spacing:.03em;background:var(--surface)}
+.sheet tr:last-child td{border-bottom:none}
 </style>
 </head>
 <body>
@@ -191,7 +197,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     <p class="meta">크리에이터클럽 · 디스커버리 · 2026-09-22 · 기획 이은희</p>
     <h1>명예의 전당 운영 흐름과 부스팅 계획</h1>
     <p class="lede">개시 전부터 다음 회차 셋팅까지 한 흐름으로 그렸습니다. 국면마다 왼쪽은 회차가 굴러가는 운영 흐름, 오른쪽은 그 흐름이 첫 회차부터 원활하도록 우리가 손으로 하는 부스팅 계획입니다.</p>
-    <p class="meta">수요일과 저녁 8시, 최소 5명, D7 후보 10명은 가안입니다. 세 회차를 돌린 뒤 실측으로 다시 정합니다.<span class="tag brand">1회차 기준</span></p>
+    <p class="meta">수요일과 저녁 8시, 최소 5명, D7 후보 10명은 가안입니다. 세 회차를 돌린 뒤 실측으로 다시 정합니다.<span class="tag brand">1회차 기준</span> · <a href="#sheet" style="color:inherit">구글 시트 예시 보기 ↓</a></p>
     <div class="phases" aria-label="네 국면">
       <div class="ph"><div class="n">01</div><div class="t">개시 전</div><div class="d">9/22 ~ 10/6</div></div>
       <div class="ph live"><div class="n">02</div><div class="t">회차 중</div><div class="d">10/7 수 0시 ~ 10/20 화 자정</div></div>
@@ -405,6 +411,36 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     </div>
   </section>
 
+  <section class="anchor" id="sheet">
+    <h2>구글 시트에는 이렇게 쌓입니다 · 예시</h2>
+    <p class="sub">배치가 매시 정각 두 가지를 만듭니다 — "지금까지의 로그"와 "지금 이 순간의 전체 순위". 아래 탭으로 둘을 바꿔 봅니다. 값은 예시입니다.</p>
+    <div class="tabs" id="sheetTabs" role="tablist" aria-label="구글 시트 예시 탭">
+      <span class="on" role="tab" aria-selected="true" data-target="sheet-snapshot">시간별 스냅샷</span>
+      <span role="tab" aria-selected="false" data-target="sheet-candidates">후보 · 전체 순위표</span>
+    </div>
+    <div class="sheet" id="sheet-snapshot">
+      <table>
+        <thead><tr><th>회차</th><th>기간</th><th>배치 시각</th><th>부문</th><th>순위</th><th>활동명</th><th>작품</th><th>집계값</th></tr></thead>
+        <tbody>
+          <tr><td>1회차</td><td>10/7~10/20</td><td>10/9(금) 09:00</td><td>인기 포트폴리오</td><td>1</td><td>현이</td><td>밤의 정류장</td><td>리스펙트 27</td></tr>
+          <tr><td>1회차</td><td>10/7~10/20</td><td>10/9(금) 09:00</td><td>인기 크리에이터</td><td>1</td><td>문비트</td><td>—</td><td>팔로워 +21</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sheet" id="sheet-candidates" hidden>
+      <table>
+        <thead><tr><th>부문</th><th>활동명</th><th>집계값</th><th>현재 순위</th><th>자격 여부</th><th>제외 여부</th></tr></thead>
+        <tbody>
+          <tr><td>인기 포트폴리오</td><td>현이</td><td>리스펙트 27</td><td>1</td><td>예</td><td>아니오</td></tr>
+          <tr><td>인기 포트폴리오</td><td>문비트</td><td>리스펙트 21</td><td>2</td><td>예</td><td>아니오</td></tr>
+          <tr><td>인기 포트폴리오</td><td>서타입</td><td>리스펙트 18</td><td>3</td><td>예</td><td>아니오</td></tr>
+          <tr><td>인기 크리에이터</td><td>문비트</td><td>팔로워 +21</td><td>1</td><td>예</td><td>아니오</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="pc-cap">시간별 스냅샷은 매시 한 줄씩 계속 쌓이는 로그, 후보 표는 매시 덮어써서 "지금 순위"만 남는 표입니다. 순위 웹페이지가 실제로 읽는 건 후보 표 쪽입니다. 상세 컬럼 정의는 Jira <a href="https://cre8orclub.atlassian.net/browse/CCO-121" style="color:inherit">CCO-121</a>과 상세 개발 요건 v1.3 §4에 있습니다.</p>
+  </section>
+
   <section>
     <h2>가안과 가설</h2>
     <p class="sub">이 값들은 세 회차를 돌린 뒤 실측으로 다시 정합니다.</p>
@@ -430,6 +466,17 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   function mark(){var top=bar.offsetHeight+24, curD=null, curP=null; anchors.forEach(function(a){if(a.el.getBoundingClientRect().top-top<=0){ if(/^p\d$/.test(a.id)) curP=a.id; else curD=a.id; }}); days.forEach(function(d){var t=d.getAttribute('data-target'); var cur=/^p\d$/.test(t)?curP:curD; d.classList.toggle('now',cur!==null&&t===cur);});}
   var t; window.addEventListener('scroll',function(){cancelAnimationFrame(t);t=requestAnimationFrame(mark);},{passive:true}); mark();
   if(location.hash){var id=location.hash.slice(1); setTimeout(function(){scrollTo(id);},50);}
+})();
+(function(){
+  var tabs=document.getElementById('sheetTabs'); if(!tabs) return;
+  tabs.querySelectorAll('span').forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.querySelectorAll('span').forEach(function(t){t.classList.remove('on');t.setAttribute('aria-selected','false');});
+      tab.classList.add('on'); tab.setAttribute('aria-selected','true');
+      document.getElementById('sheet-snapshot').hidden = tab.dataset.target!=='sheet-snapshot';
+      document.getElementById('sheet-candidates').hidden = tab.dataset.target!=='sheet-candidates';
+    });
+  });
 })();
 </script>
 </body>
