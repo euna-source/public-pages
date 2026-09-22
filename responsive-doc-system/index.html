@@ -13,6 +13,7 @@
       content="개발자가 규칙과 예외를 정확히 찾도록 돕는 반응형 웹문서 디자인 체계. 제작 전 아이디어와 세 가지 무드 비교."
     />
     <title>읽히고, 찾아지고, 구현되는 문서 — 디자인 시스템 제안</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='6' y='3' width='20' height='26' rx='3' fill='%2303670f'/%3E%3Cpath d='M11 10h10M11 16h10M11 22h6' stroke='white' stroke-width='2'/%3E%3C/svg%3E">
     <style>
       @font-face {
         font-family: Pretendard;
@@ -140,7 +141,15 @@
         margin-top: var(--sp-2);
       }
       section[id] {
-        scroll-margin-top: 6rem;
+        scroll-margin-top: 0;
+      }
+      .table-scroll {
+        overflow-x: auto;
+        max-width: 100%;
+        overscroll-behavior-inline: contain;
+      }
+      .type-table {
+        min-width: 560px;
       }
       code {
         font-family: var(--font-mono);
@@ -792,7 +801,11 @@
           display: block;
         }
         .responsive-table thead {
-          display: none;
+          position: absolute;
+          width: 1px;
+          height: 1px;
+          overflow: hidden;
+          clip-path: inset(50%);
         }
         .responsive-table tr {
           padding: var(--sp-4) 0;
@@ -1271,38 +1284,38 @@
             표를 모두 카드로 바꾸거나 글자를 일괄 축소하지 않습니다. 작은
             화면에서도 비교 대상, 단계 순서, 조건과 예외의 연결이 남아야 합니다.
           </p>
-          <table class="compare-table responsive-table">
-            <thead>
-              <tr>
-                <th scope="col">정보</th>
-                <th scope="col">큰 화면</th>
-                <th scope="col">작은 화면</th>
+          <table class="compare-table responsive-table" role="table" aria-label="정보 유형별 반응형 동작">
+            <thead role="rowgroup">
+              <tr role="row">
+                <th role="columnheader" scope="col">정보</th>
+                <th role="columnheader" scope="col">큰 화면</th>
+                <th role="columnheader" scope="col">작은 화면</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <th scope="row">일정·단계</th>
-                <td data-label="큰 화면">단계와 행동을 묶음</td>
-                <td data-label="작은 화면">관련 행동이 붙은 세로 순서축</td>
+            <tbody role="rowgroup">
+              <tr role="row">
+                <th role="rowheader" scope="row">일정·단계</th>
+                <td role="cell" data-label="큰 화면">단계와 행동을 묶음</td>
+                <td role="cell" data-label="작은 화면">관련 행동이 붙은 세로 순서축</td>
               </tr>
-              <tr>
-                <th scope="row">숫자·조건 비교</th>
-                <td data-label="큰 화면">같은 열에서 비교</td>
-                <td data-label="작은 화면">
+              <tr role="row">
+                <th role="rowheader" scope="row">숫자·조건 비교</th>
+                <td role="cell" data-label="큰 화면">같은 열에서 비교</td>
+                <td role="cell" data-label="작은 화면">
                   비교축 유지. 필요하면 표만 가로 스크롤
                 </td>
               </tr>
-              <tr>
-                <th scope="row">긴 항목 대장</th>
-                <td data-label="큰 화면">비교 목록 + 항목 상세</td>
-                <td data-label="작은 화면">
+              <tr role="row">
+                <th role="rowheader" scope="row">긴 항목 대장</th>
+                <td role="cell" data-label="큰 화면">비교 목록 + 항목 상세</td>
+                <td role="cell" data-label="작은 화면">
                   식별·상태 먼저, 라벨 있는 상세. 전체표 경로 유지
                 </td>
               </tr>
-              <tr>
-                <th scope="row">현재→변경</th>
-                <td data-label="큰 화면">같은 행에서 전후 비교</td>
-                <td data-label="작은 화면">
+              <tr role="row">
+                <th role="rowheader" scope="row">현재→변경</th>
+                <td role="cell" data-label="큰 화면">같은 행에서 전후 비교</td>
+                <td role="cell" data-label="작은 화면">
                   한 항목 안에서 현재·변경 연속 표시
                 </td>
               </tr>
@@ -1319,7 +1332,9 @@
             >
           </p>
           <h3 style="margin-top: var(--sp-6)">타입 스타일 출발안</h3>
-          <table class="compare-table responsive-table">
+          <p class="meta" id="type-help">폭이 좁으면 표 안에서 가로로 스크롤하세요. 키보드로 표에 초점을 두고 좌우 화살표로 이동할 수 있습니다.</p>
+          <div class="table-scroll" role="region" aria-label="타입 스타일 비교표" aria-describedby="type-help" tabindex="0">
+          <table class="compare-table type-table">
             <thead>
               <tr>
                 <th scope="col">역할</th>
@@ -1355,6 +1370,7 @@
               </tr>
             </tbody>
           </table>
+          </div>
           <p class="source">
             기본 글꼴:
             <a href="https://github.com/orioncactus/pretendard">Pretendard</a> ·
@@ -1374,7 +1390,7 @@
           </div>
           <p>
             첫 버전은 공통 머리말 하나와 요약·규칙·예외·검수 네 모듈로
-            시작합니다. 내용과 공통 스타일을 분리하고, 반복 값은 한 곳에서
+            시작합니다. 다음 제작의 첫 산출물은 이 네 모듈을 담은 재사용 시작 파일과 검사 도구입니다. 내용과 공통 스타일을 분리하고, 반복 값은 한 곳에서
             관리합니다. 모든 문서를 한 번에 재제작하지 않습니다.
           </p>
           <ol class="steps">

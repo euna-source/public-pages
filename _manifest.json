@@ -139,8 +139,8 @@
     "slug": "responsive-doc-system",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/responsive-doc-system/",
-    "last_kind": "new",
-    "last_sha256": "acc742b2f4f66138cb65a7fed34abd53a62b76f954198540dd500a4afb317535",
-    "timestamp": "2026-09-22T17:22:08.965566Z"
+    "last_kind": "redeploy",
+    "last_sha256": "bcde9b2ac04e4c1e3538ca62f51000f6a5b30898e57e86ff65b13444e2b33760",
+    "timestamp": "2026-09-22T17:27:28.147856Z"
   }
 }
