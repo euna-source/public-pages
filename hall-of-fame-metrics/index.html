@@ -50,6 +50,16 @@ strong{font-weight:700}
 .q4 .d{font-size:13px;color:var(--t2);margin:0;line-height:1.6}
 .q4.accent{background:var(--brand-50);border-color:var(--brand-text)}
 
+/* 앵커 내비 */
+.pnav{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 0}
+.pnav a.pp{border-bottom:1px solid var(--line);font-weight:600}
+.pp{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius-s);padding:5px 10px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none;background:var(--bg)}
+.pnav a{border-bottom:none}
+.pp:hover{border-color:var(--t1);color:var(--t1)}
+.pnav a.pp:hover{border-bottom-color:var(--t1)}
+.pp:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+section{scroll-margin-top:16px}
+
 /* 1건당 점수 */
 .units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:24px 0}
 .u{border:1px solid var(--line);border-radius:var(--radius-m);padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
@@ -124,20 +134,30 @@ footer p{margin:0 0 6px}
   <p class="meta" style="margin-top:8px"><a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름 →</a> 회차 달력 · 참가자 화면 상태 · 발표 이후 표식</p>
 </header>
 
-<div class="def">
+
+  <nav class="pnav" aria-label="주요 항목으로 이동">
+    <a class="pp" href="#s-summary">핵심 요약</a>
+    <a class="pp" href="#s-items">집계 항목</a>
+    <a class="pp" href="#s-score">배점</a>
+    <a class="pp" href="#s-period">집계 기간</a>
+    <a class="pp" href="#s-forfeit">점수 차감</a>
+    <a class="pp" href="#s-stage">MAU 단계</a>
+    <a class="pp" href="#s-open">미정 항목</a>
+  </nav>
+
+<section id="s-summary">
+  <h2>핵심 요약</h2>
+  <p class="sub">아래 카드와 표가 전부다. 이후 장은 운영·개발용 상세다.</p>
+  <div class="def">
   <p class="q">베스트 크리에이터 선정 대상</p>
   <p class="s">가장 많은 사람에게 리스펙트를 보내고, 가장 자주 채팅방에서 대화하며, 가장 많은 사람이 따르게 된 크리에이터</p>
   <p class="n">다른 사람의 포트폴리오에 리스펙트를 보내고 채팅방에서 대화하며, 자기 포트폴리오와 소개 탭도 꾸준히 채워 팔로워가 늘어나는 사람</p>
 </div>
 
-<section>
-  <h2>핵심 요약</h2>
-  <p class="sub">아래 네 줄이 전부다. 이후 장은 운영·개발용 상세다.</p>
   <div class="tablewrap">
   <table>
     <thead><tr><th>항목</th><th>내용</th></tr></thead>
     <tbody>
-      <tr><td>뽑는 사람</td><td>가장 많은 사람에게 리스펙트를 보내고, 자주 채팅방에서 대화하며, 자기 작업·소개를 채워 팔로워가 늘어난 크리에이터</td></tr>
       <tr><td>배점</td><td>프로젝트 카드 50 · 포트폴리오 40 · 신규 지원자 20 · 신규 팀 멤버 20 · 채팅방 출석 10 · 소개 탭 항목 10 · 팔로워 10 · 리스펙트 5 · 영감 글 5 (상한 없음)</td></tr>
       <tr><td>시행</td><td>2회차(2026-10-21~11-03)부터 · 1회차는 기존 부문 유지</td></tr>
       <tr><td>남은 결정</td><td>부문 정의·배점 확정 2건. 부문 이름은 ‘베스트 크리에이터’ 가칭</td></tr>
@@ -146,7 +166,7 @@ footer p{margin:0 0 6px}
   </div>
 </section>
 
-<section>
+<section id="s-items">
   <h2>집계할 활동 세 가지</h2>
   <p class="sub">아래 세 가지에 해당하는 행동만 집계한다.</p>
   <div class="four">
@@ -168,7 +188,7 @@ footer p{margin:0 0 6px}
   </div>
 </section>
 
-<section>
+<section id="s-why">
   <h2>항목 선정 기준</h2>
   <p class="sub">집계 여부가 불분명할 때 적용하는 기준</p>
   <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
@@ -185,7 +205,7 @@ footer p{margin:0 0 6px}
   </ul>
 </section>
 
-<section>
+<section id="s-period">
   <h2>집계 기간 · 한 회차는 14일</h2>
   <p class="sub">한 회차는 수요일 시작 · 둘째 화요일 마감으로 14일이다. 점수는 그 14일 안에서만 쌓이고, 회차가 끝나면 0에서 다시 시작한다.</p>
   <div class="tablewrap">
@@ -205,7 +225,7 @@ footer p{margin:0 0 6px}
   <div class="note">부문 시행은 <b>2회차부터</b> · 2026-10-21(수) 00:00 ~ 2026-11-03(화) 23:59:59, 11/04(수) 20:00 발표. 1회차(10/07~10/20)는 기존 부문 기준을 그대로 유지한다. 회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</div>
 </section>
 
-<section>
+<section id="s-score">
   <h2>점수 · 1건당 점수만 있고 상한 없음</h2>
   <p class="sub">1건당 점수는 <b>5 · 10 · 20 · 40 · 50</b> 다섯 가지다. 상한이 없어 많이 할수록 계속 오른다. 세 구분 모두 부문 시행 회차(2회차)부터 함께 집계한다.</p>
 
@@ -255,7 +275,7 @@ footer p{margin:0 0 6px}
   <div class="note warn">대화 상대가 없으면 채팅방 항목이 무의미하므로, 회차 시작 전 서포터즈의 그룹채팅 2~3개 개설이 전제다. 9월 23일 개발 확인 때 현재 채팅방 수·최근 메시지 수를 확인한다.</div>
 </section>
 
-<section>
+<section id="s-guard">
   <h2>점수를 부풀리지 못하게 하는 기준</h2>
   <p class="sub">점수를 <b>올리는 단계</b>에서 막는 기준이다. 이미 올린 점수를 없애는 기준은 다음 장에 있다.</p>
   <ul>
@@ -267,7 +287,7 @@ footer p{margin:0 0 6px}
   </ul>
 </section>
 
-<section>
+<section id="s-forfeit">
   <h2>점수가 사라지는 조건</h2>
   <p class="sub">되돌린 행동은 점수로 남지 않는다. 시점에 따라 무효·회수·취소 세 단계로 나눈다.</p>
 
@@ -321,7 +341,7 @@ footer p{margin:0 0 6px}
   <div class="note">모든 단계에서 제외·취소 전에 본인에게 알리고 소명 기회를 준다. 이의는 운영 시트의 항목별 내역과 대조해 개별 회신한다(이용약관 제16조·제17조, 발표 뒤 14일)</div>
 </section>
 
-<section>
+<section id="s-stage">
   <h2>MAU별 점수·보상 전환</h2>
   <p class="sub">집계 항목 세 가지와 1건당 점수는 유지한다. 단계별로 해결할 문제가 달라 점수 비중·방어 장치·보상만 조정한다.</p>
 
@@ -368,7 +388,7 @@ footer p{margin:0 0 6px}
   <div class="note">전환은 MAU가 아닌 <b>회차 후보 수</b>로 판단하며, 후보 30명 미만은 단계 0, 30~150명은 단계 1, 150~500명은 단계 2, 500명 초과는 단계 3을 적용한다. MAU는 참가자 수와 달라 참고값으로만 표기한다.</div>
 </section>
 
-<section>
+<section id="s-screen">
   <h2>앱 화면 노출 범위</h2>
   <p class="sub">항목별 내역은 화면에 표시하지 않고 합산 점수만 노출한다.</p>
   <div class="tablewrap">
@@ -389,7 +409,7 @@ footer p{margin:0 0 6px}
   </ul>
 </section>
 
-<section>
+<section id="s-copy">
   <h2>참가자 안내 문구</h2>
   <p class="sub">규칙서·순위표에 넣을 문구</p>
   <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
@@ -397,7 +417,7 @@ footer p{margin:0 0 6px}
   </div>
 </section>
 
-<section>
+<section id="s-open">
   <h2>미정·미확인 항목</h2>
   <div class="tablewrap">
   <table>
