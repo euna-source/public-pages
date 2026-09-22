@@ -121,7 +121,7 @@ strong{font-weight:700}
 .pp.on{background:var(--brand-50);border-color:var(--brand-text);color:var(--brand-text)}
 .pnav a.pp:hover{border-bottom-color:var(--t1)}
 .pp:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
-section{scroll-margin-top:64px}
+section,h3[id]{scroll-margin-top:72px}
 
 /* 1건당 점수 */
 .units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:24px 0}
@@ -204,8 +204,8 @@ footer p{margin:0 0 6px}
   <nav class="pnav" aria-label="주요 항목으로 이동">
     <a class="pp" href="#s-summary">핵심 요약</a>
     <a class="pp" href="#s-items">집계 항목</a>
-    <a class="pp" href="#s-score">배점</a>
     <a class="pp" href="#s-period">집계 기간</a>
+    <a class="pp" href="#s-score">배점</a>
     <a class="pp" href="#s-forfeit">점수 차감</a>
     <a class="pp" href="#s-stage">MAU 단계</a>
     <a class="pp" href="#s-open">미정 항목</a>
@@ -514,10 +514,12 @@ footer p{margin:0 0 6px}
       history.replaceState(null,'',a.getAttribute('href'));
     });
   });
+  var order=links.map(function(a,i){return i;}).filter(function(i){return !!secs[i];})
+    .sort(function(x,y){return secs[x].getBoundingClientRect().top+window.pageYOffset-(secs[y].getBoundingClientRect().top+window.pageYOffset);});
   function mark(){
     var top=offset()+8, cur=-1;
-    secs.forEach(function(s,i){ if(s && s.getBoundingClientRect().top-top<=0) cur=i; });
-    if(cur<0) cur=0;
+    order.forEach(function(i){ if(secs[i].getBoundingClientRect().top-top<=0) cur=i; });
+    if(cur<0) cur=order[0];
     links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
     var on=links[cur];
     if(on){
