@@ -60,13 +60,16 @@ strong{font-weight:700}
 
 /* 표 */
 table{width:100%;border-collapse:collapse;font-size:13px;margin:6px 0 4px}
-caption{text-align:left;font-size:13px;color:var(--t4);padding:0 0 8px}
+caption{text-align:left;font-size:12px;color:var(--t4);padding:0 0 8px}
 th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--subtle);vertical-align:top}
 th{font-size:11px;color:var(--t4);font-weight:600;letter-spacing:.03em;background:var(--surface);border-bottom:1px solid var(--line)}
 td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
-tbody tr:last-child td{border-bottom:1px solid var(--line)}
+tbody tr:last-child td{border-bottom:1px solid var(--subtle)}
 tr.total td{font-weight:700;background:var(--surface)}
 .tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:var(--radius-m);background:var(--bg)}
+.tablewrap table{margin:0}
+.tablewrap caption{padding:10px 12px;border-bottom:1px solid var(--subtle);font-size:12px;color:var(--t4);background:var(--bg)}
+.tablewrap tbody tr:last-child td{border-bottom:none}
 td.grp{font-weight:700;white-space:nowrap}
 
 /* 목록 */
