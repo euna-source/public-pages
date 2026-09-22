@@ -112,6 +112,8 @@ strong{font-weight:700}
 .pnav{position:sticky;top:0;z-index:20;display:flex;gap:6px;margin:20px 0 0;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--subtle);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .pnav::-webkit-scrollbar{display:none}
 .pp{flex:none}
+.pp.hist-btn{font-family:inherit;cursor:pointer;margin-left:auto;color:var(--brand-text);border-color:var(--brand-border);background:var(--bg)}
+.pp.hist-btn:hover{background:var(--brand-50);border-color:var(--brand-text);color:var(--brand-text)}
 .pnav a.pp{border-bottom:1px solid var(--line);font-weight:600}
 .pp{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius-s);padding:5px 10px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none;background:var(--bg)}
 .pnav a{border-bottom:none}
@@ -194,7 +196,6 @@ footer p{margin:0 0 6px}
   <p class="lede">받은 관심 대신 본인이 한 행동으로 순위를 정한다.</p>
   <p class="meta">2026-09-22 · 기획 이은희 · CCO-121 · 초안 v3 (대표 결재 전)</p>
   <p class="meta" style="margin-top:8px"><a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름 →</a> 회차 달력 · 참가자 화면 상태 · 발표 이후 표식</p>
-  <p style="margin:12px 0 0"><button type="button" class="lbtn" data-drawer="d-hist">업데이트 히스토리</button></p>
 </header>
 
 
@@ -206,6 +207,7 @@ footer p{margin:0 0 6px}
     <a class="pp" href="#s-forfeit">점수 차감</a>
     <a class="pp" href="#s-stage">MAU 단계</a>
     <a class="pp" href="#s-open">미정 항목</a>
+    <button type="button" class="pp hist-btn" data-drawer="d-hist">업데이트 히스토리</button>
   </nav>
 
 <section id="s-summary">
@@ -232,8 +234,8 @@ footer p{margin:0 0 6px}
 </section>
 
 <section id="s-items">
-  <h2>집계할 활동 세 가지</h2>
-  <p class="sub">아래 세 가지에 해당하는 행동만 집계한다.</p>
+  <h2>무엇을 세나 · 세 가지</h2>
+  <p class="sub">아래 세 가지에 드는 행동만 집계. 판단이 갈릴 때 기준은 한 줄 — <b>다른 사람의 화면에 나타나는 행동만 집계</b>. 혼자 보고 지나가는 행동은 횟수와 관계없이 제외</p>
   <div class="four">
     <div class="q4 accent">
       <p class="k">① 소통</p>
@@ -251,49 +253,43 @@ footer p{margin:0 0 6px}
       <p class="d">회차 중 <b>늘어난 팔로워</b>, 내 프로젝트의 <b>신규 지원자</b>, 내 팀의 <b>신규 멤버</b></p>
     </div>
   </div>
-</section>
 
-<section id="s-why">
-  <h2>항목 선정 기준</h2>
-  <p class="sub">집계 여부가 불분명할 때 적용하는 기준</p>
-  <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
-    <p class="s" style="font-size:19px">다른 사람의 화면에 나타나는 행동만 집계</p>
-    <p class="n">다른 사람의 화면에 자주 나타나는 사람을 선정하므로, 혼자 보고 지나가는 행동은 횟수와 관계없이 집계에서 제외</p>
+  <h3 id="s-why">집계 제외 항목</h3>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>제외</th><th>이유</th></tr></thead>
+    <tbody>
+      <tr><td>노크 보내기</td><td>상금이 걸리면 모르는 사람에게 무작정 보내는 행동을 유도해 C8 노크의 “진짜 용건” 신뢰 훼손. 단, 수락돼 열린 채팅방의 대화는 상대가 응한 결과이므로 집계에 포함</td></tr>
+      <tr><td>친구 초대·외부 공유</td><td>가입자 활동 없이 가입 수만 늘리는 방식이 가장 유리한 구조. 기존 인맥 규모를 재는 초대 수는 상시 추천 이벤트로 분리</td></tr>
+      <tr><td>내가 받은 리스펙트·조회수, 조회·검색·북마크·앱 켜 둔 시간</td><td>본인 행동이 아니거나 다른 사람에게 흔적이 남지 않아 제외. 팔로워만 예외로 회차 중 늘어난 수를 연결에서 집계</td></tr>
+      <tr><td>미출시·웹 전용 기능</td><td>캐스팅 수락·협업 제안·일촌은 출시 후 포함</td></tr>
+    </tbody>
+  </table>
   </div>
-
-  <h3>집계 제외 항목</h3>
-  <ul class="no">
-    <li><b>노크 보내기</b> · 상금이 걸리면 모르는 사람에게 무작정 보내는 행동을 유도해 C8 노크의 “진짜 용건” 신뢰 훼손. 단, 수락돼 열린 채팅방의 대화는 상대가 응한 결과이므로 집계에 포함</li>
-    <li><b>친구 초대·외부 공유</b> · 가입자 활동 없이 가입 수만 늘리는 방식이 가장 유리한 구조. 기존 인맥 규모를 재는 초대 수는 상시 추천 이벤트로 분리</li>
-    <li><b>내가 받은 리스펙트·조회수, 조회·검색·북마크·앱 켜 둔 시간</b> · 본인 행동이 아니거나 다른 사람에게 흔적이 남지 않아 제외. 팔로워만 예외로 회차 중 늘어난 수를 연결에서 집계</li>
-    <li><b>미출시·웹 전용 기능</b> · 캐스팅 수락·협업 제안·일촌은 출시 후 포함</li>
-  </ul>
 </section>
 
 <section id="s-period">
-  <h2>집계 기간 · 한 회차는 14일</h2>
-  <p class="sub">한 회차는 수요일 시작 · 둘째 화요일 마감으로 14일이다. 점수는 그 14일 안에서만 쌓이고, 회차가 끝나면 0에서 다시 시작한다.</p>
+  <h2>어떻게 세나 · 기간과 배점</h2>
+  <p class="sub">한 회차는 14일. 점수는 그 안에서만 쌓이고, 1건당 점수는 <b>5 · 10 · 20 · 40 · 50</b> 다섯 가지이며 상한이 없다</p>
+
+  <h3>집계 기간</h3>
   <div class="tablewrap">
   <table>
     <thead><tr><th>구분</th><th>기준</th></tr></thead>
     <tbody>
-      <tr><td>한 회차 길이</td><td>14일(수요일 시작 → 둘째 화요일 마감)</td></tr>
-      <tr><td>집계 시작</td><td>회차 첫날 수요일 00:00</td></tr>
-      <tr><td>집계 마감</td><td>둘째 화요일 23:59:59</td></tr>
+      <tr><td>한 회차 길이</td><td>14일(수요일 00:00 시작 → 둘째 화요일 23:59:59 마감)</td></tr>
       <tr><td>집계 주기</td><td>매시 정각 24회 · 마감 직후 배치가 최종 순위 확정</td></tr>
       <tr><td>초기화</td><td>회차 종료와 동시에 전원 0점. 이전 회차 점수는 이월하지 않음</td></tr>
       <tr><td>공개 상태 판정</td><td>마감 시점 1회. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
-      <tr><td>팔로워 순증</td><td>회차 시작 시점 팔로워 수와 마감 시점 팔로워 수의 차이</td></tr>
+      <tr><td>팔로워 순증</td><td>회차 시작·마감 시점 팔로워 수의 차이(팔로우−언팔로우). 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 0.5명</td></tr>
+      <tr><td>동점 처리</td><td>리스펙트를 보낸 사람 수 → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</td></tr>
+      <tr><td>부문 시행</td><td>2회차부터 · 2026-10-21(수) 00:00 ~ 11-03(화) 23:59:59, 11/04(수) 20:00 발표. 1회차(10/07~10/20)는 기존 부문 기준 유지</td></tr>
     </tbody>
   </table>
   </div>
-  <div class="note">부문 시행은 <b>2회차부터</b> · 2026-10-21(수) 00:00 ~ 2026-11-03(화) 23:59:59, 11/04(수) 20:00 발표. 1회차(10/07~10/20)는 기존 부문 기준을 그대로 유지한다. 회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</div>
-</section>
+  <div class="note">회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</div>
 
-<section id="s-score">
-  <h2>점수 · 1건당 점수만 있고 상한 없음</h2>
-  <p class="sub">1건당 점수는 <b>5 · 10 · 20 · 40 · 50</b> 다섯 가지다. 상한이 없어 많이 할수록 계속 오른다. 세 구분 모두 부문 시행 회차(2회차)부터 함께 집계한다.</p>
-
+  <h3 id="s-score">1건당 배점</h3>
   <div class="units">
     <div class="u"><span class="v">50</span><span class="l">프로젝트 카드 등록</span></div>
     <div class="u"><span class="v">40</span><span class="l">포트폴리오 등록</span></div>
@@ -301,20 +297,17 @@ footer p{margin:0 0 6px}
     <div class="u"><span class="v">10</span><span class="l">채팅방 출석체크<br>소개 탭 항목 작성<br>늘어난 팔로워</span></div>
     <div class="u"><span class="v">5</span><span class="l">리스펙트를 보낸 사람<br>영감 글 등록</span></div>
   </div>
-
   <div class="tablewrap">
   <table>
-    <caption>한 회차(14일) 기준 · 상한 없음</caption>
-    <thead>
-      <tr><th>구분</th><th>집계 항목</th><th class="num">1건당</th></tr>
-    </thead>
+    <caption>한 회차(14일) 기준 · 상한 없음 · 세 구분 모두 시행 회차부터 함께 집계</caption>
+    <thead><tr><th>구분</th><th>집계 항목</th><th class="num">1건당</th></tr></thead>
     <tbody>
       <tr><td class="grp" rowspan="2">① 소통</td><td>리스펙트를 보낸 <b>서로 다른 사람</b> <span class="tag">하루 최대 8명</span></td><td class="num">5</td></tr>
-      <tr><td>채팅방에 메시지를 보낸 <b>출석체크 수</b> <span class="tag">하루 1회</span></td><td class="num">10</td></tr>
+      <tr><td>채팅방에 메시지를 보낸 <b>출석체크 수</b> <span class="tag">하루 1회</span> · 1:1 노크 수락 후 열린 채팅과 그룹채팅 모두 포함, 메시지 개수 무관</td><td class="num">10</td></tr>
       <tr><td class="grp" rowspan="4">② 창작</td><td>프로젝트 카드 등록</td><td class="num">50</td></tr>
       <tr><td>포트폴리오 등록</td><td class="num">40</td></tr>
       <tr><td>영감 글 등록</td><td class="num">5</td></tr>
-      <tr><td>소개 탭 항목 작성 <span class="tag">6항목 각 1회</span></td><td class="num">10</td></tr>
+      <tr><td>소개 탭 항목 작성 <span class="tag">6항목 각 1회</span> · 자기소개·학력·경력·수상/자격·기본정보·AI 추천사, 모두 채우면 60점</td><td class="num">10</td></tr>
       <tr><td class="grp" rowspan="3">③ 연결</td><td>회차 중 늘어난 <b>팔로워</b> <span class="tag">순증 기준</span></td><td class="num">10</td></tr>
       <tr><td>내 프로젝트 카드의 <b>신규 지원자 수</b></td><td class="num">20</td></tr>
       <tr><td>내 팀의 <b>신규 멤버 참여 수</b></td><td class="num">20</td></tr>
@@ -322,13 +315,8 @@ footer p{margin:0 0 6px}
   </table>
   </div>
 
-  <div class="note">팔로워 · 회차 시작 시점과 마감 시점의 팔로워 수 차이(팔로우−언팔로우). 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 0.5명으로 집계</div>
-  <div class="note">채팅방 출석체크 · 1:1 노크 수락 후 열린 채팅과 그룹채팅 모두 포함. 메시지 개수와 관계없이 하루 1회만 인정(=출석체크 1회, 10점). 노크 보내기 자체는 계속 제외</div>
-  <div class="note">소개 탭 6항목 · 자기소개 · 학력 · 경력 · 수상/자격 · 기본정보 · AI 추천사. 항목당 1회, 6개 모두 채우면 60점</div>
-  <div class="note">동점 처리 순서 · 리스펙트를 보낸 사람 수 → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</div>
-
   <h3>현재 규모 기준 1위 예상</h3>
-  <p>회원 약 300명, 30일 활성 포트폴리오 소유자 7~11명, 앱 안 리스펙트 하루 1.4건을 기준으로 예상했다.</p>
+  <p class="sub">회원 약 300명, 30일 활성 포트폴리오 소유자 7~11명, 앱 안 리스펙트 하루 1.4건 기준</p>
   <div class="sim">
     <div class="row"><span>20명에게 리스펙트 보내기 (5 × 20)</span><span>100점</span></div>
     <div class="row"><span>회차 중 늘어난 팔로워 3명 (10 × 3)</span><span>30점</span></div>
