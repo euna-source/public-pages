@@ -28,7 +28,7 @@ h1{font-size:34px;letter-spacing:-0.02em;line-height:1.2;margin:0 0 10px;font-we
 .meta{color:var(--t4);font-size:13px;margin:0;font-variant-numeric:tabular-nums}
 section{margin-top:56px}
 h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
-h3{font-size:15px;margin:28px 0 8px;font-weight:700}
+h3{font-size:14px;margin:24px 0 8px;font-weight:700}
 .sub{color:var(--t3);font-size:14px;margin:0 0 20px;max-width:760px}
 p{margin:0 0 12px}
 strong{font-weight:700}
@@ -37,25 +37,25 @@ strong{font-weight:700}
 .tag.warn{background:var(--warn-bg);color:var(--warn);border-color:var(--warn-border)}
 
 /* 정의 카드 */
-.def{border:1px solid var(--line);border-radius:var(--radius-l);padding:26px 28px;background:linear-gradient(180deg,var(--brand-50) 0%,var(--bg) 62%);box-shadow:var(--shadow);margin-top:32px}
-.def .q{font-size:12px;color:var(--brand-text);letter-spacing:.06em;margin:0 0 8px;font-weight:700}
-.def .s{font-size:22px;font-weight:700;letter-spacing:-0.015em;margin:0;line-height:1.35;text-wrap:balance}
-.def .n{color:var(--t3);font-size:14px;margin:12px 0 0}
+.def{border:1px solid var(--brand-text);border-radius:var(--radius-m);padding:16px 18px;background:var(--brand-50);margin-top:24px}
+.def .q{font-size:11px;color:var(--brand-text);letter-spacing:.04em;margin:0 0 6px;font-weight:600}
+.def .s{font-size:18px;font-weight:700;letter-spacing:-0.01em;margin:0;line-height:1.45;text-wrap:balance}
+.def .n{color:var(--t2);font-size:13px;margin:8px 0 0;line-height:1.6}
 
 /* 네 칸 */
-.four{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:22px}
-.q4{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 16px 18px;background:var(--bg)}
-.q4 .k{font-size:13px;color:var(--t4);margin:0 0 4px}
-.q4 .t{font-size:16px;font-weight:700;margin:0 0 8px;letter-spacing:-0.01em}
-.q4 .d{font-size:13px;color:var(--t3);margin:0;line-height:1.5}
-.q4.accent{background:var(--brand-50);border-color:var(--brand-100)}
+.four{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:24px}
+.q4{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 18px;background:var(--bg)}
+.q4 .k{font-size:11px;color:var(--t4);letter-spacing:.04em;margin:0 0 4px}
+.q4 .t{font-size:15px;font-weight:700;margin:0 0 6px;letter-spacing:-0.01em}
+.q4 .d{font-size:13px;color:var(--t2);margin:0;line-height:1.6}
+.q4.accent{background:var(--brand-50);border-color:var(--brand-text)}
 
 /* 1건당 점수 */
-.units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:20px 0 26px}
-.u{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px;background:var(--bg);display:flex;flex-direction:column;gap:8px}
-.u:first-child{background:var(--brand-50);border-color:var(--brand-border)}
-.u .v{font-size:30px;font-weight:700;letter-spacing:-0.03em;font-variant-numeric:tabular-nums;line-height:1}
-.u .l{font-size:13px;color:var(--t3);line-height:1.5}
+.units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:24px 0}
+.u{border:1px solid var(--line);border-radius:var(--radius-m);padding:12px 14px;background:var(--surface);display:flex;flex-direction:column;gap:6px}
+.u:first-child{background:var(--brand-50);border-color:var(--brand-text)}
+.u .v{font-size:24px;font-weight:700;letter-spacing:-0.02em;font-variant-numeric:tabular-nums;line-height:1}
+.u .l{font-size:12px;color:var(--t3);line-height:1.5}
 
 
 /* 표 */
@@ -70,32 +70,33 @@ tr.total td{font-weight:700;background:var(--surface)}
 td.grp{font-weight:700;white-space:nowrap}
 
 /* 목록 */
-ul{margin:8px 0 14px;padding-left:18px;color:var(--t2)}
+ul{margin:8px 0 14px;padding-left:18px;color:var(--t2);font-size:14px;line-height:1.6}
 li{margin:5px 0}
 ul.tight li{margin:3px 0}
 .no li{color:var(--t2)}
 .no li b{color:var(--t1)}
 
 /* 단계 */
-.stage{border:1px solid var(--line);border-radius:var(--radius-l);padding:22px 24px;margin-top:14px;background:var(--bg)}
-.stage.now{border-color:var(--brand-border);box-shadow:var(--shadow)}
-.stage .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:2px}
-.stage .num{font-size:12px;color:var(--t4);letter-spacing:.05em;font-variant-numeric:tabular-nums}
-.stage h3{margin:0;font-size:17px}
-.stage .why{color:var(--t3);font-size:13px;margin:6px 0 0}
+.stage{border-top:2px solid var(--t1);padding-top:18px;margin-top:40px}
+.stage.now{border-top-color:var(--brand-text)}
+.stage .head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.stage .num{font-size:12px;color:var(--t4);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.stage.now .num{color:var(--brand-text)}
+.stage h3{margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em}
+.stage .why{color:var(--t2);font-size:14px;margin:0 0 12px;max-width:760px}
 
 /* 시뮬 */
-.sim{border:1px solid var(--line);border-radius:var(--radius-m);background:var(--surface);padding:18px 20px;margin-top:18px}
-.sim .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:14px;border-bottom:1px dashed var(--line-strong)}
-.sim .row:last-child{border-bottom:0;font-weight:700;padding-top:10px}
+.sim{border-radius:var(--radius-m);background:var(--surface);padding:12px 14px;margin-top:16px}
+.sim .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:13px;color:var(--t2);border-bottom:1px solid var(--line)}
+.sim .row:last-child{border-bottom:0;font-weight:700;color:var(--t1);padding-top:8px}
 .sim .row span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
 
 /* 주의 박스 */
-.note{border-left:3px solid var(--line-strong);padding:2px 0 2px 16px;color:var(--t2);font-size:14px;margin:16px 0}
-.note.warn{border-left-color:var(--warn-border)}
+.note{background:var(--surface);border-radius:var(--radius-m);padding:12px 14px;color:var(--t2);font-size:13px;line-height:1.6;margin:12px 0}
+.note.warn{background:var(--warn-bg);color:var(--warn)}
 a{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
 a:hover{border-bottom-color:var(--brand-text)}
-footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);color:var(--t4);font-size:13px}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--subtle);color:var(--t4);font-size:12px}
 footer p{margin:0 0 6px}
 
 @media (max-width:860px){
