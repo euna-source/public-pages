@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명예의 전당 활동지표 설계</title>
+<meta name="description" content="크리에이터클럽 명예의 전당 활동 부문 — 무엇을 세서 1위를 뽑을지, 1,000점 배분과 MAU 단계별 전환을 한 장에 정리한 페이지">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF; --surface:#F5F5F5; --subtle:#EBEBEB; --line:#D9D9D9; --line-strong:#C8C8C8;
+  --t1:#181818; --t2:#444444; --t3:#666666; --t4:#888888;
+  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#C2FAC6; --brand-300:#4AEF57;
+  --warn:#B45309; --warn-bg:#FEF3C7; --danger:#DC2626; --danger-bg:#FEE2E2;
+  --radius-s:6px; --radius-m:10px; --radius-l:14px;
+  --shadow:0 1px 2px rgba(24,24,24,.06),0 8px 24px rgba(24,24,24,.06);
+  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;font-family:var(--font);color:var(--t1);background:var(--bg);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:56px 24px 96px}
+h1{font-size:34px;letter-spacing:-0.022em;line-height:1.2;margin:0 0 12px;font-weight:700;text-wrap:balance}
+.lede{color:var(--t2);font-size:16px;max-width:700px;margin:0 0 8px}
+.meta{color:var(--t4);font-size:13px;margin:0;font-variant-numeric:tabular-nums}
+section{margin-top:64px}
+h2{font-size:21px;letter-spacing:-0.012em;margin:0 0 6px;font-weight:700}
+h3{font-size:15px;margin:28px 0 8px;font-weight:700}
+.sub{color:var(--t3);font-size:14px;margin:0 0 22px;max-width:780px}
+p{margin:0 0 12px}
+strong{font-weight:700}
+.tag{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line);vertical-align:middle}
+.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:var(--brand-100)}
+.tag.warn{background:var(--warn-bg);color:var(--warn);border-color:#FDE68A}
+
+/* 정의 카드 */
+.def{border:1px solid var(--line);border-radius:var(--radius-l);padding:26px 28px;background:linear-gradient(180deg,var(--brand-50) 0%,var(--bg) 62%);box-shadow:var(--shadow);margin-top:32px}
+.def .q{font-size:12px;color:var(--brand-text);letter-spacing:.06em;margin:0 0 8px;font-weight:700}
+.def .s{font-size:22px;font-weight:700;letter-spacing:-0.015em;margin:0;line-height:1.35;text-wrap:balance}
+.def .n{color:var(--t3);font-size:14px;margin:12px 0 0}
+
+/* 네 칸 */
+.four{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}
+.q4{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 16px 18px;background:var(--bg)}
+.q4 .k{font-size:13px;color:var(--t4);margin:0 0 4px}
+.q4 .t{font-size:16px;font-weight:700;margin:0 0 8px;letter-spacing:-0.01em}
+.q4 .d{font-size:13px;color:var(--t3);margin:0;line-height:1.5}
+.q4.accent{background:var(--brand-50);border-color:var(--brand-100)}
+
+/* 배분 바 */
+.bar{display:flex;height:46px;border-radius:var(--radius-m);overflow:hidden;border:1px solid var(--line);margin:18px 0 10px}
+.bar span{display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-0.01em}
+.bar .b1{background:var(--brand);color:#181818}
+.bar .b2{background:var(--brand-300);color:#181818}
+.bar .b3{background:var(--brand-100);color:#0a5a12}
+.bar .b0{background:var(--subtle);color:var(--t4)}
+.barlegend{display:flex;gap:18px;flex-wrap:wrap;color:var(--t3);font-size:13px;margin:0 0 4px}
+.barlegend b{color:var(--t1);font-variant-numeric:tabular-nums}
+
+/* 표 */
+table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 4px}
+caption{text-align:left;font-size:13px;color:var(--t4);padding:0 0 8px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--subtle);vertical-align:top}
+th{font-size:12px;color:var(--t4);font-weight:600;letter-spacing:.01em;border-bottom:1px solid var(--line)}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tbody tr:last-child td{border-bottom:1px solid var(--line)}
+tr.total td{font-weight:700;background:var(--surface)}
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+td.grp{font-weight:700;white-space:nowrap}
+
+/* 목록 */
+ul{margin:8px 0 14px;padding-left:18px;color:var(--t2)}
+li{margin:5px 0}
+ul.tight li{margin:3px 0}
+.no li{color:var(--t2)}
+.no li b{color:var(--t1)}
+
+/* 단계 */
+.stage{border:1px solid var(--line);border-radius:var(--radius-l);padding:22px 24px;margin-top:14px;background:var(--bg)}
+.stage.now{border-color:var(--brand-300);box-shadow:var(--shadow)}
+.stage .head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:2px}
+.stage .num{font-size:12px;color:var(--t4);letter-spacing:.05em;font-variant-numeric:tabular-nums}
+.stage h3{margin:0;font-size:17px}
+.stage .why{color:var(--t3);font-size:13px;margin:6px 0 0}
+
+/* 시뮬 */
+.sim{border:1px solid var(--line);border-radius:var(--radius-m);background:var(--surface);padding:18px 20px;margin-top:18px}
+.sim .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;font-size:14px;border-bottom:1px dashed var(--line-strong)}
+.sim .row:last-child{border-bottom:0;font-weight:700;padding-top:10px}
+.sim .row span:last-child{font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* 주의 박스 */
+.note{border-left:3px solid var(--line-strong);padding:2px 0 2px 16px;color:var(--t2);font-size:14px;margin:16px 0}
+.note.warn{border-left-color:#F59E0B}
+footer{margin-top:72px;padding-top:20px;border-top:1px solid var(--line);color:var(--t4);font-size:13px}
+footer p{margin:0 0 6px}
+
+@media (max-width:860px){
+  .four{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .wrap{padding:40px 18px 72px}
+  h1{font-size:27px}
+  .def .s{font-size:19px}
+  .bar span{font-size:11px}
+}
+@media (max-width:520px){
+  .four{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>명예의 전당 활동 부문 — 무엇을 세서 1위를 뽑는가</h1>
+  <p class="lede">받은 관심이 아니라 본인이 한 행동을 잽니다. 항목·점수·단계별 전환을 한 장에 정리했습니다.</p>
+  <p class="meta">2026-09-22 · 기획 이은희 · CCO-121 · 초안 v3 (대표 결재 전)</p>
+</header>
+
+<div class="def">
+  <p class="q">이 부문이 뽑는 사람</p>
+  <p class="s">가장 많은 사람에게 리스펙트·댓글을 보내고, 가장 자주 라운지에서 이야기한 크리에이터</p>
+  <p class="n">남의 포트폴리오에 리스펙트를 보내고, 댓글을 남기고, 라운지에서 이야기하고, 자기 포트폴리오와 프로필도 꾸준히 채우는 사람.</p>
+</div>
+
+<section>
+  <h2>보는 것은 네 가지</h2>
+  <p class="sub">항목을 전부 세지 않습니다. 이 네 칸에 들어가지 않는 행동은 세지 않습니다.</p>
+  <div class="four">
+    <div class="q4 accent">
+      <p class="k">① 소통</p>
+      <p class="t">얼마나 많은 사람과</p>
+      <p class="d">리스펙트를 보낸 <b>사람 수</b>, 댓글을 남긴 <b>사람 수</b>, 라운지에 글을 쓴 <b>날 수</b></p>
+    </div>
+    <div class="q4">
+      <p class="k">② 창작</p>
+      <p class="t">무엇을 올렸나</p>
+      <p class="d">포트폴리오·프로젝트 카드·영감 글 등록, 프로필 커버 완성. 마감 때 <b>전체 공개로 남은 것만</b></p>
+    </div>
+    <div class="q4">
+      <p class="k">③ 결속</p>
+      <p class="t">사람을 모았나</p>
+      <p class="d">내 프로젝트 카드에 지원서가 오거나, 내 팀 초대를 수락한 멤버가 생기면 가산</p>
+    </div>
+    <div class="q4">
+      <p class="k">④ 지속</p>
+      <p class="t">며칠 왔나</p>
+      <p class="d">위 행동을 하나라도 한 날 수. 점수가 아니라 <b>동점일 때 첫 기준</b></p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>항목을 고른 기준 하나</h2>
+  <p class="sub">넣고 뺄지 헷갈릴 때 이 한 줄로 판단합니다.</p>
+  <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
+    <p class="s" style="font-size:19px">남의 화면에 나타나는 행동만 센다.</p>
+    <p class="n">인싸는 정의상 남의 화면에 자주 나타나는 사람입니다. 혼자 보고 지나가는 행동은 아무리 많아도 활동이 아닙니다.</p>
+  </div>
+
+  <h3>그래서 세지 않는 것</h3>
+  <ul class="no">
+    <li><b>노크</b> — 사적인 1:1이라 남의 화면이 아니라 개인함에만 뜹니다. 상금이 걸리면 모르는 사람에게 뿌리는 게 전략이 되고, C8에서 노크가 가진 "진짜 용건"이라는 신뢰가 깨집니다.</li>
+    <li><b>친구 초대·외부 공유</b> — 가입만 시키고 아무도 활동하지 않는 쪽이 최적이 됩니다. 초대 수는 활동량이 아니라 그 사람이 이미 가진 인맥 크기를 재는 값입니다. 상시 추천 이벤트로 분리합니다.</li>
+    <li><b>내가 받은 리스펙트·팔로워·조회수</b> — 내가 한 행동이 아니라 작품 부문이 담당합니다.</li>
+    <li><b>조회·검색·북마크·앱 켜 둔 시간</b> — 남에게 아무 흔적이 남지 않습니다.</li>
+    <li><b>미출시·웹 전용 기능</b> — 캐스팅 수락(예약), 협업 제안(웹 전용), 일촌(레거시)은 출시 뒤 편입합니다.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>점수 — 1,000점 만점</h2>
+  <p class="sub">단가는 <b>10 · 20 · 40 · 100</b> 네 가지뿐입니다. 표를 안 보고도 외울 수 있게 했습니다. 1회차 기준이며, 결속은 성사 건수가 0에 가까워 2회차부터 켭니다.</p>
+
+  <div class="barlegend">
+    <span>① 소통 <b>600</b></span>
+    <span>② 창작 <b>400</b></span>
+    <span>③ 결속 <b>0</b> <span class="tag">2회차부터</span></span>
+  </div>
+  <div class="bar" role="img" aria-label="1000점 배분 — 소통 600점, 창작 400점">
+    <span class="b1" style="flex:600">소통 600</span>
+    <span class="b2" style="flex:400">창작 400</span>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <caption>회차 14일 기준. 상한은 회차 전체 기준입니다.</caption>
+    <thead>
+      <tr><th>칸</th><th>세는 것</th><th class="num">1건당</th><th class="num">상한</th><th class="num">칸 만점</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="grp" rowspan="3">① 소통</td><td>리스펙트를 보낸 <b>서로 다른 사람</b></td><td class="num">20</td><td class="num">20명</td><td class="num">400</td></tr>
+      <tr><td>포트폴리오·영감 글에 댓글을 남긴 <b>서로 다른 사람</b></td><td class="num">20</td><td class="num">5명</td><td class="num">100</td></tr>
+      <tr><td>라운지에 글을 쓴 날</td><td class="num">10</td><td class="num">10일</td><td class="num">100</td></tr>
+      <tr><td class="grp" rowspan="4">② 창작</td><td>포트폴리오 등록</td><td class="num">100</td><td class="num">2건</td><td class="num">200</td></tr>
+      <tr><td>프로젝트 카드 등록</td><td class="num">100</td><td class="num">1건</td><td class="num">100</td></tr>
+      <tr><td>영감 글 등록</td><td class="num">20</td><td class="num">3건</td><td class="num">60</td></tr>
+      <tr><td>프로필 커버 완성(사진·한 줄 소개·직업)</td><td class="num">40</td><td class="num">1회</td><td class="num">40</td></tr>
+      <tr><td class="grp">③ 결속</td><td>내 프로젝트 카드에 지원서 1건↑ / 내 팀 초대 수락 1명↑ <span class="tag">1회차 제외</span></td><td class="num">100</td><td class="num">각 1회</td><td class="num">0</td></tr>
+      <tr><td class="grp">④ 지속</td><td>위 행동을 하나라도 한 날 — 동점 판정 첫 기준</td><td class="num">—</td><td class="num">—</td><td class="num">—</td></tr>
+      <tr class="total"><td colspan="4">합계</td><td class="num">1,000</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h3>2주 안에 만점은 안 나옵니다</h3>
+  <p>만점은 천장이지 목표가 아닙니다. 지금 규모(회원 약 300명, 30일 활성 포폴 소유자 7~11명, 앱 안 리스펙트 하루 1.4건)에서 예상되는 1위는 이 정도입니다.</p>
+  <div class="sim">
+    <div class="row"><span>12명에게 리스펙트 (20 × 12)</span><span>240점</span></div>
+    <div class="row"><span>3명의 작업에 댓글 (20 × 3)</span><span>60점</span></div>
+    <div class="row"><span>라운지에 글 쓴 날 6일 (10 × 6)</span><span>60점</span></div>
+    <div class="row"><span>포트폴리오 1건 등록</span><span>100점</span></div>
+    <div class="row"><span>프로필 커버 완성</span><span>40점</span></div>
+    <div class="row"><span>예상 1위</span><span>500점 · 달성률 50%</span></div>
+  </div>
+  <div class="note warn">전제 하나가 위태롭습니다 — 라운지에 살아 있는 대화가 없으면 소통의 100점(글을 쓴 날)이 통째로 죽습니다. 회차 시작 전에 서포터즈가 라운지 2~3개를 열어 두는 것이 전제 조건이고, 9월 23일 개발 확인 때 현재 라운지 수·최근 메시지 수를 함께 봅니다.</div>
+</section>
+
+<section>
+  <h2>어뷰징을 막는 다섯 줄</h2>
+  <p class="sub">조사한 제도 23곳이 공통으로 갖춘 구조입니다 — 점수표, 상한, 질 하한, 삭제 차감, 기간 리셋.</p>
+  <ul>
+    <li><b>같은 사람에게 반복한 리스펙트·댓글은 한 번.</b> 한 사람에게 하루 8개를 몰아줘도 1명, 여덟 명에게 하나씩 보내면 8명입니다. 몰빵이 이득이 되지 않게 하는 장치가 이것 하나입니다.</li>
+    <li><b>라운지는 글 개수를 세지 않습니다.</b> 글을 쓴 날 수만 봅니다 — 개수를 세면 5분에 100줄을 채울 수 있습니다.</li>
+    <li><b>마감 시점에 전체 공개로 살아 있는 것만.</b> 올렸다 지운 것, 나만 보기·일촌 공개로 내린 것, 임시저장은 0점입니다.</li>
+    <li><b>질 하한.</b> 댓글은 10자 이상, 프로젝트 카드는 모집 역할·설명이 채워진 것만. 비슷한 내용을 반복한 댓글은 상위 후보 검토에서 제외합니다.</li>
+    <li><b>발표 뒤 삭제·비공개 전환이 확인되면 선정 취소.</b> 회차마다 0에서 시작하고, 운영진·서포터즈는 순위에 오르지 않습니다.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>MAU가 자라면 무엇이 바뀌나</h2>
+  <p class="sub">만점 1,000과 네 칸 뼈대는 그대로 두고, 비중·상한·보상만 바꿉니다. 단계마다 병목이 다르기 때문입니다.</p>
+
+  <div class="stage now">
+    <div class="head"><span class="num">단계 0</span><h3>MAU ~1천 · 지금, 10/7 1회차</h3><span class="tag brand">현재</span></div>
+    <p class="why">병목은 “주는 사람이 3명”이라는 것. 소통에 전부 겁니다.</p>
+    <div class="bar" role="img" aria-label="단계 0 배분 — 소통 600, 창작 400">
+      <span class="b1" style="flex:600">소통 600</span>
+      <span class="b2" style="flex:400">창작 400</span>
+    </div>
+    <ul class="tight">
+      <li>상한 — 리스펙트 20명 · 댓글 5명 · 라운지 10일. 결속은 끕니다(한 명이 얻으면 순위를 독식).</li>
+      <li>보상 — 1위 1명 상금. 순위표는 후보 5명 미만이면 “N명 활동 중 · 집계 중”.</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <div class="head"><span class="num">단계 1</span><h3>MAU 5천</h3></div>
+    <p class="why">병목은 “한 번 온 사람이 다시 오지 않는 것”. 결속을 켜고 상한을 올립니다.</p>
+    <div class="bar" role="img" aria-label="단계 1 배분 — 소통 500, 창작 400, 결속 100">
+      <span class="b1" style="flex:500">소통 500</span>
+      <span class="b2" style="flex:400">창작 400</span>
+      <span class="b3" style="flex:100">결속 100</span>
+    </div>
+    <ul class="tight">
+      <li>상한 — 리스펙트 30명(1건당 10으로 내림) · 댓글 10명 · 하루 5명까지.</li>
+      <li>보상 — 상위 10명 분할(1위 + 2~10위 소액).</li>
+      <li>검토 — “내가 데려온 사람이 첫 활동을 했을 때” 가산을 여기서 다시 봅니다.</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <div class="head"><span class="num">단계 2</span><h3>MAU 1만~3만</h3></div>
+    <p class="why">병목은 도배와 상호 링. 무게를 “완결된 협업”으로 옮깁니다.</p>
+    <div class="bar" role="img" aria-label="단계 2 배분 — 소통 400, 창작 400, 결속 200">
+      <span class="b1" style="flex:400">소통 400</span>
+      <span class="b2" style="flex:400">창작 400</span>
+      <span class="b3" style="flex:200">결속 200</span>
+    </div>
+    <ul class="tight">
+      <li>상한 — 리스펙트 40명 · 댓글 20명 · 하루 상한 유지 · 유사 반복 댓글 자동 제외.</li>
+      <li>결속 — 지원서 접수 100 · 팀 결성 50 · 프로젝트 완료 50(신설).</li>
+      <li>구조 — 누적 배지 등급제 도입, 부문 분리(리스펙트·댓글을 보내는 사람 / 작업을 올리는 사람).</li>
+    </ul>
+  </div>
+
+  <div class="stage">
+    <div class="head"><span class="num">단계 3</span><h3>MAU 5만+</h3></div>
+    <p class="why">활동 점수 랭킹에 상금을 거는 방식 자체를 접습니다.</p>
+    <div class="bar" role="img" aria-label="단계 3 — 점수 랭킹 상금 폐지">
+      <span class="b0" style="flex:1">점수 랭킹 상금 폐지 · 상시 리그 · 배지 · 노출 혜택</span>
+    </div>
+    <ul class="tight">
+      <li>근거 — 조사한 해외 프로그램이 예외 없이 이 규모에서 폐지·전환했습니다(Shorts Fund → 수익 배분, Reels Play 중단, Spotlight 종료, Pinterest Rewards 종료, Medium 박수 → 읽기 시간).</li>
+      <li>상금은 작품 부문에만 남기고, 활동은 등급 승강과 노출 혜택으로 보상합니다.</li>
+    </ul>
+  </div>
+
+  <div class="note">전환 판정은 MAU가 아니라 <b>회차 후보 수</b>로 합니다 — MAU는 참가자 수와 다릅니다. 후보 30명 미만이면 단계 0, 30~150명 단계 1, 150~500명 단계 2, 500명 초과면 단계 3. MAU는 참고값으로만 적습니다.</div>
+</section>
+
+<section>
+  <h2>참가자에게 보이는 문장</h2>
+  <p class="sub">규칙서·순위표에 그대로 들어갈 문구입니다.</p>
+  <div class="def" style="background:var(--surface);border-color:var(--line);margin-top:8px">
+    <p class="s" style="font-size:18px;line-height:1.5">“리스펙트를 보내고, 댓글을 남기고, 라운지에서 이야기하고, 포트폴리오를 올리면 점수가 쌓여요.<br>같은 사람에게 여러 번은 한 번으로 세요. 동점이면 더 여러 날 활동한 분이 앞서요.”</p>
+  </div>
+</section>
+
+<section>
+  <h2>아직 정하지 못한 것</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>항목</th><th>상태</th></tr></thead>
+    <tbody>
+      <tr><td>부문 이름</td><td>후보 — 부지런한 크리에이터 · 클럽 메이커 · 분위기 메이커 (미정)</td></tr>
+      <tr><td>점수·상한 숫자</td><td>조사한 제도의 비율을 옮긴 추론값. 1회차 분포로 조정</td></tr>
+      <tr><td>라운지 생존 여부</td><td>현재 라운지 수·최근 메시지 수 미확인 — 9/23 개발 확인</td></tr>
+      <tr><td>집계 가능 여부</td><td>라운지 작성일·방 ID, 지원자·팀 수락 시각, 콘텐츠별 공개 범위 — 9/23 개발 확인</td></tr>
+      <tr><td>두 부문 동시 수상</td><td>한 사람이 작품 부문과 활동 부문을 같이 받을 수 있는지 — 결정 대기</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="note">집계에 필요한 로그가 없으면 1회차는 축소판으로 시작합니다 — 리스펙트를 보낸 사람 수와 올린 것만으로 순위를 내고, 댓글·라운지·결속은 2회차부터 넣습니다.</div>
+</section>
+
+<footer>
+  <p>근거 — 활동량으로 순위를 매겨 보상하는 제도 23곳의 원문(네이버 지식iN 내공·구글 로컬가이드·듀오링고 리그·위키컵·네이버 카페 기여도·치지직·Waze·Discourse·챌린저스 등)과, 활동량 보상을 접은 사례(YouTube Shorts Fund·Meta Reels Play·Snapchat Spotlight·Pinterest·Quora·Medium)를 함께 확인했습니다.</p>
+  <p>조사 장부 135행 중 123행이 인용문 원문 대조를 통과했고, 12행은 봇 차단·이미지 표·접근 실패로 미검증입니다.</p>
+  <p>크리에이터클럽 · 명예의 전당 · 2026-09-22</p>
+</footer>
+
+</div>
+</body>
+</html>
