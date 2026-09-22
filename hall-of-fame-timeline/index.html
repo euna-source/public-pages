@@ -228,7 +228,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     <h1>명예의 전당 운영 흐름과 부스팅 계획</h1>
     <p class="lede">개시 전부터 다음 회차 셋팅까지 한 흐름으로 그렸습니다. 국면마다 왼쪽은 회차가 굴러가는 운영 흐름, 오른쪽은 그 흐름이 첫 회차부터 원활하도록 우리가 손으로 하는 부스팅 계획입니다.</p>
     <p class="meta">수요일과 저녁 8시, 최소 5명, D7 후보 10명은 가안입니다. 세 회차를 돌린 뒤 실측으로 다시 정합니다.<span class="tag brand">1회차 기준</span> · <a href="#sheet" style="color:inherit">구글 시트 예시 보기 ↓</a></p>
-    <div class="hbtns"><button type="button" class="lbtn" data-drawer="d-cond">후보 선정 조건 보기 →</button><button type="button" class="lbtn" data-drawer="d-rules">유의사항 문안 →</button><button type="button" class="lbtn" data-drawer="d-consent">당첨자 동의·약관 →</button><button type="button" class="lbtn ghost" data-drawer="d-hist">업데이트 히스토리</button></div>
+    <div class="hbtns"><button type="button" class="lbtn" data-drawer="d-cond">후보 선정 조건 보기 →</button><button type="button" class="lbtn" data-drawer="d-rules">유의사항 문안 →</button><button type="button" class="lbtn" data-drawer="d-consent">당첨자 동의·약관 →</button><button type="button" class="lbtn" data-drawer="d-push">앱 푸시·알림 항목 →</button><button type="button" class="lbtn ghost" data-drawer="d-hist">업데이트 히스토리</button></div>
     <div class="phases" aria-label="네 국면">
       <div class="ph"><div class="n">01</div><div class="t">개시 전</div><div class="d">9/22 ~ 10/6</div></div>
       <div class="ph live"><div class="n">02</div><div class="t">회차 중</div><div class="d">10/7 수 0시 ~ 10/20 화 자정</div></div>
@@ -565,11 +565,42 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   <h4>1차 MVP에 포함되지 않는 것</h4>
   <p>어드민 화면, 실시간 갱신, 중복 수상자 자동 제외 산식(1차는 수동), 갤러리 연출·전광판 효과·복잡한 시상식 UX.</p>
 </aside>
+
+<aside class="drawer" id="d-push" role="dialog" aria-modal="true" aria-labelledby="d-push-h" hidden>
+  <button type="button" class="dclose" aria-label="닫기">×</button>
+  <h3 id="d-push-h">앱 푸시·알림 항목 (v1)</h3>
+  <p class="dsub">운영 흐름을 따라 정한 14항목. 거래 통지는 누구에게나, 정보 알림은 본인 활동의 상태 변화, 광고성(참여 유도)은 마케팅 수신 동의자에게만 08~21시에 서버 플래그로.</p>
+  <table>
+    <tr><th>ID · 시점</th><th>대상 · 채널</th><th>제목 / 본문</th></tr>
+    <tr><td>H1 · 10/6 배포 직후</td><td>전체 · 앱 내 배너·공지(푸시 없음)</td><td>명예의 전당 / 내일 0시부터 1회차가 시작돼요.</td></tr>
+    <tr><td>H2 · 10/6 10:00</td><td>391작 소유자 · 푸시(광고성, 동의자)</td><td>{작품 이름} / 명예의 전당 1회차 후보예요. 10월 7일부터 2주 동안 받은 리스펙트로 순위가 정해져요.</td></tr>
+    <tr><td>H3 · 10/7 10:00</td><td>전체 · 푸시(광고성)+앱 내 공지</td><td>명예의 전당 / 1회차가 시작됐어요. 순위는 매시 정각에 갱신돼요.</td></tr>
+    <tr><td>H4 · 회차 중</td><td>작품 소유자 · 기존 리스펙트 알림</td><td>(현행 그대로)</td></tr>
+    <tr><td>H5 · 상위 10 첫 진입 (2차)</td><td>후보 본인 · 정보 알림, 하루 1회</td><td>{작품 이름} / 명예의 전당 {N}위에 들어왔어요.</td></tr>
+    <tr><td>H6 · 10/14 10:00</td><td>전체 · 앱 내 공지(푸시는 2차)</td><td>명예의 전당 / 반환점이에요. 지금 참가작 {N}개, 마감까지 일주일.</td></tr>
+    <tr><td>H7 · 10/19 20:00 (2차)</td><td>집계값 1 이상 후보 · 정보 알림</td><td>명예의 전당 / 내일 밤 11시 59분에 1회차가 마감돼요. 지금 {N}위.</td></tr>
+    <tr><td>H8 · 10/21 12:00까지</td><td>부문별 1위 · 앱 내 알림+운영 계정 채팅(거래 통지)</td><td>명예의 전당 / 1회차 {부문}에 선정되셨어요. 확인할 것 네 가지를 보내드렸어요.</td></tr>
+    <tr><td>H9 · 10/21 20:00</td><td>전체 · 푸시+앱 내 공지 (참가자는 정보 알림)</td><td>명예의 전당 / 1회차 결과가 발표됐어요. 2회차는 이미 시작됐어요.</td></tr>
+    <tr><td>H10 · 제외 확정 시</td><td>해당 회원 · 앱 내 알림+이메일(약관 제16조)</td><td>명예의 전당 / {사유}로 이번 회차 순위에서 제외됐어요. 14일 안에 이의를 낼 수 있어요.</td></tr>
+    <tr><td>H11 · 이의 뒤 15일 안</td><td>이의 제기자 · 이메일(제17조)</td><td>(회신 문안)</td></tr>
+    <tr><td>H12 · 10/22~23</td><td>당첨자 · 앱 내 알림(거래 통지)</td><td>명예의 전당 / 상품권을 보냈어요. 문자로 확인해 주세요.</td></tr>
+    <tr><td>H13 · 10/22 10:00 (2차)</td><td>1회차 중 새 작품 소유자 · 푸시(광고성)</td><td>{작품 이름} / 2회차 후보예요. 11월 3일 밤까지 받은 리스펙트로 순위가 정해져요.</td></tr>
+    <tr><td>H14 · 표식 부착 시 (2차)</td><td>수상자 · 정보 알림</td><td>명예의 전당 / 프로필에 "명예의 전당 ×1" 칩이 붙었어요.</td></tr>
+  </table>
+  <h4>규칙</h4>
+  <ul>
+    <li>제목은 대상 이름, 본문은 상태 한 문장. 금액과 보상 형태는 푸시에 쓰지 않습니다.</li>
+    <li>광고성 푸시는 하루 1건까지. H2와 H3가 겹치는 날은 H3만.</li>
+    <li>1차 개발: 캠페인 푸시 발송(대상 조건·예약·플래그), 앱 내 배너·공지. H8·H10·H12는 1차에 수동. H5·H7·H13·H14는 2차.</li>
+    <li>확인 중: 마케팅 동의자 수와 발송 도구, 알림 목록 수동 등록 가능 여부, H9의 참가자 정보 알림 분류(법무).</li>
+  </ul>
+</aside>
 <aside class="drawer hist" id="d-hist" role="dialog" aria-modal="true" aria-labelledby="d-hist-h" hidden>
   <button type="button" class="dclose" aria-label="닫기">×</button>
   <h3 id="d-hist-h">업데이트 히스토리</h3>
   <p class="dsub">명예의 전당 정책·페이지가 바뀔 때마다 여기에 한 줄씩 남깁니다. 최신이 위입니다.</p>
   <ul>
+    <li><b>2026-09-22 · 알림 조건표 v1</b>운영 흐름을 따라 앱 푸시·앱 내 알림 14항목(H1~H14)을 정의. 거래 통지·정보 알림·광고성 구분, 광고성은 마케팅 동의자·08~21시·플래그.</li>
     <li><b>2026-09-22 · 정본 동기화</b>Jira CCO-121(11:42 갱신본)에 맞춰 후보 선정 조건 레이어·구글 시트 예시·유의사항 8줄을 페이지에 반영. 헤더에 최종 업데이트 날짜와 Jira 링크, 이 히스토리 레이어 추가.</li>
     <li><b>2026-09-22 · 유의사항 v1.3</b>보상은 형태·금액을 적지 않고 회차 시작 공지에 안내, 화면 순위는 잠정이며 심사 뒤 당첨자가 달라질 수 있음 명시, "5명 전 참여 인원만" 문장 삭제.</li>
     <li><b>2026-09-22 · 약관·처리방침 대조</b>이용약관(2026.09.21) 제5·14·16·17조와 처리방침 대조. 선정작 SNS 소개는 개별 동의 시에만. 당첨자에게 받을 것 넷과 처리방침 추가 항목 정리.</li>
