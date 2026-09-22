@@ -50,15 +50,26 @@ strong{font-weight:700}
 .q4 .d{font-size:13px;color:var(--t2);margin:0;line-height:1.6}
 .q4.accent{background:var(--brand-50);border-color:var(--brand-text)}
 
+/* 핵심 요약 묶음 */
+.summary{border:1px solid var(--brand-text);border-radius:var(--radius-m);overflow:hidden}
+.summary .def.in{border:0;border-radius:0;margin:0;border-bottom:1px solid var(--brand-text)}
+.summary .tablewrap{border:0;border-radius:0}
+.summary table{font-size:13px}
+.summary th{background:var(--surface)}
+.summary tbody tr:last-child td{border-bottom:none}
+
 /* 앵커 내비 */
-.pnav{display:flex;flex-wrap:wrap;gap:6px;margin:24px 0 0}
+.pnav{position:sticky;top:0;z-index:20;display:flex;gap:6px;margin:20px 0 0;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--subtle);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.pnav::-webkit-scrollbar{display:none}
+.pp{flex:none}
 .pnav a.pp{border-bottom:1px solid var(--line);font-weight:600}
 .pp{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:var(--radius-s);padding:5px 10px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none;background:var(--bg)}
 .pnav a{border-bottom:none}
 .pp:hover{border-color:var(--t1);color:var(--t1)}
+.pp.on{background:var(--brand-50);border-color:var(--brand-text);color:var(--brand-text)}
 .pnav a.pp:hover{border-bottom-color:var(--t1)}
 .pp:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
-section{scroll-margin-top:16px}
+section{scroll-margin-top:64px}
 
 /* 1건당 점수 */
 .units{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:24px 0}
@@ -109,6 +120,7 @@ ul.tight li{margin:3px 0}
 .note.warn{background:var(--warn-bg);color:var(--warn)}
 a{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
 a:hover{border-bottom-color:var(--brand-text)}
+a:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px;border-radius:2px}
 footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--subtle);color:var(--t4);font-size:12px}
 footer p{margin:0 0 6px}
 
@@ -148,12 +160,12 @@ footer p{margin:0 0 6px}
 <section id="s-summary">
   <h2>핵심 요약</h2>
   <p class="sub">아래 카드와 표가 전부다. 이후 장은 운영·개발용 상세다.</p>
-  <div class="def">
+  <div class="summary">
+  <div class="def in">
   <p class="q">베스트 크리에이터 선정 대상</p>
   <p class="s">가장 많은 사람에게 리스펙트를 보내고, 가장 자주 채팅방에서 대화하며, 가장 많은 사람이 따르게 된 크리에이터</p>
   <p class="n">다른 사람의 포트폴리오에 리스펙트를 보내고 채팅방에서 대화하며, 자기 포트폴리오와 소개 탭도 꾸준히 채워 팔로워가 늘어나는 사람</p>
 </div>
-
   <div class="tablewrap">
   <table>
     <thead><tr><th>항목</th><th>내용</th></tr></thead>
@@ -164,6 +176,7 @@ footer p{margin:0 0 6px}
       <tr><td>남은 결정</td><td>부문 정의·배점 확정 2건. 부문 이름은 ‘베스트 크리에이터’ 가칭</td></tr>
     </tbody>
   </table>
+  </div>
   </div>
 </section>
 
@@ -442,5 +455,19 @@ footer p{margin:0 0 6px}
 </footer>
 
 </div>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.pnav .pp'));
+  var map={};
+  links.forEach(function(a){var id=a.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]=a;});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var a=map[e.target.id]; if(!a) return;
+      if(e.isIntersecting){links.forEach(function(x){x.classList.remove('on');});a.classList.add('on');}
+    });
+  },{rootMargin:'-60px 0px -70% 0px',threshold:0});
+  Object.keys(map).forEach(function(id){io.observe(document.getElementById(id));});
+})();
+</script>
 </body>
 </html>
