@@ -58,6 +58,56 @@ strong{font-weight:700}
 .summary th{background:var(--surface)}
 .summary tbody tr:last-child td{border-bottom:none}
 
+
+/* 업데이트 히스토리 레이어 */
+.lbtn{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--brand-text);background:var(--bg);border:1px solid var(--brand-border);border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:background 120ms ease-out}
+.lbtn:hover{background:var(--brand-50)}
+.lbtn:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+.drawer-bg{position:fixed;inset:0;background:rgba(24,24,24,.35);z-index:40;opacity:0;pointer-events:none;transition:opacity 180ms ease-out}
+.drawer-bg.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(600px,94vw);background:var(--bg);z-index:50;box-shadow:-12px 0 32px rgba(24,24,24,.18);transform:translateX(100%);transition:transform 220ms ease-out;overflow-y:auto;padding:24px 24px 40px;box-sizing:border-box}
+.drawer[hidden]{display:none}
+.drawer.on{transform:none}
+.drawer h3{margin:0 0 4px;font-size:17px;letter-spacing:-0.01em;padding-right:40px}
+.drawer .dsub{color:var(--t3);font-size:13px;margin:0 0 16px}
+.dclose{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:18px;line-height:1;color:var(--t2)}
+.dclose:hover{border-color:var(--t1)}
+.hx{border-top:1px solid var(--subtle)}
+.hx:last-of-type{border-bottom:1px solid var(--subtle)}
+.hx summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;padding:11px 6px;border-radius:var(--radius-s);transition:background 120ms ease-out}
+.hx summary::-webkit-details-marker{display:none}
+.hx summary:hover{background:var(--surface)}
+.hx summary:focus-visible{outline:2px solid var(--brand-text);outline-offset:-2px}
+.hx .hi{font-size:12px;color:var(--t4);font-variant-numeric:tabular-nums;text-align:right}
+.hx .ht{font-size:13px;font-weight:700;color:var(--t1);display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.hx .hd{font-size:12px;font-weight:400;color:var(--t4);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hx .hn{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--t4);white-space:nowrap}
+.hx .hn::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--t4);border-bottom:1.5px solid var(--t4);transform:rotate(45deg) translateY(-2px);transition:transform 160ms ease-out}
+.hx[open] .hn::after{transform:rotate(225deg) translateY(-1px)}
+.hx .hb{padding:0 6px 16px 6px}
+.hist .hb .why{font-size:12px;color:var(--t3);margin:0 0 10px;line-height:1.55}
+.chg{border:1px solid var(--line);border-radius:var(--radius-s);margin-bottom:8px;overflow:hidden;background:var(--bg)}
+.goto{display:flex;width:100%;align-items:center;gap:8px;background:var(--surface);border:0;border-bottom:1px solid var(--subtle);padding:7px 10px;font:inherit;font-size:12px;font-weight:600;color:var(--t1);cursor:pointer;text-align:left;line-height:1.4;transition:background 120ms ease-out}
+.goto .where{color:var(--t4);font-weight:500;white-space:nowrap}
+.goto .go{margin-left:auto;color:var(--brand-text);white-space:nowrap;font-weight:600}
+.goto:hover{background:var(--subtle)}
+.goto:focus-visible{outline:2px solid var(--brand-text);outline-offset:-2px}
+.diff{display:grid;grid-template-columns:30px 1fr;gap:5px 8px;padding:8px 10px 9px}
+.diff .k{font-size:11px;color:var(--t4);padding-top:2px;font-weight:600}
+.hist .diff p{margin:0;font-size:12px;line-height:1.55;color:var(--t1)}
+.hist .diff p.was{color:var(--t3)}
+.hist del{text-decoration:line-through;text-decoration-color:rgba(220,38,38,.55);text-decoration-thickness:1px;background:var(--danger-bg);color:var(--t3);border-radius:2px;padding:0 2px}
+.hist ins{text-decoration:none;background:var(--brand-50);color:var(--t1);font-weight:600;border-radius:2px;padding:0 2px}
+.hl{position:relative;scroll-margin-top:120px;outline:none}
+.hl::after{content:"";position:absolute;inset:-6px -12px;border-radius:var(--radius-m);pointer-events:none;box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--brand-text);background:rgba(7,237,33,.10);animation:hl-fade 3s ease-out forwards}
+@keyframes hl-fade{0%,60%{opacity:1}100%{opacity:0}}
+.back-hist{position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:6px;background:var(--t1);color:#fff;border:0;border-radius:999px;padding:9px 14px 9px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(24,24,24,.18),0 12px 28px rgba(24,24,24,.18);opacity:0;transform:translateY(8px);transition:opacity 180ms ease-out,transform 180ms ease-out}
+.back-hist[hidden]{display:none}
+.back-hist.on{opacity:1;transform:none}
+.back-hist:hover{background:#000}
+.back-hist:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){.hl::after{animation:none}.drawer,.drawer-bg,.lbtn,.goto,.hx summary,.back-hist{transition:none}}
+
 /* 앵커 내비 */
 .pnav{position:sticky;top:0;z-index:20;display:flex;gap:6px;margin:20px 0 0;padding:10px 0;background:var(--bg);border-bottom:1px solid var(--subtle);overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .pnav::-webkit-scrollbar{display:none}
@@ -144,6 +194,7 @@ footer p{margin:0 0 6px}
   <p class="lede">받은 관심 대신 본인이 한 행동으로 순위를 정한다.</p>
   <p class="meta">2026-09-22 · 기획 이은희 · CCO-121 · 초안 v3 (대표 결재 전)</p>
   <p class="meta" style="margin-top:8px"><a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름 →</a> 회차 달력 · 참가자 화면 상태 · 발표 이후 표식</p>
+  <p style="margin:12px 0 0"><button type="button" class="lbtn" data-drawer="d-hist">업데이트 히스토리</button></p>
 </header>
 
 
@@ -467,6 +518,54 @@ footer p{margin:0 0 6px}
     });
   },{rootMargin:'-60px 0px -70% 0px',threshold:0});
   Object.keys(map).forEach(function(id){io.observe(document.getElementById(id));});
+})();
+</script>
+<div class="drawer-bg" id="drawer-bg"></div>
+<aside class="drawer hist" id="d-hist" role="dialog" aria-modal="true" aria-labelledby="d-hist-h" hidden>
+  <button type="button" class="dclose" aria-label="닫기">×</button>
+  <h3 id="d-hist-h">업데이트 히스토리</h3>
+  <p class="dsub">기준이 바뀔 때마다 한 건씩 남깁니다. 최신이 위이고, 펼치면 어디가 어떻게 바뀌었는지 이전·이후로 보입니다. 「이동 →」을 누르면 그 자리로 갑니다.</p>
+  <div class="hxs">
+  <details class="hx" name="hist" id="hx-1"><summary><span class="hi">01</span><span class="ht">부문 정의 전환<span class="hd">9/22 17:20</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">‘받은 관심’이 아니라 ‘본인이 한 활동’으로 뽑는다는 기준으로 부문을 다시 세웠습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">핵심 요약</span>선정 대상<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차 동안 <del>내게 반응해 준 고유 인원</del>이 가장 많은 크리에이터</p><span class="k">이후</span><p class="now">가장 많은 사람에게 <ins>리스펙트를 보내고, 채팅방에서 대화하며, 자기 작업·소개를 채운</ins> 크리에이터</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-2"><summary><span class="hi">02</span><span class="ht">지속 칸 삭제 · 상한 제거<span class="hd">9/22 18:10</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">활동일은 다른 칸을 날짜로 다시 센 값이라 점수로 얹으면 이중 계수이고, 많이 할수록 좋다는 방향에 맞춰 상한을 없앴습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">집계 항목</span>④ 지속<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">④ 지속 · 활동한 날 <del>3점 × 14일</del></p><span class="k">이후</span><p class="now"><ins>삭제</ins>. 활동일은 점수가 아니라 동점 판정 기준으로만 씁니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>상한<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">항목마다 회차 상한(<del>리스펙트 20명·포폴 2건 등</del>)이 있었습니다.</p><span class="k">이후</span><p class="now"><ins>상한 없음</ins>. 많이 할수록 점수가 계속 오릅니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-3"><summary><span class="hi">03</span><span class="ht">채팅방 출석 · 소개 탭<span class="hd">9/22 18:50</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">라운지 대신 실제 대화가 오가는 채팅방을 세고, 프로필 커버 한 번 대신 소개 탭을 채우게 했습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>라운지 → 채팅방<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>라운지에 글을 쓴 날</del></p><span class="k">이후</span><p class="now"><ins>채팅방에 메시지를 보낸 출석체크 수</ins>(1:1 노크 수락 후 채팅·그룹채팅, 하루 1회)</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>프로필 커버 → 소개 탭<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>프로필 커버 완성(사진·한 줄 소개·직업)</del></p><span class="k">이후</span><p class="now"><ins>소개 탭 6항목</ins>(자기소개·학력·경력·수상/자격·기본정보·AI 추천사) 각 1회</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-4"><summary><span class="hi">04</span><span class="ht">댓글 삭제 · 팔로워 편입<span class="hd">9/22 19:30</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">다른 사람들이 따르는 크리에이터라는 정의를 살리기 위해 팔로워를 넣고, 댓글 항목은 뺐습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>댓글 항목<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">포트폴리오·영감 글에 댓글을 남긴 서로 다른 사람 <del>20점</del></p><span class="k">이후</span><p class="now"><ins>삭제</ins></p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>팔로워<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">팔로워는 <del>집계하지 않음</del>(받은 지표라 제외).</p><span class="k">이후</span><p class="now">회차 중 <ins>늘어난 팔로워(순증)</ins>만 연결에서 집계. 기존 팔로워는 제외, 회차 중 생긴 계정은 0.5명.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-5"><summary><span class="hi">05</span><span class="ht">칸 이름 · 결속 → 연결<span class="hd">9/22 20:10</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">팔로워 한 명은 아직 결속이 아니고, ‘관계’는 소통과 경계가 흐려지며, ‘인맥’은 앱의 기존 메뉴 이름과 부딪힙니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">집계 항목</span>세 번째 칸 이름<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">③ <del>결속</del> · 지원서 접수·초대 수락</p><span class="k">이후</span><p class="now">③ <ins>연결</ins> · 남이 응해서 이어진 것</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-6"><summary><span class="hi">06</span><span class="ht">배점 재조정<span class="hd">9/22 20:50</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">Astra·절대자 2각 검토에서 탭 두 번짜리 행동이 총점을 지배한다는 계산이 나와, 상한 대신 단가를 다시 잡았습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>리스펙트·출석·영감·팔로워<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">리스펙트 <del>20</del> · 채팅방 출석 <del>5</del> · 영감 글 <del>10</del> · 팔로워 <del>20</del></p><span class="k">이후</span><p class="now">리스펙트 <ins>5</ins>(하루 최대 8명) · 채팅방 출석 <ins>10</ins> · 영감 글 <ins>5</ins> · 팔로워 <ins>10</ins></p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-guard"><span class="where">방지 기준</span>같은 날 체감 규칙<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">같은 날 2건째부터 <del>점수 절반</del> 규칙을 넣었습니다.</p><span class="k">이후</span><p class="now"><ins>철회</ins>했습니다. 하루에 몰아서 올려도 감산하지 않습니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-7"><summary><span class="hi">07</span><span class="ht">2회차 시행·연결 항목명<span class="hd">9/22 21:30</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">부문 도입 시점을 2회차로 정하고, 연결 항목 이름을 사람이 읽는 말로 바꿨습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-period"><span class="where">집계 기간</span>부문 시행 시점<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">1회차 <del>2026-10-07~10-20</del>부터 이 부문을 적용했습니다.</p><span class="k">이후</span><p class="now">부문은 <ins>2회차(2026-10-21~11-03)부터</ins> 시행하고, 1회차는 기존 부문 기준을 유지합니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>연결 항목 이름<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>접수된 지원서 · 초대를 수락해 합류한 멤버</del></p><span class="k">이후</span><p class="now"><ins>프로젝트 신규 지원자 수 · 팀 신규 멤버 참여 수</ins></p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-8"><summary><span class="hi">08</span><span class="ht">점수 차감 조건 신설<span class="hd">9/22 22:10</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">전체공개를 자격으로 걸기 전에 되돌림·부정 처리 규칙이 먼저 서야 한다고 보고, 사라지는 점수를 시점 축으로 나눴습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-forfeit"><span class="where">점수 차감</span>무효·회수·취소 3단<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">삭제·비공개는 <del>방지 기준 한 줄</del>로만 적혀 있었습니다.</p><span class="k">이후</span><p class="now"><ins>무효(마감 시점 미달)·회수(회차 중 되돌림)·취소(발표 뒤 확인)</ins> 3단으로 나누고, 전체공개를 전제로 명시했습니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-forfeit"><span class="where">점수 차감</span>되돌림 반복<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">되돌림을 반복해도 <del>제한이 없었습니다</del>.</p><span class="k">이후</span><p class="now">같은 항목에서 <ins>3회 이상 되돌리면 남은 회차 동안 그 항목으로 점수를 얻지 못합니다</ins>.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-9" open><summary><span class="hi">09</span><span class="ht">핵심 요약·앵커 도입<span class="hd">9/22 22:40</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">대표 관점에서 섹션 10개·콜아웃 11개는 결정 두 건 앞을 막는다고 판정해, 맨 앞에 네 줄 요약을 세우고 주요 항목 앵커를 상단에 고정했습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">핵심 요약</span>선정 대상 카드와 요약 표<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">선정 대상 카드가 <del>본문 맨 위에 따로</del> 놓이고, 요약 표는 없었습니다.</p><span class="k">이후</span><p class="now">선정 대상 카드와 요약 표를 <ins>한 테두리 안에 묶어</ins> 핵심 요약 한 덩어리로 보여줍니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">문서 전체</span>앵커 탭<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">각 장으로 가려면 <del>스크롤로 찾아야</del> 했습니다.</p><span class="k">이후</span><p class="now">상단에 <ins>고정되는 앵커 탭</ins>으로 핵심 요약·집계 항목·배점·집계 기간·점수 차감·MAU 단계·미정 항목으로 바로 갑니다.</p></div></div></div></details>
+  </div>
+</aside>
+<button type="button" class="back-hist" id="back-hist" hidden>← 업데이트 히스토리로</button>
+<script>
+(function(){
+  var bg=document.getElementById('drawer-bg'); if(!bg) return; var open=null,last=null;
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pill=document.getElementById('back-hist'), pillT=null, histBtn=document.querySelector('[data-drawer="d-hist"]');
+  function show(id,btn){var d=document.getElementById(id); if(!d||open===d) return; if(open) hide({keepFocus:true}); clearTimeout(d._hideT); d.hidden=false; requestAnimationFrame(function(){d.classList.add('on'); bg.classList.add('on');}); open=d; if(btn) last=btn; document.body.style.overflow='hidden'; (d.querySelector('.dclose')||d).focus(); hidePill();}
+  function hide(o){o=o||{}; if(!open) return; var d=open; d.classList.remove('on'); bg.classList.remove('on'); document.body.style.overflow=''; d._hideT=setTimeout(function(){d.hidden=true;},230); open=null; if(!o.keepFocus){ if(last) last.focus(); last=null; }}
+  document.querySelectorAll('[data-drawer]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-drawer'),b);});});
+  document.querySelectorAll('.dclose').forEach(function(b){b.addEventListener('click',function(){hide();});});
+  bg.addEventListener('click',function(){hide();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') hide();});
+  function showPill(){ if(!pill) return; clearTimeout(pillT); pill.hidden=false; requestAnimationFrame(function(){pill.classList.add('on');}); pillT=setTimeout(hidePill,20000); }
+  function hidePill(){ if(!pill||pill.hidden) return; clearTimeout(pillT); pill.classList.remove('on'); setTimeout(function(){pill.hidden=true;},200); }
+  function pick(t){ return t.tagName==='SECTION' ? (t.querySelector('h2')||t) : t; }
+  function highlight(el){ el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl'); var tmp=!el.hasAttribute('tabindex'); if(tmp) el.setAttribute('tabindex','-1'); try{el.focus({preventScroll:true});}catch(e){} clearTimeout(el._hlT); el._hlT=setTimeout(function(){el.classList.remove('hl'); if(tmp) el.removeAttribute('tabindex');},3200); }
+  document.querySelectorAll('.goto').forEach(function(b){b.addEventListener('click',function(){
+    var t=document.getElementById(b.getAttribute('data-goto')); if(!t) return; var el=pick(t);
+    hide({keepFocus:true}); last=histBtn;
+    setTimeout(function(){
+      var nav=document.querySelector('.pnav'); var y=el.getBoundingClientRect().top+window.pageYOffset-((nav?nav.offsetHeight:0)+24);
+      window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'}); highlight(el); showPill();
+    },240);
+  });});
+  if(pill) pill.addEventListener('click',function(){
+    show('d-hist',histBtn);
+    var d=document.getElementById('d-hist'), o=d&&d.querySelector('details[open]');
+    if(o) setTimeout(function(){o.scrollIntoView({block:'start',behavior:'auto'}); o.querySelector('summary').focus();},60);
+  });
 })();
 </script>
 </body>
