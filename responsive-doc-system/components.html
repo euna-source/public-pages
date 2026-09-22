@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f5f3" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="기획 문서를 읽고 찾고 구현하기 위한 반응형 디자인 시스템. 라이트·다크 테마, 타이포그래피, UI 에셋과 문서 템플릿."
+    />
+    <title>UI 에셋 · C8 문서 디자인 가이드</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307ed21'/%3E%3Cpath d='M10 7h12M10 13h12M10 19h8M10 25h12' stroke='%23152213' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <script src="theme-init.js"></script>
+    <link rel="stylesheet" href="system.css" />
+    <script src="system.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <header class="topbar">
+      <a class="brand" href="index.html"
+        ><span class="brand-symbol" aria-hidden="true">C8</span
+        ><span>문서 디자인 가이드<small>Library 0.2 · 제안</small></span></a
+      >
+      <div class="theme-switch js-only" role="group" aria-label="화면 테마">
+        <button type="button" data-set-theme="light" aria-pressed="false">
+          라이트</button
+        ><button type="button" data-set-theme="dark" aria-pressed="false">
+          다크</button
+        ><button type="button" data-set-theme="system" aria-pressed="true">
+          시스템
+        </button>
+      </div>
+    </header>
+    <noscript
+      ><p class="nojs-note">
+        시스템 테마로 표시합니다. 검색·자동 복사·테마 선택은 JavaScript를 켜면
+        사용할 수 있습니다. 모든 문서는 그대로 읽을 수 있습니다.
+      </p></noscript
+    >
+    <details class="mobile-nav">
+      <summary>가이드 목차</summary>
+      <nav aria-label="모바일 가이드">
+        <a href="index.html">시작하기</a><a href="foundations.html">기초 규칙</a
+        ><a href="components.html" aria-current="page">UI 에셋</a
+        ><a href="templates.html">문서 템플릿</a
+        ><a href="writing.html">작성·운영 기준</a>
+      </nav>
+    </details>
+    <div class="shell">
+      <aside class="sidebar">
+        <nav aria-label="가이드">
+          <a href="index.html">시작하기</a
+          ><a href="foundations.html">기초 규칙</a
+          ><a href="components.html" aria-current="page">UI 에셋</a
+          ><a href="templates.html">문서 템플릿</a
+          ><a href="writing.html">작성·운영 기준</a>
+        </nav>
+        <p class="nav-label">바로 시작하기</p>
+        <a href="template-spec.html">기능 명세 예시</a
+        ><a href="document-starter.zip" download>시작 파일 받기</a>
+        <p class="nav-label">2026.09.23<br />검토용 제안 v0.2</p>
+      </aside>
+      <main id="main" class="main" tabindex="-1">
+        <header class="page-header">
+          <p class="eyebrow">UI 에셋</p>
+          <h1>작은 요소부터 같은 기준으로.</h1>
+          <p class="lede">
+            각 에셋은 실제 HTML입니다. 필요한 코드를 복사하고 내용만 바꿔 사용할
+            수 있습니다. 색과 조작 상태는 공통 스타일에서 관리합니다.
+          </p>
+        </header>
+        <aside class="note">
+          <strong>복사하기 전에</strong>시작 ZIP을 받은 뒤 공통 CSS·JavaScript를
+          함께 사용하세요. 같은 에셋을 한 페이지에 여러 번 붙이면
+          <code>id</code>, <code>for</code>, <code>aria-describedby</code>,
+          <code>data-copy</code>의 연결 이름을 세트로 바꿔 중복을 피합니다.
+        </aside>
+        <nav class="asset-index section" aria-label="에셋 목차">
+          <a href="#header">머리말</a><a href="#buttons">버튼</a
+          ><a href="#status">상태</a><a href="#text">텍스트</a
+          ><a href="#notices">알림</a><a href="#fields">입력</a
+          ><a href="#definitions">정의</a><a href="#table">표</a
+          ><a href="#steps">단계</a><a href="#disclosure">접기</a
+          ><a href="#copy">복사</a><a href="#empty">빈 결과</a
+          ><a href="#states">상태 안내</a><a href="#dialog">대화상자</a
+          ><a href="#icons">아이콘</a><a href="#acceptance">체크리스트</a>
+        </nav>
+        <section class="asset" id="header" aria-labelledby="header-title">
+          <div class="asset-header">
+            <h2 id="header-title">문서 머리말</h2>
+            <p>에셋 01</p>
+          </div>
+          <p>
+            제목·목적·현재 상태·다음 행동을 묶습니다. 문서 제목은 페이지당 h1
+            하나를 사용하고, 아래 견본처럼 문서 안에 삽입할 때는 하위 수준으로
+            바꿉니다.
+          </p>
+          <div class="asset-stage">
+            <header>
+              <p class="eyebrow">기능 명세 · 예시</p>
+              <h3>컬렉션 공유</h3>
+              <p class="measure" style="margin-top: var(--s3)">
+                작업물을 링크로 공유하는 범위와 예외를 검토합니다.
+              </p>
+              <dl class="doc-meta">
+                <div>
+                  <dt>정책</dt>
+                  <dd>검토 중</dd>
+                </div>
+                <div>
+                  <dt>구현</dt>
+                  <dd>미착수</dd>
+                </div>
+                <div>
+                  <dt>검증</dt>
+                  <dd>미실행</dd>
+                </div>
+              </dl>
+            </header>
+          </div>
+          <details>
+            <summary>문서 머리말 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-header"
+                  data-feedback="feedback-header"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-header">&lt;header&gt;&lt;p class=&quot;eyebrow&quot;&gt;기능 명세 · 예시&lt;/p&gt;&lt;h3&gt;컬렉션 공유&lt;/h3&gt;&lt;p class=&quot;measure&quot; style=&quot;margin-top:var(--s3)&quot;&gt;작업물을 링크로 공유하는 범위와 예외를 검토합니다.&lt;/p&gt;&lt;dl class=&quot;doc-meta&quot;&gt;&lt;div&gt;&lt;dt&gt;정책&lt;/dt&gt;&lt;dd&gt;검토 중&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;구현&lt;/dt&gt;&lt;dd&gt;미착수&lt;/dd&gt;&lt;/div&gt;&lt;div&gt;&lt;dt&gt;검증&lt;/dt&gt;&lt;dd&gt;미실행&lt;/dd&gt;&lt;/div&gt;&lt;/dl&gt;&lt;/header&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-header" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="buttons" aria-labelledby="buttons-title">
+          <div class="asset-header">
+            <h2 id="buttons-title">버튼과 링크</h2>
+            <p>에셋 02</p>
+          </div>
+          <p>
+            한 영역에서 주요 행동은 하나만 강조합니다. 이동은 링크, 현재 화면의
+            조작은 버튼을 씁니다. 사용할 수 없는 버튼에는 이유를 붙입니다.
+          </p>
+          <div class="asset-stage">
+            <div class="actions">
+              <button
+                class="button primary js-only"
+                type="button"
+                data-demo-feedback="button-demo-status"
+              >
+                예시 동작 확인</button
+              ><a class="button" href="templates.html">템플릿 보기</a
+              ><a class="text-link" href="foundations.html">기초 규칙 읽기</a>
+            </div>
+            <p class="status-message" id="button-demo-status" role="status">
+              첫 번째 버튼은 동작 확인용입니다.
+            </p>
+            <div class="actions" style="margin-top: var(--s5)">
+              <button
+                class="button"
+                type="button"
+                disabled
+                aria-describedby="disabled-reason"
+              >
+                승인 요청
+              </button>
+              <p class="meta" id="disabled-reason">
+                예시 전용 화면이라 승인 요청을 보낼 수 없습니다.
+              </p>
+            </div>
+          </div>
+          <details>
+            <summary>버튼과 링크 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-buttons"
+                  data-feedback="feedback-buttons"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-buttons">&lt;div class=&quot;actions&quot;&gt;&lt;button class=&quot;button primary js-only&quot; type=&quot;button&quot; data-demo-feedback=&quot;button-demo-status&quot;&gt;예시 동작 확인&lt;/button&gt;&lt;a class=&quot;button&quot; href=&quot;templates.html&quot;&gt;템플릿 보기&lt;/a&gt;&lt;a class=&quot;text-link&quot; href=&quot;foundations.html&quot;&gt;기초 규칙 읽기&lt;/a&gt;&lt;/div&gt;&lt;p class=&quot;status-message&quot; id=&quot;button-demo-status&quot; role=&quot;status&quot;&gt;첫 번째 버튼은 동작 확인용입니다.&lt;/p&gt;&lt;div class=&quot;actions&quot; style=&quot;margin-top:var(--s5)&quot;&gt;&lt;button class=&quot;button&quot; type=&quot;button&quot; disabled aria-describedby=&quot;disabled-reason&quot;&gt;승인 요청&lt;/button&gt;&lt;p class=&quot;meta&quot; id=&quot;disabled-reason&quot;&gt;예시 전용 화면이라 승인 요청을 보낼 수 없습니다.&lt;/p&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-buttons" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="status" aria-labelledby="status-title">
+          <div class="asset-header">
+            <h2 id="status-title">상태 배지</h2>
+            <p>에셋 03</p>
+          </div>
+          <p>
+            짧은 상태 이름에만 사용합니다. 제목·날짜·일반 설명을 모두 배지로
+            만들지 않습니다. 무엇의 상태인지 앞에 적습니다.
+          </p>
+          <div class="asset-stage">
+            <div class="stack">
+              <div class="badges">
+                <span class="meta">정책</span><span class="badge">초안</span
+                ><span class="badge warning">검토 중</span
+                ><span class="badge success">확정</span>
+              </div>
+              <div class="badges">
+                <span class="meta">검증</span><span class="badge">미실행</span
+                ><span class="badge danger">실패</span
+                ><span class="badge success">통과</span>
+              </div>
+            </div>
+          </div>
+          <details>
+            <summary>상태 배지 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-status"
+                  data-feedback="feedback-status"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-status">&lt;div class=&quot;stack&quot;&gt;&lt;div class=&quot;badges&quot;&gt;&lt;span class=&quot;meta&quot;&gt;정책&lt;/span&gt;&lt;span class=&quot;badge &quot;&gt;초안&lt;/span&gt;&lt;span class=&quot;badge warning&quot;&gt;검토 중&lt;/span&gt;&lt;span class=&quot;badge success&quot;&gt;확정&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;badges&quot;&gt;&lt;span class=&quot;meta&quot;&gt;검증&lt;/span&gt;&lt;span class=&quot;badge &quot;&gt;미실행&lt;/span&gt;&lt;span class=&quot;badge danger&quot;&gt;실패&lt;/span&gt;&lt;span class=&quot;badge success&quot;&gt;통과&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-status" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="text" aria-labelledby="text-title">
+          <div class="asset-header">
+            <h2 id="text-title">본문 안의 강조</h2>
+            <p>에셋 04</p>
+          </div>
+          <p>
+            결론은 굵게, 변경 대상은 하이라이트, 고유 값은 코드로 표현합니다.
+            밑줄은 이동 가능한 링크에만 씁니다.
+          </p>
+          <div class="asset-stage">
+            <p class="measure">
+              공유를 해제하면
+              <strong>기존 링크로 열 수 없습니다.</strong> 콘텐츠는 삭제되지
+              않습니다.
+              <mark>이번 검토 대상은 로그인 필요 여부입니다.</mark> 연결 규칙은
+              <a href="template-spec.html#req-03"><code>REQ-03</code></a
+              >에서 확인합니다.
+            </p>
+          </div>
+          <details>
+            <summary>본문 안의 강조 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-text"
+                  data-feedback="feedback-text"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-text">&lt;p class=&quot;measure&quot;&gt;공유를 해제하면 &lt;strong&gt;기존 링크로 열 수 없습니다.&lt;/strong&gt; 콘텐츠는 삭제되지 않습니다. &lt;mark&gt;이번 검토 대상은 로그인 필요 여부입니다.&lt;/mark&gt; 연결 규칙은 &lt;a href=&quot;template-spec.html#req-03&quot;&gt;&lt;code&gt;REQ-03&lt;/code&gt;&lt;/a&gt;에서 확인합니다.&lt;/p&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-text" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="notices" aria-labelledby="notices-title">
+          <div class="asset-header">
+            <h2 id="notices-title">참고·주의·오류·완료</h2>
+            <p>에셋 05</p>
+          </div>
+          <p>
+            핵심 예외는 접지 않고 본문 가까이에 둡니다. 오류에는 영향과 복구
+            행동이 필요합니다. 아래 상태는 디자인 견본이며 현재 페이지의 오류가
+            아닙니다.
+          </p>
+          <div class="asset-stage">
+            <div class="stack">
+              <aside class="note info">
+                <strong>참고</strong>이 규칙은 새로 만든 링크에만 적용하는
+                제안입니다.
+              </aside>
+              <aside class="note warning">
+                <strong>결정 필요</strong>로그인하지 않은 사용자의 열람 범위는
+                아직 정하지 않았습니다.
+              </aside>
+              <aside class="note danger">
+                <strong>예시 · 저장 실패</strong>수정 내용이 저장되지
+                않았습니다. 입력을 유지한 채 다시 시도할 수 있게 합니다.
+              </aside>
+              <aside class="note success">
+                <strong>예시 · 검증 통과</strong>지정된 환경에서 확인한 항목이
+                통과했습니다. 다른 환경의 결과를 뜻하지 않습니다.
+              </aside>
+            </div>
+          </div>
+          <details>
+            <summary>참고·주의·오류·완료 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-notices"
+                  data-feedback="feedback-notices"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-notices">&lt;div class=&quot;stack&quot;&gt;&lt;aside class=&quot;note info&quot;&gt;&lt;strong&gt;참고&lt;/strong&gt;이 규칙은 새로 만든 링크에만 적용하는 제안입니다.&lt;/aside&gt;&lt;aside class=&quot;note warning&quot;&gt;&lt;strong&gt;결정 필요&lt;/strong&gt;로그인하지 않은 사용자의 열람 범위는 아직 정하지 않았습니다.&lt;/aside&gt;&lt;aside class=&quot;note danger&quot;&gt;&lt;strong&gt;예시 · 저장 실패&lt;/strong&gt;수정 내용이 저장되지 않았습니다. 입력을 유지한 채 다시 시도할 수 있게 합니다.&lt;/aside&gt;&lt;aside class=&quot;note success&quot;&gt;&lt;strong&gt;예시 · 검증 통과&lt;/strong&gt;지정된 환경에서 확인한 항목이 통과했습니다. 다른 환경의 결과를 뜻하지 않습니다.&lt;/aside&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-notices" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="fields" aria-labelledby="fields-title">
+          <div class="asset-header">
+            <h2 id="fields-title">필드와 도움말</h2>
+            <p>에셋 06</p>
+          </div>
+          <p>
+            라벨은 입력 위에 항상 남깁니다. 도움말과 오류는 입력과 연결합니다.
+            아래 오류 필드는 고정된 디자인 견본이며 전송 기능이 없습니다.
+          </p>
+          <div class="asset-stage">
+            <div class="stack">
+              <div class="form-field">
+                <label for="asset-title">문서 제목</label
+                ><input
+                  id="asset-title"
+                  name="document-title"
+                  type="text"
+                  autocomplete="off"
+                  placeholder="예: 컬렉션 공유 기능 명세"
+                  aria-describedby="asset-title-help"
+                />
+                <p class="meta" id="asset-title-help">
+                  주제와 문서 목적을 함께 적습니다. 이 예시의 입력은 저장되지
+                  않습니다.
+                </p>
+              </div>
+              <div class="form-field">
+                <label for="asset-version">적용 버전 · 오류 견본</label
+                ><input
+                  id="asset-version"
+                  name="version-example"
+                  type="text"
+                  value=""
+                  readonly
+                  aria-invalid="true"
+                  aria-describedby="asset-version-error"
+                />
+                <p class="field-error" id="asset-version-error">
+                  적용 버전을 입력하거나 ‘미정’으로 표시해 주세요.
+                </p>
+              </div>
+            </div>
+          </div>
+          <details>
+            <summary>필드와 도움말 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-fields"
+                  data-feedback="feedback-fields"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-fields">&lt;div class=&quot;stack&quot;&gt;&lt;div class=&quot;form-field&quot;&gt;&lt;label for=&quot;asset-title&quot;&gt;문서 제목&lt;/label&gt;&lt;input id=&quot;asset-title&quot; name=&quot;document-title&quot; type=&quot;text&quot; autocomplete=&quot;off&quot; placeholder=&quot;예: 컬렉션 공유 기능 명세&quot; aria-describedby=&quot;asset-title-help&quot;&gt;&lt;p class=&quot;meta&quot; id=&quot;asset-title-help&quot;&gt;주제와 문서 목적을 함께 적습니다. 이 예시의 입력은 저장되지 않습니다.&lt;/p&gt;&lt;/div&gt;&lt;div class=&quot;form-field&quot;&gt;&lt;label for=&quot;asset-version&quot;&gt;적용 버전 · 오류 견본&lt;/label&gt;&lt;input id=&quot;asset-version&quot; name=&quot;version-example&quot; type=&quot;text&quot; value=&quot;&quot; readonly aria-invalid=&quot;true&quot; aria-describedby=&quot;asset-version-error&quot;&gt;&lt;p class=&quot;field-error&quot; id=&quot;asset-version-error&quot;&gt;적용 버전을 입력하거나 ‘미정’으로 표시해 주세요.&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-fields" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section
+          class="asset"
+          id="definitions"
+          aria-labelledby="definitions-title"
+        >
+          <div class="asset-header">
+            <h2 id="definitions-title">속성과 값</h2>
+            <p>에셋 07</p>
+          </div>
+          <p>
+            대상·조건·담당·버전처럼 이름과 값의 관계를 보여 줍니다. 모바일에서는
+            각 이름 바로 아래에 값이 옵니다.
+          </p>
+          <div class="asset-stage">
+            <dl class="key-values">
+              <dt>적용 대상</dt>
+              <dd>컬렉션 소유자</dd>
+              <dt>발생 조건</dt>
+              <dd>공유 링크 생성을 요청했을 때</dd>
+              <dt>미결</dt>
+              <dd>콘텐츠가 없는 컬렉션의 생성 가능 여부</dd>
+            </dl>
+          </div>
+          <details>
+            <summary>속성과 값 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-definitions"
+                  data-feedback="feedback-definitions"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-definitions">&lt;dl class=&quot;key-values&quot;&gt;&lt;dt&gt;적용 대상&lt;/dt&gt;&lt;dd&gt;컬렉션 소유자&lt;/dd&gt;&lt;dt&gt;발생 조건&lt;/dt&gt;&lt;dd&gt;공유 링크 생성을 요청했을 때&lt;/dd&gt;&lt;dt&gt;미결&lt;/dt&gt;&lt;dd&gt;콘텐츠가 없는 컬렉션의 생성 가능 여부&lt;/dd&gt;&lt;/dl&gt;</code></pre>
+              <p
+                class="copy-feedback"
+                id="feedback-definitions"
+                role="status"
+              ></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="table" aria-labelledby="table-title">
+          <div class="asset-header">
+            <h2 id="table-title">비교 표</h2>
+            <p>에셋 08</p>
+          </div>
+          <p>
+            수치 비교는 열 관계를 유지합니다. 꼭 필요한 표만 내부 스크롤을
+            허용합니다. 긴 설명이 여러 열로 반복되면 목록과 상세로 나눕니다.
+          </p>
+          <div class="asset-stage">
+            <p class="meta table-hint" id="asset-table-hint">
+              좁은 화면에서는 표 안을 좌우로 스크롤할 수 있습니다. 키보드는 표에
+              초점을 둔 뒤 방향키를 사용합니다.
+            </p>
+            <div
+              class="table-wrap"
+              role="region"
+              aria-label="분기별 검토 건수 예시"
+              aria-describedby="asset-table-hint"
+              tabindex="0"
+            >
+              <table class="wide-table">
+                <caption>
+                  가상 데이터 · 기간별 검토 건수
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">기간</th>
+                    <th scope="col" class="numeric">검토 대상</th>
+                    <th scope="col" class="numeric">처리 완료</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1차 검토</th>
+                    <td class="numeric">24</td>
+                    <td class="numeric">18</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2차 검토</th>
+                    <td class="numeric">32</td>
+                    <td class="numeric">24</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <details>
+            <summary>비교 표 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-table"
+                  data-feedback="feedback-table"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-table">&lt;p class=&quot;meta table-hint&quot; id=&quot;asset-table-hint&quot;&gt;좁은 화면에서는 표 안을 좌우로 스크롤할 수 있습니다. 키보드는 표에 초점을 둔 뒤 방향키를 사용합니다.&lt;/p&gt;&lt;div class=&quot;table-wrap&quot; role=&quot;region&quot; aria-label=&quot;분기별 검토 건수 예시&quot; aria-describedby=&quot;asset-table-hint&quot; tabindex=&quot;0&quot;&gt;&lt;table class=&quot;wide-table&quot;&gt;&lt;caption&gt;가상 데이터 · 기간별 검토 건수&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th scope=&quot;col&quot;&gt;기간&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;numeric&quot;&gt;검토 대상&lt;/th&gt;&lt;th scope=&quot;col&quot; class=&quot;numeric&quot;&gt;처리 완료&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;1차 검토&lt;/th&gt;&lt;td class=&quot;numeric&quot;&gt;24&lt;/td&gt;&lt;td class=&quot;numeric&quot;&gt;18&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;th scope=&quot;row&quot;&gt;2차 검토&lt;/th&gt;&lt;td class=&quot;numeric&quot;&gt;32&lt;/td&gt;&lt;td class=&quot;numeric&quot;&gt;24&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-table" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="steps" aria-labelledby="steps-title">
+          <div class="asset-header">
+            <h2 id="steps-title">단계와 타임라인</h2>
+            <p>에셋 09</p>
+          </div>
+          <p>
+            순서는 순서 목록으로 표현합니다. 운영 문서에서는 단계마다
+            대상·담당·진입/종료 조건을 더합니다.
+          </p>
+          <div class="asset-stage">
+            <ol class="timeline">
+              <li>
+                <span class="step-label">01 / 작성</span>
+                <div>
+                  <h3>범위와 미결을 정리합니다.</h3>
+                  <p>규칙마다 예외와 확인할 결과를 함께 씁니다.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-label">02 / 검토</span>
+                <div>
+                  <h3>구현·검증 가능한지 확인합니다.</h3>
+                  <p>미결을 임의의 기본 동작으로 채우지 않습니다.</p>
+                </div>
+              </li>
+              <li>
+                <span class="step-label">03 / 공유</span>
+                <div>
+                  <h3>승인 근거와 버전을 남깁니다.</h3>
+                  <p>정본 링크와 바뀐 부분을 함께 안내합니다.</p>
+                </div>
+              </li>
+            </ol>
+          </div>
+          <details>
+            <summary>단계와 타임라인 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-steps"
+                  data-feedback="feedback-steps"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-steps">&lt;ol class=&quot;timeline&quot;&gt;&lt;li&gt;&lt;span class=&quot;step-label&quot;&gt;01 / 작성&lt;/span&gt;&lt;div&gt;&lt;h3&gt;범위와 미결을 정리합니다.&lt;/h3&gt;&lt;p&gt;규칙마다 예외와 확인할 결과를 함께 씁니다.&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;step-label&quot;&gt;02 / 검토&lt;/span&gt;&lt;div&gt;&lt;h3&gt;구현·검증 가능한지 확인합니다.&lt;/h3&gt;&lt;p&gt;미결을 임의의 기본 동작으로 채우지 않습니다.&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;&lt;li&gt;&lt;span class=&quot;step-label&quot;&gt;03 / 공유&lt;/span&gt;&lt;div&gt;&lt;h3&gt;승인 근거와 버전을 남깁니다.&lt;/h3&gt;&lt;p&gt;정본 링크와 바뀐 부분을 함께 안내합니다.&lt;/p&gt;&lt;/div&gt;&lt;/li&gt;&lt;/ol&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-steps" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section
+          class="asset"
+          id="disclosure"
+          aria-labelledby="disclosure-title"
+        >
+          <div class="asset-header">
+            <h2 id="disclosure-title">상세 펼치기</h2>
+            <p>에셋 10</p>
+          </div>
+          <p>
+            참고 근거·변경 이력처럼 선택해서 읽는 정보에 사용합니다. 필수 조건과
+            중대한 예외를 숨기는 용도로 쓰지 않습니다.
+          </p>
+          <div class="asset-stage">
+            <details>
+              <summary>예시 0.1의 변경 이유</summary>
+              <div>
+                <p>
+                  정책 확정과 구현 완료가 혼동되지 않도록 상태를 분리했습니다.
+                  이 설명은 가상의 변경 이력입니다.
+                </p>
+              </div>
+            </details>
+          </div>
+          <details>
+            <summary>상세 펼치기 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-disclosure"
+                  data-feedback="feedback-disclosure"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-disclosure">&lt;details&gt;&lt;summary&gt;예시 0.1의 변경 이유&lt;/summary&gt;&lt;div&gt;&lt;p&gt;정책 확정과 구현 완료가 혼동되지 않도록 상태를 분리했습니다. 이 설명은 가상의 변경 이력입니다.&lt;/p&gt;&lt;/div&gt;&lt;/details&gt;</code></pre>
+              <p
+                class="copy-feedback"
+                id="feedback-disclosure"
+                role="status"
+              ></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="copy" aria-labelledby="copy-title">
+          <div class="asset-header">
+            <h2 id="copy-title">문구·코드 복사</h2>
+            <p>에셋 11</p>
+          </div>
+          <p>
+            버튼 가까이에 성공 여부를 텍스트로 알립니다. 브라우저가 자동 복사를
+            막으면 선택된 내용을 직접 복사할 수 있게 안내합니다.
+          </p>
+          <div class="asset-stage">
+            <p id="asset-copy-target">링크를 복사했습니다.</p>
+            <button
+              class="button js-only"
+              type="button"
+              data-copy="asset-copy-target"
+              data-feedback="asset-copy-result"
+              style="margin-top: var(--s4)"
+            >
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="12" height="13" rx="2" />
+                <path d="M16 8V3H3v13h5" /></svg
+              >문구 복사
+            </button>
+            <p class="status-message" id="asset-copy-result" role="status"></p>
+          </div>
+          <details>
+            <summary>문구·코드 복사 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-copy"
+                  data-feedback="feedback-copy"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-copy">&lt;p id=&quot;asset-copy-target&quot;&gt;링크를 복사했습니다.&lt;/p&gt;&lt;button class=&quot;button js-only&quot; type=&quot;button&quot; data-copy=&quot;asset-copy-target&quot; data-feedback=&quot;asset-copy-result&quot; style=&quot;margin-top:var(--s4)&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;8&quot; y=&quot;8&quot; width=&quot;12&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M16 8V3H3v13h5&quot;/&gt;&lt;/svg&gt;문구 복사&lt;/button&gt;&lt;p class=&quot;status-message&quot; id=&quot;asset-copy-result&quot; role=&quot;status&quot;&gt;&lt;/p&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-copy" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="empty" aria-labelledby="empty-title">
+          <div class="asset-header">
+            <h2 id="empty-title">빈 결과</h2>
+            <p>에셋 12</p>
+          </div>
+          <p>
+            왜 비었는지와 다시 진행할 수 있는 행동 하나를 보여 줍니다. 실제
+            검색·초기화 동작은 문구 목록 템플릿에서 확인할 수 있습니다.
+          </p>
+          <div class="asset-stage">
+            <div class="empty-state">
+              <h3>조건에 맞는 문구가 없습니다.</h3>
+              <p>검색어를 지우고 전체 목록에서 다시 찾아보세요.</p>
+              <a class="button" href="template-copy.html">문구 목록 열기</a>
+            </div>
+          </div>
+          <details>
+            <summary>빈 결과 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-empty"
+                  data-feedback="feedback-empty"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-empty">&lt;div class=&quot;empty-state&quot;&gt;&lt;h3&gt;조건에 맞는 문구가 없습니다.&lt;/h3&gt;&lt;p&gt;검색어를 지우고 전체 목록에서 다시 찾아보세요.&lt;/p&gt;&lt;a class=&quot;button&quot; href=&quot;template-copy.html&quot;&gt;문구 목록 열기&lt;/a&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-empty" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="states" aria-labelledby="states-title">
+          <div class="asset-header">
+            <h2 id="states-title">로딩·부분 정보·오래된 정보</h2>
+            <p>에셋 13</p>
+          </div>
+          <p>
+            아래는 상태 표현 견본입니다. 서버 연결이나 자동 동기화를 뜻하지
+            않습니다. 정보가 없는 값을 0으로 채우지 않습니다.
+          </p>
+          <div class="asset-stage">
+            <div class="stack">
+              <div class="note">
+                <strong>로딩 견본</strong>
+                <p>문구 목록을 불러오는 중입니다.</p>
+                <div aria-hidden="true">
+                  <div class="skeleton"></div>
+                  <div class="skeleton short"></div>
+                </div>
+              </div>
+              <aside class="note">
+                <strong>부분 정보 견본</strong>검토 대상 24개 · 승인 담당 미정.
+                확인한 값과 미확인 값을 구분합니다.
+              </aside>
+              <aside class="note warning">
+                <strong>오래된 정보·충돌 견본</strong>다른 버전에서 내용이
+                바뀌었습니다. 현재 내용을 덮어쓰기 전에 변경사항을 비교합니다.
+              </aside>
+              <aside class="note info">
+                <strong>연결 끊김 견본</strong>마지막으로 확인한 내용을 보고
+                있습니다. 연결을 복구한 뒤 최신 상태를 다시 확인합니다.
+              </aside>
+            </div>
+          </div>
+          <details>
+            <summary>로딩·부분 정보·오래된 정보 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-states"
+                  data-feedback="feedback-states"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-states">&lt;div class=&quot;stack&quot;&gt;&lt;div class=&quot;note&quot;&gt;&lt;strong&gt;로딩 견본&lt;/strong&gt;&lt;p&gt;문구 목록을 불러오는 중입니다.&lt;/p&gt;&lt;div aria-hidden=&quot;true&quot;&gt;&lt;div class=&quot;skeleton&quot;&gt;&lt;/div&gt;&lt;div class=&quot;skeleton short&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;aside class=&quot;note &quot;&gt;&lt;strong&gt;부분 정보 견본&lt;/strong&gt;검토 대상 24개 · 승인 담당 미정. 확인한 값과 미확인 값을 구분합니다.&lt;/aside&gt;&lt;aside class=&quot;note warning&quot;&gt;&lt;strong&gt;오래된 정보·충돌 견본&lt;/strong&gt;다른 버전에서 내용이 바뀌었습니다. 현재 내용을 덮어쓰기 전에 변경사항을 비교합니다.&lt;/aside&gt;&lt;aside class=&quot;note info&quot;&gt;&lt;strong&gt;연결 끊김 견본&lt;/strong&gt;마지막으로 확인한 내용을 보고 있습니다. 연결을 복구한 뒤 최신 상태를 다시 확인합니다.&lt;/aside&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-states" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="dialog" aria-labelledby="dialog-title">
+          <div class="asset-header">
+            <h2 id="dialog-title">확인 대화상자</h2>
+            <p>에셋 14</p>
+          </div>
+          <p>
+            현재 흐름을 멈춰 확인할 이유가 있을 때 사용합니다. 아래 예시는 실제
+            데이터를 바꾸지 않습니다. 닫기·취소·Escape·바깥 클릭과 초점 복귀를
+            제공합니다.
+          </p>
+          <div class="asset-stage">
+            <button
+              class="button js-only"
+              type="button"
+              data-open-dialog="asset-dialog"
+            >
+              확인창 예시 열기
+            </button>
+            <p class="meta">
+              예시 내용: “이 창은 공유 해제 전 결과를 확인하는 구조입니다. 실제
+              공유 링크는 바뀌지 않습니다.”
+            </p>
+            <dialog
+              class="dialog-demo"
+              id="asset-dialog"
+              aria-labelledby="asset-dialog-title"
+              aria-describedby="asset-dialog-description"
+            >
+              <button
+                class="dialog-close"
+                type="button"
+                data-close-dialog
+                aria-label="확인창 닫기"
+              >
+                <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m6 6 12 12M18 6 6 18" />
+                </svg>
+              </button>
+              <h2 id="asset-dialog-title">공유 해제 전 확인</h2>
+              <p id="asset-dialog-description">
+                이 창은 공유 해제 전 결과를 확인하는 구조입니다. 실제 공유
+                링크는 바뀌지 않습니다.
+              </p>
+              <div class="actions">
+                <button class="button primary" type="button" data-close-dialog>
+                  예시 확인 완료</button
+                ><button
+                  class="button"
+                  type="button"
+                  data-close-dialog
+                  autofocus
+                >
+                  취소
+                </button>
+              </div>
+            </dialog>
+          </div>
+          <details>
+            <summary>확인 대화상자 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-dialog"
+                  data-feedback="feedback-dialog"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-dialog">&lt;button class=&quot;button js-only&quot; type=&quot;button&quot; data-open-dialog=&quot;asset-dialog&quot;&gt;확인창 예시 열기&lt;/button&gt;&lt;p class=&quot;meta&quot;&gt;예시 내용: “이 창은 공유 해제 전 결과를 확인하는 구조입니다. 실제 공유 링크는 바뀌지 않습니다.”&lt;/p&gt;&lt;dialog class=&quot;dialog-demo&quot; id=&quot;asset-dialog&quot; aria-labelledby=&quot;asset-dialog-title&quot; aria-describedby=&quot;asset-dialog-description&quot;&gt;&lt;button class=&quot;dialog-close&quot; type=&quot;button&quot; data-close-dialog aria-label=&quot;확인창 닫기&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m6 6 12 12M18 6 6 18&quot;/&gt;&lt;/svg&gt;&lt;/button&gt;&lt;h2 id=&quot;asset-dialog-title&quot;&gt;공유 해제 전 확인&lt;/h2&gt;&lt;p id=&quot;asset-dialog-description&quot;&gt;이 창은 공유 해제 전 결과를 확인하는 구조입니다. 실제 공유 링크는 바뀌지 않습니다.&lt;/p&gt;&lt;div class=&quot;actions&quot;&gt;&lt;button class=&quot;button primary&quot; type=&quot;button&quot; data-close-dialog&gt;예시 확인 완료&lt;/button&gt;&lt;button class=&quot;button&quot; type=&quot;button&quot; data-close-dialog autofocus&gt;취소&lt;/button&gt;&lt;/div&gt;&lt;/dialog&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-dialog" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section class="asset" id="icons" aria-labelledby="icons-title">
+          <div class="asset-header">
+            <h2 id="icons-title">아이콘과 라벨</h2>
+            <p>에셋 15</p>
+          </div>
+          <p>
+            20px·1.7px 선 굵기의 같은 SVG 문법을 사용합니다. 의미를 추측해야
+            하는 아이콘은 이름과 함께 둡니다. 아래는 표시용 견본입니다.
+          </p>
+          <div class="asset-stage">
+            <div class="actions">
+              <span class="status-inline"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M14 3H5v18h14V8zM14 3v5h5M9 12h6m-6 4h6" /></svg
+                >문서</span
+              ><span class="status-inline"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <rect x="8" y="8" width="12" height="13" rx="2" />
+                  <path d="M16 8V3H3v13h5" /></svg
+                >복사</span
+              ><span class="status-inline"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4" /></svg
+                >다운로드</span
+              ><span class="status-inline"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="m5 12 4 4L19 6" /></svg
+                >확인</span
+              ><span class="status-inline"
+                ><svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M12 11v6m0-10v.1" /></svg
+                >참고</span
+              >
+            </div>
+          </div>
+          <details>
+            <summary>아이콘과 라벨 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-icons"
+                  data-feedback="feedback-icons"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-icons">&lt;div class=&quot;actions&quot;&gt;&lt;span class=&quot;status-inline&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M14 3H5v18h14V8zM14 3v5h5M9 12h6m-6 4h6&quot;/&gt;&lt;/svg&gt;문서&lt;/span&gt;&lt;span class=&quot;status-inline&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;rect x=&quot;8&quot; y=&quot;8&quot; width=&quot;12&quot; height=&quot;13&quot; rx=&quot;2&quot;/&gt;&lt;path d=&quot;M16 8V3H3v13h5&quot;/&gt;&lt;/svg&gt;복사&lt;/span&gt;&lt;span class=&quot;status-inline&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;M12 3v12m-5-5 5 5 5-5M5 17v4h14v-4&quot;/&gt;&lt;/svg&gt;다운로드&lt;/span&gt;&lt;span class=&quot;status-inline&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;path d=&quot;m5 12 4 4L19 6&quot;/&gt;&lt;/svg&gt;확인&lt;/span&gt;&lt;span class=&quot;status-inline&quot;&gt;&lt;svg class=&quot;icon&quot; viewBox=&quot;0 0 24 24&quot; aria-hidden=&quot;true&quot;&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;9&quot;/&gt;&lt;path d=&quot;M12 11v6m0-10v.1&quot;/&gt;&lt;/svg&gt;참고&lt;/span&gt;&lt;/div&gt;</code></pre>
+              <p class="copy-feedback" id="feedback-icons" role="status"></p>
+            </div>
+          </details>
+        </section>
+        <section
+          class="asset"
+          id="acceptance"
+          aria-labelledby="acceptance-title"
+        >
+          <div class="asset-header">
+            <h2 id="acceptance-title">확인 체크리스트</h2>
+            <p>에셋 16</p>
+          </div>
+          <p>
+            사용자의 확인 행동에 사용합니다. 서버에 저장하지 않는 경우
+            초기화되는 범위를 알립니다. 단순 완료 표시가 필요하면 배지를 씁니다.
+          </p>
+          <div class="asset-stage">
+            <p class="meta" style="margin-bottom: var(--s4)">
+              현재 페이지에서만 체크할 수 있으며 새로 열면 초기화됩니다.
+            </p>
+            <ul class="checklist">
+              <li>
+                <input id="asset-check-1" type="checkbox" /><label
+                  for="asset-check-1"
+                  >규칙마다 예외와 인수 조건이 연결되어 있습니다.</label
+                >
+              </li>
+              <li>
+                <input id="asset-check-2" type="checkbox" /><label
+                  for="asset-check-2"
+                  >라이트·다크·좁은 화면을 확인했습니다.</label
+                >
+              </li>
+            </ul>
+          </div>
+          <details>
+            <summary>확인 체크리스트 HTML 코드</summary>
+            <div>
+              <div class="code-tools">
+                <span class="meta">system.css · system.js와 함께 사용</span
+                ><button
+                  class="button small js-only"
+                  type="button"
+                  data-copy="code-acceptance"
+                  data-feedback="feedback-acceptance"
+                >
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect x="8" y="8" width="12" height="13" rx="2" />
+                    <path d="M16 8V3H3v13h5" /></svg
+                  >코드 복사
+                </button>
+              </div>
+              <pre><code id="code-acceptance">&lt;p class=&quot;meta&quot; style=&quot;margin-bottom:var(--s4)&quot;&gt;현재 페이지에서만 체크할 수 있으며 새로 열면 초기화됩니다.&lt;/p&gt;&lt;ul class=&quot;checklist&quot;&gt;&lt;li&gt;&lt;input id=&quot;asset-check-1&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;asset-check-1&quot;&gt;규칙마다 예외와 인수 조건이 연결되어 있습니다.&lt;/label&gt;&lt;/li&gt;&lt;li&gt;&lt;input id=&quot;asset-check-2&quot; type=&quot;checkbox&quot;&gt;&lt;label for=&quot;asset-check-2&quot;&gt;라이트·다크·좁은 화면을 확인했습니다.&lt;/label&gt;&lt;/li&gt;&lt;/ul&gt;</code></pre>
+              <p
+                class="copy-feedback"
+                id="feedback-acceptance"
+                role="status"
+              ></p>
+            </div>
+          </details>
+        </section>
+        <footer class="doc-footer">
+          C8 문서 디자인 가이드 · v0.2 · 2026.09.23<br />샘플은 가상의 기획
+          내용입니다. 실제 제품의 확정 정책이 아닙니다.<br /><a
+            href="writing.html#sources"
+            >설계 근거와 참고 자료</a
+          >
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

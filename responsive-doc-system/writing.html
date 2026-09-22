@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f5f3" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="기획 문서를 읽고 찾고 구현하기 위한 반응형 디자인 시스템. 라이트·다크 테마, 타이포그래피, UI 에셋과 문서 템플릿."
+    />
+    <title>작성·운영 기준 · C8 문서 디자인 가이드</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307ed21'/%3E%3Cpath d='M10 7h12M10 13h12M10 19h8M10 25h12' stroke='%23152213' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <script src="theme-init.js"></script>
+    <link rel="stylesheet" href="system.css" />
+    <script src="system.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <header class="topbar">
+      <a class="brand" href="index.html"
+        ><span class="brand-symbol" aria-hidden="true">C8</span
+        ><span>문서 디자인 가이드<small>Library 0.2 · 제안</small></span></a
+      >
+      <div class="theme-switch js-only" role="group" aria-label="화면 테마">
+        <button type="button" data-set-theme="light" aria-pressed="false">
+          라이트</button
+        ><button type="button" data-set-theme="dark" aria-pressed="false">
+          다크</button
+        ><button type="button" data-set-theme="system" aria-pressed="true">
+          시스템
+        </button>
+      </div>
+    </header>
+    <noscript
+      ><p class="nojs-note">
+        시스템 테마로 표시합니다. 검색·자동 복사·테마 선택은 JavaScript를 켜면
+        사용할 수 있습니다. 모든 문서는 그대로 읽을 수 있습니다.
+      </p></noscript
+    >
+    <details class="mobile-nav">
+      <summary>가이드 목차</summary>
+      <nav aria-label="모바일 가이드">
+        <a href="index.html">시작하기</a><a href="foundations.html">기초 규칙</a
+        ><a href="components.html">UI 에셋</a
+        ><a href="templates.html">문서 템플릿</a
+        ><a href="writing.html" aria-current="page">작성·운영 기준</a>
+      </nav>
+    </details>
+    <div class="shell">
+      <aside class="sidebar">
+        <nav aria-label="가이드">
+          <a href="index.html">시작하기</a
+          ><a href="foundations.html">기초 규칙</a
+          ><a href="components.html">UI 에셋</a
+          ><a href="templates.html">문서 템플릿</a
+          ><a href="writing.html" aria-current="page">작성·운영 기준</a>
+        </nav>
+        <p class="nav-label">바로 시작하기</p>
+        <a href="template-spec.html">기능 명세 예시</a
+        ><a href="document-starter.zip" download>시작 파일 받기</a>
+        <p class="nav-label">2026.09.23<br />검토용 제안 v0.2</p>
+      </aside>
+      <main id="main" class="main" tabindex="-1">
+        <header class="page-header">
+          <p class="eyebrow">작성·운영 기준</p>
+          <h1>문서가 바뀌어도 기준은 남도록.</h1>
+          <p class="lede">
+            보기 좋은 양식과 정확한 내용은 함께 관리합니다. 누가 무엇을 결정했고
+            어디까지 구현·검증했는지 문서의 구조 안에 남깁니다.
+          </p>
+        </header>
+        <section class="section" id="contract" aria-labelledby="contract-title">
+          <h2 id="contract-title">모든 문서에 공통으로 필요한 것</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>
+                필수 정보와 선택 모듈의 경계
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">공통 머리말 · 필수</th>
+                  <th scope="col">본문 · 목적에 따라 선택</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>문서 제목과 목적 한 문장</td>
+                  <td>문제 장면·배경·근거</td>
+                </tr>
+                <tr>
+                  <td>이번에 정하거나 확인할 내용</td>
+                  <td>범위·대안·비교·추천</td>
+                </tr>
+                <tr>
+                  <td>정책·구현·검증 상태</td>
+                  <td>규칙·예외·상태·문구·데이터</td>
+                </tr>
+                <tr>
+                  <td>담당 역할·업데이트 날짜·적용 버전</td>
+                  <td>운영 단계·진입/종료 조건</td>
+                </tr>
+                <tr>
+                  <td>정본 링크와 변경 이력</td>
+                  <td>인수 조건·측정·검증 증거</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="measure" style="margin-top: var(--s5)">
+            미결이 없으면 ‘미결 없음’, 담당자가 정해지지 않았으면 ‘담당
+            미정’으로 씁니다. 내용이 없는 섹션은 지우되, 중요한 질문을 검토하지
+            않은 상태와 혼동하지 않게 합니다.
+          </p>
+        </section>
+        <section class="section" id="status" aria-labelledby="status-title">
+          <h2 id="status-title">확정·구현·검증을 한 단어로 합치지 않습니다</h2>
+          <dl class="key-values">
+            <dt>정책 상태</dt>
+            <dd>
+              초안 → 검토 중 → 확정 → 대체·폐기. 확정에는 승인 근거와 적용
+              시점이 필요합니다.
+            </dd>
+            <dt>구현 상태</dt>
+            <dd>
+              미착수 → 진행 중 → 구현 완료. 연결 티켓이나 변경 근거가
+              필요합니다.
+            </dd>
+            <dt>검증 상태</dt>
+            <dd>
+              미실행 → 검증 중 → 통과·실패. 환경·빌드·확인 항목과 증거가
+              필요합니다.
+            </dd>
+          </dl>
+          <aside class="note warning">
+            <strong>‘확정’ 배지만으로 개발 완료를 뜻하지 않습니다</strong>정책이
+            확정됐어도 구현은 미착수일 수 있습니다. 구현이 끝났어도 검증은
+            실패일 수 있습니다. 상태는 각자의 근거로 바꿉니다.
+          </aside>
+        </section>
+        <section class="section" id="compose" aria-labelledby="compose-title">
+          <h2 id="compose-title">작성 순서</h2>
+          <ol class="timeline">
+            <li>
+              <span class="step-label">01 / 독자</span>
+              <div>
+                <h3>읽은 뒤 해야 할 행동을 정합니다.</h3>
+                <p>
+                  결정, 구현, 운영, 항목 조회, 재현·검증 중 가장 중요한 목적
+                  하나를 고릅니다. 다른 목적은 보조 모듈로 붙입니다.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-label">02 / 내용</span>
+              <div>
+                <h3>사실·결정·제안·미결을 분리합니다.</h3>
+                <p>
+                  근거가 없는 내용을 확정 규칙처럼 채우지 않습니다. 핵심 값은
+                  정본 한 곳에서 관리하고, 반복 구간에서는 ID나 링크로
+                  참조합니다.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-label">03 / 구조</span>
+              <div>
+                <h3>가까운 템플릿에서 필요 없는 부분을 덜어냅니다.</h3>
+                <p>
+                  한 섹션은 하나의 질문에 답하게 합니다. 문장은 본문, 속성은
+                  정의 목록, 비교는 표, 순서는 단계형으로 표현합니다.
+                </p>
+              </div>
+            </li>
+            <li>
+              <span class="step-label">04 / 공유</span>
+              <div>
+                <h3>실제 내용으로 확인한 뒤 버전을 남깁니다.</h3>
+                <p>
+                  새 규칙을 추가하면 관련 예외·상태·인수 조건도 같이 살핍니다.
+                  제목 변경으로 앵커가 깨지지 않도록 안정된 ID를 유지합니다.
+                </p>
+              </div>
+            </li>
+          </ol>
+        </section>
+        <section class="section" id="review" aria-labelledby="review-title">
+          <h2 id="review-title">공유 전 검수</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>
+                외관만으로 확인할 수 없는 항목도 따로 남깁니다.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">검수 영역</th>
+                  <th scope="col">확인 질문</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">내용·정보 구조</th>
+                  <td>
+                    첫 화면에서 목적·현재 상태·다음 행동이 보이나요? 규칙과
+                    예외가 연결되나요? 같은 숫자가 충돌하지 않나요?
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">텍스트·시각</th>
+                  <td>
+                    제목만 읽어도 흐름이 있나요? 본문이 너무 길거나 작지 않나요?
+                    강조가 한곳에 몰리지 않나요?
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">두 테마</th>
+                  <td>
+                    텍스트·상태·선택·초점·입력 경계가 두 모드에서 보이나요?
+                    스크린샷과 삽입 이미지의 밝은 배경도 확인했나요?
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">반응형·확대</th>
+                  <td>
+                    320px부터 넓은 화면까지 문서 전체 가로 넘침이 없나요?
+                    확대·텍스트 간격 변경에서도 내용과 조작이 남나요?
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">조작·접근성</th>
+                  <td>
+                    키보드와 터치로 사용할 수 있나요? 조작 이름·필드 라벨·표
+                    헤더·초점 복귀·오류 안내가 있나요?
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">상태·복구</th>
+                  <td>
+                    빈 결과·실패·부분 정보·오래된 버전을 구분하나요? 돌아갈
+                    방법과 재시도가 있나요?
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">전달·운영</th>
+                  <td>
+                    비로그인 링크가 열리나요? 링크·폰트·파일·인쇄가 동작하나요?
+                    민감 정보는 없나요? 정본과 변경 이력이 있나요?
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section class="section" id="adopt" aria-labelledby="adopt-title">
+          <h2 id="adopt-title">기존 문서에 적용하는 순서</h2>
+          <div class="roadmap">
+            <div>
+              <h3>먼저 적용할 범위</h3>
+              <ol>
+                <li>명예의 전당의 운영 한 구간</li>
+                <li>베스트 크리에이터의 규칙·예외 한 묶음</li>
+                <li>알림·토스트의 목록과 상세 한 세트</li>
+              </ol>
+            </div>
+            <div>
+              <h3>확인할 독자 과업</h3>
+              <ul>
+                <li>이번에 결정할 것과 미결을 찾기</li>
+                <li>특정 규칙의 예외와 적용 시점 찾기</li>
+                <li>문구 ID로 항목과 변경 이유 찾기</li>
+                <li>구현 완료와 검증 통과를 구별하기</li>
+              </ul>
+            </div>
+          </div>
+          <p class="measure" style="margin-top: var(--s5)">
+            실제 개발자·QA의 탐색 시간, 오해한 내용, 다시 질문한 항목을
+            기록합니다. 개선이 확인된 구조부터 넓혀 갑니다. 실제 문서의 분량이
+            커지면 긴 목록의 필터·상세 경로·성능을 추가 검증해야 합니다.
+          </p>
+        </section>
+        <section
+          class="section"
+          id="governance"
+          aria-labelledby="governance-title"
+        >
+          <h2 id="governance-title">작게 유지하고, 근거를 남깁니다</h2>
+          <dl class="key-values">
+            <dt>새 에셋 추가</dt>
+            <dd>
+              기존 에셋으로 해결되지 않는 반복 사례가 있을 때 제안합니다. 사용
+              목적·금지 상황·두 테마·모바일·상태·키보드·코드 예시를 함께
+              제출합니다.
+            </dd>
+            <dt>변경 관리</dt>
+            <dd>
+              기존 문서의 의미나 조작을 바꾸면 호환성 영향을 적습니다. 없앨
+              에셋에는 대체 경로와 유예를 알립니다. 승인 역할은 팀이 지정합니다.
+            </dd>
+            <dt>정본 관리</dt>
+            <dd>
+              문서 버전과 라이브러리 버전을 따로 기록합니다. 과거 링크와
+              요구사항 ID를 유지하고, 바뀐 부분은 이력에서 찾게 합니다.
+            </dd>
+            <dt>공개·보안</dt>
+            <dd>
+              공유 링크를 공개할 때 내부 경로·토큰·개인정보·미공개 사업 내용을
+              확인합니다. 공개 예시에는 가상 데이터를 사용합니다.
+            </dd>
+          </dl>
+        </section>
+        <section class="section" id="limits" aria-labelledby="limits-title">
+          <h2 id="limits-title">이번 버전의 제공 범위</h2>
+          <p>
+            정적 HTML·CSS·JavaScript로 된 문서용 키트입니다. 테마
+            선택·검색·복사·접기·대화상자는 실제로 동작합니다. 서버 저장, 협업
+            편집, 권한 처리, 실제 제품 기능은 구현하지 않습니다.
+          </p>
+          <aside class="note">
+            <strong>검증을 구분해 읽어 주세요</strong>자동 브라우저 검사와 화면
+            검수는 레이아웃·조작 결함을 찾는 데 사용했습니다. 실제 개발자의
+            이해도 시험, 실기기·Safari·스크린리더 종합 검증은 별도입니다. 기존
+            사업 문서는 아직 바꾸지 않았습니다.
+          </aside>
+        </section>
+        <section class="section" id="sources" aria-labelledby="sources-title">
+          <h2 id="sources-title">무엇을 참고했고, 무엇을 다르게 했는가</h2>
+          <ul class="source-list">
+            <li>
+              <a
+                href="https://carbondesignsystem.com/elements/typography/overview/"
+                >IBM Carbon · Typography</a
+              ><br />표현적인 제목과 생산성 중심 본문을 구분하는 원칙을
+              참고했습니다. 한글 문서는 본문 18px와 별도의 읽기 폭을 제안합니다.
+            </li>
+            <li>
+              <a href="https://carbondesignsystem.com/elements/color/overview/"
+                >IBM Carbon · Color</a
+              >,
+              <a href="https://vercel.com/geist/colors">Vercel Geist · Colors</a
+              ><br />색을 역할과 표면 단계로 관리하는 접근을 반영했습니다. C8
+              브랜드 색을 그대로 본문 링크에 쓰지 않고 대비를 확보합니다.
+            </li>
+            <li>
+              <a href="https://linear.app/">Linear</a>,
+              <a href="https://stripe.com/">Stripe</a><br />명확한 글자 대비와
+              공간의 질서를 참고했습니다. 홈페이지의 큰 마케팅 연출을 장문 개발
+              문서에 그대로 옮기지는 않습니다.
+            </li>
+            <li>
+              <a
+                href="https://docs.github.com/en/contributing/style-guide-and-content-model/contents-of-a-github-docs-article"
+                >GitHub Docs · Content model</a
+              >, <a href="https://diataxis.fr/how-to-use-diataxis/">Diátaxis</a
+              ><br />독자의 과업에 맞게 문서 유형을 구분했습니다. 이번 키트의
+              다섯 템플릿은 해당 서비스의 공식 분류가 아닌, 현재 업무에 맞춘
+              제안입니다.
+            </li>
+            <li>
+              <a href="https://designsystem.digital.gov/components/table/"
+                >USWDS · Table</a
+              >,
+              <a
+                href="https://design-system.service.gov.uk/components/accordion/"
+                >GOV.UK · Accordion</a
+              ><br />비교 관계를 보존하는 표와 필요한 곳에만 쓰는 접기를
+              참고했습니다. 핵심 예외는 접지 않습니다.
+            </li>
+            <li>
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme"
+                >MDN · prefers-color-scheme</a
+              >,
+              <a
+                href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/color-scheme"
+                >MDN · color-scheme</a
+              ><br />시스템 선호 감지와 브라우저 기본 조작부의 테마를 함께
+              반영합니다.
+            </li>
+            <li>
+              <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+                >W3C · Reflow</a
+              >,
+              <a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+                >Contrast</a
+              >,
+              <a
+                href="https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html"
+                >Target size</a
+              ><br />반응형·대비·조작 영역의 검증 근거입니다. 가이드 구현만으로
+              전체 WCAG 준수를 인증하지 않습니다.
+            </li>
+            <li>
+              <a href="https://github.com/orioncactus/pretendard">Pretendard</a
+              ><br />글꼴은 SIL Open Font License로 동봉했습니다.
+              <a href="FONT-LICENSE.txt">라이선스 원문</a>
+            </li>
+          </ul>
+        </section>
+        <footer class="doc-footer">
+          C8 문서 디자인 가이드 · v0.2 · 2026.09.23<br />샘플은 가상의 기획
+          내용입니다. 실제 제품의 확정 정책이 아닙니다.<br /><a
+            href="writing.html#sources"
+            >설계 근거와 참고 자료</a
+          >
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

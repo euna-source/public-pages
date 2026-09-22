@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f5f3" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="기획 문서를 읽고 찾고 구현하기 위한 반응형 디자인 시스템. 라이트·다크 테마, 타이포그래피, UI 에셋과 문서 템플릿."
+    />
+    <title>의사결정안 예시 · C8 문서 디자인 가이드</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307ed21'/%3E%3Cpath d='M10 7h12M10 13h12M10 19h8M10 25h12' stroke='%23152213' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <script src="theme-init.js"></script>
+    <link rel="stylesheet" href="system.css" />
+    <script src="system.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <header class="topbar">
+      <a class="brand" href="index.html"
+        ><span class="brand-symbol" aria-hidden="true">C8</span
+        ><span>문서 디자인 가이드<small>Library 0.2 · 제안</small></span></a
+      >
+      <div class="theme-switch js-only" role="group" aria-label="화면 테마">
+        <button type="button" data-set-theme="light" aria-pressed="false">
+          라이트</button
+        ><button type="button" data-set-theme="dark" aria-pressed="false">
+          다크</button
+        ><button type="button" data-set-theme="system" aria-pressed="true">
+          시스템
+        </button>
+      </div>
+    </header>
+    <noscript
+      ><p class="nojs-note">
+        시스템 테마로 표시합니다. 검색·자동 복사·테마 선택은 JavaScript를 켜면
+        사용할 수 있습니다. 모든 문서는 그대로 읽을 수 있습니다.
+      </p></noscript
+    >
+    <details class="mobile-nav">
+      <summary>가이드 목차</summary>
+      <nav aria-label="모바일 가이드">
+        <a href="index.html">시작하기</a><a href="foundations.html">기초 규칙</a
+        ><a href="components.html">UI 에셋</a
+        ><a href="templates.html" aria-current="page">문서 템플릿</a
+        ><a href="writing.html">작성·운영 기준</a>
+      </nav>
+    </details>
+    <div class="shell">
+      <aside class="sidebar">
+        <nav aria-label="가이드">
+          <a href="index.html">시작하기</a
+          ><a href="foundations.html">기초 규칙</a
+          ><a href="components.html">UI 에셋</a
+          ><a href="templates.html" aria-current="page">문서 템플릿</a
+          ><a href="writing.html">작성·운영 기준</a>
+        </nav>
+        <p class="nav-label">바로 시작하기</p>
+        <a href="template-spec.html">기능 명세 예시</a
+        ><a href="document-starter.zip" download>시작 파일 받기</a>
+        <p class="nav-label">2026.09.23<br />검토용 제안 v0.2</p>
+      </aside>
+      <main id="main" class="main" tabindex="-1">
+        <header class="page-header">
+          <p class="eyebrow">문서 템플릿 / 의사결정안 · 가상 예시</p>
+          <h1>공유 링크의 기본 공개 범위</h1>
+          <p class="lede">
+            링크를 받은 사람이 로그인 없이 컬렉션을 열 수 있게 할지 결정합니다.
+          </p>
+        </header>
+        <div class="doc-summary">
+          <strong>먼저 확인할 내용</strong>
+          <p>
+            이 페이지의 추천은 가상 예시입니다. 공개 범위와 접근 편의 중 무엇을
+            우선할지 논의하고 정책 승인 근거를 남깁니다.
+          </p>
+        </div>
+        <dl class="doc-meta">
+          <div>
+            <dt>정책</dt>
+            <dd><span class="badge warning">검토 중</span></dd>
+          </div>
+          <div>
+            <dt>구현</dt>
+            <dd>미착수</dd>
+          </div>
+          <div>
+            <dt>검증</dt>
+            <dd>미실행</dd>
+          </div>
+          <div>
+            <dt>문서 버전</dt>
+            <dd>예시 0.1</dd>
+          </div>
+        </dl>
+        <p class="meta" style="margin-top: var(--s4)">
+          업데이트 2026.09.23 · 담당 미정 · 적용 버전 미정 · 정본 링크
+          미정(예시)
+        </p>
+        <nav class="doc-contents" aria-label="이 문서의 목차">
+          <a href="#question">결정할 것</a><a href="#context">근거</a
+          ><a href="#options">선택지</a><a href="#impact">영향</a
+          ><a href="#decision">결정 기록</a>
+        </nav>
+        <section class="section" id="question" aria-labelledby="question-title">
+          <h2 id="question-title">이번에 정할 것</h2>
+          <p class="measure">
+            <strong
+              >공유 링크의 기본값을 ‘로그인 후 열람’으로 제안합니다.</strong
+            >
+            다만 공개 홍보가 주된 사용 목적이고 노출 위험을 충분히 통제할 수
+            있다면 로그인 없는 열람이 더 적합할 수 있습니다.
+          </p>
+        </section>
+        <section class="section" id="context" aria-labelledby="context-title">
+          <h2 id="context-title">판단에 필요한 근거</h2>
+          <dl class="key-values">
+            <dt>확인할 사용자 상황</dt>
+            <dd>
+              작업물을 빠르게 보여 주려는 사람과 공개 범위를 제한하려는 사람이
+              같은 기능을 사용합니다.
+            </dd>
+            <dt>확인한 자료</dt>
+            <dd>
+              이 예시는 실제 조사 결과를 포함하지 않습니다. 인터뷰·열람
+              흐름·권한 정책을 연결할 자리입니다.
+            </dd>
+            <dt>핵심 가정</dt>
+            <dd>
+              초기에는 접근 편의보다 공개 범위의 예측 가능성을 우선합니다. 이
+              가정은 검증이 필요합니다.
+            </dd>
+          </dl>
+        </section>
+        <section class="section" id="options" aria-labelledby="options-title">
+          <h2 id="options-title">선택지와 선택 기준</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>
+                두 선택지의 차이 · 가상 제안
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">기준</th>
+                  <th scope="col">로그인 후 열람</th>
+                  <th scope="col">로그인 없이 열람</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">접근 편의</th>
+                  <td>로그인 과정이 필요합니다.</td>
+                  <td>링크에서 바로 볼 수 있습니다.</td>
+                </tr>
+                <tr>
+                  <th scope="row">공개 범위</th>
+                  <td>계정 접근 정책을 적용할 수 있습니다.</td>
+                  <td>링크 재공유와 노출 범위를 검토해야 합니다.</td>
+                </tr>
+                <tr>
+                  <th scope="row">추가 확인</th>
+                  <td>로그인 이탈과 복귀 흐름</td>
+                  <td>검색 노출·미리보기·콘텐츠 보호</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <aside class="note info">
+            <strong>추천이 바뀌는 조건</strong>실제 주 사용 목적이 외부
+            홍보이고, 로그인 단계가 핵심 과업을 막는다는 근거가 확인되면 기본
+            공개 범위를 다시 검토합니다.
+          </aside>
+        </section>
+        <section class="section" id="impact" aria-labelledby="impact-title">
+          <h2 id="impact-title">이 결정이 바꾸는 것</h2>
+          <ul>
+            <li>공유 링크의 열람·오류 화면과 로그인 복귀 경로</li>
+            <li>컬렉션 소유자에게 공개 범위를 설명하는 문구</li>
+            <li>개발·QA의 권한과 접근 불가 검증 범위</li>
+          </ul>
+        </section>
+        <section class="section" id="decision" aria-labelledby="decision-title">
+          <h2 id="decision-title">결정과 미결 기록</h2>
+          <dl class="key-values">
+            <dt>현재 상태</dt>
+            <dd>검토 중 · 승인되지 않은 예시입니다.</dd>
+            <dt>담당·목표일</dt>
+            <dd>미정 · 실제 문서에서 팀이 지정합니다.</dd>
+            <dt>미결</dt>
+            <dd>미리보기 이미지와 검색 노출 범위를 어디까지 허용할까요?</dd>
+            <dt>승인 근거</dt>
+            <dd>미정 · 결정 이후 회의나 승인 기록을 연결합니다.</dd>
+            <dt>변경 이력</dt>
+            <dd>예시 0.1 · 선택지와 추천이 바뀌는 조건을 작성했습니다.</dd>
+          </dl>
+        </section>
+        <section class="section" id="reuse" aria-labelledby="reuse-title">
+          <h2 id="reuse-title">이 템플릿으로 새 문서 만들기</h2>
+          <p>
+            제목과 예시 내용을 실제 기획으로 바꿉니다. 검토·구현·검증 상태는
+            근거가 있을 때만 올립니다. 담당·적용 버전·정본 링크도 함께 채웁니다.
+          </p>
+          <div class="actions">
+            <a class="button" href="document-starter.zip" download
+              >시작 파일 받기</a
+            ><a class="text-link" href="templates.html">템플릿 목록</a>
+          </div>
+        </section>
+        <footer class="doc-footer">
+          C8 문서 디자인 가이드 · v0.2 · 2026.09.23<br />샘플은 가상의 기획
+          내용입니다. 실제 제품의 확정 정책이 아닙니다.<br /><a
+            href="writing.html#sources"
+            >설계 근거와 참고 자료</a
+          >
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

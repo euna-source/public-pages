@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f4f5f3" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta
+      name="description"
+      content="기획 문서를 읽고 찾고 구현하기 위한 반응형 디자인 시스템. 라이트·다크 테마, 타이포그래피, UI 에셋과 문서 템플릿."
+    />
+    <title>기초 규칙 · C8 문서 디자인 가이드</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2307ed21'/%3E%3Cpath d='M10 7h12M10 13h12M10 19h8M10 25h12' stroke='%23152213' stroke-width='2'/%3E%3C/svg%3E"
+    />
+    <script src="theme-init.js"></script>
+    <link rel="stylesheet" href="system.css" />
+    <script src="system.js" defer></script>
+  </head>
+  <body>
+    <a class="skip" href="#main">본문으로 건너뛰기</a>
+    <header class="topbar">
+      <a class="brand" href="index.html"
+        ><span class="brand-symbol" aria-hidden="true">C8</span
+        ><span>문서 디자인 가이드<small>Library 0.2 · 제안</small></span></a
+      >
+      <div class="theme-switch js-only" role="group" aria-label="화면 테마">
+        <button type="button" data-set-theme="light" aria-pressed="false">
+          라이트</button
+        ><button type="button" data-set-theme="dark" aria-pressed="false">
+          다크</button
+        ><button type="button" data-set-theme="system" aria-pressed="true">
+          시스템
+        </button>
+      </div>
+    </header>
+    <noscript
+      ><p class="nojs-note">
+        시스템 테마로 표시합니다. 검색·자동 복사·테마 선택은 JavaScript를 켜면
+        사용할 수 있습니다. 모든 문서는 그대로 읽을 수 있습니다.
+      </p></noscript
+    >
+    <details class="mobile-nav">
+      <summary>가이드 목차</summary>
+      <nav aria-label="모바일 가이드">
+        <a href="index.html">시작하기</a
+        ><a href="foundations.html" aria-current="page">기초 규칙</a
+        ><a href="components.html">UI 에셋</a
+        ><a href="templates.html">문서 템플릿</a
+        ><a href="writing.html">작성·운영 기준</a>
+      </nav>
+    </details>
+    <div class="shell">
+      <aside class="sidebar">
+        <nav aria-label="가이드">
+          <a href="index.html">시작하기</a
+          ><a href="foundations.html" aria-current="page">기초 규칙</a
+          ><a href="components.html">UI 에셋</a
+          ><a href="templates.html">문서 템플릿</a
+          ><a href="writing.html">작성·운영 기준</a>
+        </nav>
+        <p class="nav-label">바로 시작하기</p>
+        <a href="template-spec.html">기능 명세 예시</a
+        ><a href="document-starter.zip" download>시작 파일 받기</a>
+        <p class="nav-label">2026.09.23<br />검토용 제안 v0.2</p>
+      </aside>
+      <main id="main" class="main" tabindex="-1">
+        <header class="page-header">
+          <p class="eyebrow">기초 규칙</p>
+          <h1>차분한 바탕, 분명한 위계.</h1>
+          <p class="lede">
+            색은 역할을, 글자는 읽는 순서를, 여백은 정보 사이의 관계를
+            표현합니다. 모드가 바뀌어도 의미와 강조 순서는 같습니다.
+          </p>
+        </header>
+        <nav class="doc-contents" aria-label="기초 규칙 목차">
+          <a href="#mood">무드</a><a href="#color">컬러</a
+          ><a href="#typography">타이포그래피</a><a href="#emphasis">강조</a
+          ><a href="#layout">구조·여백</a><a href="#responsive">반응형</a>
+        </nav>
+        <section class="section" id="mood" aria-labelledby="mood-title">
+          <h2 id="mood-title">무드: 정돈된 편집과 정확한 인터페이스</h2>
+          <div class="split">
+            <div>
+              <p class="measure">
+                밝은 화면은 흰 종이와 옅은 회녹색 바탕, 어두운 화면은 차콜
+                바탕과 한 단계 밝은 표면으로 구성합니다. 서체는 한 가지로
+                유지하고, 굵기와 크기의 차이로 문서의 표정을 만듭니다.
+              </p>
+              <p class="measure">
+                C8의 밝은 그린은 작은 브랜드 표식에 남깁니다. 본문 링크에는
+                모드별로 읽기 쉬운 그린을 사용합니다. 사진·그라디언트·큰 색 면은
+                문서의 내용보다 앞서지 않게 절제합니다.
+              </p>
+            </div>
+            <div class="paper">
+              <p class="meta">시각 언어의 기준</p>
+              <p style="font-size: 32px; font-weight: 700; line-height: 1.4">
+                여백은 넉넉하게.<br />판단은 명확하게.
+              </p>
+              <p class="meta" style="margin-top: var(--s5)">
+                정돈된 / 담백한 / 정교한
+              </p>
+              <div class="brand-ramp" aria-label="C8 그린의 농도 예시">
+                <span style="--chip: #e6fde8"></span
+                ><span style="--chip: #9be68d"></span
+                ><span style="--chip: #07ed21"></span
+                ><span style="--chip: #03670f"></span
+                ><span style="--chip: #004007"></span>
+              </div>
+              <p class="meta">브랜드 색 전체를 매 화면에 사용하지 않습니다.</p>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="color" aria-labelledby="color-title">
+          <h2 id="color-title">색상은 이름보다 역할로 사용합니다</h2>
+          <p>
+            HTML마다 새 색을 고르지 않고 <code>--text</code>,
+            <code>--surface</code>, <code>--accent</code>처럼 의미가 있는 토큰을
+            씁니다. 아래 두 표본은 현재 테마와 관계없이 각 모드를 보여 줍니다.
+          </p>
+          <div class="palette-pair">
+            <article class="palette" data-theme="light">
+              <h3>Light / 라이트</h3>
+              <p>가볍고 선명하게, 긴 문장을 편하게.</p>
+              <div class="swatch-list">
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #ffffff"
+                    aria-hidden="true"
+                  ></i
+                  ><span>문서 표면<span>--surface</span></span
+                  ><code>#FFFFFF</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #f4f5f3"
+                    aria-hidden="true"
+                  ></i
+                  ><span>페이지 바탕<span>--canvas</span></span
+                  ><code>#F4F5F3</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #202720"
+                    aria-hidden="true"
+                  ></i
+                  ><span>주요 텍스트<span>--text</span></span
+                  ><code>#202720</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #596357"
+                    aria-hidden="true"
+                  ></i
+                  ><span>보조 텍스트<span>--muted</span></span
+                  ><code>#596357</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #03670f"
+                    aria-hidden="true"
+                  ></i
+                  ><span>링크·주요 행동<span>--accent</span></span
+                  ><code>#03670F</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #e4f2df"
+                    aria-hidden="true"
+                  ></i
+                  ><span>선택·강조 배경<span>--accent-soft</span></span
+                  ><code>#E4F2DF</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #75816f"
+                    aria-hidden="true"
+                  ></i
+                  ><span>조작부 경계<span>--control</span></span
+                  ><code>#75816F</code>
+                </div>
+              </div>
+            </article>
+            <article class="palette" data-theme="dark">
+              <h3>Dark / 다크</h3>
+              <p>과한 흰빛을 낮추고 표면의 깊이는 유지.</p>
+              <div class="swatch-list">
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #202521"
+                    aria-hidden="true"
+                  ></i
+                  ><span>문서 표면<span>--surface</span></span
+                  ><code>#202521</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #151816"
+                    aria-hidden="true"
+                  ></i
+                  ><span>페이지 바탕<span>--canvas</span></span
+                  ><code>#151816</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #eef2ec"
+                    aria-hidden="true"
+                  ></i
+                  ><span>주요 텍스트<span>--text</span></span
+                  ><code>#EEF2EC</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #b2beb0"
+                    aria-hidden="true"
+                  ></i
+                  ><span>보조 텍스트<span>--muted</span></span
+                  ><code>#B2BEB0</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #9be68d"
+                    aria-hidden="true"
+                  ></i
+                  ><span>링크·주요 행동<span>--accent</span></span
+                  ><code>#9BE68D</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #293e28"
+                    aria-hidden="true"
+                  ></i
+                  ><span>선택·강조 배경<span>--accent-soft</span></span
+                  ><code>#293E28</code>
+                </div>
+                <div class="swatch">
+                  <i
+                    class="swatch-chip"
+                    style="--chip: #85947e"
+                    aria-hidden="true"
+                  ></i
+                  ><span>조작부 경계<span>--control</span></span
+                  ><code>#85947E</code>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="stack" style="margin-top: var(--s5)">
+            <aside class="note">
+              <strong>상태 색은 별도의 언어입니다</strong>그린=완료·긍정,
+              앰버=검토·주의, 레드=오류·위험, 블루=참고. 색만으로 구별하지 않고
+              상태 이름과 이유를 함께 씁니다. 전체 의미 색은
+              <a href="components.html#notices">알림 에셋</a>에서 확인할 수
+              있습니다.
+            </aside>
+            <aside class="note info">
+              <strong>테마 전환의 기본 동작</strong>첫 방문은 시스템 설정을
+              따릅니다. 직접 선택하면 이 브라우저에 저장합니다. ‘시스템’을 다시
+              선택하면 운영체제 변경을 따라갑니다. 저장이 차단되어도 현재
+              페이지의 전환은 동작합니다.
+            </aside>
+          </div>
+          <h3>대비와 표면</h3>
+          <p class="measure">
+            일반 텍스트 대비는 최소 4.5:1, 큰 글자는 3:1을 기준으로 검사합니다.
+            입력 경계·필수 상태 표시도 배경과 3:1을 목표로 합니다. 구분선은
+            조작부 경계와 다른 약한 색을 씁니다. 다크 모드에서는 그림자를 짙게
+            쌓기보다 표면 밝기와 경계로 층을 구분합니다.
+          </p>
+          <p class="meta" style="margin-top: var(--s4)">
+            색상 정본: <a href="system.css">system.css</a> · 수치 기준:
+            <a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html"
+              >WCAG 대비</a
+            >,
+            <a
+              href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html"
+              >비텍스트 대비</a
+            >
+          </p>
+        </section>
+        <section
+          class="section"
+          id="typography"
+          aria-labelledby="typography-title"
+        >
+          <h2 id="typography-title">글자 위계는 읽는 순서입니다</h2>
+          <p>
+            Pretendard Variable을 기본으로 사용합니다. 웹폰트가 없어도 시스템
+            한글 서체로 읽을 수 있습니다. 기본 굵기는 400·600·700의 세
+            단계입니다.
+          </p>
+          <div class="type-row">
+            <div class="type-label">Title<br />36–44 / 700</div>
+            <div class="type-h1">문서의 목적을 먼저.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Section<br />26–28 / 700</div>
+            <div class="type-h2">다음으로, 결정할 내용을.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Subsection<br />20 / 600–700</div>
+            <div class="type-h3">동작과 예외를 함께 읽습니다.</div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Body<br />18 / 400 / 1.75</div>
+            <div class="type-body">
+              문서의 본문은 충분한 크기와 행간을 유지합니다. 화면이 좁아져도
+              글자를 줄여 정보를 욱여넣지 않습니다. 한 문단에는 하나의 판단에
+              필요한 내용을 담습니다.
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">UI · Table<br />16 / 400–600 / 1.5</div>
+            <div class="type-ui">
+              검색, 필드 이름, 짧은 표 셀, 버튼의 기본 크기입니다.
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Metadata<br />14 / 400 / 1.5</div>
+            <div class="type-meta">
+              예시 0.1 · 2026.09.23 · 검토 중 / 날짜와 출처에 사용합니다.
+            </div>
+          </div>
+          <div class="type-row">
+            <div class="type-label">Code<br />14 / mono / 1.7</div>
+            <div><code>REQ-01 · collection_share_enabled</code></div>
+          </div>
+          <h3>가독성을 지키는 세부 규칙</h3>
+          <ul class="measure">
+            <li>
+              긴 본문 폭은 최대 38rem입니다. 18px 한글 기준으로 대략 한 줄 32자
+              안팎이며, 표와 목록은 내용에 맞게 더 넓게 씁니다.
+            </li>
+            <li>
+              본문 자간은 0입니다. 한국어의 단어 경계는 유지하되 긴 URL·식별자는
+              줄바꿈을 허용합니다.
+            </li>
+            <li>
+              핵심 규칙은 14px 보조 글자로 내리지 않습니다. 보조 색도 실제
+              표면에서 대비를 검사합니다.
+            </li>
+            <li>
+              제목은 h1 한 개, h2 주요 묶음, h3 하위 주제 순으로 씁니다. 크기를
+              맞추려고 제목 수준을 건너뛰지 않습니다.
+            </li>
+            <li>
+              표의 숫자는 동일 폭 숫자를 사용합니다. 숫자 비교 열은 오른쪽,
+              문장은 왼쪽 정렬합니다.
+            </li>
+          </ul>
+        </section>
+        <section class="section" id="emphasis" aria-labelledby="emphasis-title">
+          <h2 id="emphasis-title">강조는 다섯 가지 역할로 나눕니다</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>
+                강조의 뜻과 사용할 위치
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">표현</th>
+                  <th scope="col">사용 규칙</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row"><strong>굵은 글자</strong></th>
+                  <td>
+                    문장 안의 결론·핵심 조건. 문단 전체를 굵게 하지 않습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><mark>하이라이트</mark></th>
+                  <td>
+                    이번에 달라진 부분이나 검토 대상. 중요한 모든 문장에 칠하지
+                    않습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><a href="#responsive">밑줄 링크</a></th>
+                  <td>
+                    이동할 수 있는 텍스트에만 사용합니다. 색이나 밑줄을 장식으로
+                    쓰지 않습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><code>REQ-01</code></th>
+                  <td>고유 ID·변수·코드·정확히 복사할 값에 사용합니다.</td>
+                </tr>
+                <tr>
+                  <th scope="row">주의·오류 안내</th>
+                  <td>
+                    놓치면 동작이 바뀌는 조건은 제목과 설명이 있는 알림 영역으로
+                    분리합니다.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="comparison" style="margin-top: var(--s6)">
+            <div>
+              <h3>이렇게 씁니다</h3>
+              <p>
+                링크를 해제하면
+                <strong>기존 링크로 컬렉션을 열 수 없습니다.</strong> 콘텐츠
+                자체는 삭제되지 않습니다.
+              </p>
+            </div>
+            <div>
+              <h3>피해야 할 방식</h3>
+              <p>
+                모든 문장을 굵게, 빨갛게, 밑줄로 동시에 강조하면 읽는 순서가
+                사라집니다. 경고 색을 단순한 중요 표시로 쓰지 않습니다.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="section" id="layout" aria-labelledby="layout-title">
+          <h2 id="layout-title">화면과 여백에도 위계가 있습니다</h2>
+          <div class="split">
+            <div>
+              <h3>공통 화면 틀</h3>
+              <p style="margin-top: var(--s4)">
+                현재 문서와 테마 설정을 위쪽에, 이동 경로를 왼쪽에 둡니다.
+                본문은 목적과 요약으로 시작하고, 내용을 읽은 뒤 필요한 행동으로
+                끝납니다.
+              </p>
+              <p>
+                문서 폭은 최대 1120px 안팎, 본문은 38rem을 기준으로 합니다. 넓은
+                화면을 빈 카드로 채우지 않습니다.
+              </p>
+            </div>
+            <div class="layout-map" aria-label="데스크톱 문서 화면의 구조">
+              <span class="full">문서 이름 · 테마 설정</span
+              ><span class="aside-block">탐색<br />현재 위치</span
+              ><span class="main-block"
+                >목적·상태·요약<br /><br />본문 / 표 / 규칙·예외</span
+              ><span class="full">미결 · 다음 행동 · 변경 이력</span>
+            </div>
+          </div>
+          <h3>같은 묶음은 가깝게, 다른 묶음은 멀게</h3>
+          <div class="space-list">
+            <div class="space-item">
+              <i style="--size: 4px" aria-hidden="true"></i>4
+            </div>
+            <div class="space-item">
+              <i style="--size: 8px" aria-hidden="true"></i>8
+            </div>
+            <div class="space-item">
+              <i style="--size: 12px" aria-hidden="true"></i>12
+            </div>
+            <div class="space-item">
+              <i style="--size: 16px" aria-hidden="true"></i>16
+            </div>
+            <div class="space-item">
+              <i style="--size: 24px" aria-hidden="true"></i>24
+            </div>
+            <div class="space-item">
+              <i style="--size: 32px" aria-hidden="true"></i>32
+            </div>
+            <div class="space-item">
+              <i style="--size: 48px" aria-hidden="true"></i>48
+            </div>
+            <div class="space-item">
+              <i style="--size: 64px" aria-hidden="true"></i>64
+            </div>
+          </div>
+          <p class="measure" style="margin-top: var(--s5)">
+            라벨과 값은 4–8px, 같은 그룹은 12–16px, 모듈은 24–32px, 섹션은
+            48–64px로 구분합니다. 모서리는 입력·버튼 6px, 모듈 12px, 독립 문서
+            표본 18px로 사용합니다.
+          </p>
+        </section>
+        <section
+          class="section"
+          id="responsive"
+          aria-labelledby="responsive-title"
+        >
+          <h2 id="responsive-title">폭이 바뀌면 정보 관계를 다시 배치합니다</h2>
+          <div class="table-wrap">
+            <table>
+              <caption>
+                반응형 규칙과 유지해야 하는 의미
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">정보 유형</th>
+                  <th scope="col">좁은 화면에서의 규칙</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">탐색·머리말</th>
+                  <td>
+                    1040px 이하에서 왼쪽 탐색을 상단 ‘가이드 목차’로 옮깁니다.
+                    640px 이하에서는 고정 헤더를 해제해 읽는 공간을 확보합니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">본문·상태</th>
+                  <td>
+                    본문 18px를 유지합니다. 요약·정책·구현·검증 상태는 숨기지
+                    않고 줄바꿈합니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">비교·정의</th>
+                  <td>
+                    긴 설명은 이름과 값을 한 묶음으로 쌓습니다. 두 대상을 번갈아
+                    비교해야 하면 같은 속성 단위로 묶습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">숫자 표</th>
+                  <td>
+                    열 관계가 의미인 표만 내부 가로 스크롤을 허용합니다. 표
+                    제목·헤더·스크롤 안내·키보드 접근을 유지합니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">시간·순서</th>
+                  <td>
+                    단계의 순서·기간·담당을 함께 유지합니다. 달력 자체가 중요한
+                    경우 날짜를 문장으로만 바꾸지 않습니다.
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">조작·오버레이</th>
+                  <td>
+                    조작 영역은 내부 기준 44px 이상. 대화상자는 화면 안에 맞추고
+                    키보드·닫기·초점 복귀를 확인합니다.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="meta" style="margin-top: var(--s4)">
+            320px 리플로우와 확대를 별도로 검사합니다. 복잡한 2차원 표의 예외는
+            <a href="https://www.w3.org/WAI/WCAG22/Understanding/reflow.html"
+              >WCAG Reflow</a
+            >
+            기준에 맞춰 판단합니다. 44px은 이 키트의 조작 기준이며 WCAG 2.2 AA
+            최소 타깃 기준과 동일한 수치가 아닙니다.
+          </p>
+        </section>
+        <footer class="doc-footer">
+          C8 문서 디자인 가이드 · v0.2 · 2026.09.23<br />샘플은 가상의 기획
+          내용입니다. 실제 제품의 확정 정책이 아닙니다.<br /><a
+            href="writing.html#sources"
+            >설계 근거와 참고 자료</a
+          >
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>
