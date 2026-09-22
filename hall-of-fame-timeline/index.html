@@ -301,6 +301,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
             <div class="bst"><div><p class="bt">"첫 리스펙트가 왔습니다" 알림</p><p class="bd">회차 중 자기 작품에 첫 리스펙트가 오면 알림. 다시 들어올 이유. 1차에 되면 넣고 안 되면 2차.</p></div><div class="bw"><b>회차 중</b>개발</div></div>
             <div class="bst warn"><div><span class="signal y">노란불 이틀째부터</span><p class="bt">스포트라이트 · 리뷰 타임</p><p class="bd">순위 페이지 상단에 참가작 3개 무작위 노출. 라운지에서 운영진 실명 리뷰 1시간.</p></div><div class="bw"><b>신호 뒤</b>기획·서포터즈</div></div>
             <div class="bst red"><div><span class="signal r">빨간불 · D7 후보 10명 미만</span><p class="bt">창립 회차로 전환</p><p class="bd">순위 대신 참가자 전원의 활동명과 작품을 "명예의 전당을 연 사람들"로 영구 게시하고 상금은 그대로. D13 후보 2명 이하면 다음 회차와 합산. 규칙서에 사전 고지.</p></div><div class="bw"><b>10/14</b>대표 판정</div></div>
+            <div class="bst"><div><p class="bt">참가자에게 보이는 유의사항 8줄</p><p class="bd">순위판 하단에 붙는 최소 문안. 약관이 이미 정한 것은 조항 번호로 가리키고, 캠페인이 새로 정하는 것만 적습니다.</p><button type="button" class="lbtn" data-drawer="d-rules">유의사항 문안 보기 →</button></div><div class="bw"><b>규칙서</b>기획</div></div>
             <div class="bst"><div><p class="bt">하지 않는 것</p><p class="bd">회차 중 상금 인상, 기간 연장, 쿠폰 신설, 가짜 계정, 서포터즈 리스펙트로 숫자 만들기, 대표 이름의 DM.</p></div><div class="bw"><b>규칙</b></div></div>
           </div>
         </div>
@@ -322,6 +323,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
         <div class="col boost"><h4><i></i>부스팅 계획</h4>
           <div class="boosts">
             <div class="bst core"><div><p class="bt">당첨을 바로 자랑할 수 있게 · 이미지 저장·공유</p><p class="bd">당첨자 화면에 "이미지로 저장"과 "인스타·카톡 공유" 버튼. 저장되는 카드는 작품 이미지·활동명·회차·부문(스토리 9:16, 정사각 1:1). 캡처 없이 한 번의 탭으로 밖에 나가게. 2차 개발 후보, 1차는 발표 공지 이미지를 DM으로 보내 대신합니다.</p></div><div class="bw"><b>20:00</b>기획·개발</div></div>
+            <div class="bst core"><div><p class="bt">당첨 안내 DM · 한 화면에서 넷을 받습니다</p><p class="bd">발송용 휴대전화 번호, 세금 신고가 필요할 때만 주민등록번호, SNS·앱 소개 동의(동의한 경우에만 게시), 실명 표시 여부. 약관은 개정 없이 규칙서를 운영정책으로, 처리방침은 당첨자 정보 항목 추가 필요.</p><button type="button" class="lbtn" data-drawer="d-consent">동의 항목·문안·약관 근거 보기 →</button></div><div class="bw"><b>12:00까지</b>기획</div></div>
             <div class="bst"><div><p class="bt">서포터즈 첫 축하 댓글·리스펙트</p><p class="bd">발표 뒤에만 움직입니다. 회차 중에는 집계를 흐리므로 하지 않습니다.</p></div><div class="bw"><b>20:00~</b>서포터즈</div></div>
           </div>
         </div>
@@ -489,6 +491,16 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
       document.getElementById('sheet-candidates').hidden = tab.dataset.target!=='sheet-candidates';
     });
   });
+})();
+
+(function(){
+  var bg=document.getElementById('drawer-bg'); if(!bg) return; var open=null, last=null;
+  function show(id,btn){var d=document.getElementById(id); if(!d) return; if(open) hide(); d.hidden=false; requestAnimationFrame(function(){d.classList.add('on'); bg.classList.add('on');}); open=d; last=btn; document.body.style.overflow='hidden'; (d.querySelector('.dclose')||d).focus();}
+  function hide(){if(!open) return; var d=open; d.classList.remove('on'); bg.classList.remove('on'); document.body.style.overflow=''; setTimeout(function(){d.hidden=true;},230); open=null; if(last){last.focus(); last=null;}}
+  document.querySelectorAll('[data-drawer]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-drawer'),b);});});
+  document.querySelectorAll('.dclose').forEach(function(b){b.addEventListener('click',hide);});
+  bg.addEventListener('click',hide);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape') hide();});
 })();
 </script>
 </body>
