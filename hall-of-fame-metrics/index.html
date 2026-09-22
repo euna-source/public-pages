@@ -177,6 +177,8 @@ footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--subtle);color
 footer p{margin:0 0 6px}
 
 @media (max-width:860px){
+  .pnav{padding:8px 0}
+  .pp{font-size:11px;padding:4px 8px}
   .four{grid-template-columns:repeat(2,minmax(0,1fr))}
   .units{grid-template-columns:repeat(2,minmax(0,1fr))}
   .wrap{padding:36px 16px 64px}
@@ -262,7 +264,7 @@ footer p{margin:0 0 6px}
       <tr><td>노크 보내기</td><td>상금이 걸리면 모르는 사람에게 무작정 보내는 행동을 유도해 C8 노크의 “진짜 용건” 신뢰 훼손. 단, 수락돼 열린 채팅방의 대화는 상대가 응한 결과이므로 집계에 포함</td></tr>
       <tr><td>친구 초대·외부 공유</td><td>가입자 활동 없이 가입 수만 늘리는 방식이 가장 유리한 구조. 기존 인맥 규모를 재는 초대 수는 상시 추천 이벤트로 분리</td></tr>
       <tr><td>내가 받은 리스펙트·조회수, 조회·검색·북마크·앱 켜 둔 시간</td><td>본인 행동이 아니거나 다른 사람에게 흔적이 남지 않아 제외. 팔로워만 예외로 회차 중 늘어난 수를 연결에서 집계</td></tr>
-      <tr><td>미출시·웹 전용 기능</td><td>캐스팅 수락·협업 제안·일촌은 출시 후 포함</td></tr>
+      <tr><td>미출시·웹 전용 기능</td><td>협업 제안·일촌은 출시 후 포함</td></tr>
     </tbody>
   </table>
   </div>
@@ -277,7 +279,7 @@ footer p{margin:0 0 6px}
   <table>
     <thead><tr><th>구분</th><th>기준</th></tr></thead>
     <tbody>
-      <tr><td>한 회차 길이</td><td>14일(수요일 00:00 시작 → 둘째 화요일 23:59:59 마감)</td></tr>
+      <tr><td>한 회차 길이</td><td>14일(수요일 00:00 시작 → 2주차 화요일 23:59:59 마감)</td></tr>
       <tr><td>집계 주기</td><td>매시 정각 24회 · 마감 직후 배치가 최종 순위 확정</td></tr>
       <tr><td>초기화</td><td>회차 종료와 동시에 전원 0점. 이전 회차 점수는 이월하지 않음</td></tr>
       <tr><td>공개 상태 판정</td><td>마감 시점 1회. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
@@ -496,16 +498,37 @@ footer p{margin:0 0 6px}
 </div>
 <script>
 (function(){
-  var links=[].slice.call(document.querySelectorAll('.pnav .pp'));
-  var map={};
-  links.forEach(function(a){var id=a.getAttribute('href').slice(1);var s=document.getElementById(id);if(s)map[id]=a;});
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      var a=map[e.target.id]; if(!a) return;
-      if(e.isIntersecting){links.forEach(function(x){x.classList.remove('on');});a.classList.add('on');}
+  var nav=document.querySelector('.pnav'); if(!nav) return;
+  var links=[].slice.call(nav.querySelectorAll('a.pp'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('href').slice(1));});
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function offset(){return nav.getBoundingClientRect().height+12;}
+  function goTo(el){
+    var y=el.getBoundingClientRect().top+window.pageYOffset-offset();
+    window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'});
+  }
+  links.forEach(function(a,i){
+    a.addEventListener('click',function(e){
+      var el=secs[i]; if(!el) return;
+      e.preventDefault(); goTo(el);
+      history.replaceState(null,'',a.getAttribute('href'));
     });
-  },{rootMargin:'-60px 0px -70% 0px',threshold:0});
-  Object.keys(map).forEach(function(id){io.observe(document.getElementById(id));});
+  });
+  function mark(){
+    var top=offset()+8, cur=-1;
+    secs.forEach(function(s,i){ if(s && s.getBoundingClientRect().top-top<=0) cur=i; });
+    if(cur<0) cur=0;
+    links.forEach(function(a,i){a.classList.toggle('on',i===cur);});
+    var on=links[cur];
+    if(on){
+      var l=on.offsetLeft, r=l+on.offsetWidth;
+      if(l<nav.scrollLeft+8) nav.scrollTo({left:Math.max(0,l-12),behavior:'auto'});
+      else if(r>nav.scrollLeft+nav.clientWidth-8) nav.scrollTo({left:r-nav.clientWidth+12,behavior:'auto'});
+    }
+  }
+  var raf; window.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(mark);},{passive:true});
+  window.addEventListener('resize',mark); mark();
+  if(location.hash){var el=document.getElementById(location.hash.slice(1)); if(el) setTimeout(function(){goTo(el);},60);}
 })();
 </script>
 <div class="drawer-bg" id="drawer-bg"></div>
@@ -545,7 +568,7 @@ footer p{margin:0 0 6px}
     var t=document.getElementById(b.getAttribute('data-goto')); if(!t) return; var el=pick(t);
     hide({keepFocus:true}); last=histBtn;
     setTimeout(function(){
-      var nav=document.querySelector('.pnav'); var y=el.getBoundingClientRect().top+window.pageYOffset-((nav?nav.offsetHeight:0)+24);
+      var nav=document.querySelector('.pnav'); var y=el.getBoundingClientRect().top+window.pageYOffset-((nav?nav.getBoundingClientRect().height:0)+16);
       window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'}); highlight(el); showPill();
     },240);
   });});
