@@ -117,6 +117,7 @@ td .mut,li .mut{font-size:12px}
 .hist del{text-decoration:line-through;text-decoration-color:rgba(220,38,38,.55);text-decoration-thickness:1px;background:var(--danger-bg);color:var(--t3);border-radius:2px;padding:0 2px}
 .hist ins{text-decoration:none;background:var(--brand-50);color:var(--t1);font-weight:600;border-radius:2px;padding:0 2px}
 @media (max-width:560px){.hx .hb{padding-left:6px}.dclose{width:44px;height:44px;top:10px;right:10px}}
+.history-focus:focus{outline:2px solid var(--brand-text);outline-offset:4px}
 .hl{position:relative;scroll-margin-top:120px;outline:none}
 .hl::after{content:"";position:absolute;inset:-6px -12px;border-radius:var(--radius-m);pointer-events:none;box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--brand-text);background:rgba(7,237,33,.10);animation:hl-fade 3s ease-out forwards}
 @keyframes hl-fade{0%,60%{opacity:1}100%{opacity:0}}
@@ -596,7 +597,7 @@ footer p{margin:0 0 6px}
   function showPill(){ if(!pill) return; clearTimeout(pillT); pill.hidden=false; requestAnimationFrame(function(){pill.classList.add('on');}); pillT=setTimeout(hidePill,20000); }
   function hidePill(){ if(!pill||pill.hidden) return; clearTimeout(pillT); pill.classList.remove('on'); setTimeout(function(){pill.hidden=true;},200); }
   function pick(t){ return t.tagName==='SECTION' ? (t.querySelector('h2')||t) : t; }
-  function highlight(el){ el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl'); var tmp=!el.hasAttribute('tabindex')&&!el.matches('a[href],button,input,select,textarea,summary'); if(tmp) el.setAttribute('tabindex','-1'); try{el.focus({preventScroll:true});}catch(e){} clearTimeout(el._hlT); el._hlT=setTimeout(function(){el.classList.remove('hl'); if(tmp){if(document.activeElement===el)el.addEventListener('blur',function(){el.removeAttribute('tabindex');},{once:true});else el.removeAttribute('tabindex');}},3200); }
+  function highlight(el){ el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl','history-focus'); el.addEventListener('blur',function(){el.classList.remove('history-focus');},{once:true}); var tmp=!el.hasAttribute('tabindex')&&!el.matches('a[href],button,input,select,textarea,summary'); if(tmp) el.setAttribute('tabindex','-1'); try{el.focus({preventScroll:true});}catch(e){} clearTimeout(el._hlT); el._hlT=setTimeout(function(){el.classList.remove('hl'); if(tmp){if(document.activeElement===el)el.addEventListener('blur',function(){el.removeAttribute('tabindex');},{once:true});else el.removeAttribute('tabindex');}},3200); }
   document.querySelectorAll('.goto').forEach(function(b){b.addEventListener('click',function(){
     var t=document.getElementById(b.getAttribute('data-goto')); if(!t) return; var el=pick(t);
     hide({keepFocus:true}); last=histBtn;
