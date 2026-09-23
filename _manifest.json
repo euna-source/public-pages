@@ -166,5 +166,13 @@
     "last_kind": "redeploy",
     "last_sha256": "211276c677fa62b8a1a960c21555a3172cd07c025bcde7233598d0a626ca565a",
     "timestamp": "2026-09-23T12:32:44.779638Z"
+  },
+  "cco-121-명예의전당-운영흐름-260923": {
+    "slug": "cco-121-명예의전당-운영흐름-260923",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/CCO-121-명예의전당-운영흐름-260923/",
+    "last_kind": "redeploy",
+    "last_sha256": "211276c677fa62b8a1a960c21555a3172cd07c025bcde7233598d0a626ca565a",
+    "timestamp": "2026-09-23T12:32:48.626712Z"
   }
 }
