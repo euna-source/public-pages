@@ -18,7 +18,7 @@ for (const [key, family] of Object.entries(families)) {
   if (key !== 'yet') requests.push(document.fonts.load(`700 16px ${family}`, '집계 기간'));
   Promise.all(requests).then(results => {
     if (results.some(result => result.length === 0)) throw new Error('Font unavailable');
-    status.textContent = '서체 적용됨';
+    status.textContent = '글꼴 파일 로드됨';
     status.dataset.state = 'ready';
   }).catch(() => {
     status.textContent = '서체를 불러오지 못했습니다. 새로고침해 주세요.';
