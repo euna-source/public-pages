@@ -1,0 +1,92 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><link rel="icon" href="data:,"><title>개발문서 · 나눔 서체 비교</title><link rel="stylesheet" href="compare.css"><script src="compare.js" defer></script></head>
+<body><a class="skip" href="#comparison">본문으로 건너뛰기</a><main>
+<header class="page-header"><h1>개발문서 서체 비교</h1><p>같은 내용과 배치에서 글자의 모양, 숫자, 강조를 비교해 보세요.</p></header>
+<div class="toolbar"><nav aria-label="비교할 서체">
+<button type="button" data-view="all" aria-pressed="true">나란히</button>
+<button type="button" data-view="barun" aria-pressed="false">나눔바른고딕</button>
+<button type="button" data-view="yet" aria-pressed="false">나눔바른고딕옛한글</button>
+<button type="button" data-view="square" aria-pressed="false">나눔스퀘어</button>
+</nav><div class="options"><label for="size">본문 크기 <select id="size"><option value="auto">기본 15 / 16px</option><option value="15">15px</option><option value="16">16px</option><option value="17">17px</option></select></label>
+<label for="regular"><input type="checkbox" id="regular"> 모두 Regular로 비교</label></div></div>
+<p class="comparison-note">본문은 같은 크기·행간 1.65로 맞췄습니다. 옛한글은 Regular만 제공됩니다. 서체 이름을 누르면 같은 폭의 문서로 한 개씩 볼 수 있습니다.</p>
+<noscript><p>서체 전환은 JavaScript가 필요합니다. 아래에서 세 문서를 모두 읽을 수 있습니다.</p></noscript>
+<div id="comparison" class="comparison" data-view="all" tabindex="-1"><section class="panel barun" id="barun" aria-labelledby="label-barun">
+<header class="panel-label"><h2 id="label-barun">나눔바른고딕</h2><p>Regular · Bold</p><p class="font-status" role="status">서체 불러오는 중…</p></header>
+<article class="sample"><h3>집계 기간과 앱 화면 노출 범위</h3>
+<p class="intro">활동 지수 문서에서 발췌한 동일한 구간입니다.</p>
+<h4>집계 기간</h4><table>
+    <thead><tr><th>구분</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td>한 회차 길이</td><td><b>14일</b><span class="mut">(수요일 00:00 시작 → 2주차 화요일 23:59:59 마감)</span></td></tr>
+      <tr><td>집계 주기</td><td>매시 정각 <b>24회</b> · 마감 직후 배치가 최종 순위 확정</td></tr>
+      <tr><td>초기화</td><td>회차 종료와 동시에 전원 <b>0점</b>. 이전 회차 점수는 이월하지 않음</td></tr>
+      <tr><td>공개 상태 판정</td><td>마감 시점 <b>1회</b>. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
+      <tr><td>팔로워 순증</td><td>회차 시작·마감 시점 팔로워 수의 차이<span class="mut">(팔로우−언팔로우)</span>. 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 <b>0.5명</b></td></tr>
+      <tr><td>동점 처리</td><td><b>리스펙트를 보낸 사람 수</b> → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</td></tr>
+      <tr><td>부문 시행</td><td><b>2회차</b>부터 · 2026-10-21(수) 00:00 ~ 11-03(화) 23:59:59, 11/04(수) 20:00 발표. <span class="mut">1회차(10/07~10/20)는 기존 부문 기준 유지</span></td></tr>
+    </tbody>
+  </table><aside>회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</aside>
+<h4>앱 화면 노출 범위</h4><table>
+    <thead><tr><th>위치</th><th>노출</th><th>비노출</th></tr></thead>
+    <tbody>
+      <tr><td>순위표</td><td>순위 · 활동명 · <b>합산 점수</b></td><td>항목별 점수, 항목별 건수</td></tr>
+      <tr><td>내 점수</td><td>내 <b>합산 점수</b> · 내 순위</td><td>항목별 내역</td></tr>
+      <tr><td>기준 안내</td><td>점수가 쌓이는 행동 목록<span class="mut">(문장)</span></td><td>1건당 점수, 항목별 배점표</td></tr>
+      <tr><td>운영 시트</td><td>항목별 내역 <b>전체</b></td><td>—</td></tr>
+    </tbody>
+  </table>
+<h4>문자 구분</h4><p class="characters">가나다라마바사 아자차카타파하<br>0123456789 · 11:59 · 1,000점<br>API · v3.0 · I l 1 · O 0 · + − % →</p>
+</article><p class="font-note">본문과 강조에 각각 정규 굵기를 사용합니다.</p></section><section class="panel yet" id="yet" aria-labelledby="label-yet">
+<header class="panel-label"><h2 id="label-yet">나눔바른고딕옛한글</h2><p>Regular</p><p class="font-status" role="status">서체 불러오는 중…</p></header>
+<article class="sample"><h3>집계 기간과 앱 화면 노출 범위</h3>
+<p class="intro">활동 지수 문서에서 발췌한 동일한 구간입니다.</p>
+<h4>집계 기간</h4><table>
+    <thead><tr><th>구분</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td>한 회차 길이</td><td><b>14일</b><span class="mut">(수요일 00:00 시작 → 2주차 화요일 23:59:59 마감)</span></td></tr>
+      <tr><td>집계 주기</td><td>매시 정각 <b>24회</b> · 마감 직후 배치가 최종 순위 확정</td></tr>
+      <tr><td>초기화</td><td>회차 종료와 동시에 전원 <b>0점</b>. 이전 회차 점수는 이월하지 않음</td></tr>
+      <tr><td>공개 상태 판정</td><td>마감 시점 <b>1회</b>. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
+      <tr><td>팔로워 순증</td><td>회차 시작·마감 시점 팔로워 수의 차이<span class="mut">(팔로우−언팔로우)</span>. 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 <b>0.5명</b></td></tr>
+      <tr><td>동점 처리</td><td><b>리스펙트를 보낸 사람 수</b> → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</td></tr>
+      <tr><td>부문 시행</td><td><b>2회차</b>부터 · 2026-10-21(수) 00:00 ~ 11-03(화) 23:59:59, 11/04(수) 20:00 발표. <span class="mut">1회차(10/07~10/20)는 기존 부문 기준 유지</span></td></tr>
+    </tbody>
+  </table><aside>회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</aside>
+<h4>앱 화면 노출 범위</h4><table>
+    <thead><tr><th>위치</th><th>노출</th><th>비노출</th></tr></thead>
+    <tbody>
+      <tr><td>순위표</td><td>순위 · 활동명 · <b>합산 점수</b></td><td>항목별 점수, 항목별 건수</td></tr>
+      <tr><td>내 점수</td><td>내 <b>합산 점수</b> · 내 순위</td><td>항목별 내역</td></tr>
+      <tr><td>기준 안내</td><td>점수가 쌓이는 행동 목록<span class="mut">(문장)</span></td><td>1건당 점수, 항목별 배점표</td></tr>
+      <tr><td>운영 시트</td><td>항목별 내역 <b>전체</b></td><td>—</td></tr>
+    </tbody>
+  </table>
+<h4>문자 구분</h4><p class="characters">가나다라마바사 아자차카타파하<br>0123456789 · 11:59 · 1,000점<br>API · v3.0 · I l 1 · O 0 · + − % →</p>
+</article><p class="font-note">제목과 강조도 Regular입니다. 굵기를 인위적으로 만들지 않습니다.</p></section><section class="panel square" id="square" aria-labelledby="label-square">
+<header class="panel-label"><h2 id="label-square">나눔스퀘어</h2><p>Regular · Bold</p><p class="font-status" role="status">서체 불러오는 중…</p></header>
+<article class="sample"><h3>집계 기간과 앱 화면 노출 범위</h3>
+<p class="intro">활동 지수 문서에서 발췌한 동일한 구간입니다.</p>
+<h4>집계 기간</h4><table>
+    <thead><tr><th>구분</th><th>기준</th></tr></thead>
+    <tbody>
+      <tr><td>한 회차 길이</td><td><b>14일</b><span class="mut">(수요일 00:00 시작 → 2주차 화요일 23:59:59 마감)</span></td></tr>
+      <tr><td>집계 주기</td><td>매시 정각 <b>24회</b> · 마감 직후 배치가 최종 순위 확정</td></tr>
+      <tr><td>초기화</td><td>회차 종료와 동시에 전원 <b>0점</b>. 이전 회차 점수는 이월하지 않음</td></tr>
+      <tr><td>공개 상태 판정</td><td>마감 시점 <b>1회</b>. 회차 중 등록 후 삭제·비공개 전환한 항목은 0점</td></tr>
+      <tr><td>팔로워 순증</td><td>회차 시작·마감 시점 팔로워 수의 차이<span class="mut">(팔로우−언팔로우)</span>. 같은 사람의 반복 팔로우는 1회, 회차 시작 뒤 만들어진 계정의 팔로우는 <b>0.5명</b></td></tr>
+      <tr><td>동점 처리</td><td><b>리스펙트를 보낸 사람 수</b> → 포트폴리오 등록 수 → 먼저 그 점수에 도달한 사람</td></tr>
+      <tr><td>부문 시행</td><td><b>2회차</b>부터 · 2026-10-21(수) 00:00 ~ 11-03(화) 23:59:59, 11/04(수) 20:00 발표. <span class="mut">1회차(10/07~10/20)는 기존 부문 기준 유지</span></td></tr>
+    </tbody>
+  </table><aside>회차 리듬은 <a href="https://euna-source.github.io/public-pages/hall-of-fame-timeline/">명예의 전당 운영 흐름</a> 참고</aside>
+<h4>앱 화면 노출 범위</h4><table>
+    <thead><tr><th>위치</th><th>노출</th><th>비노출</th></tr></thead>
+    <tbody>
+      <tr><td>순위표</td><td>순위 · 활동명 · <b>합산 점수</b></td><td>항목별 점수, 항목별 건수</td></tr>
+      <tr><td>내 점수</td><td>내 <b>합산 점수</b> · 내 순위</td><td>항목별 내역</td></tr>
+      <tr><td>기준 안내</td><td>점수가 쌓이는 행동 목록<span class="mut">(문장)</span></td><td>1건당 점수, 항목별 배점표</td></tr>
+      <tr><td>운영 시트</td><td>항목별 내역 <b>전체</b></td><td>—</td></tr>
+    </tbody>
+  </table>
+<h4>문자 구분</h4><p class="characters">가나다라마바사 아자차카타파하<br>0123456789 · 11:59 · 1,000점<br>API · v3.0 · I l 1 · O 0 · + − % →</p>
+</article><p class="font-note">본문과 강조에 각각 정규 굵기를 사용합니다.</p></section></div>
+<footer><p>원문 수집일 2026.09.23 · 초안 v3의 일부 발췌 · 서체 비교용</p><p><a href="https://euna-source.github.io/public-pages/responsive-doc-work-trial/original.html">발췌 원문</a> · <a href="https://hangeul.naver.com/fonts/search?f=nanum">네이버 공식 서체</a> · <a href="FONT-LICENSE.txt">글꼴 라이선스</a></p><p>공식 글꼴 파일을 동봉했습니다. 일부 기호는 시스템 글꼴로 표시될 수 있습니다.</p></footer></main></body></html>

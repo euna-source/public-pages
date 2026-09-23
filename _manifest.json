@@ -78,5 +78,13 @@
     "last_kind": "redeploy",
     "last_sha256": "fbcc3236e149d5743b11b6cbe97fee8d0c5951201e0226de2d61f7aed3b81952",
     "timestamp": "2026-09-23T08:19:38.579760Z"
+  },
+  "nanum-doc-font-compare": {
+    "slug": "nanum-doc-font-compare",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/nanum-doc-font-compare/",
+    "last_kind": "new",
+    "last_sha256": "39890dc1c7457a755b19edbbea2529870f4c4edb2b49d9e5a4fa5114f7b9cf5b",
+    "timestamp": "2026-09-23T08:41:05.216379Z"
   }
 }
