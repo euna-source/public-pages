@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f4f5f3" />
+    <meta name="theme-color" content="#ffffff" />
     <meta name="robots" content="noindex,nofollow" />
     <meta
       name="description"
@@ -27,7 +27,7 @@
     <header class="topbar">
       <a class="brand" href="index.html"
         ><span class="brand-symbol" aria-hidden="true">C8</span
-        ><span>문서 디자인 가이드<small>Library 0.2 · 제안</small></span></a
+        ><span>문서 디자인 가이드<small>Library 0.3 · 제안</small></span></a
       >
       <div class="theme-switch js-only" role="group" aria-label="화면 테마">
         <button type="button" data-set-theme="light" aria-pressed="false">
@@ -67,7 +67,7 @@
         <p class="nav-label">바로 시작하기</p>
         <a href="template-spec.html">기능 명세 예시</a
         ><a href="document-starter.zip" download>시작 파일 받기</a>
-        <p class="nav-label">2026.09.23<br />검토용 제안 v0.2</p>
+        <p class="nav-label">2026.09.23<br />검토용 제안 v0.3</p>
       </aside>
       <main id="main" class="main" tabindex="-1">
         <header class="page-header">
@@ -118,7 +118,7 @@
           </div>
         </section>
         <section class="section" id="color" aria-labelledby="color-title">
-          <h2 id="color-title">색상은 이름보다 역할로 사용합니다</h2>
+          <h2 id="color-title">색상의 역할</h2>
           <p>
             HTML마다 새 색을 고르지 않고 <code>--text</code>,
             <code>--surface</code>, <code>--accent</code>처럼 의미가 있는 토큰을
@@ -141,7 +141,7 @@
                 <div class="swatch">
                   <i
                     class="swatch-chip"
-                    style="--chip: #f4f5f3"
+                    style="--chip: #ffffff"
                     aria-hidden="true"
                   ></i
                   ><span>페이지 바탕<span>--canvas</span></span
@@ -150,20 +150,20 @@
                 <div class="swatch">
                   <i
                     class="swatch-chip"
-                    style="--chip: #202720"
+                    style="--chip: #181818"
                     aria-hidden="true"
                   ></i
                   ><span>주요 텍스트<span>--text</span></span
-                  ><code>#202720</code>
+                  ><code>#181818</code>
                 </div>
                 <div class="swatch">
                   <i
                     class="swatch-chip"
-                    style="--chip: #596357"
+                    style="--chip: #555555"
                     aria-hidden="true"
                   ></i
                   ><span>보조 텍스트<span>--muted</span></span
-                  ><code>#596357</code>
+                  ><code>#555555</code>
                 </div>
                 <div class="swatch">
                   <i
@@ -303,40 +303,40 @@
           id="typography"
           aria-labelledby="typography-title"
         >
-          <h2 id="typography-title">글자 위계는 읽는 순서입니다</h2>
+          <h2 id="typography-title">글자 위계와 크기</h2>
           <p>
             Pretendard Variable을 기본으로 사용합니다. 웹폰트가 없어도 시스템
             한글 서체로 읽을 수 있습니다. 기본 굵기는 400·600·700의 세
             단계입니다.
           </p>
           <div class="type-row">
-            <div class="type-label">Title<br />36–44 / 700</div>
+            <div class="type-label">Title<br />24–28 / 700</div>
             <div class="type-h1">문서의 목적을 먼저.</div>
           </div>
           <div class="type-row">
-            <div class="type-label">Section<br />26–28 / 700</div>
+            <div class="type-label">Section<br />20 / 700</div>
             <div class="type-h2">다음으로, 결정할 내용을.</div>
           </div>
           <div class="type-row">
-            <div class="type-label">Subsection<br />20 / 600–700</div>
+            <div class="type-label">Subsection<br />16 / 600–700</div>
             <div class="type-h3">동작과 예외를 함께 읽습니다.</div>
           </div>
           <div class="type-row">
-            <div class="type-label">Body<br />18 / 400 / 1.75</div>
+            <div class="type-label">Body<br />15–16 / 400 / 1.65</div>
             <div class="type-body">
-              문서의 본문은 충분한 크기와 행간을 유지합니다. 화면이 좁아져도
-              글자를 줄여 정보를 욱여넣지 않습니다. 한 문단에는 하나의 판단에
+              검토 문서는 데스크톱 15px, 모바일 16px를 출발점으로 삼습니다.
+              조건과 예외를 함께 읽을 수 있는 밀도와 확대 시 가독성을 확인합니다. 한 문단에는 하나의 판단에
               필요한 내용을 담습니다.
             </div>
           </div>
           <div class="type-row">
-            <div class="type-label">UI · Table<br />16 / 400–600 / 1.5</div>
+            <div class="type-label">UI · Table<br />15–16 / 400–600 / 1.5</div>
             <div class="type-ui">
               검색, 필드 이름, 짧은 표 셀, 버튼의 기본 크기입니다.
             </div>
           </div>
           <div class="type-row">
-            <div class="type-label">Metadata<br />14 / 400 / 1.5</div>
+            <div class="type-label">Metadata<br />13 / 400 / 1.5</div>
             <div class="type-meta">
               예시 0.1 · 2026.09.23 · 검토 중 / 날짜와 출처에 사용합니다.
             </div>
@@ -348,8 +348,8 @@
           <h3>가독성을 지키는 세부 규칙</h3>
           <ul class="measure">
             <li>
-              긴 본문 폭은 최대 38rem입니다. 18px 한글 기준으로 대략 한 줄 32자
-              안팎이며, 표와 목록은 내용에 맞게 더 넓게 씁니다.
+              긴 본문 폭은 최대 38rem입니다. 글자 수를 고정하지 않고 실제 문장으로
+              줄 길이를 확인하며, 표와 목록은 내용에 맞게 더 넓게 씁니다.
             </li>
             <li>
               본문 자간은 0입니다. 한국어의 단어 경계는 유지하되 긴 URL·식별자는
@@ -370,7 +370,7 @@
           </ul>
         </section>
         <section class="section" id="emphasis" aria-labelledby="emphasis-title">
-          <h2 id="emphasis-title">강조는 다섯 가지 역할로 나눕니다</h2>
+          <h2 id="emphasis-title">강조의 다섯 가지 역할</h2>
           <div class="table-wrap">
             <table>
               <caption>
@@ -419,7 +419,7 @@
           </div>
           <div class="comparison" style="margin-top: var(--s6)">
             <div>
-              <h3>이렇게 씁니다</h3>
+              <h3>적용 예시</h3>
               <p>
                 링크를 해제하면
                 <strong>기존 링크로 컬렉션을 열 수 없습니다.</strong> 콘텐츠
@@ -436,7 +436,7 @@
           </div>
         </section>
         <section class="section" id="layout" aria-labelledby="layout-title">
-          <h2 id="layout-title">화면과 여백에도 위계가 있습니다</h2>
+          <h2 id="layout-title">화면과 여백의 위계</h2>
           <div class="split">
             <div>
               <h3>공통 화면 틀</h3>
@@ -486,8 +486,8 @@
             </div>
           </div>
           <p class="measure" style="margin-top: var(--s5)">
-            라벨과 값은 4–8px, 같은 그룹은 12–16px, 모듈은 24–32px, 섹션은
-            48–64px로 구분합니다. 모서리는 입력·버튼 6px, 모듈 12px, 독립 문서
+            라벨과 값은 4–8px, 같은 그룹은 12–16px, 모듈은 16–24px, 섹션은
+            32px로 구분합니다. 모서리는 입력·버튼 6px, 모듈 12px, 독립 문서
             표본 18px로 사용합니다.
           </p>
         </section>
@@ -496,7 +496,7 @@
           id="responsive"
           aria-labelledby="responsive-title"
         >
-          <h2 id="responsive-title">폭이 바뀌면 정보 관계를 다시 배치합니다</h2>
+          <h2 id="responsive-title">화면 폭에 따른 정보 배치</h2>
           <div class="table-wrap">
             <table>
               <caption>
@@ -519,7 +519,7 @@
                 <tr>
                   <th scope="row">본문·상태</th>
                   <td>
-                    본문 18px를 유지합니다. 요약·정책·구현·검증 상태는 숨기지
+                    본문은 데스크톱 15px, 좁은 화면 16px를 사용합니다. 요약·정책·구현·검증 상태는 숨기지
                     않고 줄바꿈합니다.
                   </td>
                 </tr>
@@ -564,7 +564,7 @@
           </p>
         </section>
         <footer class="doc-footer">
-          C8 문서 디자인 가이드 · v0.2 · 2026.09.23<br />샘플은 가상의 기획
+          C8 문서 디자인 가이드 · v0.3 · 2026.09.23<br />샘플은 가상의 기획
           내용입니다. 실제 제품의 확정 정책이 아닙니다.<br /><a
             href="writing.html#sources"
             >설계 근거와 참고 자료</a
