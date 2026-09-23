@@ -86,5 +86,13 @@
     "last_kind": "redeploy",
     "last_sha256": "3241e6ef630b059aa15439ab5cfd48172fc4d34ada79f69f0afe712a6d6332a6",
     "timestamp": "2026-09-23T08:42:53.381320Z"
+  },
+  "doc-density-proposal": {
+    "slug": "doc-density-proposal",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/doc-density-proposal/",
+    "last_kind": "new",
+    "last_sha256": "19573718187d19a6f33b434216be2458144e10704182c3407d3e2bd455b38c45",
+    "timestamp": "2026-09-23T09:07:25.886798Z"
   }
 }
