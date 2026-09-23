@@ -11,10 +11,11 @@ body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px;
 background:#fbfbfa;color:#181818;
 font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
 @media (prefers-color-scheme:dark){body{background:#131313;color:#ededed}}
-.card{max-width:520px;text-align:center}
+.card{max-width:560px;text-align:center}
 h1{font-size:20px;font-weight:650;margin:0 0 12px;letter-spacing:-.01em}
 p{font-size:15px;line-height:1.7;margin:0 0 16px;opacity:.75}
 code{font-size:13px;opacity:.6;word-break:break-all}
+a{color:inherit}
 </style>
 </head>
 <body>
@@ -24,23 +25,50 @@ code{font-size:13px;opacity:.6;word-break:break-all}
 <p><code id="u"></code></p>
 </div>
 <script>
-(function(){
-  // 한글 주소는 자모 결합형(NFC)과 분해형(NFD)의 바이트가 달라 서버에서 서로 다른 경로가 된다.
-  // macOS에서 복사·클릭한 링크는 분해형으로 오는 일이 잦아 404가 난다. 결합형으로 한 번만 고쳐 보낸다.
-  var path = location.pathname;
-  var decoded;
-  try { decoded = decodeURIComponent(path); } catch (e) { decoded = path; }
-  var fixed = decoded.normalize ? decoded.normalize("NFC") : decoded;
-  document.getElementById("u").textContent = decoded;
-  // 되돌리기는 한 번뿐이다 — 결합형으로 고친 주소는 다시 고칠 것이 없어 이 분기를 통과하지 못한다.
-  if (fixed !== decoded) {
-    var target = fixed.split("/").map(encodeURIComponent).join("/")
-      + (location.search || "") + (location.hash || "");
-    location.replace(target);
-    return;
+(function () {
+  var BASE = "/public-pages/";
+  var out = document.getElementById("u");
+  var h = document.getElementById("h");
+  var m = document.getElementById("m");
+
+  function decodeLoose(s) { try { return decodeURIComponent(s); } catch (e) { return s; } }
+
+  // 주소가 깨지는 경로는 네 가지다 — 자모 분해형(NFD), 대소문자, 두 번 인코딩, 그리고 그 조합.
+  // 배포 장부(_manifest.json)의 키가 소문자·결합형으로 접힌 값이라, 요청 경로도 같은 방식으로 접어 맞춘다.
+  function fold(s) {
+    var t = decodeLoose(s);
+    if (/%[0-9a-fA-F]{2}/.test(t)) t = decodeLoose(t);   // 두 번 인코딩된 경우
+    if (t.normalize) t = t.normalize("NFC");
+    return t.toLowerCase();
   }
-  document.getElementById("h").textContent = "페이지를 찾을 수 없습니다";
-  document.getElementById("m").textContent = "주소를 다시 확인해 주세요.";
+
+  var path = location.pathname;
+  out.textContent = decodeLoose(path);
+
+  var rest = path.indexOf(BASE) === 0 ? path.slice(BASE.length) : path.replace(/^\//, "");
+  var slug = rest.split("/")[0];
+
+  function giveUp() {
+    h.textContent = "페이지를 찾을 수 없습니다";
+    m.innerHTML = '주소를 다시 확인해 주세요. <a href="' + BASE + '">목록으로</a>';
+  }
+
+  if (!slug) { giveUp(); return; }
+
+  var want = fold(slug);
+
+  fetch(BASE + "_manifest.json", { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (map) {
+      if (!map) return giveUp();
+      var entry = map[want];
+      if (!entry || !entry.url) return giveUp();
+      var tail = rest.slice(slug.length);          // 하위 경로는 그대로 이어 붙인다
+      var target = entry.url.replace(/\/$/, "") + (tail || "/") + (location.search || "") + (location.hash || "");
+      if (target === location.href) return giveUp();
+      location.replace(target);
+    })
+    .catch(giveUp);
 })();
 </script>
 </body>
