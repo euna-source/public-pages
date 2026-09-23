@@ -32,7 +32,8 @@ code{font-size:13px;opacity:.6;word-break:break-all}
   try { decoded = decodeURIComponent(path); } catch (e) { decoded = path; }
   var fixed = decoded.normalize ? decoded.normalize("NFC") : decoded;
   document.getElementById("u").textContent = decoded;
-  if (fixed !== decoded && !/[?&]nfc=1/.test(location.search)) {
+  // 되돌리기는 한 번뿐이다 — 결합형으로 고친 주소는 다시 고칠 것이 없어 이 분기를 통과하지 못한다.
+  if (fixed !== decoded) {
     var target = fixed.split("/").map(encodeURIComponent).join("/")
       + (location.search || "") + (location.hash || "");
     location.replace(target);
