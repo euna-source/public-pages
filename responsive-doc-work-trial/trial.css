@@ -1,0 +1,7 @@
+
+.trial-banner{padding:16px 24px;background:#eef2ea;color:#202720;border-bottom:1px solid #cbd2c7;font:16px/1.6 -apple-system,sans-serif;overflow-wrap:anywhere}
+.trial-banner a{color:#035a0d;text-decoration:underline}
+.main .mut{color:var(--muted)} .main .tight{padding-left:1.3em}
+.key-values dd{overflow-wrap:anywhere} .page-header h1{overflow-wrap:anywhere}
+.trial-nav{display:flex;gap:16px;flex-wrap:wrap;margin-top:8px}
+@media(max-width:420px){.trial-banner{padding:14px 16px}}
