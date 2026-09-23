@@ -1,4 +1,3 @@
-
 .trial-banner{padding:16px 24px;background:#eef2ea;color:#202720;border-bottom:1px solid #cbd2c7;font:16px/1.6 -apple-system,sans-serif;overflow-wrap:anywhere}
 .trial-banner a{color:#035a0d;text-decoration:underline}
 .main .mut{color:var(--muted)} .main .tight{padding-left:1.3em}
@@ -38,4 +37,3 @@
 .review-page .topbar .trial-nav a{min-height:44px}
 .review-page .theme-switch button{min-height:44px}.review-page .doc-contents a{min-height:44px}
 }
-
