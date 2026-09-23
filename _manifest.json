@@ -190,5 +190,13 @@
     "last_kind": "redeploy",
     "last_sha256": "747ca5978289e0f048dcf530cb4cfce2dc1e641b8f556be4c10d507f7c6065e7",
     "timestamp": "2026-09-23T12:32:56.258826Z"
+  },
+  "cco-121-명예의전당-운영흐름과부스팅계획-260923": {
+    "slug": "cco-121-명예의전당-운영흐름과부스팅계획-260923",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/CCO-121-명예의전당-운영흐름과부스팅계획-260923/",
+    "last_kind": "new",
+    "last_sha256": "9679a0178d980b12a32515fc2360d1bc7a0ea14ba22d6cd6e899a72082d426d4",
+    "timestamp": "2026-09-23T14:14:39.945359Z"
   }
 }
