@@ -1,17 +1,520 @@
 <!doctype html>
 <html lang="ko">
 <head>
+<meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex, nofollow">
-<title>이동 중</title>
-<link rel="canonical" href="https://euna-source.github.io/public-pages/CCO-121-%EB%AA%85%EC%98%88%EC%9D%98%EC%A0%84%EB%8B%B9-%EC%84%A0%EC%A0%95%EA%B8%B0%EC%A4%80-260923/">
-<meta http-equiv="refresh" content="0; url=https://euna-source.github.io/public-pages/CCO-121-%EB%AA%85%EC%98%88%EC%9D%98%EC%A0%84%EB%8B%B9-%EC%84%A0%EC%A0%95%EA%B8%B0%EC%A4%80-260923/">
+<title>명예의 전당 · 선정 기준</title>
+<meta name="description" content="크리에이터클럽 명예의 전당 — 인기 포트폴리오·베스트 크리에이터 두 부문의 집계 기간·선정 인원·상금·순위 규칙과 활동 점수 배점을 한 판으로 정리">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{color-scheme:light;
+  --bg:#FFFFFF; --surface:#F5F5F5; --subtle:#EBEBEB; --line:#D9D9D9; --line-strong:#C8C8C8;
+  --t1:#181818; --t2:#444444; --t3:#666666; --t4:#888888;
+  --brand:#07ED21; --brand-text:#049314; --brand-50:#E6FDE8; --brand-100:#CDFBD1; --brand-border:#B7F5BD;
+  --warn:#B45309; --warn-bg:#FEF3C7; --warn-border:#F4D08A; --danger:#DC2626; --danger-bg:#FEE2E2; --danger-border:#F5B5B5;
+  --radius-s:6px; --radius-m:10px; --radius-l:14px;
+  --shadow:0 1px 2px rgba(24,24,24,.06),0 8px 24px rgba(24,24,24,.06);
+  --font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif;}
+*{box-sizing:border-box}
+html{background:var(--bg)}
+body{margin:0;font-family:var(--font);color:var(--t1);background:var(--bg);line-height:1.55;font-size:15px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:56px 24px 80px}
+h1{font-size:34px;letter-spacing:-0.02em;line-height:1.2;margin:0 0 10px;font-weight:700;text-wrap:balance}
+.lede{color:var(--t2);font-size:16px;max-width:680px;margin:0 0 6px}
+.meta{color:var(--t4);font-size:13px;margin:0}
+mark.key-text{background:var(--brand-50);color:var(--brand-text);font-weight:700;border-radius:3px;padding:0 3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;background:var(--surface);color:var(--t3);border:1px solid var(--line);vertical-align:middle;margin-left:6px}
+.tag.brand{background:var(--brand-50);color:var(--brand-text);border-color:var(--brand-border)}
+section{margin-top:56px}
+h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
+.sub{color:var(--t3);font-size:14px;margin:0 0 20px;max-width:760px}
+.phases{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:24px}
+.ph{border:1px solid var(--line);border-radius:var(--radius-m);padding:12px 14px;background:var(--surface)}
+.ph .n{font-size:11px;color:var(--t4);letter-spacing:.04em}
+.ph .t{font-size:15px;font-weight:700;margin:2px 0}
+.ph .d{font-size:12px;color:var(--t3);font-variant-numeric:tabular-nums}
+.ph.live{background:var(--brand-50);border-color:var(--brand-text)}
+.ph.live .n{color:var(--brand-text)}
+.calbar{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 8px;border-bottom:1px solid transparent;transition:border-color 150ms ease-out,box-shadow 150ms ease-out}
+.calbar.stuck{border-bottom-color:var(--line);box-shadow:0 8px 20px -12px rgba(24,24,24,.18)}
+.phase.anchor,#sheet{scroll-margin-top:var(--anchor-offset,180px)}
+@media (prefers-reduced-motion:reduce){
+  .calbar{transition:none}
+}
+.pnav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;margin-bottom:6px}
+.pp{display:flex;align-items:center;gap:6px;min-height:44px;border:1px solid var(--line);border-radius:var(--radius-s);padding:5px 8px;font-size:12px;font-weight:600;color:var(--t2);text-decoration:none;background:var(--bg);white-space:nowrap;overflow:hidden;transition:border-color 120ms ease-out,background 120ms ease-out}
+.pp .pn2{font-size:10px;color:var(--t4);letter-spacing:.04em}
+.pp small{font-weight:400;color:var(--t4);font-size:11px;margin-left:auto}
+.pp:hover{border-color:var(--t1)}
+.pp.now{background:var(--t1);color:#fff;border-color:var(--t1)}
+.pp.now .pn2,.pp.now small{color:#C8C8C8}
+.pp:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+@media (max-width:820px){
+  .pnav{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scroll-padding-inline:2px;padding:2px;gap:6px}
+  .pp{flex:none;padding:8px 12px;overflow:visible}
+  .pp small{display:none}
+  .calbar{padding:6px 0}
+  .mobile-nav-hint{display:block;font-size:12px;color:var(--t3);margin:12px 0 4px}
+}
+@media (min-width:821px){
+  .mobile-nav-hint{display:none}
+}
+@media (max-height:500px){
+  .calbar{padding:6px 0}
+  .calbar .pp small{display:none}
+}
+.phase{margin-top:40px;border-top:2px solid var(--t1);padding-top:18px}
+.phase-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:4px}
+.phase-h .num{font-size:12px;color:var(--t4);letter-spacing:.04em}
+.phase-h h3{margin:0;font-size:18px;font-weight:700;letter-spacing:-0.01em}
+.phase-h .when{font-size:13px;color:var(--t3);font-variant-numeric:tabular-nums}
+.phase-goal{color:var(--t2);font-size:14px;margin:0 0 16px;max-width:760px}
+.lbtn{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:var(--brand-text);background:var(--bg);border:1px solid var(--brand-border);border-radius:999px;padding:4px 10px;cursor:pointer;font-family:inherit;transition:background 120ms ease-out}
+.lbtn:hover{background:var(--brand-50)}
+.lbtn:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+.drawer-bg{position:fixed;inset:0;background:rgba(24,24,24,.35);z-index:40;opacity:0;pointer-events:none;transition:opacity 180ms ease-out}
+.drawer-bg.on{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(520px,92vw);background:var(--bg);z-index:50;box-shadow:-12px 0 32px rgba(24,24,24,.18);transform:translateX(100%);transition:transform 220ms ease-out;overflow-y:auto;padding:24px 24px 40px;box-sizing:border-box}
+.drawer[hidden]{display:none}
+.drawer.on{transform:none}
+.drawer h3{margin:0 0 4px;font-size:17px;letter-spacing:-0.01em;padding-right:40px}
+.drawer .dsub{color:var(--t3);font-size:13px;margin:0 0 16px}
+.drawer h4{margin:18px 0 6px;font-size:13px;font-weight:700}
+.drawer p,.drawer li{font-size:13px;color:var(--t2);line-height:1.6}
+.drawer ol,.drawer ul{padding-left:18px;margin:0}
+.drawer li{margin-bottom:6px}
+.drawer td{text-align:left;vertical-align:top;padding:6px 6px;border-bottom:1px solid var(--subtle);line-height:1.5}
+.dclose{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:18px;line-height:1;color:var(--t2)}
+.dclose:hover{border-color:var(--t1)}
+.dclose:focus-visible{outline:2px solid var(--brand-text)}
+@media (prefers-reduced-motion:reduce){
+  .drawer,.drawer-bg,.lbtn{transition:none}
+}
+.jira{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
+#hdr .meta{font-variant-numeric:tabular-nums;color:var(--t3)}
+#hdr .doc-meta{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:8px;font-size:12px}
+#hdr .doc-meta a{color:inherit;text-decoration:underline;text-underline-offset:3px}
+#hdr .related{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin-top:10px;font-size:13px}
+#hdr a:focus-visible{outline:2px solid var(--brand-text);outline-offset:3px}
+.hbtns{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:20px;padding:10px 0;border-bottom:1px solid var(--subtle)}
+.hbtns .lbtn,.hbtns .sheet-link{display:inline-flex;align-items:center;justify-content:center;min-height:34px;margin:0;padding:5px 10px;border:1px solid var(--line);border-radius:var(--radius-s);background:var(--bg);color:var(--t2);font:600 12px/1.5 var(--font);text-decoration:none;cursor:pointer;transition:background 120ms ease-out,border-color 120ms ease-out,color 120ms ease-out}
+.hbtns .lbtn.ghost{margin-left:auto;border-color:transparent;color:var(--t3)}
+.hbtns .lbtn:active,.hbtns .sheet-link:active{background:var(--subtle)}
+#hdr .phases{margin-top:24px}
+@media (hover:hover) and (pointer:fine){
+  .hbtns .lbtn:hover,.hbtns .sheet-link:hover{background:var(--surface);border-color:var(--t1);color:var(--t1)}
+  #hdr a:hover{color:var(--t1)}
+}
+@media (max-width:600px){
+  #hdr h1{word-break:keep-all;text-wrap:balance}
+  #hdr .doc-meta{gap:4px}
+  #hdr .doc-meta span{flex-basis:100%}
+  .hbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hbtns .lbtn,.hbtns .sheet-link{min-height:44px;padding:8px;white-space:normal;word-break:keep-all}
+  .hbtns .lbtn.ghost{margin-left:0;border-color:var(--line)}
+  #hdr .related{display:block}
+  #hdr .related a{display:inline-flex;align-items:center;min-height:44px}
+  #hdr .related span{display:block}
+  #hdr .doc-meta a{display:inline-flex;align-items:center;min-height:44px}
+}
+@media (prefers-reduced-motion:reduce){
+  .hbtns .lbtn,.hbtns .sheet-link{transition:none}
+}
+.lbtn.ghost{color:var(--t3);border-color:var(--line)}
+.lbtn.ghost:hover{background:var(--surface)}
+.hist li{margin-bottom:10px}
+.hist li b{display:block;color:var(--t1)}
+.drawer.hist{width:min(600px,94vw)}
+.hx{border-top:1px solid var(--subtle)}
+.hx:last-of-type{border-bottom:1px solid var(--subtle)}
+.hx summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:baseline;min-height:44px;padding:11px 6px;border-radius:var(--radius-s);transition:background 120ms ease-out}
+.hx summary::-webkit-details-marker{display:none}
+.hx summary:hover{background:var(--surface)}
+.hx summary:focus-visible{outline:2px solid var(--brand-text);outline-offset:-2px}
+.hx .hi{font-size:12px;color:var(--t4);font-variant-numeric:tabular-nums;text-align:right}
+.hx .ht{font-size:13px;font-weight:700;color:var(--t1);display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 10px}
+.hx .hd{font-size:12px;font-weight:400;color:var(--t4);font-variant-numeric:tabular-nums;white-space:nowrap}
+.hx .hn{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--t4);white-space:nowrap}
+.hx .hn::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--t4);border-bottom:1.5px solid var(--t4);transform:rotate(45deg) translateY(-2px);transition:transform 160ms ease-out}
+.hx[open] .hn::after{transform:rotate(225deg) translateY(-1px)}
+.hx .hb{padding:0 6px 16px 44px}
+.hist .hb .why{font-size:12px;color:var(--t3);margin:0 0 10px;line-height:1.55}
+.chg{border:1px solid var(--line);border-radius:var(--radius-s);margin-bottom:8px;overflow:hidden;background:var(--bg)}
+.chg:last-child{margin-bottom:0}
+.goto{display:flex;width:100%;min-height:44px;align-items:center;gap:8px;background:var(--surface);border:0;border-bottom:1px solid var(--subtle);padding:7px 10px;font:inherit;font-size:12px;font-weight:600;color:var(--t1);cursor:pointer;text-align:left;line-height:1.4;transition:background 120ms ease-out}
+.goto .where{color:var(--t4);font-weight:500;white-space:nowrap}
+.goto .go{margin-left:auto;color:var(--brand-text);white-space:nowrap;font-weight:600}
+.goto:hover{background:var(--subtle)}
+.goto:hover .go{text-decoration:underline;text-underline-offset:2px}
+.goto:focus-visible{outline:2px solid var(--brand-text);outline-offset:-2px}
+.goto:disabled{cursor:default}
+.goto:disabled:hover{background:var(--surface)}
+.goto:disabled .go{display:none}
+.goto:disabled::after{content:"화면에서 제외";margin-left:auto;color:var(--t4);white-space:nowrap;font-weight:500}
+.diff{display:grid;grid-template-columns:30px 1fr;gap:5px 8px;padding:8px 10px 9px}
+.diff .k{font-size:11px;color:var(--t4);padding-top:2px;font-weight:600}
+.hist .diff p{margin:0;font-size:12px;line-height:1.55;color:var(--t1)}
+.hist .diff p.was{color:var(--t3)}
+.hist .diff p.none{color:var(--t4)}
+.hist del{text-decoration:line-through;text-decoration-color:rgba(220,38,38,.55);text-decoration-thickness:1px;background:var(--danger-bg);color:var(--t3);border-radius:2px;padding:0 2px}
+.hist ins{text-decoration:none;background:var(--brand-50);color:var(--t1);font-weight:600;border-radius:2px;padding:0 2px}
+@media (max-width:560px){
+  .hx .hb{padding-left:6px}
+}
+.history-focus:focus{outline:2px solid var(--brand-text);outline-offset:4px}
+.hl{position:relative;scroll-margin-top:160px;outline:none}
+.hl::after{content:"";position:absolute;inset:-6px -10px;border-radius:var(--radius-m);pointer-events:none;box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--brand-text);background:rgba(7,237,33,.10);animation:hl-fade 3s ease-out forwards}
+h1.hl::after,h2.hl::after,h3.hl::after,.phase-h.hl::after{inset:-6px -12px}
+li.hl::after{inset:-5px -8px -5px -24px}
+tr.hl::after{display:none}
+tr.hl td{animation:hl-cell 3s ease-out forwards}
+tr.hl td:first-child{box-shadow:inset 3px 0 0 var(--brand-text)}
+@keyframes hl-fade{0%,60%{opacity:1}100%{opacity:0}}
+@keyframes hl-cell{0%,60%{background:var(--brand-50)}100%{background:transparent}}
+.back-hist{position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;min-height:44px;gap:6px;background:var(--t1);color:#fff;border:0;border-radius:999px;padding:9px 14px 9px 12px;font:inherit;font-size:13px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(24,24,24,.18),0 12px 28px rgba(24,24,24,.18);opacity:0;transform:translateY(8px);transition:opacity 180ms ease-out,transform 180ms ease-out}
+.back-hist[hidden]{display:none}
+.back-hist.on{opacity:1;transform:none}
+.back-hist:hover{background:#000}
+.back-hist:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){
+  .hl::after,tr.hl td{animation:none}
+  .hx .hn::after,.back-hist,.goto,.hx summary{transition:none}
+}
+.notes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.note{border:1px solid var(--line);border-radius:var(--radius-m);padding:16px 18px;background:var(--bg)}
+.note h3{margin:0 0 6px;font-size:14px;font-weight:700}
+.note p{margin:0;color:var(--t2);font-size:13px}
+footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(--subtle);padding-top:16px}
+@media (max-width:820px){
+  .wrap{padding:36px 16px 64px}
+  h1{font-size:26px}
+  .phases{grid-template-columns:1fr 1fr}
+  .notes{grid-template-columns:1fr}
+  .lbtn,.hbtns .lbtn,.hbtns .sheet-link{min-height:44px}
+  .dclose{width:44px;height:44px;top:10px;right:10px}
+}
+.sheet{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-m);background:var(--bg)}
+.sheet:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+.sheet table{width:100%;border-collapse:collapse;font-size:13px;min-width:560px}
+.sheet th,.sheet td{padding:9px 12px;border-bottom:1px solid var(--subtle);text-align:left;white-space:nowrap}
+.sheet th{color:var(--t4);font-weight:600;font-size:11px;letter-spacing:.03em;background:var(--surface)}
+.sheet tr:last-child td{border-bottom:none}
+.sheet-label{font-size:12px;font-weight:700;color:var(--t2);margin:0 0 6px}
+/* ===== 선정 기준 전용 (운영 흐름 공통층 위에 얹는 최소 규칙) ===== */
+.phase{scroll-margin-top:var(--anchor-offset,96px)}
+[id]{scroll-margin-top:var(--anchor-offset,96px)}
+.sheet.text th,.sheet.text td{white-space:normal;line-height:1.55;word-break:keep-all;overflow-wrap:anywhere}
+.dclose{width:44px;height:44px;top:10px;right:10px}
+.sheet tbody th{font-weight:500;color:var(--t2);background:var(--bg);text-align:left;vertical-align:top}
+.sheet tr.grp th{background:var(--surface);color:var(--t3);font-size:11px;letter-spacing:.03em;font-weight:600;padding:7px 12px;border-top:1px solid var(--line)}
+.sheet.grid table{min-width:680px;table-layout:fixed}
+.sheet.grid col.k{width:132px}
+.sheet.grid thead th[scope="col"]:first-child,.sheet.grid tbody th[scope="row"]{position:sticky;left:0;z-index:1;box-shadow:1px 0 0 var(--subtle)}
+.sheet.grid thead th[scope="col"]:first-child{background:var(--surface)}
+.sheet.grid tr.grp th{position:static;box-shadow:none}
+.sheet td.dash{color:var(--t4)}
+.sheet td.all{font-weight:600;color:var(--t1)}
+.sheet td b{font-weight:700}
+.sheet td .mut{color:var(--t4);font-size:12px}
+.sheet td a.jump{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
+.sheet td a.jump:hover{border-bottom-color:var(--brand-text)}
+.sheet-foot{font-size:12px;color:var(--t4);margin:8px 0 0}
+.phase .more{margin-top:14px}
+.phase .more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--t2);min-height:44px;display:flex;align-items:center;gap:6px;list-style:none}
+.phase .more summary::-webkit-details-marker{display:none}
+.phase .more summary::before{content:"";width:6px;height:6px;border-right:1.5px solid var(--t4);border-bottom:1.5px solid var(--t4);transform:rotate(-45deg);transition:transform 160ms ease-out}
+.phase .more[open] summary::before{transform:rotate(45deg)}
+.phase .more summary:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px;border-radius:4px}
+.phase .more p{margin:2px 0 0;font-size:13px;color:var(--t2);line-height:1.6}
+.phase .more code{font-family:inherit;background:var(--surface);border-radius:4px;padding:1px 6px;font-size:12px}
+.phase .note{margin-top:14px}
+.phase .note.brand{border-color:var(--brand-text);background:var(--brand-50)}
+.phase .note.brand h3{color:var(--brand-text)}
+.phase .notes{margin-top:14px}
+.phase .notes .note h3{font-size:13px}
+.ph{min-width:0}
+.ph .t{word-break:keep-all;overflow-wrap:anywhere}
+@media (max-width:820px){
+  .phases{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sheet.grid col.k{width:104px}
+  .sheet.grid table{min-width:600px}
+}
+@media (max-width:480px){
+  .phases{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.phase .more summary::before{transition:none}}
+</style>
 </head>
 <body>
-<p><a id="go" href="https://euna-source.github.io/public-pages/CCO-121-%EB%AA%85%EC%98%88%EC%9D%98%EC%A0%84%EB%8B%B9-%EC%84%A0%EC%A0%95%EA%B8%B0%EC%A4%80-260923/">페이지로 이동</a></p>
+<div class="wrap">
+  <header id="hdr">
+    <h1 id="hdr-h1">명예의 전당 · 선정 기준</h1>
+    <p class="lede">인기 포트폴리오와 베스트 크리에이터의 집계·선정 기준</p>
+    <div class="meta doc-meta" id="hdr-meta">
+      <span>최종 업데이트 2026-09-23 · 기획 이은희 · 크리에이터클럽 디스커버리</span>
+      <span>정본 <a href="https://cre8orclub.atlassian.net/browse/CCO-121" target="_blank" rel="noopener">Jira CCO-121</a> · 선정 기준 v5 · 9/23 개발 전달용</span>
+    </div>
+    <p class="meta related"><a class="jira" href="https://euna-source.github.io/public-pages/CCO-121-명예의전당-운영흐름과부스팅계획-260923/">명예의 전당 운영 흐름 →</a><span>회차 달력 · 참가자 화면 상태</span></p>
+    <nav class="hbtns" id="hbtns" aria-label="운영 자료">
+      <button type="button" class="lbtn ghost" data-drawer="d-hist">업데이트 히스토리</button>
+    </nav>
+    <div class="phases" aria-label="핵심 조건 네 가지">
+      <div class="ph live"><div class="n">집계 기간</div><div class="t">1회차 10/7 ~ 10/20</div><div class="d">수요일 0시 시작 · 화요일 자정 마감</div></div>
+      <div class="ph"><div class="n">부문</div><div class="t">두 부문 동시 집계</div><div class="d">인기 포트폴리오 · 베스트 크리에이터</div></div>
+      <div class="ph"><div class="n">선정 인원</div><div class="t">부문별 1~3위 각 1명</div><div class="d">부문당 총 3명</div></div>
+      <div class="ph"><div class="n">상금</div><div class="t">30 · 20 · 10만 원</div><div class="d">1위 · 2위 · 3위, 두 부문 같음</div></div>
+    </div>
+  </header>
+
+  <p class="mobile-nav-hint" id="nav-hint">단계 칩과 넓은 표는 좌우로 밀어 볼 수 있습니다.</p>
+  <div id="calbar-sentinel" aria-hidden="true"></div>
+  <div class="calbar" id="calbar">
+    <nav class="pnav" aria-label="항목으로 이동">
+      <a class="pp" href="#s-summary" data-target="s-summary"><span class="pn2">01</span>선정 기준<small>두 부문 한 판</small></a>
+      <a class="pp" href="#s-period" data-target="s-period"><span class="pn2">02</span>활동 점수<small>2회차부터</small></a>
+      <a class="pp" href="#s-cycle" data-target="s-cycle"><span class="pn2">03</span>회차 전환·예외<small>처리 규칙</small></a>
+      <a class="pp" href="#s-open" data-target="s-open"><span class="pn2">04</span>개발 확인<small>미결·노출</small></a>
+    </nav>
+  </div>
+
+  <section class="phase" id="s-summary">
+    <div class="phase-h"><span class="num">01</span><h3>선정 기준</h3><span class="when">두 부문 한 판</span></div>
+    <p class="phase-goal">위쪽 네 줄은 두 부문에 똑같이 적용되는 조건이고, 아래는 부문별로 다른 집계·순위 규칙입니다.</p>
+    <div class="sheet text grid" id="s-grid">
+      <table>
+        <colgroup><col class="k"><col><col></colgroup>
+        <thead><tr><th scope="col">항목</th><th scope="col" id="s-portfolio">인기 포트폴리오</th><th scope="col" id="s-best">베스트 크리에이터 · 1회차</th></tr></thead>
+        <tbody>
+          <tr class="grp" id="s-items"><th scope="rowgroup" colspan="3">두 부문 공통</th></tr>
+          <tr><th scope="row">집계 기간</th><td colspan="2" class="all">1회차 10/7~10/20</td></tr>
+          <tr><th scope="row">선정 인원</th><td colspan="2">1~3위 각 1명, 총 3명 <span class="mut">· 부문마다</span></td></tr>
+          <tr><th scope="row">순위 기준</th><td colspan="2">집계값 기준 내림차순으로 정렬 <span class="mut">(단, 동점자 발생 시 먼저 해당 순위에 도달한 순 나열)</span></td></tr>
+          <tr id="s-awards"><th scope="row">순위별 상금</th><td colspan="2"><b>1위 30만 원</b> · 2위 20만 원 · 3위 10만 원 <span class="mut">· 각 1명, 두 부문 같음</span></td></tr>
+        </tbody>
+        <tbody>
+          <tr class="grp"><th scope="rowgroup" colspan="3">부문별 기준</th></tr>
+          <tr><th scope="row">선정 대상</th><td>회차 기간 동안 올린 전체공개된 포트폴리오</td><td class="dash">—</td></tr>
+          <tr><th scope="row">집계값</th><td>회차 기간 동안 받은 리스펙트 총 수 <span class="mut">(단, 취소된 리스펙트는 제외)</span></td><td>회차 기간 동안 활동 지수별 총 합계</td></tr>
+          <tr><th scope="row">순증 계산</th><td class="dash">—</td><td>집계 시점 팔로워 수에서 회차 시작 팔로워 수 차감. 반복 팔로우 중복 가산 제외</td></tr>
+          <tr><th scope="row">운영</th><td>동일한 내용으로 여러 개를 올린 경우(부정행위) 블랙리스트로 관리 및 수상자로 제외할지 내부 논의 필요</td><td>크리에이터 분야에 수상한 분은 제외할지 논의 필요</td></tr>
+          <tr><th scope="row">2회차부터</th><td class="dash">—</td><td>회차 활동 점수와 현재 프로필 소개 점수를 합산해 순위 산정. 동점 처리 기준은 별도 확정 <a class="jump" href="#s-period">배점 보기 →</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sheet-foot">— 는 정본(Jira CCO-121 v5)에 해당 부문 항목이 없다는 뜻입니다.</p>
+  </section>
+
+  <section class="phase" id="s-period">
+    <div class="phase-h"><span class="num">02</span><h3>베스트 크리에이터 활동 점수</h3><span class="when">2회차부터</span></div>
+    <p class="phase-goal" id="s-score">2회차부터 적용하는 내부 배점. 총점 상한 없음. 1회차는 팔로워 순증만 셉니다.</p>
+    <div class="sheet text">
+      <table>
+        <colgroup><col style="width:132px"><col style="width:108px"><col></colgroup>
+        <thead><tr><th scope="col">항목</th><th scope="col">배점</th><th scope="col">집계 기준</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">포트폴리오 등록</th><td><b>건당 40점</b></td><td>회차 내 등록, 마감 시 전체공개 상태인 작품 집계</td></tr>
+          <tr><th scope="row">영감 글 등록</th><td>건당 5점</td><td>회차 내 등록, 마감 시 전체공개 상태인 글 집계</td></tr>
+          <tr><th scope="row">팔로워 순증</th><td>명당 10점</td><td>언팔로우 반영</td></tr>
+          <tr><th scope="row">리스펙트 보내기</th><td>회당 5점</td><td>같은 크리에이터 반복 포함. 집계 상한 없음</td></tr>
+          <tr><th scope="row">채팅 메시지</th><td>건당 1점</td><td>수락 후 열린 1:1 채팅과 그룹채팅 포함. 상한 없음</td></tr>
+          <tr><th scope="row">공유하기</th><td>클릭당 1점</td><td>버튼 클릭 시 집계. 회차당 최대 10회 인정</td></tr>
+          <tr id="s-profile"><th scope="row">프로필 소개</th><td>항목당 10점</td><td>자기소개, 학력, 경력, 수상·자격, 기본정보, AI 추천사 각 10점. 최대 60점. 기존 작성분 인정</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <details class="more"><summary>합산식</summary><p><code>총점 = 포트폴리오 수 × 40 + 영감 글 수 × 5 + 팔로워 순증 × 10 + 리스펙트 횟수 × 5 + 채팅 메시지 수 + min(공유 클릭 수, 10) + 완성한 소개 항목 수 × 10</code></p></details>
+    <div class="note" id="s-why"><h3>활동 점수 미반영</h3><p>노크 자체, 받은 리스펙트, 조회·검색·북마크·체류 시간, 초대 가입은 활동 점수에서 제외. 작품이 받은 리스펙트는 인기 포트폴리오 부문에서 집계</p></div>
+  </section>
+
+  <section class="phase" id="s-cycle">
+    <div class="phase-h"><span class="num">03</span><h3>회차 전환과 집계 예외</h3><span class="when">처리 규칙</span></div>
+    <p class="phase-goal">해당 부문 1회차 미당첨자의 2회차 수상 기회 유지. <mark class="key-text">기존 소개 6항목 완성 시 2회차 시작부터 60점 포함</mark></p>
+    <div class="sheet text" id="s-guard">
+      <table>
+        <colgroup><col style="width:168px"><col></colgroup>
+        <thead><tr><th scope="col">상태</th><th scope="col">처리</th></tr></thead>
+        <tbody>
+          <tr class="grp"><th scope="rowgroup" colspan="2">회차 전환과 프로필 소개</th></tr>
+          <tr><th scope="row">해당 부문 1회차 미당첨자</th><td>공통 참여 자격 충족 시 2회차에도 수상 후보로 집계</td></tr>
+          <tr><th scope="row">직전 회차 1위</th><td>다음 회차 같은 부문에서 1회 제외</td></tr>
+          <tr><th scope="row">기존 소개 정보</th><td>작성 시점과 관계없이 현재 완성 상태 반영. 6항목 완성 유지 시 2회차 시작부터 60점 포함</td></tr>
+          <tr><th scope="row">이전 회차 활동</th><td>활동 횟수와 팔로워 순증은 새 회차부터 다시 집계. 이전 활동 점수 이월 없음</td></tr>
+          <tr><th scope="row">소개 수정·삭제</th><td>같은 항목의 수정·추가 입력은 중복 가산 제외. 빈 항목은 0점 처리</td></tr>
+        </tbody>
+        <tbody>
+          <tr class="grp" id="s-forfeit"><th scope="rowgroup" colspan="2">집계 예외</th></tr>
+          <tr><th scope="row">리스펙트 취소</th><td>해당 건 집계 제외. 활동 점수에서는 건당 5점 차감</td></tr>
+          <tr><th scope="row">작업 삭제·비공개</th><td>해당 포트폴리오·영감 글의 등록 점수 제외</td></tr>
+          <tr><th scope="row">공유 이후 취소</th><td>외부 전송·취소 여부 미판별. 버튼 클릭 점수 유지</td></tr>
+          <tr><th scope="row">비정상 활동</th><td>매크로, 다중 계정, 반응 교환, 도용 확인 시 선정 제외 또는 취소. 통지·이의 절차 유지</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <details class="more"><summary>계산 예시</summary><p>1회차 미당첨 + 소개 6항목 완성 유지 + 2회차 채팅 20건 = 80점. 다른 활동은 0건으로 가정</p></details>
+  </section>
+
+  <section class="phase" id="s-open">
+    <div class="phase-h"><span class="num">04</span><h3>개발 확인과 노출 범위</h3><span class="when">미결 · 노출</span></div>
+    <p class="phase-goal">개발 전에 확정해야 하는 항목과 앱에 보여 줄 범위입니다.</p>
+    <div class="sheet text">
+      <table>
+        <colgroup><col style="width:132px"><col></colgroup>
+        <thead><tr><th scope="col">항목</th><th scope="col">미결 사항</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">포트폴리오 대상</th><td>기존 게시물 포함 여부 확인. 기존 안내와 회의 기록의 게시 시점 범위 대조 필요</td></tr>
+          <tr><th scope="row">프로필</th><td>항목별 필수 입력값, 완성 판정, 상태 집계 시점 확인</td></tr>
+          <tr><th scope="row">이벤트</th><td>공유 대상 화면, 이벤트 식별값, 통신 재시도 중복 제거 확인</td></tr>
+          <tr><th scope="row">취소·삭제</th><td>리스펙트 취소 후 재전송과 삭제 메시지 처리 확정</td></tr>
+          <tr><th scope="row">팔로워·동점</th><td>2회차 신규 계정 0.5명 보정, 음수 순증, 활동 점수 동점 처리 확정</td></tr>
+          <tr><th scope="row">앱 표시</th><td>활동 총점 공개 또는 상대 그래프 표시 결정</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="notes">
+      <div class="note" id="s-screen"><h3>앱 노출</h3><p id="s-copy">세부 배점은 내부용. 앱에는 인정 활동만 안내. 팀·프로젝트 점수는 현재 집계·안내에서 제외</p></div>
+      <div class="note" id="s-stage"><h3>추후 검토</h3><p id="future-items">팀·프로젝트 도입, 복잡한 비정상 활동 자동 방지, 공유 유입 추적 검토. 공유 링크 단축 미적용</p></div>
+    </div>
+  </section>
+
+  <footer>함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/CCO-121-명예의전당-운영흐름과부스팅계획-260923/">명예의 전당 운영 흐름</a><br>정본 <a class="jira" href="https://cre8orclub.atlassian.net/browse/CCO-121">Jira CCO-121</a> · 선정 기준 v5 · 2026-09-23 기준</footer>
+</div>
+
+<button type="button" class="back-hist" id="back-hist" hidden>← 업데이트 히스토리로</button>
+<div class="drawer-bg" id="drawer-bg"></div>
+<aside class="drawer hist" id="d-hist" role="dialog" aria-modal="true" aria-labelledby="d-hist-h" hidden>
+  <button type="button" class="dclose" aria-label="닫기">×</button>
+  <h3 id="d-hist-h">업데이트 히스토리</h3>
+  <p class="dsub">기준이나 페이지가 바뀔 때마다 한 건씩 남깁니다. 최신이 위이고, 펼치면 어디가 어떻게 바뀌었는지 이전·이후로 보입니다. 「이동 →」을 누르면 그 자리로 갑니다.</p>
+  <div class="hxs">
+<details class="hx" name="hist" id="hx-15" open><summary><span class="hi">15</span><span class="ht">공통 순위 기준 신설과 부문별 표 정리<span class="hd">9/23</span></span><span class="hn">4곳</span></summary><div class="hb"><p class="why">부문마다 따로 적던 순위 규칙을 "두 부문 공통"으로 올리고, 부문별 기준은 실제로 다른 항목만 남겼습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">두 부문 공통</span>순위 기준 신설<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">순위 규칙이 부문별 기준의 <del>선정 순서·동점</del> 두 줄로 나뉘어 있었습니다.</p><span class="k">이후</span><p class="now"><ins>순위 기준</ins> 한 줄로 공통에 둡니다. 집계값 기준 내림차순으로 정렬하고, 동점자는 먼저 그 순위에 도달한 순으로 나열합니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">두 부문 공통</span>순서와 블랙리스트<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">집계 기간 · <del>블랙리스트</del> · 선정 인원 · 상금</p><span class="k">이후</span><p class="now">집계 기간 · 선정 인원 · 순위 기준 · 상금. 블랙리스트는 아래 <ins>운영</ins> 줄의 논의 항목으로 옮겼습니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-portfolio"><span class="where">인기 포트폴리오</span>선정 대상과 집계값<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">선정 대상은 <del>공통 참여 자격을 충족한 회원의 포트폴리오</del>, 집계값은 작품이 받은 리스펙트 수. <del>후보 조건</del> 줄이 따로 있었습니다.</p><span class="k">이후</span><p class="now">선정 대상은 <ins>회차 기간 동안 올린 전체공개된 포트폴리오</ins>, 집계값은 <ins>회차 기간 동안 받은 리스펙트 총 수</ins>(취소분 제외). 후보 조건 줄은 삭제했습니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-best"><span class="where">부문별 기준</span>집계값과 운영<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">크리에이터 집계값은 <del>팔로워 순증</del>, 마지막 줄은 <del>재수상</del> 규칙이었습니다.</p><span class="k">이후</span><p class="now">크리에이터 집계값은 <ins>회차 기간 동안 활동 지수별 총 합계</ins>. 마지막 줄은 <ins>운영</ins>으로 바꿔 논의가 남은 항목을 적습니다 — 포폴은 같은 내용 반복 게시의 블랙리스트 관리, 크리에이터는 수상자 제외 범위입니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-14"><summary><span class="hi">14</span><span class="ht">한 판 종합표와 디자인 통일<span class="hd">9/23</span></span><span class="hn">4곳</span></summary><div class="hb"><p class="why">표 8개를 4개로 합쳤습니다. 집계 기간·블랙리스트·선정 인원·상금은 "두 부문 공통"으로 종합표 위쪽에 두고, 부문별 차이는 옆으로 나란히 비교합니다. 헤더·단계 칩·표·카드는 운영 흐름 페이지와 같은 스타일로 맞췄습니다. 기준 내용(v5)은 그대로입니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-summary">선정 기준 종합표<span class="where">01</span><span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">공통 조건·순위별 상금·인기 포트폴리오·베스트 크리에이터 표 4개</p><span class="k">이후</span><p>종합표 하나. 위쪽 "두 부문 공통" 4줄(집계 기간·블랙리스트·선정 인원·상금), 아래 부문별 기준 8줄</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-cycle">회차 전환과 집계 예외<span class="where">03</span><span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차 전환 표와 집계 예외 표 2개</p><span class="k">이후</span><p>한 표에 그룹 줄로 구분</p></div></div><div class="chg"><button type="button" class="goto" data-goto="hdr-h1">머리 요약 네 칸<span class="where">상단</span><span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="none">없음</p><span class="k">이후</span><p>집계 기간 · 부문 · 선정 인원 · 상금 네 칸을 제목 바로 아래에</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-open">개발 확인과 노출 범위<span class="where">04</span><span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">앱 노출·추후 검토가 본문 문단과 접힘 항목</p><span class="k">이후</span><p>카드 두 장으로 나란히</p></div></div></div></details>
+<details class="hx" name="hist" id="hx-13"><summary><span class="hi">13</span><span class="ht">선정 인원·상금 정정과 표 간소화<span class="hd">9/23</span></span><span class="hn">조건 정리</span></summary><div class="hb"><p class="why">공통 조건은 블랙리스트만 표기. 부문별 3명 선정, 1·2·3위 상금 30·20·10만 원 반영. 크리에이터 표는 1회차 기준으로 정리하고 2회차 조건은 본문으로 분리. 소개 6항목은 활동 점수표 한 행으로 통합</p></div></details>
+<details class="hx" name="hist" id="hx-12"><summary><span class="hi">12</span><span class="ht">선정 조건 표와 회차 전환<span class="hd">9/23</span></span><span class="hn">개발 전달</span></summary><div class="hb"><p class="why">반복 설명을 제거하고 부문별 조건을 표로 통합</p><div class="chg"><button type="button" class="goto" data-goto="s-cycle"><span class="where">회차 전환</span>미당첨자와 기존 소개 점수<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차별 수상 기회와 기존 소개 점수를 여러 곳에서 설명</p><span class="k">이후</span><p class="now">해당 부문 1회차 미당첨자는 공통 자격 충족 시 2회차 후보 유지. 기존 소개 6항목 완성 시 시작부터 60점 포함. 활동 점수 이월 없음</p></div></div></div></details>
+<details class="hx" name="hist" id="hx-11"><summary><span class="hi">11</span><span class="ht">집계 단순화와 소개 60점<span class="hd">9/23</span></span><span class="hn">선정 기준</span></summary><div class="hb"><p class="why">9월 23일 회의와 후속 배점 결정에 따라 현재 기준을 맞췄습니다. 아래 과거 이력의 이후 값은 당시 기준이며 현재 기준이 아닙니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">현재 배점</span>집계와 계산식<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">리스펙트 고유 인원과 채팅 출석 일수를 집계했습니다. 소개 100점 환산안은 회의에서 논의됐습니다.</p><span class="k">이후</span><p class="now">리스펙트는 횟수당 5점, 채팅·공유는 건당 1점이며 공유는 회차당 최대 10회입니다. 소개는 기존 작성분을 포함해 항목당 10점, 최대 60점입니다. 1회차 크리에이터는 팔로워 순증만 집계합니다. 팀·프로젝트 점수는 추후 검토로 옮겼습니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-10"><summary><span class="hi">10</span><span class="ht">표시·탐색 규약 통일<span class="hd">9/23</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">두 문서에서 같은 기능은 같은 위치와 순서로 보이도록 맞췄습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">문서 전체</span>본문 강조·상단 자료 메뉴<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">강조와 히스토리 버튼 위치가 문서마다 달랐습니다.</p><span class="k">이후</span><p class="now">핵심 문장은 <ins>같은 초록 강조</ins>로, 히스토리는 <ins>상단 자료 메뉴</ins>에서 엽니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">업데이트 히스토리</span>표시 순서<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>오래된 변경이 위</del>에 있었습니다.</p><span class="k">이후</span><p class="now"><ins>최신 변경이 위</ins>에 오고 최신 항목이 열립니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-9"><summary><span class="hi">09</span><span class="ht">핵심 요약·앵커 도입<span class="hd">9/22 22:40</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">대표 관점에서 섹션 10개·콜아웃 11개는 결정 두 건 앞을 막는다고 판정해, 맨 앞에 네 줄 요약을 세우고 주요 항목 앵커를 상단에 고정했습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">핵심 요약</span>선정 대상 카드와 요약 표<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">선정 대상 카드가 <del>본문 맨 위에 따로</del> 놓이고, 요약 표는 없었습니다.</p><span class="k">이후</span><p class="now">선정 대상 카드와 요약 표를 <ins>한 테두리 안에 묶어</ins> 핵심 요약 한 덩어리로 보여줍니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">문서 전체</span>앵커 탭<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">각 장으로 가려면 <del>스크롤로 찾아야</del> 했습니다.</p><span class="k">이후</span><p class="now">상단에 <ins>고정되는 앵커 탭</ins>으로 핵심 요약·집계 항목·배점·집계 기간·점수 차감·MAU 단계·미정 항목으로 바로 갑니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-8"><summary><span class="hi">08</span><span class="ht">점수 차감 조건 신설<span class="hd">9/22 22:10</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">전체공개를 자격으로 걸기 전에 되돌림·부정 처리 규칙이 먼저 서야 한다고 보고, 사라지는 점수를 시점 축으로 나눴습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-forfeit"><span class="where">점수 차감</span>무효·회수·취소 3단<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">삭제·비공개는 <del>방지 기준 한 줄</del>로만 적혀 있었습니다.</p><span class="k">이후</span><p class="now"><ins>무효(마감 시점 미달)·회수(회차 중 되돌림)·취소(발표 뒤 확인)</ins> 3단으로 나누고, 전체공개를 전제로 명시했습니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-forfeit"><span class="where">점수 차감</span>되돌림 반복<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">되돌림을 반복해도 <del>제한이 없었습니다</del>.</p><span class="k">이후</span><p class="now">같은 항목에서 <ins>3회 이상 되돌리면 남은 회차 동안 그 항목으로 점수를 얻지 못합니다</ins>.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-7"><summary><span class="hi">07</span><span class="ht">2회차 시행·연결 항목명<span class="hd">9/22 21:30</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">부문 도입 시점을 2회차로 정하고, 연결 항목 이름을 사람이 읽는 말로 바꿨습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-period"><span class="where">집계 기간</span>부문 시행 시점<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">1회차 <del>2026-10-07~10-20</del>부터 이 부문을 적용했습니다.</p><span class="k">이후</span><p class="now">부문은 <ins>2회차(2026-10-21~11-03)부터</ins> 시행하고, 1회차는 기존 부문 기준을 유지합니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>연결 항목 이름<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>접수된 지원서 · 초대를 수락해 합류한 멤버</del></p><span class="k">이후</span><p class="now"><ins>프로젝트 신규 지원자 수 · 팀 신규 멤버 참여 수</ins></p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-6"><summary><span class="hi">06</span><span class="ht">배점 재조정<span class="hd">9/22 20:50</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">탭 두 번짜리 행동이 총점을 지배한다는 계산을 확인해, 상한 대신 단가를 다시 잡았습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>리스펙트·출석·영감·팔로워<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">리스펙트 <del>20</del> · 채팅방 출석 <del>5</del> · 영감 글 <del>10</del> · 팔로워 <del>20</del></p><span class="k">이후</span><p class="now">리스펙트 <ins>5</ins>(하루 최대 8명) · 채팅방 출석 <ins>10</ins> · 영감 글 <ins>5</ins> · 팔로워 <ins>10</ins></p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-guard"><span class="where">방지 기준</span>같은 날 체감 규칙<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">같은 날 2건째부터 <del>점수 절반</del> 규칙을 넣었습니다.</p><span class="k">이후</span><p class="now"><ins>철회</ins>했습니다. 하루에 몰아서 올려도 감산하지 않습니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-5"><summary><span class="hi">05</span><span class="ht">칸 이름 · 결속 → 연결<span class="hd">9/22 20:10</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">팔로워 한 명은 아직 결속이 아니고, ‘관계’는 소통과 경계가 흐려지며, ‘인맥’은 앱의 기존 메뉴 이름과 부딪힙니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">집계 항목</span>세 번째 칸 이름<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">③ <del>결속</del> · 지원서 접수·초대 수락</p><span class="k">이후</span><p class="now">③ <ins>연결</ins> · 남이 응해서 이어진 것</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-4"><summary><span class="hi">04</span><span class="ht">댓글 삭제 · 팔로워 편입<span class="hd">9/22 19:30</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">다른 사람들이 따르는 크리에이터라는 정의를 살리기 위해 팔로워를 넣고, 댓글 항목은 뺐습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>댓글 항목<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">포트폴리오·영감 글에 댓글을 남긴 서로 다른 사람 <del>20점</del></p><span class="k">이후</span><p class="now"><ins>삭제</ins></p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>팔로워<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">팔로워는 <del>집계하지 않음</del>(받은 지표라 제외).</p><span class="k">이후</span><p class="now">회차 중 <ins>늘어난 팔로워(순증)</ins>만 연결에서 집계. 기존 팔로워는 제외, 회차 중 생긴 계정은 0.5명.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-3"><summary><span class="hi">03</span><span class="ht">채팅방 출석 · 소개 탭<span class="hd">9/22 18:50</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">라운지 대신 실제 대화가 오가는 채팅방을 세고, 프로필 커버 한 번 대신 소개 탭을 채우게 했습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>라운지 → 채팅방<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>라운지에 글을 쓴 날</del></p><span class="k">이후</span><p class="now"><ins>채팅방에 메시지를 보낸 출석체크 수</ins>(1:1 노크 수락 후 채팅·그룹채팅, 하루 1회)</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>프로필 커버 → 소개 탭<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>프로필 커버 완성(사진·한 줄 소개·직업)</del></p><span class="k">이후</span><p class="now"><ins>소개 탭 6항목</ins>(자기소개·학력·경력·수상/자격·기본정보·AI 추천사) 각 1회</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-2"><summary><span class="hi">02</span><span class="ht">지속 칸 삭제 · 상한 제거<span class="hd">9/22 18:10</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">활동일은 다른 칸을 날짜로 다시 센 값이라 점수로 얹으면 이중 계수이고, 많이 할수록 좋다는 방향에 맞춰 상한을 없앴습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-items"><span class="where">집계 항목</span>④ 지속<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">④ 지속 · 활동한 날 <del>3점 × 14일</del></p><span class="k">이후</span><p class="now"><ins>삭제</ins>. 활동일은 점수가 아니라 동점 판정 기준으로만 씁니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">배점</span>상한<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">항목마다 회차 상한(<del>리스펙트 20명·포폴 2건 등</del>)이 있었습니다.</p><span class="k">이후</span><p class="now"><ins>상한 없음</ins>. 많이 할수록 점수가 계속 오릅니다.</p></div></div></div></details>
+  <details class="hx" name="hist" id="hx-1"><summary><span class="hi">01</span><span class="ht">부문 정의 전환<span class="hd">9/22 17:20</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">‘받은 관심’이 아니라 ‘본인이 한 활동’으로 뽑는다는 기준으로 부문을 다시 세웠습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">핵심 요약</span>선정 대상<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차 동안 <del>내게 반응해 준 고유 인원</del>이 가장 많은 크리에이터</p><span class="k">이후</span><p class="now">가장 많은 사람에게 <ins>리스펙트를 보내고, 채팅방에서 대화하며, 자기 작업·소개를 채운</ins> 크리에이터</p></div></div></div></details>
+  </div>
+</aside>
 <script>
-(function(){var t="https://euna-source.github.io/public-pages/CCO-121-%EB%AA%85%EC%98%88%EC%9D%98%EC%A0%84%EB%8B%B9-%EC%84%A0%EC%A0%95%EA%B8%B0%EC%A4%80-260923/"+(location.hash||"");document.getElementById("go").href=t;location.replace(t);})();
+(function(){
+  var bar=document.getElementById('calbar'), sentinel=document.getElementById('calbar-sentinel'), nav=document.querySelector('.pnav');
+  if(!bar||!nav) return;
+  var links=[].slice.call(nav.querySelectorAll('a.pp'));
+  var secs=links.map(function(a){return document.getElementById(a.getAttribute('data-target'));});
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(sentinel&&'IntersectionObserver' in window) new IntersectionObserver(function(e){bar.classList.toggle('stuck',!e[0].isIntersecting);},{threshold:0}).observe(sentinel);
+  function offset(){return bar.getBoundingClientRect().height+12;}
+  function measure(){document.documentElement.style.setProperty('--anchor-offset',offset()+'px');}
+  function goTo(el){
+    var y=el.getBoundingClientRect().top+window.pageYOffset-offset();
+    window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'});
+  }
+  links.forEach(function(a,i){
+    a.addEventListener('click',function(e){
+      var el=secs[i]; if(!el) return;
+      e.preventDefault(); goTo(el);
+      if(location.hash!==a.hash) history.pushState(null,'',a.hash);
+      requestAnimationFrame(mark);
+    });
+  });
+  function mark(){
+    var top=offset()+8, cur=-1;
+    secs.forEach(function(s,i){ if(s&&s.getBoundingClientRect().top-top<=0) cur=i; });
+    if(cur<0) cur=0;
+    if(window.scrollY+window.innerHeight>=document.documentElement.scrollHeight-2) cur=secs.length-1;
+    links.forEach(function(a,i){a.classList.toggle('now',i===cur);if(i===cur)a.setAttribute('aria-current','location');else a.removeAttribute('aria-current');});
+    var on=links[cur];
+    if(on&&nav.scrollWidth>nav.clientWidth){
+      var l=on.offsetLeft, r=l+on.offsetWidth;
+      if(l<nav.scrollLeft+8) nav.scrollTo({left:Math.max(0,l-12),behavior:'auto'});
+      else if(r>nav.scrollLeft+nav.clientWidth-8) nav.scrollTo({left:r-nav.clientWidth+12,behavior:'auto'});
+    }
+  }
+  var raf; window.addEventListener('scroll',function(){cancelAnimationFrame(raf);raf=requestAnimationFrame(mark);},{passive:true});
+  window.addEventListener('resize',function(){measure();mark();}); measure(); mark();
+  if(document.fonts) document.fonts.ready.then(function(){measure();mark();});
+  window.addEventListener('popstate',function(){var el=location.hash&&document.getElementById(decodeURIComponent(location.hash.slice(1)));if(el)goTo(el);else window.scrollTo({top:0,behavior:'auto'});requestAnimationFrame(mark);});
+  if(location.hash){var el=document.getElementById(decodeURIComponent(location.hash.slice(1))); if(el) setTimeout(function(){goTo(el);},60);}
+})();
+</script>
+<script>
+(function(){
+  var bg=document.getElementById('drawer-bg'); if(!bg) return; var open=null,last=null;
+  var page=document.querySelector('.wrap');
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pill=document.getElementById('back-hist'), pillT=null, histBtn=document.querySelector('[data-drawer="d-hist"]');
+  function show(id,btn){var d=document.getElementById(id); if(!d||open===d) return; if(open) hide({keepFocus:true}); clearTimeout(d._hideT); d.hidden=false; requestAnimationFrame(function(){if(open!==d)return;d.classList.add('on'); bg.classList.add('on');}); open=d; if(btn) last=btn; document.body.style.overflow='hidden'; if(page)page.inert=true; (d.querySelector('.dclose')||d).focus(); hidePill();}
+  function hide(o){o=o||{}; if(!open) return; var d=open; d.classList.remove('on'); bg.classList.remove('on'); document.body.style.overflow=''; if(page)page.inert=false; d._hideT=setTimeout(function(){d.hidden=true;},230); open=null; if(!o.keepFocus){ if(last) last.focus(); last=null; }}
+  document.querySelectorAll('[data-drawer]').forEach(function(b){b.addEventListener('click',function(){show(b.getAttribute('data-drawer'),b);});});
+  document.querySelectorAll('.dclose').forEach(function(b){b.addEventListener('click',function(){hide();});});
+  bg.addEventListener('click',function(){hide();});
+  document.addEventListener('keydown',function(e){
+    if(!open)return;
+    if(e.key==='Escape'){e.preventDefault();hide();return;}
+    if(e.key!=='Tab')return;
+    var items=[].slice.call(open.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),summary,[tabindex]:not([tabindex="-1"])')).filter(function(el){var details=el.closest('details');return (!details||details.open||!!el.closest('summary'))&&el.getClientRects().length>0&&getComputedStyle(el).visibility!=='hidden';});
+    if(!items.length){e.preventDefault();open.focus();return;}
+    var first=items[0],lastItem=items[items.length-1],position=items.indexOf(document.activeElement);
+    if(e.shiftKey&&position<=0){e.preventDefault();lastItem.focus();}
+    else if(!e.shiftKey&&(position<0||position===items.length-1)){e.preventDefault();first.focus();}
+  });
+  function showPill(){ if(!pill) return; clearTimeout(pillT); pill.hidden=false; requestAnimationFrame(function(){pill.classList.add('on');}); pillT=setTimeout(hidePill,20000); }
+  function hidePill(){ if(!pill||pill.hidden) return; clearTimeout(pillT); pill.classList.remove('on'); setTimeout(function(){pill.hidden=true;},200); }
+  function pick(t){ return t.tagName==='SECTION' ? (t.querySelector('h2')||t) : t; }
+  function highlight(el){ el.classList.remove('hl'); void el.offsetWidth; el.classList.add('hl','history-focus'); el.addEventListener('blur',function(){el.classList.remove('history-focus');},{once:true}); var tmp=!el.hasAttribute('tabindex')&&!el.matches('a[href],button,input,select,textarea,summary'); if(tmp) el.setAttribute('tabindex','-1'); try{el.focus({preventScroll:true});}catch(e){} clearTimeout(el._hlT); el._hlT=setTimeout(function(){el.classList.remove('hl'); if(tmp){if(document.activeElement===el)el.addEventListener('blur',function(){el.removeAttribute('tabindex');},{once:true});else el.removeAttribute('tabindex');}},3200); }
+  document.querySelectorAll('.goto').forEach(function(b){b.addEventListener('click',function(){
+    var t=document.getElementById(b.getAttribute('data-goto')); if(!t) return; for(var node=t;node;node=node.parentElement){if(node.tagName==='DETAILS')node.open=true;} var el=pick(t);
+    hide({keepFocus:true}); last=histBtn;
+    setTimeout(function(){
+      var nav=document.querySelector('.pnav'); var y=el.getBoundingClientRect().top+window.pageYOffset-((nav?nav.getBoundingClientRect().height:0)+16);
+      window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'}); highlight(el); showPill();
+    },240);
+  });});
+  if(pill) pill.addEventListener('click',function(){
+    show('d-hist',histBtn);
+    var d=document.getElementById('d-hist'), o=d&&d.querySelector('details[open]');
+    if(o) setTimeout(function(){o.scrollIntoView({block:'start',behavior:'auto'}); o.querySelector('summary').focus();},60);
+  });
+})();
+(function(){
+  var panels=[].slice.call(document.querySelectorAll('.tablewrap,.sheet'));
+  if(!panels.length)return;
+  function name(el){
+    var section=el.closest('section'), heading=section&&section.querySelector('h2,.phase-h h3');
+    var nearby=el.previousElementSibling&&el.previousElementSibling.classList.contains('sheet-label')?el.previousElementSibling:null;
+    var base=(nearby||heading), peers=section?section.querySelectorAll('.tablewrap,.sheet'):[];
+    var suffix=nearby?'':peers.length>1?' '+([].indexOf.call(peers,el)+1):'';
+    return (base?base.textContent.trim():'자료')+suffix+' 표, 좌우로 스크롤';
+  }
+  function sync(){
+    panels.forEach(function(el){
+      var scrollable=!el.closest('[hidden]')&&el.scrollWidth>el.clientWidth+1;
+      if(scrollable){
+        el.tabIndex=0;
+        if(!el.hasAttribute('role')){el.setAttribute('role','region');el.dataset.scrollRole='1';}
+        if(!el.hasAttribute('aria-label')&&!el.hasAttribute('aria-labelledby')){el.setAttribute('aria-label',name(el));el.dataset.scrollLabel='1';}
+      }else{
+        el.removeAttribute('tabindex');
+        if(el.dataset.scrollRole==='1'){el.removeAttribute('role');delete el.dataset.scrollRole;}
+        if(el.dataset.scrollLabel==='1'){el.removeAttribute('aria-label');delete el.dataset.scrollLabel;}
+      }
+    });
+  }
+  sync();
+  window.addEventListener('resize',sync,{passive:true});
+  if(document.fonts)document.fonts.ready.then(sync);
+  if(window.ResizeObserver){var observer=new ResizeObserver(sync);panels.forEach(function(el){observer.observe(el);});}
+})();
 </script>
 </body>
 </html>
