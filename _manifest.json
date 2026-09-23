@@ -158,5 +158,13 @@
     "last_kind": "new",
     "last_sha256": "99d8b6b1514b51c02f9bddc4b93a3f99752a44984988ba8b23a2eb4fa551f9d5",
     "timestamp": "2026-09-23T12:32:11.468247Z"
+  },
+  "hall-of-fame-timeline": {
+    "slug": "hall-of-fame-timeline",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/hall-of-fame-timeline/",
+    "last_kind": "redeploy",
+    "last_sha256": "211276c677fa62b8a1a960c21555a3172cd07c025bcde7233598d0a626ca565a",
+    "timestamp": "2026-09-23T12:32:44.779638Z"
   }
 }
