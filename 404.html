@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>주소를 찾는 중</title>
+<style>
+:root{color-scheme:light dark}
+body{margin:0;min-height:100svh;display:grid;place-items:center;padding:32px;
+background:#fbfbfa;color:#181818;
+font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo","Noto Sans KR",sans-serif}
+@media (prefers-color-scheme:dark){body{background:#131313;color:#ededed}}
+.card{max-width:520px;text-align:center}
+h1{font-size:20px;font-weight:650;margin:0 0 12px;letter-spacing:-.01em}
+p{font-size:15px;line-height:1.7;margin:0 0 16px;opacity:.75}
+code{font-size:13px;opacity:.6;word-break:break-all}
+</style>
+</head>
+<body>
+<div class="card">
+<h1 id="h">주소를 찾는 중입니다</h1>
+<p id="m">잠시만 기다려 주세요.</p>
+<p><code id="u"></code></p>
+</div>
+<script>
+(function(){
+  // 한글 주소는 자모 결합형(NFC)과 분해형(NFD)의 바이트가 달라 서버에서 서로 다른 경로가 된다.
+  // macOS에서 복사·클릭한 링크는 분해형으로 오는 일이 잦아 404가 난다. 결합형으로 한 번만 고쳐 보낸다.
+  var path = location.pathname;
+  var decoded;
+  try { decoded = decodeURIComponent(path); } catch (e) { decoded = path; }
+  var fixed = decoded.normalize ? decoded.normalize("NFC") : decoded;
+  document.getElementById("u").textContent = decoded;
+  if (fixed !== decoded && !/[?&]nfc=1/.test(location.search)) {
+    var target = fixed.split("/").map(encodeURIComponent).join("/")
+      + (location.search || "") + (location.hash || "");
+    location.replace(target);
+    return;
+  }
+  document.getElementById("h").textContent = "페이지를 찾을 수 없습니다";
+  document.getElementById("m").textContent = "주소를 다시 확인해 주세요.";
+})();
+</script>
+</body>
+</html>
