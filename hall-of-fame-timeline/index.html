@@ -264,6 +264,7 @@ h2{font-size:20px;letter-spacing:-0.01em;margin:0 0 6px;font-weight:700}
 .goto:disabled{cursor:default}
 .goto:disabled:hover{background:var(--surface)}
 .goto:disabled .go{display:none}
+.goto:disabled::after{content:"화면에서 제외";margin-left:auto;color:var(--t4);white-space:nowrap;font-weight:500}
 .diff{display:grid;grid-template-columns:30px 1fr;gap:5px 8px;padding:8px 10px 9px}
 .diff .k{font-size:11px;color:var(--t4);padding-top:2px;font-weight:600}
 .hist .diff p{margin:0;font-size:12px;line-height:1.55;color:var(--t1)}
@@ -605,7 +606,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
     </div>
   </section>
 
-  <footer>함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/hall-of-fame-metrics/">베스트 크리에이터 · 활동 지수</a><br>한 장 기획 요건 v1.0, 부스팅 아이디어 v1, 위험 신호 v1, 흔적 제안 v2.2를 한 흐름으로 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.3에 있습니다.</footer>
+  <footer>함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/hall-of-fame-metrics/">베스트 크리에이터 · 활동 지수</a><br>한 장 기획 요건 v1.0, 부스팅 아이디어 v1, 위험 신호 v1을 한 흐름으로 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.3에 있습니다.</footer>
 </div>
 
 <button type="button" class="back-hist" id="back-hist" hidden>← 업데이트 히스토리로</button>
