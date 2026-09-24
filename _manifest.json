@@ -227,9 +227,9 @@
     "slug": "cco-121-award-rules",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/cco-121-award-rules/",
-    "last_kind": "new",
-    "last_sha256": "a3679306e40a4678d29e54d7c2c3fc22b1d509bd214b2c781b4e1f0feed4399c",
-    "timestamp": "2026-09-24T05:11:30.023745Z"
+    "last_kind": "redeploy",
+    "last_sha256": "23b617999c6cdd2dc24c791f7ab023aee86d4a35edaa3f20fbf98628c41d6632",
+    "timestamp": "2026-09-24T05:26:06.302160Z"
   },
   "reading-compare-test": {
     "slug": "reading-compare-test",
