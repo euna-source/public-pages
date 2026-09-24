@@ -222,5 +222,13 @@
     "last_kind": "new",
     "last_sha256": "8260f161678740d68d220302b0fcbedf5fbdf1203bfb2ab0975043a1a49d3aca",
     "timestamp": "2026-09-24T05:11:22.062558Z"
+  },
+  "cco-121-award-rules": {
+    "slug": "cco-121-award-rules",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/cco-121-award-rules/",
+    "last_kind": "new",
+    "last_sha256": "a3679306e40a4678d29e54d7c2c3fc22b1d509bd214b2c781b4e1f0feed4399c",
+    "timestamp": "2026-09-24T05:11:30.023745Z"
   }
 }
