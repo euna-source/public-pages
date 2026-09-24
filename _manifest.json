@@ -238,5 +238,13 @@
     "last_kind": "redeploy",
     "last_sha256": "206c98bf36ef23ae366da0374a63fa2c391146bac3ad01fd53f15f33be6dd40d",
     "timestamp": "2026-09-24T05:44:09.548446Z"
+  },
+  "hall-of-fame-doc-preview": {
+    "slug": "hall-of-fame-doc-preview",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/hall-of-fame-doc-preview/",
+    "last_kind": "new",
+    "last_sha256": "4255ee69cabb4fb869ff789ecf1c0ee89bf3939f1769e4195e63e51ff98228ca",
+    "timestamp": "2026-09-24T08:42:45.236802Z"
   }
 }

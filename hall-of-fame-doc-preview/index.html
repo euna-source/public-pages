@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6F3EB">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="명예의 전당 기획 요건(CCO-121 v2.14)을 기획·리서치 문서 템플릿에 옮긴 적용안.">
+<meta property="og:title" content="명예의 전당 기획 요건 · 템플릿 적용안">
+<meta property="og:description" content="2주마다 작품·크리에이터 두 부문 1~3위를 뽑는 명예의 전당 기획 요건을 문서 템플릿에 옮겼습니다.">
+<link rel="canonical" href="https://euna-source.github.io/public-pages/hall-of-fame-doc-preview/">
+<title>명예의 전당 기획 요건 · 템플릿 적용안</title>
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   문서 템플릿 v1 — 기획·리서치 문서용
+   색 역할: 노랑 = 먼저 읽을 곳 · 주홍 = 편집 표식(절 번호) · 파랑+밑줄 = 링크
+   경고·미확인은 색이 아니라 모양(테두리·아이콘·이름표)으로 구분
+   ───────────────────────────────────────────── */
+:root{
+  --bg:#F6F3EB; --panel:#EEECE2; --line:#CECEC3;
+  --text:#252621; --muted:#5D6059;
+  --accent:#B73921; --mark:#F4D43D; --mark-text:#252621; --link:#1957B8;
+  --body-size:18px;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Batang",Georgia,serif;
+  --header-h:60px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#20231F; --panel:#2B3028; --line:#51564B;
+    --text:#EDECE4; --muted:#B9BDB1;
+    --accent:#FF9178; --mark:#D8B92E; --mark-text:#20231F; --link:#92B7FF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#20231F; --panel:#2B3028; --line:#51564B;
+  --text:#EDECE4; --muted:#B9BDB1;
+  --accent:#FF9178; --mark:#D8B92E; --mark-text:#20231F; --link:#92B7FF;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--link);outline-offset:3px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:20;background:var(--bg);color:var(--text);padding:10px 14px;border:1px solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 상단 도구 막대 ── */
+.bar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bar-title{min-width:0;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.bar-title b{color:var(--text);font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-kind{color:var(--accent);font-weight:650;white-space:nowrap}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 12px;border:1px solid transparent;border-radius:6px;background:none;font-size:14px}
+.tool:hover{border-color:var(--line);background:var(--panel)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 40px}
+.cover{padding:28px 0 0}
+.issue{display:flex;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--text);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.issue strong{color:var(--accent);font-weight:650}
+.cover-main{padding:48px 0 40px;max-width:900px}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:14px;font-weight:600;margin-bottom:20px}
+.kind::before{content:"";width:24px;height:2px;background:currentColor}
+h1{font-family:var(--serif);font-weight:800;font-size:clamp(38px,5vw,64px);line-height:1.22;letter-spacing:-.035em}
+.deck{margin-top:22px;max-width:680px;font-size:19px;line-height:1.75;color:var(--muted)}
+.meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta div{padding:14px 16px 14px 0}
+.meta div+div{padding-left:16px;border-left:1px solid var(--line)}
+.meta dt{font-size:12px;color:var(--muted);margin-bottom:4px}
+.meta dd{font-size:15px;font-weight:600}
+
+/* 상태 표식: 모양으로 구분 (●확인 ◐일부·진행 ○미확인) */
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:10px;height:10px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 결론 한 줄 + 판단 근거 ── */
+.obi{margin:40px 0 0;border:2px solid var(--text)}
+.obi-head{background:var(--mark);color:var(--mark-text);padding:26px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:baseline}
+.obi-label{font-size:13px;font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:3px 9px;white-space:nowrap}
+.obi-head p{font-size:clamp(20px,2.2vw,26px);font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:22px 32px 24px}
+.obi-grid div+div{border-left:1px solid var(--line)}
+.obi-grid h2{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;letter-spacing:.02em}
+.obi-grid p{font-size:16px;line-height:1.7}
+
+/* ── 본문 배치 ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,740px);gap:64px;padding:56px 0 96px}
+.toc{position:sticky;top:calc(var(--header-h) + 28px);align-self:start;font-size:14px}
+.toc-title{font-size:12px;color:var(--muted);letter-spacing:.04em;margin-bottom:12px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:40px;padding:9px 0 9px 12px;border-left:2px solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:650;border-left-color:var(--accent)}
+.toc .n{font-size:12px;color:var(--accent);font-variant-numeric:tabular-nums;font-weight:600}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--body-size);line-height:1.78}
+.doc>section+section{margin-top:80px}
+.doc p+p{margin-top:1em}
+.sec-num{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:10px;text-decoration:none;font-variant-numeric:tabular-nums}
+.sec-num b{font-weight:800;margin-right:10px;padding-right:10px;border-right:1.5px solid currentColor}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:30px;line-height:1.38;letter-spacing:-.03em;font-weight:750;margin-bottom:24px}
+.doc h3{font-size:21px;line-height:1.45;letter-spacing:-.02em;font-weight:700;margin:44px 0 12px}
+.doc h2+h3{margin-top:0}
+.lead{font-size:calc(var(--body-size) + 2px);line-height:1.75}
+.doc ul:not([class]),.doc ol:not([class]){padding-left:1.3em;margin:1em 0}
+.doc li+li{margin-top:.45em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+sup.ref{font-size:.68em;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px}
+
+/* 노랑 강조: 먼저 읽을 구절 */
+mark{background:var(--mark);color:var(--mark-text);font-weight:650;padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:32px 0;border-top:2px solid var(--text)}
+.stats div{padding:16px 16px 18px 0}
+.stats div+div{padding-left:16px;border-left:1px solid var(--line)}
+.stats b{display:block;font-size:40px;line-height:1.1;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats b small{font-size:16px;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:14px;line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 모양으로 구분 */
+.callout{margin:32px 0;padding:20px 24px;font-size:16px;line-height:1.7}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;margin-bottom:6px}
+.callout-label svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border-left:4px solid var(--text);background:var(--panel)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.6em}
+
+/* 인용 */
+.pull{margin:44px 0;padding:6px 0 6px 24px;border-left:3px solid var(--accent);font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.55;letter-spacing:-.03em}
+.pull cite{display:block;margin-top:10px;font-family:var(--sans);font-size:14px;font-style:normal;font-weight:400;color:var(--muted);letter-spacing:0}
+
+/* 표 */
+.table{margin:32px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.6;font-variant-numeric:tabular-nums}
+.table caption{text-align:left;font-size:14px;font-weight:650;margin-bottom:10px}
+.table th{text-align:left;font-size:13px;font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:2px solid var(--text);white-space:nowrap}
+.table td{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.table .num{text-align:right}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+.table tr.pick td{font-weight:650}
+.table tr.pick td:first-child{box-shadow:inset 3px 0 0 var(--text);padding-left:12px}
+.tag{display:inline-block;font-size:12px;font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid currentColor;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.swatch{display:inline-flex;align-items:center;gap:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;white-space:nowrap}
+.swatch i{width:18px;height:18px;border-radius:3px;border:1px solid var(--line);flex:none}
+.table-note{margin-top:10px;font-size:14px;color:var(--muted);line-height:1.6}
+
+/* 그림 */
+.figure{margin:36px 0}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.6}
+.figure figcaption b{color:var(--text);font-weight:650;margin-right:6px}
+.specimen{border:1px solid var(--line);padding:28px 32px;display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:32px;align-items:start}
+.specimen-doc{font-size:16px;line-height:1.75}
+.specimen-doc .sec-num{margin-bottom:4px}
+.specimen-title{font-weight:700;font-size:19px;margin-bottom:10px;letter-spacing:-.02em}
+.specimen-key{list-style:none;margin:0;padding:0;font-size:14px;line-height:1.5}
+.specimen-key li{display:grid;grid-template-columns:22px 1fr;gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.specimen-key li:first-child{border-top:0;padding-top:0}
+.specimen-key small{display:block;color:var(--muted);font-size:13px}
+.k{width:18px;height:18px;margin-top:1px;border-radius:3px}
+.k.mark{background:var(--mark);border:1px solid var(--line)}
+.k.accent{background:var(--accent)}
+.k.link{border-bottom:2px solid var(--link);border-radius:0;height:14px}
+.k.link::before{content:"";display:block}
+.k.text{background:var(--text)}
+
+/* 다음 행동 */
+.actions{list-style:none;margin:28px 0;padding:0;border-top:2px solid var(--text)}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:14px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.65}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:3px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1.55;padding-top:3px}
+
+/* 근거·출처 */
+.sources{list-style:none;margin:24px 0;padding:0;counter-reset:src;font-size:15px;line-height:1.6}
+.sources li{counter-increment:src;display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.sources li::before{content:counter(src);font-size:13px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:13px;color:var(--muted)}
+.sources .state{font-size:13px;color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13px;color:var(--muted)}
+
+/* 부록·변경 이력 */
+.appendix{margin-top:96px;padding-top:28px;border-top:2px solid var(--text)}
+.appendix h2{font-size:22px}
+
+.foot{border-top:1px solid var(--line);padding:24px 0 40px;display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--muted)}
+.foot a{color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:6px;font-size:14px;max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  .page,.bar-inner{padding-left:28px;padding-right:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:40px}
+  .meta{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .meta div:nth-child(4){border-left:0;padding-left:0}
+  .meta div:nth-child(n+4){border-top:1px solid var(--line)}
+  .specimen{grid-template-columns:1fr;gap:20px}
+}
+/* ── 모바일 ── */
+@media screen and (max-width:768px){
+  :root{--body-size:17px;--header-h:56px}
+  .page,.bar-inner{padding-left:20px;padding-right:20px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .tool{padding:0 10px}
+  .cover-main{padding:36px 0 32px}
+  h1{font-size:clamp(32px,9vw,44px);line-height:1.28}
+  .deck{font-size:17px}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+  .meta div:nth-child(n+3){border-top:1px solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:32px}
+  .obi-head{grid-template-columns:1fr;gap:12px;padding:22px 20px}
+  .obi-label{justify-self:start}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div{padding:18px 20px}
+  .obi-grid div+div{border-left:0;border-top:1px solid var(--line)}
+  .layout{display:block;padding:36px 0 72px}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:15px;font-weight:650;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:9px;height:9px;border-right:1.8px solid var(--text);border-bottom:1.8px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 10px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:15px}
+  .toc-mobile .n{font-size:12px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+  .doc>section+section{margin-top:64px}
+  .doc h2{font-size:25px;margin-bottom:20px}
+  .doc h3{font-size:19px;margin-top:36px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+  .stats div:nth-child(n+3){border-top:1px solid var(--line)}
+  .stats b{font-size:34px}
+  .callout{padding:18px 18px}
+  .pull{font-size:22px;padding-left:18px}
+  .specimen{padding:20px}
+  /* 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:2px solid var(--text)}
+  .table.stack td{border:0;padding:3px 0 3px 108px;position:relative}
+  .table.stack td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:96px;font-size:13px;color:var(--muted);font-weight:600;line-height:1.5}
+  .table.stack td:first-child{font-weight:700;padding-left:0;margin-bottom:4px;font-size:16px}
+  .table.stack td:first-child::before{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset 3px 0 0 var(--text);padding-left:14px}
+  .table.stack .num{text-align:left}
+  .actions li{grid-template-columns:22px minmax(0,1fr);gap:12px}
+  .who{grid-column:2;text-align:left;padding-top:0}
+  .sources li{grid-template-columns:26px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  .page,.bar-inner{padding-left:16px;padding-right:16px}
+  .obi-head,.obi-grid div{padding-left:16px;padding-right:16px}
+  .table.stack td{padding-left:90px}
+  .table.stack td::before{width:80px}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* ── 인쇄·PDF: 항상 라이트 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#fff;--panel:#F1EFE8;--line:#CECEC3;--text:#252621;--muted:#5D6059;--accent:#B73921;--mark:#F4D43D;--mark-text:#252621;--link:#1957B8;--body-size:11pt;color-scheme:light}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bar,.toc,.toc-mobile,.toast,.skip{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:28px}
+  .cover-main{padding:24px 0}
+  h1{font-size:30pt}
+  .doc h2{font-size:17pt}
+  .doc>section+section{margin-top:36px}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">기획</span><span class="sep" aria-hidden="true">·</span><b>명예의 전당 기획 요건</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="노란 강조 표시">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span>
+      </button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span>
+      </button>
+      <button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span>
+      </button>
+      <button class="tool" id="share-btn" type="button" aria-label="공유하기">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span>
+      </button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>기획 문서 · 성장마케팅 · 명예의 전당</strong><span>CCO-121 · v2.14</span></div>
+    <div class="cover-main">
+      <p class="kind">명예의 전당 기획 요건</p>
+      <h1>2주마다,<br>활동을 순위로 남긴다</h1>
+      <p class="deck">명예의 전당은 앱 안에서 좋은 반응을 얻은 작품과 크리에이터를 2주 회차마다 순위로 보여 주는 영역입니다. 디스커버리에서 들어가며, 어떤 활동을 하면 주목받는지 보여 줍니다.</p>
+    </div>
+    <dl class="meta">
+      <div><dt>상태</dt><dd><span class="state"><i class="dot half" aria-hidden="true"></i>검토 중</span></dd></div>
+      <div><dt>작성</dt><dd>기획</dd></div>
+      <div><dt>읽는 사람</dt><dd>대표·개발·디자인</dd></div>
+      <div><dt>최종 갱신</dt><dd>2026. 09. 24</dd></div>
+      <div><dt>1회차</dt><dd>10/7 ~ 10/20</dd></div>
+    </dl>
+
+    <section class="obi" aria-labelledby="obi-title">
+      <div class="obi-head">
+        <span class="obi-label" id="obi-title">제안</span>
+        <p>10월 7일부터 2주마다 작품·크리에이터 두 부문에서 1~3위를 뽑아 상금을 주고, 순위는 앱 안 웹페이지에 매시 공개합니다.</p>
+      </div>
+      <div class="obi-grid">
+        <div><h2>무엇이 바뀌나</h2><p>디스커버리에 순위 웹페이지가 생깁니다. 포트폴리오를 올리고 프로필을 채운 활동이 순위와 수상 이력으로 남습니다.</p></div>
+        <div><h2>감수할 대가</h2><p>회차마다 상금 120만 원과 세금을 회사가 부담합니다. 1회차는 제외 목록 반영·신분증 수령처럼 운영이 손으로 할 일이 많습니다.</p></div>
+        <div><h2>바뀔 수 있는 조건</h2><p>후보가 5명(가안) 미만이면 순위 대신 참여 인원만 보여 줍니다. 회차 중 D7(10/14)에 위험 신호를 판정합니다.</p></div>
+      </div>
+    </section>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="목차">
+      <p class="toc-title">목차</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>배경과 문제</a></li>
+        <li><a href="#s2"><span class="n">02</span>목표</a></li>
+        <li><a href="#s3"><span class="n">03</span>운영 규칙</a></li>
+        <li><a href="#s4"><span class="n">04</span>선정 기준</a></li>
+        <li><a href="#s5"><span class="n">05</span>1회차 일정</a></li>
+        <li><a href="#s6"><span class="n">06</span>개발 요건</a></li>
+        <li><a href="#s7"><span class="n">07</span>확인 필요</a></li>
+        <li><a href="#s8"><span class="n">08</span>다음 행동</a></li>
+        <li><a href="#refs"><span class="n">··</span>부록·출처</a></li>
+      </ol>
+    </nav>
+
+    <main class="doc" id="doc">
+      <details class="toc-mobile">
+        <summary>목차 · 8개 절</summary>
+        <ol>
+          <li><a href="#s1"><span class="n">01</span>배경과 문제</a></li>
+          <li><a href="#s2"><span class="n">02</span>목표</a></li>
+          <li><a href="#s3"><span class="n">03</span>운영 규칙</a></li>
+          <li><a href="#s4"><span class="n">04</span>선정 기준</a></li>
+          <li><a href="#s5"><span class="n">05</span>1회차 일정</a></li>
+          <li><a href="#s6"><span class="n">06</span>개발 요건</a></li>
+          <li><a href="#s7"><span class="n">07</span>확인 필요</a></li>
+          <li><a href="#s8"><span class="n">08</span>다음 행동</a></li>
+          <li><a href="#refs"><span class="n">··</span>부록·출처</a></li>
+        </ol>
+      </details>
+
+      <section id="s1" aria-labelledby="s1-t">
+        <a class="sec-num" href="#s1"><b>01</b>배경과 문제</a>
+        <h2 id="s1-t">볼거리도, 다시 올 이유도 부족하다</h2>
+        <p class="lead">앱에 볼거리가 되는 콘텐츠와 사람이 아직 적습니다. 완성도 높은 포트폴리오, 다양한 크리에이터, 잘 채운 프로필이 모두 부족합니다.</p>
+        <p>게다가 활동한 결과가 순위나 선정 이력으로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 초기 활성화에는 단기 이벤트나 서포터즈 운영보다 랭킹으로 행동을 이끄는 방식이 맞다고 판단했습니다. 명예의 전당으로 좋은 포트폴리오 업로드와 볼거리 있는 프로필 작성을 이끕니다.</p>
+      </section>
+
+      <section id="s2" aria-labelledby="s2-t">
+        <a class="sec-num" href="#s2"><b>02</b>목표</a>
+        <h2 id="s2-t">사용자 1,000명, 포트폴리오 500~800개</h2>
+        <div class="stats">
+          <div><b>1,000<small>명</small></b><span>목표 사용자</span></div>
+          <div><b>500<small>~800개</small></b><span>확보할 포트폴리오</span></div>
+          <div><b>14<small>일</small></b><span>한 회차</span></div>
+          <div><b>120<small>만 원</small></b><span>회차 상금 합계 (부문별 60만 원)</span></div>
+        </div>
+        <p>2주마다 두 부문에서 1~3위를 뽑고, 결과는 순위 웹페이지에 공개합니다.</p>
+      </section>
+
+      <section id="s3" aria-labelledby="s3-t">
+        <a class="sec-num" href="#s3"><b>03</b>운영 규칙</a>
+        <h2 id="s3-t">누가, 무엇으로, 언제 뽑히나</h2>
+        <div class="table stack">
+          <table>
+            <caption>운영 계획</caption>
+            <thead><tr><th scope="col">항목</th><th scope="col">정한 것</th></tr></thead>
+            <tbody>
+              <tr><td>후보 대상</td><td>크리에이터클럽 회원 누구나. 부문마다 세는 활동이 있는 회원만 순위에 오릅니다. 운영진과 서포터즈는 제외합니다.</td></tr>
+              <tr><td>수상 부문</td><td>작품 부문, 크리에이터 부문</td></tr>
+              <tr><td>선정 방식</td><td>부문별 1~3위 각 1명, 부문마다 3명. 동점이면 그 순위에 먼저 도달한 쪽이 앞섭니다.</td></tr>
+              <tr><td>선정 기간</td><td>14일. 수요일 0시 시작, 둘째 화요일 23:59:59 마감, 다음 회차가 곧바로 시작합니다. <span class="tag">가안</span></td></tr>
+              <tr><td>제외 조건</td><td>같은 작품은 한 번만 수상합니다. 다중 계정·반응 교환·도용은 제외하고 통지하며, 1차는 운영이 손으로 적용합니다. 직전 회차 수상자는 제외하지 않고 운영하며 지켜봅니다.</td></tr>
+              <tr><td>상금</td><td>두 부문 모두 1위 30만 원, 2위 20만 원, 3위 10만 원 모바일 신세계 상품권. 세금은 회사가 부담합니다. <span class="tag">확정</span></td></tr>
+              <tr><td>앱 안 표식</td><td>작품 카드 좌상단 메달 마크(회차 번호)와 상세 상단 띠, 프로필 칩 “명예의 전당 ×N”. 모두 영구 표시입니다. <span class="tag">디자인 제안</span></td></tr>
+              <tr><td>지급 절차</td><td>당첨 안내 때 휴대폰 번호와 신분증 사진을 받고, 처리가 끝나면 지웁니다. 7일 안에 회신이 없으면 지급을 취소합니다. 만 14세 이상 미성년 회원은 보호자 동의서를 함께 받습니다.</td></tr>
+              <tr><td>판정</td><td>참가자에게는 “운영팀이 확인하고 대응”으로 안내합니다. 실제로는 기획·개발이 논의하고, 결정이 필요한 부분만 대표가 정합니다. 부정행위 제보는 앱 흔들기로 받습니다.</td></tr>
+              <tr><td>후보가 적을 때</td><td>후보가 5명 미만이면 순위표 대신 “N명 참여 중 · 집계 중”만 보여 주고, 5명이 되면 순위를 공개합니다. <span class="tag">가안</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="s4" aria-labelledby="s4-t">
+        <a class="sec-num" href="#s4"><b>04</b>선정 기준</a>
+        <h2 id="s4-t">작품은 받은 반응, 크리에이터는 한 활동</h2>
+        <p>모든 회차에 같은 기준을 씁니다. 순위는 매시 정각에 갱신되고, 점수는 회차마다 처음부터 다시 셉니다.</p>
+        <div class="table stack">
+          <table>
+            <caption>부문별 기준</caption>
+            <thead><tr><th scope="col">구분</th><th scope="col">작품 부문</th><th scope="col">크리에이터 부문</th></tr></thead>
+            <tbody>
+              <tr><td>세는 것</td><td>이번 회차에 올린 포폴이 받은 리스펙트 수. 1회를 1로 셉니다.</td><td>이번 회차에 한 활동을 점수로 바꿔 더한 값</td></tr>
+              <tr><td>인정 활동</td><td>리스펙트 받기</td><td>프로젝트 카드·포폴·영감 글 등록, 팔로워 증가, 리스펙트 보내기, 채팅 메시지, 공유하기, 프로필 소개 항목</td></tr>
+              <tr><td>빠지는 것</td><td>취소된 리스펙트, 삭제하거나 비공개로 돌린 포폴(다시 전체공개하면 복귀)</td><td>삭제하거나 비공개로 돌린 작품, 취소한 리스펙트, 언팔로우</td></tr>
+              <tr><td>다시 수상</td><td>한 번 수상한 포폴은 다음 회차 후보에서 빠집니다.</td><td>제외하지 않습니다.</td></tr>
+              <tr><td>동점</td><td>그 수에 먼저 도달한 포폴</td><td>그 점수에 먼저 도달한 크리에이터</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout note" aria-label="참고">
+          <p class="callout-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.2"/></svg>내부 배점 · 앱에는 숫자를 적지 않습니다</p>
+          <p>프로젝트 카드 50점, 포폴 30점, 영감 글 20점(모두 건당). 팔로워 1명당 10점, 리스펙트를 보낼 때마다 5점. 채팅 메시지 1건당 1점, 공유 1회당 1점(회차당 10점까지). 프로필 소개 6항목은 채운 항목마다 10점, 최대 60점이며 경력·수상은 여러 건이어도 10점입니다. 앱에서는 “직접 만들어 올리는 활동이 가장 크게 반영돼요”라고만 안내합니다.</p>
+        </aside>
+      </section>
+
+      <section id="s5" aria-labelledby="s5-t">
+        <a class="sec-num" href="#s5"><b>05</b>1회차 일정</a>
+        <h2 id="s5-t">10월 7일에 시작해 10월 21일에 발표한다</h2>
+        <div class="table stack">
+          <table>
+            <caption>1회차 네 국면</caption>
+            <thead><tr><th scope="col">국면</th><th scope="col">기간</th><th scope="col">하는 일</th></tr></thead>
+            <tbody>
+              <tr><td>01 개시 전</td><td>9/22 ~ 10/6</td><td>진입점·순위 웹페이지 개발, 심사 제출(10/2), 배포와 예고(10/6)</td></tr>
+              <tr><td>02 회차 중</td><td>10/7(수) 0시 ~ 10/20(화) 23:59:59</td><td>집계 시작, 매시 정각 순위 갱신, 매일 09:00 슬랙 리포트, D7(10/14) 위험 신호 판정</td></tr>
+              <tr><td>03 마감과 발표</td><td>10/21(수)</td><td>00:00 마감 배치와 2회차 시작, 09:00 판정, 12:00까지 당첨자 DM(신분증·휴대폰 번호 수령), 20:00 발표</td></tr>
+              <tr><td>04 다음 회차 준비</td><td>10/22(목) ~ 2회차 D3</td><td>보상 발송과 이의 접수, 공식 SNS 게시, 회차 리포트</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="s6" aria-labelledby="s6-t">
+        <a class="sec-num" href="#s6"><b>06</b>개발 요건</a>
+        <h2 id="s6-t">1차는 웹페이지 한 장과 매시 집계</h2>
+        <p>10월 2일 심사 제출, 10월 6일 배포 기준의 최소 범위입니다.</p>
+        <ol>
+          <li><strong>디스커버리 진입점.</strong> 이번 앱 빌드에 웹뷰로 넣습니다. 게임 랭킹과 같은 묶음입니다.</li>
+          <li><strong>순위 웹페이지 한 장.</strong> 탭 2개에 순위·썸네일·활동명·집계값, 회차 기간과 남은 날, 기준 안내 4줄, 규칙서 링크를 둡니다. 후보가 5명 미만이면 “N명 참여 중 · 집계 중”만 보여 줍니다.</li>
+          <li><strong>매시 정각 집계 배치.</strong> 매일 09:00 슬랙 리포트를 보내고, 시간별 결과는 구글 시트에 쌓습니다.</li>
+          <li><strong>운영 제외 목록.</strong> 서버 설정값입니다. 기획이 슬랙으로 요청하면 개발이 24시간 안에 반영합니다.</li>
+        </ol>
+        <aside class="callout note" aria-label="참고">
+          <p class="callout-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.2"/></svg>1차에 넣지 않는 것</p>
+          <p>어드민 화면, 실시간 갱신, 중복 수상자 자동 제외 산식(1차는 수동), 갤러리 연출·전광판 효과·복잡한 시상식 UX</p>
+        </aside>
+        <h3>데이터는 시트 두 장으로 본다</h3>
+        <p>하나는 매시 한 줄씩 쌓이고 지우지 않는 <strong>회차별 예상 당첨자 로그</strong>입니다. 다른 하나는 매시 덮어써 지금 순위만 남는 <strong>전체 순위표</strong>로, 순위 웹페이지와 발표 판정이 모두 이 표를 읽습니다. 제외·탈퇴자는 표에만 안 뜨고 반응 데이터는 남습니다. 리스펙트·팔로우 원데이터는 초기화하지 않고 기간별로 계산만 합니다.</p>
+        <div class="table">
+          <table>
+            <caption>전체 순위표 예시 · 작품 부문</caption>
+            <thead><tr><th scope="col">활동명</th><th scope="col">집계값</th><th scope="col" class="num">현재 순위</th></tr></thead>
+            <tbody>
+              <tr><td>현이</td><td>리스펙트 27</td><td class="num">1</td></tr>
+              <tr><td>문비트</td><td>리스펙트 21</td><td class="num">2</td></tr>
+              <tr><td>서타입</td><td>리스펙트 18</td><td class="num">3</td></tr>
+            </tbody>
+          </table>
+          <p class="table-note">예시 데이터입니다. 실제 표에는 자격 여부와 제외 여부 칸이 함께 있습니다.</p>
+        </div>
+      </section>
+
+      <section id="s7" aria-labelledby="s7-t">
+        <a class="sec-num" href="#s7"><b>07</b>확인 필요</a>
+        <h2 id="s7-t">문서 안에서 어긋난 곳이 세 군데 있다</h2>
+        <p>템플릿에 옮기면서 같은 내용을 두 곳에서 다르게 적은 부분을 찾았습니다. 원본은 고치지 않았습니다. <mark>배포 전에 어느 쪽이 맞는지 정해야 합니다.</mark></p>
+        <div class="table stack">
+          <table>
+            <caption>어긋난 곳</caption>
+            <thead><tr><th scope="col">항목</th><th scope="col">한쪽</th><th scope="col">다른 쪽</th></tr></thead>
+            <tbody>
+              <tr><td>직전 수상자 제외</td><td>운영 계획: 직전 회차 수상자는 제외하지 않는다</td><td>개발 요건 4: 제외 목록에 “직전 1위”가 들어 있다</td></tr>
+              <tr><td>발표 시각</td><td>운영 계획: 다음 회차 시작 00:00에 결과를 노출한다</td><td>1회차 일정: 09:00 판정 뒤 20:00에 발표한다</td></tr>
+              <tr><td>크리에이터 집계값</td><td>선정 기준: 모든 회차에 활동 점수</td><td>데이터 지표 예시: “팔로워 +21 (1회차 예시)”</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <aside class="callout unknown" aria-label="미확인">
+          <p class="callout-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 16.8v.2"/></svg>미확인</p>
+          <p>신분증·연락처 보관 기간. 운영 계획과 유의사항은 “처리가 끝나면 지운다”인데, 9/22 회의 기록에는 “세무 목적 정보 5년 보관”으로 남아 있습니다. 세무대리인 확인이 필요합니다.</p>
+        </aside>
+      </section>
+
+      <section id="s8" aria-labelledby="s8-t">
+        <a class="sec-num" href="#s8"><b>08</b>다음 행동</a>
+        <h2 id="s8-t">배포 전에 닫을 일</h2>
+        <p>원본의 다음 할 일 두 개에, 이번에 찾은 확인 사항 두 개를 더했습니다.</p>
+        <ul class="actions">
+          <li><span class="box" aria-hidden="true"></span><span class="what">어긋난 세 곳을 한쪽으로 정리하고 Jira부터 고치기 (이번에 추가)</span><span class="who">기획<br>기한 미정</span></li>
+          <li><span class="box" aria-hidden="true"></span><span class="what">알림 — 앱 알림, 앱 푸시</span><span class="who">기획<br>기한 미정</span></li>
+          <li><span class="box" aria-hidden="true"></span><span class="what">약관 업데이트가 필요한 항목 점검과 진행</span><span class="who">기획<br>기한 미정</span></li>
+          <li><span class="box" aria-hidden="true"></span><span class="what">신분증·연락처 보관 기간을 세무대리인에게 확인 (이번에 추가)</span><span class="who">기획<br>기한 미정</span></li>
+        </ul>
+      </section>
+
+      <section class="appendix" id="refs" aria-labelledby="refs-t">
+        <h2 id="refs-t">부록·출처</h2>
+
+        <h3>A. 순위판 「ⓘ 이렇게 선정돼요」 문안</h3>
+        <p><strong>작품 부문</strong> — 이번 회차에 올린 포폴이 받은 리스펙트 수로 순위를 매겨요. 매시 정각에 업데이트돼요. 취소된 리스펙트는 빠지고, 포폴을 삭제하거나 비공개로 돌리면 순위에서도 빠져요. 한 번 수상한 포폴은 다음 회차 후보에서 빠지고, 동점이면 그 수에 먼저 도달한 포폴이 앞서요.</p>
+        <p><strong>크리에이터 부문</strong> — 이번 회차에 한 활동을 점수로 바꿔 더한 값이에요. 점수는 회차마다 처음부터 다시 세요. 활동마다 점수가 다르고, 직접 만들어 올리는 활동이 가장 크게 반영돼요. 프로필 소개는 채운 만큼 더해지고, 전에 써 둔 내용도 인정돼요.</p>
+
+        <h3>B. 캠페인 페이지 유의사항 (9/24 확정)</h3>
+        <ol>
+          <li>회차는 수요일 0시에 시작해 2주 뒤 화요일 밤 11시 59분에 마감하며, 곧바로 다음 회차가 이어집니다. 당첨자 발표는 자동으로 게재되고, 발표 뒤 운영팀이 보상 안내를 위해 개별 연락드립니다. 주말이나 공휴일이 끼면 평일에 연락드립니다.</li>
+          <li>크리에이터클럽 회원이면 누구나 참가할 수 있습니다. 순위는 부문마다 해당하는 활동을 기준으로 산정되므로, 그 활동이 있는 분만 순위에 오릅니다.</li>
+          <li>작품 부문은 이 회차에 올린 작품이 받은 리스펙트를, 크리에이터 부문은 이 회차에 한 활동을 점수로 더한 값을 셉니다. 리스펙트 취소, 언팔로우, 작품 삭제처럼 되돌린 활동은 빠지므로 순위가 내려갈 수도 있습니다. 동점일 때는 먼저 그 점수에 도달한 쪽이 앞섭니다.</li>
+          <li>순위는 매시 정각에 갱신되며, 방금 받은 반응이 반영되기까지는 최대 1시간이 걸립니다. 화면에 보이는 순위는 잠정 순위이며, 마감 시각의 값을 기준으로 순위가 정해집니다.</li>
+          <li>보상은 부문별 1위부터 3위까지 드립니다. 형태와 내용은 회차 시작 공지와 순위 페이지 상단에서 안내하며, 세금이 발생하면 크리에이터클럽이 부담합니다. 당첨 안내 때는 보상 수령을 위한 본인 확인과 세금 처리를 위해 연락처(휴대폰 번호)와 신분증 사진을 받으며, 처리가 끝나면 지웁니다. 개별 연락에 7일 안에 회신이 없으면 지급이 취소될 수 있습니다. 보상은 양도하거나 교환할 수 없으며, 현금으로 대신 받을 수 없습니다.</li>
+          <li>공정한 순위를 위해 여러 계정으로 반응을 주고받거나, 리스펙트나 팔로우를 서로 주고받자고 요청하거나, 대가를 걸고 반응을 모으거나, 자동 프로그램을 쓰거나, 타인의 작품을 올린 것이 확인되면 순위에서 제외하게 됩니다. 발표 뒤 확인되면 선정이 취소될 수 있으며, 다음 캠페인에 참여 기회가 사라집니다. 부정행위를 발견하면 앱을 흔들어 제보해 주세요.</li>
+          <li>선정작을 홍보에 활용하게 될 경우에는 당첨 안내 때 먼저 동의를 여쭙고, 동의한 경우에만 앱과 공식 인스타그램에 활동명과 함께 소개합니다. 동의는 언제든 철회할 수 있으며, 작품의 권리는 본인에게 있습니다.</li>
+          <li>회차가 진행되는 동안에는 규칙이 바뀌지 않습니다. 변경 내용은 다음 회차 시작 공지에서 안내합니다.</li>
+        </ol>
+
+        <h3>출처</h3>
+        <p class="legend"><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span><span class="state"><i class="dot half" aria-hidden="true"></i>사본으로 확인</span><span class="state"><i class="dot" aria-hidden="true"></i>링크만</span></p>
+        <ol class="sources">
+          <li id="r1"><span>명예의 전당 기획 요건 · Jira CCO-121 미러 v2.14<span class="src-meta">옵시디언 · Jira 갱신 2026-09-24 15:27 기준 사본</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li>
+          <li id="r2"><span><a href="https://cre8orclub.atlassian.net/browse/CCO-121">Jira CCO-121</a><span class="src-meta">정본 · 사내 전용</span></span><span class="state"><i class="dot half" aria-hidden="true"></i>사본으로 확인</span></li>
+          <li id="r3"><span><a href="https://euna-source.github.io/public-pages/cco-121-award-policy/">명예의 전당 일정표</a><span class="src-meta">공개 페이지</span></span><span class="state"><i class="dot" aria-hidden="true"></i>링크만</span></li>
+          <li id="r4"><span><a href="https://euna-source.github.io/public-pages/cco-121-award-rules/">크리에이터 부문 선정 기준</a><span class="src-meta">공개 페이지</span></span><span class="state"><i class="dot" aria-hidden="true"></i>링크만</span></li>
+        </ol>
+
+        <div class="table log">
+          <table>
+            <caption>변경 이력</caption>
+            <thead><tr><th scope="col">버전</th><th scope="col">날짜</th><th scope="col">바뀐 내용</th></tr></thead>
+            <tbody>
+              <tr><td>v2.14</td><td>2026. 09. 24</td><td>Jira 15:27 갱신본을 문서 템플릿에 옮김. 내용은 바꾸지 않고, 어긋난 곳 세 군데와 미확인 한 건을 표시함</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <span>기획·리서치 문서 템플릿 v1 적용안 · 원본은 Jira CCO-121</span>
+    <a href="https://euna-source.github.io/public-pages/doc-template/blank.html">빈 템플릿 보기 →</a>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 2600);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 링크 복사·공유 (기본 기능)
+  // 주소는 canonical이 있으면 그것, 없으면 지금 주소에서 # 뒤를 뗀 값. 문서 단위로 공유한다.
+  // 남이 열 수 있는 웹 주소(http·https)만 쓴다. canonical이 file:이거나 로컬 기준 상대 주소면 버리고 지금 주소로,
+  // 그것도 file:이면 공유할 주소가 없다 → null.
+  const webUrl = (u) => {
+    try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href.split('#')[0] : null; }
+    catch { return null; }
+  };
+  const docUrl = () => {
+    const c = $('link[rel="canonical"]')?.getAttribute('href');
+    return (c && webUrl(c)) || webUrl(location.href);
+  };
+  const NO_URL = '아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
+  const metaOf = (sel) => $(sel)?.content || '';
+  const legacyCopy = (v) => {
+    const ta = document.createElement('textarea');
+    ta.value = v; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  };
+  const copyText = (v) => (navigator.clipboard && window.isSecureContext)
+    ? navigator.clipboard.writeText(v).then(() => true, () => legacyCopy(v))
+    : Promise.resolve(legacyCopy(v));
+  $('#copy-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    copyText(docUrl()).then((ok) => say(ok ? '링크를 복사했습니다.' : '복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+  });
+  $('#share-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    const data = {
+      title: metaOf('meta[property="og:title"]') || document.title,
+      text: metaOf('meta[property="og:description"]') || metaOf('meta[name="description"]'),
+      url: docUrl()
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      // 공유 창을 연 뒤에는 사용자 동작이 소모돼 자동 복사가 막힐 수 있다(사파리). 실패하면 안내만 한다.
+      navigator.share(data).catch((e) => say(e && e.name === 'AbortError'
+        ? '공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.'
+        : '공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'));
+    } else {
+      copyText(data.url).then((ok) => say(ok
+        ? '링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.'
+        : '공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+    }
+  });
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+</script>
+</body>
+</html>
