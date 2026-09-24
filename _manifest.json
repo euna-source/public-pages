@@ -246,5 +246,13 @@
     "last_kind": "redeploy",
     "last_sha256": "3a476d97c5950346de3bf69f1b99e46fb5a3e1f92673ea634f68ab389e8c5300",
     "timestamp": "2026-09-24T11:40:43.274650Z"
+  },
+  "doc-color-compare": {
+    "slug": "doc-color-compare",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/doc-color-compare/",
+    "last_kind": "new",
+    "last_sha256": "ce3e10ec1b658403e0511b5b338cc92ac5994c54e50de408102e885e49d173eb",
+    "timestamp": "2026-09-24T11:55:10.676283Z"
   }
 }
