@@ -243,8 +243,8 @@
     "slug": "hall-of-fame-doc-preview",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/hall-of-fame-doc-preview/",
-    "last_kind": "new",
-    "last_sha256": "4255ee69cabb4fb869ff789ecf1c0ee89bf3939f1769e4195e63e51ff98228ca",
-    "timestamp": "2026-09-24T08:42:45.236802Z"
+    "last_kind": "redeploy",
+    "last_sha256": "3a476d97c5950346de3bf69f1b99e46fb5a3e1f92673ea634f68ab389e8c5300",
+    "timestamp": "2026-09-24T11:40:43.274650Z"
   }
 }
