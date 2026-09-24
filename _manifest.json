@@ -275,8 +275,8 @@
     "slug": "doc-template-v2",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/doc-template-v2/",
-    "last_kind": "new",
-    "last_sha256": "4330a3eab22397d871603f87be3c945ba87eecbef44be74f9349baebda517d53",
-    "timestamp": "2026-09-24T15:48:12.327634Z"
+    "last_kind": "redeploy",
+    "last_sha256": "ff84856f5ce2622db33729cf233d968509c0b769958c56d95c5540fef0aa9219",
+    "timestamp": "2026-09-24T15:52:25.650290Z"
   }
 }
