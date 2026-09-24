@@ -262,5 +262,13 @@
     "last_kind": "new",
     "last_sha256": "d642fa5501df606680c43b0c731d7362183297877406fa51518c404de4224c17",
     "timestamp": "2026-09-24T12:34:14.423871Z"
+  },
+  "doc-color-tsutaya": {
+    "slug": "doc-color-tsutaya",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/doc-color-tsutaya/",
+    "last_kind": "new",
+    "last_sha256": "ed0537bd0fcc6f79163dc28fc904dbc376e2825b8f586a7690c5942e1ff47de7",
+    "timestamp": "2026-09-24T13:12:54.432613Z"
   }
 }
