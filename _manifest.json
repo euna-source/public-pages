@@ -219,9 +219,9 @@
     "slug": "cco-121-award-policy",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/cco-121-award-policy/",
-    "last_kind": "new",
-    "last_sha256": "8260f161678740d68d220302b0fcbedf5fbdf1203bfb2ab0975043a1a49d3aca",
-    "timestamp": "2026-09-24T05:11:22.062558Z"
+    "last_kind": "redeploy",
+    "last_sha256": "6055610bed3f47f4fe03e97947ff003c0a2b17e140073162f7b6ca663d5ee3ef",
+    "timestamp": "2026-09-24T05:21:01.391933Z"
   },
   "cco-121-award-rules": {
     "slug": "cco-121-award-rules",

@@ -340,6 +340,14 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 .sheet-label{font-size:12px;font-weight:700;color:var(--t2);margin:0 0 6px}
 
 #d-cond th:first-child{width:96px;min-width:72px}#d-cond tbody th{font-weight:500;color:var(--t2)}#d-cond details{margin-top:20px}#d-cond summary{cursor:pointer;font-size:13px;font-weight:600;min-height:44px;display:flex;align-items:center}
+
+/* 큰 국면 카드가 보이는 동안 작은 국면 탭은 접어 두고, 카드가 화면 위로 지나가 바가 붙으면 펼친다.
+   펼칠 때 늘어나는 높이만큼 바 아래 여백을 음수로 상쇄해 본문이 밀리지 않게 한다. */
+.calbar{transition:border-color 150ms ease-out,box-shadow 150ms ease-out,margin-bottom 220ms ease-out}
+.calbar .pnav{max-height:var(--pnav-h,64px);opacity:1;transition:max-height 220ms ease-out,opacity 160ms ease-out,margin-bottom 220ms ease-out,padding 220ms ease-out}
+.calbar:not(.stuck) .pnav{max-height:0;opacity:0;margin-bottom:0;padding-top:0;padding-bottom:0;overflow:hidden;pointer-events:none;visibility:hidden}
+.calbar.stuck{margin-bottom:calc(-1 * var(--pnav-space,0px))}
+@media (prefers-reduced-motion:reduce){.calbar,.calbar .pnav{transition:none}}
 </style>
 </head>
 <body>
@@ -719,7 +727,8 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 
 
   <div class="hxs">
-<details class="hx" name="hist" id="hx-17" open><summary><span class="hi">17</span><span class="ht">선정 조건 표와 회차 전환<span class="hd">9/23</span></span><span class="hn">개발 전달</span></summary><div class="hb"><p class="why">반복 설명을 제거하고 부문별 조건을 표로 통합</p><div class="chg"><button type="button" class="goto" data-goto="cond-cycle" data-in="d-cond"><span class="where">회차 전환</span>미당첨자와 기존 소개 점수<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차별 수상 기회와 기존 소개 점수를 여러 곳에서 설명</p><span class="k">이후</span><p class="now">해당 부문 1회차 미당첨자는 공통 자격 충족 시 2회차 후보 유지. 기존 소개 6항목 완성 시 시작부터 60점 포함. 활동 점수 이월 없음</p></div></div></div></details>
+<details class="hx" name="hist" id="hx-18" open><summary><span class="hi">18</span><span class="ht">국면 탭 중복 정리와 영문 주소<span class="hd">9/24</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">첫 화면에 큰 국면 카드와 작은 국면 탭이 같은 내용으로 두 번 보였습니다. 처음엔 큰 카드만 보이고, 스크롤해 카드가 지나가면 작은 탭으로 바뀌게 했습니다. 공유 주소도 깨지지 않는 영문으로 옮겼습니다.</p><div class="chg"><button type="button" class="goto" data-goto="hdr-h1"><span class="where">머리</span>국면 카드와 탭<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">큰 카드 네 장 바로 아래에 <del>같은 내용의 작은 탭 네 개</del>가 함께 보임</p><span class="k">이후</span><p class="now">처음엔 <ins>큰 카드만</ins>. 스크롤해 상단 바가 붙으면 그때 작은 탭이 펼쳐지고, 본문 위치는 움직이지 않습니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="hdr-h1"><span class="where">주소</span>공유 링크<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">한글 주소(붙여 넣으면 %EB… 로 깨짐), 미리보기 없음</p><span class="k">이후</span><p class="now"><ins>cco-121-award-policy</ins>. 슬랙·카톡 미리보기에 제목·설명·이미지가 뜹니다. 옛 주소는 모두 이리로 옵니다.</p></div></div></div></details>
+<details class="hx" name="hist" id="hx-17"><summary><span class="hi">17</span><span class="ht">선정 조건 표와 회차 전환<span class="hd">9/23</span></span><span class="hn">개발 전달</span></summary><div class="hb"><p class="why">반복 설명을 제거하고 부문별 조건을 표로 통합</p><div class="chg"><button type="button" class="goto" data-goto="cond-cycle" data-in="d-cond"><span class="where">회차 전환</span>미당첨자와 기존 소개 점수<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차별 수상 기회와 기존 소개 점수를 여러 곳에서 설명</p><span class="k">이후</span><p class="now">해당 부문 1회차 미당첨자는 공통 자격 충족 시 2회차 후보 유지. 기존 소개 6항목 완성 시 시작부터 60점 포함. 활동 점수 이월 없음</p></div></div></div></details>
 <details class="hx" name="hist" id="hx-16"><summary><span class="hi">16</span><span class="ht">회차별 선정 기준과 활동 배점<span class="hd">9/23</span></span><span class="hn">조건 안내</span></summary><div class="hb"><p class="why">1회차 팔로워 순증과 2회차 활동 점수를 구분하고, 소개 항목당 10점·최대 60점을 반영했습니다.</p><div class="chg"><button type="button" class="goto" data-goto="cond-activity" data-in="d-cond"><span class="where">후보 선정 조건</span>활동 점수<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차별 크리에이터 기준이 구분되지 않았습니다.</p><span class="k">이후</span><p class="now">1회차는 팔로워 순증만 집계하고, 2회차부터 채팅·공유 1점과 소개 최대 60점을 포함한 활동 지수를 적용합니다. 비정상 활동 제외 안내를 보완했습니다.</p></div></div></div></details>
   <details class="hx" name="hist" id="hx-15"><summary><span class="hi">15</span><span class="ht">두 문서 표시 규약 통일<span class="hd">9/23</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">활동 지수 문서와 본문 강조·히스토리 표시 규칙을 맞췄습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-cal"><span class="where">2주 달력</span>핵심 내용 강조<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">중요한 시점과 기준이 일반 문장과 같은 무게로 보였습니다.</p><span class="k">이후</span><p class="now">시작 시점·발표 시각 등 핵심 구절에 <ins>공통 초록 강조</ins>를 적용했습니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="sheet"><span class="where">구글 시트 예시</span>탭 조작<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">탭이 마우스 클릭으로만 바뀌었습니다.</p><span class="k">이후</span><p class="now"><ins>키보드 방향키·Home·End</ins>로도 탭을 바꿀 수 있습니다.</p></div></div></div></details>
   <details class="hx" name="hist" id="hx-14"><summary><span class="hi">14</span><span class="ht">발표 이후 표식 예시 노출 조정<span class="hd">9/23</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">표식 예시는 후속 검토 아이디어라 본문에서 크게 보여 주지 않도록 했습니다. 운영 흐름과 혜택 안내는 그대로 둡니다.</p><div class="chg"><button type="button" class="goto" disabled data-goto="s-trace"><span class="where">발표 이후 섹션</span>표식 예시<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">작품 카드 · 상세 띠 · 프로필 칩 · SNS 게시 예시를 본문 섹션에 표시</p><span class="k">이후</span><p class="now">본문 화면에서 제외하고 아이디어 원문은 보존</p></div></div></div></details>
@@ -743,7 +752,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 (function(){
   var bar=document.getElementById('calbar'); if(!bar) return;
   var sentinel=document.createElement('div'); sentinel.style.height='1px'; bar.parentNode.insertBefore(sentinel,bar);
-  new IntersectionObserver(function(e){bar.classList.toggle('stuck',!e[0].isIntersecting);},{threshold:0}).observe(sentinel);
+  new IntersectionObserver(function(e){bar.classList.toggle('stuck',!e[0].isIntersecting&&e[0].boundingClientRect.top<0);},{threshold:0}).observe(sentinel);
   var phaseLinks=Array.from(bar.querySelectorAll('.pp'));
   var dateLinks=Array.from(bar.querySelectorAll('.day'));
   var links=phaseLinks.concat(dateLinks);
@@ -751,7 +760,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   var dateIds=Array.from(new Set(dateLinks.map(function(link){return link.dataset.target;})));
   var dates=dateIds.map(function(id){var row=document.getElementById(id);return {id:id,row:row,el:row.querySelector('.when2')||row,phase:row.closest('.phase')};});
   var preferredDate=null, preferredReached=false, frame=0;
-  function offset(){return bar.getBoundingClientRect().height+16;}
+  function offset(){var cs=getComputedStyle(document.documentElement),c=parseFloat(cs.getPropertyValue('--calbar-closed')),x=parseFloat(cs.getPropertyValue('--pnav-space'));return (isNaN(c)||isNaN(x)?bar.getBoundingClientRect().height:c+x)+16;}
   function reveal(link){
     var parent=link.parentElement, r=link.getBoundingClientRect(), box=parent.getBoundingClientRect();
     if(r.left<box.left+3) parent.scrollLeft+=r.left-box.left-3;
@@ -899,6 +908,24 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   window.addEventListener('resize',sync,{passive:true});
   if(document.fonts)document.fonts.ready.then(sync);
   if(window.ResizeObserver){var observer=new ResizeObserver(sync);panels.forEach(function(el){observer.observe(el);});}
+})();
+</script>
+<script>
+(function(){
+  var bar=document.getElementById('calbar'); var nav=bar&&bar.querySelector('.pnav'); if(!nav) return;
+  // 펼쳤을 때 바가 실제로 늘어나는 높이를 재서 그만큼만 상쇄한다(화면 폭마다 탭 높이·여백이 달라 추정하지 않는다).
+  function size(){
+    var root=document.documentElement.style, had=bar.classList.contains('stuck');
+    bar.style.transition='none'; nav.style.transition='none';
+    root.setProperty('--pnav-h',nav.scrollHeight+'px');
+    bar.classList.remove('stuck'); var closed=bar.getBoundingClientRect().height;
+    bar.classList.add('stuck'); var open=bar.getBoundingClientRect().height;
+    bar.classList.toggle('stuck',had);
+    root.setProperty('--pnav-space',Math.max(0,open-closed)+'px');
+    root.setProperty('--calbar-closed',closed+'px');
+    void bar.offsetHeight; bar.style.transition=''; nav.style.transition='';
+  }
+  size(); addEventListener('resize',size); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(size);
 })();
 </script>
 </body>
