@@ -198,5 +198,13 @@
     "last_kind": "redeploy",
     "last_sha256": "91133e22556c1139106e8b68daffca67d505efff82386228d47cd69e6fd9f33b",
     "timestamp": "2026-09-23T14:29:43.453374Z"
+  },
+  "galpi-reading-preview": {
+    "slug": "galpi-reading-preview",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/galpi-reading-preview/",
+    "last_kind": "new",
+    "last_sha256": "5693c4ca3ad298eefab95d37190707c33be7d482370d3b6c080ff329d8a6924b",
+    "timestamp": "2026-09-24T04:20:28.602127Z"
   }
 }
