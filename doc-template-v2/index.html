@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="같은 명예의 전당 기획 요건을 문서 템플릿 v1과 v2(츠타야 서가 배색·흑백·한 가지 색)로 나란히 비교합니다.">
+<title>문서 템플릿 v1·v2 비교</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--bg:#F4F2EC;--text:#1E1E1C;--muted:#5C5B56;--line:#D5D2C8;--on:#1E1E1C;--ontext:#F4F2EC;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--bg:#161716;--text:#ECEBE6;--muted:#B4B3AC;--line:#3D3E3B;--on:#ECEBE6;--ontext:#161716;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Pretendard Variable",Pretendard,-apple-system,sans-serif;display:flex;flex-direction:column;word-break:keep-all}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+h1{font-size:15px;margin:0;font-weight:700}
+.q{font-size:13px;color:var(--muted);margin:2px 0 0}
+.seg{display:flex;gap:4px;flex-wrap:wrap}
+.seg button{min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:6px;background:none;color:var(--text);font:inherit;font-size:14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--on);color:var(--ontext);border-color:var(--on)}
+.seg button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+main{flex:1;display:grid;grid-template-columns:1fr 1fr;min-height:0}
+.pane{display:flex;flex-direction:column;min-height:0;border-right:1px solid var(--line)}
+.pane:last-child{border-right:0}
+.pane p{margin:0;padding:6px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.pane a{color:inherit}
+iframe{flex:1;width:100%;border:0;background:#fff}
+@media (max-width:900px){
+  main{grid-template-columns:1fr}
+  .pane.v1{display:none}
+  body.show-v1 .pane.v1{display:flex}
+  body.show-v1 .pane.v2{display:none}
+}
+.only-mobile{display:none}
+@media (max-width:900px){.only-mobile{display:inline-flex}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1>같은 기획서, v1과 v2</h1><p class="q">띠지만 읽고 닫아도 결론이 남는지 봐 주세요.</p></div>
+  <div class="seg" role="group" aria-label="보기 선택">
+    <button type="button" class="only-mobile" data-v1="1" aria-pressed="false">v1 기존</button>
+    <button type="button" data-src="t1/" aria-pressed="true">v2 · T1 서가</button>
+    <button type="button" data-src="mono/" aria-pressed="false">v2 · 흑백</button>
+    <button type="button" data-src="one/" aria-pressed="false">v2 · 한 가지 색</button>
+  </div>
+</header>
+<main>
+  <section class="pane v1" aria-label="v1"><p><span>v1 · 지금 쓰는 템플릿</span><a href="https://euna-source.github.io/public-pages/hall-of-fame-doc-preview/" target="_blank" rel="noopener">새 창</a></p>
+    <iframe title="v1 명예의 전당 기획 요건" src="https://euna-source.github.io/public-pages/hall-of-fame-doc-preview/" loading="lazy"></iframe></section>
+  <section class="pane v2" aria-label="v2"><p><span id="v2label">v2 · T1 서가</span><a id="v2link" href="t1/" target="_blank" rel="noopener">새 창</a></p>
+    <iframe id="v2" title="v2 명예의 전당 기획 요건" src="t1/"></iframe></section>
+</main>
+<script>
+const btns=[...document.querySelectorAll('.seg button')];
+btns.forEach(b=>b.addEventListener('click',()=>{
+  btns.forEach(x=>x.setAttribute('aria-pressed','false')); b.setAttribute('aria-pressed','true');
+  if(b.dataset.v1){document.body.classList.add('show-v1');return}
+  document.body.classList.remove('show-v1');
+  document.getElementById('v2').src=b.dataset.src; document.getElementById('v2link').href=b.dataset.src;
+  document.getElementById('v2label').textContent=b.textContent;
+}));
+</script>
+</body>
+</html>
