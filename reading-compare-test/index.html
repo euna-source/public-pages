@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="두 가지 읽기 화면 배색에서 강조와 링크를 찾는 시간, 읽은 뒤의 편안함을 비교하는 시험.">
+<title>읽기 화면 비교 시험</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 시험 진행 화면(중립)과 두 배색. A = 1차 안, B = 이번 안. 참가자에게는 화면 1·2로만 보인다. */
+:root{--bg:#F5F4F0;--text:#242424;--muted:#5C5C58;--line:#D2D0C8;--panel:#ECEAE3;--link:#1D55B0;--mark:#E9E6DA;--marktext:#242424;--btn:#242424;--btntext:#F5F4F0;color-scheme:light}
+:root[data-mode="dark"]{--bg:#1D1E1C;--text:#E8E7E2;--muted:#B5B4AE;--line:#4A4B46;--panel:#282926;--link:#93B5F5;--mark:#3A3B36;--marktext:#E8E7E2;--btn:#E8E7E2;--btntext:#1D1E1C;color-scheme:dark}
+:root[data-pal="A"]{--bg:#F3F1EB;--text:#292823;--muted:#67645D;--mark:#E2E2CC;--marktext:#292823;--link:#56612A;--line:#D3D0C6;--panel:#EAE8E0}
+:root[data-pal="A"][data-mode="dark"]{--bg:#22231F;--text:#E5E3DB;--muted:#B4B1A7;--mark:#44473A;--marktext:#E5E3DB;--link:#B8C08C;--line:#4B4C45;--panel:#2C2D28}
+:root[data-pal="B"]{--bg:#F6F3EB;--text:#252621;--muted:#5D6059;--mark:#F4D43D;--marktext:#252621;--link:#1957B8;--line:#CECEC3;--panel:#EEECE2}
+:root[data-pal="B"][data-mode="dark"]{--bg:#20231F;--text:#EDECE4;--muted:#B9BDB1;--mark:#D8B92E;--marktext:#20231F;--link:#92B7FF;--line:#51564B;--panel:#2B3028}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-size:17px;line-height:1.75;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+h1,h2,p{margin:0}
+.wrap{max-width:680px;margin:0 auto;padding:28px 20px 64px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px;color:var(--muted);padding-bottom:12px;border-bottom:2px solid var(--text);margin-bottom:28px;font-variant-numeric:tabular-nums}
+.top b{color:var(--text);font-weight:650}
+.meter{height:3px;background:var(--line);margin:-26px 0 26px}
+.meter span{display:block;height:100%;width:0;background:var(--text)}
+h1{font-size:30px;line-height:1.35;letter-spacing:-.03em;font-weight:750;margin-bottom:16px}
+h2{font-size:22px;line-height:1.4;letter-spacing:-.02em;font-weight:700;margin-bottom:12px}
+.lead{font-size:18px}
+.muted{color:var(--muted)}
+.small{font-size:14px;line-height:1.65}
+p+p{margin-top:.8em}
+ul.steps{padding-left:1.2em;margin:16px 0}
+ul.steps li+li{margin-top:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 24px;border-radius:8px;border:1.5px solid var(--btn);background:var(--btn);color:var(--btntext);font:inherit;font-size:17px;font-weight:650;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.btn.ghost{background:none;color:var(--text);border-color:var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.opt input:focus-visible+span{outline:3px solid var(--link);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.choice{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:14px 0 4px}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0}
+.opt span{display:flex;align-items:center;justify-content:center;min-height:48px;border:1.5px solid var(--line);border-radius:8px;font-size:15px;text-align:center;padding:4px 6px;cursor:pointer}
+.opt input:checked+span{border-color:var(--text);background:var(--text);color:var(--bg);font-weight:650}
+.scale{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:10px}
+.scale .opt span{min-height:46px;font-variant-numeric:tabular-nums}
+.scale-ends{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:6px}
+fieldset{border:0;padding:0;margin:0 0 30px}
+legend{font-weight:650;font-size:17px;line-height:1.5;padding:0}
+.prompt{position:sticky;top:0;z-index:2;background:var(--bg);padding:14px 0 12px;border-bottom:1px solid var(--line);margin-bottom:20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.prompt p{font-size:18px;font-weight:700}
+.passage{font-size:17px;line-height:1.85}
+.passage p+p{margin-top:1em}
+mark{background:var(--mark);color:var(--marktext);font-weight:650;padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.lk{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px;cursor:pointer}
+.ready{min-height:52vh;display:grid;place-items:center;text-align:center}
+.ready .btn{min-width:220px}
+.skip{font-size:14px;min-height:44px;padding:0 14px;white-space:nowrap;flex:none}
+.timer{font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.card{border-top:2px solid var(--text);margin-top:24px}
+table{width:100%;border-collapse:collapse;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:11px 10px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:13px;color:var(--muted);font-weight:600}
+td.num,th.num{text-align:right}
+.note{background:var(--panel);padding:16px 18px;margin-top:22px;font-size:15px;line-height:1.7}
+textarea{width:100%;min-height:90px;font:inherit;font-size:16px;color:var(--text);background:var(--bg);border:1.5px solid var(--line);border-radius:8px;padding:10px 12px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;border-radius:6px;font-size:14px}
+.toast:empty{display:none}
+[hidden]{display:none!important}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+@media (max-width:420px){h1{font-size:26px}.wrap{padding:22px 16px 56px}.choice{grid-template-columns:1fr}.scale{gap:4px}}
+</style>
+</head>
+<body>
+<main class="wrap" id="app" aria-live="polite"></main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+'use strict';
+const root = document.documentElement;
+const app = document.getElementById('app');
+const q = new URLSearchParams(location.search);
+const READ_SEC = Math.max(20, Math.min(600, parseInt(q.get('read') || '90', 10) || 90));
+const TRIALS_PER_TYPE = 4;
+const TIMEOUT_MS = 20000;
+const store = { get(k){ try { return localStorage.getItem('rct-'+k); } catch { return null; } }, set(k,v){ try { localStorage.setItem('rct-'+k,v); return true; } catch { return false; } } };
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+let seed = parseInt(q.get('seed') || '', 10) || (Date.now() % 2147483647);
+const seed0 = seed;
+const rnd = () => (seed = seed * 16807 % 2147483647) / 2147483647;
+const shuffle = (a) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+const median = (xs) => { if (!xs.length) return null; const s = xs.slice().sort((a,b)=>a-b); const m = s.length >> 1; return s.length % 2 ? s[m] : (s[m-1] + s[m]) / 2; };
+const toast = (m) => { const t = document.getElementById('toast'); t.textContent = m; setTimeout(() => { t.textContent = ''; }, 2400); };
+
+// 문장 묶음: [앞, 표시할 구절, 뒤]
+const S = [
+ ['아침마다 같은 길을 걸어도 ','계절이 바뀌는 순간','은 늘 조금씩 다르게 다가옵니다.'],
+ ['도서관 창가 자리는 ','오후 세 시쯤 가장 밝아서',' 책장을 넘기기 좋습니다.'],
+ ['메모를 짧게 남기면 ','다음에 다시 펼칠 이유','가 하나 더 생깁니다.'],
+ ['새 노트를 산 날에는 ','첫 장을 비워 두는 습관','이 있습니다.'],
+ ['퇴근길 버스에서는 ','긴 글보다 짧은 시 한 편','이 더 잘 읽힙니다.'],
+ ['책갈피 대신 ','영수증을 끼워 둔 책','이 책장에 여러 권 있습니다.'],
+ ['비 오는 날의 카페는 ','평소보다 말소리가 낮아',' 집중하기 편합니다.'],
+ ['같은 문장이라도 ','소리 내어 읽으면 속도','가 절반쯤 느려집니다.'],
+ ['여행지에서 산 책은 ','그곳의 냄새를 오래 기억','하게 해 줍니다.'],
+ ['목차를 먼저 훑어보면 ','어디서 쉬어 갈지',' 미리 정할 수 있습니다.'],
+ ['마지막 장을 덮은 뒤에는 ','한동안 제목을 다시 보게',' 됩니다.'],
+ ['어릴 때 읽은 동화를 다시 펼치면 ','기억과 다른 결말','을 만나기도 합니다.'],
+ ['친구가 빌려준 책에는 ','연필로 그은 얇은 밑줄','이 남아 있었습니다.'],
+ ['잠들기 전 십 분 독서는 ','화면을 보는 시간','을 자연스럽게 줄여 줍니다.'],
+ ['두꺼운 책은 ','작은 장 단위로 나누어',' 읽으면 덜 부담스럽습니다.'],
+ ['서점 직원이 추천한 책은 ','표지보다 첫 문단','이 더 인상적이었습니다.'],
+ ['주말 오전의 공원 벤치는 ','바람이 적당해서',' 오래 앉아 있기 좋습니다.'],
+ ['번역서를 읽을 때는 ','옮긴이의 말부터',' 읽는 편입니다.'],
+ ['손으로 옮겨 적은 문장은 ','타이핑한 문장보다 오래',' 남는 것 같습니다.'],
+ ['낯선 단어가 나오면 ','여백에 작은 물음표','를 그려 둡니다.'],
+ ['기차 창밖 풍경이 빠르게 지나가면 ','책보다 창문에 눈이',' 먼저 갑니다.'],
+ ['한 권을 다 읽지 못해도 ','마음에 남은 한 문장','이면 충분할 때가 있습니다.'],
+ ['독서 모임에서는 ','같은 장면을 서로 다르게',' 기억한 이야기가 가장 재미있습니다.'],
+ ['오래된 책장은 ','맨 아래 칸부터 먼지가',' 쌓입니다.'],
+ ['시집은 ','아무 쪽이나 펼쳐 읽어도',' 어색하지 않습니다.'],
+ ['필사 노트의 마지막 쪽에는 ','날짜와 날씨를 함께',' 적어 둡니다.'],
+ ['좋아하는 작가의 신간 소식은 ','한 달 전부터 기다리게',' 됩니다.'],
+ ['어두운 방에서 화면을 오래 보면 ','글자 가장자리가 흐려',' 보이기도 합니다.'],
+ ['인쇄된 책은 ','손가락으로 쪽수를 가늠할 수',' 있어서 편합니다.'],
+ ['조용한 음악을 틀어 두면 ','주변 소음이 덜 신경',' 쓰입니다.'],
+ ['재미있는 책은 ','내릴 정거장을 지나칠 만큼',' 몰입하게 만듭니다.'],
+ ['책 뒤표지의 소개글은 ','읽기 전보다 읽은 뒤에',' 더 잘 이해됩니다.'],
+];
+// 읽기 구간 글 (두 벌, 화면마다 하나씩)
+const READS = [
+ {title:'다시 펼치는 책', paras:[
+  ['몇 해 전 읽은 책을 다시 펼치면 처음과 다른 곳에서 멈추게 됩니다. 그때는 줄거리를 따라가느라 바빴다면, 이번에는 한 장면의 공기와 인물의 망설임이 먼저 보입니다. ',{m:'책은 그대로인데 읽는 사람이 달라졌기 때문입니다.'},' 그래서 다시 읽기는 지난 나를 만나는 일이기도 합니다.'],
+  ['예전에 그어 둔 밑줄은 이상하게 낯설 때가 많습니다. 왜 이 문장에 표시했는지 떠오르지 않는다면 그 시절의 고민이 이미 지나갔다는 뜻일지도 모릅니다. 반대로 그냥 지나쳤던 문단이 새로 눈에 들어오기도 합니다. 이런 차이를 기록해 두고 싶다면 ',{l:'읽기 노트 쓰는 법'},'을 참고해도 좋습니다.'],
+  ['다시 읽을 책을 고를 때는 끝까지 읽었는지보다 오래 기억에 남았는지를 기준으로 삼아 보세요. 결말이 흐릿해도 어떤 장면 하나가 선명하다면 그 책은 다시 만날 이유가 있습니다. ',{m:'한 장면이 남은 책부터 다시 펼쳐 보는 것'},'이 부담이 가장 적습니다.'],
+  ['처음부터 다시 읽을 필요도 없습니다. 기억나는 장면이 있는 장만 펼쳐 읽고, 마음이 가면 앞뒤로 조금씩 넓혀 가면 됩니다. 비슷한 방법을 쓰는 독자들의 이야기는 ',{l:'다시 읽기 모임 후기'},'에 모아 두었습니다. 그렇게 읽다 보면 한 권을 다 읽는 것보다 더 많은 것을 얻기도 합니다.'],
+  ['다시 읽은 날에는 짧게라도 날짜를 남겨 두세요. 몇 년 뒤 같은 책을 또 펼쳤을 때, 이번의 내가 어디서 멈췄는지 알아볼 수 있습니다. 책장에 꽂힌 책 한 권이 시간의 흔적을 담는 셈입니다.']]},
+ {title:'산책하며 생각하기', paras:[
+  ['생각이 막힐 때 잠깐 걷고 오면 풀리는 경우가 많습니다. 책상 앞에서는 같은 문장만 맴돌던 머리가 발걸음에 맞춰 조금씩 움직이기 시작합니다. ',{m:'걷는 동안에는 정답보다 질문이 먼저 떠오릅니다.'},' 그 질문을 붙잡아 돌아오면 다시 쓸 힘이 생깁니다.'],
+  ['산책길은 너무 복잡하지 않은 곳이 좋습니다. 신호등이 많거나 사람이 붐비면 주변을 살피느라 생각할 틈이 줄어듭니다. 공원 둘레길이나 강변처럼 한 방향으로 오래 걸을 수 있는 길이 알맞습니다. 동네마다 걷기 좋은 길은 ',{l:'산책로 지도'},'에서 찾을 수 있습니다.'],
+  ['휴대폰은 주머니에 넣어 두고 떠오른 생각은 짧은 단어로만 남겨 보세요. 문장을 완성하려고 멈춰 서면 흐름이 끊깁니다. ',{m:'단어 세 개만 적어 두어도'},' 돌아와서 충분히 이어 쓸 수 있습니다.'],
+  ['걷는 시간은 이십 분 정도면 충분합니다. 너무 길면 피곤해서 오히려 집중이 흐려지고, 너무 짧으면 머리가 풀리기 전에 돌아오게 됩니다. 계절에 따라 알맞은 시간대가 다르니 ',{l:'시간대별 걷기 안내'},'를 한 번 확인해 보세요.'],
+  ['돌아와서는 바로 자리에 앉기보다 물 한 잔을 마시고 적어 온 단어를 소리 내어 읽어 봅니다. 그 단어들이 다음 문단의 첫 문장이 되는 경우가 많습니다. 산책은 쉬는 시간이면서 생각을 정리하는 시간이기도 합니다.']]}
+];
+
+const state = { mode:null, order:null, blocks:[], started:null, device:null, pref:null, comment:'' };
+const device = () => ({ w: innerWidth, h: innerHeight, dpr: devicePixelRatio, touch: matchMedia('(pointer:coarse)').matches, ua: navigator.userAgent });
+const setMode = (m) => { root.dataset.mode = m; };
+const setPal = (p) => { if (p) root.dataset.pal = p; else delete root.dataset.pal; };
+const top = (label, step, total) => `<div class="top"><b>${esc(label)}</b><span>${step} / ${total}</span></div><div class="meter" aria-hidden="true"><span style="width:${Math.round(step/total*100)}%"></span></div>`;
+const TOTAL = 2 * (TRIALS_PER_TYPE * 2 + 3) + 1;
+let step = 0;
+
+function intro() {
+  setPal(null);
+  const sys = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  setMode(sys);
+  app.innerHTML = `
+  <h1>읽기 화면 비교 시험</h1>
+  <p class="lead">두 가지 배색을 차례로 보여 드립니다. 어느 쪽에서 표시된 곳이 더 빨리 보이고, 읽기가 더 편한지 확인하려는 시험입니다.</p>
+  <ul class="steps">
+    <li>화면마다 <b>강조 찾기와 링크 찾기</b>를 ${TRIALS_PER_TYPE * 2}번 합니다. 보이는 대로 바로 누르세요.</li>
+    <li>이어서 짧은 글을 <b>${READS_TEXT(READ_SEC)}</b> 동안 읽고 네 가지 질문에 답합니다.</li>
+    <li>전체 약 ${Math.round((READ_SEC * 2 + 150) / 60)}분 걸립니다. 정답을 맞히는 시험이 아니니 편하게 하세요.</li>
+  </ul>
+  <fieldset><legend>어느 모드로 볼까요?</legend>
+    <div class="choice" role="radiogroup">
+      <label class="opt"><input type="radio" name="mode" value="light" aria-label="라이트" ${sys==='light'?'checked':''}><span>라이트</span></label>
+      <label class="opt"><input type="radio" name="mode" value="dark" aria-label="다크" ${sys==='dark'?'checked':''}><span>다크</span></label>
+    </div>
+    <p class="small muted">평소 쓰는 모드를 고르세요. 다른 모드도 궁금하면 끝난 뒤 한 번 더 할 수 있습니다.</p>
+  </fieldset>
+  <p class="small muted">결과는 이 기기 안에만 남고, 마지막 화면에서 복사해 전달할 수 있습니다.</p>
+  <div class="row"><button class="btn" id="go" type="button">시작하기</button></div>`;
+  app.querySelectorAll('input[name=mode]').forEach(i => i.addEventListener('change', () => setMode(i.value)));
+  document.getElementById('go').addEventListener('click', () => {
+    state.mode = app.querySelector('input[name=mode]:checked').value;
+    let last = null; try { const h = JSON.parse(store.get('history') || '[]'); last = h.length ? h[h.length - 1].order : null; } catch {}
+    state.order = last && last[0] === 'A' ? ['B','A'] : last && last[0] === 'B' ? ['A','B'] : (rnd() < .5 ? ['A','B'] : ['B','A']);
+    const readOrder = rnd() < .5 ? [0,1] : [1,0];
+    state.device = device(); state.started = new Date().toISOString();
+    const pool = shuffle(S.map((_, i) => i));
+    state.blocks = state.order.map((pal, bi) => ({ pal, screen: bi + 1, read: readOrder[bi], trials: shuffle([...Array(TRIALS_PER_TYPE)].map(() => 'mark').concat([...Array(TRIALS_PER_TYPE)].map(() => 'link'))).map(type => ({ type })), pool: pool.slice(bi * 16, bi * 16 + 16), ratings: {} }));
+    runBlock(0);
+  });
+}
+function READS_TEXT(s) { return s >= 60 ? `${Math.floor(s/60)}분${s%60 ? ' ' + (s%60) + '초' : ''}` : `${s}초`; }
+
+function runBlock(bi) {
+  const b = state.blocks[bi];
+  setPal(b.pal);
+  step++;
+  app.innerHTML = `${top('화면 ' + b.screen, step, TOTAL)}
+  <h2>화면 ${b.screen}</h2>
+  <p>배색이 바뀌었습니다. 먼저 <b>표시된 곳을 찾아 누르는 과제</b>를 ${b.trials.length}번 합니다.</p>
+  <p class="muted small">매번 ‘준비’를 누르면 글이 나오고 위쪽에 찾을 대상이 적혀 있습니다. 찾으면 그 구절을 바로 누르세요. 20초가 지나거나 ‘못 찾겠어요’를 누르면 다음으로 넘어갑니다.</p>
+  <div class="row"><button class="btn" type="button" id="next">과제 시작</button></div>`;
+  document.getElementById('next').addEventListener('click', () => trial(bi, 0));
+}
+
+function buildPassage(b, t) {
+  // 문장 7개: 표시 구절 하나(강조), 링크 하나. 대상 종류가 무엇이든 둘 다 들어가 서로 방해 요소가 된다.
+  const idx = shuffle(b.pool).slice(0, 7);
+  const [mi, li] = shuffle([...Array(7).keys()]).slice(0, 2);
+  const html = idx.map((si, k) => {
+    const [a, ph, c] = S[si];
+    if (k === mi) return `${esc(a)}<mark data-hit="${t.type==='mark'?'target':'other'}">${esc(ph)}</mark>${esc(c)}`;
+    if (k === li) return `${esc(a)}<span class="lk" role="link" tabindex="0" data-hit="${t.type==='link'?'target':'other'}">${esc(ph)}</span>${esc(c)}`;
+    return esc(a + ph + c);
+  });
+  t.targetPos = t.type === 'mark' ? mi : li;
+  return `<p>${html.slice(0, 4).join(' ')}</p><p>${html.slice(4).join(' ')}</p>`;
+}
+
+function trial(bi, ti) {
+  const b = state.blocks[bi], t = b.trials[ti];
+  step++;
+  const label = t.type === 'mark' ? '강조 표시된 구절' : '링크';
+  app.innerHTML = `${top('화면 ' + b.screen + ' · 과제 ' + (ti + 1) + '/' + b.trials.length, step, TOTAL)}
+  <div class="ready"><div><p class="lead">다음 대상: <b>${label}</b></p><p class="small muted" style="margin:6px 0 18px">준비되면 누르세요.</p><button class="btn" type="button" id="ready">준비</button></div></div>`;
+  document.getElementById('ready').addEventListener('click', () => {
+    app.innerHTML = `${top('화면 ' + b.screen + ' · 과제 ' + (ti + 1) + '/' + b.trials.length, step, TOTAL)}
+    <div class="prompt"><p>${t.type === 'mark' ? '<b>강조 표시</b>(배경색이 칠해진 구절)를 누르세요' : '<b>링크</b>(밑줄 친 구절)를 누르세요'}</p><button class="btn ghost skip" type="button" id="giveup">못 찾겠어요</button></div>
+    <div class="passage" id="passage">${buildPassage(b, t)}</div>`;
+    const t0 = performance.now(); t.errors = 0; t.errorKinds = [];
+    const done = (hit) => {
+      clearTimeout(timer); passage.removeEventListener('click', onTap);
+      t.ms = hit ? Math.round(performance.now() - t0) : null; t.hit = hit;
+      ti + 1 < b.trials.length ? trial(bi, ti + 1) : reading(bi);
+    };
+    const passage = document.getElementById('passage');
+    const onTap = (e) => {
+      const el = e.target.closest('[data-hit]');
+      if (el && el.dataset.hit === 'target') return done(true);
+      t.errors++; t.errorKinds.push(el ? (el.tagName === 'MARK' ? 'mark' : 'link') : 'text');
+    };
+    passage.addEventListener('click', onTap);
+    passage.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.dataset?.hit) onTap(e); });
+    document.getElementById('giveup').addEventListener('click', () => done(false));
+    const timer = setTimeout(() => done(false), TIMEOUT_MS);
+  });
+}
+
+function reading(bi) {
+  const b = state.blocks[bi], r = READS[b.read];
+  step++;
+  const paras = r.paras.map(p => '<p>' + p.map(x => typeof x === 'string' ? esc(x) : x.m ? `<mark>${esc(x.m)}</mark>` : `<span class="lk">${esc(x.l)}</span>`).join('') + '</p>').join('');
+  app.innerHTML = `${top('화면 ' + b.screen + ' · 읽기', step, TOTAL)}
+  <div class="prompt"><p>편하게 읽어 주세요</p><span class="timer" id="timer">${READS_TEXT(READ_SEC)} 남음</span></div>
+  <h2>${esc(r.title)}</h2><div class="passage">${paras}</div>
+  <p class="small muted" style="margin-top:24px">다 읽었으면 처음부터 다시 천천히 읽어도 됩니다. 시간이 끝나면 아래 버튼이 켜집니다. (이 글의 링크는 눌러도 이동하지 않습니다.)</p>
+  <div class="row"><button class="btn" type="button" id="next" disabled>질문으로</button></div>`;
+  const t0 = Date.now();
+  const tick = setInterval(() => {
+    const left = Math.max(0, READ_SEC - Math.floor((Date.now() - t0) / 1000));
+    document.getElementById('timer').textContent = left ? `${READS_TEXT(left)} 남음` : '시간 끝';
+    if (!left) { clearInterval(tick); document.getElementById('next').disabled = false; }
+  }, 500);
+  document.getElementById('next').addEventListener('click', () => { clearInterval(tick); b.readSec = Math.round((Date.now() - t0) / 1000); ratings(bi); });
+}
+
+const QS = [
+  ['comfort', '눈이 편안했다', '전혀 아니다', '매우 그렇다'],
+  ['markSeen', '강조 표시가 한눈에 보였다', '전혀 아니다', '매우 그렇다'],
+  ['linkSeen', '링크가 본문과 잘 구분됐다', '전혀 아니다', '매우 그렇다'],
+  ['glare', '글자가 번지거나 눈부셨다', '전혀 없었다', '매우 심했다'],
+];
+function ratings(bi) {
+  const b = state.blocks[bi];
+  step++;
+  app.innerHTML = `${top('화면 ' + b.screen + ' · 질문', step, TOTAL)}
+  <h2>화면 ${b.screen}은 어땠나요?</h2><p class="muted small" style="margin-bottom:24px">방금 본 배색 기준으로 1~7 중에서 고르세요.</p>
+  ${QS.map(([k, label, lo, hi]) => `<fieldset><legend>${label}</legend><div class="scale">${[1,2,3,4,5,6,7].map(n => `<label class="opt"><input type="radio" name="${k}" value="${n}" aria-label="${n}점"><span>${n}</span></label>`).join('')}</div><div class="scale-ends"><span>${lo}</span><span>${hi}</span></div></fieldset>`).join('')}
+  <div class="row"><button class="btn" type="button" id="next">다음</button></div>`;
+  document.getElementById('next').addEventListener('click', () => {
+    const miss = QS.filter(([k]) => !app.querySelector(`input[name=${k}]:checked`));
+    if (miss.length) { toast('모든 질문에 답해 주세요.'); app.querySelector(`input[name=${miss[0][0]}]`).focus(); return; }
+    QS.forEach(([k]) => { b.ratings[k] = +app.querySelector(`input[name=${k}]:checked`).value; });
+    bi + 1 < state.blocks.length ? runBlock(bi + 1) : preference();
+  });
+}
+
+function preference() {
+  setPal(null); step++;
+  app.innerHTML = `${top('마지막 질문', step, TOTAL)}
+  <h2>어느 화면이 더 좋았나요?</h2>
+  <fieldset><legend class="sr">선호</legend><div class="choice">
+    <label class="opt"><input type="radio" name="pref" value="1" aria-label="화면 1"><span>화면 1</span></label>
+    <label class="opt"><input type="radio" name="pref" value="2" aria-label="화면 2"><span>화면 2</span></label>
+    <label class="opt"><input type="radio" name="pref" value="0" aria-label="비슷함"><span>비슷함</span></label></div></fieldset>
+  <fieldset><legend><label for="comment">이유나 느낀 점 (선택)</label></legend><textarea id="comment" placeholder="예: 강조는 잘 보였지만 오래 보니 노랑이 부담스러웠다"></textarea></fieldset>
+  <div class="row"><button class="btn" type="button" id="next">결과 보기</button></div>`;
+  document.getElementById('next').addEventListener('click', () => {
+    const p = app.querySelector('input[name=pref]:checked');
+    if (!p) { toast('하나를 골라 주세요.'); return; }
+    state.pref = +p.value; state.comment = document.getElementById('comment').value.trim();
+    results();
+  });
+}
+
+function summarize() {
+  return state.blocks.map(b => {
+    const by = (type) => b.trials.filter(t => t.type === type);
+    const hitMs = (type) => by(type).filter(t => t.hit).map(t => t.ms);
+    return { pal: b.pal, name: b.pal === 'A' ? '1차 안 (저채도)' : '이번 안 (선명한 노랑)', screen: b.screen,
+      markMedianMs: median(hitMs('mark')), linkMedianMs: median(hitMs('link')),
+      errors: b.trials.reduce((s, t) => s + t.errors, 0), misses: b.trials.filter(t => !t.hit).length, ratings: b.ratings };
+  });
+}
+
+function results() {
+  step = TOTAL; const sum = summarize();
+  const prefName = state.pref === 0 ? '비슷함' : sum.find(s => s.screen === state.pref).name;
+  const payload = { v: 1, seed: seed0, mode: state.mode, order: state.order, readSec: READ_SEC, started: state.started, finished: new Date().toISOString(), device: state.device, preference: prefName, comment: state.comment, summary: sum, blocks: state.blocks.map(b => ({ pal: b.pal, screen: b.screen, read: b.read, readSec: b.readSec, trials: b.trials.map(t => ({ type: t.type, hit: t.hit, ms: t.ms, errors: t.errors, errorKinds: t.errorKinds, targetPos: t.targetPos })), ratings: b.ratings })) };
+  const json = JSON.stringify(payload);
+  try { const hist = JSON.parse(store.get('history') || '[]'); hist.push(payload); store.set('history', JSON.stringify(hist.slice(-20))); } catch {}
+  window.__result = payload;
+  const f = (ms) => ms == null ? '—' : (ms / 1000).toFixed(2) + '초';
+  const A = sum.find(s => s.pal === 'A'), B = sum.find(s => s.pal === 'B');
+  const row = (label, a, b) => `<tr><td>${label}</td><td class="num">${a}</td><td class="num">${b}</td></tr>`;
+  app.innerHTML = `${top('결과', TOTAL, TOTAL)}
+  <h1>시험 결과</h1><p class="muted" style="margin:-6px 0 14px">끝까지 참여해 주셔서 감사합니다.</p>
+  <p>화면 ${A.screen}이 <b>1차 안(저채도)</b>, 화면 ${B.screen}이 <b>이번 안(선명한 노랑)</b>이었습니다. 모드: ${state.mode === 'dark' ? '다크' : '라이트'}.</p>
+  <div class="card"><table>
+    <thead><tr><th>항목</th><th class="num">1차 안</th><th class="num">이번 안</th></tr></thead>
+    <tbody>
+      ${row('강조 찾기 (중앙값)', f(A.markMedianMs), f(B.markMedianMs))}
+      ${row('링크 찾기 (중앙값)', f(A.linkMedianMs), f(B.linkMedianMs))}
+      ${row('잘못 누른 횟수', A.errors, B.errors)}
+      ${row('못 찾음', A.misses, B.misses)}
+      ${row('눈이 편안했다 (1~7)', A.ratings.comfort, B.ratings.comfort)}
+      ${row('강조가 한눈에 보였다', A.ratings.markSeen, B.ratings.markSeen)}
+      ${row('링크가 구분됐다', A.ratings.linkSeen, B.ratings.linkSeen)}
+      ${row('번짐·눈부심 (낮을수록 좋음)', A.ratings.glare, B.ratings.glare)}
+    </tbody></table></div>
+  <p style="margin-top:14px">더 좋았던 화면: <b>${esc(prefName)}</b></p>
+  <div class="note">한 사람의 한 번 결과로는 어느 쪽이 낫다고 말할 수 없습니다. 여러 사람의 결과를 모아 비교합니다. 아래 버튼으로 결과를 복사해 전달해 주세요.</div>
+  <div class="row"><button class="btn" type="button" id="copy">결과 복사</button><button class="btn ghost" type="button" id="dl">파일로 저장</button><button class="btn ghost" type="button" id="again">다른 모드로 다시</button></div>`;
+  document.getElementById('copy').addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(json); toast('결과를 복사했습니다.'); }
+    catch { const ta = document.createElement('textarea'); ta.value = json; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('결과를 복사했습니다.'); } catch { toast('복사하지 못했습니다. 파일로 저장해 주세요.'); } ta.remove(); }
+  });
+  document.getElementById('dl').addEventListener('click', () => {
+    const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 1)], { type: 'application/json' }));
+    a.download = `reading-test-${state.mode}-${seed0}.json`; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
+  document.getElementById('again').addEventListener('click', () => { step = 0; intro(); });
+}
+intro();
+})();
+</script>
+</body>
+</html>
