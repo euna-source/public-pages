@@ -206,5 +206,13 @@
     "last_kind": "new",
     "last_sha256": "5693c4ca3ad298eefab95d37190707c33be7d482370d3b6c080ff329d8a6924b",
     "timestamp": "2026-09-24T04:20:28.602127Z"
+  },
+  "doc-template": {
+    "slug": "doc-template",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/doc-template/",
+    "last_kind": "new",
+    "last_sha256": "73de9e983467795a52861573cc4ac811e0bd26dc1ab32ebc1fa6bd34409fa777",
+    "timestamp": "2026-09-24T04:42:46.509460Z"
   }
 }

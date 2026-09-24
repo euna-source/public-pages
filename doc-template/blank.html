@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#F6F3EB">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="기획·리서치 문서용 빈 템플릿. 라이트·다크, PC·모바일, 인쇄를 지원합니다.">
+<title>[문서 제목] · 기획 문서</title>
+<!--
+  기획·리서치 문서 템플릿 v1 — 쓰는 법
+  1. [대괄호] 안 문장을 실제 내용으로 바꾸고, 쓰지 않는 블록은 통째로 지운다.
+  2. 목차는 PC용(.toc)과 모바일용(.toc-mobile) 두 곳을 같이 고친다. 절 id(s1, s2 …)와 href를 맞춘다.
+  3. 색 역할은 셋뿐이다.
+       <mark>          먼저 읽을 구절. 한 구간에 한 구절을 넘기지 않는다.
+       .sec-num        절 번호(주홍).
+       <a>             링크(파랑+밑줄).
+     새 색을 추가하지 말고, 경고·미확인·추천은 .callout / .tag / .state 모양으로 구분한다.
+  4. 표에 class="table stack"을 주면 모바일에서 카드로 바뀐다. 머리글이 자동으로 칸 이름표가 된다.
+  5. 상태 표식: .dot.full(확인·완료) · .dot.half(일부·진행) · .dot(미확인·대기). 글자 이름표를 항상 함께 쓴다.
+-->
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   문서 템플릿 v1 — 기획·리서치 문서용
+   색 역할: 노랑 = 먼저 읽을 곳 · 주홍 = 편집 표식(절 번호) · 파랑+밑줄 = 링크
+   경고·미확인은 색이 아니라 모양(테두리·아이콘·이름표)으로 구분
+   ───────────────────────────────────────────── */
+:root{
+  --bg:#F6F3EB; --panel:#EEECE2; --line:#CECEC3;
+  --text:#252621; --muted:#5D6059;
+  --accent:#B73921; --mark:#F4D43D; --mark-text:#252621; --link:#1957B8;
+  --body-size:18px;
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Batang",Georgia,serif;
+  --header-h:60px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#20231F; --panel:#2B3028; --line:#51564B;
+    --text:#EDECE4; --muted:#B9BDB1;
+    --accent:#FF9178; --mark:#D8B92E; --mark-text:#20231F; --link:#92B7FF;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#20231F; --panel:#2B3028; --line:#51564B;
+  --text:#EDECE4; --muted:#B9BDB1;
+  --accent:#FF9178; --mark:#D8B92E; --mark-text:#20231F; --link:#92B7FF;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--link);outline-offset:3px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:20;background:var(--bg);color:var(--text);padding:10px 14px;border:1px solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 상단 도구 막대 ── */
+.bar{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 40px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.bar-title{min-width:0;display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.bar-title b{color:var(--text);font-weight:650;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-kind{color:var(--accent);font-weight:650;white-space:nowrap}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 12px;border:1px solid transparent;border-radius:6px;background:none;font-size:14px}
+.tool:hover{border-color:var(--line);background:var(--panel)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 40px}
+.cover{padding:28px 0 0}
+.issue{display:flex;justify-content:space-between;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--text);font-size:12px;letter-spacing:.06em;color:var(--muted)}
+.issue strong{color:var(--accent);font-weight:650}
+.cover-main{padding:48px 0 40px;max-width:900px}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:14px;font-weight:600;margin-bottom:20px}
+.kind::before{content:"";width:24px;height:2px;background:currentColor}
+h1{font-family:var(--serif);font-weight:800;font-size:clamp(38px,5vw,64px);line-height:1.22;letter-spacing:-.035em}
+.deck{margin-top:22px;max-width:680px;font-size:19px;line-height:1.75;color:var(--muted)}
+.meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.meta div{padding:14px 16px 14px 0}
+.meta div+div{padding-left:16px;border-left:1px solid var(--line)}
+.meta dt{font-size:12px;color:var(--muted);margin-bottom:4px}
+.meta dd{font-size:15px;font-weight:600}
+
+/* 상태 표식: 모양으로 구분 (●확인 ◐일부·진행 ○미확인) */
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:10px;height:10px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 결론 한 줄 + 판단 근거 ── */
+.obi{margin:40px 0 0;border:2px solid var(--text)}
+.obi-head{background:var(--mark);color:var(--mark-text);padding:26px 32px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:baseline}
+.obi-label{font-size:13px;font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:3px 9px;white-space:nowrap}
+.obi-head p{font-size:clamp(20px,2.2vw,26px);font-weight:700;line-height:1.5;letter-spacing:-.02em}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:22px 32px 24px}
+.obi-grid div+div{border-left:1px solid var(--line)}
+.obi-grid h2{font-size:13px;color:var(--muted);font-weight:600;margin-bottom:8px;letter-spacing:.02em}
+.obi-grid p{font-size:16px;line-height:1.7}
+
+/* ── 본문 배치 ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,740px);gap:64px;padding:56px 0 96px}
+.toc{position:sticky;top:calc(var(--header-h) + 28px);align-self:start;font-size:14px}
+.toc-title{font-size:12px;color:var(--muted);letter-spacing:.04em;margin-bottom:12px}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:40px;padding:9px 0 9px 12px;border-left:2px solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:650;border-left-color:var(--accent)}
+.toc .n{font-size:12px;color:var(--accent);font-variant-numeric:tabular-nums;font-weight:600}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--body-size);line-height:1.78}
+.doc>section+section{margin-top:80px}
+.doc p+p{margin-top:1em}
+.sec-num{display:inline-block;font-size:13px;font-weight:700;color:var(--accent);letter-spacing:.06em;margin-bottom:10px;text-decoration:none;font-variant-numeric:tabular-nums}
+.sec-num b{font-weight:800;margin-right:10px;padding-right:10px;border-right:1.5px solid currentColor}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:30px;line-height:1.38;letter-spacing:-.03em;font-weight:750;margin-bottom:24px}
+.doc h3{font-size:21px;line-height:1.45;letter-spacing:-.02em;font-weight:700;margin:44px 0 12px}
+.doc h2+h3{margin-top:0}
+.lead{font-size:calc(var(--body-size) + 2px);line-height:1.75}
+.doc ul:not([class]),.doc ol:not([class]){padding-left:1.3em;margin:1em 0}
+.doc li+li{margin-top:.45em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+sup.ref{font-size:.68em;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px}
+
+/* 노랑 강조: 먼저 읽을 구절 */
+mark{background:var(--mark);color:var(--mark-text);font-weight:650;padding:1px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:32px 0;border-top:2px solid var(--text)}
+.stats div{padding:16px 16px 18px 0}
+.stats div+div{padding-left:16px;border-left:1px solid var(--line)}
+.stats b{display:block;font-size:40px;line-height:1.1;font-weight:750;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.stats b small{font-size:16px;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:14px;line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 모양으로 구분 */
+.callout{margin:32px 0;padding:20px 24px;font-size:16px;line-height:1.7}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:700;margin-bottom:6px}
+.callout-label svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border-left:4px solid var(--text);background:var(--panel)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.6em}
+
+/* 인용 */
+.pull{margin:44px 0;padding:6px 0 6px 24px;border-left:3px solid var(--accent);font-family:var(--serif);font-size:27px;font-weight:700;line-height:1.55;letter-spacing:-.03em}
+.pull cite{display:block;margin-top:10px;font-family:var(--sans);font-size:14px;font-style:normal;font-weight:400;color:var(--muted);letter-spacing:0}
+
+/* 표 */
+.table{margin:32px 0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.table table{width:100%;border-collapse:collapse;font-size:15px;line-height:1.6;font-variant-numeric:tabular-nums}
+.table caption{text-align:left;font-size:14px;font-weight:650;margin-bottom:10px}
+.table th{text-align:left;font-size:13px;font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:2px solid var(--text);white-space:nowrap}
+.table td{padding:14px 16px 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.table .num{text-align:right}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+.table tr.pick td{font-weight:650}
+.table tr.pick td:first-child{box-shadow:inset 3px 0 0 var(--text);padding-left:12px}
+.tag{display:inline-block;font-size:12px;font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid currentColor;border-radius:3px;margin-left:6px;vertical-align:2px;white-space:nowrap}
+.swatch{display:inline-flex;align-items:center;gap:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;white-space:nowrap}
+.swatch i{width:18px;height:18px;border-radius:3px;border:1px solid var(--line);flex:none}
+.table-note{margin-top:10px;font-size:14px;color:var(--muted);line-height:1.6}
+
+/* 그림 */
+.figure{margin:36px 0}
+.figure figcaption{margin-top:12px;font-size:14px;color:var(--muted);line-height:1.6}
+.figure figcaption b{color:var(--text);font-weight:650;margin-right:6px}
+.specimen{border:1px solid var(--line);padding:28px 32px;display:grid;grid-template-columns:minmax(0,1fr) 200px;gap:32px;align-items:start}
+.specimen-doc{font-size:16px;line-height:1.75}
+.specimen-doc .sec-num{margin-bottom:4px}
+.specimen-title{font-weight:700;font-size:19px;margin-bottom:10px;letter-spacing:-.02em}
+.specimen-key{list-style:none;margin:0;padding:0;font-size:14px;line-height:1.5}
+.specimen-key li{display:grid;grid-template-columns:22px 1fr;gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.specimen-key li:first-child{border-top:0;padding-top:0}
+.specimen-key small{display:block;color:var(--muted);font-size:13px}
+.k{width:18px;height:18px;margin-top:1px;border-radius:3px}
+.k.mark{background:var(--mark);border:1px solid var(--line)}
+.k.accent{background:var(--accent)}
+.k.link{border-bottom:2px solid var(--link);border-radius:0;height:14px}
+.k.link::before{content:"";display:block}
+.k.text{background:var(--text)}
+
+/* 다음 행동 */
+.actions{list-style:none;margin:28px 0;padding:0;border-top:2px solid var(--text)}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;gap:14px;align-items:start;padding:16px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.65}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:3px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1.55;padding-top:3px}
+
+/* 근거·출처 */
+.sources{list-style:none;margin:24px 0;padding:0;counter-reset:src;font-size:15px;line-height:1.6}
+.sources li{counter-increment:src;display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:10px;padding:13px 0;border-bottom:1px solid var(--line)}
+.sources li::before{content:counter(src);font-size:13px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:13px;color:var(--muted)}
+.sources .state{font-size:13px;color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;font-size:13px;color:var(--muted)}
+
+/* 부록·변경 이력 */
+.appendix{margin-top:96px;padding-top:28px;border-top:2px solid var(--text)}
+.appendix h2{font-size:22px}
+
+.foot{border-top:1px solid var(--line);padding:24px 0 40px;display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--muted)}
+.foot a{color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:6px;font-size:14px;max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  .page,.bar-inner{padding-left:28px;padding-right:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:40px}
+  .meta{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .meta div:nth-child(4){border-left:0;padding-left:0}
+  .meta div:nth-child(n+4){border-top:1px solid var(--line)}
+  .specimen{grid-template-columns:1fr;gap:20px}
+}
+/* ── 모바일 ── */
+@media screen and (max-width:768px){
+  :root{--body-size:17px;--header-h:56px}
+  .page,.bar-inner{padding-left:20px;padding-right:20px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .tool{padding:0 10px}
+  .cover-main{padding:36px 0 32px}
+  h1{font-size:clamp(32px,9vw,44px);line-height:1.28}
+  .deck{font-size:17px}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+  .meta div:nth-child(n+3){border-top:1px solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:32px}
+  .obi-head{grid-template-columns:1fr;gap:12px;padding:22px 20px}
+  .obi-label{justify-self:start}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div{padding:18px 20px}
+  .obi-grid div+div{border-left:0;border-top:1px solid var(--line)}
+  .layout{display:block;padding:36px 0 72px}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:40px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:15px;font-weight:650;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:9px;height:9px;border-right:1.8px solid var(--text);border-bottom:1.8px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 10px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:15px}
+  .toc-mobile .n{font-size:12px;color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums}
+  .doc>section+section{margin-top:64px}
+  .doc h2{font-size:25px;margin-bottom:20px}
+  .doc h3{font-size:19px;margin-top:36px}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:1px solid var(--line)}
+  .stats div:nth-child(n+3){border-top:1px solid var(--line)}
+  .stats b{font-size:34px}
+  .callout{padding:18px 18px}
+  .pull{font-size:22px;padding-left:18px}
+  .specimen{padding:20px}
+  /* 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:1px solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:2px solid var(--text)}
+  .table.stack td{border:0;padding:3px 0;display:grid;grid-template-columns:96px minmax(0,1fr);gap:12px}
+  .table.stack td::before{content:attr(data-label);font-size:13px;color:var(--muted);font-weight:600;padding-top:1px}
+  .table.stack td:first-child{font-weight:700;display:block;margin-bottom:4px;font-size:16px}
+  .table.stack td:first-child::before{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset 3px 0 0 var(--text);padding-left:14px}
+  .table.stack .num{text-align:left}
+  .actions li{grid-template-columns:22px minmax(0,1fr);gap:12px}
+  .who{grid-column:2;text-align:left;padding-top:0}
+  .sources li{grid-template-columns:26px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  .page,.bar-inner{padding-left:16px;padding-right:16px}
+  .obi-head,.obi-grid div{padding-left:16px;padding-right:16px}
+  .table.stack td{grid-template-columns:80px minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+/* ── 인쇄·PDF: 항상 라이트 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#fff;--panel:#F1EFE8;--line:#CECEC3;--text:#252621;--muted:#5D6059;--accent:#B73921;--mark:#F4D43D;--mark-text:#252621;--link:#1957B8;--body-size:11pt;color-scheme:light}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .bar,.toc,.toc-mobile,.toast,.skip{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:28px}
+  .cover-main{padding:24px 0}
+  h1{font-size:30pt}
+  .doc h2{font-size:17pt}
+  .doc>section+section{margin-top:36px}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">기획</span><span class="sep" aria-hidden="true">·</span><b>[짧은 문서 제목]</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="노란 강조 표시">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span>
+      </button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span>
+      </button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span>
+      </button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>[기획 문서 · 소속 팀 또는 프로젝트]</strong><span>[문서 번호] · v0.1</span></div>
+    <div class="cover-main">
+      <p class="kind">[문서가 다루는 주제 한 단어구]</p>
+      <h1>[결론이 드러나는<br>짧은 제목]</h1>
+      <p class="deck">[두세 문장 요약. 무엇을 왜 정하려는 문서인지, 읽고 나면 무엇을 결정할 수 있는지 씁니다.]</p>
+    </div>
+    <dl class="meta">
+      <div><dt>상태</dt><dd><span class="state"><i class="dot" aria-hidden="true"></i>초안</span></dd></div>
+      <div><dt>작성</dt><dd>[작성 팀]</dd></div>
+      <div><dt>결정할 사람</dt><dd>[결정권자 또는 회의]</dd></div>
+      <div><dt>최종 갱신</dt><dd>[YYYY. MM. DD]</dd></div>
+      <div><dt>결정 기한</dt><dd>[날짜 또는 계기]</dd></div>
+    </dl>
+
+    <section class="obi" aria-labelledby="obi-title">
+      <div class="obi-head">
+        <span class="obi-label" id="obi-title">제안</span>
+        <p>[읽는 사람이 이 한 줄만 보고 가도 되는 결론 또는 제안. 한 문장으로 씁니다.]</p>
+      </div>
+      <div class="obi-grid">
+        <div><h2>무엇이 바뀌나</h2><p>[승인되면 달라지는 것. 사용자·팀·일정 기준으로 씁니다.]</p></div>
+        <div><h2>감수할 대가</h2><p>[포기하는 것, 늘어나는 비용이나 위험.]</p></div>
+        <div><h2>뒤집힐 조건</h2><p>[어떤 사실이 확인되면 이 제안을 바꾸는지.]</p></div>
+      </div>
+    </section>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="목차">
+      <p class="toc-title">목차</p>
+      <ol>
+        <li><a href="#s1"><span class="n">01</span>배경과 문제</a></li>
+        <li><a href="#s2"><span class="n">02</span>목표와 성공 기준</a></li>
+        <li><a href="#s3"><span class="n">03</span>범위</a></li>
+        <li><a href="#s4"><span class="n">04</span>대안 비교</a></li>
+        <li><a href="#s5"><span class="n">05</span>근거</a></li>
+        <li><a href="#s6"><span class="n">06</span>위험과 미확인</a></li>
+        <li><a href="#s7"><span class="n">07</span>다음 행동</a></li>
+        <li><a href="#refs"><span class="n">··</span>출처·이력</a></li>
+      </ol>
+    </nav>
+
+    <main class="doc" id="doc">
+      <details class="toc-mobile">
+        <summary>목차 · 7개 절</summary>
+        <ol>
+          <li><a href="#s1"><span class="n">01</span>배경과 문제</a></li>
+          <li><a href="#s2"><span class="n">02</span>목표와 성공 기준</a></li>
+          <li><a href="#s3"><span class="n">03</span>범위</a></li>
+          <li><a href="#s4"><span class="n">04</span>대안 비교</a></li>
+          <li><a href="#s5"><span class="n">05</span>근거</a></li>
+          <li><a href="#s6"><span class="n">06</span>위험과 미확인</a></li>
+          <li><a href="#s7"><span class="n">07</span>다음 행동</a></li>
+          <li><a href="#refs"><span class="n">··</span>출처·이력</a></li>
+        </ol>
+      </details>
+
+      <section id="s1" aria-labelledby="s1-t">
+        <a class="sec-num" href="#s1"><b>01</b>배경과 문제</a>
+        <h2 id="s1-t">[이 절의 결론을 문장으로 쓴 소제목]</h2>
+        <p class="lead">[첫 문단은 조금 크게 보입니다. 지금 무슨 일이 일어나고 있고 누가 불편한지 씁니다.]</p>
+        <p>[이어지는 설명. 이 절에서 가장 먼저 읽힐 한 구절만 <mark>이렇게 노랑으로 표시합니다.</mark> 나머지는 평범하게 둡니다.]</p>
+        <aside class="callout note" aria-label="참고">
+          <p class="callout-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.2"/></svg>참고</p>
+          <p>[본문 흐름에서 잠깐 벗어나는 보충 설명. 없으면 지웁니다.]</p>
+        </aside>
+      </section>
+
+      <section id="s2" aria-labelledby="s2-t">
+        <a class="sec-num" href="#s2"><b>02</b>목표와 성공 기준</a>
+        <h2 id="s2-t">[무엇이 달라지면 성공인가]</h2>
+        <p>[목표를 한두 문장으로. 측정할 수 있는 기준은 아래 수치 블록에 둡니다.]</p>
+        <div class="stats">
+          <div><b>[00]<small>%</small></b><span>[지표 이름 · 현재값]</span></div>
+          <div><b>[00]<small>%</small></b><span>[목표값 · 기한]</span></div>
+          <div><b>[0]<small>건</small></b><span>[보조 지표]</span></div>
+          <div><b>[0]<small>주</small></b><span>[기간 또는 규모]</span></div>
+        </div>
+      </section>
+
+      <section id="s3" aria-labelledby="s3-t">
+        <a class="sec-num" href="#s3"><b>03</b>범위</a>
+        <h2 id="s3-t">[이번에 하는 것과 하지 않는 것]</h2>
+        <h3>포함</h3>
+        <ul>
+          <li>[이번 범위에 들어가는 항목]</li>
+          <li>[이번 범위에 들어가는 항목]</li>
+        </ul>
+        <h3>제외</h3>
+        <ul>
+          <li>[다음으로 미루는 항목과 이유]</li>
+        </ul>
+      </section>
+
+      <section id="s4" aria-labelledby="s4-t">
+        <a class="sec-num" href="#s4"><b>04</b>대안 비교</a>
+        <h2 id="s4-t">[추천안을 고른 이유]</h2>
+        <p>[비교 기준을 먼저 밝힙니다. 추천 행에는 class="pick"과 ‘추천’ 이름표를 함께 붙입니다.]</p>
+        <div class="table stack">
+          <table>
+            <caption>[표 제목]</caption>
+            <thead><tr><th scope="col">안</th><th scope="col">장점</th><th scope="col">대가</th><th scope="col">판단</th></tr></thead>
+            <tbody>
+              <tr><td>[A안]</td><td>[장점]</td><td>[대가]</td><td>[보류]</td></tr>
+              <tr class="pick"><td>[B안] <span class="tag">추천</span></td><td>[장점]</td><td>[대가]</td><td>[채택 제안]</td></tr>
+              <tr><td>[C안]</td><td>[장점]</td><td>[대가]</td><td>[거둠]</td></tr>
+            </tbody>
+          </table>
+          <p class="table-note">[표 아래 주석. 수치의 출처나 계산 방법.]</p>
+        </div>
+      </section>
+
+      <section id="s5" aria-labelledby="s5-t">
+        <a class="sec-num" href="#s5"><b>05</b>근거</a>
+        <h2 id="s5-t">[판단을 받치는 근거]</h2>
+        <p>[관찰과 해석을 나눠 씁니다. 출처는 문장 끝에 번호로 답니다.<sup class="ref"><a href="#r1" aria-label="출처 1">1</a></sup>]</p>
+        <blockquote class="pull">[문서 전체에서 한 번만 쓰는 인용 또는 요약 문장.]<cite>[출처 또는 해석의 범위]</cite></blockquote>
+        <figure class="figure">
+          <div class="specimen">
+            <div class="specimen-doc"><p class="specimen-title">[그림 또는 도식 자리]</p><p>[이미지·SVG·화면 캡처로 바꿉니다. 이미지는 alt를 꼭 씁니다.]</p></div>
+            <ul class="specimen-key">
+              <li><i class="k mark"></i><span>[범례]<small>[설명]</small></span></li>
+              <li><i class="k accent"></i><span>[범례]<small>[설명]</small></span></li>
+            </ul>
+          </div>
+          <figcaption><b>그림 1</b>[그림이 보여 주는 것 한 문장.]</figcaption>
+        </figure>
+      </section>
+
+      <section id="s6" aria-labelledby="s6-t">
+        <a class="sec-num" href="#s6"><b>06</b>위험과 미확인</a>
+        <h2 id="s6-t">[알고 있는 위험과 아직 모르는 것]</h2>
+        <aside class="callout caution" aria-label="주의">
+          <p class="callout-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5 2.8 19.5h18.4z"/><path d="M12 10v4.2"/><path d="M12 17v.2"/></svg>주의</p>
+          <p>[실행하면 생길 수 있는 문제와 대응.]</p>
+        </aside>
+        <aside class="callout unknown" aria-label="미확인">
+          <p class="callout-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4"/><path d="M12 16.8v.2"/></svg>미확인</p>
+          <p>[아직 확인하지 않은 가정. 무엇으로 확인할지도 적습니다.]</p>
+        </aside>
+      </section>
+
+      <section id="s7" aria-labelledby="s7-t">
+        <a class="sec-num" href="#s7"><b>07</b>다음 행동</a>
+        <h2 id="s7-t">[결정 후 바로 할 일]</h2>
+        <ul class="actions">
+          <li class="done"><span class="box" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-5"/></svg></span><span class="what"><span class="sr">완료: </span>[끝난 일은 class="done"]</span><span class="who">[담당]<br>완료</span></li>
+          <li><span class="box" aria-hidden="true"></span><span class="what">[할 일을 동사로 끝나게]</span><span class="who">[담당]<br>[기한]</span></li>
+          <li><span class="box" aria-hidden="true"></span><span class="what">[할 일]</span><span class="who">[담당]<br>[기한]</span></li>
+        </ul>
+      </section>
+
+      <section class="appendix" id="refs" aria-labelledby="refs-t">
+        <h2 id="refs-t">출처·이력</h2>
+        <p class="legend"><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span><span class="state"><i class="dot half" aria-hidden="true"></i>일부 확인</span><span class="state"><i class="dot" aria-hidden="true"></i>미확인</span></p>
+        <ol class="sources">
+          <li id="r1"><span><a href="#">[출처 제목]</a><span class="src-meta">[발행처 · 종류 · 날짜]</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li>
+          <li id="r2"><span><a href="#">[출처 제목]</a><span class="src-meta">[발행처 · 종류 · 날짜]</span></span><span class="state"><i class="dot half" aria-hidden="true"></i>일부 확인</span></li>
+        </ol>
+        <div class="table log">
+          <table>
+            <caption>변경 이력</caption>
+            <thead><tr><th scope="col">버전</th><th scope="col">날짜</th><th scope="col">바뀐 내용</th></tr></thead>
+            <tbody><tr><td>v0.1</td><td>[YYYY. MM. DD]</td><td>초안</td></tr></tbody>
+          </table>
+        </div>
+
+        <div class="table stack">
+          <table>
+            <caption>리서치 문서로 쓸 때의 목차</caption>
+            <thead><tr><th scope="col">절</th><th scope="col">기획 문서</th><th scope="col">리서치 문서</th></tr></thead>
+            <tbody>
+              <tr><td>01</td><td>배경과 문제</td><td>배경과 질문</td></tr>
+              <tr><td>02</td><td>목표와 성공 기준</td><td>조사 범위와 방법</td></tr>
+              <tr><td>03</td><td>범위</td><td>발견</td></tr>
+              <tr><td>04</td><td>대안 비교</td><td>반례와 한계</td></tr>
+              <tr><td>05</td><td>근거</td><td>제안과 비교</td></tr>
+              <tr><td>06</td><td>위험과 미확인</td><td>적용 규칙</td></tr>
+              <tr><td>07</td><td>다음 행동</td><td>다음 행동</td></tr>
+            </tbody>
+          </table>
+          <p class="table-note">문서를 다 쓴 뒤 이 표는 지웁니다. 띠지 이름표는 기획이면 ‘제안’, 리서치면 ‘결론’을 씁니다.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <span>기획·리서치 문서 템플릿 v1</span>
+    <a href="index.html">적용 예시 보기 →</a>
+  </footer>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 2600);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+</script>
+</body>
+</html>
