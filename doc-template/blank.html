@@ -18,7 +18,8 @@
        <a>             링크(파랑+밑줄).
      새 색을 추가하지 말고, 경고·미확인·추천은 .callout / .tag / .state 모양으로 구분한다.
   4. 표에 class="table stack"을 주면 모바일에서 카드로 바뀐다. 머리글이 자동으로 칸 이름표가 된다.
-  5. 상태 표식: .dot.full(확인·완료) · .dot.half(일부·진행) · .dot(미확인·대기). 글자 이름표를 항상 함께 쓴다.
+  5. 다음 행동 li: class="done"(완료) · class="doing"(진행 중, 반쯤 찬 상자) · 없음(대기). 스크린리더용 <span class="sr">완료: </span>도 맞춰 바꾼다.
+  6. 상태 표식: .dot.full(확인·완료) · .dot.half(일부·진행) · .dot(미확인·대기). 글자 이름표를 항상 함께 쓴다.
 -->
 <script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -211,6 +212,7 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
 .box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:3px;display:grid;place-items:center}
 .box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
 .actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
 .who{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1.55;padding-top:3px}
 

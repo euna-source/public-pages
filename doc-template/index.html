@@ -199,6 +199,7 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
 .box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:3px;display:grid;place-items:center}
 .box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 .actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
 .actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
 .who{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap;line-height:1.55;padding-top:3px}
 
@@ -340,7 +341,7 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
 <div class="page">
   <!-- 표지: 문서 종류 · 제목 · 한 문단 요약 · 메타 -->
   <header class="cover">
-    <div class="issue"><strong>리서치 문서 · 읽기 화면 디자인</strong><span>RD-0923 · v1.1</span></div>
+    <div class="issue"><strong>리서치 문서 · 읽기 화면 디자인</strong><span>RD-0923 · v1.2</span></div>
     <div class="cover-main">
       <p class="kind">읽기 화면 컬러 리서치</p>
       <h1>선명한 강조,<br>차분한 본문</h1>
@@ -351,7 +352,7 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
       <div><dt>작성</dt><dd>디자인 리서치</dd></div>
       <div><dt>적용 범위</dt><dd>PC·모바일 / 라이트·다크</dd></div>
       <div><dt>최종 갱신</dt><dd>2026. 09. 24</dd></div>
-      <div><dt>다음 판단</dt><dd>실제 콘텐츠 비교 후</dd></div>
+      <div><dt>다음 판단</dt><dd>비교 시험 결과 후</dd></div>
     </dl>
 
     <!-- 띠지: 결론 한 줄 + 바뀌는 것·대가·뒤집힐 조건 -->
@@ -538,13 +539,27 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
       <section id="s7" aria-labelledby="s7-t">
         <a class="sec-num" href="#s7"><b>07</b>다음 행동</a>
         <h2 id="s7-t">실제 콘텐츠로 확인한다</h2>
-        <p>가장 약한 전제는 표지에서 본 위계가 긴 글을 읽을 때도 도움이 된다는 부분입니다. 아래 순서로 확인합니다.</p>
+        <p>가장 약한 전제는 표지에서 본 위계가 긴 글을 읽을 때도 도움이 된다는 부분입니다. 사람이 참여해야 답이 나오는 항목은 <a href="https://euna-source.github.io/public-pages/reading-compare-test/">읽기 화면 비교 시험</a>으로 결과를 모읍니다.</p>
         <ul class="actions">
           <li class="done"><span class="box" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-5"/></svg></span><span class="what"><span class="sr">완료: </span>라이트·다크 10쌍 글자 대비 계산</span><span class="who">디자인 리서치<br>완료</span></li>
-          <li><span class="box" aria-hidden="true"></span><span class="what">같은 글을 1차 안과 이번 안으로 번갈아 보여 주고, 핵심 문장과 링크를 찾는 시간과 오류를 비교</span><span class="who">디자인 리서치<br>일정 미정</span></li>
-          <li><span class="box" aria-hidden="true"></span><span class="what">일정 시간 읽은 뒤 피로감을 묻고, 나빠지면 노랑의 면적과 위치부터 조정</span><span class="who">디자인 리서치<br>일정 미정</span></li>
-          <li><span class="box" aria-hidden="true"></span><span class="what">실제 휴대폰과 Safari에서 두 모드의 번짐과 눈부심 확인</span><span class="who">담당 미정<br>일정 미정</span></li>
+          <li class="done"><span class="box" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="m2.5 6.2 2.3 2.3 4.7-5"/></svg></span><span class="what"><span class="sr">완료: </span>사람 없이 계산할 수 있는 대리 지표 비교 (아래 표)</span><span class="who">디자인 리서치<br>완료</span></li>
+          <li class="doing"><span class="box" aria-hidden="true"></span><span class="what"><span class="sr">진행 중: </span>1차 안과 이번 안을 번갈아 보여 주고, 강조와 링크를 찾는 시간과 오류를 비교. 시험 페이지는 준비됐고 참가자 결과를 기다리는 중</span><span class="who">디자인 리서치<br>결과 수집 중</span></li>
+          <li class="doing"><span class="box" aria-hidden="true"></span><span class="what"><span class="sr">진행 중: </span>읽은 뒤 편안함·번짐·눈부심을 1~7로 묻기. 같은 시험에 포함했고, 나빠지면 노랑의 면적과 위치부터 조정</span><span class="who">디자인 리서치<br>결과 수집 중</span></li>
+          <li class="doing"><span class="box" aria-hidden="true"></span><span class="what"><span class="sr">진행 중: </span>Safari 두 모드 확인. iPhone 시뮬레이터 Safari와 WebKit 엔진은 통과, 실제 휴대폰과 macOS Safari는 남음</span><span class="who">디자인 리서치<br>일부 완료</span></li>
         </ul>
+        <div class="table stack">
+          <table>
+            <caption>대리 지표: 강조와 링크가 얼마나 도드라지나 (CIEDE2000 색 차이)</caption>
+            <thead><tr><th scope="col">비교</th><th scope="col" class="num">1차 안</th><th scope="col" class="num">이번 안</th></tr></thead>
+            <tbody>
+              <tr><td>강조 면 ↔ 바탕 · 라이트</td><td class="num">7.7</td><td class="num">26.1</td></tr>
+              <tr><td>강조 면 ↔ 바탕 · 다크</td><td class="num">12.3</td><td class="num">64.3</td></tr>
+              <tr><td>강조 면 ↔ 바탕 · 라이트, 청황 색각 시뮬레이션</td><td class="num">3.8</td><td class="num">18.0</td></tr>
+              <tr><td>링크 ↔ 본문 글자 · 라이트</td><td class="num">24.2</td><td class="num">34.9</td></tr>
+            </tbody>
+          </table>
+          <p class="table-note">숫자가 클수록 두 색이 더 달라 보입니다. 1차 안에는 강조 면 색이 없어서 같은 방향(저채도 올리브)으로 새로 정해 계산했습니다. 두 안 모두 글자 대비 기준은 통과합니다. 색 차이는 찾기 속도나 피로를 직접 재는 값이 아니므로, 판단은 비교 시험 결과로 합니다.</p>
+        </div>
       </section>
 
       <section class="appendix" id="refs" aria-labelledby="refs-t">
@@ -573,6 +588,7 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
             <caption>변경 이력</caption>
             <thead><tr><th scope="col">버전</th><th scope="col">날짜</th><th scope="col">바뀐 내용</th></tr></thead>
             <tbody>
+              <tr><td>v1.2</td><td>2026. 09. 24</td><td>다음 행동 진행: 대리 지표 계산, 비교 시험 공개, Safari(시뮬레이터·WebKit) 확인</td></tr>
               <tr><td>v1.1</td><td>2026. 09. 24</td><td>일본 출판물 재조사로 강조색과 위계 규칙을 새로 정함</td></tr>
               <tr><td>v1.0</td><td>2026. 09. 23</td><td>종이·먹 저채도 팔레트 제안 (거둠)</td></tr>
             </tbody>

@@ -211,9 +211,9 @@
     "slug": "doc-template",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/doc-template/",
-    "last_kind": "new",
-    "last_sha256": "73de9e983467795a52861573cc4ac811e0bd26dc1ab32ebc1fa6bd34409fa777",
-    "timestamp": "2026-09-24T04:42:46.509460Z"
+    "last_kind": "redeploy",
+    "last_sha256": "d6754a42d90f1d416d8eb268fb985f6745225d015db2c87994eef59194f8ad7c",
+    "timestamp": "2026-09-24T05:30:52.787041Z"
   },
   "cco-121-award-policy": {
     "slug": "cco-121-award-policy",
