@@ -234,9 +234,12 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 .sheet td.all{font-weight:600;color:var(--t1)}
 .sheet td b{font-weight:700}
 .sheet td .mut{color:var(--t4);font-size:12px}
-.sheet td a.jump{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
-.sheet td a.jump:hover{border-bottom-color:var(--brand-text)}
+.sheet td a.jump,.note a.jump{color:var(--brand-text);font-weight:600;text-decoration:none;border-bottom:1px solid var(--brand-border)}
+.sheet td a.jump:hover,.note a.jump:hover{border-bottom-color:var(--brand-text)}
 .sheet-foot{font-size:12px;color:var(--t4);margin:8px 0 0}
+.tip{margin-top:28px}
+.tip h4{margin:22px 0 8px;font-size:14px;font-weight:700}
+.tip .phase-goal{margin-bottom:10px}
 .phase .more{margin-top:14px}
 .phase .more summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--t2);min-height:44px;display:flex;align-items:center;gap:6px;list-style:none}
 .phase .more summary::-webkit-details-marker{display:none}
@@ -311,7 +314,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
         </tbody>
         <tbody>
           <tr class="grp"><th scope="rowgroup" colspan="3">부문별 기준</th></tr>
-          <tr><th scope="row">선정 대상</th><td>회차 기간 동안 올린 전체공개된 포트폴리오</td><td class="dash">—</td></tr>
+          <tr><th scope="row">선정 대상</th><td>회차 기간 동안 올린 전체공개된 포트폴리오 <span class="mut">(비공개로 돌리면 순위에서 빠지고, 다시 전체공개하면 복귀)</span></td><td class="dash">—</td></tr>
           <tr><th scope="row">집계값</th><td>회차 기간 동안 받은 리스펙트 총 수 <span class="mut">(단, 취소된 리스펙트는 제외)</span></td><td>회차 기간 동안 활동 지수별 총 합계 <a class="jump" href="#s-period">배점 보기 →</a></td></tr>
           <tr><th scope="row">순증 계산</th><td class="dash">—</td><td>집계 시점 팔로워 수에서 회차 시작 팔로워 수 차감. 반복 팔로우 중복 가산 제외</td></tr>
           <tr><th scope="row">운영</th><td>동일한 내용으로 여러 개를 올린 경우(부정행위) 블랙리스트로 관리 및 수상자로 제외할지 내부 논의 필요</td><td>직전 수상자를 제외하지 않습니다. 여러 사람이 받도록 조정할지는 운영하며 관찰해 판단합니다</td></tr>
@@ -380,7 +383,7 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
         <colgroup><col style="width:132px"><col></colgroup>
         <thead><tr><th scope="col">항목</th><th scope="col">미결 사항</th></tr></thead>
         <tbody>
-          <tr><th scope="row">포트폴리오 대상</th><td>기존 게시물 포함 여부 확인. 기존 안내와 회의 기록의 게시 시점 범위 대조 필요</td></tr>
+          <tr><th scope="row">포트폴리오 대상</th><td>이번 회차에 올린 포트폴리오만 집계(9/24 확정). 비공개 전환 뒤 재공개 시 그 전에 받은 리스펙트를 그대로 셀지 확인</td></tr>
           <tr><th scope="row">프로필</th><td>항목별 필수 입력값과 상태 집계 시점 확인</td></tr>
           <tr><th scope="row">프로필 완성 판정</th><td>반복 필드(경력·수상)는 1건 이상이면 채움, 빈 문자열·공백만은 미채움으로 확정. 구현 가능 여부 확인</td></tr>
           <tr><th scope="row">프로필 분포 로그</th><td>시간당 배치가 소개 6칸의 채움 분포를 회차 내내 적재. 2회차 가산 도입 판단의 근거 자료</td></tr>
@@ -392,12 +395,22 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
       </table>
     </div>
     <div class="notes">
-      <div class="note" id="s-screen"><h3>앱 노출</h3><p id="s-copy">세부 배점은 내부용. 앱에는 인정 활동만 안내. 프로젝트 카드 등록은 활동 점수에 포함, 프로젝트 참여자 수와 팀 신규 합류 수는 집계하지 않음</p></div>
+      <div class="note" id="s-screen"><h3>앱 노출</h3><p id="s-copy">세부 배점은 내부용. 앱에는 인정 활동만 안내(<a class="jump" href="#s-tooltip">툴팁 문안 →</a>). 프로젝트 카드 등록은 활동 점수에 포함, 프로젝트 참여자 수와 팀 신규 합류 수는 집계하지 않음</p></div>
       <div class="note" id="s-stage"><h3>추후 검토</h3><p id="future-items">복잡한 비정상 활동 자동 방지, 공유 유입 추적 검토. 공유 링크 단축 미적용</p></div>
+    </div>
+
+    <div class="tip" id="s-tooltip">
+      <h3>ⓘ 이렇게 선정돼요 · 툴팁 문안</h3>
+      <p class="phase-goal">순위판 부문 제목 옆 「ⓘ 이렇게 선정돼요」를 누르면 열리는 툴팁입니다. X나 바깥을 누르면 닫히고, 캠페인 제목 옆 ⓘ(규칙 전문)와는 별개입니다. 크리에이터 부문은 배점을 숫자로 적지 않는 안을 씁니다.</p>
+      <h4>작품 부문</h4>
+      <div class="sheet text"><table><colgroup><col style="width:132px"><col></colgroup><thead><tr><th scope="col">작품 부문</th><th scope="col">툴팁 문구</th></tr></thead><tbody><tr><th scope="row">리드</th><td>이번 회차에 올린 포폴이 받은 리스펙트 수로 순위를 매겨요. 매시 정각에 업데이트돼요.</td></tr><tr><th scope="row">집계 기준</th><td>리스펙트 1회가 1로 세어져요. 따로 점수로 바꾸지 않아요.</td></tr><tr><th scope="row">빠지는 경우</th><td>취소된 리스펙트는 빠져요. 포폴을 삭제하거나 비공개로 돌리면 순위에서도 빠지고, 다시 전체공개로 바꾸면 돌아와요.</td></tr><tr><th scope="row">수상은 한 번</th><td>한 번 수상한 포폴은 다음 회차 후보에서 빠져요.</td></tr><tr><th scope="row">동점</th><td>그 수에 먼저 도달한 포폴이 앞서요.</td></tr></tbody></table></div>
+      <h4>크리에이터 부문</h4>
+      <div class="sheet text"><table><colgroup><col style="width:132px"><col></colgroup><thead><tr><th scope="col">크리에이터 부문</th><th scope="col">툴팁 문구</th></tr></thead><tbody><tr><th scope="row">리드</th><td>이번 회차에 한 활동을 점수로 바꿔 더한 값이에요. 한 회차는 14일이고, 점수는 회차마다 처음부터 다시 세요. 매시 정각에 업데이트돼요.</td></tr><tr><th scope="row">인정 활동</th><td>프로젝트 카드·포폴·영감 글 등록, 팔로워 증가, 리스펙트 보내기, 채팅 메시지, 공유하기</td></tr><tr><th scope="row">점수 환산</th><td>활동마다 점수가 달라요. 직접 만들어 올리는 활동이 가장 크게 반영돼요.</td></tr><tr><th scope="row">프로필</th><td>소개 항목을 채운 만큼 더해져요. 전에 써 둔 내용도 인정돼요.</td></tr><tr><th scope="row">빠지는 활동</th><td>삭제하거나 비공개로 돌린 작품, 취소한 리스펙트, 언팔로우는 점수에서 빠져요.</td></tr><tr><th scope="row">동점</th><td>그 점수에 먼저 도달한 크리에이터가 앞서요.</td></tr></tbody></table></div>
+      <details class="more" id="s-tooltip-num"><summary>크리에이터 부문 · 숫자 표기가 필요할 때 쓰는 문안 (현재 미사용)</summary><p class="sheet-foot">배점을 공개하기로 하면 리드 문장은 그대로 두고 아래 목록으로 바꾼다. 경력·수상 건수 무관 10점 판단(배점 비공개 전제)을 함께 다시 본다.</p><div class="sheet text"><table><colgroup><col style="width:132px"><col></colgroup><thead><tr><th scope="col">크리에이터 부문 · 숫자 표기</th><th scope="col">툴팁 문구</th></tr></thead><tbody><tr><th scope="row">리드</th><td>이번 회차에 한 활동을 점수로 바꿔 더한 값이에요. 한 회차는 14일이고, 점수는 회차마다 처음부터 다시 세요. 매시 정각에 업데이트돼요.</td></tr><tr><th scope="row">만들기</th><td>프로젝트 카드 50점, 포폴 30점, 영감 글 20점. 모두 1건당 점수예요.</td></tr><tr><th scope="row">연결</th><td>팔로워 1명당 10점, 리스펙트를 보낼 때마다 5점</td></tr><tr><th scope="row">대화·공유</th><td>채팅 메시지 1건당 1점, 공유 1회당 1점. 공유는 회차당 10점까지 인정돼요.</td></tr><tr><th scope="row">프로필</th><td>자기소개·학력·경력·수상·자격·기본정보·AI 추천사를 채운 항목마다 10점, 최대 60점이에요. 경력·수상은 여러 건 써도 10점이고, 전에 써 둔 내용도 인정돼요.</td></tr><tr><th scope="row">빠지는 활동</th><td>삭제하거나 비공개로 돌린 작품, 취소한 리스펙트, 언팔로우는 점수에서 빠져요. 동점이면 그 점수에 먼저 도달한 크리에이터가 앞서요.</td></tr></tbody></table></div></details>
     </div>
   </section>
 
-  <footer>함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/cco-121-award-policy/">명예의 전당 운영 흐름</a><br>정본 <a class="jira" href="https://cre8orclub.atlassian.net/browse/CCO-121">Jira CCO-121</a> · 선정 기준 v5 · 2026-09-23 기준</footer>
+  <footer>함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/cco-121-award-policy/">명예의 전당 운영 흐름</a><br>정본 <a class="jira" href="https://cre8orclub.atlassian.net/browse/CCO-121">Jira CCO-121</a> · 선정 기준 v5 · 2026-09-24 기준</footer>
 </div>
 
 <button type="button" class="back-hist" id="back-hist" hidden>← 업데이트 히스토리로</button>
@@ -407,7 +420,8 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
   <h3 id="d-hist-h">업데이트 히스토리</h3>
   <p class="dsub">기준이나 페이지가 바뀔 때마다 한 건씩 남깁니다. 최신이 위이고, 펼치면 어디가 어떻게 바뀌었는지 이전·이후로 보입니다. 「이동 →」을 누르면 그 자리로 갑니다.</p>
   <div class="hxs">
-<details class="hx" name="hist" id="hx-21" open><summary><span class="hi">21</span><span class="ht">부문 이름 통일<span class="hd">9/24</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">부문 이름을 모든 곳에서 「작품 부문」「크리에이터 부문」으로 통일했습니다. 기준 자체는 바뀌지 않았습니다.</p><div class="chg"><button type="button" class="goto" data-goto="hdr-h1"><span class="where">전체</span>부문 이름<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">인기 포트폴리오 · 베스트 크리에이터</p><span class="k">이후</span><p class="now"><ins>작품 부문 · 크리에이터 부문</ins></p></div></div></div></details>
+<details class="hx" name="hist" id="hx-22" open><summary><span class="hi">22</span><span class="ht">ⓘ 툴팁 문안·작품 부문 대상 확정<span class="hd">9/24</span></span><span class="hn">3곳</span></summary><div class="hb"><p class="why">순위판 부문 제목 옆 「ⓘ 이렇게 선정돼요」 툴팁 문안을 두 부문 모두 확정했습니다. 크리에이터 부문은 배점을 숫자로 적지 않는 안을 쓰고, 숫자 안은 접어 두었습니다. 작품 부문은 이번 회차에 올린 포트폴리오만 세고, 비공개 전환 시 순위에서 빠졌다가 재공개하면 돌아옵니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-tooltip"><span class="where">노출</span>툴팁 문안<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">없음</p><span class="k">이후</span><p class="now"><ins>작품 부문 4줄 · 크리에이터 부문 5줄</ins>, 숫자 표기안은 접힘</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-summary"><span class="where">선정 기준</span>작품 선정 대상<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">회차 기간 동안 올린 전체공개된 포트폴리오</p><span class="k">이후</span><p class="now">같은 문장에 <ins>비공개로 돌리면 순위에서 빠지고, 다시 전체공개하면 복귀</ins></p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-open"><span class="where">개발 확인</span>포트폴리오 대상<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was"><del>기존 게시물 포함 여부 확인</del></p><span class="k">이후</span><p class="now"><ins>이번 회차에 올린 포트폴리오만 집계(확정)</ins>. 재공개 시 리스펙트 유지 여부만 확인</p></div></div></div></details>
+<details class="hx" name="hist" id="hx-21"><summary><span class="hi">21</span><span class="ht">부문 이름 통일<span class="hd">9/24</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">부문 이름을 모든 곳에서 「작품 부문」「크리에이터 부문」으로 통일했습니다. 기준 자체는 바뀌지 않았습니다.</p><div class="chg"><button type="button" class="goto" data-goto="hdr-h1"><span class="where">전체</span>부문 이름<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">인기 포트폴리오 · 베스트 크리에이터</p><span class="k">이후</span><p class="now"><ins>작품 부문 · 크리에이터 부문</ins></p></div></div></div></details>
 <details class="hx" name="hist" id="hx-20"><summary><span class="hi">20</span><span class="ht">개발 확인 두 줄 추가<span class="hd">9/24</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">2회차 가산을 넣을지 말지를 실제로 판정하려면 완성 기준과 분포 자료가 먼저 있어야 합니다. 개발에 물을 항목으로 못 박았습니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-open"><span class="where">개발 확인</span>완성 판정과 분포 로그<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">프로필 · 항목별 필수 입력값, <del>완성 판정</del>, 상태 집계 시점 확인</p><span class="k">이후</span><p class="now">두 줄로 나눴습니다. <ins>완성 판정</ins>은 반복 필드가 1건 이상이면 채움으로 확정, <ins>분포 로그</ins>는 시간당 배치가 소개 6칸 채움 분포를 회차 내내 적재.</p></div></div></div></details>
   <details class="hx" name="hist" id="hx-19"><summary><span class="hi">19</span><span class="ht">경력·수상 건수 처리 방향<span class="hd">9/24</span></span><span class="hn">1곳</span></summary><div class="hb"><p class="why">경력과 수상은 여러 건 넣을 수 있어 1건과 10건을 같게 볼지 고민이 있었습니다. 1회차는 단순하게 가고, 2회차 계획만 미리 적어 둡니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-score"><span class="where">활동 점수</span>프로필 소개 보조 문구<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="none">없음</p><span class="k">이후</span><p class="now">1회차는 <ins>건수와 관계없이 채우면 10점</ins>. 2회차부터는 이미 채운 뒤 회차 중에 새로 추가한 경력·수상에 가산점을 주는 방안을 적용할 예정이고, 배점은 1회차 분포를 보고 정합니다.</p></div></div></div></details>
   <details class="hx" name="hist" id="hx-18"><summary><span class="hi">18</span><span class="ht">직전 수상자 제외 규칙 해제<span class="hd">9/24</span></span><span class="hn">2곳</span></summary><div class="hb"><p class="why">직전 회차 1위를 다음 회차에서 빼던 규칙을 없앴습니다. 여러 사람이 받게 하는 것이 맞아 보이지만 운영해 봐야 알 문제라, 지금은 막지 않고 지켜봅니다.</p><div class="chg"><button type="button" class="goto" data-goto="s-cycle"><span class="where">회차 전환</span>직전 수상자<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">직전 회차 1위 · <del>다음 회차 같은 부문에서 1회 제외</del></p><span class="k">이후</span><p class="now">직전 회차 수상자 · <ins>운영하며 관찰</ins>. 막지 않고 지켜봅니다.</p></div></div><div class="chg"><button type="button" class="goto" data-goto="s-best"><span class="where">선정 기준</span>크리에이터 운영 줄<span class="go">이동 →</span></button><div class="diff"><span class="k">이전</span><p class="was">크리에이터 분야에 수상한 분은 <del>제외할지 논의 필요</del></p><span class="k">이후</span><p class="now">제외하지 않습니다. <ins>여러 사람이 받도록 조정할지</ins>는 운영하며 관찰해 판단합니다.</p></div></div></div></details>
