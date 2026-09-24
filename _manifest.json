@@ -251,8 +251,8 @@
     "slug": "doc-color-compare",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/doc-color-compare/",
-    "last_kind": "new",
-    "last_sha256": "ce3e10ec1b658403e0511b5b338cc92ac5994c54e50de408102e885e49d173eb",
-    "timestamp": "2026-09-24T11:55:10.676283Z"
+    "last_kind": "redeploy",
+    "last_sha256": "885d6e8f8cfb22405af759ea5e8a3c9b88f08541debcb196a691ed590512e49f",
+    "timestamp": "2026-09-24T11:59:19.284793Z"
   }
 }
