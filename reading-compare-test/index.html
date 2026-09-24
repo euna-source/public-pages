@@ -149,6 +149,7 @@ const state = { mode:null, order:null, blocks:[], started:null, device:null, pre
 const device = () => ({ w: innerWidth, h: innerHeight, dpr: devicePixelRatio, touch: matchMedia('(pointer:coarse)').matches, ua: navigator.userAgent });
 const setMode = (m) => { root.dataset.mode = m; };
 const setPal = (p) => { if (p) root.dataset.pal = p; else delete root.dataset.pal; };
+const reset = () => { window.scrollTo(0, 0); const h = app.querySelector('h1,h2,.prompt p,.ready .lead'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); } };
 const top = (label, step, total) => `<div class="top"><b>${esc(label)}</b><span>${step} / ${total}</span></div><div class="meter" aria-hidden="true"><span style="width:${Math.round(step/total*100)}%"></span></div>`;
 const TOTAL = 2 * (TRIALS_PER_TYPE * 2 + 3) + 1;
 let step = 0;
@@ -174,6 +175,7 @@ function intro() {
   </fieldset>
   <p class="small muted">결과는 이 기기 안에만 남고, 마지막 화면에서 복사해 전달할 수 있습니다.</p>
   <div class="row"><button class="btn" id="go" type="button">시작하기</button></div>`;
+  reset();
   app.querySelectorAll('input[name=mode]').forEach(i => i.addEventListener('change', () => setMode(i.value)));
   document.getElementById('go').addEventListener('click', () => {
     state.mode = app.querySelector('input[name=mode]:checked').value;
@@ -197,6 +199,7 @@ function runBlock(bi) {
   <p>배색이 바뀌었습니다. 먼저 <b>표시된 곳을 찾아 누르는 과제</b>를 ${b.trials.length}번 합니다.</p>
   <p class="muted small">매번 ‘준비’를 누르면 글이 나오고 위쪽에 찾을 대상이 적혀 있습니다. 찾으면 그 구절을 바로 누르세요. 20초가 지나거나 ‘못 찾겠어요’를 누르면 다음으로 넘어갑니다.</p>
   <div class="row"><button class="btn" type="button" id="next">과제 시작</button></div>`;
+  reset();
   document.getElementById('next').addEventListener('click', () => trial(bi, 0));
 }
 
@@ -206,7 +209,7 @@ function buildPassage(b, t) {
   const [mi, li] = shuffle([...Array(7).keys()]).slice(0, 2);
   const html = idx.map((si, k) => {
     const [a, ph, c] = S[si];
-    if (k === mi) return `${esc(a)}<mark data-hit="${t.type==='mark'?'target':'other'}">${esc(ph)}</mark>${esc(c)}`;
+    if (k === mi) return `${esc(a)}<mark tabindex="0" data-hit="${t.type==='mark'?'target':'other'}">${esc(ph)}</mark>${esc(c)}`;
     if (k === li) return `${esc(a)}<span class="lk" role="link" tabindex="0" data-hit="${t.type==='link'?'target':'other'}">${esc(ph)}</span>${esc(c)}`;
     return esc(a + ph + c);
   });
@@ -220,26 +223,37 @@ function trial(bi, ti) {
   const label = t.type === 'mark' ? '강조 표시된 구절' : '링크';
   app.innerHTML = `${top('화면 ' + b.screen + ' · 과제 ' + (ti + 1) + '/' + b.trials.length, step, TOTAL)}
   <div class="ready"><div><p class="lead">다음 대상: <b>${label}</b></p><p class="small muted" style="margin:6px 0 18px">준비되면 누르세요.</p><button class="btn" type="button" id="ready">준비</button></div></div>`;
+  reset();
   document.getElementById('ready').addEventListener('click', () => {
     app.innerHTML = `${top('화면 ' + b.screen + ' · 과제 ' + (ti + 1) + '/' + b.trials.length, step, TOTAL)}
     <div class="prompt"><p>${t.type === 'mark' ? '<b>강조 표시</b>(배경색이 칠해진 구절)를 누르세요' : '<b>링크</b>(밑줄 친 구절)를 누르세요'}</p><button class="btn ghost skip" type="button" id="giveup">못 찾겠어요</button></div>
     <div class="passage" id="passage">${buildPassage(b, t)}</div>`;
-    const t0 = performance.now(); t.errors = 0; t.errorKinds = [];
-    const done = (hit) => {
-      clearTimeout(timer); passage.removeEventListener('click', onTap);
-      t.ms = hit ? Math.round(performance.now() - t0) : null; t.hit = hit;
+    reset();
+    t.errors = 0; t.errorKinds = []; t.hidden = false; t.input = null;
+    let t0 = null, finished = false, timer = null;
+    const passage = document.getElementById('passage');
+    const onVis = () => { if (document.hidden) t.hidden = true; };
+    document.addEventListener('visibilitychange', onVis);
+    const done = (outcome) => {
+      if (finished || t0 === null) return;
+      const elapsed = Math.round(performance.now() - t0);
+      if (outcome === 'hit' && elapsed > TIMEOUT_MS) outcome = 'timeout';
+      finished = true; clearTimeout(timer);
+      document.removeEventListener('visibilitychange', onVis);
+      t.outcome = outcome; t.hit = outcome === 'hit'; t.ms = elapsed;
       ti + 1 < b.trials.length ? trial(bi, ti + 1) : reading(bi);
     };
-    const passage = document.getElementById('passage');
-    const onTap = (e) => {
+    const onTap = (e, how) => {
+      if (t0 === null) return;
       const el = e.target.closest('[data-hit]');
-      if (el && el.dataset.hit === 'target') return done(true);
+      if (el && el.dataset.hit === 'target') { t.input = how; return done('hit'); }
       t.errors++; t.errorKinds.push(el ? (el.tagName === 'MARK' ? 'mark' : 'link') : 'text');
     };
-    passage.addEventListener('click', onTap);
-    passage.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.dataset?.hit) onTap(e); });
-    document.getElementById('giveup').addEventListener('click', () => done(false));
-    const timer = setTimeout(() => done(false), TIMEOUT_MS);
+    passage.addEventListener('click', (e) => onTap(e, 'pointer'));
+    passage.addEventListener('keydown', (e) => { if ((e.key === 'Enter' || e.key === ' ') && e.target.dataset?.hit) { e.preventDefault(); onTap(e, 'keyboard'); } });
+    document.getElementById('giveup').addEventListener('click', () => done('giveup'));
+    // 글이 실제로 그려진 다음 프레임부터 잰다
+    requestAnimationFrame(() => requestAnimationFrame(() => { t0 = performance.now(); timer = setTimeout(() => done('timeout'), TIMEOUT_MS); }));
   });
 }
 
@@ -252,13 +266,15 @@ function reading(bi) {
   <h2>${esc(r.title)}</h2><div class="passage">${paras}</div>
   <p class="small muted" style="margin-top:24px">다 읽었으면 처음부터 다시 천천히 읽어도 됩니다. 시간이 끝나면 아래 버튼이 켜집니다. (이 글의 링크는 눌러도 이동하지 않습니다.)</p>
   <div class="row"><button class="btn" type="button" id="next" disabled>질문으로</button></div>`;
-  const t0 = Date.now();
+  reset();
+  let shown = 0, last = Date.now(); b.readHidden = false;
   const tick = setInterval(() => {
-    const left = Math.max(0, READ_SEC - Math.floor((Date.now() - t0) / 1000));
+    const now = Date.now(); if (!document.hidden) shown += now - last; else b.readHidden = true; last = now;
+    const left = Math.max(0, READ_SEC - Math.floor(shown / 1000));
     document.getElementById('timer').textContent = left ? `${READS_TEXT(left)} 남음` : '시간 끝';
     if (!left) { clearInterval(tick); document.getElementById('next').disabled = false; }
   }, 500);
-  document.getElementById('next').addEventListener('click', () => { clearInterval(tick); b.readSec = Math.round((Date.now() - t0) / 1000); ratings(bi); });
+  document.getElementById('next').addEventListener('click', () => { clearInterval(tick); b.readSec = Math.round(shown / 1000); ratings(bi); });
 }
 
 const QS = [
@@ -274,6 +290,7 @@ function ratings(bi) {
   <h2>화면 ${b.screen}은 어땠나요?</h2><p class="muted small" style="margin-bottom:24px">방금 본 배색 기준으로 1~7 중에서 고르세요.</p>
   ${QS.map(([k, label, lo, hi]) => `<fieldset><legend>${label}</legend><div class="scale">${[1,2,3,4,5,6,7].map(n => `<label class="opt"><input type="radio" name="${k}" value="${n}" aria-label="${n}점"><span>${n}</span></label>`).join('')}</div><div class="scale-ends"><span>${lo}</span><span>${hi}</span></div></fieldset>`).join('')}
   <div class="row"><button class="btn" type="button" id="next">다음</button></div>`;
+  reset();
   document.getElementById('next').addEventListener('click', () => {
     const miss = QS.filter(([k]) => !app.querySelector(`input[name=${k}]:checked`));
     if (miss.length) { toast('모든 질문에 답해 주세요.'); app.querySelector(`input[name=${miss[0][0]}]`).focus(); return; }
@@ -292,6 +309,7 @@ function preference() {
     <label class="opt"><input type="radio" name="pref" value="0" aria-label="비슷함"><span>비슷함</span></label></div></fieldset>
   <fieldset><legend><label for="comment">이유나 느낀 점 (선택)</label></legend><textarea id="comment" placeholder="예: 강조는 잘 보였지만 오래 보니 노랑이 부담스러웠다"></textarea></fieldset>
   <div class="row"><button class="btn" type="button" id="next">결과 보기</button></div>`;
+  reset();
   document.getElementById('next').addEventListener('click', () => {
     const p = app.querySelector('input[name=pref]:checked');
     if (!p) { toast('하나를 골라 주세요.'); return; }
@@ -304,16 +322,18 @@ function summarize() {
   return state.blocks.map(b => {
     const by = (type) => b.trials.filter(t => t.type === type);
     const hitMs = (type) => by(type).filter(t => t.hit).map(t => t.ms);
+    const rate = (type) => by(type).filter(t => t.hit).length + '/' + by(type).length;
     return { pal: b.pal, name: b.pal === 'A' ? '1차 안 (저채도)' : '이번 안 (선명한 노랑)', screen: b.screen,
       markMedianMs: median(hitMs('mark')), linkMedianMs: median(hitMs('link')),
-      errors: b.trials.reduce((s, t) => s + t.errors, 0), misses: b.trials.filter(t => !t.hit).length, ratings: b.ratings };
+      markHit: rate('mark'), linkHit: rate('link'), errors: b.trials.reduce((s, t) => s + t.errors, 0), misses: b.trials.filter(t => !t.hit).length,
+      giveups: b.trials.filter(t => t.outcome === 'giveup').length, timeouts: b.trials.filter(t => t.outcome === 'timeout').length, interrupted: b.trials.filter(t => t.hidden).length, ratings: b.ratings };
   });
 }
 
 function results() {
   step = TOTAL; const sum = summarize();
   const prefName = state.pref === 0 ? '비슷함' : sum.find(s => s.screen === state.pref).name;
-  const payload = { v: 1, seed: seed0, mode: state.mode, order: state.order, readSec: READ_SEC, started: state.started, finished: new Date().toISOString(), device: state.device, preference: prefName, comment: state.comment, summary: sum, blocks: state.blocks.map(b => ({ pal: b.pal, screen: b.screen, read: b.read, readSec: b.readSec, trials: b.trials.map(t => ({ type: t.type, hit: t.hit, ms: t.ms, errors: t.errors, errorKinds: t.errorKinds, targetPos: t.targetPos })), ratings: b.ratings })) };
+  const payload = { v: 1, seed: seed0, mode: state.mode, order: state.order, readSec: READ_SEC, started: state.started, finished: new Date().toISOString(), device: state.device, preference: prefName, comment: state.comment, summary: sum, blocks: state.blocks.map(b => ({ pal: b.pal, screen: b.screen, read: b.read, readSec: b.readSec, readHidden: b.readHidden, trials: b.trials.map(t => ({ type: t.type, outcome: t.outcome, hit: t.hit, ms: t.ms, input: t.input, hidden: t.hidden, errors: t.errors, errorKinds: t.errorKinds, targetPos: t.targetPos })), ratings: b.ratings })) };
   const json = JSON.stringify(payload);
   try { const hist = JSON.parse(store.get('history') || '[]'); hist.push(payload); store.set('history', JSON.stringify(hist.slice(-20))); } catch {}
   window.__result = payload;
@@ -326,21 +346,25 @@ function results() {
   <div class="card"><table>
     <thead><tr><th>항목</th><th class="num">1차 안</th><th class="num">이번 안</th></tr></thead>
     <tbody>
-      ${row('강조 찾기 (중앙값)', f(A.markMedianMs), f(B.markMedianMs))}
-      ${row('링크 찾기 (중앙값)', f(A.linkMedianMs), f(B.linkMedianMs))}
+      ${row('강조 찾기 성공', A.markHit, B.markHit)}
+      ${row('강조 찾기 (성공한 것의 중앙값)', f(A.markMedianMs), f(B.markMedianMs))}
+      ${row('링크 찾기 성공', A.linkHit, B.linkHit)}
+      ${row('링크 찾기 (성공한 것의 중앙값)', f(A.linkMedianMs), f(B.linkMedianMs))}
       ${row('잘못 누른 횟수', A.errors, B.errors)}
-      ${row('못 찾음', A.misses, B.misses)}
+      ${row('못 찾음 (포기 / 시간 초과)', A.giveups + ' / ' + A.timeouts, B.giveups + ' / ' + B.timeouts)}
       ${row('눈이 편안했다 (1~7)', A.ratings.comfort, B.ratings.comfort)}
       ${row('강조가 한눈에 보였다', A.ratings.markSeen, B.ratings.markSeen)}
       ${row('링크가 구분됐다', A.ratings.linkSeen, B.ratings.linkSeen)}
       ${row('번짐·눈부심 (낮을수록 좋음)', A.ratings.glare, B.ratings.glare)}
     </tbody></table></div>
+  ${sum.some(x => x.interrupted) ? '<p class="small muted" style="margin-top:10px">과제 도중 다른 앱으로 전환된 기록이 있어 해당 시간은 따로 표시해 두었습니다.</p>' : ''}
   <p style="margin-top:14px">더 좋았던 화면: <b>${esc(prefName)}</b></p>
   <div class="note">한 사람의 한 번 결과로는 어느 쪽이 낫다고 말할 수 없습니다. 여러 사람의 결과를 모아 비교합니다. 아래 버튼으로 결과를 복사해 전달해 주세요.</div>
   <div class="row"><button class="btn" type="button" id="copy">결과 복사</button><button class="btn ghost" type="button" id="dl">파일로 저장</button><button class="btn ghost" type="button" id="again">다른 모드로 다시</button></div>`;
+  reset();
   document.getElementById('copy').addEventListener('click', async () => {
     try { await navigator.clipboard.writeText(json); toast('결과를 복사했습니다.'); }
-    catch { const ta = document.createElement('textarea'); ta.value = json; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); toast('결과를 복사했습니다.'); } catch { toast('복사하지 못했습니다. 파일로 저장해 주세요.'); } ta.remove(); }
+    catch { const ta = document.createElement('textarea'); ta.value = json; document.body.appendChild(ta); ta.select(); let ok = false; try { ok = document.execCommand('copy'); } catch {} toast(ok ? '결과를 복사했습니다.' : '복사하지 못했습니다. 파일로 저장해 주세요.'); ta.remove(); }
   });
   document.getElementById('dl').addEventListener('click', () => {
     const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 1)], { type: 'application/json' }));

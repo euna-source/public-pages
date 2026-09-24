@@ -235,8 +235,8 @@
     "slug": "reading-compare-test",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/reading-compare-test/",
-    "last_kind": "new",
-    "last_sha256": "ba9c0838e482f621761d0ca52fee034e9b1937dedc3719a1a28e8f77b3a0e3cf",
-    "timestamp": "2026-09-24T05:18:09.405993Z"
+    "last_kind": "redeploy",
+    "last_sha256": "206c98bf36ef23ae366da0374a63fa2c391146bac3ad01fd53f15f33be6dd40d",
+    "timestamp": "2026-09-24T05:44:09.548446Z"
   }
 }
