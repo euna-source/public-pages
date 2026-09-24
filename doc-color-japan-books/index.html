@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="실제 일본 책 표지에서 뽑은 색으로 만든 문서 템플릿 배색 아홉 가지를 라이트·다크로 비교합니다.">
+<title>일본 책 배색 비교</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--pg:#EFEFEC;--pgtext:#1E1E1E;--pgmuted:#5A5A57;color-scheme:light}
+@media (prefers-color-scheme:dark){:root{--pg:#161616;--pgtext:#E8E8E6;--pgmuted:#A8A8A4;color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pg);color:var(--pgtext);font-family:"Pretendard Variable",Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 32px 80px}
+h1{font-size:30px;letter-spacing:-.03em;margin:0 0 10px}
+.lead{margin:0 0 8px;color:var(--pgmuted);line-height:1.7;max-width:760px}
+.set{margin-top:48px}
+.s-head h2{font-size:21px;margin:0 0 4px;letter-spacing:-.02em}
+.s-head p{margin:0 0 16px;color:var(--pgmuted);font-size:15px;line-height:1.65;max-width:820px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.card{background:var(--bg);color:var(--text);padding:26px 28px;border-radius:4px;font-size:16px;line-height:1.75;min-width:0}
+.c-head{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:18px;letter-spacing:.04em}
+.min.warn{color:#d00;font-weight:700}
+.c-num{margin:0 0 6px;font-size:12.5px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.c-num b{font-weight:800;margin-right:9px;padding-right:9px;border-right:1.5px solid currentColor}
+h3{margin:0 0 14px;font-size:22px;letter-spacing:-.03em;line-height:1.4}
+.c-obi{background:var(--mark);color:var(--marktext);font-weight:700;padding:12px 16px;margin:0 0 16px;font-size:16px;line-height:1.55;border:2px solid var(--text)}
+.c-obi span{display:inline-block;font-size:11.5px;border:1.5px solid currentColor;padding:1px 7px;margin-right:10px;vertical-align:2px}
+p{margin:0 0 14px}
+mark{background:var(--mark);color:var(--marktext);font-weight:650;padding:1px 3px}
+a{color:var(--link);text-underline-offset:4px}
+.c-panel{background:var(--panel);padding:12px 16px;margin:0 0 14px;font-size:14.5px;line-height:1.65;border-left:4px solid var(--text)}
+.c-panel b{margin-right:6px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:0 0 12px;border-top:2px solid var(--text)}
+td{padding:8px 0;border-bottom:1px solid var(--line)}
+td:first-child{width:38%;color:var(--muted)}
+em{font-style:normal;font-size:11.5px;font-weight:700;border:1.5px solid currentColor;padding:1px 6px;border-radius:3px;margin-left:6px}
+.v-line mark{background:none;color:var(--mark);padding:0 1px;box-shadow:inset 0 -2px 0 var(--mark)}
+.v-line .c-obi{background:var(--panel);color:var(--text);border:0;border-left:4px solid var(--mark)}
+.v-line .c-obi span{color:var(--mark)}
+.c-muted{color:var(--muted);font-size:13.5px;margin:0 0 14px}
+.srcs{list-style:none;margin:10px 0 16px;padding:0;display:grid;gap:10px;max-width:820px}
+.srcs li{border-top:1px solid color-mix(in srgb,var(--pgtext) 18%,transparent);padding-top:10px}
+.src-t{font-size:14.5px;line-height:1.6}
+.src-m{margin:6px 0 0;font-size:13px;color:var(--pgmuted)}
+.src-m a{color:inherit}
+.bar{display:flex;height:16px;border-radius:2px;overflow:hidden;margin-top:6px;max-width:420px;outline:1px solid color-mix(in srgb,var(--pgtext) 15%,transparent)}
+.hexes{margin:4px 0 0;font:11.5px ui-monospace,Menlo,monospace;color:var(--pgmuted)}
+.all{margin-top:64px}.all h2{font-size:21px;margin:0 0 6px}
+.tw{overflow-x:auto}.alltb{width:100%;border-collapse:collapse;font-size:13.5px;border-top:2px solid var(--pgtext);margin-top:10px}
+.alltb th{text-align:left;font-weight:600;color:var(--pgmuted);padding:8px 10px 8px 0;border-bottom:1px solid color-mix(in srgb,var(--pgtext) 20%,transparent)}
+.alltb td{padding:10px 10px 10px 0;border-bottom:1px solid color-mix(in srgb,var(--pgtext) 12%,transparent);vertical-align:top;color:var(--pgtext)}
+.alltb td:first-child{width:auto;color:var(--pgmuted)}.alltb .bar{min-width:180px}.dim{color:var(--pgmuted);font-size:12.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px 12px;font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
+.chip{display:inline-flex;align-items:center;gap:5px}
+.chip i{width:12px;height:12px;border-radius:2px;border:1px solid var(--line)}
+.c-ratio{margin:8px 0 0;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+@media (max-width:820px){.pair{grid-template-columns:1fr}.wrap{padding:28px 16px 60px}.card{padding:22px 18px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<h1>일본 책에서 뽑은 문서 배색</h1>
+<p class="lead">장정가 18명의 일본 책·잡지 24권을 골라, 장정 크레딧이 출처 원문에 있는지 Jev로 대조하고(24건 모두 받쳐짐), 공식 페이지의 표지를 화면에서 읽어 주요 색과 면적 비율을 뽑았습니다. 아래 아홉 배색은 각각 표시한 책의 표지 색에서 출발했고, 글자 대비 4.5:1을 넘도록 명도만 조정했습니다.</p>
+<p class="lead">색 막대는 표지에서 뽑은 색을 면적 비율대로 늘어놓은 것입니다. 표지 이미지는 싣지 않았으니 ‘표지 보기’로 확인해 주세요.</p>
+<section class="set" id="s1"><div class="s-head"><h2>① 群青 × 黄 · 『黄色い家』 형</h2><p>깊은 군청 위에 선명한 노랑 건물 하나. 두 색이 거의 전부인 2색 표지입니다. 노랑은 강조 면, 군청은 절 번호·링크·다크 바탕으로 씁니다.</p><ul class="srcs"><li><div class="src-t"><b>『黄色い家』</b> 川上未映子 · 장정 名久井直子 · 中央公論新社</div>
+      <div class="bar" aria-hidden="true"><i style="background:#EEDE2F;flex:0.415"></i><i style="background:#183378;flex:0.371"></i><i style="background:#122D7A;flex:0.084"></i><i style="background:#384C6F;flex:0.048"></i><i style="background:#58665A;flex:0.035"></i><i style="background:#929438;flex:0.030"></i></div><p class="hexes">#EEDE2F 42% #183378 37% #122D7A 8% #384C6F 5% #58665A 4%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (큐레이션 블로그) · <a href="https://www.hanmoto.com/bd/isbn/9784120056284">표지 보기</a> · <a href="https://www.bird-graphics.com/?p=42585">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#F7F6F1;--panel:#ECEBE4;--line:#CFCDC4;--text:#141C33;--muted:#4E566B;--accent:#183378;--mark:#EEDE2F;--marktext:#141C33;--link:#183378" aria-label="① 群青 × 黄 · 『黄色い家』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 6.13:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 15.6 · 보조 6.8 · 편집색 10.9 · 링크 10.9 · 강조 글자 12.2 · 패널 보조 6.1</p></article><article class="card" style="--bg:#0F1A3A;--panel:#172449;--line:#2C3A63;--text:#F1EFE6;--muted:#AEB6CC;--accent:#EEDE2F;--mark:#EEDE2F;--marktext:#0F1A3A;--link:#A9C1FF" aria-label="① 群青 × 黄 · 『黄色い家』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 7.48:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 14.8 · 보조 8.4 · 편집색 12.3 · 링크 9.6 · 강조 글자 12.3 · 패널 보조 7.5</p></article></div></section><section class="set" id="s2"><div class="s-head"><h2>② 灰 × ショッキングピンク · 『こいわずらわしい』 형</h2><p>중성 회색 바탕에 형광에 가까운 분홍 하트만 반복하는 표지(服部一成). 회색은 색기 없이 맑고, 분홍 한 색이 전부를 끌고 갑니다.</p><ul class="srcs"><li><div class="src-t"><b>『こいわずらわしい』</b> メレ子 · 장정 服部一成 · 亜紀書房</div>
+      <div class="bar" aria-hidden="true"><i style="background:#B6B5B5;flex:0.487"></i><i style="background:#E4045A;flex:0.373"></i><i style="background:#B7BCBA;flex:0.061"></i><i style="background:#DDDDDD;flex:0.030"></i><i style="background:#C37592;flex:0.030"></i><i style="background:#4B0F22;flex:0.030"></i></div><p class="hexes">#B6B5B5 49% #E4045A 37% #B7BCBA 6% #DDDDDD 3% #C37592 2%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (큐레이션 블로그) · <a href="https://www.hanmoto.com/bd/isbn/9784750516691">표지 보기</a> · <a href="https://www.bird-graphics.com/?p=34813">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#F1F1EF;--panel:#E4E4E1;--line:#C9C9C5;--text:#1D1D1D;--muted:#57575A;--accent:#D1034F;--mark:#FFB0CB;--marktext:#1D1D1D;--link:#C2034A" aria-label="② 灰 × ショッキングピンク · 『こいわずらわしい』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 4.84:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 14.9 · 보조 6.4 · 편집색 4.8 · 링크 5.5 · 강조 글자 9.9 · 패널 보조 5.7</p></article><article class="card" style="--bg:#1C1C1C;--panel:#272727;--line:#3F3F3F;--text:#ECECEA;--muted:#A9A9A6;--accent:#FF4F8E;--mark:#FF4F8E;--marktext:#1C1C1C;--link:#FF9CBF" aria-label="② 灰 × ショッキングピンク · 『こいわずらわしい』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 5.49:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 14.4 · 보조 7.2 · 편집색 5.5 · 링크 8.7 · 강조 글자 5.5 · 패널 보조 6.3</p></article></div></section><section class="set" id="s3"><div class="s-head"><h2>③ 白 × 朱 × 水色 · 『悲しい曲の何が悲しいのか』 형</h2><p>흰 바탕에 朱색 띠와 물빛 띠를 글자 뒤에 까는 활자 중심 표지(服部一成). 강조는 물빛 띠, 절 번호는 朱. 가장 산뜻하고 가볍습니다.</p><ul class="srcs"><li><div class="src-t"><b>『悲しい曲の何が悲しいのか：音楽美学と心の哲学』</b> 源河亨 · 장정 服部一成 · 慶應義塾大学出版会</div>
+      <div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.458"></i><i style="background:#E85350;flex:0.341"></i><i style="background:#069FC4;flex:0.070"></i><i style="background:#5B3134;flex:0.050"></i><i style="background:#F7F5F3;flex:0.048"></i><i style="background:#F8C4C3;flex:0.030"></i></div><p class="hexes">#FFFFFF 46% #E85350 34% #069FC4 7% #5B3134 5% #F7F5F3 5%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (큐레이션 블로그) · <a href="https://www.hanmoto.com/bd/isbn/9784766426342">표지 보기</a> · <a href="https://www.bird-graphics.com/?p=30917">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#FBFAF8;--panel:#F0EFEC;--line:#D6D4CF;--text:#1E1E1E;--muted:#5A5A57;--accent:#C8332F;--mark:#8FD8EC;--marktext:#1E1E1E;--link:#0A6F8E" aria-label="③ 白 × 朱 × 水色 · 『悲しい曲の何が悲しいのか』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 5.07:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 16.0 · 보조 6.6 · 편집색 5.1 · 링크 5.5 · 강조 글자 10.5 · 패널 보조 6.0</p></article><article class="card" style="--bg:#141617;--panel:#1E2123;--line:#373B3E;--text:#EEEEEB;--muted:#A8ACAE;--accent:#FF6B61;--mark:#35B8DC;--marktext:#141617;--link:#86D8F0" aria-label="③ 白 × 朱 × 水色 · 『悲しい曲の何が悲しいのか』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 6.51:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 15.6 · 보조 7.9 · 편집색 6.5 · 링크 11.3 · 강조 글자 7.8 · 패널 보조 7.1</p></article></div></section><section class="set" id="s4"><div class="s-head"><h2>④ 生成り × 水浅葱 · 『椿ノ恋文』 형</h2><p>크림빛 종이에 물빛 바다와 초록 섬을 담은 부드러운 표지(名久井直子). 날이 선 대비 대신 옅은 물빛으로 짚어 주는 조용한 톤입니다.</p><ul class="srcs"><li><div class="src-t"><b>『椿ノ恋文』</b> 小川糸 · 장정 名久井直子 · 幻冬舎</div>
+      <div class="bar" aria-hidden="true"><i style="background:#FEF6E9;flex:0.351"></i><i style="background:#9CD1D1;flex:0.248"></i><i style="background:#F2EDE6;flex:0.128"></i><i style="background:#E4E3E0;flex:0.116"></i><i style="background:#D2D6D8;flex:0.111"></i><i style="background:#A187A7;flex:0.030"></i></div><p class="hexes">#FEF6E9 35% #9CD1D1 25% #F2EDE6 13% #E4E3E0 12% #D2D6D8 11%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (큐레이션 블로그) · <a href="https://www.gentosha.co.jp/book/detail/9784344041929/">표지 보기</a> · <a href="https://www.bird-graphics.com/?p=43237">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#FEF6E9;--panel:#F4EBDB;--line:#DDD3C1;--text:#24302F;--muted:#56625F;--accent:#1F7C7A;--mark:#A6DCDA;--marktext:#24302F;--link:#1F6A9A" aria-label="④ 生成り × 水浅葱 · 『椿ノ恋文』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 4.64:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 12.7 · 보조 5.9 · 편집색 4.6 · 링크 5.5 · 강조 글자 9.0 · 패널 보조 5.4</p></article><article class="card" style="--bg:#141C1E;--panel:#1C2629;--line:#33403F;--text:#EFE9DE;--muted:#AEB6B2;--accent:#7FD4D1;--mark:#8ED3D1;--marktext:#141C1E;--link:#9CCBF0" aria-label="④ 生成り × 水浅葱 · 『椿ノ恋文』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 7.46:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 14.3 · 보조 8.3 · 편집색 10.1 · 링크 10.1 · 강조 글자 10.2 · 패널 보조 7.5</p></article></div></section><section class="set" id="s5"><div class="s-head"><h2>⑤ 薄藤 · 『翻訳する私』·『何げなくて恋しい記憶』 형</h2><p>연보라(藤) 바탕을 넓게 쓰는 두 표지. 사진이나 사과 그림을 그 위에 얹어 보라 한 색으로 묶습니다. 문서에서는 연보라를 강조 면으로 씁니다.</p><ul class="srcs"><li><div class="src-t"><b>『翻訳する私』</b> ジュンパ・ラヒリ（小川高義 訳） · 장정 新潮社装幀室 · 新潮社（新潮クレスト・ブックス）</div>
+      <div class="bar" aria-hidden="true"><i style="background:#C4A8CF;flex:0.492"></i><i style="background:#161511;flex:0.148"></i><i style="background:#38322D;flex:0.098"></i><i style="background:#60534E;flex:0.090"></i><i style="background:#857372;flex:0.076"></i><i style="background:#A4929A;flex:0.056"></i></div><p class="hexes">#C4A8CF 49% #161511 15% #38322D 10% #60534E 9% #857372 8%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (공식·서점) · <a href="https://www.shinchosha.co.jp/book/590199/">표지 보기</a> · <a href="https://www.shinchosha.co.jp/book/590199/">크레딧 출처</a></p></li><li><div class="src-t"><b>『何げなくて恋しい記憶 随筆集 あなたの暮らしを教えてください1』</b> 暮しの手帖編集部 編 · 장정 大島依提亜（装画：花森安治） · 暮しの手帖社</div>
+      <div class="bar" aria-hidden="true"><i style="background:#BF90FE;flex:0.723"></i><i style="background:#C193FD;flex:0.082"></i><i style="background:#A77ED8;flex:0.054"></i><i style="background:#8F6CB5;flex:0.048"></i><i style="background:#C39EF5;flex:0.040"></i><i style="background:#C8A8F4;flex:0.037"></i></div><p class="hexes">#BF90FE 72% #C193FD 8% #A77ED8 5% #8F6CB5 5% #C39EF5 4%</p><p class="src-m">크레딧 Jev 받쳐짐 0.64 (큐레이션 블로그) · <a href="https://www.kurashi-no-techo.co.jp/books/b_1204.html">표지 보기</a> · <a href="https://www.bird-graphics.com/?p=43249">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#F7F5F8;--panel:#EEEAF1;--line:#D5CFDB;--text:#221E29;--muted:#5A5563;--accent:#6A45B0;--mark:#CDB0F7;--marktext:#221E29;--link:#3C4FC0" aria-label="⑤ 薄藤 · 『翻訳する私』·『何げなくて恋しい記憶』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 6.06:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 15.1 · 보조 6.6 · 편집색 6.3 · 링크 6.3 · 강조 글자 8.7 · 패널 보조 6.1</p></article><article class="card" style="--bg:#18161E;--panel:#221F2A;--line:#3A3545;--text:#EEEAF2;--muted:#B0A9BC;--accent:#C9A8FF;--mark:#BF90FE;--marktext:#18161E;--link:#A9C4FF" aria-label="⑤ 薄藤 · 『翻訳する私』·『何げなくて恋しい記憶』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 7.13:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 15.1 · 보조 7.9 · 편집색 9.0 · 링크 10.3 · 강조 글자 7.4 · 패널 보조 7.1</p></article></div></section><section class="set" id="s6"><div class="s-head"><h2>⑥ 桃 × 紺 · 『推し、燃ゆ』 형</h2><p>분홍 바탕 위 군청 띠와 인물(佐藤亜沙美). 분홍은 강조 면, 짙은 남은 절 번호와 다크 바탕으로 나눕니다. 가장 대중적이고 따뜻합니다.</p><ul class="srcs"><li><div class="src-t"><b>『推し、燃ゆ（河出文庫）』</b> 宇佐見りん · 장정 佐藤亜沙美 · 河出書房新社</div>
+      <div class="bar" aria-hidden="true"><i style="background:#EE8A95;flex:0.372"></i><i style="background:#115288;flex:0.264"></i><i style="background:#5492BD;flex:0.077"></i><i style="background:#D66C72;flex:0.074"></i><i style="background:#DDC0C1;flex:0.074"></i><i style="background:#F3EBE5;flex:0.070"></i></div><p class="hexes">#EE8A95 37% #115288 26% #5492BD 8% #D66C72 7% #DDC0C1 7%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (공식·서점) · <a href="https://www.hanmoto.com/bd/isbn/9784309419787">표지 보기</a> · <a href="https://prtimes.jp/main/html/rd/p/000000491.000012754.html">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#FBF7F6;--panel:#F2EAE9;--line:#DCCFCE;--text:#13233F;--muted:#4F5A6E;--accent:#115288;--mark:#F4A6AF;--marktext:#13233F;--link:#115288" aria-label="⑥ 桃 × 紺 · 『推し、燃ゆ』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 5.87:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 14.7 · 보조 6.5 · 편집색 7.6 · 링크 7.6 · 강조 글자 8.2 · 패널 보조 5.9</p></article><article class="card" style="--bg:#0E1B31;--panel:#16263F;--line:#2A3C5A;--text:#F3ECEC;--muted:#B1B8C8;--accent:#F6A5AE;--mark:#EE8A95;--marktext:#0E1B31;--link:#9CC3F0" aria-label="⑥ 桃 × 紺 · 『推し、燃ゆ』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 7.14:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 14.8 · 보조 8.7 · 편집색 8.9 · 링크 9.4 · 강조 글자 7.1 · 패널 보조 7.6</p></article></div></section><section class="set" id="s7"><div class="s-head"><h2>⑦ 白 × 緑一色 · 『ええかげん論』 형</h2><p>흰 바탕에 초록 한 색만으로 글자와 그림을 찍은 1도 표지(寄藤文平). 먹 대신 초록 한 잉크가 모든 강조를 맡습니다.</p><ul class="srcs"><li><div class="src-t"><b>『ええかげん論』</b> 土井善晴・中島岳志 · 장정 寄藤文平（文平銀座） · ミシマ社</div>
+      <div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.640"></i><i style="background:#26963C;flex:0.101"></i><i style="background:#4CC853;flex:0.091"></i><i style="background:#91DA91;flex:0.050"></i><i style="background:#C1EABE;flex:0.043"></i><i style="background:#CBCBCB;flex:0.037"></i></div><p class="hexes">#FFFFFF 64% #26963C 10% #4CC853 9% #91DA91 5% #C1EABE 4%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (공식·서점) · <a href="https://mishimasha.com/books/9784909394767/">표지 보기</a> · <a href="https://mishimasha.com/books/9784909394767/">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#FAFBF8;--panel:#EFF2EC;--line:#D2D8CE;--text:#1A1F1B;--muted:#535B55;--accent:#1F8435;--mark:#A6E3A3;--marktext:#1A1F1B;--link:#1B6E2E" aria-label="⑦ 白 × 緑一色 · 『ええかげん論』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 4.58:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 16.1 · 보조 6.8 · 편집색 4.6 · 링크 6.1 · 강조 글자 11.3 · 패널 보조 6.2</p></article><article class="card" style="--bg:#131514;--panel:#1C1F1D;--line:#343936;--text:#EEF1EC;--muted:#A9B0AA;--accent:#5AD66A;--mark:#4CC853;--marktext:#131514;--link:#8EE39A" aria-label="⑦ 白 × 緑一色 · 『ええかげん論』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 7.50:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 16.1 · 보조 8.3 · 편집색 9.8 · 링크 11.9 · 강조 글자 8.5 · 패널 보조 7.5</p></article></div></section><section class="set" id="s8"><div class="s-head"><h2>⑧ 黒 × 赤 × 黄 · 『パッキパキ北京』 형</h2><p>검정 바탕에 빨강과 노랑 네온 활자가 부딪치는 최대치의 팝(佐藤亜沙美). 문서에서는 노랑 강조와 빨강 절 번호를 쓰고, 다크는 표지처럼 거의 순흑으로 갑니다.</p><ul class="srcs"><li><div class="src-t"><b>『パッキパキ北京』</b> 綿矢りさ · 장정 佐藤亜沙美 · 集英社</div>
+      <div class="bar" aria-hidden="true"><i style="background:#C70E19;flex:0.235"></i><i style="background:#080308;flex:0.190"></i><i style="background:#F9EE1F;flex:0.170"></i><i style="background:#4A1E29;flex:0.133"></i><i style="background:#726A71;flex:0.104"></i><i style="background:#CA7889;flex:0.084"></i></div><p class="hexes">#C70E19 24% #080308 19% #F9EE1F 17% #4A1E29 13% #726A71 10%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (큐레이션 블로그) · <a href="https://www.hanmoto.com/bd/isbn/9784087718577">표지 보기</a> · <a href="https://www.bird-graphics.com/?p=43465">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#FFFDF4;--panel:#F5F1E2;--line:#DAD4BE;--text:#111111;--muted:#55524A;--accent:#C70E19;--mark:#F9EE1F;--marktext:#111111;--link:#1B3FD1" aria-label="⑧ 黒 × 赤 × 黄 · 『パッキパキ北京』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 5.88:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 18.5 · 보조 7.7 · 편집색 5.9 · 링크 7.7 · 강조 글자 15.5 · 패널 보조 6.9</p></article><article class="card" style="--bg:#0B0809;--panel:#171213;--line:#342B2D;--text:#F4F1EA;--muted:#ADA7A5;--accent:#FF4450;--mark:#F9EE1F;--marktext:#0B0809;--link:#93B2FF" aria-label="⑧ 黒 × 赤 × 黄 · 『パッキパキ北京』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 5.88:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 17.7 · 보조 8.4 · 편집색 5.9 · 링크 9.5 · 강조 글자 16.4 · 패널 보조 7.8</p></article></div></section><section class="set" id="s9"><div class="s-head"><h2>⑨ 白 × 墨 + 青 한 점 · 『バンド』 형</h2><p>흰 커버에 먹 한 색, 펼치면 파란 면지가 나오는 책(寄藤文平·古屋郁美). 파란 면지는 표지 픽셀로는 보이지 않아 제작 인터뷰(미시마가진)로 확인했고 Jev 대조 결과 받쳐짐 0.96입니다. 흑백을 기본으로 두고 파랑 한 색만 강조로 씁니다. 가장 절제된 안입니다.</p><ul class="srcs"><li><div class="src-t"><b>『バンド』</b> クリープハイプ・木村俊介 · 장정 寄藤文平・古屋郁美（文平銀座） · ミシマ社</div>
+      <div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.799"></i><i style="background:#EEEEEE;flex:0.050"></i><i style="background:#020506;flex:0.041"></i><i style="background:#2D3534;flex:0.036"></i><i style="background:#707574;flex:0.030"></i><i style="background:#A9ACAB;flex:0.030"></i></div><p class="hexes">#FFFFFF 80% #EEEEEE 5% #020506 4% #2D3534 4% #707574 3%</p><p class="src-m">크레딧 Jev 받쳐짐 1.00 (공식·서점) · <a href="https://mishimasha.com/books/9784909394279/">표지 보기</a> · <a href="https://mishimasha.com/books/9784909394279/">크레딧 출처</a></p></li></ul></div><div class="pair"><article class="card" style="--bg:#FFFFFF;--panel:#F3F3F3;--line:#D9D9D9;--text:#111111;--muted:#555555;--accent:#1E5BD8;--mark:#CFE1FF;--marktext:#111111;--link:#1E5BD8" aria-label="⑨ 白 × 墨 + 青 한 점 · 『バンド』 형 light">
+  <div class="c-head"><span>라이트</span><span>최저 대비 5.93:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 18.9 · 보조 7.5 · 편집색 5.9 · 링크 5.9 · 강조 글자 14.3 · 패널 보조 6.7</p></article><article class="card" style="--bg:#0E0E0E;--panel:#1A1A1A;--line:#333333;--text:#F2F2F2;--muted:#A8A8A8;--accent:#7FA8FF;--mark:#7FA8FF;--marktext:#0E0E0E;--link:#A9C4FF" aria-label="⑨ 白 × 墨 + 青 한 점 · 『バンド』 형 dark">
+  <div class="c-head"><span>다크</span><span>최저 대비 7.32:1</span></div>
+  <p class="c-num"><b>03</b>운영 규칙</p><h3>누가, 무엇으로, 언제 뽑히나</h3>
+  <div class="c-obi"><span>제안</span>10월 7일부터 2주마다 두 부문 1~3위를 뽑습니다.</div>
+  <p>활동 결과가 순위로 남지 않아 <mark>계속 참여할 동기가 약합니다.</mark> 자세한 기준은 <a href="#">선정 기준 문서</a>에 있습니다.</p>
+  <div class="c-panel"><b>미확인</b> 신분증 보관 기간은 세무대리인 확인이 필요합니다.</div>
+  <table><tr><td>선정 기간</td><td>14일 <em>가안</em></td></tr><tr><td>상금</td><td>1위 30만 원 <em>확정</em></td></tr></table>
+  <p class="c-muted">최종 갱신 2026. 09. 24 · 기획</p>
+  <p class="c-ratio">본문 17.2 · 보조 8.1 · 편집색 8.2 · 링크 11.1 · 강조 글자 8.2 · 패널 보조 7.3</p></article></div></section>
+<section class="all"><h2>표본 24권 전체</h2><p class="lead">스타일에 쓰지 않은 책도 색 막대와 Jev 결과를 함께 남겼습니다. 크레딧 출처 가운데 큐레이션 블로그(Bird Graphics)는 공식 출처보다 한 단계 낮게 봅니다. b05·b09는 상품 사진이라 흰 배경이 섞여 있습니다.</p>
+<div class="tw"><table class="alltb"><thead><tr><th>ID</th><th>책</th><th>표지 색</th><th>크레딧 Jev</th></tr></thead><tbody><tr><td>b01</td><td>『黄色い家』<br><span class="dim">名久井直子 · 中央公論新社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#EEDE2F;flex:0.415"></i><i style="background:#183378;flex:0.371"></i><i style="background:#122D7A;flex:0.084"></i><i style="background:#384C6F;flex:0.048"></i><i style="background:#58665A;flex:0.035"></i><i style="background:#929438;flex:0.030"></i></div><p class="hexes">#EEDE2F 42% #183378 37% #122D7A 8% #384C6F 5% #58665A 4%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b02</td><td>『あなたのための短歌集』<br><span class="dim">名久井直子 · ナナロク社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.733"></i><i style="background:#FAFCFA;flex:0.106"></i><i style="background:#EFEDED;flex:0.056"></i><i style="background:#DFB8BA;flex:0.036"></i><i style="background:#A1B3C7;flex:0.035"></i><i style="background:#DDD8E1;flex:0.030"></i></div><p class="hexes">#FFFFFF 73% #FAFCFA 11% #EFEDED 6% #DFB8BA 4% #A1B3C7 4%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b03</td><td>『椿ノ恋文』<br><span class="dim">名久井直子 · 幻冬舎</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FEF6E9;flex:0.351"></i><i style="background:#9CD1D1;flex:0.248"></i><i style="background:#F2EDE6;flex:0.128"></i><i style="background:#E4E3E0;flex:0.116"></i><i style="background:#D2D6D8;flex:0.111"></i><i style="background:#A187A7;flex:0.030"></i></div><p class="hexes">#FEF6E9 35% #9CD1D1 25% #F2EDE6 13% #E4E3E0 12% #D2D6D8 11%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b04</td><td>『翻訳する私』<br><span class="dim">新潮社装幀室 · 新潮社（新潮クレスト・ブックス）</span></td><td><div class="bar" aria-hidden="true"><i style="background:#C4A8CF;flex:0.492"></i><i style="background:#161511;flex:0.148"></i><i style="background:#38322D;flex:0.098"></i><i style="background:#60534E;flex:0.090"></i><i style="background:#857372;flex:0.076"></i><i style="background:#A4929A;flex:0.056"></i></div><p class="hexes">#C4A8CF 49% #161511 15% #38322D 10% #60534E 9% #857372 8%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b05</td><td>『街とその不確かな壁』<br><span class="dim">新潮社装幀室（装画：タダジュン） · 新潮社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#0F1111;flex:0.334"></i><i style="background:#F4F4F5;flex:0.166"></i><i style="background:#E7E9EC;flex:0.166"></i><i style="background:#7A8181;flex:0.094"></i><i style="background:#B6BEC4;flex:0.087"></i><i style="background:#969FA4;flex:0.082"></i></div><p class="hexes">#0F1111 33% #F4F4F5 17% #E7E9EC 17% #7A8181 9% #B6BEC4 9%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b06</td><td>『こいわずらわしい』<br><span class="dim">服部一成 · 亜紀書房</span></td><td><div class="bar" aria-hidden="true"><i style="background:#B6B5B5;flex:0.487"></i><i style="background:#E4045A;flex:0.373"></i><i style="background:#B7BCBA;flex:0.061"></i><i style="background:#DDDDDD;flex:0.030"></i><i style="background:#C37592;flex:0.030"></i><i style="background:#4B0F22;flex:0.030"></i></div><p class="hexes">#B6B5B5 49% #E4045A 37% #B7BCBA 6% #DDDDDD 3% #C37592 2%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b07</td><td>『悲しい曲の何が悲しいのか：音楽美学と心の哲学』<br><span class="dim">服部一成 · 慶應義塾大学出版会</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.458"></i><i style="background:#E85350;flex:0.341"></i><i style="background:#069FC4;flex:0.070"></i><i style="background:#5B3134;flex:0.050"></i><i style="background:#F7F5F3;flex:0.048"></i><i style="background:#F8C4C3;flex:0.030"></i></div><p class="hexes">#FFFFFF 46% #E85350 34% #069FC4 7% #5B3134 5% #F7F5F3 5%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b08</td><td>『群像 2024年1月号』<br><span class="dim">川名潤＋六月 · 講談社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#8DC8DA;flex:0.208"></i><i style="background:#F7FAFB;flex:0.183"></i><i style="background:#1C3236;flex:0.142"></i><i style="background:#0D1A1B;flex:0.136"></i><i style="background:#324F57;flex:0.125"></i><i style="background:#4E727D;flex:0.108"></i></div><p class="hexes">#8DC8DA 21% #F7FAFB 18% #1C3236 14% #0D1A1B 14% #324F57 12%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b09</td><td>『アントカインド』<br><span class="dim">川名潤 · 河出書房新社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#F9F8F7;flex:0.228"></i><i style="background:#1A1A16;flex:0.205"></i><i style="background:#EAEAE8;flex:0.189"></i><i style="background:#BDBAB7;flex:0.129"></i><i style="background:#DAD9D7;flex:0.129"></i><i style="background:#928F90;flex:0.062"></i></div><p class="hexes">#F9F8F7 23% #1A1A16 20% #EAEAE8 19% #BDBAB7 13% #DAD9D7 13%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b10</td><td>『推し、燃ゆ（河出文庫）』<br><span class="dim">佐藤亜沙美 · 河出書房新社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#EE8A95;flex:0.372"></i><i style="background:#115288;flex:0.264"></i><i style="background:#5492BD;flex:0.077"></i><i style="background:#D66C72;flex:0.074"></i><i style="background:#DDC0C1;flex:0.074"></i><i style="background:#F3EBE5;flex:0.070"></i></div><p class="hexes">#EE8A95 37% #115288 26% #5492BD 8% #D66C72 7% #DDC0C1 7%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b11</td><td>『パッキパキ北京』<br><span class="dim">佐藤亜沙美 · 集英社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#C70E19;flex:0.235"></i><i style="background:#080308;flex:0.190"></i><i style="background:#F9EE1F;flex:0.170"></i><i style="background:#4A1E29;flex:0.133"></i><i style="background:#726A71;flex:0.104"></i><i style="background:#CA7889;flex:0.084"></i></div><p class="hexes">#C70E19 24% #080308 19% #F9EE1F 17% #4A1E29 13% #726A71 10%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b12</td><td>『PYRAMIDEN』<br><span class="dim">大島依提亜 · 朝日新聞出版</span></td><td><div class="bar" aria-hidden="true"><i style="background:#BC050C;flex:0.237"></i><i style="background:#FCFBFA;flex:0.202"></i><i style="background:#A2C1CF;flex:0.165"></i><i style="background:#957F70;flex:0.128"></i><i style="background:#DCD7DB;flex:0.092"></i><i style="background:#5F615B;flex:0.090"></i></div><p class="hexes">#BC050C 24% #FCFBFA 20% #A2C1CF 16% #957F70 13% #DCD7DB 9%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b13</td><td>『ジュリアン・バトラーの真実の生涯（河出文庫）』<br><span class="dim">大島依提亜 · 河出書房新社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FEFEFE;flex:0.613"></i><i style="background:#868F8A;flex:0.101"></i><i style="background:#F1F1F0;flex:0.078"></i><i style="background:#ACAEAA;flex:0.069"></i><i style="background:#5C6E6B;flex:0.067"></i><i style="background:#D0CFCE;flex:0.056"></i></div><p class="hexes">#FEFEFE 61% #868F8A 10% #F1F1F0 8% #ACAEAA 7% #5C6E6B 7%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b14</td><td>『何げなくて恋しい記憶 随筆集 あなたの暮らしを教えてください1』<br><span class="dim">大島依提亜（装画：花森安治） · 暮しの手帖社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#BF90FE;flex:0.723"></i><i style="background:#C193FD;flex:0.082"></i><i style="background:#A77ED8;flex:0.054"></i><i style="background:#8F6CB5;flex:0.048"></i><i style="background:#C39EF5;flex:0.040"></i><i style="background:#C8A8F4;flex:0.037"></i></div><p class="hexes">#BF90FE 72% #C193FD 8% #A77ED8 5% #8F6CB5 5% #C39EF5 4%</p></td><td>받쳐짐 0.64 <b>· 스타일 사용</b></td></tr><tr><td>b15</td><td>『ええかげん論』<br><span class="dim">寄藤文平（文平銀座） · ミシマ社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.640"></i><i style="background:#26963C;flex:0.101"></i><i style="background:#4CC853;flex:0.091"></i><i style="background:#91DA91;flex:0.050"></i><i style="background:#C1EABE;flex:0.043"></i><i style="background:#CBCBCB;flex:0.037"></i></div><p class="hexes">#FFFFFF 64% #26963C 10% #4CC853 9% #91DA91 5% #C1EABE 4%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b16</td><td>『バンド』<br><span class="dim">寄藤文平・古屋郁美（文平銀座） · ミシマ社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.799"></i><i style="background:#EEEEEE;flex:0.050"></i><i style="background:#020506;flex:0.041"></i><i style="background:#2D3534;flex:0.036"></i><i style="background:#707574;flex:0.030"></i><i style="background:#A9ACAB;flex:0.030"></i></div><p class="hexes">#FFFFFF 80% #EEEEEE 5% #020506 4% #2D3534 4% #707574 3%</p></td><td>받쳐짐 1.00 <b>· 스타일 사용</b></td></tr><tr><td>b17</td><td>『かたばみ』<br><span class="dim">鈴木成一デザイン室 · KADOKAWA</span></td><td><div class="bar" aria-hidden="true"><i style="background:#1C78BC;flex:0.458"></i><i style="background:#5A5851;flex:0.125"></i><i style="background:#EBF2F1;flex:0.118"></i><i style="background:#837F66;flex:0.106"></i><i style="background:#BBB4B3;flex:0.104"></i><i style="background:#212121;flex:0.055"></i></div><p class="hexes">#1C78BC 46% #5A5851 12% #EBF2F1 12% #837F66 11% #BBB4B3 10%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b18</td><td>『掃除婦のための手引き書 ルシア・ベルリン作品集』<br><span class="dim">クラフト・エヴィング商會 · 講談社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#19120D;flex:0.429"></i><i style="background:#F7F7F7;flex:0.139"></i><i style="background:#DBDADA;flex:0.132"></i><i style="background:#8D8882;flex:0.115"></i><i style="background:#ABA7A3;flex:0.093"></i><i style="background:#69665C;flex:0.050"></i></div><p class="hexes">#19120D 43% #F7F7F7 14% #DBDADA 13% #8D8882 12% #ABA7A3 9%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b19</td><td>『国東半島』<br><span class="dim">仲條正義 · 青土社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#709787;flex:0.425"></i><i style="background:#688E7D;flex:0.285"></i><i style="background:#7DA69A;flex:0.082"></i><i style="background:#4C6A5E;flex:0.070"></i><i style="background:#2A4539;flex:0.066"></i><i style="background:#07180E;flex:0.045"></i></div><p class="hexes">#709787 42% #688E7D 28% #7DA69A 8% #4C6A5E 7% #2A4539 7%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b20</td><td>『川っぺりムコリッタ』<br><span class="dim">有山達也 · 講談社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FDFDFD;flex:0.314"></i><i style="background:#F5F4F6;flex:0.256"></i><i style="background:#444252;flex:0.164"></i><i style="background:#6E7674;flex:0.097"></i><i style="background:#969B99;flex:0.076"></i><i style="background:#BDC0C3;flex:0.055"></i></div><p class="hexes">#FDFDFD 31% #F5F4F6 26% #444252 16% #6E7674 10% #969B99 8%</p></td><td>받쳐짐 0.92</td></tr><tr><td>b21</td><td>『バンド論』<br><span class="dim">祖父江慎 · 青幻舎</span></td><td><div class="bar" aria-hidden="true"><i style="background:#ECEBED;flex:0.336"></i><i style="background:#E4E3E7;flex:0.299"></i><i style="background:#F4F2F2;flex:0.132"></i><i style="background:#B8C0CC;flex:0.084"></i><i style="background:#D0D0D6;flex:0.075"></i><i style="background:#676057;flex:0.037"></i></div><p class="hexes">#ECEBED 34% #E4E3E7 30% #F4F2F2 13% #B8C0CC 8% #D0D0D6 8%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b22</td><td>『東京は、秋』<br><span class="dim">菊地信義 · 月曜社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#6F6F6F;flex:0.312"></i><i style="background:#898888;flex:0.195"></i><i style="background:#A8A8A8;flex:0.178"></i><i style="background:#575757;flex:0.106"></i><i style="background:#F0F0F0;flex:0.090"></i><i style="background:#0C0C0C;flex:0.061"></i></div><p class="hexes">#6F6F6F 31% #898888 20% #A8A8A8 18% #575757 11% #F0F0F0 9%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b23</td><td>『捨身なひと』<br><span class="dim">平野甲賀 · 晶文社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FFFFFF;flex:0.709"></i><i style="background:#7C7367;flex:0.091"></i><i style="background:#A19A92;flex:0.070"></i><i style="background:#C8C6C3;flex:0.042"></i><i style="background:#E5E4E2;flex:0.041"></i><i style="background:#F9F8F7;flex:0.031"></i></div><p class="hexes">#FFFFFF 71% #7C7367 9% #A19A92 7% #C8C6C3 4% #E5E4E2 4%</p></td><td>받쳐짐 1.00</td></tr><tr><td>b24</td><td>『レンブラントの帽子』<br><span class="dim">和田誠 · 夏葉社</span></td><td><div class="bar" aria-hidden="true"><i style="background:#FEFEFE;flex:0.556"></i><i style="background:#3B3737;flex:0.138"></i><i style="background:#654B40;flex:0.109"></i><i style="background:#F2F1F2;flex:0.081"></i><i style="background:#7F6952;flex:0.062"></i><i style="background:#A79F9B;flex:0.031"></i></div><p class="hexes">#FEFEFE 56% #3B3737 14% #654B40 11% #F2F1F2 8% #7F6952 6%</p></td><td>받쳐짐 1.00</td></tr></tbody></table></div></section>
+</main>
+</body>
+</html>

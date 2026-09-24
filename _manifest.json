@@ -254,5 +254,13 @@
     "last_kind": "redeploy",
     "last_sha256": "885d6e8f8cfb22405af759ea5e8a3c9b88f08541debcb196a691ed590512e49f",
     "timestamp": "2026-09-24T11:59:19.284793Z"
+  },
+  "doc-color-japan-books": {
+    "slug": "doc-color-japan-books",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/doc-color-japan-books/",
+    "last_kind": "new",
+    "last_sha256": "d642fa5501df606680c43b0c731d7362183297877406fa51518c404de4224c17",
+    "timestamp": "2026-09-24T12:34:14.423871Z"
   }
 }
