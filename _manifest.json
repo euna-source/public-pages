@@ -283,8 +283,8 @@
     "slug": "c8-alert-conditions",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-alert-conditions/",
-    "last_kind": "new",
-    "last_sha256": "104692b4cb39f568e9be3764ae5e00cd231441e08e75f90be5d01aaf9b0f0d89",
-    "timestamp": "2026-09-25T14:37:15.728899Z"
+    "last_kind": "redeploy",
+    "last_sha256": "7538d183def73d252ba9c1a013280f72452b94839c05c3661f56665667d5ba6d",
+    "timestamp": "2026-09-25T15:08:38.071306Z"
   }
 }
