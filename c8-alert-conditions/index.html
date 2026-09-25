@@ -857,8 +857,8 @@ details.rule i{font-size:14px}
     function sync(src){ var x=src.scrollLeft; [sh,tw,hb].forEach(function(e){ if(e!==src&&Math.abs(e.scrollLeft-x)>.5) e.scrollLeft=x; }); }
     [sh,tw,hb].forEach(function(e){ e.addEventListener('scroll',function(){ sync(e); },{passive:true}); });
     function setH(){ document.documentElement.style.setProperty('--tb-h',tbar.getBoundingClientRect().height+'px'); ht.style.width=table.style.width;
-      hbi.style.width=table.getBoundingClientRect().width+'px'; hb.hidden=table.getBoundingClientRect().width<=tw.clientWidth+1; }
-    window.addEventListener('resize',setH);
+      hbi.style.width=table.getBoundingClientRect().width+'px'; hb.hidden=table.getBoundingClientRect().width<=tw.clientWidth+1; hb.scrollLeft=tw.scrollLeft; }   // 다시 보일 때 본문 위치로
+    window.addEventListener('resize',setH); matchMedia('(pointer:coarse)').addEventListener('change',setH);
     setH(); new ResizeObserver(setH).observe(tbar); new ResizeObserver(setH).observe(table);
     // 핵심 열만: 열 묶음 머리줄의 칸 수를 보이는 열에 맞춘다
     var hg=[].slice.call(ht.querySelectorAll('tr.hg th')), spans=hg.map(function(th){return +th.colSpan});
