@@ -432,12 +432,21 @@ footer{font-size:12px;line-height:1.6}
 .date-chip{background:var(--mod-soft)!important;border-color:var(--mod-soft)!important;color:var(--mod-ink)!important;font-weight:700}
 .legend{margin:10px 0 12px;font-size:12px}
 /* 열 머리 고정: 필터 줄 바로 아래 */
-.sthead{position:sticky;top:var(--tb-h,56px);z-index:25;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;border:1px solid var(--line-medium);border-bottom:0;border-radius:var(--r-3) var(--r-3) 0 0;background:#fff}
+.sthead{position:sticky;top:var(--tb-h,56px);z-index:25;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border:1px solid var(--line-medium);border-bottom:0;border-radius:0;background:#fff}
+.sthead::-webkit-scrollbar,.twrap::-webkit-scrollbar{display:none}
+.master.head thead tr.hg th.g-id{position:sticky;left:0;z-index:7;border-right:1px solid var(--line-medium)}
+.hbar{position:sticky;bottom:0;z-index:20;overflow-x:auto;overflow-y:hidden;height:14px;background:#fff;border:1px solid var(--line-medium);border-top:1px solid var(--line-soft);border-radius:0 0 var(--r-3) var(--r-3);scrollbar-width:thin;scrollbar-color:#C9C9CF #fff}
+.hbar>div{height:1px}
+.hbar::-webkit-scrollbar{height:12px}.hbar::-webkit-scrollbar-track{background:#fff}
+.hbar::-webkit-scrollbar-thumb{background:#C9C9CF;border-radius:6px;border:3px solid #fff}.hbar::-webkit-scrollbar-thumb:hover{background:#A1A1AA}
+@media (pointer:coarse){.hbar{display:none}.twrap{border-radius:0 0 var(--r-3) var(--r-3)!important}}
+.toolbar{background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
+.gpanel{left:auto!important;right:0;width:min(520px,94vw);box-shadow:-8px 0 30px rgba(18,18,18,.16)!important}
 .master.head{border-collapse:separate;border-spacing:0;table-layout:fixed}
 .master.head thead th{top:auto!important;position:relative}
 .master.head thead th.c-num,.master.head thead th.c-name{position:sticky}
 .master.head thead tr.hg th{background:#F7F7F8}
-.twrap{max-height:none!important;overflow-x:auto;overflow-y:visible;border-top:0;border-radius:0 0 var(--r-3) var(--r-3)}
+.twrap{max-height:none!important;overflow-x:auto;overflow-y:visible;border-top:0;border-radius:0;scrollbar-width:none}
 /* 머리 버튼 줄 */
 .hbtns{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
 .hbtn{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:8px;border:1px solid var(--line-medium);background:#fff;color:var(--fg-primary);font:inherit;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}
@@ -564,9 +573,9 @@ details.rule i{font-size:14px}
 </div>
 <div class="twrap">
 <table class="master">
-<colgroup><col class="c-num" style="width:54px"/><col class="c-name" style="width:224px"/><col class="c-upd" style="width:104px"/><col class="c-push" style="width:80px"/><col class="c-list" style="width:92px"/><col class="c-cat" style="width:100px"/><col class="c-badge" style="width:150px"/><col class="c-msg" style="width:300px"/><col class="c-link" style="width:210px"/><col class="c-img x" style="width:108px"/><col class="c-read x" style="width:150px"/><col class="c-cond" style="width:250px"/><col class="c-recv x" style="width:170px"/><col class="c-pushc x" style="width:140px"/><col class="c-status" style="width:230px"/></colgroup>
+<colgroup><col class="c-num" style="width:54px"/><col class="c-name" style="width:224px"/><col class="c-upd" style="width:104px"/><col class="c-push" style="width:100px"/><col class="c-list" style="width:112px"/><col class="c-cat" style="width:100px"/><col class="c-badge" style="width:150px"/><col class="c-msg" style="width:300px"/><col class="c-link" style="width:210px"/><col class="c-img x" style="width:108px"/><col class="c-read x" style="width:150px"/><col class="c-cond" style="width:250px"/><col class="c-recv x" style="width:170px"/><col class="c-pushc x" style="width:140px"/><col class="c-status" style="width:230px"/></colgroup>
 <thead>
-<tr class="hg"><th class="g-id" colspan="3">식별</th><th class="g-push" colspan="1">앱 푸시</th><th class="g-inapp" colspan="2">앱 내 알림</th><th class="g-badge" colspan="1">추가 안내 · 배지</th><th class="g-message" colspan="4">채널 문구·이동</th><th class="g-cond" colspan="3">조건</th><th class="g-verdict" colspan="1">판정</th></tr>
+<tr class="hg"><th class="g-id" colspan="2">식별</th><th class="g-upd" colspan="1"></th><th class="g-push" colspan="1">앱 푸시</th><th class="g-inapp" colspan="2">앱 내 알림</th><th class="g-badge" colspan="1">추가 안내 · 배지</th><th class="g-message" colspan="4">채널 문구·이동</th><th class="g-cond" colspan="3">조건</th><th class="g-verdict" colspan="1">판정</th></tr>
 <tr class="hc"><th class="c-num">#</th><th class="c-name">알림 · 타입</th><th class="c-upd">갱신<button aria-label="갱신 설명" class="qh" data-g="갱신" title="열 설명 보기" type="button">?</button></th><th class="c-push"><span class="ic sm push on"><svg aria-hidden="true" viewbox="0 0 24 24"><rect fill="none" height="19" rx="2.6" stroke="currentColor" stroke-width="1.9" width="12" x="6" y="2.5"></rect><rect height="3.4" rx="1" width="7.6" x="8.2" y="5.2"></rect><circle cx="12" cy="18" r="1.1"></circle></svg></span>앱푸시<button aria-label="앱푸시 설명" class="qh" data-g="앱푸시 · 알림목록" title="열 설명 보기" type="button">?</button></th><th class="c-list"><span class="ic sm list on"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v3.6L4.4 15.4c-.5.7 0 1.6.8 1.6h13.6c.8 0 1.3-.9.8-1.6L18 12.6V9a6 6 0 0 0-6-6z"></path><path d="M9.5 19a2.5 2.5 0 0 0 5 0z"></path></svg></span>알림목록<button aria-label="알림목록 설명" class="qh" data-g="앱푸시 · 알림목록" title="열 설명 보기" type="button">?</button></th><th class="c-cat">알림목록 분류<button aria-label="알림목록 분류 설명" class="qh" data-g="알림목록 분류" title="열 설명 보기" type="button">?</button></th><th class="c-badge">추가 배지<button aria-label="추가 배지 설명" class="qh" data-g="추가 배지" title="열 설명 보기" type="button">?</button></th><th class="c-msg">문구<button aria-label="문구 설명" class="qh" data-g="문구" title="열 설명 보기" type="button">?</button></th><th class="c-link">이동<button aria-label="이동 설명" class="qh" data-g="이동" title="열 설명 보기" type="button">?</button></th><th class="c-img x">대표 이미지<button aria-label="대표 이미지 설명" class="qh" data-g="대표 이미지" title="열 설명 보기" type="button">?</button></th><th class="c-read x">읽음 기준<button aria-label="읽음 기준 설명" class="qh" data-g="읽음 기준" title="열 설명 보기" type="button">?</button></th><th class="c-cond">발생 조건<button aria-label="발생 조건 설명" class="qh" data-g="발생 조건 · 수신자 · 푸시 조건" title="열 설명 보기" type="button">?</button></th><th class="c-recv x">수신자<button aria-label="수신자 설명" class="qh" data-g="발생 조건 · 수신자 · 푸시 조건" title="열 설명 보기" type="button">?</button></th><th class="c-pushc x">푸시 조건<button aria-label="푸시 조건 설명" class="qh" data-g="발생 조건 · 수신자 · 푸시 조건" title="열 설명 보기" type="button">?</button></th><th class="c-status">상태<button aria-label="상태 설명" class="qh" data-g="상태" title="열 설명 보기" type="button">?</button></th></tr>
 </thead>
 <tbody>
@@ -843,10 +852,13 @@ details.rule i{font-size:14px}
     var ht=document.createElement('table'); ht.className='master head';
     ht.appendChild(table.querySelector('colgroup').cloneNode(true)); ht.appendChild(table.tHead);   // 머리를 옮긴다(버튼 동작 그대로)
     sh.appendChild(ht); tw.parentNode.insertBefore(sh,tw);
-    var lock=false;
-    tw.addEventListener('scroll',function(){ if(lock){lock=false;return;} lock=true; sh.scrollLeft=tw.scrollLeft; },{passive:true});
-    sh.addEventListener('scroll',function(){ if(lock){lock=false;return;} lock=true; tw.scrollLeft=sh.scrollLeft; },{passive:true});
-    function setH(){ document.documentElement.style.setProperty('--tb-h',tbar.getBoundingClientRect().height+'px'); ht.style.width=table.style.width; }
+    // 가로 스크롤바는 화면 아래에 붙는 하나만 둔다(머리·본문의 자체 스크롤바는 숨김)
+    var hb=document.createElement('div'); hb.className='hbar'; hb.setAttribute('aria-hidden','true'); var hbi=document.createElement('div'); hb.appendChild(hbi); tw.parentNode.insertBefore(hb,tw.nextSibling);
+    function sync(src){ var x=src.scrollLeft; [sh,tw,hb].forEach(function(e){ if(e!==src&&Math.abs(e.scrollLeft-x)>.5) e.scrollLeft=x; }); }
+    [sh,tw,hb].forEach(function(e){ e.addEventListener('scroll',function(){ sync(e); },{passive:true}); });
+    function setH(){ document.documentElement.style.setProperty('--tb-h',tbar.getBoundingClientRect().height+'px'); ht.style.width=table.style.width;
+      hbi.style.width=table.getBoundingClientRect().width+'px'; hb.hidden=table.getBoundingClientRect().width<=tw.clientWidth+1; }
+    window.addEventListener('resize',setH);
     setH(); new ResizeObserver(setH).observe(tbar); new ResizeObserver(setH).observe(table);
     // 핵심 열만: 열 묶음 머리줄의 칸 수를 보이는 열에 맞춘다
     var hg=[].slice.call(ht.querySelectorAll('tr.hg th')), spans=hg.map(function(th){return +th.colSpan});
