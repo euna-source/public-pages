@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="ko">
+<html lang="ko" data-bw>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#FAFAF8">
+<meta name="theme-color" content="#FFFFFF">
 <meta name="robots" content="noindex,nofollow">
 <meta name="description" content="명예의 전당은 앱 안에서 좋은 반응을 얻은 작품과 크리에이터를 2주 회차마다 순위로 보여 주는 영역입니다. 디스커버리에서 들어가며, 어떤 활동을 하면 주목받는지 보여 줍니다.">
 <meta name="generator" content="doc-template · 흑백">
@@ -21,9 +21,9 @@
 <style>
 /* ─────────────────────────────────────────────
    doc-template v2 · 기획·리서치 문서
-   색은 테마가 넣는다(:root{--bg:#FAFAF8;--panel:#F0F0EC;--line:#D6D6D1;--text:#1A1A1A;--muted:#5C5C5C;--accent:#1A1A1A;--mark:#E4E4E0;--marktext:#1A1A1A;--link:#1A1A1A;--linkline:#1A1A1A;--obi:#1A1A1A;--obitext:#FAFAF8;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#ECEBE6;--mark:#45463F;--marktext:#FFFFFF;--link:#ECEBE6;--linkline:#ECEBE6;--obi:#ECEBE6;--obitext:#161716;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#ECEBE6;--mark:#45463F;--marktext:#FFFFFF;--link:#ECEBE6;--linkline:#ECEBE6;--obi:#ECEBE6;--obitext:#161716;color-scheme:dark}
+   색은 테마가 넣는다(:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
 ). 역할: bg panel line text muted accent mark marktext link linkline obi obitext
    근거 번호 [L##]는 UX 리서치 장부. 시그니처: 절마다 반복되는 타공 헤어라인(하라 켄야의 타공 금속 사인).
    ───────────────────────────────────────────── */
@@ -45,9 +45,9 @@
   --r-mark:2px; --r-btn:6px; --r-box:12px; --hair:1px; --rule:2px;
   --ease:cubic-bezier(.2,.7,.2,1);
 }
-:root{--bg:#FAFAF8;--panel:#F0F0EC;--line:#D6D6D1;--text:#1A1A1A;--muted:#5C5C5C;--accent:#1A1A1A;--mark:#E4E4E0;--marktext:#1A1A1A;--link:#1A1A1A;--linkline:#1A1A1A;--obi:#1A1A1A;--obitext:#FAFAF8;color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#ECEBE6;--mark:#45463F;--marktext:#FFFFFF;--link:#ECEBE6;--linkline:#ECEBE6;--obi:#ECEBE6;--obitext:#161716;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#ECEBE6;--mark:#45463F;--marktext:#FFFFFF;--link:#ECEBE6;--linkline:#ECEBE6;--obi:#ECEBE6;--obitext:#161716;color-scheme:dark}
+:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
 
 
 *,*::before,*::after{box-sizing:border-box}
@@ -232,6 +232,20 @@ mark a{color:inherit;text-decoration-color:currentColor}
 .toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:var(--r-btn);font-size:var(--fs-cap);max-width:calc(100% - 32px);width:max-content}
 .toast:empty{display:none}
 
+/* ── 흑백: 검정·흰색 두 색만. 반투명·회색 면 대신 선과 반전 ── */
+[data-bw] .bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+[data-bw] .tool{color:var(--text)}
+[data-bw] .tool:hover{background:var(--bg);outline:1px solid var(--text);outline-offset:-4px}
+[data-bw] .toc a{border-left-color:transparent}
+[data-bw] .toc a[aria-current="true"]{border-left-color:var(--text);font-weight:700}
+[data-bw] .toc a:not([aria-current="true"]){font-weight:400}
+[data-bw] .callout.note{border:1px solid var(--text)}
+[data-bw] .meta dt,[data-bw] .stats span,[data-bw] .issue,[data-bw] .table th{font-weight:600}
+[data-bw] .actions li.done .what{text-decoration-color:var(--text)}
+[data-bw] .sources li:target{background:var(--bg);box-shadow:none;outline:1px solid var(--text)}
+[data-bw] img{filter:grayscale(1)}
+[data-bw] .to-top{border-color:var(--text)}
+
 /* ── 태블릿 ── */
 @media screen and (max-width:1024px){
   :root{--gutter:28px}
@@ -313,7 +327,7 @@ mark a{color:inherit;text-decoration-color:currentColor}
 
 /* ── 인쇄·PDF: 테마의 라이트 토큰 + 흰 바탕 ── */
 @media print{
-  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FAFAF8;--panel:#F0F0EC;--line:#D6D6D1;--text:#1A1A1A;--muted:#5C5C5C;--accent:#1A1A1A;--mark:#E4E4E0;--marktext:#1A1A1A;--link:#1A1A1A;--linkline:#1A1A1A;--obi:#1A1A1A;--obitext:#FAFAF8;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
   .bar,.toc,.toc-mobile,.toast,.skip,.to-top{display:none!important}
   .page{max-width:none;padding:0}
   .layout{display:block;padding-top:24px}
