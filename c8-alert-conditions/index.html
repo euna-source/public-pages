@@ -435,6 +435,19 @@ footer{font-size:12px;line-height:1.6}
 .sthead{position:sticky;top:var(--tb-h,56px);z-index:25;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;border:1px solid var(--line-medium);border-bottom:0;border-radius:0;background:#fff}
 .sthead::-webkit-scrollbar,.twrap::-webkit-scrollbar{display:none}
 .master.head thead tr.hg th.g-id{position:sticky;left:0;z-index:7;border-right:1px solid var(--line-medium)}
+/* 선 체계: 겉테두리 1px(line-medium) · 안쪽 선 1px 한 색(--tline) · 머리와 본문 경계만 line-medium — 두 선이 맞닿는 곳은 한쪽을 뺀다 */
+:root{--tline:#EAEAED}
+.toolbar{border-bottom:0!important}
+.sthwrap{position:sticky;top:var(--tb-h,56px);z-index:25;background:var(--bg-canvas,#fff)}
+.sthead{position:relative!important;top:auto!important;border-radius:var(--r-3) var(--r-3) 0 0!important}
+.master th,.master td{border-left-color:var(--tline)!important}
+.master thead tr.hg th{border-bottom-color:var(--tline)!important}
+.master.head thead tr.hg th.g-upd{border-left:0!important}
+.master td.c-name,.master th.c-name,.master.head thead tr.hg th.g-id{border-right-color:var(--tline)!important}
+.master td{border-bottom-color:var(--tline)!important}
+.master tr.grp td{border-top:0!important;border-bottom-color:var(--tline)!important}
+.master tbody tr.lastv td{border-bottom:0!important}
+.hbar{border-top:1px solid var(--tline)!important}
 .hbar{position:sticky;bottom:0;z-index:20;overflow-x:auto;overflow-y:hidden;height:14px;background:#fff;border:1px solid var(--line-medium);border-top:1px solid var(--line-soft);border-radius:0 0 var(--r-3) var(--r-3);scrollbar-width:thin;scrollbar-color:#C9C9CF #fff}
 .hbar>div{height:1px}
 .hbar::-webkit-scrollbar{height:12px}.hbar::-webkit-scrollbar-track{background:#fff}
@@ -851,7 +864,13 @@ details.rule i{font-size:14px}
     var sh=document.createElement('div'); sh.className='sthead';
     var ht=document.createElement('table'); ht.className='master head';
     ht.appendChild(table.querySelector('colgroup').cloneNode(true)); ht.appendChild(table.tHead);   // 머리를 옮긴다(버튼 동작 그대로)
-    sh.appendChild(ht); tw.parentNode.insertBefore(sh,tw);
+    sh.appendChild(ht);
+    var sw=document.createElement('div'); sw.className='sthwrap'; sw.appendChild(sh); tw.parentNode.insertBefore(sw,tw);   // 흰 바탕 겉싸개: 둥근 모서리 틈으로 행이 비치지 않게
+    // 마지막으로 보이는 행은 밑줄을 빼서 아래 테두리와 두 줄이 되지 않게
+    function markLast(){ var last=null; table.querySelectorAll('tbody tr').forEach(function(r){ r.classList.remove('lastv'); if(r.offsetParent) last=r; }); if(last) last.classList.add('lastv'); }
+    var mo=new MutationObserver(function(){ mo.disconnect(); markLast(); watch(); });
+    function watch(){ mo.observe(table,{subtree:true,attributes:true,attributeFilter:['class','hidden','style']}); }
+    markLast(); watch();
     // 가로 스크롤바는 화면 아래에 붙는 하나만 둔다(머리·본문의 자체 스크롤바는 숨김)
     var hb=document.createElement('div'); hb.className='hbar'; hb.setAttribute('aria-hidden','true'); var hbi=document.createElement('div'); hb.appendChild(hbi); tw.parentNode.insertBefore(hb,tw.nextSibling);
     function sync(src){ var x=src.scrollLeft; [sh,tw,hb].forEach(function(e){ if(e!==src&&Math.abs(e.scrollLeft-x)>.5) e.scrollLeft=x; }); }
