@@ -117,7 +117,27 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .ar{flex:none;font-size:12px;font-weight:700;line-height:20px;padding:0 7px;border-radius:6px;white-space:nowrap}
 .ar.pre{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink-3)}
 .ar.eff{color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--frame)}
-</style>
+
+/* 출처 트레이: 용지 밖(뒷면) — 접어 두고 강조하지 않는다 */
+.srct{margin:56px 0 0;padding:0 var(--srct-gutter,16px) calc(24px + env(safe-area-inset-bottom,0px));background:#F2F2F4;box-shadow:inset 0 12px 14px -14px rgba(18,18,18,.16);color:#5F5F68;font-size:12.5px;line-height:1.6;clear:both}
+.srct>details{max-width:var(--srct-w,1080px);margin:0 auto;padding:16px 0 0}
+.srct summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;color:#5F5F68;padding:2px 0}
+.srct summary::-webkit-details-marker{display:none}
+.srct summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease-out}
+.srct details[open]>summary::before{transform:rotate(45deg)}
+.srct summary:hover{color:#3F3F46}
+.srct .srct-n{font-weight:500;font-variant-numeric:tabular-nums}
+.srct-body{display:grid;gap:6px;padding:10px 0 4px}
+.srct-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:2px 16px}
+.srct-row>*,.srct-note,.srct-free{min-width:0;overflow-wrap:anywhere;word-break:normal}
+.srct-row>b{font-weight:600;color:#52525B}
+.srct-note{margin:6px 0 0;color:#6B6B73}
+.srct a,.srct a.jira{font-weight:500!important;color:#3F3F46!important;text-decoration:underline;text-decoration-color:#C9C9CF;text-underline-offset:3px}
+.srct code{font-size:12px;background:none;border:0;padding:0;color:inherit;word-break:normal;overflow-wrap:anywhere}
+@media (max-width:640px){.srct{--srct-gutter:16px}.srct-row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.srct summary::before{transition:none}}
+@media print{.srct{background:none;box-shadow:none}}
+@media(min-width:761px){.srct{--srct-w:1472px;--srct-gutter:44px}}</style>
 <meta name="description" content="2026-09-22 정기미팅 회의록 — 프로젝트 상태값, 명예의 전당 선정·집계, 채팅 푸시·첨부, 자료실 다운로드 범위를 정리했습니다."><meta property="og:title" content="프로젝트·명예의 전당 운영과 채팅 개선 범위 정리"><meta property="og:type" content="article"></head>
 <body>
 <a class="skip" href="#notes">본문으로 이동</a>
@@ -157,8 +177,6 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 <ul>
 <li class="ver-tag" data-ui>버전 1.0</li>
 <li>녹음일: 2026-09-22 13:30</li>
-<li>원본 녹음: Tiro — [9/22 정기미팅] 프로젝트 상태값·명예전당·다운로드 정책 점검</li>
-<li>녹음 길이: 78분 29초</li>
 </ul>
 <nav class="hbtns" aria-label="문서 도구" data-ui><button class="hbtn primary" id="histOpen" type="button" aria-controls="histPanel" aria-expanded="false">버전 기록</button></nav>
 </header>
@@ -800,7 +818,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 <li><strong>초반 전사</strong>: <span class="ts">[00:00]</span>~<span class="ts">[02:24]</span> 문장이 깨져 있다(&quot;레깅&quot;, &quot;베이드&quot;). 회의를 어떻게 시작했는지 내용은 복원하지 않았다.</li>
 </ul></section></main>
 </div>
-<aside class="hpanel" id="histPanel" role="dialog" aria-modal="false" aria-labelledby="histTitle" tabindex="-1" hidden data-ui>
+<footer class="srct" id="sources" aria-label="출처"><details><summary>출처 <span class="srct-n">· 2</span></summary><div class="srct-body"><div class="srct-row"><b>원본 녹음</b><span>Tiro — [9/22 정기미팅] 프로젝트 상태값·명예전당·다운로드 정책 점검</span></div><div class="srct-row"><b>녹음 길이</b><span>78분 29초</span></div></div></details></footer><aside class="hpanel" id="histPanel" role="dialog" aria-modal="false" aria-labelledby="histTitle" tabindex="-1" hidden data-ui>
 <div class="gp-head"><b id="histTitle">버전 기록</b><button class="gp-close" id="histClose" type="button" aria-label="닫기">✕</button></div>
 <div class="gp-body"><ol class="vlist"><li><div class="vhead"><span class="vno">버전 1.0</span><span class="vdate">2026-09-22</span></div><p>최초 작성</p><p class="vsub">디자인 템플릿 적용(2026-09-27) — 내용 변경 없음</p><p class="vsub">안건 지도를 묶음별 흐름으로 다시 배치(2026-09-27) — 관계 7개는 그대로</p></li></ol></div>
 </aside>
@@ -821,7 +839,12 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
   }
 })();
 </script>
-</body>
+<script>
+(function(){ // 출처 링크(#id)로 오면 트레이를 펼친다
+  function go(){ var t=document.querySelector('.srct'); if(!t) return; var id=decodeURIComponent(location.hash.slice(1)); if(id&&(t.id===id)){ var d=t.querySelector('details'); if(d) d.open=true; } }
+  window.addEventListener('hashchange',go); go();
+})();
+</script></body>
 </html>
 
 <!-- voice-meeting-minutes-html cbd426a276f4cd3a603a7e3ba35ec816814d1f428279cc9ffe4313299955cf45 -->
