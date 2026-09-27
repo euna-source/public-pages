@@ -294,5 +294,13 @@
     "last_kind": "redeploy",
     "last_sha256": "4d1a33c734137875e5e5647481e41854f6596c7c9d6d791993f8c4095fab4468",
     "timestamp": "2026-09-27T05:34:20.905938Z"
+  },
+  "hof-notice-mockup": {
+    "slug": "hof-notice-mockup",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/hof-notice-mockup/",
+    "last_kind": "new",
+    "last_sha256": "91188e7d72dd78eaa3141827d1da0df0fcdc68ab30cdbfa8d9990b795e9f84f6",
+    "timestamp": "2026-09-27T05:52:48.817568Z"
   }
 }
