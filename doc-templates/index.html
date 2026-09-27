@@ -957,7 +957,7 @@ function bindComp(){const fm=$('.comp',body);if(!fm)return;const ta=$('textarea'
  const msg=t=>{let m=$('.cmsg',fm);if(!m){m=document.createElement('p');m.className='cmsg';fm.appendChild(m)}m.innerHTML=t};
  fm.addEventListener('submit',async e=>{e.preventDefault();const text=ta.value.trim();if(!text&&!files.length){ta.focus();return}
   const send=$('.send',fm);send.disabled=true;msg('');
-  try{const h=await fetch(STUDIO+'/api/health',{cache:'no-store'});if(!h.ok)throw 0}catch(x){send.disabled=false;msg('문서를 만들려면 이 Mac에서 <code>doc-studio</code>를 실행해 주세요. 켜진 뒤 다시 누르면 이어집니다.');return}
+  try{const h=await fetch(STUDIO+'/api/health',{cache:'no-store'});if(!h.ok)throw 0}catch(x){send.disabled=false;msg('이 Mac의 문서 도구에 닿지 못했습니다. 터미널에서 <code>doc-studio</code>를 실행한 뒤 다시 눌러 주세요. 브라우저가 「로컬 네트워크 접근」을 물으면 허용합니다. 또는 <a href="http://127.0.0.1:8765/#'+fm.dataset.tpl+'" target="_blank" rel="noopener">이 Mac의 모음 페이지</a>에서 이어 하세요.');return}
   const enc=await Promise.all(files.map(x=>new Promise(r=>{const fr=new FileReader();fr.onload=()=>r({name:x.name,b64:String(fr.result).split(',')[1]});fr.readAsDataURL(x)})));
   try{const r=await fetch(STUDIO+'/api/sessions',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({template:fm.dataset.tpl,text,files:enc})});const j=await r.json();if(!r.ok)throw new Error(j.error);
    if(STUDIO)window.open(j.url,'_blank');else location.href=j.url}catch(x){msg('만들지 못했습니다: '+esc(x.message||x))}send.disabled=false});
