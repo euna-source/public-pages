@@ -268,6 +268,11 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 .share-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);max-width:calc(100vw - 32px);background:var(--t1);color:#fff;font-size:13px;font-weight:600;line-height:1.5;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity 160ms ease-out,transform 160ms ease-out;z-index:60;text-align:center}
 .share-toast.on{opacity:1;transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){.share-toast{transition:none}}
+
+/* 선 겹침 정리(260927): 상자 테두리와 맞닿는 마지막 행 밑줄, 묶음 행 윗선과 맞닿는 윗행 밑줄은 한 줄만 남긴다 */
+.sheet tbody tr:last-child>th,.sheet tbody tr:last-child>td,.sheet table:not(:has(tbody)) tr:last-child>*{border-bottom:0}
+.sheet tr:has(+ tr.grp)>th,.sheet tr:has(+ tr.grp)>td{border-bottom-color:transparent}
+.sheet thead + tbody > tr.grp:first-child > th,.sheet thead + tbody > tr.grp:first-child > td{border-top:0}
 </style>
 </head>
 <body>
