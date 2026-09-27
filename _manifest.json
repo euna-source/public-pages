@@ -299,8 +299,8 @@
     "slug": "hof-notice-mockup",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/hof-notice-mockup/",
-    "last_kind": "new",
-    "last_sha256": "91188e7d72dd78eaa3141827d1da0df0fcdc68ab30cdbfa8d9990b795e9f84f6",
-    "timestamp": "2026-09-27T05:52:48.817568Z"
+    "last_kind": "redeploy",
+    "last_sha256": "50b0777f3c90718a36b236e8ab98c89112dffa18a1a7e9b5d9e1115fa923b926",
+    "timestamp": "2026-09-27T05:54:56.537351Z"
   }
 }
