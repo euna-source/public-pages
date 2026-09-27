@@ -315,8 +315,8 @@
     "slug": "cco-111-team",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/cco-111-team/",
-    "last_kind": "new",
-    "last_sha256": "0c8f36a0dc2924097dec776d5faf981209913523036a41b082cd556e75cb314d",
-    "timestamp": "2026-09-27T09:56:39.312103Z"
+    "last_kind": "redeploy",
+    "last_sha256": "cccd2a29a591dc6f4b913be507c5430603e81489beb85d0e4e2872c93d48931f",
+    "timestamp": "2026-09-27T12:28:30.473798Z"
   }
 }
