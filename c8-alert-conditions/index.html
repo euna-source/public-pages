@@ -1131,7 +1131,9 @@ details.rule i{font-size:14px}
         if(c.scrollHeight>c.clientHeight+2){ c.style.setProperty('--lines',Math.max(1,Math.floor((avail-22)/lh)));   // 잘리면 「더보기」 자리를 비우고 줄 수를 다시 잡는다
           var mb=document.createElement('button'); mb.type='button'; mb.className='more-btn'; mb.dataset.col=(td.className||'').split(' ')[0]; mb.textContent='더보기'; mb.setAttribute('aria-label','상세에서 '+(LAB[mb.dataset.col]||'')+' 전체 보기'); c.after(mb); } }); }); }
   var fcT=0; function fitSoon(){ cancelAnimationFrame(fcT); fcT=requestAnimationFrame(fitClamp); }
-  new MutationObserver(function(ms){ if(ms.some(function(m){ return m.target.tagName==='TR'&&m.target.classList.contains('row'); })) fitSoon(); }).observe(table.tBodies[0]||table,{attributes:true,attributeFilter:['class'],subtree:true}); window.addEventListener('resize',fitSoon); document.getElementById('density').addEventListener('click',function(){ setTimeout(fitSoon,30); }); setTimeout(fitClamp,0);
+  var visKey='';   // 보이는 행 목록이 실제로 바뀔 때만 다시 계산한다(같은 값 다시 쓰기·크기 변화 되먹임을 끊는다)
+  function visNow(){ return [].map.call(table.querySelectorAll('tbody tr.row'),function(r){ return r.offsetParent?1:0; }).join(''); }
+  new MutationObserver(function(ms){ if(!ms.some(function(m){ return m.target.tagName==='TR'&&m.oldValue!==m.target.getAttribute('class'); })) return; var k=visNow(); if(k===visKey) return; visKey=k; fitSoon(); }).observe(table.tBodies[0]||table,{attributes:true,attributeFilter:['class'],attributeOldValue:true,subtree:true}); var lastW=innerWidth; window.addEventListener('resize',function(){ if(innerWidth!==lastW||document.body.classList.contains('pnl')!==lastPnl){ lastW=innerWidth; lastPnl=document.body.classList.contains('pnl'); fitSoon(); } }); var lastPnl=false; document.getElementById('density').addEventListener('click',function(){ setTimeout(fitSoon,30); }); setTimeout(function(){ visKey=visNow(); fitClamp(); },0);
   // 처음 한 번만: 아이콘 뜻 안내(열 설명을 열거나 닫으면 다시 뜨지 않는다)
   (function(){ var ob=document.getElementById('onboard'); if(!ob) return; var K='c8alert-onboard';
     try{ if(!localStorage.getItem(K)) ob.hidden=false; }catch(e){}
