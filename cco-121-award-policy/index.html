@@ -368,6 +368,27 @@ footer{margin-top:56px;color:var(--t4);font-size:12px;border-top:1px solid var(-
 body[style*="overflow"]{overflow:visible!important}
 @media (min-width:1100px){body.dr-open{padding-right:520px}}
 @media print{.drawer,.drawer-bg,.sheet-link,.lbtn,.mobile-nav-hint{display:none!important}}
+
+/* 출처 트레이: 용지 밖(뒷면) — 접어 두고 강조하지 않는다 */
+.srct{margin:56px 0 0;padding:0 var(--srct-gutter,16px) calc(24px + env(safe-area-inset-bottom,0px));background:#F2F2F4;box-shadow:inset 0 12px 14px -14px rgba(18,18,18,.16);color:#5F5F68;font-size:12.5px;line-height:1.6;clear:both}
+.srct>details{max-width:var(--srct-w,1080px);margin:0 auto;padding:16px 0 0}
+.srct summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;color:#5F5F68;padding:2px 0}
+.srct summary::-webkit-details-marker{display:none}
+.srct summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease-out}
+.srct details[open]>summary::before{transform:rotate(45deg)}
+.srct summary:hover{color:#3F3F46}
+.srct .srct-n{font-weight:500;font-variant-numeric:tabular-nums}
+.srct-body{display:grid;gap:6px;padding:10px 0 4px}
+.srct-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:2px 16px}
+.srct-row>*,.srct-note,.srct-free{min-width:0;overflow-wrap:anywhere;word-break:normal}
+.srct-row>b{font-weight:600;color:#52525B}
+.srct-note{margin:6px 0 0;color:#6B6B73}
+.srct a,.srct a.jira{font-weight:500!important;color:#3F3F46!important;text-decoration:underline;text-decoration-color:#C9C9CF;text-underline-offset:3px}
+.srct code{font-size:12px;background:none;border:0;padding:0;color:inherit;word-break:normal;overflow-wrap:anywhere}
+@media (max-width:640px){.srct{--srct-gutter:16px}.srct-row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.srct summary::before{transition:none}}
+@media print{.srct{background:none;box-shadow:none}}
+@media(min-width:641px){.srct{--srct-w:1032px;--srct-gutter:24px}}.srct{margin-top:0}
 </style>
 </head>
 <body>
@@ -659,7 +680,7 @@ body[style*="overflow"]{overflow:visible!important}
     </div>
   </section>
 
-  <footer>함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/cco-121-award-rules/">명예의 전당 · 선정 기준</a><br>한 장 기획 요건 v1.0, 부스팅 아이디어 v1, 위험 신호 v1을 한 흐름으로 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.3에 있습니다.</footer>
+  
 </div>
 
 <button type="button" class="back-hist" id="back-hist" hidden>← 업데이트 히스토리로</button>
@@ -983,7 +1004,12 @@ body[style*="overflow"]{overflow:visible!important}
   });
 })();
 </script>
-<script>
+<footer class="srct" id="sources" aria-label="출처"><details><summary>출처</summary><div class="srct-body"><div class="srct-free">함께 보기 · <a class="jira" href="https://euna-source.github.io/public-pages/cco-121-award-rules/">명예의 전당 · 선정 기준</a><br>한 장 기획 요건 v1.0, 부스팅 아이디어 v1, 위험 신호 v1을 한 흐름으로 그린 것입니다. 상세 규칙은 상세 개발 요건 v1.3에 있습니다.</div></div></details></footer><script>
+(function(){ // 출처 링크(#id)로 오면 트레이를 펼친다
+  function go(){ var t=document.querySelector('.srct'); if(!t) return; var id=decodeURIComponent(location.hash.slice(1)); if(id&&(t.id===id)){ var d=t.querySelector('details'); if(d) d.open=true; } }
+  window.addEventListener('hashchange',go); go();
+})();
+</script><script>
 (function(){ // 참조 레이어는 본문을 가리지 않는다: 열려 있으면 넓은 화면에서 본문이 비켜선다
   var ds=[].slice.call(document.querySelectorAll('.drawer')); ds.forEach(function(d){ d.setAttribute('aria-modal','false'); });
   function sync(){ document.body.classList.toggle('dr-open', ds.some(function(d){ return !d.hidden&&d.classList.contains('on'); })); }
