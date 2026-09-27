@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>[신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시</title>
+<meta name="description" content="CCO-111 개발요건정의서 — [신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시. 정의·배경과 의도·목표·핵심 흐름·주요 기능·결정 사항.">
+<meta property="og:title" content="[신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시"><meta property="og:type" content="article">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--bg:#fff;--sunken:#F7F7F8;--fg:#121212;--fg2:#3F3F46;--fg3:#6B6B73;--frame:#DEDEE2;--line:#EAEAED;--brand:#07ED21;--brand-ink:#067D14;--brand-soft:#DCFCE0;--r:14px;color-scheme:light}
+*{box-sizing:border-box}
+html{scroll-padding-top:24px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 "Pretendard Variable",Pretendard,-apple-system,system-ui,sans-serif;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--brand-ink);outline-offset:2px;border-radius:4px}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--frame);text-underline-offset:3px}a:hover{text-decoration-color:var(--fg)}
+.shell{display:grid;grid-template-columns:200px minmax(0,760px);gap:56px;max-width:1080px;margin:0 auto;padding:48px 32px 96px}
+.toc{position:sticky;top:32px;align-self:start;font-size:13px}
+.toc b{display:flex;align-items:center;gap:8px;margin:0 0 14px;font-size:12px;letter-spacing:.02em;color:var(--fg)}
+.toc b::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.toc a{display:flex;gap:10px;padding:6px 0;text-decoration:none;color:var(--fg2);line-height:1.45}
+.toc a .n{flex:none;width:20px;color:var(--fg3);font-variant-numeric:tabular-nums}
+.toc a.on{color:var(--fg);font-weight:700}.toc a.on .n{color:var(--brand-ink)}
+.eyebrow{margin:0 0 10px;font-size:13px;font-weight:600;color:var(--fg3)}
+h1{margin:0 0 14px;font-size:28px;line-height:1.35;letter-spacing:-.02em;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:4px 14px;margin:0;padding:0;list-style:none;font-size:13px;color:var(--fg3);font-variant-numeric:tabular-nums}
+.meta b{color:var(--fg);font-weight:700}
+.meta .st{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;background:var(--brand-soft);color:var(--brand-ink);font-weight:700;font-size:12px}
+.hbtns{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+.hbtn{display:inline-flex;align-items:center;height:34px;padding:0 14px;border-radius:8px;border:1px solid var(--frame);background:#fff;color:var(--fg);font:inherit;font-size:13px;font-weight:600;text-decoration:none;cursor:pointer}
+.hbtn.primary{background:var(--fg);border-color:var(--fg);color:#fff}
+.head{padding-bottom:28px;border-bottom:2px solid var(--fg)}
+.sec{padding:32px 0;border-top:1px solid var(--line)}
+.head+.sec{border-top:0}
+.sh{display:grid;grid-template-columns:36px minmax(0,1fr);column-gap:8px;align-items:baseline;margin:0 0 14px}
+.sn{font-size:13px;font-weight:700;color:var(--brand-ink);font-variant-numeric:tabular-nums}
+h2{margin:0;font-size:21px;line-height:1.35;letter-spacing:-.01em}
+.sq{grid-column:2;margin:4px 0 0;font-size:14px;color:var(--fg3)}
+.sb{padding-left:44px}
+.sb>p,.sb li{color:var(--fg2)}
+.sb p{margin:0 0 10px}
+.sb b{color:var(--fg)}
+h4{margin:18px 0 8px;font-size:15px;line-height:1.5}
+.sb ul,.sb ol{margin:0 0 12px;padding-left:20px}
+.sb li{margin:0 0 6px}
+.tbl{overflow-x:auto;margin:14px 0 16px;border:1px solid var(--frame);border-radius:var(--r)}
+.tbl table{width:100%;border-collapse:collapse;font-size:14px;min-width:560px}
+.tbl th,.tbl td{text-align:left;vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line);border-left:1px solid var(--line)}
+.tbl tr>*:first-child{border-left:0}
+.tbl tr:last-child>*,.tbl .endrow{border-bottom:0}
+.tbl tr:first-child>th{background:var(--sunken);font-size:13px;color:var(--fg2);white-space:nowrap}
+.tbl td>p,.tbl th>p{margin:0 0 6px}.tbl td>p:last-child,.tbl th>p:last-child{margin:0}
+.tbl td[rowspan]{background:#FBFBFC;font-weight:700;color:var(--fg)}
+.fig{margin:4px 0 8px}.fig img{display:block;max-width:100%;width:auto;max-height:320px;border:1px solid var(--line);border-radius:10px}
+.tbl .fig{display:inline-block;vertical-align:top;margin:0 6px 6px 0}.tbl .fig img{max-height:200px}
+.sb li.imgonly{list-style:none;margin-left:-20px}
+.att{display:inline-flex;flex-direction:column;align-items:flex-start;gap:2px;font-size:13px;font-weight:600}.att span{color:var(--fg3);font-weight:500;white-space:nowrap}
+.tbl td:has(.att){min-width:150px}
+.tasks{list-style:none;padding:0!important}
+.tasks li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;align-items:start}
+.tick{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--frame);margin-top:4px}
+.tasks li.done .tick{background:var(--brand-ink);border-color:var(--brand-ink);position:relative}
+.tasks li.done .tick::after{content:"";position:absolute;left:5px;top:1px;width:5px;height:10px;border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
+.hpanel{position:fixed;top:0;right:0;height:100%;width:min(480px,100vw);background:#fff;box-shadow:-1px 0 0 var(--frame),-12px 0 32px rgba(18,18,18,.10);z-index:50;display:flex;flex-direction:column}
+.hpanel[hidden]{display:none}
+.gp-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line)}
+.gp-close{width:34px;height:34px;border-radius:50%;border:1px solid var(--frame);background:#fff;font:inherit;cursor:pointer}
+.gp-body{padding:18px 22px;overflow-y:auto;font-size:14px;color:var(--fg2)}
+.vrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px}.vrow b{color:var(--fg)}
+@media (min-width:1100px){body.pnl{padding-right:480px}}
+@media (max-width:860px){.shell{grid-template-columns:minmax(0,1fr);gap:0;padding:28px 16px 64px}.toc{position:static;margin-bottom:18px}.toc b{display:none}.toc a{display:inline-flex;padding:4px 10px 4px 0}h1{font-size:23px}.sb{padding-left:0}.sh{grid-template-columns:28px minmax(0,1fr)}}
+@media print{.toc,.hbtns,.hpanel{display:none!important}.shell{display:block}}
+</style></head>
+<body>
+<div class="shell">
+<nav class="toc" aria-label="목차"><b>개발요건정의서</b><a href="#s1"><span class="n">01</span>정의</a><a href="#s2"><span class="n">02</span>배경과 의도</a><a href="#s3"><span class="n">03</span>목표 · MVP</a><a href="#s4"><span class="n">04</span>주요 사용자와 핵심 흐름</a><a href="#s5"><span class="n">05</span>주요 기능</a><a href="#s6"><span class="n">06</span>추가 기획 의사결정 사항</a></nav>
+<main>
+<header class="head">
+<p class="eyebrow">크리에이터클럽 · 개발요건정의서 · 에픽</p>
+<h1>[신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시</h1>
+<ul class="meta"><li><b>버전 1.0</b></li><li>상위 <a href="https://cre8orclub.atlassian.net/browse/CCO-111">CCO-111</a></li><li><span class="st">QA 완료</span></li><li>최종 업데이트 2026-09-22</li></ul>
+<nav class="hbtns" aria-label="문서 도구"><button type="button" class="hbtn primary" id="histOpen" aria-controls="histPanel">버전 기록</button><a class="hbtn" href="https://cre8orclub.atlassian.net/browse/CCO-111" target="_blank" rel="noopener">Jira에서 보기</a></nav>
+</header>
+<section class="sec" id="s1"><header class="sh"><span class="sn">01</span><h2>정의</h2><p class="sq">어떤 집단을 팀이라고 하는가</p></header><div class="sb"><p><b>2명 이상의 크리에이터가 함께 작업물을 만들고, 팀으로서 그 작업물을 시장에 보여주는 집단</b></p></div></section><section class="sec" id="s2"><header class="sh"><span class="sn">02</span><h2>배경과 의도</h2><p class="sq">왜 만드는가</p></header><div class="sb"><p>크리에이터들이 C8 안에서 노크로 말을 걸고, 그룹 채팅으로 함께 작업을 하게됩니다. <br>그런데 함께 만든 작업물을 올릴 곳은 <b>개인 프로필뿐</b>입니다.</p><p><b>함께 만든 작업물이 팀의 이름으로 남을 자리가 필요합니다. </b></p><p>[참고] — Behance는 구성원과 작업을 팀 단위로 묶어 보여줍니다.</p><div class="tbl"><table><tr><th><p><b>비핸스 참고 영상 </b></p></th><th><p><b>팀 포트폴리오 - 하단 </b></p></th><th><p><b>팀 프로필 </b></p></th><th><p><b>팀원 개인 프로필 </b></p></th></tr><tr><td class="endrow"><a class="att" href="https://cre8orclub.atlassian.net/browse/CCO-111" target="_blank" rel="noopener">▶ Behance 팀_refer.MP4 <span>(Jira 첨부에서 보기)</span></a></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224618.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224618.png" alt="image-20260826-224618.png" loading="lazy"></a></figure></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224632.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224632.png" alt="image-20260826-224632.png" loading="lazy"></a></figure><figure class="fig"><a href="assets/image-20260826-224643.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224643.png" alt="image-20260826-224643.png" loading="lazy"></a></figure><figure class="fig"><a href="assets/image-20260826-224650.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224650.png" alt="image-20260826-224650.png" loading="lazy"></a></figure></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224704.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224704.png" alt="image-20260826-224704.png" loading="lazy"></a></figure></td></tr></table></div></div></section><section class="sec" id="s3"><header class="sh"><span class="sn">03</span><h2>목표 · MVP</h2><p class="sq">이번에 어디까지 하는가</p></header><div class="sb"><h4>오픈 스펙 — 팀 생성 · 팀 그룹채팅 · 팀 프로필 · 팀 포트폴리오</h4><p>이번 버전에서 크리에이터는 앱 안에서 팀을 만들고, 팀원을 모으고, 자동으로 생긴 팀 채팅에서 대화를 나누고, 함께 만든 작업물을 팀의 이름으로 보여줍니다.</p><ul><li><p><b>팀 생성</b> — 팀 이름(영문 소문자 기준 중복체크) · 팀 프로필 사진 · 팀 한줄 소개를 입력 시 팀이 생성됩니다.</p></li><li><p><b>팀 구성원 초대</b> — 팀원 이름을 검색해 초대합니다.</p></li><li><p><b>팀 그룹채팅</b> — 팀을 새로 만들면 팀 전용 그룹채팅방이 함께 열립니다.</p></li><li><p><b>팀 포트폴리오</b> — 팀원이 한 번 등록하면 팀 프로필과 참여한 팀원의 개인 프로필에 함께 게시됩니다.</p></li><li><p><b>팀 프로필</b> — 팀을 새로 만들면 팀 프로필이 생성됩니다. 프로필은 팀 소개 · 팀 작업물 · 팀 구성원을 보여줍니다.</p></li></ul><ul><li class="imgonly"><figure class="fig"><a href="assets/image-20260826-223717.png" target="_blank" rel="noopener"><img src="assets/image-20260826-223717.png" alt="image-20260826-223717.png" loading="lazy"></a></figure></li></ul></div></section><section class="sec" id="s4"><header class="sh"><span class="sn">04</span><h2>주요 사용자와 핵심 흐름</h2><p class="sq">누가 어떻게 쓰는가</p></header><div class="sb"><h4><b>팀 생성(그룹채팅방 자동 생성) → 팀원 초대 → 합류 → 팀 포트폴리오 등록</b></h4><p>팀 관리자가 팀을 만들면 전용 그룹채팅방이 함께 열리고, 이름 검색으로 초대받은 크리에이터가 팀원으로 합류해 포트폴리오를 등록합니다.<br>이미 프로젝트 채팅방에서 협업 중인 구성원은, 멤버가 정해진 시점에 채팅방에서 팀 프로필을 만들어 같은 흐름을 따릅니다. 이때 채팅방은 쓰던 방을 그대로 씁니다.</p></div></section><section class="sec" id="s5"><header class="sh"><span class="sn">05</span><h2>주요 기능</h2><p class="sq">무엇을 개발하는가</p></header><div class="sb"><div class="tbl"><table><tr><th><p>역할</p></th><th><p>기능 · 흐름 순서</p></th><th><p>주요 요구사항</p></th></tr><tr><td rowspan="3"><p><b>팀 관리자</b></p></td><td><p><b>① 팀 생성</b></p></td><td><ul><li><p>팀 이름 · 팀 프로필 사진 · 팀 한줄 소개 입력 → 팀 생성</p></li><li><p>팀 이름은 한글 · 영문 · 이모지 허용, 중복 불가(영문 소문자 기준 중복 체크) </p></li><li><p>생성과 동시에 팀 전용 그룹채팅방 개설</p></li></ul></td></tr><tr><td><p><b>② 팀정보 관리</b></p></td><td><ul><li><p>팀 관리자(팀 생성자)만 팀 이름 · 팀 프로필 사진 · 팀 소개 수정 가능</p></li></ul></td></tr><tr><td><p><b>③ 팀원 초대</b></p></td><td><ul><li><p>앱 내 크리에이터 이름 검색 → 초대, 인원 제한 없음</p></li><li><p>거절한 크리에이터에게 다시 초대 가능, 초대 기한 없음</p></li><li><p>팀 관리자만 팀원 내보내기 가능</p></li></ul></td></tr><tr><td rowspan="2"><p><b>팀원</b></p></td><td><p><b>④ 초대 알림</b></p></td><td><ul><li><p>앱 푸시, 앱 알림 </p></li></ul></td></tr><tr><td><p><b>⑤ 팀 합류</b></p></td><td><ul><li><p>Chatty &gt; [팀] 팀 초대 확인 → 수락 · 거절</p></li></ul></td></tr><tr><td rowspan="4" class="endrow"><p><b>공통</b></p></td><td><p><b>⑥ 팀 그룹채팅</b></p></td><td><ul><li><p>초대받은 팀원은 팀 채팅방에 자동으로 입장</p></li><li><p>팀 관리자는 팀 해체하기 시 팀 해체되며 </p></li><li><p>팀 멤버는 팀에서 나가기 시 팀 채팅방에서도 자동으로 나가짐</p></li><li><p>그 외 메세지 읽음처리, 채팅방 알림 설정, 메세지 복사 등은 채팅 공통 기준 따름</p></li></ul></td></tr><tr><td><p><b>⑦ 팀 프로필 </b></p></td><td><ul><li><p>팀 멤버는 초대 수락 시점에 자동으로 팀 팔로잉 됨</p></li><li><p>팀 멤버 모두 팀 팔로잉을 해제 가능 </p></li><li><p>팀 관리자는 팀 정보 수정 및 팀 멤버 초대 가능</p></li></ul></td></tr><tr><td><p><b>⑧ 팀 포트폴리오</b></p></td><td><ul><li><p>업로드 시점에 팀 포트폴리오를 선택해 등록 가능 </p></li><li><p>등록 후 개인 포폴 OR 다른 팀 포폴로 전환 가능 </p></li><li><p>등록 시점의 팀원 전체와 팀 프로필에 동시 게시</p></li><li><p>공개 범위는 무조건 전체 공개 </p></li><li><p>수정 · 삭제는 업로드한 크리에이터만 가능 </p></li></ul></td></tr><tr><td class="endrow"><p><b>⑨ 팀 해체</b></p></td><td class="endrow"><ul><li><p>팀 관리자만 팀 프로필 수정화면에서 해체 가능 </p></li><li><p>팀 해체 시 팀 멤버는 2주간 팀 채팅방 읽기 전용으로 조회 가능 </p></li><li><p>팀 해체 시 팀 포트폴리오는 유지 (단! 팀 포폴에서 개인 포트폴리오로 수정 시 이전 팀 멤버 프로필 화면에서는 해당 팀 포폴 미 노출)</p></li></ul></td></tr></table></div><p>팀 나가기 · 팀 해체 · 회원 탈퇴 뒤의 노출 정책은 확정되어 있고, 상세는 개발 PRD가 담습니다.</p></div></section><section class="sec" id="s6"><header class="sh"><span class="sn">06</span><h2>추가 기획 의사결정 사항</h2></header><div class="sb"><ul class="tasks"><li class="done"><span class="tick" aria-label="완료"></span><span>팀 생성 기능 위치 - 연락처 </span></li><li class="done"><span class="tick" aria-label="완료"></span><span>프로젝트 멤버 결정 후 팀 생성 사용 플로우 → 오픈 스펙에서 제외 </span></li><li class="done"><span class="tick" aria-label="완료"></span><span>내가 올리지 않은 팀 포폴 상세화면 상단에 팀 정보 노출 → 일단 허용. 개발된걸 보고 판단예정</span></li><li class="done"><span class="tick" aria-label="완료"></span><span>팀 채팅방 →오 픈 스펙으로 포함 </span></li></ul></div></section>
+</main>
+</div>
+<aside class="hpanel" id="histPanel" hidden aria-label="버전 기록" role="dialog" aria-modal="false">
+<div class="gp-head"><b>버전 기록</b><button type="button" class="gp-close" id="histClose" aria-label="닫기">✕</button></div>
+<div class="gp-body"><div class="vrow"><b>v1.0</b><span>CCO-111 본문(Jira 2026-09-22 갱신본)을 기획서형 템플릿으로 옮겼습니다. 글자는 티켓 원문 그대로입니다.</span></div></div>
+</aside>
+<script>
+(function(){
+  var p=document.getElementById('histPanel'), o=document.getElementById('histOpen'), c=document.getElementById('histClose');
+  function sync(){ document.body.classList.toggle('pnl', !p.hidden); }
+  o.addEventListener('click',function(){ p.hidden=!p.hidden; sync(); }); c.addEventListener('click',function(){ p.hidden=true; sync(); o.focus(); });
+  document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'&&!p.hidden){ p.hidden=true; sync(); } });
+  var links={}; document.querySelectorAll('.toc a').forEach(function(a){ links[a.getAttribute('href').slice(1)]=a; });
+  if('IntersectionObserver' in window){ var cur=null; var io=new IntersectionObserver(function(es){ es.forEach(function(x){ if(x.isIntersecting){ if(cur) cur.classList.remove('on'); cur=links[x.target.id]; if(cur) cur.classList.add('on'); } }); },{rootMargin:'-20% 0px -70% 0px'});
+    document.querySelectorAll('.sec').forEach(function(s){ io.observe(s); }); }
+})();
+</script>
+</body></html>
