@@ -621,7 +621,27 @@ details.rule i{font-size:14px}
   .tb .count{margin-left:0}
   details.rule>summary{grid-template-columns:minmax(0,1fr) auto!important;grid-template-areas:"title tog" "tag tag" "sum sum"!important;gap:4px 8px!important}
 }
-</style>
+
+/* 출처 트레이: 용지 밖(뒷면) — 접어 두고 강조하지 않는다 */
+.srct{margin:56px 0 0;padding:0 var(--srct-gutter,16px) calc(24px + env(safe-area-inset-bottom,0px));background:#F2F2F4;box-shadow:inset 0 12px 14px -14px rgba(18,18,18,.16);color:#5F5F68;font-size:12.5px;line-height:1.6;clear:both}
+.srct>details{max-width:var(--srct-w,1080px);margin:0 auto;padding:16px 0 0}
+.srct summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;color:#5F5F68;padding:2px 0}
+.srct summary::-webkit-details-marker{display:none}
+.srct summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease-out}
+.srct details[open]>summary::before{transform:rotate(45deg)}
+.srct summary:hover{color:#3F3F46}
+.srct .srct-n{font-weight:500;font-variant-numeric:tabular-nums}
+.srct-body{display:grid;gap:6px;padding:10px 0 4px}
+.srct-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:2px 16px}
+.srct-row>*,.srct-note,.srct-free{min-width:0;overflow-wrap:anywhere;word-break:normal}
+.srct-row>b{font-weight:600;color:#52525B}
+.srct-note{margin:6px 0 0;color:#6B6B73}
+.srct a,.srct a.jira{font-weight:500!important;color:#3F3F46!important;text-decoration:underline;text-decoration-color:#C9C9CF;text-underline-offset:3px}
+.srct code{font-size:12px;background:none;border:0;padding:0;color:inherit;word-break:normal;overflow-wrap:anywhere}
+@media (max-width:640px){.srct{--srct-gutter:16px}.srct-row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.srct summary::before{transition:none}}
+@media print{.srct{background:none;box-shadow:none}}
+.srct{--srct-w:none;--srct-gutter:24px}</style>
 </head>
 <body>
 <header class="cover">
@@ -818,27 +838,8 @@ details.rule i{font-size:14px}
 </div>
 </div>
 </section>
-<section class="section alt" id="todo">
-<div class="container">
-<div class="sec-head"><span class="sec-num">03</span><h2>출처</h2></div>
-<div class="gloss"><dl>
-<dt>알림 65개 목록과 운영 실값</dt><dd>C8_알림메시지_전수목록_v1.0.md (운영 스냅샷 2026-08-28)</dd>
-<dt>채널·분류·배지·발생 조건 기준</dt><dd>c8c-planning/alert/alert.md v0.4.16 §2.5 (D-5·D-8·D-9·D-20·D-21·D-22)</dd>
 
-
-
-
-
-
-
-
-<dt>라우팅 대조</dt><dd>알림_PRD_vs_운영API_교차검증_v1.2.md</dd>
-<dt>채티 발송 조건</dt><dd>c8c-planning/chatty/chatty.md v0.9.21</dd>
-<dt>채팅 푸시 as-built</dt><dd>c8c-api chat-domain ChatPushContent.kt(ChatPushKind.MESSAGE)·ChatUnreadCountBadgeListener.kt · c8c-message-sender SendChatPushNotificationService.kt · ChatPushCategoryGateServiceAdapter.kt (2026-09-01 샐리 전달)</dd>
-</dl></div>
-</div>
-</section>
-<footer><div class="container">C8 앱푸시/알림 · 3.1.1 업데이트 반영(3.1.0 반영분 포함) · 2026-09-22 · 단일 표 양식. 갱신 열 기준 — 신규 19행(#63, N5, N12, N17, N14, N15, N16, N1, N2, N18, N3, N6, N7, N8, N9, N11, N13, N4, N10) · 수정 8행(#3, #22, #26, #59, #61, #62, #1, #2)</div></footer>
+<footer aria-label="출처" class="srct" id="todo"><details><summary>출처 <span class="srct-n">· 5</span></summary><div class="srct-body"><div class="srct-row"><b>알림 65개 목록과 운영 실값</b><span>C8_알림메시지_전수목록_v1.0.md (운영 스냅샷 2026-08-28)</span></div><div class="srct-row"><b>채널·분류·배지·발생 조건 기준</b><span>c8c-planning/alert/alert.md v0.4.16 §2.5 (D-5·D-8·D-9·D-20·D-21·D-22)</span></div><div class="srct-row"><b>라우팅 대조</b><span>알림_PRD_vs_운영API_교차검증_v1.2.md</span></div><div class="srct-row"><b>채티 발송 조건</b><span>c8c-planning/chatty/chatty.md v0.9.21</span></div><div class="srct-row"><b>채팅 푸시 as-built</b><span>c8c-api chat-domain ChatPushContent.kt(ChatPushKind.MESSAGE)·ChatUnreadCountBadgeListener.kt · c8c-message-sender SendChatPushNotificationService.kt · ChatPushCategoryGateServiceAdapter.kt (2026-09-01 샐리 전달)</span></div><p class="srct-note">C8 앱푸시/알림 · 3.1.1 업데이트 반영(3.1.0 반영분 포함) · 2026-09-22 · 단일 표 양식.</p></div></details></footer>
 <script>
 (function(){
   var state={b:'live',u:'any',s:'all',d:'all',q:''}; var histOpen=false;
@@ -1170,6 +1171,11 @@ details.rule i{font-size:14px}
   apply(); reveal();
 })();
 </script>
-</body>
+<script>
+(function(){ // 출처 링크(#id)로 오면 트레이를 펼친다
+  function go(){ var t=document.querySelector('.srct'); if(!t) return; var id=decodeURIComponent(location.hash.slice(1)); if(id&&(t.id===id)){ var d=t.querySelector('details'); if(d) d.open=true; } }
+  window.addEventListener('hashchange',go); go();
+})();
+</script></body>
 </html>
 </body></html>
