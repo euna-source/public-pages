@@ -286,5 +286,13 @@
     "last_kind": "redeploy",
     "last_sha256": "e1683dcb4c3dc47ec5a4bc09382ecab35f40e2ecfb1b4dfa69dffb4b927e9f7c",
     "timestamp": "2026-09-25T16:45:54.328067Z"
+  },
+  "doc-templates": {
+    "slug": "doc-templates",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/doc-templates/",
+    "last_kind": "new",
+    "last_sha256": "f72c92c966409cf76c73cf43df72af943abe7ce50b27bcfcfe44ac408190d3d5",
+    "timestamp": "2026-09-27T04:49:50.735445Z"
   }
 }
