@@ -1,0 +1,827 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>프로젝트·명예의 전당 운영과 채팅 개선 범위 정리</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--paper:#fff;--ink:#121212;--ink-2:#3F3F46;--ink-3:#6B6B73;--sunken:#F7F7F8;--frame:#DEDEE2;--line:#EAEAED;--brand:#07ED21;--brand-ink:#067D14;--brand-soft:#DCFCE0;--warn:#FF7A1A;--warn-ink:#A63F08;--warn-soft:#FFE8D6;--display:"Gmarket Sans","Pretendard Variable",Pretendard,sans-serif;color-scheme:light}
+@font-face{font-family:"Gmarket Sans";font-weight:700;font-display:swap;src:local("GmarketSansBold"),local("Gmarket Sans Bold"),local("G마켓 산스 Bold"),url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff) format("woff")}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.65 "Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR",-apple-system,system-ui,sans-serif;letter-spacing:-.005em;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--brand-ink);outline-offset:2px}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;z-index:30;background:var(--paper);padding:6px 14px;border-radius:999px}
+.shell{display:grid;grid-template-columns:184px minmax(0,1fr);gap:40px;max-width:1560px;margin:0 auto;padding:40px 44px 96px}
+.shell>aside{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;font-size:13px;color:var(--ink-2)}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;margin:0 0 18px;color:var(--ink)}
+.brand::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.contents summary{cursor:pointer;font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--ink);list-style:none;margin-bottom:8px}
+.contents summary::-webkit-details-marker{display:none}
+.contents nav ul{list-style:none;margin:0;padding:0}.contents nav li{margin:0}
+.contents nav a{position:relative;display:block;padding:4px 0 4px 14px;color:var(--ink-2);text-decoration:none;line-height:1.45}
+.contents nav a:hover{color:var(--ink)}
+.contents nav a.is-active{color:var(--ink);font-weight:600}
+.contents nav a.is-active::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.top-link{display:inline-block;margin-top:20px;color:var(--ink-3);text-decoration:none}
+.top-link:hover{color:var(--ink)}
+main{min-width:0}
+.head{margin-bottom:24px}
+.head h1{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.28;margin:0 0 12px;letter-spacing:-.02em}
+.head ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;color:var(--ink-2)}
+.head li{margin:0}
+.head li.ver-tag{color:var(--ink);font-weight:600}
+.hbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hbtn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 16px;border-radius:999px;border:1px solid var(--frame);background:var(--paper);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.hbtn:hover{background:var(--sunken)}
+.hbtn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.hbtn.primary:hover{background:#2A2A2E;border-color:#2A2A2E}
+.hbtn[aria-expanded=true]::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+section.block{border-top:2px solid var(--ink);padding:14px 0 4px;margin:0 0 32px;break-inside:avoid}
+section.block h2{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.35;letter-spacing:-.01em;margin:0 0 12px}
+h3{font-size:14px;font-weight:700;margin:14px 0 6px}
+p{margin:0 0 8px}
+ul,ol{margin:0 0 8px;padding-left:18px}li{margin:3px 0}li>ul,li>ol{margin:3px 0 6px}
+li::marker{color:var(--ink-3)}
+strong{font-weight:700}
+li.k-dec::marker{color:var(--brand)}
+li.k-dec>strong:first-child{color:var(--brand-ink)}
+li.k-open::marker{color:var(--warn)}
+li.k-open>strong:first-child{color:var(--warn-ink)}
+.hl{background:var(--brand-soft);color:var(--ink);padding:.12em .16em;margin:0 -.03em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.ts{color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+section.overview{display:grid;grid-template-columns:minmax(0,1fr);gap:12px 32px;align-items:start}
+section.overview>h2,section.overview>p,section.overview>h3,section.overview>ul,section.overview>ol{grid-column:1/-1}
+section.overview>ul,section.overview>ol{margin:0}
+section.overview>ul>li{break-inside:avoid;margin:0 0 6px}
+section.overview>.table-scroll,section.overview>.visual{margin:0}
+.columns{columns:2;column-gap:40px}
+.columns>section.block{display:inline-block;width:100%;vertical-align:top}
+.visual{margin:10px 0 12px;padding:16px;background:var(--paper);border:1px solid var(--frame);border-radius:12px}
+.visual-title{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.04em;margin:0 0 12px;color:var(--ink-2)}
+.visual ol,.visual ul{list-style:none;padding:0;margin:0}.visual li{margin:0;position:relative}
+.relation{display:grid;grid-template-columns:minmax(0,1fr) minmax(64px,.5fr) minmax(0,1fr);align-items:center;gap:10px;margin-top:8px;font-size:13px}
+.visual-title+.relation{margin-top:0}
+.endpoint{padding:9px 12px;background:var(--sunken);border-radius:12px;line-height:1.45}
+.relation-label{text-align:center;font-size:12px;color:var(--ink-2);padding:3px 0;border-bottom:1px solid var(--line)}
+.table-scroll{overflow-x:auto;margin:10px 0 12px;background:var(--paper);border:1px solid var(--frame);border-radius:12px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;line-height:1.55}
+th,td{min-width:104px;padding:8px 12px;text-align:left;vertical-align:top;border:0;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+tr>:last-child{border-right:0}
+tbody tr:last-child>*{border-bottom:0}
+th{background:var(--sunken);font-weight:700;white-space:nowrap}
+table.speakers td:first-child{white-space:nowrap}table.speakers tr>:first-child{min-width:0}
+blockquote{margin:8px 0;padding:6px 12px;border-left:1px solid var(--frame);color:var(--ink-2)}
+code{font:12px/1.5 ui-monospace,Menlo,monospace;background:var(--sunken);padding:1px 8px;border-radius:999px;white-space:nowrap}
+a{color:inherit;text-decoration-color:var(--ink-3);text-underline-offset:2px}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.footnote{font-size:13px;color:var(--ink-2)}
+.hpanel{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(420px,94vw);background:var(--paper);z-index:40;box-shadow:-8px 0 30px rgba(18,18,18,.14);display:flex;flex-direction:column}
+.hpanel[hidden]{display:none}
+.hpanel:focus{outline:none}
+.gp-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);font-size:16px}
+.gp-close{flex:none;width:34px;height:34px;border-radius:999px;border:1px solid var(--frame);background:var(--paper);color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.gp-close:hover{background:var(--sunken)}
+.gp-body{flex:1;overflow-y:auto;padding:20px}
+.vlist{list-style:none;margin:0;padding:0}
+.vlist>li{margin:0}
+.vhead{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.vno{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-ink);font-size:12px;font-weight:700}
+.vdate{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.vlist p{margin:0 0 4px}
+.vlist .vsub{font-size:13px;color:var(--ink-2)}
+@media(min-width:1101px){section.overview{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}section.overview>ul{columns:2;column-gap:40px}}
+@media(max-width:1100px){.columns{columns:1}.shell{padding:32px 28px 88px;gap:32px;grid-template-columns:172px minmax(0,1fr)}}
+@media(max-width:760px){.shell{display:block;padding:16px 16px 56px}.shell>aside{position:static;max-height:none;overflow:visible;margin-bottom:20px}.brand{margin-bottom:12px}.contents summary{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 16px;border:1px solid var(--frame);border-radius:999px;font-size:13px;letter-spacing:0;margin-bottom:10px}.contents summary::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--ink-2);border-bottom:1.5px solid var(--ink-2);transform:rotate(45deg) translateY(-2px)}.contents[open] summary::after{transform:rotate(-135deg) translateY(-1px)}.top-link{display:none}.head h1{font-size:21px}.hbtns{margin-top:12px}section.block{padding-top:12px;margin-bottom:28px}th,td{padding:7px 10px}.relation{grid-template-columns:1fr;gap:4px}.relation+.relation{margin-top:22px}.relation-label{padding:0;border-bottom:0;color:var(--ink-3)}.relation-label::before{content:"↓ "}}
+@media print{body{font-size:10.5pt;background:#fff}.shell{display:block;max-width:none;padding:0}.shell>aside,.skip,.hbtns,.hpanel{display:none}.columns{columns:2}section.block,.hl,th{-webkit-print-color-adjust:exact;print-color-adjust:exact}section.block{break-inside:avoid}.table-scroll{overflow:visible}}
+
+/* 안건 지도: 걸린 안건 기준 2단 목록 */
+.amap .visual-title{margin-bottom:4px}
+.amap-sub{margin:0 0 12px;font-size:12px;color:var(--ink-3);line-height:1.5}
+.amap-g+.amap-g{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.amap-gt{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--ink-3)}
+.amap-item+.amap-item{margin-top:10px}
+.amap-t{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:0;font-size:13px;line-height:1.5}
+.amap-n{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.amap-sep{color:var(--ink-3)}
+.an{color:var(--ink);font-weight:600;text-decoration:none}
+.an .nm{border-bottom:1px solid var(--frame)}.an:hover .nm{border-bottom-color:var(--ink)}
+.st{font-style:normal;font-size:12px;font-weight:700;line-height:20px;padding:0 8px;border-radius:999px;white-space:nowrap}
+.st.dec{background:var(--brand-soft);color:var(--brand-ink)}.st.open{background:var(--warn-soft);color:var(--warn-ink)}
+.amap-src{list-style:none;margin:4px 0 0;padding:0 0 0 14px;display:grid;gap:4px}
+.amap-src li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;line-height:1.5}
+.amap-src .an{font-weight:500}
+.ar{flex:none;font-size:12px;font-weight:700;line-height:20px;padding:0 7px;border-radius:6px;white-space:nowrap}
+.ar.pre{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink-3)}
+.ar.eff{color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--frame)}
+</style>
+<meta name="description" content="2026-09-22 정기미팅 회의록 — 프로젝트 상태값, 명예의 전당 선정·집계, 채팅 푸시·첨부, 자료실 다운로드 범위를 정리했습니다."><meta property="og:title" content="프로젝트·명예의 전당 운영과 채팅 개선 범위 정리"><meta property="og:type" content="article"></head>
+<body>
+<a class="skip" href="#notes">본문으로 이동</a>
+<div class="shell">
+<aside>
+<p class="brand">회의록</p>
+<details class="contents" open><summary id="contents-title">목차</summary><nav aria-label="회의록 목차"><div class="toc">
+<ul>
+<li><a href="#_2">한눈에</a></li>
+<li><a href="#_3">프로젝트 상태값과 관리 화면</a></li>
+<li><a href="#_4">종료 후 경력 추가 — 이번 범위에서 제외</a></li>
+<li><a href="#_5">라운지·프로젝트 링크 공유</a></li>
+<li><a href="#_6">명예의 전당 선정 기준 — 포폴 부문은 결정, 크리에이터 부문은 미정</a></li>
+<li><a href="#_7">명예의 전당 집계·조회·수상 표시</a></li>
+<li><a href="#_8">리스펙트 제공자 목록</a></li>
+<li><a href="#ios-312">iOS 컨텍스트 메뉴·위젯 — 3.1.2로 이동</a></li>
+<li><a href="#_9">채팅 푸시 알림 — 서버 묶음 발송 제거</a></li>
+<li><a href="#_10">채팅 차별화 아이디어 — 보류</a></li>
+<li><a href="#_11">채팅 첨부 용량 — 현행 유지</a></li>
+<li><a href="#pdf">채팅 PDF — 제외 유지</a></li>
+<li><a href="#url">콘텐츠 보호·파일 보관·URL 만료</a></li>
+<li><a href="#106">자료실 다운로드 — 10/6 배포에서 제외</a></li>
+<li><a href="#_12">포폴 이미지·동영상 통합 업로드와 크롭 — 개선 방향 결정</a></li>
+<li><a href="#ga">GA 화면 이름 수집 — 콘텐츠 그룹은 여유 있을 때</a></li>
+<li><a href="#_13">폴더블 대응 — 권장사항이 나오면 대응</a></li>
+<li><a href="#og">채팅 링크 미리보기(OG)</a></li>
+<li><a href="#_14">게시판·자료실 시안 (회의 종료 인사 후)</a></li>
+<li><a href="#_15">후속 업무</a></li>
+<li><a href="#_16">다음 일정</a></li>
+<li><a href="#_17">미결·확인 필요</a></li>
+</ul>
+</div>
+</nav></details>
+<a class="top-link" href="#notes">처음으로</a>
+</aside>
+<main id="notes" tabindex="-1"><header class="head"><h1 id="_1">프로젝트·명예의 전당 운영과 채팅 개선 범위 정리</h1>
+<ul>
+<li class="ver-tag" data-ui>버전 1.0</li>
+<li>녹음일: 2026-09-22 13:30</li>
+<li>원본 녹음: Tiro — [9/22 정기미팅] 프로젝트 상태값·명예전당·다운로드 정책 점검</li>
+<li>녹음 길이: 78분 29초</li>
+</ul>
+<nav class="hbtns" aria-label="문서 도구" data-ui><button class="hbtn primary" id="histOpen" type="button" aria-controls="histPanel" aria-expanded="false">버전 기록</button></nav>
+</header>
+<section class="block overview"><h2 id="_2">한눈에</h2>
+<ul>
+<li><strong>프로젝트 상태</strong>: 진행 중에는 &#x27;모집 중&#x27;과 &#x27;지원 마감&#x27;만 오가고, 완전히 정리할 때 &#x27;종료&#x27;로 바꾼다. 종료 뒤 경력 추가는 이번 범위에서 빼고, 나중에 리뷰·피드백과 묶어 넣는다. <span class="ts">[04:17]</span> <span class="ts">[15:15]</span></li>
+<li><strong>명예의 전당</strong>: 포트폴리오(포폴) 부문은 해당 2주에 새로 올린 포폴이 그 2주 안에 받은 리스펙트로 뽑는다. 집계는 배치와 스냅샷으로 한다. 크리에이터 부문의 활동 지표는 아직 정하지 않았다. <span class="ts">[32:31]</span> <span class="ts">[27:16]</span> <span class="ts">[55:27]</span></li>
+<li><strong>자료실 다운로드</strong>: 10/6 배포에서 빼고 &quot;중순 전/중순까지&quot;를 목표로 한다. 파일은 원본 품질로 받는다. URL 유효시간은 아직 정하지 않았다. <span class="ts">[56:19]</span> <span class="ts">[58:32]</span> <span class="ts">[01:04:08]</span></li>
+<li><strong>채팅 알림·iOS</strong>: 서버가 푸시를 묶어 보내는 방식을 없애고 메시지 내용을 보여준다. iOS 컨텍스트 메뉴·위젯(CCO 127)은 3.1.2로 미룬다. <span class="ts">[41:17]</span> <span class="ts">[36:59]</span></li>
+<li><strong>채팅 첨부</strong>: 용량과 PDF 미지원은 지금대로 둔다. 대용량·AI 같은 차별화 기능은 아이디어로만 남긴다. <span class="ts">[01:12:34]</span> <span class="ts">[01:14:21]</span></li>
+</ul>
+<p><strong>화자 분리</strong>: 적용됨. 화자 번호는 11개이고, 화자를 판정하지 못한 줄이 1줄 있다. 번호 수가 곧 참석자 수는 아니다. 민석은 화자3·화자4 두 번호로 나뉘었고, 화자10에는 재욱과 민석의 발언이 섞여 있어 발언별로 나눠 적었다. 진영은 불참했고 이름만 나왔다.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table class="speakers">
+<thead>
+<tr>
+<th>번호</th>
+<th>대응</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>화자1</td>
+<td>재욱 (확정)</td>
+<td>사용자 확인</td>
+</tr>
+<tr>
+<td>화자2</td>
+<td>쥴리 (확정)</td>
+<td>사용자 확인. &quot;주리 님&quot; 호칭과 일치 <span class="ts">[08:22]</span></td>
+</tr>
+<tr>
+<td>화자6</td>
+<td>은희 (확정)</td>
+<td>사용자 확인</td>
+</tr>
+<tr>
+<td>화자3</td>
+<td>민석 (확정)</td>
+<td>사용자 확인. 자기 백엔드 작업을 설명함 <span class="ts">[34:43]</span> <span class="ts">[55:27]</span> <span class="ts">[57:31]</span></td>
+</tr>
+<tr>
+<td>화자4</td>
+<td>민석 (확정)</td>
+<td>사용자 확인. 화자3의 URL 1시간 안 <span class="ts">[58:53]</span>을 &quot;제가 지금 하려고 하는&quot;으로 이어 말함 <span class="ts">[01:01:17]</span></td>
+</tr>
+<tr>
+<td>화자5</td>
+<td>미확정</td>
+<td>클라이언트 작업 발언 <span class="ts">[11:10]</span> <span class="ts">[48:35]</span></td>
+</tr>
+<tr>
+<td>화자7</td>
+<td>미확정</td>
+<td>백엔드 언급 <span class="ts">[45:56]</span>과 이미지 크롭 구현 계획 <span class="ts">[47:27]</span>이 함께 있음</td>
+</tr>
+<tr>
+<td>화자8</td>
+<td>미확정</td>
+<td>질문 1회 <span class="ts">[48:35]</span></td>
+</tr>
+<tr>
+<td>화자9</td>
+<td>미확정</td>
+<td>원본 품질·DRM·PDF 발언, 원본 업로드 작업 보고 <span class="ts">[01:16:32]</span></td>
+</tr>
+<tr>
+<td>화자10</td>
+<td>재욱·민석 혼합 (사용자 확인)</td>
+<td>방향·일정 발언 <span class="ts">[01:03:39]</span> <span class="ts">[01:04:08]</span> <span class="ts">[01:05:03]</span>은 재욱, DRM·캐시 비용·적용 범위 발언 <span class="ts">[01:00:42]</span> <span class="ts">[01:02:12]</span> <span class="ts">[01:02:45]</span> <span class="ts">[01:03:08]</span>은 민석</td>
+</tr>
+<tr>
+<td>화자11</td>
+<td>미확정</td>
+<td>PDF·OG·게시판 디자인 발언 <span class="ts">[01:13:18]</span>~<span class="ts">[01:17:50]</span></td>
+</tr>
+<tr>
+<td>화자?</td>
+<td>미확정</td>
+<td>마지막 한마디 &quot;되죠?&quot; <span class="ts">[01:18:22]</span></td>
+</tr>
+</tbody>
+</table></div>
+<div class="visual amap"><p class="visual-title">안건 지도</p><p class="amap-sub">안건마다 먼저 정해야 하는 것(전제)과 영향을 주는 것(영향)을 아래에 적었습니다.</p><div class="amap-g"><p class="amap-gt">명예의 전당·경력</p><div class="amap-item"><p class="amap-t"><span class="amap-n"><a class="an" href="#_4"><span class="nm">종료 후 경력 추가</span></a><em class="st dec">이번 범위에서 제외</em></span></p><ul class="amap-src"><li><span class="ar pre">전제</span><span class="amap-n"><a class="an" href="#_3"><span class="nm">프로젝트 상태값</span></a><em class="st dec">결정</em></span></li><li><span class="ar eff">영향</span><span class="amap-n"><a class="an" href="#_7"><span class="nm">명예의 전당 수상 표시</span></a></span></li></ul></div><div class="amap-item"><p class="amap-t"><span class="amap-n"><a class="an" href="#_7"><span class="nm">명예의 전당 수상 표시</span></a></span></p><ul class="amap-src"><li><span class="ar eff">영향</span><span class="amap-n"><a class="an" href="#_8"><span class="nm">리스펙트 제공자 목록</span></a></span></li></ul></div><div class="amap-item"><p class="amap-t"><span class="amap-n"><a class="an" href="#_7"><span class="nm">명예의 전당 집계·조회</span></a><em class="st dec">결정</em></span></p><ul class="amap-src"><li><span class="ar pre">전제</span><span class="amap-n"><a class="an" href="#_6"><span class="nm">명예의 전당 선정 기준</span></a><em class="st open">포폴 결정 · 크리에이터 미정</em></span></li></ul></div></div><div class="amap-g"><p class="amap-gt">콘텐츠 보호</p><div class="amap-item"><p class="amap-t"><span class="amap-n"><a class="an" href="#106"><span class="nm">자료실 다운로드</span></a><em class="st dec">10/6 배포에서 제외</em></span><span class="amap-n"><a class="an" href="#pdf"><span class="nm">채팅 PDF</span></a><em class="st dec">제외 유지</em></span></p><ul class="amap-src"><li><span class="ar pre">전제</span><span class="amap-n"><a class="an" href="#url"><span class="nm">콘텐츠 보호·URL 만료</span></a></span></li></ul></div></div><div class="amap-g"><p class="amap-gt">채팅</p><div class="amap-item"><p class="amap-t"><span class="amap-n"><a class="an" href="#_11"><span class="nm">채팅 첨부 용량</span></a><em class="st dec">현행 유지</em></span></p><ul class="amap-src"><li><span class="ar eff">영향</span><span class="amap-n"><a class="an" href="#_10"><span class="nm">채팅 차별화 아이디어</span></a><em class="st open">보류</em></span></li></ul></div></div></div></section>
+<div class="columns">
+<section class="block agenda"><h2 id="_3">프로젝트 상태값과 관리 화면</h2>
+<ul>
+<li><strong>쟁점</strong>: 모집·마감·활동·종료가 네 단계인지 <span class="ts">[02:24]</span></li>
+<li><strong>논의</strong><ul>
+<li>재욱: 프로젝트에는 시작과 종료가 있고 그 안에서 모집과 마감이 오간다. &#x27;활동&#x27;은 선택값으로 둘 필요가 없다. <span class="ts">[02:24]</span>~<span class="ts">[03:50]</span></li>
+<li>민석: 종료까지 세면 상태값은 세 개로 보는 게 더 맞다. <span class="ts">[04:17]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>합의</strong>: &#x27;활동 중&#x27;이라는 상태값은 따로 없다. 진행 중에는 <span class="hl">모집 중·지원 마감 두 값만 오가고</span>, 완전히 정리할 때 종료로 바꾼다. 재욱이 동의했다. <span class="ts">[04:17]</span></li>
+<li><strong>사실</strong>: 삭제는 상태값으로 보지 않는다. <span class="ts">[02:56]</span></li>
+<li><strong>화면 (쥴리, MD 문서에 와이어프레임을 넣어 둠)</strong><ul>
+<li>관리자 바텀 시트에 &#x27;지원 마감하기&#x27;와 &#x27;프로젝트 종료하기&#x27; 메뉴를 둔다. 토글도 검토했었다. <span class="ts">[05:18]</span></li>
+<li>채팅방 나가기는 기존 UI를 쓴다. 종료 뒤에는 &#x27;지원 중&#x27;을 &#x27;지원 완료&#x27;로 표시한다. <span class="ts">[05:18]</span> <span class="ts">[06:12]</span></li>
+<li>배지와 스와이프 삭제를 추가한다. <span class="ts">[04:46]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 지원자가 0건일 때 보이는 &#x27;지원 마감하기&#x27; 버튼은 뺀다. 민석가 헷갈린다고 지적했고 쥴리가 &quot;그럼 이거는 뺄게요&quot;라고 답했다. <span class="ts">[06:12]</span></li>
+<li><strong>관련 안건</strong>: 종료 후 경력 추가(이 안건이 전제)</li>
+</ul></section>
+<section class="block agenda"><h2 id="_4">종료 후 경력 추가 — 이번 범위에서 제외</h2>
+<ul>
+<li><strong>쟁점</strong>: 프로젝트가 끝난 뒤 참여 경력을 어디서 어떻게 남길지 <span class="ts">[06:42]</span></li>
+</ul>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>제안</th>
+<th>제안자</th>
+<th>시각</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2주간 남는 채팅방에 배너를 띄우고, 내용이 미리 채워진 경력 화면에서 확인한 뒤 저장</td>
+<td>쥴리</td>
+<td><span class="ts">[06:42]</span> <span class="ts">[07:50]</span></td>
+</tr>
+<tr>
+<td>자동으로 등록하고 사용자가 삭제하거나 숨기기</td>
+<td>민석</td>
+<td><span class="ts">[07:19]</span></td>
+</tr>
+<tr>
+<td>정상 종료 알림에서 확인을 누르면 등록</td>
+<td>민석</td>
+<td><span class="ts">[09:21]</span></td>
+</tr>
+<tr>
+<td>먼저 추가하고, 알럿의 확인 버튼으로 경력 화면으로 이동</td>
+<td>화자5</td>
+<td><span class="ts">[08:51]</span></td>
+</tr>
+<tr>
+<td>프로젝트 상세를 종료 페이지로 바꾸고 축하 문구와 모달로 안내</td>
+<td>재욱</td>
+<td><span class="ts">[12:04]</span> <span class="ts">[12:36]</span></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>우려</strong><ul>
+<li>민석: 확인 화면을 넣으면 클라이언트 작업이 생기는데 여유가 있을지 걱정했다. 중간에 무산되는 경우와 정상 종료하는 경우도 갈라서 봐야 한다고 했다. <span class="ts">[08:22]</span> <span class="ts">[09:21]</span></li>
+<li>재욱: 종료 맥락이 없는 채팅방에 배너를 띄우면 어색하다. 버튼 하나로는 의미가 적으니 리뷰·피드백까지 묶은 &#x27;프로젝트 엔딩&#x27; 흐름이 필요하다. <span class="ts">[12:04]</span> <span class="ts">[14:50]</span></li>
+</ul>
+</li>
+<li><strong>중간 정리(이후 뒤집힘)</strong>: 쥴리가 &quot;오늘까지 정해서 드릴게요&quot;라고 했다 <span class="ts">[11:41]</span>. 이어 은희가 &quot;상세 페이지에서 모달, 알림도 상세로&quot;라고 정리했다 <span class="ts">[12:59]</span>. 둘 다 아래 결정으로 대체됐다.</li>
+<li class="k-dec"><strong>결정</strong>: <span class="hl">이번 범위에서 빼고</span>, 리뷰 시스템과 묶어 나중에 추가한다. 은희가 제안하고 재욱이 동의했다. <span class="ts">[15:15]</span></li>
+<li><strong>참고</strong>: 재욱이 당근 거래 후기 팝업 같은 피드백 모듈을 예로 들었다. <span class="ts">[15:39]</span></li>
+<li><strong>관련 안건</strong>: 프로젝트 상태값(전제), 명예의 전당 수상 표시(수상 이력을 &quot;경력에 들어가면 되지&quot;라는 의견) <span class="ts">[35:44]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_5">라운지·프로젝트 링크 공유</h2>
+<ul>
+<li><strong>쟁점</strong>: 채팅방 더보기 메뉴의 공유 버튼이 무엇을 내보낼지 <span class="ts">[16:10]</span></li>
+<li><strong>제안</strong>: 은희는 팀 프로필과 팀 채팅방은 빼고 라운지·프로젝트만 공유하는 최소안을 냈다. 라운지 소개가 없으면 OG 문구를 바꾸자고 했다. <span class="ts">[16:10]</span> <span class="ts">[16:56]</span></li>
+<li class="k-dec"><strong>결정</strong><ul>
+<li>라운지는 채팅방 자체를 공유한다. <span class="ts">[18:01]</span></li>
+<li>프로젝트는 채팅방 대신 기존 프로젝트 상세 공유를 채팅방 메뉴에 넣는다. 재욱이 제안하고 민석이 동의했다. 프로젝트는 지원을 거쳐야 채팅할 수 있어서다(민석). <span class="ts">[18:01]</span></li>
+</ul>
+</li>
+<li><strong>사실</strong><ul>
+<li>공유 URL은 이미 모두 슬래시 형태로 바뀌어 있고, 그 형태로 구현하면 된다(민석). <span class="ts">[18:25]</span></li>
+<li>room ID로 채팅방 유형을 구분할 수 있다. 채팅방 기준으로 공유할 수 있는 곳은 라운지뿐이다. <span class="ts">[18:53]</span></li>
+</ul>
+</li>
+<li class="k-open"><strong>확인 필요</strong>: 프로젝트 공유 URL의 식별자(원문 &quot;프로젝터 아이디&quot;) <span class="ts">[18:01]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_6">명예의 전당 선정 기준 — 포폴 부문은 결정, 크리에이터 부문은 미정</h2>
+<ul>
+<li><strong>쟁점</strong>: 두 부문의 선정 기준과 신규 업로드 조건 <span class="ts">[19:22]</span></li>
+<li><strong>은희 초기안</strong>: 2주 동안 집계한다. &#x27;인기 폭발&#x27;은 리스펙트 수, &#x27;인기 크리에이터&#x27;는 팔로워 수로 뽑는다. <span class="ts">[19:22]</span></li>
+<li><strong>크리에이터 부문</strong><ul>
+<li>민석: &#x27;인기&#x27;보다 &#x27;활동&#x27;으로 보고, 리스펙트·댓글·팔로우 같은 항목에 가중치를 매겨 순위를 내자고 했다. <span class="ts">[19:22]</span> <span class="ts">[20:05]</span></li>
+<li>은희도 활동 지표로 가되 정의가 필요하다고 받았다. 방향은 합의했다. <span class="ts">[21:01]</span></li>
+<li>후보 항목은 댓글·리스펙트·팔로우·채팅(재욱 <span class="ts">[55:52]</span>)과 노크 수(은희 <span class="ts">[33:09]</span>)다. 쥴리는 &quot;포폴은 정해졌고 크리에이터 활동 지표&quot;가 남았다고 정리했다. <span class="ts">[55:27]</span></li>
+</ul>
+</li>
+<li><strong>포폴 부문 논의</strong><ul>
+<li>재욱: 명예의 전당에 참가를 신청하는 방식을 제안했다. <span class="ts">[30:00]</span>~<span class="ts">[30:58]</span></li>
+<li>은희: 매번 신청하게 하는 건 부담이라고 했다. 대안으로 업로드 조건 없이 기간 중 리스펙트 증가분만 보고, 이전 수상자 제외는 수동으로 운영하자고 했다. <span class="ts">[30:58]</span> <span class="ts">[31:22]</span></li>
+<li>재욱: 누적 100개인 포폴이 여기서는 2개로 나오면 사용자가 이해하기 어렵다고 했다. <span class="ts">[32:06]</span> <span class="ts">[32:31]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: <span class="hl">이 기간에 올린 새 포폴</span>을 대상으로, <span class="hl">2주 안에 들어온 리스펙트</span>로 순위를 낸다. 은희가 제안하고 재욱이 &quot;그렇게 합시다, 일단&quot;이라고 했다. 기존 리스펙트 수는 건드리지 않는다. <span class="ts">[32:31]</span> <span class="ts">[34:43]</span> <span class="ts">[32:06]</span></li>
+<li><strong>남은 고민</strong>: 재욱은 2주마다 포폴이 20~100개나 올라올지, 초반 운영과 기간·횟수를 어떻게 할지 더 고민하자고 했다 <span class="ts">[33:09]</span> <span class="ts">[34:15]</span>. 은희는 첫 회에 대상 범위를 넓힐지 물었다. <span class="ts">[28:07]</span></li>
+</ul>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>운영안 (확정 발언 없음)</th>
+<th>제안</th>
+<th>시각</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1위 1명, 20만 원</td>
+<td>은희</td>
+<td><span class="ts">[21:01]</span></td>
+</tr>
+<tr>
+<td>2주 간격으로 수요일에 시작. 10/6 심사 제출을 가정해 그다음 날부터</td>
+<td>은희</td>
+<td><span class="ts">[21:45]</span></td>
+</tr>
+<tr>
+<td>00:00에 시작해 2주 뒤 23:59:59에 종료</td>
+<td>은희</td>
+<td><span class="ts">[27:16]</span></td>
+</tr>
+<tr>
+<td>초기 후보가 부족하면 내부 계정 10개로 시딩</td>
+<td>민석 제안, 은희는 시딩 필요 의견</td>
+<td><span class="ts">[27:40]</span> <span class="ts">[28:07]</span></td>
+</tr>
+<tr>
+<td>같은 포폴 재업로드는 운영자가 모니터링</td>
+<td>은희. 재욱은 &quot;그 정도 노력하면 그냥 줘요&quot;라고 함</td>
+<td><span class="ts">[33:45]</span></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>개발 방식</strong>: 민석은 조건이 확정되지 않았어도 조회 API를 먼저 만들고 선정 로직은 따로 두면, 클라이언트도 작업을 시작할 수 있다고 했다. <span class="ts">[34:43]</span> <span class="ts">[55:27]</span></li>
+<li><strong>일정</strong>: 민석이 &quot;내일까지 정리해서 월요일부터 개발 가능&quot;한지 묻자 쥴리가 &quot;명예의 전당은 일단 네&quot;라고 답했다 <span class="ts">[54:44]</span>. 쥴리는 &quot;오늘 안에 정할 것 같아요&quot;라고 했고, 민석은 로직이 &quot;나중이더라도 월요일 날은 돼야&quot; 한다고 했다. <span class="ts">[55:52]</span></li>
+<li><strong>관련 안건</strong>: 집계·조회(이 안건이 전제)</li>
+</ul></section>
+<section class="block agenda"><h2 id="_7">명예의 전당 집계·조회·수상 표시</h2>
+<ul>
+<li><strong>쟁점</strong>: 실시간 조회와 배치 중 무엇으로 할지, 내부 원자료 확인 방법, 수상 이후 화면 <span class="ts">[22:27]</span></li>
+<li><strong>논의</strong><ul>
+<li>은희는 1시간 배치를 제안했고 <span class="ts">[22:27]</span>, 민석는 페이지에 들어올 때 조회하자고 했다. <span class="ts">[23:11]</span></li>
+<li>민석: 지금은 사용자가 적어 실시간도 괜찮지만 사용자가 늘면 문제가 될 수 있다. <span class="ts">[23:35]</span></li>
+<li>민석: 상금 기준 시점에 스냅샷을 찍어야 하므로 배치가 낫다. <span class="ts">[26:50]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 배치로 집계하고 스냅샷을 남긴다. 주기는 <span class="hl">일단 1시간</span>으로 두고, 30분이나 5분으로 당길 수 있다. <span class="ts">[27:16]</span> <span class="ts">[27:40]</span></li>
+<li class="k-open"><strong>원자료 조회 — 미결</strong><ul>
+<li>은희: 전체 순위와 기준별 원자료를 구글 시트나 슬랙 봇으로 언제든, 외부에서도 보고 싶다. <span class="ts">[24:07]</span>~<span class="ts">[26:22]</span></li>
+<li>민석: 어드민을 외부에 노출하긴 어렵고, 쿼리를 매번 뽑아주는 방식은 상시 조회와 맞지 않는다. <span class="ts">[25:33]</span> <span class="ts">[26:22]</span></li>
+<li>쥴리는 에이전트로 불러오는 방법을 냈다 <span class="ts">[26:00]</span>. 민석가 &quot;다시 한번 논의해 보죠&quot;라고 해 결론은 나지 않았다. <span class="ts">[26:50]</span></li>
+<li>민석가 &quot;민정님&quot;에게 개발 리소스가 가장 덜 드는 방법을 검토해 달라고 요청했다. <span class="ts">[25:07]</span></li>
+</ul>
+</li>
+<li><strong>수상 이후 표시</strong><ul>
+<li>재욱: 현황판과 히스토리 페이지를 따로 둔다. <span class="ts">[35:05]</span> <span class="ts">[35:44]</span></li>
+<li>은희는 프로필에 수상 횟수를 경력이나 배지로 보이자고 했고, 민석은 경력에 넣으면 된다고 했다. <span class="ts">[35:44]</span></li>
+<li>은희가 이 부분은 이번 스펙에 넣지 않아도 된다고 했다. 재욱(원문 &quot;재홍님&quot;)에게 아이디어를 요청했다. <span class="ts">[36:11]</span> <span class="ts">[35:05]</span></li>
+</ul>
+</li>
+<li><strong>참고</strong>: 후보가 적을 때는 &quot;집계 중입니다&quot; 같은 안내 문구를 둔다(은희). <span class="ts">[27:40]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_8">리스펙트 제공자 목록</h2>
+<ul>
+<li><strong>제안</strong>: 은희는 포폴 상세에서 리스펙트한 사람을 보는 기존 바텀 시트를 연결하자고 했다. 얼굴 외에 이름·직업도 넣고, 명예의 전당과 엮자고 했다. <span class="ts">[43:41]</span> <span class="ts">[44:53]</span></li>
+<li><strong>논의</strong>: 재욱은 버튼에서 불러오면 되고 &quot;어디에 넣을지 정책만&quot; 정하면 된다고 했다. 화자7은 어렵지 않다고 했다. <span class="ts">[44:22]</span></li>
+<li class="k-open"><strong>미결</strong>: 진입 위치와 디자인은 정하지 않았다. 재욱은 &quot;어렵지 않으면 디자인 다시 생각해보세요&quot;라고 했다. <span class="ts">[44:53]</span></li>
+<li><strong>관련 안건</strong>: 명예의 전당 수상 표시</li>
+</ul></section>
+<section class="block agenda"><h2 id="ios-312">iOS 컨텍스트 메뉴·위젯 — 3.1.2로 이동</h2>
+<ul>
+<li><strong>제안</strong>: 은희는 롱프레스 컨텍스트 메뉴와 크기별 위젯(포트폴리오·영감) 디자인이 오늘 18시 전에 나오면 이번 배포에 넣자고 했다. <span class="ts">[36:11]</span></li>
+<li class="k-dec"><strong>결정</strong>: 재욱이 &quot;다음번에 들어가죠&quot;라고 했다. 은희가 이번에는 빼고 3.1.2에 넣자고 했고 민석이 동의했다. 티켓은 <code>CCO 127</code>이다. <span class="ts">[36:59]</span></li>
+<li><strong>후속</strong>: 민석이 티켓의 수정 버전만 바꿔 달라고 했고 은희가 받았다. <span class="ts">[37:46]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_9">채팅 푸시 알림 — 서버 묶음 발송 제거</h2>
+<ul>
+<li><strong>제안</strong><ul>
+<li>은희: 프로젝트·팀 채팅방에 새 참여자가 들어오면 알림(원문 &quot;FC&quot;)을 보내자. <span class="ts">[37:46]</span></li>
+<li>재욱: &#x27;새 메시지&#x27; 대신 최근 메시지 내용을 보여주자. 민석은 가능하다고 했다. <span class="ts">[37:46]</span> <span class="ts">[38:46]</span></li>
+</ul>
+</li>
+<li><strong>이미 한 일</strong>: 은희가 최근 메시지 표시 티켓을 만들어 두었다. <span class="ts">[38:46]</span></li>
+<li><strong>충돌</strong>: 민석은 서버 디바운스로 여러 건을 푸시 하나로 묶는 기존 로직과 부딪힌다고 했다. 5초·10건은 예로 든 숫자이고, 실제 조건은 기억나지 않는다고 했다. <span class="ts">[38:46]</span> <span class="ts">[39:47]</span></li>
+<li><strong>논의</strong><ul>
+<li>은희: &#x27;새 메시지가 왔어요&#x27;가 반복돼서 묶었던 것이니, 내용이 달라지면 풀어도 된다. <span class="ts">[40:46]</span> <span class="ts">[41:17]</span></li>
+<li>재욱: 알림이 오고 내용이 보이는 게 핵심이다. 알림이 많은 건 문제가 아니다. <span class="ts">[40:18]</span> <span class="ts">[41:44]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 서버의 묶음 발송을 없앤다. 민석이 &quot;제거할까요?&quot;라고 묻자 재욱으로 표기된 줄에서 &quot;제거하겠습니다&quot;라고 답했다. OS가 알림을 겹쳐 보여주는 묶음은 별개다. <span class="ts">[40:46]</span> <span class="ts">[41:17]</span></li>
+<li class="k-open"><strong>미결</strong>: 새 참여자 알림은 결정하지 않았다. <span class="ts">[37:46]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_10">채팅 차별화 아이디어 — 보류</h2>
+<ul>
+<li><strong>요청</strong>: 재욱이 채팅만의 콘셉트를 만들 기술 아이디어를 달라고 했다. &quot;지금 당장 할 건 아니에요&quot;라고 덧붙였다. <span class="ts">[41:44]</span> <span class="ts">[43:41]</span></li>
+</ul>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>아이디어</th>
+<th>낸 사람</th>
+<th>시각</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI가 대화 내용으로 프로젝트를 제안하고 포폴을 만들어 줌</td>
+<td>은희</td>
+<td><span class="ts">[42:42]</span></td>
+</tr>
+<tr>
+<td>선택한 대화 구간으로 할 일·스케줄 만들기</td>
+<td>재욱·은희</td>
+<td><span class="ts">[43:18]</span></td>
+</tr>
+<tr>
+<td>웹하드처럼 작업 파일을 공유하고 용량 제한을 없애기</td>
+<td>재욱</td>
+<td><span class="ts">[01:04:08]</span> <span class="ts">[01:05:03]</span></td>
+</tr>
+<tr>
+<td>주고받은 파일에 메모를 달아 협업</td>
+<td>은희</td>
+<td><span class="ts">[01:05:32]</span></td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>우려</strong>: 민석는 AWS 비용을 걱정했다 <span class="ts">[01:05:03]</span>. 재욱은 협업하는 사람은 웹을 더 쓴다고 했다. <span class="ts">[01:05:32]</span></li>
+<li class="k-dec"><strong>합의</strong>: 지금은 최소한으로 두고, 필요가 생기면 콘셉트를 구체화한다(은희). <span class="ts">[01:06:14]</span></li>
+<li><strong>관련 안건</strong>: 채팅 첨부 용량</li>
+</ul></section>
+<section class="block agenda"><h2 id="_11">채팅 첨부 용량 — 현행 유지</h2>
+<ul>
+<li><strong>제안</strong>: 은희가 채팅 첨부 용량을 올려도 되는지 물었다. 민석는 포폴과 같게 1GB, PDF는 100MB로 하자고 했다. <span class="ts">[01:06:14]</span> <span class="ts">[01:06:45]</span></li>
+<li><strong>우려</strong><ul>
+<li>은희: 채팅에는 미완성 파일을 여러 번 올리므로 방마다 파일이 많이 쌓일 수 있다. <span class="ts">[01:06:45]</span> <span class="ts">[01:07:24]</span></li>
+<li>화자9: 스토리지 비용 때문에 그런 서비스들이 사라지고 있다. <span class="ts">[01:08:09]</span></li>
+</ul>
+</li>
+<li><strong>논의</strong><ul>
+<li>재욱: AWS 전체 비용이 월 500만 원 조금 안 된다고 했다(파일만의 비용이 아님). 1GB로 열고 나중에 보관 기간을 한 달로 줄이는 안을 냈다. <span class="ts">[01:07:24]</span> <span class="ts">[01:08:09]</span></li>
+<li>화자9: 나중에 줄이는 것보다 늘리는 쪽이 홍보에 유리하다. 텔레그램 2GB(프리미엄 4GB) 사례를 들었다(발언자 설명). <span class="ts">[01:08:46]</span> <span class="ts">[01:09:17]</span></li>
+<li>은희는 MAU 5만·10만 기준으로 비용을 추정하자고 했고, 화자9도 &quot;예상 비용을 한번 뽑아봐야겠네&quot;라고 했다. <span class="ts">[01:11:17]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 재욱이 &quot;너무 깊이 들어가는데&quot;라며 멈췄다. 지금은 용량을 유지하고 아이디어로만 남긴다. 비용 추정은 누구에게도 맡기지 않았다. <span class="ts">[01:12:08]</span> <span class="ts">[01:12:34]</span></li>
+<li><strong>사실</strong>: 지금 채팅 첨부 제한이 정확히 얼마인지는 회의에서 나오지 않았다.</li>
+</ul></section>
+<section class="block agenda"><h2 id="pdf">채팅 PDF — 제외 유지</h2>
+<ul>
+<li><strong>사실</strong>: 채팅에는 PDF 첨부가 없어 포폴과 파일 유형이 맞지 않는다(은희). <span class="ts">[01:12:34]</span></li>
+<li><strong>논의</strong><ul>
+<li>화자9: 보안 문제로 미뤄 둔 기능이다. 페이지를 캡처하는 식의 백엔드 처리가 필요하고 PDF는 취약점이 많다. <span class="ts">[01:13:18]</span></li>
+<li>화자11: 배우·아티스트는 프로필을 PDF로 많이 보내고, 고해상도면 200~300MB도 된다. 100MB를 넘으면 웹에서 오류가 난 경험이 있다고 했다. <span class="ts">[01:13:18]</span> <span class="ts">[01:14:21]</span></li>
+<li>화자11: 링크드인처럼 앞 몇 장을 이미지로 바꿔 보여주는 방식이 있다. 화자9는 그게 더 나은 방법일 수 있다고 했다. <span class="ts">[01:14:21]</span> <span class="ts">[01:15:07]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 운영 이슈 때문에 PDF는 일단 뺀다(은희). <span class="ts">[01:14:21]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="url">콘텐츠 보호·파일 보관·URL 만료</h2>
+<ul>
+<li><strong>쟁점</strong>: 파일을 언제까지 받을 수 있게 할지, 공유된 URL이 얼마나 유효할지, 보호를 어느 수준으로 할지 <span class="ts">[58:53]</span></li>
+<li><strong>파일 보관</strong><ul>
+<li>재욱은 만료를 두지 않겠다고 했다. 저장 용량은 지금 논의할 부분이 아니라고 했다. <span class="ts">[58:53]</span> <span class="ts">[01:00:19]</span></li>
+<li>민석: 저장 비용은 크지 않고, 조회(다운로드)할 때 드는 비용이 크다. <span class="ts">[59:22]</span></li>
+</ul>
+</li>
+<li><strong>URL 유효시간</strong><ul>
+<li>민석이 URL을 1시간 동안만 유효하게 하자고 했다. <span class="ts">[58:53]</span> <span class="ts">[01:01:17]</span></li>
+<li>재욱이 더 짧게 할 수 있는지 물었고 <span class="ts">[01:01:45]</span>, 민석은 URL이 자주 바뀌면 캐시가 안 돼 비용이 든다고 했다. <span class="ts">[01:02:12]</span></li>
+<li>민석: 서명 파라미터를 뺀 키로 캐시하면 해결된다. <span class="ts">[01:02:12]</span></li>
+</ul>
+</li>
+<li><strong>보호 수준</strong><ul>
+<li>화자9는 외부 메신저의 DRM 사례를 들었다. 민석과 은희는 창작물과 개인정보를 보호해야 한다고 했다. <span class="ts">[01:00:19]</span> <span class="ts">[01:00:42]</span></li>
+<li>민석: 공개 포폴은 괜찮지만 채팅에는 개인 작업과 대외비가 오가니 최소한의 보호는 필요하다. <span class="ts">[01:02:45]</span> <span class="ts">[01:03:08]</span></li>
+<li>민석: 이번에 포폴·작업물에도 적용하려 한다. <span class="ts">[01:03:08]</span> 재욱: 그렇게까지 빡세게 할 필요는 없다. <span class="ts">[01:03:39]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 당장은 파일 보관 만료를 두지 않는다. <span class="ts">[58:53]</span> <span class="ts">[01:00:19]</span></li>
+<li class="k-open"><strong>미결</strong>: URL 유효시간. 민석은 &quot;더 늘리든 줄이든&quot; 괜찮다고 했고, 구현하면서 정하기로 했다(&quot;클로드가 알아서 해줄 거예요&quot;). <span class="ts">[01:02:45]</span></li>
+<li><strong>관련 안건</strong>: 자료실 다운로드, 채팅 PDF(이 안건이 전제)</li>
+</ul></section>
+<section class="block agenda"><h2 id="106">자료실 다운로드 — 10/6 배포에서 제외</h2>
+<ul>
+<li><strong>쟁점</strong>: 최소한의 콘텐츠 보호만 개발해도 시간이 걸린다(민석). <span class="ts">[56:19]</span></li>
+<li class="k-dec"><strong>결정</strong>: 이번 배포에서 뺀다. 8일 업데이트도 어려우니 그 이후로 넘긴다(재욱). 6일까지 꼭 맞출 필요는 없고, 현실적으로 가능한 일정을 알려 달라고 했다. <span class="ts">[56:19]</span> <span class="ts">[57:31]</span></li>
+<li><strong>영향</strong>: 자료실에 파일을 모아 보여주는 건 되지만 다운로드는 안 된다. <span class="ts">[56:48]</span></li>
+<li><strong>정책 방향</strong>: 채팅방에서는 하나씩 받고, 자료실에서는 여러 개를 체크해 한 번에 받는다(재욱). <span class="ts">[56:48]</span> <span class="ts">[58:03]</span></li>
+<li><strong>기술안</strong>: 다운샘플링을 백엔드에서 하고 원본 URL과 다운샘플링 URL을 함께 내려준다(민석). <span class="ts">[57:31]</span></li>
+<li class="k-dec"><strong>합의</strong>: 다운로드는 <span class="hl">원본 품질</span>로 한다. 민석은 원본 여부는 기획이 정해야 한다고 했고, 화자9가 협업 제품이라 다운샘플링되면 안 된다고 하자 재욱이 동의했다. <span class="ts">[58:03]</span> <span class="ts">[58:32]</span></li>
+<li><strong>일정</strong>: 민석가 &quot;중순까지는 되죠&quot;라고 했다. 재욱이 &quot;중순 전에 되는 걸로 알고 세부 일정은 알려주세요&quot;라고 하자 민석이 &quot;네&quot;라고 답했다. 정확한 날짜는 정하지 않았다. <span class="ts">[01:03:39]</span> <span class="ts">[01:04:08]</span></li>
+<li class="k-open"><strong>발언 충돌</strong>: 재욱으로 표기된 줄의 &quot;다운로드는 필요 없는 것 같아&quot;는 앞뒤 흐름과 맞지 않는다. 다운로드를 취소한다는 뜻으로 보지 않는다. <span class="ts">[58:32]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_12">포폴 이미지·동영상 통합 업로드와 크롭 — 개선 방향 결정</h2>
+<ul>
+<li><strong>쟁점</strong>: 이미지와 동영상을 따로 올려야 하는 불편 <span class="ts">[45:22]</span></li>
+<li><strong>논의</strong><ul>
+<li>재욱: 갤러리에서 한 번에 골라 업로드 순서대로 보여주자. 캐러셀이 없어졌으니 상세 화면에서는 가로 폭에 맞춰 세로로 이어 보여주면 된다. <span class="ts">[46:33]</span></li>
+<li>은희는 첨부 경로가 달라서 나뉘었던 것이라고 했다 <span class="ts">[45:56]</span>. 화자7은 백엔드는 문제없고 클라이언트 쪽을 봐야 한다고 했다. <span class="ts">[45:56]</span></li>
+<li>화자7: 긴 사진은 원본 그대로 올리고, 3:4를 고르면 위아래로 옮겨 원하는 부분을 잘라 올리게 하려 한다. 재욱은 &quot;크롭 기능만 있으면 될 것 같아요&quot;라고 했다. <span class="ts">[46:49]</span> <span class="ts">[47:27]</span></li>
+<li>화자8이 프로필 포폴 캐러셀에서도 영상을 같은 비율로 보여주는지 물었다. 재욱은 어쩔 수 없다고 했고, 상세가 더 중요하다고 했다. <span class="ts">[48:35]</span> <span class="ts">[49:07]</span></li>
+<li>화자5는 작업 공수가 크지 않다고 했다. <span class="ts">[48:35]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 개선하기로 한다(은희). 통합 업로드의 세부 정책과 일정은 정하지 않았다. 재욱은 &quot;이건 좀 고민 좀 해볼게요&quot;라고 했다. <span class="ts">[49:07]</span> <span class="ts">[48:35]</span></li>
+<li><strong>의견</strong>: 재욱은 PDF·오디오를 따로 나누는 게 의미가 있는지 의문을 제기했다. <span class="ts">[47:27]</span> <span class="ts">[47:51]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="ga">GA 화면 이름 수집 — 콘텐츠 그룹은 여유 있을 때</h2>
+<ul>
+<li><strong>현황(은희 발언)</strong>: iOS는 거의 됐고 프론트도 된 것 같다. 안드로이드에는 남은 CCQ 티켓이 몇 개 있다. <span class="ts">[49:07]</span></li>
+<li><strong>요청</strong>: 화면 이름 앞에 디스커버리·파인더·채팅·마이 같은 콘텐츠 그룹 값을 붙인다. 같은 포폴 상세라도 어디서 들어왔는지 구분한다. <span class="ts">[49:07]</span> <span class="ts">[49:52]</span></li>
+<li><strong>정리</strong>: 시트의 &#x27;활성 탭&#x27;은 &#x27;예외 케이스&#x27;로 부르기로 했다(화자5 질문, 은희 답변). <span class="ts">[50:31]</span></li>
+<li class="k-dec"><strong>결정</strong>: 이번 배포에 넣지 않아도 되고, 시간이 날 때 반영한다. 화자5가 받았다. <span class="ts">[49:07]</span> <span class="ts">[50:31]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_13">폴더블 대응 — 권장사항이 나오면 대응</h2>
+<ul>
+<li><strong>배경</strong>: 화자5가 관련 티켓을 올렸다(원문 &quot;CC에 이십팔 번&quot;) <span class="ts">[50:31]</span>. 은희는 대표님이 &#x27;듀오&#x27;를 살 것 같다며, 산다면 대응이 필요하다고 했다(예상). <span class="ts">[51:11]</span></li>
+<li><strong>논의</strong><ul>
+<li>은희: 폴더블에서 본 앱들은 대부분 여백으로 처리했다. <span class="ts">[51:43]</span></li>
+<li>재욱: 일단 화면이 이상하게 깨지지 않게 하고, 완전한 대응은 화면을 어떻게 나눌지 고민이 필요하다. 애플의 기본 로직과 권장사항이 나올 것이다. <span class="ts">[52:22]</span>~<span class="ts">[53:16]</span></li>
+<li>재욱: 한쪽 화면에 가장 중요한 콘텐츠 하나를 두면 된다. 너무 어렵게 생각하지 않아도 된다. <span class="ts">[54:16]</span></li>
+</ul>
+</li>
+<li class="k-dec"><strong>결정</strong>: 정식 레퍼런스가 나온 뒤 검토하고, <span class="hl">권장사항이 나오면 빠르게 대응</span>한다. <span class="ts">[52:51]</span> <span class="ts">[54:16]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="og">채팅 링크 미리보기(OG)</h2>
+<ul>
+<li><strong>질문</strong>: 화자11이 채팅방에 URL만 보이는데 오픈 그래프(OG)처럼 이미지와 함께 보여줄 수 있는지 물었다. <span class="ts">[01:15:07]</span></li>
+<li><strong>사실</strong>: 지금은 OG 정보가 있어도 표시되지 않는다. 구현하면 된다(화자9). <span class="ts">[01:15:07]</span></li>
+<li><strong>우려</strong>: 플랫폼마다 모양이 달라 따로 디자인이 필요하다(화자11). <span class="ts">[01:15:46]</span></li>
+<li><strong>계획</strong>: 은희가 다음에 티켓을 만들기로 했다. 구현은 정하지 않았다. <span class="ts">[01:15:46]</span></li>
+</ul></section>
+<section class="block agenda"><h2 id="_14">게시판·자료실 시안 (회의 종료 인사 후)</h2>
+<ul>
+<li><strong>이미 한 일</strong>: 화자9가 업로드 시 원본을 올리도록 한 작업을 &quot;해놨어요&quot;라고 보고했다. <span class="ts">[01:16:32]</span></li>
+<li><strong>논의</strong><ul>
+<li>은희: 게시판 글쓰기 화면을 새로 만들고 디자인해야 하는가. 화자11: 텍스트만 넣으면 되니 특별할 것 없다. <span class="ts">[01:16:32]</span> <span class="ts">[01:17:17]</span></li>
+<li>은희: 시안을 카톡 서랍장처럼 만들었다(원문 &quot;이글에스에서&quot;, &quot;태완 님&quot;). &#x27;자료실&#x27;과 &#x27;서랍&#x27; 중 어떤 이름이 맞을지 물었다. <span class="ts">[01:17:17]</span></li>
+<li>화자11: &quot;이렇게 할 거예요, 디자인&quot; <span class="ts">[01:17:17]</span></li>
+</ul>
+</li>
+<li><strong>사실</strong>: 지금은 공지만 있고 게시글 등록은 나중에 한다. <span class="ts">[01:17:50]</span></li>
+<li class="k-open"><strong>미결</strong>: 기존 것을 유지하는지에 대한 답이 불분명하다(&quot;되죠?&quot;). <span class="ts">[01:18:22]</span></li>
+</ul></section>
+</div>
+<section class="block closing"><h2 id="_15">후속 업무</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>업무</th>
+<th>담당</th>
+<th>기한</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>지원자 0건 화면에서 &#x27;지원 마감하기&#x27; 버튼 빼기</td>
+<td>쥴리</td>
+<td>미정</td>
+<td><span class="ts">[06:12]</span></td>
+</tr>
+<tr>
+<td>크리에이터 부문 활동 지표 항목·가중치 정하기</td>
+<td>은희</td>
+<td>9/23(수), 원문 &quot;내일까지&quot;. 쥴리는 &quot;오늘 안에&quot; 정할 것으로 예상</td>
+<td><span class="ts">[20:29]</span> <span class="ts">[54:44]</span> <span class="ts">[55:52]</span></td>
+</tr>
+<tr>
+<td>명예의 전당 조회 API를 선정 로직과 분리해 먼저 개발</td>
+<td>민석</td>
+<td>9/28(월)부터 개발 가능, 원문 &quot;월요일부터&quot;</td>
+<td><span class="ts">[34:43]</span> <span class="ts">[54:44]</span></td>
+</tr>
+<tr>
+<td>순위 원자료 조회 방법(개발 리소스가 적은 방식) 검토</td>
+<td>미정. 원문 &quot;민정님&quot; 호명</td>
+<td>미정</td>
+<td><span class="ts">[25:07]</span></td>
+</tr>
+<tr>
+<td>수상 이후 화면(현황판·히스토리·프로필 표시) 아이디어 주기</td>
+<td>재욱(원문 &quot;재홍님&quot;)</td>
+<td>미정</td>
+<td><span class="ts">[35:05]</span></td>
+</tr>
+<tr>
+<td>CCO 127 티켓의 수정 버전을 3.1.2로 바꾸기</td>
+<td>은희</td>
+<td>미정</td>
+<td><span class="ts">[37:46]</span></td>
+</tr>
+<tr>
+<td>서버 푸시 묶음 발송 제거</td>
+<td>미정(발언자 확인 필요)</td>
+<td>미정</td>
+<td><span class="ts">[40:46]</span> <span class="ts">[41:17]</span></td>
+</tr>
+<tr>
+<td>이미지 원본 업로드·3:4 크롭 구현</td>
+<td>화자7</td>
+<td>미정</td>
+<td><span class="ts">[47:27]</span></td>
+</tr>
+<tr>
+<td>GA 콘텐츠 그룹·진입 경로(예외 케이스) 값 추가</td>
+<td>화자5</td>
+<td>시간 날 때(이번 배포 필수 아님)</td>
+<td><span class="ts">[49:07]</span> <span class="ts">[50:31]</span></td>
+</tr>
+<tr>
+<td>폴더블 활용 아이디어를 티켓 댓글로 남기기</td>
+<td>은희</td>
+<td>미정(생각나면)</td>
+<td><span class="ts">[54:16]</span></td>
+</tr>
+<tr>
+<td>다운로드 정책(개별·일괄 방식 등) 정리해 전달</td>
+<td>쥴리</td>
+<td>다운로드 작업 때, 원문 &quot;다운로드할 때 같이&quot;</td>
+<td><span class="ts">[56:48]</span></td>
+</tr>
+<tr>
+<td>다운로드 기능 세부 일정 알리기</td>
+<td>민석</td>
+<td>미정. 구현 목표는 &quot;중순 전/중순까지&quot;</td>
+<td><span class="ts">[01:03:39]</span> <span class="ts">[01:04:08]</span></td>
+</tr>
+<tr>
+<td>DRM·암호화가 필요한 이유 조사</td>
+<td>쥴리</td>
+<td>미정</td>
+<td><span class="ts">[01:00:42]</span></td>
+</tr>
+<tr>
+<td>URL 유효시간·캐시 방식 결론 내기</td>
+<td>민석</td>
+<td>미정</td>
+<td><span class="ts">[01:02:45]</span></td>
+</tr>
+<tr>
+<td>채팅 OG 링크 미리보기 티켓 만들기</td>
+<td>은희</td>
+<td>미정, 원문 &quot;다음에&quot;</td>
+<td><span class="ts">[01:15:46]</span></td>
+</tr>
+</tbody>
+</table></div></section>
+<section class="block closing"><h2 id="_16">다음 일정</h2>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>날짜 (녹음일 9/22 화 기준 계산)</th>
+<th>원문</th>
+<th>내용</th>
+<th>상태</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/23(수)</td>
+<td>&quot;내일까지&quot;</td>
+<td>명예의 전당 선정 로직 정리</td>
+<td>쥴리 확인</td>
+<td><span class="ts">[54:44]</span></td>
+</tr>
+<tr>
+<td>9/28(월)</td>
+<td>&quot;월요일부터&quot;</td>
+<td>명예의 전당 개발 시작, 선정 로직이 필요한 시점</td>
+<td>민석 발언</td>
+<td><span class="ts">[54:44]</span> <span class="ts">[55:52]</span></td>
+</tr>
+<tr>
+<td>10/6(화)</td>
+<td>&quot;10월 6일&quot;</td>
+<td>앱 심사 제출. 다운로드와 iOS 위젯은 빠짐</td>
+<td>은희가 가정으로 말함</td>
+<td><span class="ts">[21:45]</span> <span class="ts">[56:19]</span></td>
+</tr>
+<tr>
+<td>10/7(수)</td>
+<td>&quot;다음 날&quot;, &quot;수요일&quot;</td>
+<td>명예의 전당 첫 회 시작</td>
+<td>제안(확정 아님)</td>
+<td><span class="ts">[21:45]</span></td>
+</tr>
+<tr>
+<td>10/8(목) 추정</td>
+<td>&quot;8일&quot; (월은 말하지 않음)</td>
+<td>다음 업데이트. 다운로드는 넣기 어려움</td>
+<td>재욱 발언</td>
+<td><span class="ts">[56:19]</span></td>
+</tr>
+<tr>
+<td>10월 중순 추정</td>
+<td>&quot;중순까지&quot;, &quot;중순 전&quot;</td>
+<td>다운로드 기능 목표</td>
+<td>민석 수락, 날짜 미정</td>
+<td><span class="ts">[01:03:39]</span> <span class="ts">[01:04:08]</span></td>
+</tr>
+</tbody>
+</table></div></section>
+<section class="block closing"><h2 id="_17">미결·확인 필요</h2>
+<ul>
+<li><strong>명예의 전당</strong><ul>
+<li>크리에이터 활동 지표의 항목과 가중치 <span class="ts">[33:09]</span> <span class="ts">[55:52]</span></li>
+<li>포폴 초반 운영: 첫 회 대상 범위, 2주 동안 포폴이 충분히 올라올지, 시딩 방식 <span class="ts">[28:07]</span> <span class="ts">[34:15]</span></li>
+<li>운영 수치(1위 20만 원, 수요일 시작, 00:00~23:59:59)는 제안 수준이고 확정 발언이 없다. <span class="ts">[21:01]</span> <span class="ts">[21:45]</span> <span class="ts">[27:16]</span></li>
+<li>이전 수상자를 제외할지와 재업로드 대응이 엇갈린다. 은희는 수동 운영을 제안했고, 재욱은 &quot;그 정도 노력하면 그냥 줘요&quot;라고 했다. <span class="ts">[31:22]</span> <span class="ts">[33:45]</span></li>
+<li>사람 단위와 포폴 단위 중 무엇으로 수상하는지, 동점·중복 수상 규칙 <span class="ts">[28:07]</span> <span class="ts">[32:31]</span></li>
+<li>원자료 조회 수단(시트·슬랙·기타) <span class="ts">[26:50]</span></li>
+<li>수상 이후 프로필 배지·경력 표시 <span class="ts">[36:11]</span></li>
+</ul>
+</li>
+<li><strong>채팅</strong><ul>
+<li>새 참여자 알림을 넣을지, 서버 디바운스의 실제 조건 <span class="ts">[37:46]</span> <span class="ts">[39:47]</span></li>
+<li>&quot;제거하겠습니다&quot;가 재욱(화자1) 줄로 표기됐다. 화자 분리가 틀렸을 수 있어 발언자 확인이 필요하다. <span class="ts">[41:17]</span></li>
+<li>리스펙트 제공자 목록의 진입 위치와 표시 정보 <span class="ts">[44:22]</span> <span class="ts">[44:53]</span></li>
+</ul>
+</li>
+<li><strong>포폴 업로드</strong><ul>
+<li>통합 업로드의 정책과 일정, 프로필 캐러셀 표시 방식 <span class="ts">[48:35]</span></li>
+<li>참고 화면 &quot;일, 이, 오번&quot;이 어떤 키·번호인지 모름 <span class="ts">[47:27]</span></li>
+</ul>
+</li>
+<li><strong>다운로드·보안</strong><ul>
+<li>정확한 완료 날짜, URL 유효시간, 미리보기에도 다운샘플링을 쓸지 <span class="ts">[01:04:08]</span> <span class="ts">[01:02:45]</span> <span class="ts">[57:31]</span></li>
+<li>&quot;다운로드는 필요 없는 것 같아&quot; <span class="ts">[58:32]</span>가 말실수인지 인식 오류인지</li>
+</ul>
+</li>
+<li><strong>범위 밖으로 미룬 것</strong>: 경력 추가 기능을 넣을 다음 버전·범위·담당, 게시판 글쓰기 화면, &#x27;자료실&#x27;과 &#x27;서랍&#x27; 중 이름 <span class="ts">[15:15]</span> <span class="ts">[01:17:17]</span> <span class="ts">[01:18:22]</span></li>
+<li><strong>완료 보고 확인</strong>: 화자9의 원본 업로드 작업은 누가 했는지, 배포까지 됐는지 <span class="ts">[01:16:32]</span></li>
+<li><strong>공유 링크</strong>: 프로젝트 공유 URL 식별자(원문 &quot;프로젝터 아이디&quot;) <span class="ts">[18:01]</span>. URL을 확인해 준 사람의 이름(원문 &quot;진영 님이, 아, 준영 님&quot;) <span class="ts">[16:56]</span></li>
+<li><strong>호칭 확인</strong>: &quot;민정님&quot; <a href="후보: 민석">25:07</a>, &quot;태완 님&quot; <span class="ts">[46:49]</span> <a href="후보: 태환">01:17:17</a>, &quot;웅희 님&quot; <a href="후보: 은희">46:49</a></li>
+<li><strong>용어 확인</strong><ul>
+<li>원문 그대로 둔 표현: &quot;시식 5&quot; <a href="기획 문서 위치">36:11</a>, &quot;FC&quot; <span class="ts">[22:27]</span> <a href="푸시 알림 관련 약어로 추정">37:46</a>, &quot;웹톡&quot; <span class="ts">[01:00:19]</span>, &quot;백도어&quot; <a href="후보: 백로그">01:12:34</a>, &quot;이글에스&quot; <span class="ts">[01:17:17]</span>, &quot;대부요&quot;·&quot;알파&quot; <span class="ts">[01:15:46]</span></li>
+<li>기기·티켓 표기: 기기명 &quot;듀오&quot; <span class="ts">[50:31]</span>, 티켓 &quot;CC에 이십팔 번&quot; <span class="ts">[50:31]</span></li>
+</ul>
+</li>
+<li><strong>화자 번호</strong>: 화자5·7·8·9·11은 이름을 확인하지 못했다. 화자10의 발언 구분 <span class="ts">[01:01:45]</span>은 질문 흐름으로 재욱에 붙였다.</li>
+<li><strong>초반 전사</strong>: <span class="ts">[00:00]</span>~<span class="ts">[02:24]</span> 문장이 깨져 있다(&quot;레깅&quot;, &quot;베이드&quot;). 회의를 어떻게 시작했는지 내용은 복원하지 않았다.</li>
+</ul></section></main>
+</div>
+<aside class="hpanel" id="histPanel" role="dialog" aria-modal="false" aria-labelledby="histTitle" tabindex="-1" hidden data-ui>
+<div class="gp-head"><b id="histTitle">버전 기록</b><button class="gp-close" id="histClose" type="button" aria-label="닫기">✕</button></div>
+<div class="gp-body"><ol class="vlist"><li><div class="vhead"><span class="vno">버전 1.0</span><span class="vdate">2026-09-22</span></div><p>최초 작성</p><p class="vsub">디자인 템플릿 적용(2026-09-27) — 내용 변경 없음</p><p class="vsub">안건 지도를 묶음별 흐름으로 다시 배치(2026-09-27) — 관계 7개는 그대로</p></li></ol></div>
+</aside>
+<script>
+(function(){
+  var b=document.getElementById('histOpen'),p=document.getElementById('histPanel'),x=document.getElementById('histClose');
+  function open(){p.hidden=false;b.setAttribute('aria-expanded','true');p.focus({preventScroll:true});}
+  function close(back){if(p.hidden)return;p.hidden=true;b.setAttribute('aria-expanded','false');if(back)b.focus({preventScroll:true});}
+  b.addEventListener('click',function(){p.hidden?open():close(false);});
+  x.addEventListener('click',function(){close(true);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!p.hidden)close(true);});
+  var det=document.querySelector('.contents');
+  if(det&&window.matchMedia('(max-width:760px)').matches)det.open=false;
+  var links={};document.querySelectorAll('.contents nav a[href^="#"]').forEach(function(a){links[decodeURIComponent(a.getAttribute('href').slice(1))]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){var h=e.target.querySelector('h2[id]');var a=h&&links[h.id];if(a)a.classList.toggle('is-active',e.isIntersecting);});},{rootMargin:'-15% 0px -35% 0px'});
+    document.querySelectorAll('main section.block').forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>
+
+<!-- voice-meeting-minutes-html cbd426a276f4cd3a603a7e3ba35ec816814d1f428279cc9ffe4313299955cf45 -->
