@@ -60,8 +60,9 @@ h1::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;backgro
 .stage{position:relative;overscroll-behavior:contain;touch-action:pan-x pan-y}
 .zbadge{position:sticky;top:8px;left:100%;z-index:3;float:right;margin:0 4px -30px 0;height:26px;padding:0 10px;border:0;border-radius:999px;background:rgba(18,18,18,.72);color:#fff;font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;cursor:pointer;opacity:.55;transition:opacity .2s}
 .zbadge.on,.zbadge:hover{opacity:1}
-.eng{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}.eng button{height:30px;padding:0 12px;border:1px solid var(--line2);border-radius:999px;background:#fff;font-size:13px;cursor:pointer;color:var(--fg2)}
-.eng button[aria-checked=true]{background:var(--fg);border-color:var(--fg);color:#fff;font-weight:700}
+.eng{display:flex;gap:6px;margin:0 0 8px;overflow-x:auto;scrollbar-width:none}.eng::-webkit-scrollbar{display:none}
+.eng button{flex:none;height:30px;padding:0 12px;border:1px solid var(--line2);border-radius:999px;background:#fff;font-size:13px;font-weight:600;white-space:nowrap;cursor:pointer;color:var(--fg2)}
+.eng button[aria-checked=true]{background:var(--fg);border-color:var(--fg);color:#fff}
 .stage{flex:1;overflow:auto;padding:0 16px 8px;min-height:0}
 .paper{background:#fff;box-shadow:0 2px 12px rgba(0,0,0,.12);border-radius:6px;overflow:hidden;transform-origin:0 0}
 .paper iframe{display:block;border:0;width:100%}
@@ -940,7 +941,8 @@ _논의 흐름을 적습니다._
 window.PinchZoom = function (stage, paper, opts) {
   opts = opts || {};
   var W = opts.width || 1280, Z = 'fit', badge = opts.badge || null, hideT = 0;
-  function fitScale() { var a = stage.clientWidth - 24; return Math.min(1, Math.max(0.1, a / W)); }
+  function avail() { var cs = getComputedStyle(stage); return stage.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight) - 2; }
+  function fitScale() { var a = avail(); return Math.min(1, Math.max(0.1, a / W)); }
   function cur() { return Z === 'fit' ? fitScale() : Z; }
   function frames() { return [].slice.call(paper.querySelectorAll('iframe')).filter(function (f) { return !f.hidden; }); }
   function contentH() {
@@ -949,7 +951,7 @@ window.PinchZoom = function (stage, paper, opts) {
     return h || Math.max(600, stage.clientHeight);
   }
   function layout() {
-    var s = cur(), h = contentH(), a = stage.clientWidth - 24;
+    var s = cur(), h = contentH(), a = avail();
     frames().forEach(function (f) { f.style.height = h + 'px'; });
     paper.style.width = W + 'px'; paper.style.height = h + 'px';
     paper.style.transform = 'scale(' + s + ')';
