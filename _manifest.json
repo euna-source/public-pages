@@ -118,5 +118,13 @@
     "last_kind": "redeploy",
     "last_sha256": "4a26b555d8de1887f2078017ed52cf7ab43489d898c5f6e0fb5aaa7914e07907",
     "timestamp": "2026-09-28T02:54:28.757858Z"
+  },
+  "c8-alert-conditions": {
+    "slug": "c8-alert-conditions",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-alert-conditions/",
+    "last_kind": "redeploy",
+    "last_sha256": "6b133693693e832b5479dde56bf287cfbaadcea3fdd2b8b01548b6ef508b7c9c",
+    "timestamp": "2026-09-28T03:16:50.213967Z"
   }
 }
