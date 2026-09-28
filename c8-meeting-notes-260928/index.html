@@ -1,89 +1,451 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>9/28 정기미팅 — 명예의 전당과 채팅방 보관함</title><meta name="robots" content="noindex"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
-:root{--bg:#ffffff;--sunken:#f7f7f7;--desk:#f2f2f2;--fg:#121212;--fg2:#404040;--fg3:#6c6c6c;--line:#eaeaea;--line2:#dedede;--brand:#cdcdcd;--brand-ink:#6b6b6b;--brand-soft:#f4f4f4;--mod-ink:#606060;--mod-soft:#ececec;color-scheme:light}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.7 "Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;word-break:keep-all;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:underline;text-decoration-color:var(--line2);text-underline-offset:3px}
-.hint{color:#9b9b9b;font-style:normal;background:repeating-linear-gradient(90deg,transparent 0 3px,transparent 3px 6px)}
-code{font:13px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--sunken);padding:1px 5px;border-radius:4px}
-.page{max-width:1080px;margin:0 auto;padding:48px 32px 0}
-.eyebrow{margin:0 0 8px;font-size:13px;font-weight:600;color:var(--fg3)}
-h1{margin:0 0 10px;font-size:30px;line-height:1.3;letter-spacing:-.02em}
-.meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0;font-size:13px;color:var(--fg3)}
-.meta b{color:var(--fg);font-weight:600}.meta .st{padding:1px 9px;border-radius:999px;background:var(--brand-soft);color:var(--brand-ink);font-weight:700}
-.btns{display:flex;gap:6px;margin:14px 0 0}.btn{display:inline-flex;align-items:center;height:32px;padding:0 14px;border-radius:8px;background:var(--fg);color:#ffffff;font-size:13px;font-weight:700;text-decoration:none}.btn.o{background:#ffffff;color:var(--fg);box-shadow:inset 0 0 0 1px var(--line2)}
-.lede{margin:24px 0 0;padding:16px 20px;border-radius:12px;background:var(--brand-soft);font-size:16px;line-height:1.6}.lede::before{content:"결론";margin-right:10px;font-weight:800;color:var(--brand-ink)}
-.sec{padding:32px 0;border-top:1px solid var(--line)}.sec:first-child{border-top:0}
-.sh{display:grid;grid-template-columns:44px minmax(0,1fr);gap:0 8px;align-items:baseline}
-.sn{color:var(--brand-ink);font-weight:700;font-size:14px}.sh h2{margin:0;font-size:22px;letter-spacing:-.01em}.sq{grid-column:2;margin:2px 0 0;font-size:14px;color:var(--fg3)}
-.sb{margin-left:52px;margin-top:14px}.sb>*+*{margin-top:12px}.sb p{margin:0}.sb p+p{margin-top:.75em}
-h3{margin:18px 0 6px;font-size:16px}
-ul,ol{margin:0;padding-left:20px}li+li{margin-top:4px}
-li.ck{list-style:none;margin-left:-20px}li.ck::before{content:"☐";margin-right:8px;color:var(--fg3)}li.ck.on::before{content:"☑";color:var(--brand-ink)}
-li[class^="k-"]{list-style:none;margin-left:-20px}li[class^="k-"] b{display:inline-block;min-width:44px;margin-right:6px;font-size:12.5px}
-li.k-dec b{color:var(--brand-ink)}li.k-open b{color:var(--mod-ink)}li.k-todo b{color:var(--fg)}
-.ts{color:#9b9b9b;font-size:.9em;font-variant-numeric:tabular-nums}
-li.lb-dec>strong:first-child{color:var(--brand-ink)}li.lb-open>strong:first-child{color:var(--mod-ink)}
-li.lb-dec::marker{color:var(--brand)}li.lb-open::marker{color:#a0a0a0}
-ul ul,ol ul{margin-top:4px;list-style:circle}
-.tw{overflow-x:auto;border:1px solid var(--line2);border-radius:12px}
-table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
-tr:last-child td{border-bottom:0}th{background:var(--sunken);font-size:13px;color:var(--fg2);white-space:nowrap}
-figure{margin:0}figure img{max-width:100%;border:1px solid var(--line2);border-radius:10px}
-.call{padding:12px 16px;border-radius:10px;background:var(--sunken);font-size:14px}.call.decide,.call.unknown{background:var(--mod-soft)}
-.tray{margin-top:48px;background:var(--desk);color:var(--fg3);font-size:13px}
-.tray details{max-width:1080px;margin:0 auto;padding:14px 32px 28px}.t-plan .tray details,.t-minutes .tray details{max-width:1440px}.tray summary{cursor:pointer}.tray .tb{margin-top:10px}.tray .tb>*+*{margin-top:8px}
-/* plan: 왼쪽 고정 목차 */
-.t-plan .shell{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;max-width:1240px;margin:0 auto;padding:48px 32px 0}
-.t-plan .page{padding:0;max-width:none;margin:0;min-width:0}
-.toc{position:sticky;top:32px;align-self:start;font-size:13px}.toc p{margin:0 0 12px;font-weight:700;display:flex;gap:8px;align-items:center}.toc p::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--brand)}
-.toc ol{list-style:none;padding:0;display:grid;gap:10px}.toc a{text-decoration:none;color:var(--fg3)}.toc a b{font-weight:500;margin-right:10px}
-.t-plan .head{padding-bottom:22px;border-bottom:2px solid var(--fg)}
-/* research */
-.t-research .sh{display:block}.t-research .sn{display:none}.t-research .sq{margin-top:4px}.t-research .sb{margin-left:0}
-/* catalog */
-.fbar{position:sticky;top:0;z-index:2;display:flex;gap:8px;align-items:center;padding:10px 0;background:#ffffff}.fbar input{flex:1;max-width:320px;height:34px;padding:0 12px;border:1px solid var(--line2);border-radius:8px;font:inherit;font-size:14px}.fbar span{font-size:13px;color:var(--fg3)}
-.rules{border:1px solid var(--line2);border-radius:12px}.rules details+details{border-top:1px solid var(--line)}.rules summary{cursor:pointer;padding:10px 14px;font-size:14px}.rules summary b{margin-right:10px}.rules .rb{padding:0 14px 12px 14px;font-size:14px;color:var(--fg2)}
-/* schedule */
-.tabs{position:sticky;top:0;z-index:2;display:flex;gap:6px;overflow-x:auto;padding:12px 0;background:#ffffff;border-bottom:1px solid var(--line)}.tabs a{flex:none;padding:6px 14px;border-radius:999px;border:1px solid var(--line2);font-size:13px;text-decoration:none}.tabs a:first-child{background:var(--fg);color:#ffffff;border-color:var(--fg)}
-/* minutes */
-/* minutes: 왼쪽 목차 · 한눈에(2단) · 화자 · 안건 2단 기사 · 후속 업무·다음 일정·미결 */
-.t-minutes .shell{display:grid;grid-template-columns:200px minmax(0,1fr);gap:40px;max-width:1440px;margin:0 auto;padding:40px 32px 0}
-.t-minutes .page{padding:0;max-width:none;margin:0;min-width:0}.t-minutes h1{font-size:28px}
-.t-minutes .head{padding-bottom:20px;border-bottom:2px solid var(--fg)}
-.t-minutes .toc .ttl{margin:0 0 6px;font-size:12.5px;color:var(--fg2);font-weight:700}.t-minutes .toc .ttl::before{display:none}
-.blk{padding:22px 0 10px}.blk>h2{margin:0 0 12px;font-size:17px}
-.blk.glance ul{columns:2;column-gap:36px}.blk.glance li{break-inside:avoid;margin:0 0 8px}
-.arts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 40px;margin-top:18px}
-.art{border-top:2px solid var(--fg);padding:14px 0 26px}.art h2{margin:0 0 12px;font-size:17px;line-height:1.45}
-.art ul{padding-left:18px}.art li{font-size:14px;line-height:1.7}.art .tw{margin:10px 0}
-.t-minutes .blk.full{border-top:2px solid var(--fg);margin-top:10px}
-/* pt */
-.t-pt body,body.t-pt{background:var(--desk)}.slides{display:grid;gap:24px;max-width:960px;margin:0 auto;padding:32px}
-.slide{aspect-ratio:16/9;background:#ffffff;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:48px 56px;display:flex;flex-direction:column;justify-content:center;gap:14px;overflow:hidden}
-.slide h2{margin:0;font-size:30px}.slide.cover h1{font-size:40px}.slide .sq{margin:0}
-@media (max-width:760px){.page,.t-plan .shell{padding:28px 16px 0}.t-plan .shell{grid-template-columns:1fr}.toc{display:none}.sb{margin-left:0}.sh{grid-template-columns:36px minmax(0,1fr)}
- .t-minutes .shell{grid-template-columns:1fr;padding:24px 16px 0}.arts{grid-template-columns:1fr}.blk.glance ul{columns:1}h1{font-size:24px}.tray details{padding-inline:16px}.slide{padding:24px}.slide h2{font-size:20px}}
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>명예의 전당 운영과 채팅방 보관함 개발 논의</title>
+<style>
+:root{--paper:#fff;--ink:#121212;--ink-2:#3F3F46;--ink-3:#6B6B73;--sunken:#F7F7F8;--frame:#DEDEE2;--line:#EAEAED;--brand:#07ED21;--brand-ink:#067D14;--brand-soft:#DCFCE0;--warn:#FF7A1A;--warn-ink:#A63F08;--warn-soft:#FFE8D6;--display:"Gmarket Sans","Pretendard Variable",Pretendard,sans-serif;color-scheme:light}
+@font-face{font-family:"Gmarket Sans";font-weight:700;font-display:swap;src:local("GmarketSansBold"),local("Gmarket Sans Bold"),local("G마켓 산스 Bold"),url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff) format("woff")}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
+body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.65 "Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR",-apple-system,system-ui,sans-serif;letter-spacing:-.005em;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:2px solid var(--brand-ink);outline-offset:2px}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:16px;top:16px;z-index:30;background:var(--paper);padding:6px 14px;border-radius:999px}
+.shell{display:grid;grid-template-columns:184px minmax(0,1fr);gap:40px;max-width:1560px;margin:0 auto;padding:40px 44px 96px}
+.shell>aside{position:sticky;top:24px;align-self:start;max-height:calc(100vh - 48px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;font-size:13px;color:var(--ink-2)}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.14em;margin:0 0 18px;color:var(--ink)}
+.brand::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--brand)}
+.contents summary{cursor:pointer;font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--ink);list-style:none;margin-bottom:8px}
+.contents summary::-webkit-details-marker{display:none}
+.contents nav ul{list-style:none;margin:0;padding:0}.contents nav li{margin:0}
+.contents nav a{position:relative;display:block;padding:4px 0 4px 14px;color:var(--ink-2);text-decoration:none;line-height:1.45}
+.contents nav a:hover{color:var(--ink)}
+.contents nav a.is-active{color:var(--ink);font-weight:600}
+.contents nav a.is-active::before{content:"";position:absolute;left:2px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+.top-link{display:inline-block;margin-top:20px;color:var(--ink-3);text-decoration:none}
+.top-link:hover{color:var(--ink)}
+main{min-width:0}
+.head{margin-bottom:24px}
+.head h1{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.28;margin:0 0 12px;letter-spacing:-.02em}
+.head ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 20px;font-size:13px;color:var(--ink-2)}
+.head li{margin:0}
+.head li.ver-tag{color:var(--ink);font-weight:600}
+.hbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.hbtn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 16px;border-radius:999px;border:1px solid var(--frame);background:var(--paper);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.hbtn:hover{background:var(--sunken)}
+.hbtn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
+.hbtn.primary:hover{background:#2A2A2E;border-color:#2A2A2E}
+.hbtn[aria-expanded=true]::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
+section.block{border-top:2px solid var(--ink);padding:14px 0 4px;margin:0 0 32px;break-inside:avoid}
+section.block h2{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.35;letter-spacing:-.01em;margin:0 0 12px}
+h3{font-size:14px;font-weight:700;margin:14px 0 6px}
+p{margin:0 0 8px}
+ul,ol{margin:0 0 8px;padding-left:18px}li{margin:3px 0}li>ul,li>ol{margin:3px 0 6px}
+li::marker{color:var(--ink-3)}
+strong{font-weight:700}
+li.k-dec::marker{color:var(--brand)}
+li.k-dec>strong:first-child{color:var(--brand-ink)}
+li.k-open::marker{color:var(--warn)}
+li.k-open>strong:first-child{color:var(--warn-ink)}
+.hl{background:var(--brand-soft);color:var(--ink);padding:.12em .16em;margin:0 -.03em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.ts{color:var(--ink-3);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap}
+section.overview{display:grid;grid-template-columns:minmax(0,1fr);gap:12px 32px;align-items:start}
+section.overview>h2,section.overview>p,section.overview>h3,section.overview>ul,section.overview>ol{grid-column:1/-1}
+section.overview>ul,section.overview>ol{margin:0}
+section.overview>ul>li{break-inside:avoid;margin:0 0 6px}
+section.overview>.table-scroll,section.overview>.visual{margin:0}
+.columns{columns:2;column-gap:40px}
+.columns>section.block{display:inline-block;width:100%;vertical-align:top}
+.visual{margin:10px 0 12px;padding:16px;background:var(--paper);border:1px solid var(--frame);border-radius:12px}
+.visual-title{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.04em;margin:0 0 12px;color:var(--ink-2)}
+.visual ol,.visual ul{list-style:none;padding:0;margin:0}.visual li{margin:0;position:relative}
+.relation{display:grid;grid-template-columns:minmax(0,1fr) minmax(64px,.5fr) minmax(0,1fr);align-items:center;gap:10px;margin-top:8px;font-size:13px}
+.visual-title+.relation{margin-top:0}
+.endpoint{padding:9px 12px;background:var(--sunken);border-radius:12px;line-height:1.45}
+.relation-label{text-align:center;font-size:12px;color:var(--ink-2);padding:3px 0;border-bottom:1px solid var(--line)}
+.table-scroll{overflow-x:auto;margin:10px 0 12px;background:var(--paper);border:1px solid var(--frame);border-radius:12px}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:13px;line-height:1.55}
+th,td{min-width:104px;padding:8px 12px;text-align:left;vertical-align:top;border:0;border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
+tr>:last-child{border-right:0}
+tbody tr:last-child>*{border-bottom:0}
+th{background:var(--sunken);font-weight:700;white-space:nowrap}
+table.speakers td:first-child{white-space:nowrap}table.speakers tr>:first-child{min-width:0}
+blockquote{margin:8px 0;padding:6px 12px;border-left:1px solid var(--frame);color:var(--ink-2)}
+code{font:12px/1.5 ui-monospace,Menlo,monospace;background:var(--sunken);padding:1px 8px;border-radius:999px;white-space:nowrap}
+a{color:inherit;text-decoration-color:var(--ink-3);text-underline-offset:2px}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+.footnote{font-size:13px;color:var(--ink-2)}
+.hpanel{position:fixed;top:0;right:0;height:100vh;height:100dvh;width:min(420px,94vw);background:var(--paper);z-index:40;box-shadow:-8px 0 30px rgba(18,18,18,.14);display:flex;flex-direction:column}
+.hpanel[hidden]{display:none}
+.hpanel:focus{outline:none}
+.gp-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid var(--line);font-size:16px}
+.gp-close{flex:none;width:34px;height:34px;border-radius:999px;border:1px solid var(--frame);background:var(--paper);color:var(--ink);font:inherit;font-size:15px;cursor:pointer}
+.gp-close:hover{background:var(--sunken)}
+.gp-body{flex:1;overflow-y:auto;padding:20px}
+.vlist{list-style:none;margin:0;padding:0}
+.vlist>li{margin:0}
+.vhead{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.vno{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--brand-soft);color:var(--brand-ink);font-size:12px;font-weight:700}
+.vdate{font-size:13px;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.vlist p{margin:0 0 4px}
+.vlist .vsub{font-size:13px;color:var(--ink-2)}
+@media(min-width:1101px){section.overview{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}section.overview>ul{columns:2;column-gap:40px}}
+@media(max-width:1100px){.columns{columns:1}.shell{padding:32px 28px 88px;gap:32px;grid-template-columns:172px minmax(0,1fr)}}
+@media(max-width:760px){.shell{display:block;padding:16px 16px 56px}.shell>aside{position:static;max-height:none;overflow:visible;margin-bottom:20px}.brand{margin-bottom:12px}.contents summary{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 16px;border:1px solid var(--frame);border-radius:999px;font-size:13px;letter-spacing:0;margin-bottom:10px}.contents summary::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--ink-2);border-bottom:1.5px solid var(--ink-2);transform:rotate(45deg) translateY(-2px)}.contents[open] summary::after{transform:rotate(-135deg) translateY(-1px)}.top-link{display:none}.head h1{font-size:21px}.hbtns{margin-top:12px}section.block{padding-top:12px;margin-bottom:28px}th,td{padding:7px 10px}.relation{grid-template-columns:1fr;gap:4px}.relation+.relation{margin-top:22px}.relation-label{padding:0;border-bottom:0;color:var(--ink-3)}.relation-label::before{content:"↓ "}}
+@media print{body{font-size:10.5pt;background:#fff}.shell{display:block;max-width:none;padding:0}.shell>aside,.skip,.hbtns,.hpanel{display:none}.columns{columns:2}section.block,.hl,th{-webkit-print-color-adjust:exact;print-color-adjust:exact}section.block{break-inside:avoid}.table-scroll{overflow:visible}}
 
-/* 본문과 표의 폭은 해당 콘텐츠 열을 따른다. */
-.page,.sb,.art,.blk,.slide,.tw,.fbar{min-width:0}
-p,li,dd,blockquote{overflow-wrap:anywhere;line-break:strict}
-p,blockquote{text-wrap:pretty}
-h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
-.fbar input{min-width:0}.fbar span{flex-shrink:0}
-.tw table{min-width:480px}.tw{max-width:100%}
-.slide{overflow:visible;aspect-ratio:auto;min-height:420px}
-@media(max-width:760px){
- .slides{padding:20px 16px}.slide{min-height:0;padding:24px 20px}
- .slide.cover h1{font-size:28px}.slide .tw{width:100%}
-}
-@media(max-width:600px){br.prose-break{display:none}}
-</style><style id="doc-theme">:root,:root[data-theme]{--bg:#ffffff;--sunken:#f4f4f4;--desk:#f4f4f4;--line:#cfcfcf;--line2:#cfcfcf;--fg:#000000;--fg2:#3a3a3a;--fg3:#3a3a3a;--brand:#000000;--brand-ink:#000000;--brand-soft:#e6e6e6;--mod-ink:#000000;--mod-soft:#f4f4f4;--panel:#f4f4f4;--text:#000000;--muted:#3a3a3a;--accent:#000000;--mark:#e6e6e6;--marktext:#000000;--link:#000000;--linkline:#000000;--obi:#e6e6e6;--obitext:#000000}body{background:var(--bg);color:var(--fg,var(--text))}</style><style>.t-minutes .arts{display:block;columns:initial}.t-minutes .art{width:100%;margin-bottom:32px} .t-minutes .page{max-width:1080px} .t-minutes h3{margin-top:24px}button.btn{font:inherit;cursor:pointer}@media print{.btns,.toc{display:none!important}}</style><style>.meeting-actions{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 8px}.meeting-actions button{min-height:44px;padding:10px 14px;white-space:normal;height:auto;line-height:1.4;border-radius:8px}.action-help,#action-status{font-size:13px;color:var(--fg2);margin:6px 0}#action-status{min-height:1.5em}#copy-dialog{width:min(680px,90vw);border:1px solid #999;border-radius:12px;padding:20px}#copy-dialog::backdrop{background:#0006}#copy-dialog textarea{width:100%;height:50vh;font:inherit;margin-bottom:12px}@media print{.meeting-actions,.action-help,#action-status{display:none}}</style><link rel="canonical" href="https://euna-source.github.io/public-pages/c8-meeting-notes-260928/"></head><body class="t-minutes"><div class="shell"><nav class="toc"><p>회의록</p><p class="ttl">목차</p><ol><li><a href="#s1">한 줄 요약</a></li><li><a href="#s2">참석자(추정)</a></li><li><a href="#s3">결정된 것</a></li><li><a href="#s4">할 일</a></li><li><a href="#s5">못 정한 것</a></li></ol></nav><main class="page"><header class="head"><h1>9/28 정기미팅 — 명예의 전당과 채팅방 보관함</h1><div class="meeting-actions" role="group" aria-label="회의록 공유 및 복사"><button class="btn" id="share-url" type="button">URL 공유하기</button><button class="btn" id="copy-minutes" type="button">회의록 전체 복사</button><button class="btn" id="copy-original" type="button">음성 원문 전체 복사</button></div><p class="action-help">음성 원문은 받아쓰기 전문입니다.</p><p id="action-status" role="status" aria-live="polite"></p></header><p>2026년 9월 28일 정기미팅을 정리한 회의록입니다. 제공된 음성메모 받아쓰기 내용을 기준으로 작성했으며, 음성 원본과 대조하지 못한 이름·일정·세부 규칙은 확인 항목으로 남겼습니다.</p><div class="arts"><article class="art" id="s1"><h2>한 줄 요약</h2><p>내 포트폴리오에도 리스펙트 수를 표시하고 보관함의 파일 표시명과 저장명을 분리하기로 했으며, 게시판 배포 일정과 명예의 전당 운영 규칙은 추가로 정리합니다.</p></article><article class="art" id="s2"><h2>참석자(추정)</h2><p>전사문에 화자 구분이 없어 참석자 수와 실명을 확정할 수 없습니다. 기획·디자인 공유, iOS·Android·백엔드 구현에 관한 발언은 확인되지만, 각 역할을 특정 화자에게 배정할 수는 없습니다.</p><p>대표님과 일부 팀원 이름이 언급되지만, 이름이 나왔다는 이유로 참석자로 포함하지 않았습니다. 아래 할 일의 담당자는 별도 지정이 확인되지 않아 미정으로 두었습니다.</p></article><article class="art" id="s3"><h2>결정된 것</h2><p>이 절은 회의에서 합의한 동작과 진행 방향을 정리합니다. 세부안이 남은 항목은 해당 문장에 표시했으며, 그대로 개발 명세로 확정할 수 없는 내용은 ‘못 정한 것’에서 별도로 다룹니다.</p><h3>내 포트폴리오 리스펙트 표시</h3><ul><li>기존에는 자신에게 리스펙트를 줄 수 없다는 이유로 내 포트폴리오의 버튼을 숨겼습니다. 명예의 전당 집계와 연결해 받은 리스펙트 수를 확인할 수 있도록, 다른 사람의 포트폴리오와 동일하게 버튼과 개수를 표시하는 방향으로 정리했습니다.</li><li>자신의 포트폴리오에서 리스펙트 버튼을 누르면 줄 수 없다는 안내 토스트를 표시합니다. 실제 리스펙트를 부여하지 않습니다. 안내 문구는 취지가 정해졌으며 최종 문장은 별도로 정리합니다.</li><li>리스펙트를 준 사람의 목록은 기존처럼 포트폴리오 상세에서 확인합니다. 최초에 제안된 새 바텀시트 연결을 추가 확정한 것은 아닙니다.</li><li>영감의 좋아요 동작은 유지합니다. Android와 iOS 양쪽의 적용 가능 여부를 확인하기로 했습니다.</li></ul><h3>명예의 전당 이벤트 페이지 구성</h3><ul><li>이벤트 페이지에는 배너와 배경 영상이 들어갑니다. 회의에서 보여준 영상은 최종본이 아니므로 교체를 고려해 구현합니다.</li><li>설명과 안내 문구, 정보 아이콘을 눌렀을 때의 설명은 별도 데이터 연동 없이 정적 콘텐츠로 구성합니다.</li><li>이벤트 설명 페이지에서 명예의 전당으로 이동하는 링크 또는 버튼을 제공합니다. 작품 등록은 기존 플러스 버튼을 사용하며, 이벤트 페이지 안에 별도 참여 기능을 추가하는 방향은 아닙니다.</li><li>회차별 금액과 조건처럼 달라질 수 있는 정보는 이벤트 설명 페이지에서 안내하는 방향입니다. 외부 페이지 활용 범위와 웹뷰·네이티브 화면 경계는 추가 확인이 필요합니다.</li><li>후보자가 없을 때의 화면도 추가하기로 했습니다. 집계 중 안내가 예시로 제안됐으며, 최종 문구와 노출 조건은 남아 있습니다.</li></ul><h3>보관함 썸네일과 파일 표시명·저장명 분리</h3><ul><li>채팅방 메뉴에서 들어가는 보관함은 기존 리스트형에서 썸네일 중심으로 변경합니다. 링크의 오픈그래프 표시도 논의됐으나 세부 규격은 확인이 필요합니다.</li><li>서버에 저장하는 파일은 난수 기반 이름을 사용하고, 이용자에게 보여 주는 파일명은 별도로 관리하는 방향으로 정리했습니다. 표시명을 받는 API 작업이 필요하다는 설명이 있었습니다.</li><li>iOS는 가져올 수 있는 원래 파일명을 표시하고, 다운로드할 때도 해당 이름을 유지하는 방향입니다.</li><li>Android는 회의에서 원래 파일명을 가져오기 어렵다고 설명됐으므로, 별도 생성 규칙을 사용합니다. 이는 회의에서 공유된 구현 제약이며 이번 회의록 작성 과정에서 실제 코드를 확인한 결과는 아닙니다.</li><li>Android 파일명은 논의 후반에 파일 종류 접두어를 빼고 날짜·시간과 랜덤 코드 네 자리를 조합하는 방향으로 모였습니다. 연도 자릿수, 초 포함 여부, 구분자, 랜덤 코드 문자 종류는 정확한 규칙을 다시 전달하기로 했습니다.</li><li>화면에 보이는 파일명과 다운로드 파일명은 일치시키는 방향입니다. 다만 OS별 원본명 처리와 중복 처리의 구체적인 구현은 별도로 정리합니다.</li><li>같은 이름 뒤에 1, 2를 붙이기 위해 전체 파일을 조회하는 방식은 개발 부담이 있어 채택하지 않았습니다. 파일들을 구분할 수 있게 하되, 이 규칙 때문에 주요 기능 개발이 지연되지 않도록 구현 공수를 우선 고려합니다.</li></ul><h3>보관함 공지 탭 숨김과 게시판 도입</h3><ul><li>현재 공지에는 상세 화면과 게시물 관리 기능이 없어, 보관함에서 과거 공지 목록만 보여 주는 효용이 작다는 의견이 모였습니다.</li><li>논의 말미에는 보관함의 공지 탭을 우선 노출하지 않고, 게시판이 도입될 때 다시 구성하는 방향으로 정리했습니다. 기존 채팅방 공지 기능 자체를 없애기로 한 것은 아닙니다.</li><li>프로젝트 운영에 게시판이 필요하다는 데 공감했습니다. 다만 10월 중순 배포에 넣기 위해 기존 기능을 빼는 교환안은 확정되지 않았습니다.</li><li>답글 달기는 공수 대비 중요도가 높다는 의견이 있었고, 이를 제외하기로 결정하지 않았습니다. 사진·동영상 동시 업로드 등 다른 기능을 빼도 게시판 개발 시간을 확보하기 어렵다는 설명이 있었습니다.</li></ul><h3>공유 버튼·위젯의 진행 방향 — 세부 디자인 확인 필요</h3><ul><li>프로젝트·라운지 공유 버튼의 위치를 Android와 iOS에서 맞춰야 합니다. 첫 화면에서 공유 기능에 접근할 수 있는 배치와, 알림을 벨 아이콘으로 표현하는 안을 논의했습니다. 정확한 위치는 디자인에서 정리합니다.</li><li>위젯은 포트폴리오 보기·포트폴리오 올리기·영감 올리기 등 개발 중인 바로가기 구성을 우선 적용하고, 이후 사용성을 보며 변경하는 방향에 동의했습니다. 기능 이름은 전사 표현이 불명확하므로 티켓과 대조가 필요합니다.</li><li>위젯은 10월 6일 배포분에 포함해야 한다는 발언이 있었습니다. 정확한 티켓과 배포 범위는 확인이 필요합니다.</li></ul><h3>캠페인 개시 전 앱 배포·안정성 확인</h3><ul><li>캠페인을 여는 날보다 최소 하루 전에 운영 환경에 앱을 배포하고 안정성을 확인해야 한다는 기준을 재확인했습니다.</li><li>화요일 앱 배포, 수요일 캠페인 개시가 논의됐습니다. 회의 날짜와 10월 5일 휴일 언급을 기준으로 보면 각각 10월 6일과 10월 7일을 가리키는 것으로 보입니다. 캠페인 시작일 자체는 유동적이며 확정 일정으로 보지 않습니다.</li><li>크리에이터 활동 점수는 해당 집계 기간의 활동을 기준으로 하고, 이전부터의 전체 누적 점수를 그대로 사용하는 것은 아니라는 점을 확인했습니다.</li></ul></article><article class="art" id="s4"><h2>할 일</h2><p>회의에서 요청하거나 진행하겠다고 한 후속 작업입니다. 담당자의 실명은 확인되지 않았으며, 날짜를 명확히 말하지 않은 항목은 기한을 미정으로 남겼습니다.</p><div class="tw"><table><thead><tr><th>할 일</th><th>담당</th><th>기한</th></tr></thead><tbody><tr><td>지난주 공유 일정에 연결해 둔 CCO 티켓과 제품 개발 메시지를 확인합니다.</td><td>미정</td><td>미정</td></tr><tr><td>내 포트폴리오의 리스펙트 버튼·개수 표시와 자기 리스펙트 차단 안내의 양 OS 적용 가능 여부를 회신합니다.</td><td>미정</td><td>미정</td></tr><tr><td>10월 업데이트 디자인 작업 공간을 별도로 나누고, 보관함·자료실·채팅방 검색 디자인을 정리합니다.</td><td>미정</td><td>미정</td></tr><tr><td>자료실을 제외한 나머지 작업물을 공유합니다. 공유 대상의 정확한 범위는 확인이 필요합니다.</td><td>미정</td><td>9/29(화), 회의의 ‘내일’ 기준</td></tr><tr><td>자료실 작업을 마무리하고 공유합니다.</td><td>미정</td><td>9/29(화) 작업 완료, 9/30(수) 오전 공유</td></tr><tr><td>로컬 DB로 구현한 자료실 알파 버전을 확인하고 피드백을 전달합니다. 회의에서는 업로드 완료·진행 중 표현이 함께 나와 최신 상태 확인이 필요합니다.</td><td>미정</td><td>미정</td></tr><tr><td>서버 저장명과 표시명 분리에 필요한 API 및 클라이언트 작업 공수를 정리합니다.</td><td>미정</td><td>미정</td></tr><tr><td>Android의 날짜·시간·랜덤 네 자리 파일명 규칙을 정확한 예시로 전달하고 디자인에 반영합니다.</td><td>미정</td><td>미정</td></tr><tr><td>보관함의 공지 탭을 숨기는 방향을 디자인·개발 범위에 반영합니다.</td><td>미정</td><td>미정</td></tr><tr><td>게시판의 작성·조회·수정·삭제 및 첨부 범위를 정리하고 개발 공수와 배포 가능일을 다시 논의합니다.</td><td>미정</td><td>미정</td></tr><tr><td>프로젝트·라운지 공유 버튼과 알림 버튼의 위치를 양 OS에서 맞춥니다.</td><td>미정</td><td>미정</td></tr><tr><td>위젯 바로가기의 티켓과 디자인을 확인하고 배포 범위에 반영합니다.</td><td>미정</td><td>10/6 배포분 언급, 확인 필요</td></tr><tr><td>채팅방 검색 디자인과 알파 버전 동작을 확인합니다.</td><td>미정</td><td>미정</td></tr><tr><td>명예의 전당 최종 영상·안내 문구·빈 화면을 준비하고 연결 경로를 정리합니다.</td><td>미정</td><td>캠페인 개시 전, 날짜 미정</td></tr><tr><td>명예의 전당 상금 표현과 1회차 참가 대상·재수상 정책을 대표님과 협의합니다.</td><td>미정</td><td>미정</td></tr><tr><td>홍보 채널, 이벤트 링크 전달 방식, 관계자 안내 계획을 정리해 글로 공유합니다.</td><td>미정</td><td>정리되는 대로</td></tr><tr><td>교체가 지연된 기존 노출 콘텐츠를 민석님에게 다시 확인합니다. 대상 콘텐츠는 확인이 필요합니다.</td><td>미정</td><td>미정</td></tr></tbody></table></div></article><article class="art" id="s5"><h2>못 정한 것</h2><h3>파일명 세부 규칙</h3><p>날짜·시간과 랜덤 네 자리라는 방향은 나왔지만, 바로 구현할 수 있는 단일 형식은 확정되지 않았습니다. 연도를 두 자리로 할지, 초까지 넣을지, 구분자를 어디에 넣을지, 랜덤 코드가 영문 대문자만인지 숫자를 포함하는지 확인해야 합니다. 네 자리 랜덤 코드의 충돌 처리도 정해지지 않았습니다. 파일 종류 접두어를 붙이는 초기안과 일련번호를 붙이는 중간안을 최종안으로 섞지 않습니다.</p><p>iOS에서 원본명이 같은 파일을 여러 번 올렸을 때의 처리와, Android 생성명에 쓰는 시각이 업로드·파일 생성·다운로드 중 어느 시점인지도 명확한 확인이 필요합니다.</p><h3>게시판 배포일과 구현 범위</h3><p>10월 중순 배포 포함, 다음 정기 배포, 10월 중간 별도 배포가 모두 논의됐으며 마지막에는 다시 이야기하기로 했습니다. 전사에는 중순 배포일이 15일과 16일로 혼재하므로 정확한 날짜를 확정하지 않습니다. 후속 배포의 30일 언급도 게시판 확정 일정은 아닙니다.</p><p>게시판은 프로젝트를 포함한 채팅방 전반에 제공하는 방향이 언급됐습니다. 일반 참여자의 글 작성, 방장만 공지 지정, 기존 대화를 게시물로 전환하는 기능이 논의됐지만, 이번 구현 범위와 권한으로 모두 확정된 것은 아닙니다.</p><h3>명예의 전당 1회차 대상과 재수상 정책</h3><ul><li><strong>1회차 작품 범위:</strong> 집계 기간 안에 올린 포트폴리오만 대상으로 하는 기존안 대신, 첫 회차에는 기존 작품도 포함하자는 의견이 나왔습니다. 포함 범위와 리스펙트 집계 기준을 최종 확인해야 합니다.</li><li><strong>같은 작품의 재수상:</strong> 한 번 수상한 포트폴리오는 제외하자는 의견과 반복 수상이 가능하자는 의견이 갈렸습니다. 다른 작품에 기회를 주자는 근거가 있었으나 운영하면서 판단하자는 발언도 있어 최종 규칙은 남아 있습니다.</li><li><strong>상금:</strong> 150만 원이라는 문구가 언급됐지만 대표님과 추가 논의하기로 했습니다. 확정 상금으로 기록하지 않습니다.</li><li><strong>빈 상태:</strong> 후보자가 없을 때와 단순 집계 중일 때를 같은 안내로 처리할지, 각각 다르게 보여 줄지 정해야 합니다.</li><li><strong>홍보·개시:</strong> 공식 채널과 커뮤니티 홍보, 관계자 안내 방식이 아직 정리되지 않았습니다. 확정 개시일에 맞춰 앱 배포와 운영 준비를 연결해야 합니다.</li></ul><h3>명예의 전당 진입·연출·배너 노출</h3><p>디스커버리 상단 트로피와 카드 각각의 이동 목적지는 화면을 가리키며 설명해 전사만으로 확정하기 어렵습니다. 화면 상단까지 웹으로 구성하는 방안과 단순 등장 애니메이션·스포트라이트 점등 연출이 제안됐지만, 최종 웹뷰 범위와 효과 사양은 확인이 필요합니다.</p><p>배너를 처음에는 위에 두고 반복 방문자에게는 아래로 내리는 안도 나왔습니다. 이용자별 노출 횟수를 기준으로 하자는 의견과 세 번이라는 예시가 있었지만, 정확한 횟수·위치 변경 조건·적용 일정은 정해지지 않았습니다.</p><h3>전사 내용 추가 확인</h3><p>정확한 참석자 실명, 녹음 시각·길이, CCO 티켓 번호는 제공되지 않았습니다. 위젯 논의 직전의 ‘게임랭킹’처럼 인식된 표현은 기능명을 특정하기 어려워 별도 결정으로 만들지 않았습니다. 파일·오디오 동작을 보여 주는 구간 역시 오류 보고인지 정상 동작 확인인지 불분명해 버그 확정 항목에 넣지 않았습니다.</p></article></div></main></div><script>document.querySelectorAll('[data-f]').forEach(inp=>{const sec=inp.closest('.sb'),rows=[...sec.querySelectorAll('tbody tr')],n=sec.querySelector('[data-n]');const up=()=>{const q=inp.value.trim().toLowerCase();let c=0;rows.forEach(r=>{const ok=!q||r.textContent.toLowerCase().includes(q);r.hidden=!ok;c+=ok});n.textContent=c+'행'};inp.addEventListener('input',up);up()})</script><dialog id="copy-dialog" aria-label="복사할 전체 텍스트"><p>자동 복사가 제한됐습니다. 아래 텍스트를 선택해 복사해 주세요.</p><textarea aria-label="복사할 내용" readonly></textarea><button class="btn" id="close-copy-dialog" type="button">닫기</button></dialog><script type="application/json" id="original-transcript">". 저번 주에 공유된 그 일정에 대해서 앞에다가 CCO 티켓은 다 달아뒀거든요. 그래서 보고 제품 개발에 의 내용 메시지 보는 확인하시면 될 것 같아요. 그리고 추가적으로 저희 그 잠시만요. 지금 내 포트폴리오인 경우에는 그 디스커버리에 보면 이렇게 리스펙트 표현이 없잖아요. 그래서 리스펙트 내가 받은 리스펙트 수가 이제 명예의 전당에서 수가 집계가 되는데 아무래도 여기에 내 포트폴리오의 리스펙트 숫자가 표현이 되어야 될 것 같아요. 그래가지고 예를 들면 그냥 요렇게 아이콘 표시 정도는 추가할 수 있지 않을까 해가지고 요거 클릭하면 요거 바텀시트 내 이 작업물을 리스펙트 하는 사람들 뭐 이런 거 연결해주고 앞당하는 요 작업도 같이 추가가 가능하지 않을까 싶어가지고 저 질문이 있는데요. 저 자유가 작성한 포트폴리오의 리스펙트 없는 거 지금 처음 알았는데 그게 왜 그런 거예요?  그거 일단은 그 내가 좀 빨리 적용하기 위해서 내가 작업한 포트폴리오에는 리스펙트 버튼을 빼기로 했었어요 내가 줄 수가 없어가지고 일단 버튼을 삭제했었는데  버튼에 대한 UI 표시만 근데 아 도 일하게 가야 될 것 같아 그냥 차라 눌렀을 때 자기 자신의 포트폴리오에는 리스펙트 할 수 없어라는  버튼 스트가 뜨는 나쁘지 않을 것 같은 좀 헷갈릴 것 같아 그래 그래서 그냥 동일하게 포폴리오 그리를 누르고 들도 문제 프로 들어가 있잖아요 거기서도 너피 플로트로 들어가거든요. 거기는 노출 안 하는 걸로 생각했어요. 그러면 똑같이 노출하고 내 포트폴리오에는 리스펙트 할 수 없어요라는 토스트를 띄워야 되는 예요. 그게 제일 심플할 것 같은데 경우에서 너무 많이 나 어차피 내게 뜨는 경우가 엄청 빈번하진 않고 그리고 눌렀을 때 그 파브에 했었다고 이상하게 보이지 않을 것 같아. 자기 포트폴레이 리스펙트를 줄 수 없습니다 노리치게 그냥 그리고 개수는 보고 리스펙트를 보고 싶으면 상세해서 리스트를 누르면 이 볼 수 있잖아요 지금은 그거 그대로 가고. 혹시 영감 좋아요는 눌러도 되는 거예요? 되지 아 되는데 같은 리스펙트 근데 어 좋아에는 개수가 없어서 상관없을 것 같아요 리스펙은 어차피 소진되는 개념이라서 여덟 개밖에 없어가지고 네 그러면 오케이 안드로이드랑 아이오이S 둘 다 가능한지 의견 주시고 지금 7일로 6일 저희 하는 데 있어서 일정 문제 없나요? 네 없습니다. 지금 제가 알고 자료실까지 된 거였는데 따로 자료실이랑 보관함 보관함이랑 그 다음에 검색 채팅방 검색 디자인 안 했구나. 그 디자인 얘기가 나와서 드리는 말씀인데요 혹시 이 10월 업데이트에 새로 하나 파주실 수 있으실까요? 딴 거랑도 섞여 있어서 아 네 감사합니다. 이거 어떡하지? 이렇게 계속 간 게 맞나? 그래서 KT 분리 하면은 될 것 같아요.  분리가 더 많아 좋은 같아 네 일단 섹션은 이렇게 했는데 가이드가 없어가지고 이제 갈이드가 없어 가이드가 머릿속에 있나 봐 일단 이렇게 감쌌지만 일 날 잡아서 할게 일단 그 요거 설명드리면 이벤트 페이지가 배너가 있을 거고요. 요게 있을 거고 옆에 보시면 뒤에 요거 영상이에요 뒤에 옆에 보세요. 옆 플리도록 영상 있거든요. 요거 최종본은 아닌데 요런 영상 들어올 거예요. 언제 저 뒤에 영상에 저런 들어갈 거거든요. 그래 고려해서 해주시면 될 것 같고 그리고 밑에 하나 콘텐츠는 어차피 스텝 컨텐츠이고 눌러서 명예진행 하면 링크 정도 걸릴 것 같거든요. 그것만 고려해서 적어보시면 될 것 같고. 그 그리고 저 명예인 전쟁 쪽은 저렇게 그리고 밑에 하나 안에 설명이 추워져 들어갈 건데 저것도 어차피 스텝들이어가지고 데이터를 받는 건 아니어가지고 그냥 넣어주시면 될 것 같고 인포 눌렀을 때 옆에 또 저 설명문구가 있거든요. 근데 저것도 그냥 스탠틱이어가지 나중에 바꿔주시면 될 것 같아요. 근데 잘 이해가 안 되는 저 누르면 어디로 가는 거예요? 아 예를 들면 여기로 가는 거예요 여기서 왜 여기 이렇게 비어 있어요? 아직 안정이  여기 이벤 페이지예요 작품 포드 설명이 있을 거고 금 안 있을 이벤트가지고 거기서 뭘 누르면 여기로 보러 가 고 명예장 보러 버튼 같은 있으면 기서 기로 가고 여기 기로 가면 버튼 링크 정도만 들어가고 참여 자체는 어차피 플러스 버튼 사면 여기서 한번 링크 걸리지 않을 것 같아요. 그래서 금액이나 이런 것들은 회차별로 달라질 수도 있을 것 같아서 일단 금액이나 이런 것들은 여기에서 아마도 다 언급이 될 것 같아요. 그래서 여기도 그렇게 세계는 저기까지도 외부로 가는 좋을 것 같기는 해요. 그래야지 업데이트가 이벤트라서 균단하게 바꿀 수 있거든요. 사실 혹시 디스커버리 저기 상단에 트로피 알코는 누르면 바로 여기에 누르면 여기 카드 누르면 아 모르는 데 일단 저도 그렇게 설명한 수영님한테 드렸는데. 근데 그냥 뭔가 싶어서 눌러 올 거 같은데요? 배려있으니까 금액은 150만 원은 이게 어감상 이제 150만원이라고 정해주셨는데 요거는 좀 대표님이랑 얘기 한번 해보고 근데 어차피 그런 거 별로 안 좋아하실 거예요. 어차피 이 얘기 밖에 텍스트 바뀌는 건 별로 안 좋아하고 구조적인 것만 결정나면 일단 들어가시면 될 것 같아요. 저기에 애니메이션 걸리면 좋겠는데 어디에요? 어 뭔가 뜨는 이런 게 지금은 상위 이렇게 올라오는 정도로만 해놓네요. 그 정도면 될 것 같아요. 혹시 이거 구형 가능 이 웹비오에서 위에 네이트에 혀있잖아요 실 저거는 그냥 가능 그쪽에 네이트에 고 있는 건가 그럼? 둘 다 풀로 하는 게 낫지 않을까요? 어떻게 바뀔지 모르는 위에까지 으로 하는 게 고 애플 하이트 위 대표가 제일 괜찮을 것 같아요 브로도 저렇게 뚫려있어서 뭔가 아 그러네요 스포트라이트는 정적 이미지라서 애니메이션을 떠올려야 다른 걸로 해야 될 것 같아요 저는 그냥 알파로만 나눠도 될 것 같은데 스포트라이트를 스포트를 깜빡이만 하면 이상하잖아 명예전당인들 항상 켜져 있기만 하면 될 들어왔을 때 그냥 켜지는 느낌만 안 들고 그리고 옆에 보시면은 보관함 으로 들어왔을 때 그 햄버거 버튼으로 들어왔을 때 이렇게 돼 있고요. 카톡은 똑같아요. 설명도 딱히 없긴 한데 그 스트리 보드에도 달라진 거는 보관함이 썸네 이미지로 가야 될 것 같아서 조것만 좀 바꿨어요. 고 리스 타입이었는데 썸네이타 바꿨어요. 링크 좀 오픈 그래프 말씀하시는데요? 그리고 저거 M피3 파일 그 파일 규칙도 적었잖아요 파일명 규칙. 파일명 규칙이요? 예, 그 그때 말씀드렸잖아요. 네이티브에서 파일명을 얻을 수가 없어서 저희가 나름 규칙 세워가지고 2006년 날짜를 하면 포토 포토 동 뭐라고  비디오 언더바 날짜 시간 아니 아니 오디오만 알면 돼요 차피 사진 동영상은 지 파일명이 안 보이잖아요 오  오디오 더만 하시 시간이요 같다 더 그건 잘  근데 이 시간까지 해야 같은데 왜냐면 이게 이 이 하루에 여러 개 올릴 수 있잖아요 그러지 않아 지 까 근데 그러면 어떻게 하지? 시간은 데 밑에 있긴 해요 아 저 그거구나 모두의 시간일구나 HH 이거? HH M 엠 녹음 되지 않나? 까지 갈려고 면도를 빼 않아 하지 이 하 대트까지요? 미 세컨드까지? S까지만 하면 될 것 같은데요 설마 초 단위로 아 SS까지? 그래 엠피스리 뭐 그 다음에 확장자 받 줄 알았어 넘어서 여기 들어가라 기 웃는 거야 너무 귀지 않아? 일단 이렇게 하고 너무 긴 길긴 하다. 연도까지 칠 필요 있다. 연도 삭제하면 아 위에 저기 있습니까요? 날짜가? 날짜가 있어서 날짜는 없어 될 것 같긴 한데 혹시나 파일만 봤을 때는 구분 이 안 될 수 있어가지고. 생각해보면 카톡에서 사진 받을 때도 다운로드 받으면 파일은 되게 길던데 그래 길면 점쩔점 처리하죠. 근데 뭐 이형 시장에 가면 적으로 가 수가  필요가 혹시 디바이 따라서 그런 거는  일단 요렇게 다 통일을 해드리겠습니다. 아 잠깐만 그것도 있네 생각해보니까 전체 다 파임명 규칙이 있었는데 면 저는 처음에 여기만 필요하다고 생각했는데 받았을 때 난수돼 있으면 이상하니까 그러네요. 앞에 확장자 면만 달라지면 될 것 같아요 그러면 아까 말씀하신 대로 이미지 비디오 이 예요? 저 뒤에 저기 다들 라는 맞는지 모르겠어요. 앞에 오디오 이런 것들 파일 다운받았을 때 의미가 있는데 저 뒤에 연도를 주제하면 될까요? 면도 두 자리에 빼 근데 이럴 거 있잖아요 같은 파일을 두 번 있어 그럼 걔네들은 어떻게 들어가요? 똑같은 이름으로 들어가요? 타이 아니 시간이 다르면 초까지가 안 나오면은 그러면 똑같이 나오죠 다른 파일으로서 똑같은 파일 일 개 종씩 걸렸어요 그러면 1초도 안 걸릴 수 있잖아요 그러면 어떻게 이 요? 그렇죠 이상한데 뒤에 숫자 붙지 않아요. 제 일 뭐 이렇게 이 그 규칙까지 넣어야 되네 그러면 1, 2가 붙은 거면 저는 시간 빠져도 될 것 같아요. 그럴 거면은 영화하게 시간이요? 이게 어차피 그 뭐 일 이렇게 12 저렇게 붙을 거면은 랜덤 코드가 붙을 거면은 그시간은 상관없을 요 그리 시간 단위가 밀리 세컨드 단위가 되지 않는 이상 다 나오게 근데 그걸로 구분점을 게 좀 이상한 거죠 결론으로 얘기 날짜 구조가 이해 되는데 시간 단위로 구분점을 더도 파일을 분간한다는 게 이상한데 그래서 저는 뭐 뒤에 변수명이 들어간다고 하면은 앞에 그냥 날짜까지만 넣어두도 되지 않을까? 진짜 안드로이드에서 파일명 못 갖고 오는 거 였죠? 사실 그냥 그 애초에 그 파일명로 옮기는 게 제일 좋은데 그게 제일 좋긴 하죠. 지금 그러면 iOS는 파일명 경제는 붕괴하기 그랬지 똑같이 하게 했지 이번에  아니 아니요 아픈 게 아니에요 똑같이 똑같이 그 파이면 들어오는 대로 그냥 보여준다 하려고 했는데 아 드로이가 안 돼가지고 그럼 이번에는 그냥 다 같이 안 보이는 걸로 하지 않을까 되긴 했어 모르겠는데  아니면 이쪽에서 제 그 안도 따로 처리해야 되다 보니까 쪽에서 그냥 따로 처리하는 건 아닌데 사실 그 API를 어차피 따로 작업을 해야 되거든요. 지금은 프리타임 유R로 올리면 안 쓰기 반이잖아요. 그럼 그거랑 반대로 파일 명을 받은 AP이를 따로 만들어서 왜냐면 실제로 업로드 되는 파일까지 그거면 안 되거든요. 그 파일명이면. 그럼 저것도 마찬가지긴 하네 보안도 너무 신경 쓰지 말까 그러니까 이게 사실 원래 난수 기반으로 하는 이유가 다운로드를 받을 때 뭔가 예측 가능한 파일론이면은 URL로 쳤을 때 다운로드 받을 수 있으니 최대한 예측 불가능한 안수 기반으로 하는 거거든요. 근데 어차피 그거는 다운로드 링크 때문이고 노출은 또 다른 거잖아요. 못했습니다 여기 노출되는 거랑 진짜 서 올라가 명 같진 않을 거든요. 지금은 갖게 하려고 공수를 줄이려고 그렇게 했는데 그냥 애초에 그렇게 하지 말까 지금 생각을 하고 있습니다. 그냥 작업할 때 해버릴까 그냥 어차피 해야 되니까 아 그건 제가 고민을 해보고 저는 사실 그리고 애매하면은 여기 난 스코터 놔도 돼요 저는 근데 그 난속 코드랑 어차피 디비코드랑 똑같진 않아야겠죠. 말씀하신 다운드 받을 수 있을까요? 아니 그거는 괜찮을 것 같아요. 똑같아도 왜냐면 난수 기반이면 그러니까 이게 퍼블릭으로 유출이 되거나 아니면 공격한 사용자가 뭔가 그 규칙을 통해서 그거를 다운을 계속 받을 수 있니 브루트포스이라고 해가지고 예를 들면 숫자로 돼 있다고 하면 숫자 계속 바꿔가면서 하면은 다운드 받을 수 있는데 난주면 그게 안 되거든요. 그래서 근데 이거 자체는 이 파일에 대 이 있는 사용자가 그 난수를 보는 거잖아요. 그러니까 그 사람은 알아도 되니까 상관없을 것 같긴 한데 근데 궁극적으로는 어쨌든 분리되는 게 맞기는 하니까 그냥 애초에 요번에 작업을 그렇게 그러면 해야 되나? 보안 좀 부분은 알아서 그걸 결정하시면 될 것 같고 공수 산정하셔가지고 저는 여기 노출되는 게 사실 핵심이 파일들이 똑같이만 보이게 되는 거든요. 그래 안드로드는 올림은 그대로 쓰면 상관  안드로이드 같은 경우에는 파일을 그대 못 갖고 온다면 저는 날짜 시간이 난속부터 나 상관없다고 왜냐면 어차피 카톡도 다 그렇잖아요 그냥 내놓고 부터 대신에 우리는 파일이 규정하고 있으니까 앞에는 기본적인 그  파일코드가 있고 오디오 뭐 이런 거 그리고 뒤에는 날짜가 되든 난속 코드가 되든 근데 듣다 보니까 난속 코드도 맞지 않을까? 왜냐하면 동시에 두 파일 갖추 시간으로 그걸 분량기 좀 어려우니까 그건 이제 의견 주세요 어떻게 든 상관없는데 여기서 가타만 안 보이면 돼 파일들이 알겠습니다. 카톡은 그냥 숫자로 하네요 근데 이 숫자가 이래도 되나 아 이런 퍼블릭은 안 하니까 그렇구나. 네 알겠습니다. 야 그렇게 네, 아에스에서는 사실 그대로 보여주는 게 여태까지의 EX에서 카톡도 그렇고 그게 가능하다고 페이지는 좋대. 그래서 굳이 갚게 할 필요가 없다고 한다면은 따로 좀 가져갈 수 있으면 좋을 것 같은데. 그럼 어차피 해야 되는 거니까 요번에 그것도 같이 하는 게 맞을 것 같아요. 실제로 올라가 있는 애들은 난수 기반으로 하고 근데 노출되는 애 타이밍을 따로 하로 해서 작업을 해야겠네요. 자료실은 어차피 조금 시간 있어도 되죠. 그러니까 자료실 제외한 나머지는 다 내일 공유해드릴 거거든요. 날씨 이미 공유해드리긴 했는데 근데 이제 자료 같은 경우에는 내일 모레 공유가 돼도 되 일 모레요? 상관없어요. 내일 모레 오전  수요일 오전 네, 내일까지 작업을 끝내는 거죠. 그래서 내일 모레 오전에. 일단은 그 로컬디디로 구현한 버전은 알파벳이 올라가 있거든요. 그래서 그 두 분 보시고 만약에 피드백 주실 거 있으면 주셔도 되겠네요. 로컬 비비로 보여 있는데 자교실 아 자료실? 오케이 자 지금 올라가고 있는 중이고 여기에서  링트만 봤어. 이런 식으로 건데 몇 개가 많이 있는 걸 좀 보여드려야 되는데. 다 일단 프로젝트 뿐만 아니라 다 가해놨거든요. 다 들어가야 돼요. 아 언제 있대 오늘이야? 지금 아이에스에서 버우가 있는 건지 오디오를 다운 받아가지고 올려봤는데 전장시게 되더라고요. 자료실에 대해서 한 가지만 더 말씀드리면 그럼 이제 iOS 같은 경우에는 그냥 가족 있는 파일면 그대로 하면 되는데 안드로이드 같은 경우에는 팔면 규칙이 있어야 되잖아요. 근데 그 규칙을 할 때 그냥 아까처럼 초 단위까지라고 해도 될까요? 그러니까 무슨 얘기냐면 같은 이름이 있을 때 뒤에 일 붙이고 이 붙이고 하는 게 불가능하진 않은데 좀 구현이 까다로워서  오디오 언더 랜덤 랜덤 숫자 몇 개까지 될까요? 네 잘 모르고 하는 얘기이긴 한데 붙이고 이 붙이고 하는 거 그냥 리눅스 시스템 상해서 자동으로 붙여서 것 같아요. 사실 걸 크라이패스 받으려고 하다 보니까 그렇게 되는 건데 일관성 있게 하려고 하면은 그 iOS에서도 파일명을 보낼 거잖아요. API 구현 입장에서는 백앤드에서는 그냥 파일명을 받고 그 파일명을 정하는 규칙을 안드로이드에서 하게 제가 구현을 하려고 머릿속으로 생각을 하고 있는데 그렇게 되면은 파일명이 예를 들면 케이스긴 한데 보컬에서 페이징이 돼 있던 거예요. 예를 들면 그래서 그11번 10개씩 페이지는 했는데 11번째 파일이 하필 재수없게라는 오늘 올린 파일이었던 거예요. 같은 네 같은 파일 명에 있던 거예요. 그리고 이제 안드로이드 입장에서는 페이징 되어 있는 파일 중에서 겹치는 게 있는지 확인하고 없으면 언도바이를 붙일 거잖아요. 근데 그것 때문에 풀패치라 애 되는 것도 좀 이상하거든 그에서 제가 만약에 서버에서 받는다고 하면 전부 다 한 다음에 할 텐데  그렇다고 이제 에이P 두 걸 만들기도 좀 애매하잖아요. 그렇죠 그래서 일관성 있게 클라이트에서 받으려고 하다 보니까 뭐 그런 이슈가 있을 것 같긴 한데 아예 분기를 쳐야 되어요. iOS랑 한 돌이들은. 지금 저희 뭐 싫어서 보내고 있나요? 아니 이제 만들어야 돼요 그러면 또 그 바면 안 되는 사실 백앤디서 한다고 하더라도 그걸 할 때마다 그 전체 풀 스캔을 한다는 것도 좀 부담이기는 해. 그렇죠 에너지가 쌓이는 그래서 중요한 게 아니라면 그렇게 하면 어떨까라는 제안을 드려봤습니다. 지금 보면 그 카톡도 이렇게 올라가요. 숫자 겁나 길잖아 업로드 시점에도 이렇게 되는 거죠? 아 이 다운로드받아. 그렇죠 다운로드 받았어요. 카카오톡 어쩌고저쩌고 그렇게 됐네요 아 아 숫자인데요 이 저는 어쨌든 핵심은 그거잖아요. 같은 타일으로 노출되지 않게 하는 게 핵심이니까 저는 랜덤코드는 날짜는 상관없는데 날짜가 되면 1, 2가 빠진다면 그냥 랜덤코드가 처리를 놨다. 그리고 저는 여기가 만약에 공수가 이것 때문에 엄청 많이 든다. 그러면 가장 빠른 방으로는 맞는 것 같아요 이게 되게 핵심적인 요인은 아니거든요. 전체 서비스를 봤을 때 이것 때문에 큰 무대 이런 건 아니니까 요 할 시간에 다른 거라는 걸 알 수도 있어요 제가 망했을 때 파일 규칙 물론 이제 나중에는 좀 업데이트를 하거나 저희가 화시킨다. 그럴 있는 결정사항이지만 금 시점에서는 그냥 똑같은 팔명만 안 나오게 하는 게 더 중요한 것 같아요. 네 알겠습니다. 근데 랜덤코드가 만약 1시간이고 예를 들어서 1일를 늘려면은 탑승에 걸린다 하고 그냥 랜덤코드 드세요. 저는 근데 약간의 의견을 말씀드리면 시간 기반이 그래도 좀 나을 것 같은 게 사용자 유시장에 해서 카톡도 지금 보니까 시간 기반으로 되고 있거든요. 그래서 이제 오래 예전에 올렸던 것보다 나중에 올리는 숫자가 더 커요. 그런 게 사자한테 익숙하니까 그런 관점에서 시간을 놓는 게 낫지 않을까 그러 시간까지만 놓고 뒤에 랜코드 전에 면 되는 거 아닐까요? 시간 시까지요? 지 요 같은지도 나 어차피 제가 봤을 때는 초까지 나오는 경우는 내가 4개파의 동시를 텐데 그때는 파 이 같은 올라  이 사람 제가 봤을 까지 다루는 경우를 보면은 파 쪽 동 동시잖아 거기서 12 차이 나거나 아니면 초가 같거나 그 차이라서 저는 없는 어차피 같이 수가 되고 다루려나 그러면 아예 그냥 와 MDD까지 하고 시간 아예 하지도 말고 뒤에 동도 하면 될 오히 그럴 그냥 시간하고 군인하고 내놓고 다 것 같아요. 시간 근데 그건 다운로드 받았을 때 다운드 록 지 다운드 기록도 없잖아 다음에 넣으면 번에 안 들어갔구나 일단 이 받았을 때 저 명로 내려야 그렇게 돼야겠죠 사용자 입장에서 파일명이 저렇게 보였는데 제가 이해한 거는 여기 보관함에는 그 다른 사람들이 내가 파일명 규칙을 파일명을 등록한 것과 자동으로 노출이 되고 다운로드 했을 때 우리가 정해진 그 규칙에 맞춰서 다운로드 된다. 맞죠 그래서 여기 보관함에 보여지는 요리스트에서는 그 다운로드 규칙에 따른 그 정의 내용이 표현되는 게 아니고 그 사용자가 올린 파일 면이 그대로 노출된다. 아이오에스는 안드로이드는 그게 안 된대요. 그래서 지금 계속 얘기가 나오고 있는 거 아는 iS는 올릴 때도 그대로 팔 다운로드 때도 그대로 팔 근데 안드로이드 같은 경우가 지금 그게 다 하셔가 할 얘기 그러면 그렇게 하죠 앞에 빼고 날짜 시간 렌더코드 내려요. 제일 같아요. 렌더코드 내 자리 안드 그럼 이거 관사님한테는 좀 따로 규칙만 명확하게 다시 정해주시면 이미지 한 다음에 다뤄놓을게요. 아 저는 할 거면은 날짜 시간 다 보여주는 게 좋을 날짜 시간 내놓거든 그러 아예 오디오 이도 빠져 것 같아 파일 장 대면이 있으니까 아 그렇게 시간이랑 초예요 시간 나하면 초죠? 민 아 MM도 그렇고 이게 좀 생 아니 저 뒤에 언더바가 1이 아니고 언더바 랜덤 거 랜덤 4개 뭐 알파벳 들어가면 되나요? 네 자리 네 자리인데 이쁜데 알파벳 영웅 뭔지 뭐 그런 것도 정해주시면 그냥 영문 대문자 랜덤 북으로 얘기하면 되지 않을까요? 상관없다 아 랜덤 코드 붙는 게 좀 이상해서 좀 어색하네. 근데 지금 이걸로 이걸로 좀 얘기를 너무 많이 한 것 같아서 여기서 정리를 한 게 맞을 것 같습니다. 말씀하신 대로 중요한 게 아니잖아요. 그래서 겹치지는 않아도 이런 거다 보니까 상황이 이상하다 아 웃겨요. 그래요. 절대 안 돼 아 여기 왜 12 안 쓰고 그래 노 어 이렇게 생각하는 사람도 진짜 없을 걸 개발자는 그럴 수도 있겠다. 어차피 카톡도 다 내놓고도 내렸는데 한 번도 이사도 안 느꼈잖아요 이미지 같은 거 내려왔을 때 엉덩이 이름으로 들어오고 막 이렇게  그럼 얘는 이제 그 클릭하면 다 해당하고 상 상 아 상세복이 왜 날짜 누는 거 달라고 했었는데 거죠? 그 까먹었네 공지는 상세가 없으니지 않나요? 없어요 근데 궁금한 게 이렇게 해놓으면은 이거는 그 그 왜 있는 거죠 제가 궁금해서 원래 카톡은 상태가 있잖아요. 거기는 다시 공지로 올리거나 그런 기능들도 있고 삭제도 다 있 저희는 그냥 히스토리 같은 개념인가? 히스토리 같은 개념 근데 공지의 히스토리가 필요한가요? 제 생각엔 공지에 대한 상세 기능 어떤 게시판 기능 카톡과 같은 그런 기능을 제공하기 전까지는 이게 의미가 없지 않을까? 이게 사실 된다면 여기 게시판이 되고 이게 공지로 선택돼 내야 돼요 그 중에 하나가 개념이 누르면 상세가 있고 그리고 이게 장기적으로는 공지에서 개를 더 보게 누르면 급해져 넘어요. 거기서 걸려지는 게 아 최종 목적지는 거긴데 지금 시점에서 어떻게 갈지 영어는 걸요? . 그냥 현실 관지만 보여주면 되지 않을까요? 탭을 날리는 게 낫지 않나 라는 생각을 들어봅니다. 그럴 거면 현재 공지 내용이 풀로 그냥 보여지는 게 좀 더 나을 수도 있겠네. 그거는 채팅방에서도 보이는데 왜 여기서 보여요? 채팅방 스크롤 생길 수도 있잖아. 그러면은 이게 의미가 없는 거 같아요? 그래서 저도 하면서 이게 어떤 의미로 들어가는 건 하겠어요. 전 상대까지 작업이 되는 그리고 공주를 등록하는 기능이 지금 사실 반밖에 없는 거잖아요 방법 어차피 개신을 생산할 수 있는 사람도 방대밖에 없잖아요. 지금 현재 근데 나중에 아 저희 게시판 기능을 도입하는 데는 얼마나 올까요? 입원 하자는 건 아니고 일정을 잡고 해야 되니까 다. 게시판에 그냥 단순 글 올리는 기능이라고 하면 사실 어렵지는 않죠. 백앤드 할 때 처음 개발 시작할 때 제일 먼저 하는 게시판 거든요. 초보들이 하는 거 그러니까 작업 일수를 정해가지고 언제 업데이트 할지를 결정을 해놔야 되는 거니까 고구마 확인한 거고 그러면 뭐 그 저희가 업데이트 버전이 15일 버전이잖아요. 네. 그때 업데이트 같이 할 수 있나요? 게시판까지? 어렵지 않다며 16일 빠듯합니다. 다음 주에 해야 사진 동영상 번에 업로드 다는 거랑 채팅방 남의적인 메시지 연속으로 하고 메시지로 롱프레스 했을 때 답글 달기 하고 다운로드 다운로드 다운드 기 근데 급하지 않아요. 그래서 일정을 알려주시면 301번에 들어가도 되기 해요. 이게 난이도는 어렵지 않은데 양이 많을 것 같아요. 왜냐하면 CRL리가 다 들어가야 되고 거기는 막 천국파일도 들어갈 수 있고 그러다 보니까 그렇다면 저는 15일 6일 업데이트 되는 것 중에 하나를 빼고 오히려 게시판이 들어가면 한 것 같아요. 시간 걸리는 빼고 이 프레스 이런 것들은 사실 그러니까 저는 어쨌든 프로젝트 우리 운영 일정이 중순부터는 잡혀있잖아요 사실 그렇다고 봤을 때 다른 기능들을 제외하고 프로젝트의 게시판 기능이 생기지 않을 것 같아. 따서 뺄 게 다운 로드도 필요하잖아요 근데 그 정도의 양의 리소스를 빼야 이게 교체가 되요 그래가지고 문의 드리라는 거예요. 그래서 답글 달기가 과연 그 정도의 리소스일까가 좀 근데 저는 답글 달기가 그 정도 리소스는 아닌데 비해서 되게 중요한 것 같아요. 반드시 나가야 될 기능이 아닌가 라는 생각이 필요하죠. 이런 것들은 사실 없어도 되어 이 같은 경우는 저거는 뭐 근데 이건 클라 작업이어서 뺑이는 해야 돼요 왜냐면 유지가 돼야 되잖아요 했어 요게 빠지면은 게시판 될까요? 안 저건 뭐죠 사진 한 번도 올게요 사진이랑 동영상이랑 지금 따로따로 올론하게 되어 있는데 폴 게시죠 맞아 안 될 것 같습니다. 3일밖에 없어서 실질적으로 개발 시간이 그래 시면 나 하지 게시판? 근데 이 게시판은 전체 다 아니에요? 그렇죠 채팅방 전체 다 게시판 근데 약간 프리터 운영면 게시판을 쓸 텐데 무조건. 근데 저는 이게 방장만 게시판 할 수 있는 게 좀 좀 호크이 있 붙여져야 포함해서 공지만 담당히 할 수 있도록 해야죠. 공지만 그리고 쓸 수도 있고 대학가를 게시물로 적용할 수도 있고 카톡장. 카톡에 그런 이름도 있구나. 일단 게시판 게시판 안 써요 근데? 카카오톡 커뮤니티는 다 쓰잖아요 게시판 거기다가 공지도 올려놓고 자료도 올려놓고 이렇게 운영 규칙도 올려놓고 하잖아 겠어요. 꽤 오래 오픈채팅을 했었는데 지금 왔어요 오픈제 오픈수는 별게 다 있어요. 출첵조 있잖아 복기능이 있어가 별  법도 운영하고 그랬었는데 게시판 당근 같은 것도 사 있고. 주로 방장용이긴 한 것 같아요 공지성 때문에 그러니까 이게 채팅에서 끝나면은 저도 게시판에 그게 중요하지 않은데 프로젝트라든지 이런 데 들어가면 사실 거기서 프로젝트 운영하는데 자료 실이라든지 기본적인 공지라든지 전달사항이든지 이걸 텍스트로 계속 하지는 않을 거예요. . 그걸 안 쓰더라도 그런 기능이 어딘가 존재해야지 그런 것들을 이제 쓸 수 있게 되는데 그래도 게시판 기능은 지금이 아니더라도 곧 되긴 돼야 된다고 보긴 해요. 그럼 뭐 다음에 바로 넣는 걸로 하면 되지 않을까요? 그런데 그 다음 운영 배퍼가 30일이다 보니까 이주에 한 번씩 배포하려고 정 거잖아요. 10월까지는 그냥 하기로 했다. 네 10월에는 그냥 게시판만 중간에 한 나름이 해서 일단은 일단은 딴 것들이 일이 많으니까 요거는 다시 얘기하세요. 저는 공유할 내용은 없습니다. 그럼 일단 공지를 빼고 하는 건가요? 공지는 이 하나만 덜로만 보여주기도 좀 애매하고 그죠? 이 그냥 저는 그거 여기서 어차피 바뀔 거면 그냥 항상 유지가 맞는 것 같아요 게시물 바꿀 거면 괜히 애꿎은 공지가 게시로 바뀔 바에는 게시판로 바뀔 바에는 그냥 없다는 지금 안 보여주고 나중에 게시판에 게시판 나오  저는 한 가지 말씀드릴 게 저희 프로젝트 공유하기 있잖아요. 네. 그거 버튼 혹시 어디로 넣으면 될까요? 맞아 버튼 위치를 잡아주시 저는 생각보다 공이죠? 네 라운지 채팅방을 공 푸트 하신 거 아니요? 채팅방 라운지 프로젝트 라운지라든지 프로젝트 공유하면 프로 하고 운 딩 프로그램 됐잖아요. 유치 맞아요. 일단 iOS는 여기 버튼으로 해드시긴 하셨는데 저는 상담 채팅방 신고 위쪽으로 넣긴 했거든요. 근데 바쁠 수 있어요.저는 이긴 하고 요 정도가 많지 않나라고 생각이 되었습니다. 공유가 빈번하게 일어나는 건 아요? 근데 여기 공유 버튼 일단 iOS는 그렇게 잡아 에 어쩔 상당은 안 되는 근데 그럼 알림이 빠졌을 것 같아요 내가 봤을 위에다 버튼 두 개 놓긴 그렇고 알림이 지금 토로 돼 있다 보니까 알림이 밑으로 빠지든가 공유 두 중에 위치를 바꾸도 그래야 될 것 같은데. 공유로 들어오려고 알리 문 빼는 맞는 것 같은데 알림은 저기가 맞지 않아 아이폰화 돼가지고 다른 또 설정 페이지 알림을 누르면 알림도 여러 가지 데 뭐 나를 체 한 제외 뭐 이런 식의 알림 여러 가지 종류가 있는데 현실적인 알림에 바로 액션 버튼이 있다 보니까 아이폰까지 들어가면 좀 어그울 것 같은데 아니면은 요 요런 요런데 조그만한 켓만 넣으면 안 될까요? 여기 큰 버튼 있으니까 좀 공 많이 되면 좋은 거 아닌가 버튼 3개 이렇게 생각해요. 이렇게 하면 여기 공면 있고 여기도 공 놓고 여기 내일 알림 놓으면 되세요 같은 뭐 그렇게 위치  그 역에 톡으로 어떻게 그래도 돼요. 할 대신 상대 놈들 같아야 돼 저 밑에 있으면은 어쨌든 첫 페이지에 보이니까 네 맞아요. 알림은 지금 토블 스위치가 아니라 그냥 벨 벨 스 약간 이런 식으로 하는 되지 않을까요? 카톡처럼요? 그럴까? 그러잖아 그럼 진짜 공유 고트에는 같이 있어도 이상하지 않겠네.좀 궁금한 게 있는데  게임랭킹은 이번에 안 들어갔거 이번에 안 들어가 먹는 그것도 만들어야 드려야  아 위젯 그거면 적지 마세요 제가 해보면 될게요 어 이번에 해야 돼요 그냥 넣으면 되는 거죠 디자이너 되면 되는 거예요 이번에 해야 되면은  6일 분양배구하는 쪽에 넣어야 돼요. 이 티켓도 있으니까 유재 추가되면 어떤 지 이 되는 거예요? 그리 사용자 제가 맘대로 하긴 했는데 지금 저 같은 경우에는 포폴로 바로 띄우거나 올리기로 바로 띄우거나 영감 올리기로 바로 기로 이런 쪽으로 갔거든요. 기능을제 맘대로 한 거라서 원 년 바꿀 수가 있어요. 아니요 그렇게 해요 나중에 생각해보고 바꿔야 돼요 저도 지금 담대한 계념 는 것 같아요. 영감이랑 포포로 바로 올릴 수 있는 거포폴은 거의 안 쓸 것 같긴 한데 영감은 쓸 것 같기도 하고. 됐을까요? 제 없는 거 같은데 아닌가? 그 채팅방 검색은 그러면 디자인도 요것도 같이 필요한 거죠? 그래 자료 좋긴 하더라고 검색은 어디서 봐요 알파 대그? 안드로드 데 지금 그 아이올수도 있어요? 아 있어요. 확인 검색 혹시 누가 지금 작업하고 계세요? 백리 검색 물에서 하기로 페이징이 소용없어 약관이 이거 뭐야 운영 규칙. 네 없는 거 같습니다. 그렇습니다. 대표님은 운영 명예준당 어떻게 운영할지도 모르시는 거잖아요? 그때 대충은 얘기했죠. 대충이 그냥 뭐 근데 어떤 운영에 어떻게 운영할지의 운영 방법은 있는 거예요? 없죠 그냥 한 거죠 이게 설명 정도까지 되게 깊이 들어가는 운영이 있을까? 근데 이제 그거인 거죠 어떻게 홍보할 거냐? 그거는 오히 있죠 어떻게 홍보할 거고 어디 체력를 알릴 거면 이런 것들을 더 궁금하실 거요 실질적으로 그리고 김형석 디자에도 어떻게 전달할 거고 이벤트 표해지 있으니까 이벤트 표일이 링크를 따가지고 알려주던가 목소리야 되지 않을까?  근데 금요일날 심사를 올리고 월요일날 바로 저희가 프로드에 개시를 하지 않고 화요일날 개시를 하잖아요.  그때 다 맞춰놔야지 근데 저는 그게 좀 하루 밀려 상관없다고 봐요 준비하기가 어렵고 한다고. 아 우리가 화요일 날 하는 게 5일 날 휴일이라서 근데 어차피 저희가 수요일날 어떻게 딸 거면 수요일날 다 맞추지 않잖아요 모든 작업들은. 아니요 저는 프로드에 사전에 화요일날 배포하고 그 다음에 안정성 본 다음에 정말 수요일날 그 캠페인을 열 거면 영예정당 딱 스타트 할 거면 수요일날 하루 전에 앱켓이는 무조건 해야 될 것 같다 에 대한 스탠스고요 만약에 꼭 수요일 날 우리 하지 말고 다른 날로 하자 시대를 말서는 날짜가 중요한 거 같지 않아요. 아 날짜가 중요하지 않아도 저는 무조건 하루 전에는 이제 무조건 운영 100포는 되어야 한다. 그거는 기존은 그렇다 입니다. 그래서 날짜는 저도 유동적이긴 해요. 근데 어쨌든 이제 이벤트로 진행하는 첫날은 적긴 해야 되니까 그래가 저희가 맞춰서 제 체크웃 체크하고 그럴 것 같은데  그 긴 맞죠. 이게 아마도 뭐 저희 공식 채널로 뭐 여러 가지 그 커뮤니티 사이트에 올려도 그렇게 호응이 없을 거라고 생각이 돼서 그게 좀 고민이긴 하죠. 뭔가 첫날부터 빵 이런 느낌은 가져가기 힘들 거 같아요. 저는 그거 상관없어요. 계속 추가 때 내기면 그러면 명예의 전당도 그거 후보자 없을 때 케이스도 추가해 주시면 될 것 같아요. 저는 안내문구 같은 거는 일단은 틀 맞춰서 정리는 해놨고 문구는 규칙에 대한 내용만 조금 다듬는  저는 뭐 집계 중입니다 뭐 이렇게 표현을 하려고 했는데. 그 대표님한테 그것도 고민해봐야 될 게. 이게 이 기간 안에 원래 기존은 이 포트폴리오를 업로드한 것만 기준이잖아요. 근데 저는 그 일회차가 그게 맞나 서 싶긴 해서. 저도 그냥 근데 저는 그냥 전체 하는 게 맞는 것 같아요. 기존에 올린 사람도 대상자도 포함하는 게 맞나? 저는 그게 1회차는 찾는 에 이 저는 한 번 수상하 아니 그 포트폴리오는 그 포트폴리오 한 번 받았으면 그 포트폴리오는 수상 못 하는 거죠. 근데 그건 재미없잖아요. 예를 들어서 일기수상 이기 수상 성격 이렇게 하면 근데 그 포트폴리오로 계속  우려먹는다고요? 그러니까 그거를 단 5회 정도까지만 하잖아 전 일단 그 규칙에서는 그래 하나 아 근데 요거는 운영해보면서 판단해보시죠 근데 저는 제외하는 게 맞다고 생각했어요 다음 포트폴리오에 기회를 더 주자.  받는 사람만 받을 것 같아서 예 전 정도 고트를 10번 이상 다  그러면은 1회차는 기존 전 동안 한 달 동안 대에 다 못 받으면  뭐 조건 조금 유동적으로 된다. 그 크리에이터만 그 기간 내로 그냥 정리하는 걸로 할게요. 활동 점수이기 때문에. 크래프는 뭐 중국어 줄 수가 없잖아 어차피 아니 그 기간 안에 집계되는 활동 점수 거기 누적 누적되면 안 되죠. 네 근데 총선생 느 좀 너무 관심 없다. 네 그래서 저는 뭐라도 정리해서 공유 드려야 되는데 그 어떻게 홍보 계획 갖고 있냐에 대한 채널이나 이런 게 아직 정리가 안 돼서 공유를 제기가 조금. 일단 정리되는 대로 글로라도 공유를 드리고 디자를 마로 하셔야서 별 말이 없네. 아니 그 두 개 다 맞아야 되긴 해서. 얘는 항상 노출되어야 될까? 상 노출이야 거 한동안 그리고 저는 첫 노출은 여기서 하고 한번 본 사람들이라든지 두세 번 방문하자 면 이 배너가 밑에 나오져 것 같아 굳이 항상 상이 안 맞을 그렇죠 초반에 간 그게 근데 우리가 정하는 게 아니라 사용자의 이용 패턴을 해될 것 같은데요. 이걸 3번 이상 처음에 노출한 사람은 그 다음부터 밑에 나온다는 거 이렇게 해야 되지 않을까?  그리고 이거 언제 바꿔주는 거야 이거 난 아직도 정열이요? 민석님한테 한 번도 쪼독 하겠습니다. 작업이 이렇게 빨리 빨리"</script><script>(() => {
+/* 안건 지도: 걸린 안건 기준 2단 목록 */
+.amap .visual-title{margin-bottom:4px}
+.amap-sub{margin:0 0 12px;font-size:12px;color:var(--ink-3);line-height:1.5}
+.amap-g+.amap-g{margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.amap-gt{margin:0 0 8px;font-size:12px;font-weight:700;color:var(--ink-3)}
+.amap-item+.amap-item{margin-top:10px}
+.amap-t{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:0;font-size:13px;line-height:1.5}
+.amap-n{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+.amap-sep{color:var(--ink-3)}
+.an{color:var(--ink);font-weight:600;text-decoration:none}
+.an .nm{border-bottom:1px solid var(--frame)}.an:hover .nm{border-bottom-color:var(--ink)}
+.st{font-style:normal;font-size:12px;font-weight:700;line-height:20px;padding:0 8px;border-radius:999px;white-space:nowrap}
+.st.dec{background:var(--brand-soft);color:var(--brand-ink)}.st.open{background:var(--warn-soft);color:var(--warn-ink)}
+.amap-src{list-style:none;margin:4px 0 0;padding:0 0 0 14px;display:grid;gap:4px}
+.amap-src li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;line-height:1.5}
+.amap-src .an{font-weight:500}
+.ar{flex:none;font-size:12px;font-weight:700;line-height:20px;padding:0 7px;border-radius:6px;white-space:nowrap}
+.ar.pre{color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink-3)}
+.ar.eff{color:var(--ink-3);box-shadow:inset 0 0 0 1px var(--frame)}
+
+.amap-cnt{margin-left:8px;font-size:12px;font-weight:500;color:var(--ink-3)}
+.amap-l{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:6px}
+.amap-l li{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font-size:13px;line-height:1.5}
+.amap-to{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 8px}
+.amap-ar{font-size:12px;color:var(--ink-3);white-space:nowrap}
+.amap-l li+li{padding-top:6px;border-top:1px dashed var(--line)}
+.amap-to{flex-basis:100%;padding-left:12px}
+.amap-d{margin-top:8px;border-top:1px solid var(--line);padding-top:6px}
+.amap-d summary{cursor:pointer;font-size:12px;color:var(--ink-3);list-style-position:inside}
+
+/* 출처 트레이: 용지 밖(뒷면) — 접어 두고 강조하지 않는다 */
+.srct{margin:56px 0 0;padding:0 var(--srct-gutter,16px) calc(24px + env(safe-area-inset-bottom,0px));background:#F2F2F4;box-shadow:inset 0 12px 14px -14px rgba(18,18,18,.16);color:#5F5F68;font-size:12.5px;line-height:1.6;clear:both}
+.srct>details{max-width:var(--srct-w,1080px);margin:0 auto;padding:16px 0 0}
+.srct summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;color:#5F5F68;padding:2px 0}
+.srct summary::-webkit-details-marker{display:none}
+.srct summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease-out}
+.srct details[open]>summary::before{transform:rotate(45deg)}
+.srct summary:hover{color:#3F3F46}
+.srct .srct-n{font-weight:500;font-variant-numeric:tabular-nums}
+.srct-body{display:grid;gap:6px;padding:10px 0 4px}
+.srct-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:2px 16px}
+.srct-row>*,.srct-note,.srct-free{min-width:0;overflow-wrap:anywhere;word-break:normal}
+.srct-row>b{font-weight:600;color:#52525B}
+.srct-note{margin:6px 0 0;color:#6B6B73}
+.srct a,.srct a.jira{font-weight:500!important;color:#3F3F46!important;text-decoration:underline;text-decoration-color:#C9C9CF;text-underline-offset:3px}
+.srct code{font-size:12px;background:none;border:0;padding:0;color:inherit;word-break:normal;overflow-wrap:anywhere}
+@media (max-width:640px){.srct{--srct-gutter:16px}.srct-row{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.srct summary::before{transition:none}}
+@media print{.srct{background:none;box-shadow:none}}
+@media(min-width:761px){.srct{--srct-w:1472px;--srct-gutter:44px}}</style>
+<meta name="robots" content="noindex, nofollow"><link rel="canonical" href="https://euna-source.github.io/public-pages/c8-meeting-notes-260928/"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"><style>
+:root{--bg:#fff;--surface:#F5F5F5;--subtle:#EBEBEB;--line:#D9D9D9;--t1:#181818;--t2:#444;--t3:#666;--radius-s:6px;--brand-text:#067D14;--shadow:0 1px 2px rgba(24,24,24,.06),0 8px 24px rgba(24,24,24,.06);--font:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",system-ui,sans-serif}
+.head{border-bottom:0;padding-bottom:0}
+.hbtns{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:20px;padding:10px 0;border-bottom:1px solid var(--subtle)}
+.head .action-help{font:400 12px/1.5 var(--font);color:var(--t3);margin:0}
+.meeting-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-left:auto}
+.hbtns .lbtn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;margin:0;padding:5px 10px;border:1px solid transparent;border-radius:var(--radius-s);background:var(--bg);color:var(--t3);font:600 12px/1.5 var(--font);text-decoration:none;cursor:pointer;transition:background 120ms ease-out,border-color 120ms ease-out,color 120ms ease-out}
+.hbtns .lbtn:active{background:var(--subtle)}
+.hbtns .lbtn:focus-visible{outline:2px solid var(--brand-text);outline-offset:2px}
+.hbtns .lbtn svg{width:14px;height:14px;flex:none;margin-right:8px}
+@media(hover:hover) and (pointer:fine){.hbtns .lbtn:hover{background:var(--surface);border-color:var(--t1);color:var(--t1)}}
+.share-toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);max-width:calc(100vw - 32px);background:var(--t1);color:#fff;font-size:13px;font-weight:600;line-height:1.5;padding:10px 16px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity 160ms ease-out,transform 160ms ease-out;z-index:60;text-align:center}
+.share-toast.on{opacity:1;transform:translate(-50%,0)}
+#copy-dialog{width:min(680px,90vw);border:1px solid var(--line);border-radius:10px;padding:20px;color:var(--t1);background:var(--bg)}#copy-dialog::backdrop{background:#0006}#copy-dialog textarea{width:100%;height:50vh;font:inherit;margin-bottom:12px}#close-copy-dialog{font:600 13px var(--font);padding:10px 16px;min-height:44px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--t2);cursor:pointer}
+@media(max-width:600px){.hbtns{display:block}.head .action-help{margin-bottom:8px}.meeting-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin-left:0}.hbtns .lbtn{min-height:44px;padding:8px;white-space:normal;word-break:keep-all;border-color:var(--line)}.hbtns .lbtn:last-child{grid-column:1/-1}}
+@media(prefers-reduced-motion:reduce){.hbtns .lbtn,.share-toast{transition:none}}
+@media print{.hbtns,.share-toast,#copy-dialog{display:none!important}}
+</style></head>
+<body>
+<a class="skip" href="#notes">본문으로 이동</a>
+<div class="shell">
+<aside>
+<p class="brand">회의록</p>
+<details class="contents" open><summary id="contents-title">목차</summary><nav aria-label="회의록 목차"><div class="toc">
+<ul>
+<li><a href="#_2">한눈에</a></li>
+<li><a href="#_3">내 포트폴리오의 리스펙트 표시</a></li>
+<li><a href="#_4">명예의 전당 이벤트 페이지와 운영 조건</a></li>
+<li><a href="#_5">보관함 화면과 파일명 처리</a></li>
+<li><a href="#_6">보관함 공지 탭과 게시판 도입</a></li>
+<li><a href="#_7">프로젝트 공유·알림 버튼과 위젯</a></li>
+<li><a href="#_8">디자인 공유와 앱 배포·캠페인 개시</a></li>
+<li><a href="#_9">후속 업무</a></li>
+<li><a href="#_10">다음 일정</a></li>
+<li><a href="#_11">미결·확인 필요</a></li>
+</ul>
+</div>
+</nav></details>
+<a class="top-link" href="#notes">처음으로</a>
+</aside>
+<main id="notes" tabindex="-1"><header class="head"><h1 id="_1">명예의 전당 운영과 채팅방 보관함 개발 논의</h1>
+<ul>
+<li>회의일: 2026-09-28 · 사용자 제공 날짜 기준</li>
+<li>원본 제목: [9/28 정기미팅] 명예의 전당, 채팅방 보관함 등 개발 사항 논의</li>
+<li>기록 기준: 사용자 제공 음성메모 받아쓰기 전문</li>
+</ul>
+<div class="hbtns"><p class="action-help">음성 원문은 받아쓰기 전문입니다.</p><div class="meeting-actions" role="group" aria-label="회의록 공유 및 복사"><button type="button" class="lbtn ghost act" id="share-url"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10V2.5"/><path d="M5 5l3-3 3 3"/><path d="M3.5 8.5v4a1 1 0 001 1h7a1 1 0 001-1v-4"/></svg>URL 공유하기</button><button type="button" class="lbtn ghost act" id="copy-minutes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="7.5" height="8" rx="1"/><path d="M3 10.5H2.5v-8h8V3"/></svg>회의록 전체 복사</button><button type="button" class="lbtn ghost act" id="copy-original"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="4" height="7" rx="2"/><path d="M4 7.5a4 4 0 008 0M8 11.5V14M5.5 14h5"/></svg>음성 원문 전체 복사</button></div></div></header>
+<section class="block overview"><h2 id="_2">한눈에</h2>
+<ul>
+<li><strong>결정</strong>: 내 포트폴리오에도 리스펙트 버튼과 개수를 표시하고, 본인이 누르면 리스펙트를 줄 수 없다는 안내를 띄웁니다.</li>
+<li><strong>구현 방향</strong>: 보관함의 파일 표시명과 서버 저장명을 분리합니다. iOS는 원래 파일명, Android는 날짜·시간과 랜덤 코드 조합을 쓰되 정확한 형식은 다시 정합니다.</li>
+<li><strong>진행 방향</strong>: 보관함의 공지 탭은 우선 숨기고 게시판 도입 때 다시 구성합니다. 게시판 배포일과 개발 범위는 추가 논의합니다.</li>
+<li><strong>운영 기준</strong>: 명예의 전당 캠페인 개시 최소 하루 전에 앱을 배포해 안정성을 확인합니다. 첫 회차 대상·재수상·상금·홍보 일정은 추가 협의합니다.</li>
+<li><strong>확인 한계</strong>: 전사에 화자·시각 표기가 없어 참석자, 발언자, 담당자를 확정하지 않았습니다. 원음과 녹음 메타데이터는 대조하지 못했으며 아래 근거 시각은 모두 미제공입니다.</li>
+</ul>
+<div class="visual relations"><p class="visual-title">안건 지도</p>
+<div class="relation"><div class="endpoint"><strong>명예의 전당 집계</strong></div><div class="relation-label">받은 수 확인 필요</div><div class="endpoint"><strong>내 포트폴리오 리스펙트 표시 (결정)</strong></div></div>
+<div class="relation"><div class="endpoint"><strong>파일 표시명·저장명 분리</strong></div><div class="relation-label">구현 전제</div><div class="endpoint"><strong>보관함 표시·다운로드</strong></div></div>
+<div class="relation"><div class="endpoint"><strong>게시판 도입 전 상세 기능 부재</strong></div><div class="relation-label">미노출 이유</div><div class="endpoint"><strong>보관함 공지 탭 숨김 방향</strong></div></div>
+</div></section>
+<div class="columns">
+<section class="block agenda"><h2 id="_3">내 포트폴리오의 리스펙트 표시</h2>
+<ul>
+<li><strong>현황</strong>: 자신에게 리스펙트를 줄 수 없다는 이유로 내 포트폴리오에서는 버튼을 숨겼습니다. 명예의 전당에서 받은 리스펙트를 집계하므로 내 작업물에서도 개수를 확인할 필요가 제기됐습니다.</li>
+<li><strong>초기 제안</strong>: 아이콘·개수를 추가하고 누르면 리스펙트를 준 사람의 바텀시트를 연결하는 안이 나왔습니다.</li>
+<li><strong>결정</strong>: 다른 사람의 포트폴리오처럼 버튼과 개수를 표시합니다. <span class="hl">자기 포트폴리오에는 리스펙트를 줄 수 없으며</span>, 누르면 그 이유를 안내하는 토스트를 띄웁니다.</li>
+<li><strong>목록 확인</strong>: 리스펙트를 준 사람은 기존처럼 상세 화면의 목록에서 확인합니다. 새 바텀시트 연결은 추가 확정하지 않았습니다.</li>
+<li><strong>유지</strong>: 영감 좋아요의 기존 동작은 유지합니다. 리스펙트는 소진되는 반응이라는 점이 구분 근거로 언급됐습니다.</li>
+<li><strong>후속</strong>: Android·iOS 양쪽 적용 가능 여부를 확인하고 안내 문구를 정리합니다.</li>
+</ul></section>
+<section class="block agenda"><h2 id="_4">명예의 전당 이벤트 페이지와 운영 조건</h2>
+<ul>
+<li><strong>페이지 구성</strong>: 배너와 배경 영상을 넣습니다. 회의에서 보여 준 영상은 최종본이 아니므로 교체를 고려합니다.</li>
+<li><strong>콘텐츠</strong>: 설명·정보 아이콘 안내는 별도 데이터를 받지 않는 정적 콘텐츠로 구성합니다. 회차별 금액·조건은 이벤트 설명 페이지에서 안내하는 방향입니다.</li>
+<li><strong>이동</strong>: 이벤트 페이지에서 명예의 전당으로 이동하는 링크를 제공합니다. 작품 등록은 기존 플러스 버튼을 사용합니다.</li>
+<li><strong>구현 제안</strong>: 수정하기 쉬운 외부 페이지 활용과 화면 상단까지 웹으로 구성하는 안이 나왔습니다. 단순 등장 효과와 스포트라이트가 켜지는 연출도 논의했으나 최종 사양은 미정입니다.</li>
+<li><strong>후보 없음</strong>: 후보자가 없는 화면을 추가합니다. 집계 중 안내가 예시로 나왔고, 문구와 노출 조건은 정리해야 합니다.</li>
+<li><strong>1회차 대상 제안</strong>: 기간 내 업로드 작품만 보던 기존안에서 첫 회차에는 기존 작품도 포함하자는 의견이 나왔습니다. 포함 범위와 반응 집계 기준은 확정하지 않았습니다.</li>
+<li><strong>재수상 이견</strong>: 같은 작품의 반복 수상을 허용하자는 의견과, 이미 수상한 작품을 제외해 다른 작품에 기회를 주자는 의견이 갈렸습니다. 운영하면서 판단하자는 발언이 있어 최종 규칙은 남아 있습니다.</li>
+<li><strong>활동 점수 기준</strong>: 크리에이터 활동 점수는 <span class="hl">해당 기간의 활동을 집계</span>합니다. 과거 전체 누적 점수를 그대로 사용하는 방향은 배제했습니다.</li>
+<li><strong>상금 문구</strong>: 150만 원이 언급됐으나 대표님과 추가 협의하기로 했습니다. 확정 금액으로 기록하지 않습니다.</li>
+<li><strong>홍보</strong>: 공식 채널·커뮤니티와 관계자에게 이벤트 링크를 알리는 방안을 정리해 글로 공유하기로 했습니다. 구체적인 채널·방법은 미정입니다.</li>
+<li><strong>배너 제안</strong>: 초기에 상단 노출 후 반복 방문자에게 아래로 내리는 안이 나왔습니다. 세 번 노출은 예시이며 최종 횟수·조건이 아닙니다.</li>
+</ul></section>
+<section class="block agenda"><h2 id="_5">보관함 화면과 파일명 처리</h2>
+<ul>
+<li><strong>화면 변경</strong>: 채팅방 메뉴에서 들어가는 보관함을 리스트형에서 썸네일 중심으로 바꿉니다. 링크의 오픈그래프 표시가 언급됐지만 정확한 규격은 확인이 필요합니다.</li>
+<li><strong>표시명·저장명 분리</strong>: 실제 서버 파일은 난수 기반으로 저장하고, 사용자에게 보여 주는 이름은 별도로 관리하는 방향에 합의했습니다. 표시명을 받는 API 작업이 필요하다는 설명이 있었습니다.</li>
+<li><strong>iOS 방향</strong>: 원래 파일명을 표시하고 다운로드할 때도 같은 이름을 유지합니다.</li>
+<li><strong>Android 제약</strong>: 원래 파일명을 가져오기 어렵다는 개발 설명에 따라 별도 이름 생성 규칙을 논의했습니다. 해당 제약은 회의 발언 기준이며 실제 코드로 검증한 사실은 아닙니다.</li>
+<li><strong>후반 정리안</strong>: 파일 종류 접두어를 빼고 날짜·시간 뒤에 랜덤 코드 네 자리를 붙이는 방향으로 모였습니다. 연도 자릿수·초 포함 여부·구분자·문자 종류는 예시를 포함해 다시 전달해야 합니다.</li>
+<li><strong>대안 검토</strong>: 같은 이름 뒤에 1, 2를 붙이려면 페이지 밖 파일까지 중복을 확인해야 한다는 부담이 제기됐습니다. 전체 조회를 동반하는 방식은 채택하지 않았습니다.</li>
+<li><strong>우선 기준</strong>: <span class="hl">파일들이 같은 이름으로만 보이지 않게 구분</span>하는 것이 핵심입니다. 세부 이름 규칙 때문에 주요 기능 개발이 지연되지 않도록 공수를 고려합니다.</li>
+<li><strong>다운로드</strong>: 화면에 보이는 이름과 다운로드 이름을 맞추는 방향입니다. iOS 원본명 중복과 Android 랜덤 코드 충돌 처리는 미정입니다.</li>
+<li><strong>공유 상태</strong>: 로컬 DB로 구현한 자료실 알파 버전을 확인하고 피드백을 받기로 했습니다. ‘로컬 DB’는 전사 문맥 해석이며, 업로드 완료·진행 중 표현이 함께 나와 상태 확인이 필요합니다.</li>
+</ul></section>
+<section class="block agenda"><h2 id="_6">보관함 공지 탭과 게시판 도입</h2>
+<ul>
+<li><strong>문제</strong>: 현재 공지는 상세 화면·재공지·삭제 등 게시물 관리 기능이 없어, 보관함에 과거 공지 목록만 남기는 효용이 작다는 의견이 나왔습니다.</li>
+<li><strong>진행 방향</strong>: <span class="hl">보관함의 공지 탭을 우선 숨기고</span> 게시판이 생길 때 다시 구성합니다. 기존 채팅방 공지 기능 전체를 제거한다는 결정은 아닙니다.</li>
+<li><strong>필요성</strong>: 프로젝트의 운영 규칙·자료·전달사항을 대화와 별도로 남길 게시판이 필요하다는 데 공감했습니다.</li>
+<li><strong>범위 제안</strong>: 채팅방 전반의 게시판, 일반 참여자의 글 작성, 방장만 공지 지정, 대화를 게시물로 전환하는 안이 나왔습니다. 이번 구현 범위로 모두 확정한 것은 아닙니다.</li>
+<li><strong>일정 논의</strong>: 중순 업데이트에 넣기 위해 기존 기능 일부를 빼는 안을 검토했으나, 남은 개발 시간이 짧고 게시판은 작성·조회·수정·삭제·첨부까지 작업량이 많다는 설명이 있었습니다.</li>
+<li><strong>유지 의견</strong>: 답글 달기는 중요도에 비해 공수가 크지 않다는 의견이 있었고 제외를 결정하지 않았습니다. 사진·동영상 동시 업로드 등을 빼는 것으로도 충분하지 않다는 설명이 있었습니다.</li>
+<li><strong>결론</strong>: 이번 회의에서는 게시판 배포일을 정하지 않았습니다. 10월 중순·다음 정기 배포·중간 별도 배포를 놓고 다시 논의합니다.</li>
+</ul></section>
+<section class="block agenda"><h2 id="_7">프로젝트 공유·알림 버튼과 위젯</h2>
+<ul>
+<li><strong>공유 버튼</strong>: 프로젝트·라운지 공유 버튼 위치를 양 OS에서 맞춥니다. iOS·Android의 현재 배치가 달라 디자인 정리가 필요합니다.</li>
+<li><strong>배치 제안</strong>: 첫 화면에서 공유에 접근할 수 있게 하고, 알림은 토글 대신 벨 아이콘으로 표현하는 안이 나왔습니다. 공유·알림의 정확한 위치는 확정되지 않았습니다.</li>
+<li><strong>위젯 방향</strong>: 포트폴리오 보기·올리기, 영감 올리기 등 개발 중인 바로가기 구성을 우선 적용하고 나중에 조정하는 데 동의했습니다. 기능별 정확한 이름은 티켓 대조가 필요합니다.</li>
+<li><strong>위젯 일정</strong>: 10월 6일 배포분에 포함해야 한다는 발언이 있었습니다. 배포 티켓과 포함 범위를 확인해야 합니다.</li>
+<li><strong>불명확한 말</strong>: 위젯 직전 ‘게임랭킹’처럼 인식된 표현은 별도 기능인지 알 수 없어 결정 항목으로 만들지 않았습니다.</li>
+</ul></section>
+<section class="block agenda"><h2 id="_8">디자인 공유와 앱 배포·캠페인 개시</h2>
+<ul>
+<li><strong>완료 보고</strong>: 지난주 공유한 일정에 CCO 티켓을 연결해 뒀다는 설명이 있었습니다. 제품 개발 메시지에서 확인하도록 안내했습니다.</li>
+<li><strong>디자인 요청</strong>: 다른 작업과 섞인 10월 업데이트 디자인을 별도로 나누고 보관함·자료실·채팅방 검색을 정리합니다.</li>
+<li><strong>공유 약속</strong>: 자료실을 제외한 나머지는 내일(9/29) 공유하고, 자료실은 내일까지 작업을 마쳐 내일 모레 수요일 오전(9/30)에 공유하는 일정에 동의했습니다. 공유물의 정확한 범위는 확인이 필요합니다.</li>
+<li><strong>검색 확인</strong>: 채팅방 검색 디자인과 양 OS 알파 버전 동작을 확인하기로 했습니다. 검색 구현 담당은 전사만으로 특정하지 않았습니다.</li>
+<li><strong>운영 기준</strong>: 캠페인 시작 <span class="hl">최소 하루 전에 앱을 운영 환경에 배포</span>하고 안정성을 확인해야 한다는 기준을 재확인했습니다.</li>
+<li><strong>잠정 일정</strong>: 화요일 배포·수요일 캠페인 개시가 논의됐습니다. 10월 5일 휴일과 6일·7일 언급을 함께 보면 10/6·10/7로 해석되지만, 캠페인 날짜 자체는 유동적입니다.</li>
+<li><strong>추가 확인</strong>: 교체가 지연된 노출 콘텐츠는 민석님에게 다시 확인하겠다는 발언이 있었습니다. 대상 콘텐츠와 실제 확인 담당은 미정입니다.</li>
+</ul></section>
+</div>
+<section class="block closing"><h2 id="_9">후속 업무</h2>
+<p>담당 실명·화자 번호와 근거 시각은 제공 전사에서 식별할 수 없습니다. 배정이 확인되지 않은 업무는 담당을 미정으로 두었습니다.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>업무</th>
+<th>담당</th>
+<th>기한</th>
+<th>근거 시각</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>공유 일정의 CCO 티켓과 제품 개발 메시지를 확인합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>리스펙트 버튼·개수·자기 리스펙트 차단 안내의 양 OS 적용 가능 여부를 회신합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>10월 업데이트 디자인 공간을 분리하고 보관함·자료실·검색 화면을 정리합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>자료실을 제외한 나머지 작업물을 공유합니다. 공유 범위는 확인이 필요합니다.</td>
+<td>미정</td>
+<td>9/29(화), ‘내일’</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>자료실 작업을 끝내고 공유합니다.</td>
+<td>미정</td>
+<td>9/29 완료, 9/30(수) 오전 공유</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>자료실 알파 버전을 확인하고 피드백합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>표시명·저장명 분리에 필요한 API와 클라이언트 작업 공수를 정리합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>Android 파일명 형식을 예시와 함께 전달하고 디자인에 반영합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>보관함 공지 탭 숨김 방향을 디자인·개발에 반영합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>게시판 범위·권한·공수·배포 가능일을 다시 논의합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>프로젝트·라운지 공유와 알림 버튼 배치를 양 OS에서 맞춥니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>위젯 바로가기의 티켓·디자인·배포 범위를 확인합니다.</td>
+<td>미정</td>
+<td>10/6 배포분 언급, 확인 필요</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>채팅방 검색 디자인과 알파 동작을 확인합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>명예의 전당 영상·문구·후보자 없는 화면과 연결 경로를 준비합니다.</td>
+<td>미정</td>
+<td>캠페인 개시 전, 날짜 미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>상금 표현·1회차 작품 범위·재수상 정책을 대표님과 협의합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>홍보 채널과 관계자 안내 계획을 정리해 글로 공유합니다.</td>
+<td>미정</td>
+<td>정리되는 대로</td>
+<td>미제공</td>
+</tr>
+<tr>
+<td>민석님에게 교체가 지연된 노출 콘텐츠를 다시 확인합니다. 대상은 확인이 필요합니다.</td>
+<td>미정</td>
+<td>미정</td>
+<td>미제공</td>
+</tr>
+</tbody>
+</table></div></section>
+<section class="block closing"><h2 id="_10">다음 일정</h2>
+<p>날짜는 사용자 제공 회의일 9월 28일을 기준으로 풀었습니다. 별도 다음 회의의 시각·참석자는 정해지지 않았습니다.</p>
+<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<thead>
+<tr>
+<th>날짜·시간</th>
+<th>원문 표현과 예정 작업</th>
+<th>확정 상태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9/29(화), 시각 미정</td>
+<td>내일: 자료실 외 작업물 공유, 자료실 작업 완료</td>
+<td>발언된 일정, 공유 범위 확인 필요</td>
+</tr>
+<tr>
+<td>9/30(수) 오전</td>
+<td>내일 모레 오전·수요일 오전: 자료실 공유</td>
+<td>발언된 일정</td>
+</tr>
+<tr>
+<td>10/6(화), 시각 미정</td>
+<td>화요일: 운영 환경 앱 배포</td>
+<td>문맥상 날짜 해석, 최종 확인 필요</td>
+</tr>
+<tr>
+<td>10/7(수), 시각 미정</td>
+<td>수요일: 캠페인 개시</td>
+<td>잠정, 날짜 유동</td>
+</tr>
+<tr>
+<td>10월 중순 이후, 날짜 미정</td>
+<td>게시판 업데이트</td>
+<td>추가 논의</td>
+</tr>
+</tbody>
+</table></div></section>
+<section class="block closing"><h2 id="_11">미결·확인 필요</h2>
+<ul>
+<li><strong>파일명</strong>: 연도 자릿수, 초 포함, 구분자, 랜덤 네 자리의 문자 종류, 충돌 처리가 필요합니다. 이름에 쓰는 시간이 업로드·파일 생성·다운로드 중 어느 시점인지도 미정입니다.</li>
+<li><strong>iOS 원본명</strong>: 같은 파일명으로 여러 번 올렸을 때의 처리 방식을 확인해야 합니다.</li>
+<li><strong>게시판</strong>: 작성 권한·공지 지정·첨부·대화 전환 범위와 배포일이 남아 있습니다. 전사에서 중순 배포일이 15일·16일로 혼재하며, 30일 언급도 확정 일정은 아닙니다.</li>
+<li><strong>명예의 전당 운영</strong>: 기존 작품의 1회차 포함 범위, 반응 집계 기간, 같은 작품의 재수상, 상금 문구, 홍보 채널과 개시일을 확정해야 합니다.</li>
+<li><strong>명예의 전당 화면</strong>: 상단 트로피·카드의 이동 목적지, 외부 페이지·웹뷰 범위, 영상 최종본과 연출, 후보 없음·집계 중 안내 구분이 남아 있습니다.</li>
+<li><strong>배너 노출</strong>: 반복 방문자에게 아래로 내리는 조건과 횟수는 미정입니다. 세 번은 논의 중 예시입니다.</li>
+<li><strong>버튼·위젯·검색</strong>: 공유·알림의 정확한 배치, 위젯 기능명과 배포 티켓, 검색 디자인·담당을 확인해야 합니다.</li>
+<li><strong>미확정 용어 3건</strong>: ‘게임랭킹’(기능명 불명), ‘알파벳·알파 대그’(배포 환경명 불명), ‘관사님’(규칙 전달 대상 불명)은 임의로 교정하지 않았습니다.</li>
+<li><strong>전사 해석</strong>: ‘로컬 DB’는 문맥상 해석으로 원음 확인이 필요합니다. 오디오 파일 시연 구간은 정상 동작인지 오류 보고인지 불분명해 버그로 확정하지 않았습니다.</li>
+<li><strong>화자·근거</strong>: 참석자 실명·화자 대응·담당자와 발언 시각이 없습니다. 녹음 길이·정확한 시각·ID·CCO 번호도 제공되지 않아 채우지 않았습니다.</li>
+</ul></section></main>
+</div>
+<p id="action-status" class="share-toast" role="status" aria-live="polite"></p><dialog id="copy-dialog" aria-label="복사할 전체 텍스트"><p>자동 복사가 제한됐습니다. 아래 텍스트를 선택해 복사해 주세요.</p><textarea aria-label="복사할 내용" readonly></textarea><button id="close-copy-dialog" type="button">닫기</button></dialog><script type="application/json" id="original-transcript">". 저번 주에 공유된 그 일정에 대해서 앞에다가 CCO 티켓은 다 달아뒀거든요. 그래서 보고 제품 개발에 의 내용 메시지 보는 확인하시면 될 것 같아요. 그리고 추가적으로 저희 그 잠시만요. 지금 내 포트폴리오인 경우에는 그 디스커버리에 보면 이렇게 리스펙트 표현이 없잖아요. 그래서 리스펙트 내가 받은 리스펙트 수가 이제 명예의 전당에서 수가 집계가 되는데 아무래도 여기에 내 포트폴리오의 리스펙트 숫자가 표현이 되어야 될 것 같아요. 그래가지고 예를 들면 그냥 요렇게 아이콘 표시 정도는 추가할 수 있지 않을까 해가지고 요거 클릭하면 요거 바텀시트 내 이 작업물을 리스펙트 하는 사람들 뭐 이런 거 연결해주고 앞당하는 요 작업도 같이 추가가 가능하지 않을까 싶어가지고 저 질문이 있는데요. 저 자유가 작성한 포트폴리오의 리스펙트 없는 거 지금 처음 알았는데 그게 왜 그런 거예요?  그거 일단은 그 내가 좀 빨리 적용하기 위해서 내가 작업한 포트폴리오에는 리스펙트 버튼을 빼기로 했었어요 내가 줄 수가 없어가지고 일단 버튼을 삭제했었는데  버튼에 대한 UI 표시만 근데 아 도 일하게 가야 될 것 같아 그냥 차라 눌렀을 때 자기 자신의 포트폴리오에는 리스펙트 할 수 없어라는  버튼 스트가 뜨는 나쁘지 않을 것 같은 좀 헷갈릴 것 같아 그래 그래서 그냥 동일하게 포폴리오 그리를 누르고 들도 문제 프로 들어가 있잖아요 거기서도 너피 플로트로 들어가거든요. 거기는 노출 안 하는 걸로 생각했어요. 그러면 똑같이 노출하고 내 포트폴리오에는 리스펙트 할 수 없어요라는 토스트를 띄워야 되는 예요. 그게 제일 심플할 것 같은데 경우에서 너무 많이 나 어차피 내게 뜨는 경우가 엄청 빈번하진 않고 그리고 눌렀을 때 그 파브에 했었다고 이상하게 보이지 않을 것 같아. 자기 포트폴레이 리스펙트를 줄 수 없습니다 노리치게 그냥 그리고 개수는 보고 리스펙트를 보고 싶으면 상세해서 리스트를 누르면 이 볼 수 있잖아요 지금은 그거 그대로 가고. 혹시 영감 좋아요는 눌러도 되는 거예요? 되지 아 되는데 같은 리스펙트 근데 어 좋아에는 개수가 없어서 상관없을 것 같아요 리스펙은 어차피 소진되는 개념이라서 여덟 개밖에 없어가지고 네 그러면 오케이 안드로이드랑 아이오이S 둘 다 가능한지 의견 주시고 지금 7일로 6일 저희 하는 데 있어서 일정 문제 없나요? 네 없습니다. 지금 제가 알고 자료실까지 된 거였는데 따로 자료실이랑 보관함 보관함이랑 그 다음에 검색 채팅방 검색 디자인 안 했구나. 그 디자인 얘기가 나와서 드리는 말씀인데요 혹시 이 10월 업데이트에 새로 하나 파주실 수 있으실까요? 딴 거랑도 섞여 있어서 아 네 감사합니다. 이거 어떡하지? 이렇게 계속 간 게 맞나? 그래서 KT 분리 하면은 될 것 같아요.  분리가 더 많아 좋은 같아 네 일단 섹션은 이렇게 했는데 가이드가 없어가지고 이제 갈이드가 없어 가이드가 머릿속에 있나 봐 일단 이렇게 감쌌지만 일 날 잡아서 할게 일단 그 요거 설명드리면 이벤트 페이지가 배너가 있을 거고요. 요게 있을 거고 옆에 보시면 뒤에 요거 영상이에요 뒤에 옆에 보세요. 옆 플리도록 영상 있거든요. 요거 최종본은 아닌데 요런 영상 들어올 거예요. 언제 저 뒤에 영상에 저런 들어갈 거거든요. 그래 고려해서 해주시면 될 것 같고 그리고 밑에 하나 콘텐츠는 어차피 스텝 컨텐츠이고 눌러서 명예진행 하면 링크 정도 걸릴 것 같거든요. 그것만 고려해서 적어보시면 될 것 같고. 그 그리고 저 명예인 전쟁 쪽은 저렇게 그리고 밑에 하나 안에 설명이 추워져 들어갈 건데 저것도 어차피 스텝들이어가지고 데이터를 받는 건 아니어가지고 그냥 넣어주시면 될 것 같고 인포 눌렀을 때 옆에 또 저 설명문구가 있거든요. 근데 저것도 그냥 스탠틱이어가지 나중에 바꿔주시면 될 것 같아요. 근데 잘 이해가 안 되는 저 누르면 어디로 가는 거예요? 아 예를 들면 여기로 가는 거예요 여기서 왜 여기 이렇게 비어 있어요? 아직 안정이  여기 이벤 페이지예요 작품 포드 설명이 있을 거고 금 안 있을 이벤트가지고 거기서 뭘 누르면 여기로 보러 가 고 명예장 보러 버튼 같은 있으면 기서 기로 가고 여기 기로 가면 버튼 링크 정도만 들어가고 참여 자체는 어차피 플러스 버튼 사면 여기서 한번 링크 걸리지 않을 것 같아요. 그래서 금액이나 이런 것들은 회차별로 달라질 수도 있을 것 같아서 일단 금액이나 이런 것들은 여기에서 아마도 다 언급이 될 것 같아요. 그래서 여기도 그렇게 세계는 저기까지도 외부로 가는 좋을 것 같기는 해요. 그래야지 업데이트가 이벤트라서 균단하게 바꿀 수 있거든요. 사실 혹시 디스커버리 저기 상단에 트로피 알코는 누르면 바로 여기에 누르면 여기 카드 누르면 아 모르는 데 일단 저도 그렇게 설명한 수영님한테 드렸는데. 근데 그냥 뭔가 싶어서 눌러 올 거 같은데요? 배려있으니까 금액은 150만 원은 이게 어감상 이제 150만원이라고 정해주셨는데 요거는 좀 대표님이랑 얘기 한번 해보고 근데 어차피 그런 거 별로 안 좋아하실 거예요. 어차피 이 얘기 밖에 텍스트 바뀌는 건 별로 안 좋아하고 구조적인 것만 결정나면 일단 들어가시면 될 것 같아요. 저기에 애니메이션 걸리면 좋겠는데 어디에요? 어 뭔가 뜨는 이런 게 지금은 상위 이렇게 올라오는 정도로만 해놓네요. 그 정도면 될 것 같아요. 혹시 이거 구형 가능 이 웹비오에서 위에 네이트에 혀있잖아요 실 저거는 그냥 가능 그쪽에 네이트에 고 있는 건가 그럼? 둘 다 풀로 하는 게 낫지 않을까요? 어떻게 바뀔지 모르는 위에까지 으로 하는 게 고 애플 하이트 위 대표가 제일 괜찮을 것 같아요 브로도 저렇게 뚫려있어서 뭔가 아 그러네요 스포트라이트는 정적 이미지라서 애니메이션을 떠올려야 다른 걸로 해야 될 것 같아요 저는 그냥 알파로만 나눠도 될 것 같은데 스포트라이트를 스포트를 깜빡이만 하면 이상하잖아 명예전당인들 항상 켜져 있기만 하면 될 들어왔을 때 그냥 켜지는 느낌만 안 들고 그리고 옆에 보시면은 보관함 으로 들어왔을 때 그 햄버거 버튼으로 들어왔을 때 이렇게 돼 있고요. 카톡은 똑같아요. 설명도 딱히 없긴 한데 그 스트리 보드에도 달라진 거는 보관함이 썸네 이미지로 가야 될 것 같아서 조것만 좀 바꿨어요. 고 리스 타입이었는데 썸네이타 바꿨어요. 링크 좀 오픈 그래프 말씀하시는데요? 그리고 저거 M피3 파일 그 파일 규칙도 적었잖아요 파일명 규칙. 파일명 규칙이요? 예, 그 그때 말씀드렸잖아요. 네이티브에서 파일명을 얻을 수가 없어서 저희가 나름 규칙 세워가지고 2006년 날짜를 하면 포토 포토 동 뭐라고  비디오 언더바 날짜 시간 아니 아니 오디오만 알면 돼요 차피 사진 동영상은 지 파일명이 안 보이잖아요 오  오디오 더만 하시 시간이요 같다 더 그건 잘  근데 이 시간까지 해야 같은데 왜냐면 이게 이 이 하루에 여러 개 올릴 수 있잖아요 그러지 않아 지 까 근데 그러면 어떻게 하지? 시간은 데 밑에 있긴 해요 아 저 그거구나 모두의 시간일구나 HH 이거? HH M 엠 녹음 되지 않나? 까지 갈려고 면도를 빼 않아 하지 이 하 대트까지요? 미 세컨드까지? S까지만 하면 될 것 같은데요 설마 초 단위로 아 SS까지? 그래 엠피스리 뭐 그 다음에 확장자 받 줄 알았어 넘어서 여기 들어가라 기 웃는 거야 너무 귀지 않아? 일단 이렇게 하고 너무 긴 길긴 하다. 연도까지 칠 필요 있다. 연도 삭제하면 아 위에 저기 있습니까요? 날짜가? 날짜가 있어서 날짜는 없어 될 것 같긴 한데 혹시나 파일만 봤을 때는 구분 이 안 될 수 있어가지고. 생각해보면 카톡에서 사진 받을 때도 다운로드 받으면 파일은 되게 길던데 그래 길면 점쩔점 처리하죠. 근데 뭐 이형 시장에 가면 적으로 가 수가  필요가 혹시 디바이 따라서 그런 거는  일단 요렇게 다 통일을 해드리겠습니다. 아 잠깐만 그것도 있네 생각해보니까 전체 다 파임명 규칙이 있었는데 면 저는 처음에 여기만 필요하다고 생각했는데 받았을 때 난수돼 있으면 이상하니까 그러네요. 앞에 확장자 면만 달라지면 될 것 같아요 그러면 아까 말씀하신 대로 이미지 비디오 이 예요? 저 뒤에 저기 다들 라는 맞는지 모르겠어요. 앞에 오디오 이런 것들 파일 다운받았을 때 의미가 있는데 저 뒤에 연도를 주제하면 될까요? 면도 두 자리에 빼 근데 이럴 거 있잖아요 같은 파일을 두 번 있어 그럼 걔네들은 어떻게 들어가요? 똑같은 이름으로 들어가요? 타이 아니 시간이 다르면 초까지가 안 나오면은 그러면 똑같이 나오죠 다른 파일으로서 똑같은 파일 일 개 종씩 걸렸어요 그러면 1초도 안 걸릴 수 있잖아요 그러면 어떻게 이 요? 그렇죠 이상한데 뒤에 숫자 붙지 않아요. 제 일 뭐 이렇게 이 그 규칙까지 넣어야 되네 그러면 1, 2가 붙은 거면 저는 시간 빠져도 될 것 같아요. 그럴 거면은 영화하게 시간이요? 이게 어차피 그 뭐 일 이렇게 12 저렇게 붙을 거면은 랜덤 코드가 붙을 거면은 그시간은 상관없을 요 그리 시간 단위가 밀리 세컨드 단위가 되지 않는 이상 다 나오게 근데 그걸로 구분점을 게 좀 이상한 거죠 결론으로 얘기 날짜 구조가 이해 되는데 시간 단위로 구분점을 더도 파일을 분간한다는 게 이상한데 그래서 저는 뭐 뒤에 변수명이 들어간다고 하면은 앞에 그냥 날짜까지만 넣어두도 되지 않을까? 진짜 안드로이드에서 파일명 못 갖고 오는 거 였죠? 사실 그냥 그 애초에 그 파일명로 옮기는 게 제일 좋은데 그게 제일 좋긴 하죠. 지금 그러면 iOS는 파일명 경제는 붕괴하기 그랬지 똑같이 하게 했지 이번에  아니 아니요 아픈 게 아니에요 똑같이 똑같이 그 파이면 들어오는 대로 그냥 보여준다 하려고 했는데 아 드로이가 안 돼가지고 그럼 이번에는 그냥 다 같이 안 보이는 걸로 하지 않을까 되긴 했어 모르겠는데  아니면 이쪽에서 제 그 안도 따로 처리해야 되다 보니까 쪽에서 그냥 따로 처리하는 건 아닌데 사실 그 API를 어차피 따로 작업을 해야 되거든요. 지금은 프리타임 유R로 올리면 안 쓰기 반이잖아요. 그럼 그거랑 반대로 파일 명을 받은 AP이를 따로 만들어서 왜냐면 실제로 업로드 되는 파일까지 그거면 안 되거든요. 그 파일명이면. 그럼 저것도 마찬가지긴 하네 보안도 너무 신경 쓰지 말까 그러니까 이게 사실 원래 난수 기반으로 하는 이유가 다운로드를 받을 때 뭔가 예측 가능한 파일론이면은 URL로 쳤을 때 다운로드 받을 수 있으니 최대한 예측 불가능한 안수 기반으로 하는 거거든요. 근데 어차피 그거는 다운로드 링크 때문이고 노출은 또 다른 거잖아요. 못했습니다 여기 노출되는 거랑 진짜 서 올라가 명 같진 않을 거든요. 지금은 갖게 하려고 공수를 줄이려고 그렇게 했는데 그냥 애초에 그렇게 하지 말까 지금 생각을 하고 있습니다. 그냥 작업할 때 해버릴까 그냥 어차피 해야 되니까 아 그건 제가 고민을 해보고 저는 사실 그리고 애매하면은 여기 난 스코터 놔도 돼요 저는 근데 그 난속 코드랑 어차피 디비코드랑 똑같진 않아야겠죠. 말씀하신 다운드 받을 수 있을까요? 아니 그거는 괜찮을 것 같아요. 똑같아도 왜냐면 난수 기반이면 그러니까 이게 퍼블릭으로 유출이 되거나 아니면 공격한 사용자가 뭔가 그 규칙을 통해서 그거를 다운을 계속 받을 수 있니 브루트포스이라고 해가지고 예를 들면 숫자로 돼 있다고 하면 숫자 계속 바꿔가면서 하면은 다운드 받을 수 있는데 난주면 그게 안 되거든요. 그래서 근데 이거 자체는 이 파일에 대 이 있는 사용자가 그 난수를 보는 거잖아요. 그러니까 그 사람은 알아도 되니까 상관없을 것 같긴 한데 근데 궁극적으로는 어쨌든 분리되는 게 맞기는 하니까 그냥 애초에 요번에 작업을 그렇게 그러면 해야 되나? 보안 좀 부분은 알아서 그걸 결정하시면 될 것 같고 공수 산정하셔가지고 저는 여기 노출되는 게 사실 핵심이 파일들이 똑같이만 보이게 되는 거든요. 그래 안드로드는 올림은 그대로 쓰면 상관  안드로이드 같은 경우에는 파일을 그대 못 갖고 온다면 저는 날짜 시간이 난속부터 나 상관없다고 왜냐면 어차피 카톡도 다 그렇잖아요 그냥 내놓고 부터 대신에 우리는 파일이 규정하고 있으니까 앞에는 기본적인 그  파일코드가 있고 오디오 뭐 이런 거 그리고 뒤에는 날짜가 되든 난속 코드가 되든 근데 듣다 보니까 난속 코드도 맞지 않을까? 왜냐하면 동시에 두 파일 갖추 시간으로 그걸 분량기 좀 어려우니까 그건 이제 의견 주세요 어떻게 든 상관없는데 여기서 가타만 안 보이면 돼 파일들이 알겠습니다. 카톡은 그냥 숫자로 하네요 근데 이 숫자가 이래도 되나 아 이런 퍼블릭은 안 하니까 그렇구나. 네 알겠습니다. 야 그렇게 네, 아에스에서는 사실 그대로 보여주는 게 여태까지의 EX에서 카톡도 그렇고 그게 가능하다고 페이지는 좋대. 그래서 굳이 갚게 할 필요가 없다고 한다면은 따로 좀 가져갈 수 있으면 좋을 것 같은데. 그럼 어차피 해야 되는 거니까 요번에 그것도 같이 하는 게 맞을 것 같아요. 실제로 올라가 있는 애들은 난수 기반으로 하고 근데 노출되는 애 타이밍을 따로 하로 해서 작업을 해야겠네요. 자료실은 어차피 조금 시간 있어도 되죠. 그러니까 자료실 제외한 나머지는 다 내일 공유해드릴 거거든요. 날씨 이미 공유해드리긴 했는데 근데 이제 자료 같은 경우에는 내일 모레 공유가 돼도 되 일 모레요? 상관없어요. 내일 모레 오전  수요일 오전 네, 내일까지 작업을 끝내는 거죠. 그래서 내일 모레 오전에. 일단은 그 로컬디디로 구현한 버전은 알파벳이 올라가 있거든요. 그래서 그 두 분 보시고 만약에 피드백 주실 거 있으면 주셔도 되겠네요. 로컬 비비로 보여 있는데 자교실 아 자료실? 오케이 자 지금 올라가고 있는 중이고 여기에서  링트만 봤어. 이런 식으로 건데 몇 개가 많이 있는 걸 좀 보여드려야 되는데. 다 일단 프로젝트 뿐만 아니라 다 가해놨거든요. 다 들어가야 돼요. 아 언제 있대 오늘이야? 지금 아이에스에서 버우가 있는 건지 오디오를 다운 받아가지고 올려봤는데 전장시게 되더라고요. 자료실에 대해서 한 가지만 더 말씀드리면 그럼 이제 iOS 같은 경우에는 그냥 가족 있는 파일면 그대로 하면 되는데 안드로이드 같은 경우에는 팔면 규칙이 있어야 되잖아요. 근데 그 규칙을 할 때 그냥 아까처럼 초 단위까지라고 해도 될까요? 그러니까 무슨 얘기냐면 같은 이름이 있을 때 뒤에 일 붙이고 이 붙이고 하는 게 불가능하진 않은데 좀 구현이 까다로워서  오디오 언더 랜덤 랜덤 숫자 몇 개까지 될까요? 네 잘 모르고 하는 얘기이긴 한데 붙이고 이 붙이고 하는 거 그냥 리눅스 시스템 상해서 자동으로 붙여서 것 같아요. 사실 걸 크라이패스 받으려고 하다 보니까 그렇게 되는 건데 일관성 있게 하려고 하면은 그 iOS에서도 파일명을 보낼 거잖아요. API 구현 입장에서는 백앤드에서는 그냥 파일명을 받고 그 파일명을 정하는 규칙을 안드로이드에서 하게 제가 구현을 하려고 머릿속으로 생각을 하고 있는데 그렇게 되면은 파일명이 예를 들면 케이스긴 한데 보컬에서 페이징이 돼 있던 거예요. 예를 들면 그래서 그11번 10개씩 페이지는 했는데 11번째 파일이 하필 재수없게라는 오늘 올린 파일이었던 거예요. 같은 네 같은 파일 명에 있던 거예요. 그리고 이제 안드로이드 입장에서는 페이징 되어 있는 파일 중에서 겹치는 게 있는지 확인하고 없으면 언도바이를 붙일 거잖아요. 근데 그것 때문에 풀패치라 애 되는 것도 좀 이상하거든 그에서 제가 만약에 서버에서 받는다고 하면 전부 다 한 다음에 할 텐데  그렇다고 이제 에이P 두 걸 만들기도 좀 애매하잖아요. 그렇죠 그래서 일관성 있게 클라이트에서 받으려고 하다 보니까 뭐 그런 이슈가 있을 것 같긴 한데 아예 분기를 쳐야 되어요. iOS랑 한 돌이들은. 지금 저희 뭐 싫어서 보내고 있나요? 아니 이제 만들어야 돼요 그러면 또 그 바면 안 되는 사실 백앤디서 한다고 하더라도 그걸 할 때마다 그 전체 풀 스캔을 한다는 것도 좀 부담이기는 해. 그렇죠 에너지가 쌓이는 그래서 중요한 게 아니라면 그렇게 하면 어떨까라는 제안을 드려봤습니다. 지금 보면 그 카톡도 이렇게 올라가요. 숫자 겁나 길잖아 업로드 시점에도 이렇게 되는 거죠? 아 이 다운로드받아. 그렇죠 다운로드 받았어요. 카카오톡 어쩌고저쩌고 그렇게 됐네요 아 아 숫자인데요 이 저는 어쨌든 핵심은 그거잖아요. 같은 타일으로 노출되지 않게 하는 게 핵심이니까 저는 랜덤코드는 날짜는 상관없는데 날짜가 되면 1, 2가 빠진다면 그냥 랜덤코드가 처리를 놨다. 그리고 저는 여기가 만약에 공수가 이것 때문에 엄청 많이 든다. 그러면 가장 빠른 방으로는 맞는 것 같아요 이게 되게 핵심적인 요인은 아니거든요. 전체 서비스를 봤을 때 이것 때문에 큰 무대 이런 건 아니니까 요 할 시간에 다른 거라는 걸 알 수도 있어요 제가 망했을 때 파일 규칙 물론 이제 나중에는 좀 업데이트를 하거나 저희가 화시킨다. 그럴 있는 결정사항이지만 금 시점에서는 그냥 똑같은 팔명만 안 나오게 하는 게 더 중요한 것 같아요. 네 알겠습니다. 근데 랜덤코드가 만약 1시간이고 예를 들어서 1일를 늘려면은 탑승에 걸린다 하고 그냥 랜덤코드 드세요. 저는 근데 약간의 의견을 말씀드리면 시간 기반이 그래도 좀 나을 것 같은 게 사용자 유시장에 해서 카톡도 지금 보니까 시간 기반으로 되고 있거든요. 그래서 이제 오래 예전에 올렸던 것보다 나중에 올리는 숫자가 더 커요. 그런 게 사자한테 익숙하니까 그런 관점에서 시간을 놓는 게 낫지 않을까 그러 시간까지만 놓고 뒤에 랜코드 전에 면 되는 거 아닐까요? 시간 시까지요? 지 요 같은지도 나 어차피 제가 봤을 때는 초까지 나오는 경우는 내가 4개파의 동시를 텐데 그때는 파 이 같은 올라  이 사람 제가 봤을 까지 다루는 경우를 보면은 파 쪽 동 동시잖아 거기서 12 차이 나거나 아니면 초가 같거나 그 차이라서 저는 없는 어차피 같이 수가 되고 다루려나 그러면 아예 그냥 와 MDD까지 하고 시간 아예 하지도 말고 뒤에 동도 하면 될 오히 그럴 그냥 시간하고 군인하고 내놓고 다 것 같아요. 시간 근데 그건 다운로드 받았을 때 다운드 록 지 다운드 기록도 없잖아 다음에 넣으면 번에 안 들어갔구나 일단 이 받았을 때 저 명로 내려야 그렇게 돼야겠죠 사용자 입장에서 파일명이 저렇게 보였는데 제가 이해한 거는 여기 보관함에는 그 다른 사람들이 내가 파일명 규칙을 파일명을 등록한 것과 자동으로 노출이 되고 다운로드 했을 때 우리가 정해진 그 규칙에 맞춰서 다운로드 된다. 맞죠 그래서 여기 보관함에 보여지는 요리스트에서는 그 다운로드 규칙에 따른 그 정의 내용이 표현되는 게 아니고 그 사용자가 올린 파일 면이 그대로 노출된다. 아이오에스는 안드로이드는 그게 안 된대요. 그래서 지금 계속 얘기가 나오고 있는 거 아는 iS는 올릴 때도 그대로 팔 다운로드 때도 그대로 팔 근데 안드로이드 같은 경우가 지금 그게 다 하셔가 할 얘기 그러면 그렇게 하죠 앞에 빼고 날짜 시간 렌더코드 내려요. 제일 같아요. 렌더코드 내 자리 안드 그럼 이거 관사님한테는 좀 따로 규칙만 명확하게 다시 정해주시면 이미지 한 다음에 다뤄놓을게요. 아 저는 할 거면은 날짜 시간 다 보여주는 게 좋을 날짜 시간 내놓거든 그러 아예 오디오 이도 빠져 것 같아 파일 장 대면이 있으니까 아 그렇게 시간이랑 초예요 시간 나하면 초죠? 민 아 MM도 그렇고 이게 좀 생 아니 저 뒤에 언더바가 1이 아니고 언더바 랜덤 거 랜덤 4개 뭐 알파벳 들어가면 되나요? 네 자리 네 자리인데 이쁜데 알파벳 영웅 뭔지 뭐 그런 것도 정해주시면 그냥 영문 대문자 랜덤 북으로 얘기하면 되지 않을까요? 상관없다 아 랜덤 코드 붙는 게 좀 이상해서 좀 어색하네. 근데 지금 이걸로 이걸로 좀 얘기를 너무 많이 한 것 같아서 여기서 정리를 한 게 맞을 것 같습니다. 말씀하신 대로 중요한 게 아니잖아요. 그래서 겹치지는 않아도 이런 거다 보니까 상황이 이상하다 아 웃겨요. 그래요. 절대 안 돼 아 여기 왜 12 안 쓰고 그래 노 어 이렇게 생각하는 사람도 진짜 없을 걸 개발자는 그럴 수도 있겠다. 어차피 카톡도 다 내놓고도 내렸는데 한 번도 이사도 안 느꼈잖아요 이미지 같은 거 내려왔을 때 엉덩이 이름으로 들어오고 막 이렇게  그럼 얘는 이제 그 클릭하면 다 해당하고 상 상 아 상세복이 왜 날짜 누는 거 달라고 했었는데 거죠? 그 까먹었네 공지는 상세가 없으니지 않나요? 없어요 근데 궁금한 게 이렇게 해놓으면은 이거는 그 그 왜 있는 거죠 제가 궁금해서 원래 카톡은 상태가 있잖아요. 거기는 다시 공지로 올리거나 그런 기능들도 있고 삭제도 다 있 저희는 그냥 히스토리 같은 개념인가? 히스토리 같은 개념 근데 공지의 히스토리가 필요한가요? 제 생각엔 공지에 대한 상세 기능 어떤 게시판 기능 카톡과 같은 그런 기능을 제공하기 전까지는 이게 의미가 없지 않을까? 이게 사실 된다면 여기 게시판이 되고 이게 공지로 선택돼 내야 돼요 그 중에 하나가 개념이 누르면 상세가 있고 그리고 이게 장기적으로는 공지에서 개를 더 보게 누르면 급해져 넘어요. 거기서 걸려지는 게 아 최종 목적지는 거긴데 지금 시점에서 어떻게 갈지 영어는 걸요? . 그냥 현실 관지만 보여주면 되지 않을까요? 탭을 날리는 게 낫지 않나 라는 생각을 들어봅니다. 그럴 거면 현재 공지 내용이 풀로 그냥 보여지는 게 좀 더 나을 수도 있겠네. 그거는 채팅방에서도 보이는데 왜 여기서 보여요? 채팅방 스크롤 생길 수도 있잖아. 그러면은 이게 의미가 없는 거 같아요? 그래서 저도 하면서 이게 어떤 의미로 들어가는 건 하겠어요. 전 상대까지 작업이 되는 그리고 공주를 등록하는 기능이 지금 사실 반밖에 없는 거잖아요 방법 어차피 개신을 생산할 수 있는 사람도 방대밖에 없잖아요. 지금 현재 근데 나중에 아 저희 게시판 기능을 도입하는 데는 얼마나 올까요? 입원 하자는 건 아니고 일정을 잡고 해야 되니까 다. 게시판에 그냥 단순 글 올리는 기능이라고 하면 사실 어렵지는 않죠. 백앤드 할 때 처음 개발 시작할 때 제일 먼저 하는 게시판 거든요. 초보들이 하는 거 그러니까 작업 일수를 정해가지고 언제 업데이트 할지를 결정을 해놔야 되는 거니까 고구마 확인한 거고 그러면 뭐 그 저희가 업데이트 버전이 15일 버전이잖아요. 네. 그때 업데이트 같이 할 수 있나요? 게시판까지? 어렵지 않다며 16일 빠듯합니다. 다음 주에 해야 사진 동영상 번에 업로드 다는 거랑 채팅방 남의적인 메시지 연속으로 하고 메시지로 롱프레스 했을 때 답글 달기 하고 다운로드 다운로드 다운드 기 근데 급하지 않아요. 그래서 일정을 알려주시면 301번에 들어가도 되기 해요. 이게 난이도는 어렵지 않은데 양이 많을 것 같아요. 왜냐하면 CRL리가 다 들어가야 되고 거기는 막 천국파일도 들어갈 수 있고 그러다 보니까 그렇다면 저는 15일 6일 업데이트 되는 것 중에 하나를 빼고 오히려 게시판이 들어가면 한 것 같아요. 시간 걸리는 빼고 이 프레스 이런 것들은 사실 그러니까 저는 어쨌든 프로젝트 우리 운영 일정이 중순부터는 잡혀있잖아요 사실 그렇다고 봤을 때 다른 기능들을 제외하고 프로젝트의 게시판 기능이 생기지 않을 것 같아. 따서 뺄 게 다운 로드도 필요하잖아요 근데 그 정도의 양의 리소스를 빼야 이게 교체가 되요 그래가지고 문의 드리라는 거예요. 그래서 답글 달기가 과연 그 정도의 리소스일까가 좀 근데 저는 답글 달기가 그 정도 리소스는 아닌데 비해서 되게 중요한 것 같아요. 반드시 나가야 될 기능이 아닌가 라는 생각이 필요하죠. 이런 것들은 사실 없어도 되어 이 같은 경우는 저거는 뭐 근데 이건 클라 작업이어서 뺑이는 해야 돼요 왜냐면 유지가 돼야 되잖아요 했어 요게 빠지면은 게시판 될까요? 안 저건 뭐죠 사진 한 번도 올게요 사진이랑 동영상이랑 지금 따로따로 올론하게 되어 있는데 폴 게시죠 맞아 안 될 것 같습니다. 3일밖에 없어서 실질적으로 개발 시간이 그래 시면 나 하지 게시판? 근데 이 게시판은 전체 다 아니에요? 그렇죠 채팅방 전체 다 게시판 근데 약간 프리터 운영면 게시판을 쓸 텐데 무조건. 근데 저는 이게 방장만 게시판 할 수 있는 게 좀 좀 호크이 있 붙여져야 포함해서 공지만 담당히 할 수 있도록 해야죠. 공지만 그리고 쓸 수도 있고 대학가를 게시물로 적용할 수도 있고 카톡장. 카톡에 그런 이름도 있구나. 일단 게시판 게시판 안 써요 근데? 카카오톡 커뮤니티는 다 쓰잖아요 게시판 거기다가 공지도 올려놓고 자료도 올려놓고 이렇게 운영 규칙도 올려놓고 하잖아 겠어요. 꽤 오래 오픈채팅을 했었는데 지금 왔어요 오픈제 오픈수는 별게 다 있어요. 출첵조 있잖아 복기능이 있어가 별  법도 운영하고 그랬었는데 게시판 당근 같은 것도 사 있고. 주로 방장용이긴 한 것 같아요 공지성 때문에 그러니까 이게 채팅에서 끝나면은 저도 게시판에 그게 중요하지 않은데 프로젝트라든지 이런 데 들어가면 사실 거기서 프로젝트 운영하는데 자료 실이라든지 기본적인 공지라든지 전달사항이든지 이걸 텍스트로 계속 하지는 않을 거예요. . 그걸 안 쓰더라도 그런 기능이 어딘가 존재해야지 그런 것들을 이제 쓸 수 있게 되는데 그래도 게시판 기능은 지금이 아니더라도 곧 되긴 돼야 된다고 보긴 해요. 그럼 뭐 다음에 바로 넣는 걸로 하면 되지 않을까요? 그런데 그 다음 운영 배퍼가 30일이다 보니까 이주에 한 번씩 배포하려고 정 거잖아요. 10월까지는 그냥 하기로 했다. 네 10월에는 그냥 게시판만 중간에 한 나름이 해서 일단은 일단은 딴 것들이 일이 많으니까 요거는 다시 얘기하세요. 저는 공유할 내용은 없습니다. 그럼 일단 공지를 빼고 하는 건가요? 공지는 이 하나만 덜로만 보여주기도 좀 애매하고 그죠? 이 그냥 저는 그거 여기서 어차피 바뀔 거면 그냥 항상 유지가 맞는 것 같아요 게시물 바꿀 거면 괜히 애꿎은 공지가 게시로 바뀔 바에는 게시판로 바뀔 바에는 그냥 없다는 지금 안 보여주고 나중에 게시판에 게시판 나오  저는 한 가지 말씀드릴 게 저희 프로젝트 공유하기 있잖아요. 네. 그거 버튼 혹시 어디로 넣으면 될까요? 맞아 버튼 위치를 잡아주시 저는 생각보다 공이죠? 네 라운지 채팅방을 공 푸트 하신 거 아니요? 채팅방 라운지 프로젝트 라운지라든지 프로젝트 공유하면 프로 하고 운 딩 프로그램 됐잖아요. 유치 맞아요. 일단 iOS는 여기 버튼으로 해드시긴 하셨는데 저는 상담 채팅방 신고 위쪽으로 넣긴 했거든요. 근데 바쁠 수 있어요.저는 이긴 하고 요 정도가 많지 않나라고 생각이 되었습니다. 공유가 빈번하게 일어나는 건 아요? 근데 여기 공유 버튼 일단 iOS는 그렇게 잡아 에 어쩔 상당은 안 되는 근데 그럼 알림이 빠졌을 것 같아요 내가 봤을 위에다 버튼 두 개 놓긴 그렇고 알림이 지금 토로 돼 있다 보니까 알림이 밑으로 빠지든가 공유 두 중에 위치를 바꾸도 그래야 될 것 같은데. 공유로 들어오려고 알리 문 빼는 맞는 것 같은데 알림은 저기가 맞지 않아 아이폰화 돼가지고 다른 또 설정 페이지 알림을 누르면 알림도 여러 가지 데 뭐 나를 체 한 제외 뭐 이런 식의 알림 여러 가지 종류가 있는데 현실적인 알림에 바로 액션 버튼이 있다 보니까 아이폰까지 들어가면 좀 어그울 것 같은데 아니면은 요 요런 요런데 조그만한 켓만 넣으면 안 될까요? 여기 큰 버튼 있으니까 좀 공 많이 되면 좋은 거 아닌가 버튼 3개 이렇게 생각해요. 이렇게 하면 여기 공면 있고 여기도 공 놓고 여기 내일 알림 놓으면 되세요 같은 뭐 그렇게 위치  그 역에 톡으로 어떻게 그래도 돼요. 할 대신 상대 놈들 같아야 돼 저 밑에 있으면은 어쨌든 첫 페이지에 보이니까 네 맞아요. 알림은 지금 토블 스위치가 아니라 그냥 벨 벨 스 약간 이런 식으로 하는 되지 않을까요? 카톡처럼요? 그럴까? 그러잖아 그럼 진짜 공유 고트에는 같이 있어도 이상하지 않겠네.좀 궁금한 게 있는데  게임랭킹은 이번에 안 들어갔거 이번에 안 들어가 먹는 그것도 만들어야 드려야  아 위젯 그거면 적지 마세요 제가 해보면 될게요 어 이번에 해야 돼요 그냥 넣으면 되는 거죠 디자이너 되면 되는 거예요 이번에 해야 되면은  6일 분양배구하는 쪽에 넣어야 돼요. 이 티켓도 있으니까 유재 추가되면 어떤 지 이 되는 거예요? 그리 사용자 제가 맘대로 하긴 했는데 지금 저 같은 경우에는 포폴로 바로 띄우거나 올리기로 바로 띄우거나 영감 올리기로 바로 기로 이런 쪽으로 갔거든요. 기능을제 맘대로 한 거라서 원 년 바꿀 수가 있어요. 아니요 그렇게 해요 나중에 생각해보고 바꿔야 돼요 저도 지금 담대한 계념 는 것 같아요. 영감이랑 포포로 바로 올릴 수 있는 거포폴은 거의 안 쓸 것 같긴 한데 영감은 쓸 것 같기도 하고. 됐을까요? 제 없는 거 같은데 아닌가? 그 채팅방 검색은 그러면 디자인도 요것도 같이 필요한 거죠? 그래 자료 좋긴 하더라고 검색은 어디서 봐요 알파 대그? 안드로드 데 지금 그 아이올수도 있어요? 아 있어요. 확인 검색 혹시 누가 지금 작업하고 계세요? 백리 검색 물에서 하기로 페이징이 소용없어 약관이 이거 뭐야 운영 규칙. 네 없는 거 같습니다. 그렇습니다. 대표님은 운영 명예준당 어떻게 운영할지도 모르시는 거잖아요? 그때 대충은 얘기했죠. 대충이 그냥 뭐 근데 어떤 운영에 어떻게 운영할지의 운영 방법은 있는 거예요? 없죠 그냥 한 거죠 이게 설명 정도까지 되게 깊이 들어가는 운영이 있을까? 근데 이제 그거인 거죠 어떻게 홍보할 거냐? 그거는 오히 있죠 어떻게 홍보할 거고 어디 체력를 알릴 거면 이런 것들을 더 궁금하실 거요 실질적으로 그리고 김형석 디자에도 어떻게 전달할 거고 이벤트 표해지 있으니까 이벤트 표일이 링크를 따가지고 알려주던가 목소리야 되지 않을까?  근데 금요일날 심사를 올리고 월요일날 바로 저희가 프로드에 개시를 하지 않고 화요일날 개시를 하잖아요.  그때 다 맞춰놔야지 근데 저는 그게 좀 하루 밀려 상관없다고 봐요 준비하기가 어렵고 한다고. 아 우리가 화요일 날 하는 게 5일 날 휴일이라서 근데 어차피 저희가 수요일날 어떻게 딸 거면 수요일날 다 맞추지 않잖아요 모든 작업들은. 아니요 저는 프로드에 사전에 화요일날 배포하고 그 다음에 안정성 본 다음에 정말 수요일날 그 캠페인을 열 거면 영예정당 딱 스타트 할 거면 수요일날 하루 전에 앱켓이는 무조건 해야 될 것 같다 에 대한 스탠스고요 만약에 꼭 수요일 날 우리 하지 말고 다른 날로 하자 시대를 말서는 날짜가 중요한 거 같지 않아요. 아 날짜가 중요하지 않아도 저는 무조건 하루 전에는 이제 무조건 운영 100포는 되어야 한다. 그거는 기존은 그렇다 입니다. 그래서 날짜는 저도 유동적이긴 해요. 근데 어쨌든 이제 이벤트로 진행하는 첫날은 적긴 해야 되니까 그래가 저희가 맞춰서 제 체크웃 체크하고 그럴 것 같은데  그 긴 맞죠. 이게 아마도 뭐 저희 공식 채널로 뭐 여러 가지 그 커뮤니티 사이트에 올려도 그렇게 호응이 없을 거라고 생각이 돼서 그게 좀 고민이긴 하죠. 뭔가 첫날부터 빵 이런 느낌은 가져가기 힘들 거 같아요. 저는 그거 상관없어요. 계속 추가 때 내기면 그러면 명예의 전당도 그거 후보자 없을 때 케이스도 추가해 주시면 될 것 같아요. 저는 안내문구 같은 거는 일단은 틀 맞춰서 정리는 해놨고 문구는 규칙에 대한 내용만 조금 다듬는  저는 뭐 집계 중입니다 뭐 이렇게 표현을 하려고 했는데. 그 대표님한테 그것도 고민해봐야 될 게. 이게 이 기간 안에 원래 기존은 이 포트폴리오를 업로드한 것만 기준이잖아요. 근데 저는 그 일회차가 그게 맞나 서 싶긴 해서. 저도 그냥 근데 저는 그냥 전체 하는 게 맞는 것 같아요. 기존에 올린 사람도 대상자도 포함하는 게 맞나? 저는 그게 1회차는 찾는 에 이 저는 한 번 수상하 아니 그 포트폴리오는 그 포트폴리오 한 번 받았으면 그 포트폴리오는 수상 못 하는 거죠. 근데 그건 재미없잖아요. 예를 들어서 일기수상 이기 수상 성격 이렇게 하면 근데 그 포트폴리오로 계속  우려먹는다고요? 그러니까 그거를 단 5회 정도까지만 하잖아 전 일단 그 규칙에서는 그래 하나 아 근데 요거는 운영해보면서 판단해보시죠 근데 저는 제외하는 게 맞다고 생각했어요 다음 포트폴리오에 기회를 더 주자.  받는 사람만 받을 것 같아서 예 전 정도 고트를 10번 이상 다  그러면은 1회차는 기존 전 동안 한 달 동안 대에 다 못 받으면  뭐 조건 조금 유동적으로 된다. 그 크리에이터만 그 기간 내로 그냥 정리하는 걸로 할게요. 활동 점수이기 때문에. 크래프는 뭐 중국어 줄 수가 없잖아 어차피 아니 그 기간 안에 집계되는 활동 점수 거기 누적 누적되면 안 되죠. 네 근데 총선생 느 좀 너무 관심 없다. 네 그래서 저는 뭐라도 정리해서 공유 드려야 되는데 그 어떻게 홍보 계획 갖고 있냐에 대한 채널이나 이런 게 아직 정리가 안 돼서 공유를 제기가 조금. 일단 정리되는 대로 글로라도 공유를 드리고 디자를 마로 하셔야서 별 말이 없네. 아니 그 두 개 다 맞아야 되긴 해서. 얘는 항상 노출되어야 될까? 상 노출이야 거 한동안 그리고 저는 첫 노출은 여기서 하고 한번 본 사람들이라든지 두세 번 방문하자 면 이 배너가 밑에 나오져 것 같아 굳이 항상 상이 안 맞을 그렇죠 초반에 간 그게 근데 우리가 정하는 게 아니라 사용자의 이용 패턴을 해될 것 같은데요. 이걸 3번 이상 처음에 노출한 사람은 그 다음부터 밑에 나온다는 거 이렇게 해야 되지 않을까?  그리고 이거 언제 바꿔주는 거야 이거 난 아직도 정열이요? 민석님한테 한 번도 쪼독 하겠습니다. 작업이 이렇게 빨리 빨리"</script><script>(() => {
   const canonicalUrl = 'https://euna-source.github.io/public-pages/c8-meeting-notes-260928/';
   const status = document.getElementById('action-status');
   let original = null;
   try { original = JSON.parse(document.getElementById('original-transcript').textContent); }
   catch (_) { document.getElementById('copy-original').disabled = true; status.textContent = '음성 원문을 불러오지 못했습니다.'; }
-  const say = text => { status.textContent = text; };
+  let toastTimer; const say = text => { status.textContent = text; status.classList.add('on'); clearTimeout(toastTimer); toastTimer=setTimeout(()=>status.classList.remove('on'),4000); };
   const minutesText = () => {
     const main = document.querySelector('main').cloneNode(true);
     main.querySelectorAll('.meeting-actions,.action-help,#action-status,script,style,[data-f],[data-n]').forEach(el => el.remove());
@@ -123,4 +485,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
   document.getElementById('copy-original').addEventListener('click', () => copy(original, '음성 원문 전체를 복사했습니다.'));
   document.getElementById('close-copy-dialog').addEventListener('click', () => document.getElementById('copy-dialog').close());
 })();
-</script></body></html>
+</script></body>
+</html>
+
+
