@@ -148,7 +148,22 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 @media (prefers-reduced-motion:reduce){.srct summary::before{transition:none}}
 @media print{.srct{background:none;box-shadow:none}}
 @media(min-width:761px){.srct{--srct-w:1472px;--srct-gutter:44px}}</style>
-<meta name="description" content="2026-09-22 정기미팅 회의록 — 프로젝트 상태값, 명예의 전당 선정·집계, 채팅 푸시·첨부, 자료실 다운로드 범위를 정리했습니다."><meta property="og:title" content="프로젝트·명예의 전당 운영과 채팅 개선 범위 정리"><meta property="og:type" content="article"></head>
+<meta name="description" content="2026-09-22 정기미팅 회의록 — 프로젝트 상태값, 명예의 전당 선정·집계, 채팅 푸시·첨부, 자료실 다운로드 범위를 정리했습니다."><meta property="og:title" content="프로젝트·명예의 전당 운영과 채팅 개선 범위 정리"><meta property="og:type" content="article"><style id="prose-reflow">
+/* 설명 문단의 폭은 콘텐츠 열이 정하고, 행은 의미와 화면 폭에 따라 흐른다. */
+p,li,dd,blockquote{overflow-wrap:anywhere;line-break:strict}
+p,blockquote{text-wrap:pretty}
+h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
+.prose-break{display:inline}
+.prose-group>p{margin:0}
+.prose-group>p+p{margin-top:.65em}
+@media(max-width:600px){
+  br.prose-break{display:none}
+  p,li,dd,blockquote{word-break:keep-all;overflow-wrap:anywhere}
+}
+
+.columns,section.block,.content{min-width:0}.block>p+p{margin-top:.65em}
+
+</style></head>
 <body>
 <a class="skip" href="#notes">본문으로 이동</a>
 <div class="shell">
@@ -198,7 +213,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 <li><strong>채팅 알림·iOS</strong>: 서버가 푸시를 묶어 보내는 방식을 없애고 메시지 내용을 보여준다. iOS 컨텍스트 메뉴·위젯(CCO 127)은 3.1.2로 미룬다. <span class="ts">[41:17]</span> <span class="ts">[36:59]</span></li>
 <li><strong>채팅 첨부</strong>: 용량과 PDF 미지원은 지금대로 둔다. 대용량·AI 같은 차별화 기능은 아이디어로만 남긴다. <span class="ts">[01:12:34]</span> <span class="ts">[01:14:21]</span></li>
 </ul>
-<p><strong>화자 분리</strong>: 적용됨. 화자 번호는 11개이고, 화자를 판정하지 못한 줄이 1줄 있다. 번호 수가 곧 참석자 수는 아니다. 민석은 화자3·화자4 두 번호로 나뉘었고, 화자10에는 재욱과 민석의 발언이 섞여 있어 발언별로 나눠 적었다. 진영은 불참했고 이름만 나왔다.</p>
+<p><strong>화자 분리</strong>: 적용됨. 화자 번호는 11개이고, 화자를 판정하지 못한 줄이 1줄 있다. 번호 수가 곧 참석자 수는 아니다. </p><p>민석은 화자3·화자4 두 번호로 나뉘었고, 화자10에는 재욱과 민석의 발언이 섞여 있어 발언별로 나눠 적었다. 진영은 불참했고 이름만 나왔다.</p>
 <div class="table-scroll" role="region" tabindex="0" aria-label="표"><table class="speakers">
 <thead>
 <tr>
