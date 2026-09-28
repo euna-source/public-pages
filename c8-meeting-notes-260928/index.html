@@ -485,7 +485,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
   document.getElementById('copy-original').addEventListener('click', () => copy(original, '음성 원문 전체를 복사했습니다.'));
   document.getElementById('close-copy-dialog').addEventListener('click', () => document.getElementById('copy-dialog').close());
 })();
-</script></body>
+</script><script>const tocMedia=matchMedia('(max-width:760px)');const tocDetail=document.querySelector('.contents');const syncToc=()=>{if(tocDetail)tocDetail.open=!tocMedia.matches;};syncToc();tocMedia.addEventListener('change',syncToc);</script></body>
 </html>
 
 
