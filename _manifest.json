@@ -134,5 +134,13 @@
     "last_kind": "redeploy",
     "last_sha256": "6c5f2af33a0ad7881acc784a0cf1afcc50a4d3f2d779369ec708524ff6f5fc0c",
     "timestamp": "2026-09-28T03:16:54.837757Z"
+  },
+  "cco-111-team": {
+    "slug": "cco-111-team",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/cco-111-team/",
+    "last_kind": "redeploy",
+    "last_sha256": "f12aac42a858410c37c67a5ef86a841549e5c925ddfd1af7c0ecce7a34e89047",
+    "timestamp": "2026-09-28T03:16:59.261356Z"
   }
 }
