@@ -21,9 +21,9 @@
    경고·미확인은 색이 아니라 모양(테두리·아이콘·이름표)으로 구분
    ───────────────────────────────────────────── */
 :root{
-  --bg:#f3f3f3; --panel:#ececec; --line:#cdcdcd;
-  --text:#252525; --muted:#5f5f5f;
-  --accent:#656565; --mark:#d5d5d5; --mark-text:#252525; --link:#5b5b5b;
+  --bg:#F6F3EB; --panel:#EEECE2; --line:#CECEC3;
+  --text:#252621; --muted:#5D6059;
+  --accent:#B73921; --mark:#F4D43D; --mark-text:#252621; --link:#1957B8;
   --body-size:18px;
   --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
   --serif:"Noto Serif KR","AppleMyungjo","Batang",Georgia,serif;
@@ -32,16 +32,16 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#222222; --panel:#2e2e2e; --line:#545454;
-    --text:#ececec; --muted:#bbbbbb;
-    --accent:#afafaf; --mark:#bbbbbb; --mark-text:#222222; --link:#b7b7b7;
+    --bg:#20231F; --panel:#2B3028; --line:#51564B;
+    --text:#EDECE4; --muted:#B9BDB1;
+    --accent:#FF9178; --mark:#D8B92E; --mark-text:#20231F; --link:#92B7FF;
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#222222; --panel:#2e2e2e; --line:#545454;
-  --text:#ececec; --muted:#bbbbbb;
-  --accent:#afafaf; --mark:#bbbbbb; --mark-text:#222222; --link:#b7b7b7;
+  --bg:#20231F; --panel:#2B3028; --line:#51564B;
+  --text:#EDECE4; --muted:#B9BDB1;
+  --accent:#FF9178; --mark:#D8B92E; --mark-text:#20231F; --link:#92B7FF;
   color-scheme:dark;
 }
 
@@ -305,7 +305,7 @@ mark a,.obi-head a{color:var(--mark-text);text-decoration-color:currentColor}
 
 /* ── 인쇄·PDF: 항상 라이트 ── */
 @media print{
-  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#ffffff;--panel:#efefef;--line:#cdcdcd;--text:#252525;--muted:#5f5f5f;--accent:#656565;--mark:#d5d5d5;--mark-text:#252525;--link:#5b5b5b;--body-size:11pt;color-scheme:light}
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#fff;--panel:#F1EFE8;--line:#CECEC3;--text:#252621;--muted:#5D6059;--accent:#B73921;--mark:#F4D43D;--mark-text:#252621;--link:#1957B8;--body-size:11pt;color-scheme:light}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   .bar,.toc,.toc-mobile,.toast,.skip{display:none!important}
   .page{max-width:none;padding:0}
@@ -517,12 +517,12 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
             <caption>색 역할</caption>
             <thead><tr><th scope="col">역할</th><th scope="col">라이트</th><th scope="col">다크</th><th scope="col">쓰는 곳</th></tr></thead>
             <tbody>
-              <tr><td>바탕</td><td><span class="swatch"><i style="background:#f3f3f3"></i>#F6F3EB</span></td><td><span class="swatch"><i style="background:#222222"></i>#20231F</span></td><td>긴 글의 기본 면</td></tr>
-              <tr><td>본문</td><td><span class="swatch"><i style="background:#252525"></i>#252621</span></td><td><span class="swatch"><i style="background:#ececec"></i>#EDECE4</span></td><td>제목·본문</td></tr>
-              <tr><td>보조문</td><td><span class="swatch"><i style="background:#5f5f5f"></i>#5D6059</span></td><td><span class="swatch"><i style="background:#bbbbbb"></i>#B9BDB1</span></td><td>날짜·출처·설명</td></tr>
-              <tr><td>노랑 강조 면</td><td><span class="swatch"><i style="background:#d5d5d5"></i>#F4D43D</span></td><td><span class="swatch"><i style="background:#bbbbbb"></i>#D8B92E</span></td><td>핵심 구절 배경, 짙은 글자와 함께</td></tr>
-              <tr><td>주홍 편집색</td><td><span class="swatch"><i style="background:#656565"></i>#B73921</span></td><td><span class="swatch"><i style="background:#afafaf"></i>#FF9178</span></td><td>절 번호·작은 표식</td></tr>
-              <tr><td>파랑 링크</td><td><span class="swatch"><i style="background:#5b5b5b"></i>#1957B8</span></td><td><span class="swatch"><i style="background:#b7b7b7"></i>#92B7FF</span></td><td>밑줄과 함께</td></tr>
+              <tr><td>바탕</td><td><span class="swatch"><i style="background:#F6F3EB"></i>#F6F3EB</span></td><td><span class="swatch"><i style="background:#20231F"></i>#20231F</span></td><td>긴 글의 기본 면</td></tr>
+              <tr><td>본문</td><td><span class="swatch"><i style="background:#252621"></i>#252621</span></td><td><span class="swatch"><i style="background:#EDECE4"></i>#EDECE4</span></td><td>제목·본문</td></tr>
+              <tr><td>보조문</td><td><span class="swatch"><i style="background:#5D6059"></i>#5D6059</span></td><td><span class="swatch"><i style="background:#B9BDB1"></i>#B9BDB1</span></td><td>날짜·출처·설명</td></tr>
+              <tr><td>노랑 강조 면</td><td><span class="swatch"><i style="background:#F4D43D"></i>#F4D43D</span></td><td><span class="swatch"><i style="background:#D8B92E"></i>#D8B92E</span></td><td>핵심 구절 배경, 짙은 글자와 함께</td></tr>
+              <tr><td>주홍 편집색</td><td><span class="swatch"><i style="background:#B73921"></i>#B73921</span></td><td><span class="swatch"><i style="background:#FF9178"></i>#FF9178</span></td><td>절 번호·작은 표식</td></tr>
+              <tr><td>파랑 링크</td><td><span class="swatch"><i style="background:#1957B8"></i>#1957B8</span></td><td><span class="swatch"><i style="background:#92B7FF"></i>#92B7FF</span></td><td>밑줄과 함께</td></tr>
             </tbody>
           </table>
         </div>
