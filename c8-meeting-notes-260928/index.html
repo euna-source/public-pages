@@ -192,7 +192,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 <li>원본 제목: [9/28 정기미팅] 명예의 전당, 채팅방 보관함 등 개발 사항 논의</li>
 <li>기록 기준: 사용자 제공 음성메모 받아쓰기 전문</li>
 </ul>
-<div class="hbtns"><p class="action-help">음성 원문은 받아쓰기 전문입니다.</p><div class="meeting-actions" role="group" aria-label="회의록 공유 및 복사"><button type="button" class="lbtn ghost act" id="share-url"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10V2.5"/><path d="M5 5l3-3 3 3"/><path d="M3.5 8.5v4a1 1 0 001 1h7a1 1 0 001-1v-4"/></svg>URL 공유하기</button><button type="button" class="lbtn ghost act" id="copy-minutes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="7.5" height="8" rx="1"/><path d="M3 10.5H2.5v-8h8V3"/></svg>회의록 전체 복사</button><button type="button" class="lbtn ghost act" id="copy-original"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="4" height="7" rx="2"/><path d="M4 7.5a4 4 0 008 0M8 11.5V14M5.5 14h5"/></svg>음성 원문 전체 복사</button></div></div></header>
+<div class="hbtns"><p class="action-help">음성 원문은 받아쓰기 전문입니다.</p><div class="meeting-actions" role="group" aria-label="회의록 공유 및 복사"><button type="button" class="lbtn ghost act" id="share-url"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10V2.5"/><path d="M5 5l3-3 3 3"/><path d="M3.5 8.5v4a1 1 0 001 1h7a1 1 0 001-1v-4"/></svg>URL 복사하기</button><button type="button" class="lbtn ghost act" id="copy-minutes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="7.5" height="8" rx="1"/><path d="M3 10.5H2.5v-8h8V3"/></svg>회의록 전체 복사</button><button type="button" class="lbtn ghost act" id="copy-original"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="4" height="7" rx="2"/><path d="M4 7.5a4 4 0 008 0M8 11.5V14M5.5 14h5"/></svg>음성 원문 전체 복사</button></div></div></header>
 <section class="block overview"><h2 id="_2">한눈에</h2>
 <ul>
 <li><strong>결정</strong>: 내 포트폴리오에도 리스펙트 버튼과 개수를 표시하고, 본인이 누르면 리스펙트를 줄 수 없다는 안내를 띄웁니다.</li>
@@ -474,13 +474,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
       say('자동 복사가 제한되어 전체 텍스트를 열었습니다. 텍스트를 선택해 복사해 주세요.');
     }
   }
-  document.getElementById('share-url').addEventListener('click', async () => {
-    if (navigator.share) {
-      try { await navigator.share({title: document.title, url: canonicalUrl}); say('공유 창을 닫았습니다.'); return; }
-      catch (err) { if (err.name === 'AbortError') { say('공유를 취소했습니다.'); return; } }
-    }
-    await copy(canonicalUrl, '회의록 URL을 복사했습니다.');
-  });
+  document.getElementById('share-url').addEventListener('click', () => copy(canonicalUrl, '회의록 URL을 복사했습니다.'));
   document.getElementById('copy-minutes').addEventListener('click', () => copy(minutesText(), '회의록 텍스트 전체를 복사했습니다.'));
   document.getElementById('copy-original').addEventListener('click', () => copy(original, '음성 원문 전체를 복사했습니다.'));
   document.getElementById('close-copy-dialog').addEventListener('click', () => document.getElementById('copy-dialog').close());
