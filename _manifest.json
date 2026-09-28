@@ -158,5 +158,13 @@
     "last_kind": "redeploy",
     "last_sha256": "1d50d24843e880b1cbe6d676a903326663ce8f0e2dc34e0c96260480e1f69a38",
     "timestamp": "2026-09-28T04:01:59.670396Z"
+  },
+  "c8-minutes-260928": {
+    "slug": "c8-minutes-260928",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-minutes-260928/",
+    "last_kind": "new",
+    "last_sha256": "62684b4a0712541192651b76cab4c4f03b810af508272cb9bb6ecdf05f094487",
+    "timestamp": "2026-09-28T05:45:51.493012Z"
   }
 }
