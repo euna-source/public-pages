@@ -116,8 +116,8 @@
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/doc-templates/",
     "last_kind": "redeploy",
-    "last_sha256": "24139363b438061c608b653734b5f3e6e002c582712ed41c34556fa2021235e1",
-    "timestamp": "2026-09-28T03:17:12.802242Z"
+    "last_sha256": "af65cd53d604e389ad657ce480e7daeede660c61ed16dc7f0c5a4af7291bc46d",
+    "timestamp": "2026-09-28T03:31:48.311972Z"
   },
   "c8-alert-conditions": {
     "slug": "c8-alert-conditions",
