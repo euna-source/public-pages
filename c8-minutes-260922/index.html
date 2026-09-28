@@ -7,7 +7,7 @@
 <title>프로젝트·명예의 전당 운영과 채팅 개선 범위 정리</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--paper:#fff;--ink:#121212;--ink-2:#3F3F46;--ink-3:#6B6B73;--sunken:#F7F7F8;--frame:#DEDEE2;--line:#EAEAED;--brand:#07ED21;--brand-ink:#067D14;--brand-soft:#DCFCE0;--warn:#FF7A1A;--warn-ink:#A63F08;--warn-soft:#FFE8D6;--display:"Gmarket Sans","Pretendard Variable",Pretendard,sans-serif;color-scheme:light}
+:root{--paper:#ffffff;--ink:#121212;--ink-2:#404040;--ink-3:#6c6c6c;--sunken:#f7f7f7;--frame:#dedede;--line:#eaeaea;--brand:#cdcdcd;--brand-ink:#6b6b6b;--brand-soft:#f4f4f4;--warn:#a0a0a0;--warn-ink:#606060;--warn-soft:#ececec;--display:"Gmarket Sans","Pretendard Variable",Pretendard,sans-serif;color-scheme:light}
 @font-face{font-family:"Gmarket Sans";font-weight:700;font-display:swap;src:local("GmarketSansBold"),local("Gmarket Sans Bold"),local("G마켓 산스 Bold"),url(https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff) format("woff")}
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:20px}
@@ -37,8 +37,8 @@ main{min-width:0}
 .hbtns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
 .hbtn{display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 16px;border-radius:999px;border:1px solid var(--frame);background:var(--paper);color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
 .hbtn:hover{background:var(--sunken)}
-.hbtn.primary{background:var(--ink);border-color:var(--ink);color:#fff}
-.hbtn.primary:hover{background:#2A2A2E;border-color:#2A2A2E}
+.hbtn.primary{background:var(--ink);border-color:var(--ink);color:#ffffff}
+.hbtn.primary:hover{background:#2a2a2a;border-color:#2a2a2a}
 .hbtn[aria-expanded=true]::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brand)}
 section.block{border-top:2px solid var(--ink);padding:14px 0 4px;margin:0 0 32px;break-inside:avoid}
 section.block h2{font-family:var(--display);font-weight:700;font-size:16px;line-height:1.35;letter-spacing:-.01em;margin:0 0 12px}
@@ -96,7 +96,7 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 @media(min-width:1101px){section.overview{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}section.overview>ul{columns:2;column-gap:40px}}
 @media(max-width:1100px){.columns{columns:1}.shell{padding:32px 28px 88px;gap:32px;grid-template-columns:172px minmax(0,1fr)}}
 @media(max-width:760px){.shell{display:block;padding:16px 16px 56px}.shell>aside{position:static;max-height:none;overflow:visible;margin-bottom:20px}.brand{margin-bottom:12px}.contents summary{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 16px;border:1px solid var(--frame);border-radius:999px;font-size:13px;letter-spacing:0;margin-bottom:10px}.contents summary::after{content:"";width:6px;height:6px;border-right:1.5px solid var(--ink-2);border-bottom:1.5px solid var(--ink-2);transform:rotate(45deg) translateY(-2px)}.contents[open] summary::after{transform:rotate(-135deg) translateY(-1px)}.top-link{display:none}.head h1{font-size:21px}.hbtns{margin-top:12px}section.block{padding-top:12px;margin-bottom:28px}th,td{padding:7px 10px}.relation{grid-template-columns:1fr;gap:4px}.relation+.relation{margin-top:22px}.relation-label{padding:0;border-bottom:0;color:var(--ink-3)}.relation-label::before{content:"↓ "}}
-@media print{body{font-size:10.5pt;background:#fff}.shell{display:block;max-width:none;padding:0}.shell>aside,.skip,.hbtns,.hpanel{display:none}.columns{columns:2}section.block,.hl,th{-webkit-print-color-adjust:exact;print-color-adjust:exact}section.block{break-inside:avoid}.table-scroll{overflow:visible}}
+@media print{body{font-size:10.5pt;background:#ffffff}.shell{display:block;max-width:none;padding:0}.shell>aside,.skip,.hbtns,.hpanel{display:none}.columns{columns:2}section.block,.hl,th{-webkit-print-color-adjust:exact;print-color-adjust:exact}section.block{break-inside:avoid}.table-scroll{overflow:visible}}
 
 /* 안건 지도: 걸린 안건 기준 2단 목록 */
 .amap .visual-title{margin-bottom:4px}
@@ -129,20 +129,20 @@ hr{border:0;border-top:1px solid var(--line);margin:16px 0}
 .amap-d summary{cursor:pointer;font-size:12px;color:var(--ink-3);list-style-position:inside}
 
 /* 출처 트레이: 용지 밖(뒷면) — 접어 두고 강조하지 않는다 */
-.srct{margin:56px 0 0;padding:0 var(--srct-gutter,16px) calc(24px + env(safe-area-inset-bottom,0px));background:#F2F2F4;box-shadow:inset 0 12px 14px -14px rgba(18,18,18,.16);color:#5F5F68;font-size:12.5px;line-height:1.6;clear:both}
+.srct{margin:56px 0 0;padding:0 var(--srct-gutter,16px) calc(24px + env(safe-area-inset-bottom,0px));background:#f2f2f2;box-shadow:inset 0 12px 14px -14px rgba(18,18,18,.16);color:#606060;font-size:12.5px;line-height:1.6;clear:both}
 .srct>details{max-width:var(--srct-w,1080px);margin:0 auto;padding:16px 0 0}
-.srct summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;color:#5F5F68;padding:2px 0}
+.srct summary{display:inline-flex;align-items:center;gap:8px;cursor:pointer;list-style:none;font-weight:600;color:#606060;padding:2px 0}
 .srct summary::-webkit-details-marker{display:none}
 .srct summary::before{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(-45deg);transition:transform .15s ease-out}
 .srct details[open]>summary::before{transform:rotate(45deg)}
-.srct summary:hover{color:#3F3F46}
+.srct summary:hover{color:#404040}
 .srct .srct-n{font-weight:500;font-variant-numeric:tabular-nums}
 .srct-body{display:grid;gap:6px;padding:10px 0 4px}
 .srct-row{display:grid;grid-template-columns:minmax(0,200px) minmax(0,1fr);gap:2px 16px}
 .srct-row>*,.srct-note,.srct-free{min-width:0;overflow-wrap:anywhere;word-break:normal}
-.srct-row>b{font-weight:600;color:#52525B}
-.srct-note{margin:6px 0 0;color:#6B6B73}
-.srct a,.srct a.jira{font-weight:500!important;color:#3F3F46!important;text-decoration:underline;text-decoration-color:#C9C9CF;text-underline-offset:3px}
+.srct-row>b{font-weight:600;color:#535353}
+.srct-note{margin:6px 0 0;color:#6c6c6c}
+.srct a,.srct a.jira{font-weight:500!important;color:#404040!important;text-decoration:underline;text-decoration-color:#c9c9c9;text-underline-offset:3px}
 .srct code{font-size:12px;background:none;border:0;padding:0;color:inherit;word-break:normal;overflow-wrap:anywhere}
 @media (max-width:640px){.srct{--srct-gutter:16px}.srct-row{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.srct summary::before{transition:none}}
