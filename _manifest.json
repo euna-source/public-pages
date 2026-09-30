@@ -175,14 +175,6 @@
     "last_sha256": "7152164f905883444a74af7e9e16bd5997603371052c64fd63525a5b27c99c80",
     "timestamp": "2026-09-29T01:42:13.434374Z"
   },
-  "c8-minutes-260929": {
-    "slug": "c8-minutes-260929",
-    "mode": "main",
-    "url": "https://euna-source.github.io/public-pages/c8-minutes-260929/",
-    "last_kind": "new",
-    "last_sha256": "e75bccead4302eda9ddd5260a074dc7ebe7706f3ca702900c42180a74cca6a94",
-    "timestamp": "2026-09-30T03:12:09.151980Z"
-  },
   "c8-meetinglog-260929": {
     "slug": "c8-meetinglog-260929",
     "mode": "main",
