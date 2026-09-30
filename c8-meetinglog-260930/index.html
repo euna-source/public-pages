@@ -759,7 +759,7 @@ details.callout .dq{min-width:0;line-height:1.55}
   function copy(v,m){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(function(){toast(m)},function(){fb(v,m)});}else fb(v,m);}
   document.querySelector('.mtg-actions').addEventListener('click',function(ev){
     var b=ev.target.closest('button');if(!b)return;var a=b.dataset.act;
-    if(a==='url'){var u=/^https?:/.test(location.href)?location.href.split('#')[0]:'';if(!u){toast('배포 전이라 URL이 없습니다');return;}copy(u,'URL을 복사했습니다');}
+    if(a==='url'){var c=document.querySelector('link[rel=canonical]');var u=c&&/^https:/.test(c.href)?c.href:(/^https?:/.test(location.href)?location.href.split(/[?#]/)[0]:'');if(!u){toast('배포 전이라 URL이 없습니다');return;}copy(u,'URL을 복사했습니다');}
     else if(a==='minutes')copy(txt('mtg-minutes'),'회의록 전체를 복사했습니다');
     else if(a==='copy-tr')copy(txt('mtg-transcript'),'대화 원문 전체를 복사했습니다');
     else if(a==='dl-tr'){var bl=new Blob([txt('mtg-transcript')],{type:'text/markdown;charset=utf-8'});var l=document.createElement('a');l.href=URL.createObjectURL(bl);l.download=b.dataset.name;document.body.appendChild(l);l.click();setTimeout(function(){URL.revokeObjectURL(l.href);l.remove()},0);toast('대화 원문을 내려받았습니다');}
