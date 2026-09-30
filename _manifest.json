@@ -182,5 +182,13 @@
     "last_kind": "redeploy",
     "last_sha256": "567fdea85d1c395063c081b7e3299cf8d5926d6084c1bc240c322e9b780eaf8f",
     "timestamp": "2026-09-30T03:20:26.001138Z"
+  },
+  "cco-121-weekly-best-wireframe": {
+    "slug": "cco-121-weekly-best-wireframe",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/cco-121-weekly-best-wireframe/",
+    "last_kind": "new",
+    "last_sha256": "e4d73a31e277e950ef949c4c60c82583b1c143452734e87686b77b7ba0a35160",
+    "timestamp": "2026-09-30T04:00:20.303254Z"
   }
 }
