@@ -206,5 +206,13 @@
     "last_kind": "redeploy",
     "last_sha256": "8f603687f7757d3d5bcc77de94c23381a267832c5b56b1f5b103fa7c005cf6c7",
     "timestamp": "2026-09-30T10:13:47.277831Z"
+  },
+  "c8-insta-01-identity": {
+    "slug": "c8-insta-01-identity",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-01-identity/",
+    "last_kind": "new",
+    "last_sha256": "878507ef707bc06c57f1c8e377a13d4e672a019dd6ab8554b3758733914a60cf",
+    "timestamp": "2026-09-30T10:44:01.991019Z"
   }
 }

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>정체성 게시물 시안</title>
+<meta name="description" content="Cre8orClub 인스타 01 「“그래서 무슨 일 하세요?”가 제일 어려운 사람」 시안 — 버전별 기록">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#F4F4F1;--panel:#FFFFFF;--ink:#0E100F;--mu:#6B6B6B;--line:#DEDED9;--g:#07ED21;--chip:#EDEDE8}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121412;--panel:#1B1D1B;--ink:#F2F2EE;--mu:#9A9A95;--line:#2E302E;--chip:#262826}}
+:root[data-theme="dark"]{--bg:#121412;--panel:#1B1D1B;--ink:#F2F2EE;--mu:#9A9A95;--line:#2E302E;--chip:#262826}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:Pretendard,'Apple SD Gothic Neo',sans-serif;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+header{padding:14px 20px 12px;border-bottom:1px solid var(--line);background:var(--panel)}
+.top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.brand{font-weight:900;font-size:13px;letter-spacing:.02em}
+.brand i{font-style:normal;color:var(--g);-webkit-text-stroke:.3px var(--ink)}
+h1{font-size:16px;font-weight:800;letter-spacing:-.02em}
+.sub{font-size:12.5px;color:var(--mu);margin-top:4px}
+.wrap{flex:1;display:grid;grid-template-columns:280px 1fr;min-height:0}
+aside{border-right:1px solid var(--line);background:var(--panel);overflow:auto;padding:14px 12px}
+aside h2{font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--mu);margin:2px 6px 10px}
+.ver{display:block;width:100%;text-align:left;border:1px solid var(--line);background:transparent;color:inherit;font:inherit;border-radius:10px;padding:11px 12px;margin-bottom:8px;cursor:pointer;position:relative}
+.ver:hover{border-color:var(--mu)}
+.ver.on{border-color:var(--ink);box-shadow:inset 4px 0 0 var(--g)}
+.ver .row{display:flex;align-items:center;gap:6px}
+.ver b{font-size:14px;font-weight:900}
+.tag{font-size:10.5px;font-weight:800;padding:1px 7px;border-radius:999px;background:var(--g);color:#0E100F}
+.tag.old{background:var(--chip);color:var(--mu)}
+.ver .t{font-size:13px;font-weight:700;margin-top:4px;line-height:1.35}
+.ver .d{font-size:11.5px;color:var(--mu);margin-top:3px}
+.ver ul{margin:7px 0 0 16px;font-size:12px;color:var(--mu);line-height:1.5}
+main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.bar{display:flex;align-items:center;gap:10px;padding:9px 16px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--mu);flex-wrap:wrap}
+.bar strong{color:var(--ink)}
+.bar a{margin-left:auto;color:var(--ink);font-weight:700;text-decoration:none;border:1px solid var(--line);padding:5px 10px;border-radius:8px;background:var(--panel)}
+iframe{flex:1;width:100%;border:0;background:#E6E6E3;min-height:0}
+@media (max-width:760px){
+  .wrap{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  aside{border-right:0;border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto;padding:10px 16px}
+  aside h2{display:none}
+  .ver{flex:none;width:230px;margin:0}
+  .ver ul{display:none}
+  header{padding:12px 16px}
+  iframe{min-height:70vh}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="top"><span class="brand"><i>●</i> Cre8orClub</span><h1>인스타 01 · “그래서 무슨 일 하세요?”가 제일 어려운 사람</h1></div>
+  <div class="sub">카드뉴스 시안을 버전별로 모았습니다. 왼쪽에서 버전을 고르면 그 시점의 시안이 열립니다. 모든 버전은 4:5(1080×1350) 기준입니다.</div>
+</header>
+<div class="wrap">
+  <aside id="list"><h2>버전 기록</h2></aside>
+  <main>
+    <div class="bar"><span id="cur"></span><a id="open" href="v3/" target="_blank" rel="noopener">새 탭에서 크게 보기 ↗</a></div>
+    <iframe id="view" title="시안 미리보기" src="v3/"></iframe>
+  </main>
+</div>
+<script>
+const VERSIONS = [
+  { id:'v3', title:'자기소개했을 때 상대의 반응 — 4안', date:'2026-09-30 19:40', latest:true,
+    notes:['컨셉 재설정: 되묻기 · 넘겨짚기 · 아는 척 · 한 단어로','실사 사진 + 크림색 손그림 스티커, 무료 폰트 적용','4·5장도 안마다 다른 연출(6장 브랜드 소개만 공통)'] },
+  { id:'v2', title:'러프 시안 — 사물 vs 사람', date:'2026-09-30 18:40',
+    notes:['② 사물: 하프톤 장비 + C8 초록','① 사람: 흑백 선화 + 네모 박스 문장','원고는 원본 그대로'] },
+  { id:'v1', title:'원본 기획 — 6장 한 줄 보기', date:'2026-09-30 18:02',
+    notes:['기획안 미리보기의 1안 01번을 그대로 옮김','표지·공감·인사이트·브랜드 연결·CTA·브랜드 소개'] },
+];
+const list = document.getElementById('list'), view = document.getElementById('view'),
+      cur = document.getElementById('cur'), open = document.getElementById('open');
+VERSIONS.forEach(v => {
+  const b = document.createElement('button');
+  b.className = 'ver'; b.dataset.id = v.id;
+  b.innerHTML = `<div class="row"><b>${v.id.toUpperCase()}</b><span class="tag${v.latest?'':' old'}">${v.latest?'최신':'이전'}</span></div>
+    <div class="t">${v.title}</div><div class="d">${v.date}</div><ul>${v.notes.map(n=>`<li>${n}</li>`).join('')}</ul>`;
+  b.onclick = () => { location.hash = v.id; };
+  list.appendChild(b);
+});
+function show(){
+  const id = (location.hash || '#v3').slice(1);
+  const v = VERSIONS.find(x => x.id === id) || VERSIONS[0];
+  document.querySelectorAll('.ver').forEach(b => b.classList.toggle('on', b.dataset.id === v.id));
+  if (!view.src.endsWith(v.id + '/')) view.src = v.id + '/';
+  open.href = v.id + '/';
+  cur.innerHTML = `<strong>${v.id.toUpperCase()}</strong> · ${v.title} · ${v.date}`;
+}
+addEventListener('hashchange', show); show();
+</script>
+</body>
+</html>
