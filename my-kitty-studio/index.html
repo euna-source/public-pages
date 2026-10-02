@@ -166,7 +166,18 @@ const DEFAULTS = {eyeSize:1.6, eyeRound:0.86, eyeGap:0, eyeY:0, shine:2, eyeColo
   mark: DATA.recommend || 'none', mScale:1, mX:0, mY:0, mHue:0};
 const KEY='my-kitty-studio-v1';
 let S = Object.assign({}, DEFAULTS);
-try{ const saved = JSON.parse(localStorage.getItem(KEY)||'null'); if(saved) S = Object.assign(S, saved);}catch(e){}
+let restored = false;
+const NUM_KEYS=['eyeSize','eyeRound','eyeGap','eyeY','shine','blush','blushSize','mScale','mX','mY','mHue'];
+const ENUMS={blushShape:['round','heart'],whiskers:['off','short','classic'],mark:['none',...DATA.marks.map(m=>m.id)]};
+try{
+  const saved = JSON.parse(localStorage.getItem(KEY)||'null');
+  if(saved && typeof saved==='object'){
+    for(const k of NUM_KEYS){ const v=Number(saved[k]); if(Number.isFinite(v)) S[k]=v; }
+    for(const k in ENUMS){ if(ENUMS[k].includes(saved[k])) S[k]=saved[k]; }
+    for(const k of ['eyeColor','blushColor']){ if(/^#[0-9a-f]{6}$/i.test(saved[k]||'')) S[k]=saved[k]; }
+    restored = true;
+  }
+}catch(e){}
 const save = ()=>{ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} };
 
 const imgs = {};
@@ -282,7 +293,7 @@ document.getElementById('specBtn').onclick=()=>{ const m=DATA.marks.find(x=>x.id
 눈: 원래의 ${S.eyeSize.toFixed(2)}배 크기, 동그란 정도 ${Math.round(S.eyeRound*100)}%, 반짝임 ${['없음','하나','둘'][S.shine]}, 색 ${S.eyeColor}, 간격 ${S.eyeGap>0?'+':''}${S.eyeGap}, 높이 ${S.eyeY>0?'+':''}${S.eyeY}
 볼터치: 진하기 ${Math.round(S.blush*100)}%, 크기 ${S.blushSize.toFixed(2)}배, ${S.blushShape==='heart'?'하트':'동그라미'}, 색 ${S.blushColor}
 수염: ${({off:'없음',short:'짧게',classic:'원래대로'})[S.whiskers]}
-머리 표식: ${m?m.name+' — '+m.prompt:'없음'}${S.mHue?' (색 '+S.mHue+'° 회전)':''}`;
+머리 표식: ${m?m.name+' — '+m.prompt:'없음'}${m?` (크기 ${S.mScale.toFixed(2)}배, 좌우 ${S.mX>0?'+':''}${S.mX}, 위아래 ${S.mY>0?'+':''}${S.mY}${S.mHue?', 색 '+S.mHue+'° 회전':''})`:''}`;
   document.getElementById('specText').value=t; document.getElementById('spec').classList.add('on'); };
 document.getElementById('copyBtn').onclick=async()=>{ const t=document.getElementById('specText'); try{ await navigator.clipboard.writeText(t.value); document.getElementById('copyBtn').textContent='복사했어요'; }catch(e){ t.select(); document.execCommand('copy'); } };
 document.getElementById('themeBtn').onclick=()=>{ const r=document.documentElement; const dark = r.dataset.theme ? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
@@ -292,7 +303,7 @@ try{ const th=localStorage.getItem(KEY+'-theme'); if(th) document.documentElemen
 (async()=>{
   imgs.base = await load(DATA.base);
   for(const m of DATA.marks){ imgs[m.id] = await load(m.img); }
-  if(!S.mScale) resetMarkPos();
+  if(!restored) resetMarkPos();
   refreshChips(); paint();
 })();
 </script>
