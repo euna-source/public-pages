@@ -326,13 +326,5 @@
     "last_kind": "new",
     "last_sha256": "47ee2eebb801a85ded12672c6a1ea07c791722057709c251dd834385d94c6340",
     "timestamp": "2026-09-28T16:46:00.122744Z"
-  },
-  "my-kitty-studio": {
-    "slug": "my-kitty-studio",
-    "mode": "main",
-    "url": "https://euna-source.github.io/public-pages/my-kitty-studio/",
-    "last_kind": "redeploy",
-    "last_sha256": "3c84e0c94b132e214ff14fdc585c6431a204a4f20dac37e4ec90750fad973712",
-    "timestamp": "2026-10-02T16:33:01.406364Z"
   }
 }
