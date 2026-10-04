@@ -339,8 +339,8 @@
     "slug": "c8-insta-speaker-board-261004",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-insta-speaker-board-261004/",
-    "last_kind": "new",
-    "last_sha256": "7723709021f72989f6b0416c71d53d4b54b0892d1353e7c87f650461275e1b94",
-    "timestamp": "2026-10-04T14:55:00.668977Z"
+    "last_kind": "redeploy",
+    "last_sha256": "1672786e31b693a227b174dab8078224fdb667cfd1e212bc6f68d2cf63105fc8",
+    "timestamp": "2026-10-04T15:06:37.864476Z"
   }
 }
