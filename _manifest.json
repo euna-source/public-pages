@@ -334,5 +334,13 @@
     "last_kind": "redeploy",
     "last_sha256": "3c84e0c94b132e214ff14fdc585c6431a204a4f20dac37e4ec90750fad973712",
     "timestamp": "2026-10-02T16:33:01.406364Z"
+  },
+  "c8-insta-speaker-board-261004": {
+    "slug": "c8-insta-speaker-board-261004",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-speaker-board-261004/",
+    "last_kind": "new",
+    "last_sha256": "7723709021f72989f6b0416c71d53d4b54b0892d1353e7c87f650461275e1b94",
+    "timestamp": "2026-10-04T14:55:00.668977Z"
   }
 }
