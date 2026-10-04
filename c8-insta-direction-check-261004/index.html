@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="ko" data-bw>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="10/3~4 ChatGPT 대화의 결론을 리서치 4갈래·젠지 협의·반론 검증으로 점검한 문서입니다. 화자 결정은 「인스타 화자 제로베이스 재탐색」으로 넘겼고, 나머지 결정을 누르면 젠지가 1단계부터 이어 갑니다.">
+<meta name="generator" content="doc-template · 흑백">
+<meta property="og:title" content="GPT 대화 방향 점검 리서치 × 젠지">
+<meta property="og:description" content="10/3~4 ChatGPT 대화의 결론을 리서치 4갈래·젠지 협의·반론 검증으로 점검한 문서입니다. 화자 결정은 「인스타 화자 제로베이스 재탐색」으로 넘겼고, 나머지 결정을 누르면 젠지가 1단계부터 이어 갑니다.">
+
+<title>GPT 대화 방향 점검 리서치 × 젠지</title>
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   doc-template v2 · 기획·리서치 문서
+   색은 테마가 넣는다(:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+). 역할: bg panel line text muted accent mark marktext link linkline obi obitext
+   근거 번호 [L##]는 UX 리서치 장부. 시그니처: 절마다 반복되는 타공 헤어라인(하라 켄야의 타공 금속 사인).
+   ───────────────────────────────────────────── */
+:root{
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Nanum Myeongjo","Batang",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* 글자 [L30·L33·L34·L72·L73] */
+  --fs-body:1.125rem; --lh-body:1.7;
+  --fs-lead:1.25rem; --fs-deck:1.3125rem; --fs-obi:1.5rem;
+  --fs-h1:clamp(2.125rem,1.2rem + 3.4vw,3.5rem); --fs-h2:1.875rem; --fs-h3:1.375rem;
+  --fs-ui:1rem; --fs-small:.9375rem; --fs-cap:.875rem; --fs-label:.8125rem; --fs-min:.75rem;
+  /* 폭 [L31·L87·L92] */
+  --measure:36em; --wide:48rem; --gutter:40px; --header-h:60px;
+  /* 간격 */
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:96px;
+  --sec-gap:var(--s-10); --block-gap:var(--s-7);
+  /* 모서리·선 [L47·L54·L65] */
+  --r-mark:2px; --r-btn:6px; --r-box:12px; --hair:1px; --rule:2px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1rem;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss06"}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--linkline);text-underline-offset:.2em;transition:text-decoration-color 120ms var(--ease),color 120ms var(--ease)}
+a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:30;background:var(--bg);color:var(--text);padding:10px 14px;border:var(--rule) solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 도구 줄: 문서 위 한 겹만 반투명 [L28·L29] ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:var(--hair) solid var(--line)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:var(--s-4)}
+.bar-title{min-width:0;display:flex;align-items:baseline;gap:10px;font-size:var(--fs-cap)}
+.bar-kind{color:var(--accent);font-weight:700;white-space:nowrap}
+.bar-title .sep{color:var(--line)}
+.bar-title b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;border:0;border-radius:var(--r-btn);background:none;font-size:var(--fs-cap);color:var(--muted);transition:background-color 120ms var(--ease),color 120ms var(--ease)}
+.tool:hover{background:var(--panel);color:var(--text)}
+.tool[aria-pressed="true"]{color:var(--text)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.cover{padding-top:var(--s-7)}
+.issue{display:flex;justify-content:space-between;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--rule) solid var(--text);font-size:var(--fs-label);letter-spacing:.02em;color:var(--muted);font-variant-numeric:tabular-nums}
+.issue strong{color:var(--text);font-weight:600}
+.issue a,.meta dd a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.issue a:hover,.meta dd a:hover{text-decoration-thickness:2px}
+.cover-main{padding:var(--s-9) 0 var(--s-8);max-width:52rem}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:var(--fs-label);font-weight:700;letter-spacing:.04em;margin-bottom:var(--s-5)}
+.kind::before{content:"";width:20px;height:var(--rule);background:currentColor}
+.kind:empty{display:none}
+h1{font-family:var(--serif);font-weight:800;font-size:var(--fs-h1);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.deck{margin-top:var(--s-6);max-width:var(--measure);font-size:var(--fs-deck);line-height:1.55;color:var(--muted);text-wrap:pretty}
+.deck:empty{display:none}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+.meta div{padding:var(--s-4) var(--s-4) var(--s-4) 0;min-width:0}
+.meta div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.meta dt{font-size:var(--fs-min);color:var(--muted);margin-bottom:4px;letter-spacing:.02em}
+.meta dd{font-size:var(--fs-small);font-weight:600;overflow-wrap:anywhere}
+
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 본문 폭에 맞춘 결론 한 줄 + 세 칸 ── */
+.obi{margin-top:var(--s-8);max-width:none;border:var(--rule) solid var(--text)}
+.obi-head{background:var(--obi);color:var(--obitext);padding:var(--s-6) var(--s-7);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.obi-label{display:inline-block;font-size:var(--fs-min);font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:2px 8px;margin-bottom:var(--s-3)}
+.obi-head p{font-size:var(--fs-obi);font-weight:700;line-height:1.45;text-wrap:pretty}
+.obi-head a{color:inherit;text-decoration-color:currentColor}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:var(--s-5) var(--s-6) var(--s-6)}
+.obi-grid div+div{border-left:var(--hair) solid var(--line)}
+.obi-grid h2{font-size:var(--fs-label);color:var(--muted);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.obi-grid p{font-size:var(--fs-small);line-height:1.6;overflow-wrap:anywhere}
+
+/* ── 본문 배치 [L122·L126] ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,var(--wide));gap:var(--s-9);padding:var(--s-9) 0 var(--s-10)}
+.toc{position:sticky;top:calc(var(--header-h) + 24px);align-self:start;max-height:calc(100dvh - var(--header-h) - 48px);overflow:auto;font-size:var(--fs-cap);scrollbar-width:thin}
+.toc-title{font-size:var(--fs-min);color:var(--muted);letter-spacing:.04em;margin-bottom:var(--s-3)}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:36px;padding:8px 0 8px 12px;border-left:var(--rule) solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc .n,.toc-mobile .n{font-size:var(--fs-min);color:var(--accent);font-variant-numeric:tabular-nums;font-weight:700}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+/* 본문 열에서 글줄·표·제목의 오른쪽 경계를 일치시킨다. */
+.doc :is(p,ul,ol,blockquote,h2,h3,.callout,.legend,.sec-num){max-width:100%}
+.doc>section{position:relative}
+.doc>section+section{margin-top:var(--sec-gap);padding-top:var(--s-7)}
+/* 시그니처: 타공 헤어라인 — 절 시작마다 같은 간격의 작은 구멍 */
+.doc>section+section::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background-image:radial-gradient(circle,var(--line) 1.1px,transparent 1.4px);background-size:7px 3px;background-repeat:repeat-x}
+.doc p+p{margin-top:1.2em}
+.doc :is(ul,ol):not([class]){padding-left:1.25em;margin:1.2em 0}
+.doc li+li{margin-top:.4em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+.sec-num{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-label);font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:var(--s-3);text-decoration:none}
+.sec-num b{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.sec-num b::after{content:"";display:inline-block;width:14px;height:var(--rule);background:currentColor;vertical-align:middle;margin-left:10px}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:var(--fs-h2);line-height:1.3;font-weight:700;margin-bottom:var(--s-6);text-wrap:balance}
+.doc h3{font-size:var(--fs-h3);line-height:1.4;font-weight:700;margin:var(--s-8) 0 var(--s-3)}
+.doc h2+h3{margin-top:0}
+.lead{font-size:var(--fs-lead);line-height:1.65}
+sup.ref{font-size:.7em;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px;color:var(--link)}
+
+/* 형광펜 [L119·L120·L121] */
+mark{background:var(--mark);color:var(--marktext);font-weight:600;padding:.04em .12em;border-radius:var(--r-mark);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+mark a{color:inherit;text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 이름표 */
+.tag{display:inline-block;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 6px;border:1.5px solid currentColor;border-radius:var(--r-mark);margin-left:6px;vertical-align:.15em;white-space:nowrap;letter-spacing:.02em}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:var(--block-gap) 0;border-top:var(--rule) solid var(--text)}
+.stats div{padding:var(--s-4) var(--s-4) var(--s-5) 0}
+.stats div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.stats b{display:block;font-size:2.5rem;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats b small{font-size:1rem;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:var(--fs-cap);line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 색이 아니라 모양으로 [L18·L47·L117] */
+.callout{margin:var(--block-gap) 0;padding:var(--s-5) var(--s-6);font-size:var(--fs-small);line-height:1.65;border-radius:var(--r-box);border:1px solid transparent}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:var(--fs-cap);font-weight:700;margin-bottom:4px}
+.callout-label svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border:1.5px solid var(--text)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.5em}
+
+/* 접이 상자와 결정 모음: 제목 한 줄만 보이고, 누르면 배경이 펼쳐진다 */
+details.callout{padding:0}
+details.callout>summary{display:flex;align-items:flex-start;gap:10px;min-height:48px;padding:13px var(--s-6);margin:0;cursor:pointer;list-style:none;border-radius:inherit}
+details.callout>summary::-webkit-details-marker{display:none}
+details.callout>summary::after{content:"";flex:none;margin:.35em 2px 0 auto;width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform 180ms var(--ease)}
+details.callout[open]>summary::after{transform:rotate(-135deg);margin-top:.6em}
+@media (hover:hover){details.callout>summary:hover{background:var(--panel)}}
+details.callout .dq{min-width:0;line-height:1.55}
+.callout-body{padding:0 var(--s-6) var(--s-5)}
+.callout-body>*+*{margin-top:.5em}
+.callout.decide{border:var(--hair) solid var(--line);border-radius:var(--r-mark)}
+.callout.decide+.callout.decide{margin-top:calc(var(--block-gap) * -1 + var(--s-2))}
+.callout.decide[open]{border-color:var(--text)}
+.callout.decide>summary{font-size:var(--fs-ui);font-weight:700}
+.callout.decide .dn{flex:none;color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em;line-height:1.55}
+.callout.decide .callout-body{padding-left:calc(var(--s-6) + 10px + 2ch)}
+.callout.decide:target,.doc>section:target>h2{scroll-margin-top:calc(var(--header-h) + 16px)}
+.xref{font-weight:600;white-space:nowrap}
+.callout-body .rel{font-size:var(--fs-cap);color:var(--muted)}
+.doc h3+details.callout,.doc h3+.hub-toggle{margin-top:0}
+.doc h3:has(+details.decide){margin-top:var(--s-7);font-size:var(--fs-ui);color:var(--muted)}
+.xref::after{content:" ↗";font-size:.85em}
+/* 절 머리의 '정할 것 N': 결정 모음의 해당 항목으로 간다 */
+.sec-pending{display:inline-flex;align-items:center;margin-left:var(--s-3);vertical-align:top;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid var(--accent);color:var(--accent);border-radius:var(--r-mark);text-decoration:none;letter-spacing:.02em}
+.sec-pending:hover{background:var(--accent);color:var(--bg)}
+/* 표지 아래 한 줄 */
+.pending{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:var(--s-4);max-width:none;font-size:var(--fs-small);color:var(--muted)}
+.pending a{font-weight:700;color:var(--text);text-underline-offset:3px}
+.hub-toggle{margin:0 0 var(--s-3);border:0;background:none;padding:6px 0;min-height:44px;font:inherit;font-size:var(--fs-cap);font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.hub-toggle:hover{color:var(--text)}
+
+/* 인용 */
+.pull{margin:var(--s-8) 0;padding:4px 0 4px var(--s-6);border-left:var(--rule) solid var(--accent);font-family:var(--serif);font-size:1.625rem;font-weight:700;line-height:1.5;text-wrap:balance}
+.pull cite{display:block;margin-top:var(--s-3);font-family:var(--sans);font-size:var(--fs-cap);font-style:normal;font-weight:400;color:var(--muted)}
+
+/* 표 [L48·L127·L128·L129] */
+.table{margin:var(--block-gap) 0;position:relative}
+.table table{width:100%;border-collapse:collapse;font-size:var(--fs-small);line-height:1.6;font-variant-numeric:tabular-nums}
+.table :is(th,td):first-child{min-width:4.5em}
+.table caption{text-align:left;font-size:var(--fs-cap);font-weight:700;margin-bottom:var(--s-2)}
+.table th{text-align:left;font-size:var(--fs-label);font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:var(--rule) solid var(--text);white-space:nowrap;vertical-align:bottom}
+.table td{padding:13px 16px 13px 0;border-bottom:var(--hair) solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.table .num{text-align:right}
+.table tr.pick td{font-weight:600}
+.table tr.pick td:first-child{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:12px}
+.table.compare{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+.table-hint{display:none;font-size:var(--fs-min);color:var(--muted);margin-top:6px}
+.table-note{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.6;max-width:var(--measure)}
+
+/* 그림 */
+.figure{margin:var(--block-gap) 0}
+.figure figcaption{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.5;max-width:var(--measure)}
+
+/* 다음 행동 [L23] */
+.actions{list-style:none;margin:var(--block-gap) 0;padding:0;border-top:var(--rule) solid var(--text);max-width:none!important}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;column-gap:14px;align-items:start;padding:14px 0;border-bottom:var(--hair) solid var(--line);font-size:var(--fs-ui);line-height:26px;min-height:44px}
+.actions li+li{margin-top:0}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:4px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{display:grid;grid-template-columns:6em 6em;column-gap:16px;font-size:var(--fs-cap);line-height:26px;color:var(--muted);white-space:nowrap}
+
+/* 출처·이력 */
+.appendix{margin-top:var(--sec-gap)!important;padding-top:var(--s-7);border-top:var(--rule) solid var(--text)}
+.appendix::before{display:none}
+.appendix h2{font-size:1.375rem;margin-top:0}
+.appendix h2+*{margin-top:0}
+.appendix h2:not(:first-child){margin-top:var(--s-8)}
+.sources{list-style:none;margin:var(--s-5) 0;padding:0;font-size:var(--fs-small);line-height:1.6;max-width:none!important}
+.sources li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:var(--hair) solid var(--line)}
+.sources li+li{margin-top:0}
+.sources li::before{content:counter(list-item);font-size:var(--fs-label);color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:var(--fs-label);color:var(--muted)}
+.sources .state{font-size:var(--fs-label);color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--fs-label);color:var(--muted)}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+
+.foot{border-top:var(--hair) solid var(--line);padding:var(--s-6) 0 var(--s-8);display:flex;justify-content:space-between;gap:var(--s-5);font-size:var(--fs-label);color:var(--muted)}
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--text);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity 150ms var(--ease);z-index:15}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:var(--r-btn);font-size:var(--fs-cap);max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 흑백: 검정·흰색 두 색만. 반투명·회색 면 대신 선과 반전 ── */
+[data-bw] .bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+[data-bw] .tool{color:var(--text)}
+[data-bw] .tool:hover{background:var(--bg);outline:1px solid var(--text);outline-offset:-4px}
+[data-bw] .toc a{border-left-color:transparent}
+[data-bw] .toc a[aria-current="true"]{border-left-color:var(--text);font-weight:700}
+[data-bw] .toc a:not([aria-current="true"]){font-weight:400}
+[data-bw] .callout.note{border:1px solid var(--text)}
+[data-bw] .callout.decide{border-color:var(--text)}
+[data-bw] .sec-pending{border-color:var(--text);color:var(--text)}
+[data-bw] .sec-pending:hover{background:var(--text);color:var(--bg)}
+[data-bw] .meta dt,[data-bw] .stats span,[data-bw] .issue,[data-bw] .table th{font-weight:600}
+[data-bw] .actions li.done .what{text-decoration-color:var(--text)}
+[data-bw] .sources li:target{background:var(--bg);box-shadow:none;outline:1px solid var(--text)}
+[data-bw] img{filter:grayscale(1)}
+[data-bw] .to-top{border-color:var(--text)}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  :root{--gutter:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:var(--s-8)}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div+div{border-left:0;border-top:var(--hair) solid var(--line)}
+}
+/* ── 모바일 [L30·L31·L122·L123] ── */
+@media screen and (max-width:768px){
+  :root{--fs-body:1.0625rem;--lh-body:1.65;--fs-lead:1.125rem;--fs-deck:1.125rem;--fs-obi:1.25rem;--fs-h2:1.5rem;--fs-h3:1.1875rem;--gutter:20px;--header-h:56px;--sec-gap:var(--s-9);--block-gap:28px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .cover-main{padding:var(--s-8) 0 var(--s-7)}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .meta div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:var(--s-7)}
+  .obi-head{padding:var(--s-5)}
+  .obi-grid div{padding:var(--s-4) var(--s-5)}
+  .layout{display:block;padding:var(--s-7) 0 var(--s-9)}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:var(--s-8);border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:var(--fs-small);font-weight:600;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:8px;height:8px;border-right:1.6px solid var(--text);border-bottom:1.6px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform 180ms var(--ease)}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 8px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:var(--fs-small)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .stats div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .stats b{font-size:2.125rem}
+  .callout{padding:var(--s-4) 18px}
+  details.callout{padding:0}
+  details.callout>summary{padding:12px 16px}
+  .callout-body{padding:0 16px var(--s-4)}
+  .callout.decide .callout-body{padding-left:16px}
+  .pull{font-size:1.3125rem;padding-left:18px}
+  /* 목록형 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:var(--hair) solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:var(--rule) solid var(--text)}
+  .table.stack td{border:0;padding:3px 0 3px 104px;position:relative}
+  .table.stack td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:92px;font-size:var(--fs-label);color:var(--muted);font-weight:600;line-height:1.5}
+  .table.stack td:first-child{font-weight:700;padding-left:0;margin-bottom:4px;font-size:var(--fs-ui)}
+  .table.stack td:first-child::before{display:none}
+  .table.stack td:empty{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:14px}
+  .table.stack .num{text-align:left}
+  /* 두 칸 표(항목 | 내용)는 이름표가 매 행 같은 말이라 빼고 내용을 전체 폭으로 */
+  .table.stack tr:has(> td:nth-child(2):last-child) td{padding-left:0}
+  .table.stack tr:has(> td:nth-child(2):last-child) td::before{display:none}
+  /* 비교표 → 가로 스크롤 + 첫 열 고정 */
+  .table.compare table{min-width:520px}
+  .table.compare :is(th,td):first-child{min-width:5.5em;position:sticky;left:0;background:var(--bg);z-index:1;box-shadow:1px 0 0 var(--line)}
+  .table.compare+.table-hint,.table-hint{display:block}
+  .actions li{grid-template-columns:22px minmax(0,1fr)}
+  .who{grid-column:2;display:flex;flex-wrap:wrap;column-gap:0;font-size:var(--fs-label);line-height:22px}
+  .who span+span::before{content:"·";margin:0 6px}
+  .sources li{grid-template-columns:24px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  :root{--gutter:16px}
+  .table.stack td{padding-left:88px}
+  .table.stack td::before{width:78px}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) img{filter:brightness(.9)}}
+:root[data-theme="dark"] img{filter:brightness(.9)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:1ms!important;animation:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (forced-colors:active){
+  mark{background:Mark;color:MarkText;forced-color-adjust:none}
+  .callout.note{border-color:CanvasText}
+  .obi-head{border-bottom:1px solid CanvasText}
+}
+
+/* ── 인쇄·PDF: 테마의 라이트 토큰 + 흰 바탕 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
+  .bar,.toc,.toc-mobile,.toast,.skip,.to-top{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:24px}
+  .cover-main{padding:24px 0}
+  h1{font-size:28pt}
+  .doc{font-size:11pt}
+  .doc h2{font-size:16pt}
+  .doc>section+section{margin-top:28px}
+  mark{font-weight:700}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats,.pull{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+
+/* 문맥상 문단은 유지하고 시각적 개행만 좁은 화면에서 다시 흐른다. */
+.cover-main .deck{max-width:100%}
+.doc :is(p,li,dd,blockquote){overflow-wrap:anywhere;line-break:strict}
+.doc p{text-wrap:pretty}
+@media(max-width:600px){br.prose-break{display:none}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">리서치 문서</span><span class="sep" aria-hidden="true">·</span><b>인스타 방향 점검</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="강조 표시"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span></button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span></button>
+      <button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button>
+      <button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span></button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>리서치 문서 · 인스타 방향 점검</strong><span>C8-INSTA · v1.1</span></div>
+    <div class="cover-main">
+      <p class="kind">크리에이터클럽 인스타 콘텐츠</p>
+      <h1>GPT 대화 방향 점검 <br class="prose-break">리서치 × 젠지</h1>
+      <p class="deck">10/3~4 ChatGPT 대화의 결론을 리서치 4갈래·젠지 협의·반론 검증으로 점검한 문서입니다. 화자 결정은 「인스타 화자 제로베이스 재탐색」으로 넘겼고, 나머지 결정을 누르면 젠지가 1단계부터 이어 갑니다.</p>
+    </div>
+    <dl class="meta"><div><dt>상태</dt><dd><span class="state"><i class="dot half" aria-hidden="true"></i>검토 중</span></dd></div><div><dt>작성</dt><dd>키키(기획 보조) · 2026. 10. 04</dd></div><div><dt>상위 문서</dt><dd>페르소나_컨셉3안_v1_261002</dd></div><div><dt>최종 갱신</dt><dd>2026. 10. 04 (v1.1)</dd></div><div><dt>다음 판단</dt><dd>결정 B·세계관·1안/2안·Higgsfield 플랜</dd></div></dl>
+    <section class="obi" aria-labelledby="obi-title"><div class="obi-head"><span class="obi-label" id="obi-title">결론</span><p>GPT가 잡은 큰 줄기(4 Job·타깃 분리·릴스 우선·사람 관찰 먼저)는 맞고, AI로 실사 장면과 가상 협업물을 만들어 공감을 사는 부분만 버립니다.</p></div><div class=obi-grid><div><h2>무엇이 바뀌나</h2><p>AI는 그래픽·자막·내부 시안 도구로 내려가고, 첫 3편은 폰 촬영·실제 사람·캐러셀로 갑니다.</p></div><div><h2>감수할 대가</h2><p>Higgsfield 실사 장면이 만드는 &quot;예쁜 피드&quot;를 포기합니다.</p></div><div><h2>뒤집힐 조건</h2><p>같은 대본을 AI 장면과 실사로 각각 올렸을 때 AI 쪽 보내기·팔로우 전환이 뚜렷이 높으면 다시 봅니다.</p></div></div></section><p class="pending"><span>아직 정하지 않은 것이 4가지 있습니다.</span><a href="#s6">모아 보기<span aria-hidden="true"> →</span></a></p>
+  </header>
+  <div class="layout">
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>왜 점검했나</a></li><li><a href="#s2"><span class="n">02</span>판정</a></li><li><a href="#s3"><span class="n">03</span>20대 질문</a></li><li><a href="#s4"><span class="n">04</span>가져올 것</a></li><li><a href="#s5"><span class="n">05</span>젠지의 다음 일</a></li><li><a href="#s6"><span class="n">06</span>결정할 것</a></li><li><a href="#refs"><span class="n">··</span>출처·변경 이력</a></li></ol></nav>
+    <main class="doc" id="doc">
+      <details class="toc-mobile"><summary>목차 · 6개 절</summary><ol><li><a href="#s1"><span class="n">01</span>왜 점검했나</a></li><li><a href="#s2"><span class="n">02</span>판정</a></li><li><a href="#s3"><span class="n">03</span>20대 질문</a></li><li><a href="#s4"><span class="n">04</span>가져올 것</a></li><li><a href="#s5"><span class="n">05</span>젠지의 다음 일</a></li><li><a href="#s6"><span class="n">06</span>결정할 것</a></li><li><a href="#refs"><span class="n">··</span>출처·변경 이력</a></li></ol></details>
+
+<section id="s1" aria-labelledby="s1-t"><a class="sec-num" href="#s1"><b>01</b>왜 점검했나</a><h2 id="s1-t">GPT는 볼트 작업을 못 읽은 채 답했다</h2>
+<p>GPT는 ①Higgsfield 먼저 ②콘텐츠 믹스 6개를 ME(공감)/YOU(발견)/WE(참여)/CLUB(브랜드) 4 Job으로 재분류 ③화자는 얼굴 없는 '클럽 사장님' ④유입은 20대, 공감은 "이름은 안 알려졌지만 자기 작업은 있는 1~5년차" ⑤IP 5개 ⑥릴스 우선·AI를 "C8 세계를 찍는 카메라"로 쓰기 — 여섯을 내놨습니다.</p>
+<p>GPT가 못 본 것이 있습니다. 10/2 샐리가 "클럽 주인장 → 20대 공략 → 세계관 먼저(운영 크루 W1 추천)"로 좁힌 페르소나 문서, 01 정체성 시안이 image gen·Higgsfield로 여러 라운드 돈 사실, 헬로키티 얼굴은 공개 금지라는 결정입니다. 그래서 리서치 4갈래와 젠지 협의, 회의론자 검증을 돌려 맞춰 봤습니다.</p>
+</section><section id="s2" aria-labelledby="s2-t"><a class="sec-num" href="#s2"><b>02</b>판정</a><h2 id="s2-t">여섯 가운데 넷은 가고, 둘은 고친다</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>GPT 방향</th>
+<th>판정</th>
+<th>근거 한 줄</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>4 Job 재분류</td>
+<td>간다(내부 분류로만)</td>
+<td>비팔로워 도달에 보내기(sends)가 중요하다는 Mosseri 발언과 ME(공유) 축이 맞는다</td>
+</tr>
+<tr>
+<td>유입 20대 · 공감은 창작 단계</td>
+<td>간다(코어는 25~34)</td>
+<td>한국 인스타 최대 층 25~34세 37.4%, 18~24세 22.5% — 1~5년차 창작자와 그대로 겹친다</td>
+</tr>
+<tr>
+<td>릴스 우선</td>
+<td>간다(캐러셀 병행)</td>
+<td>1만 미만 계정 비팔로워 도달은 릴스가 캐러셀의 약 3배, 저장·팔로우는 캐러셀이 강함</td>
+</tr>
+<tr>
+<td>얼굴 없는 호스트</td>
+<td>고친다 → 화자 문서로</td>
+<td>10만+ 사례 전부 얼굴 있는 고정 화자. 얼굴 없음은 뒷받침 사례 0</td>
+</tr>
+<tr>
+<td>AI 실사 장면 = 카메라</td>
+<td>버린다</td>
+<td>인스타 "AI-generated profile" 라벨(8/31)·창작자 1,792명 중 완전 AI 수용 6.7%·한국 이용자 49.9% "어색"</td>
+</tr>
+<tr>
+<td>「둘이 같이 하면 뭐 나오지?」 AI 합성</td>
+<td>형태를 바꾼다</td>
+<td>C8이 파는 건 실제 사람·크레딧인데 콘텐츠가 그걸 AI로 대체하는 모순. 실제 두 사람 Collab 게시물로</td>
+</tr>
+</tbody>
+</table></div>
+<p>세부 보정도 있습니다. GPT의 "미국 추천 75%가 오리지널"은 수치는 맞지만 재게시 계정을 막는 정책이라 "AI 세계관이 플랫폼 방향과 맞다"의 근거는 못 됩니다. 충주시는 97.5만 → 79.6만(2/12~16) 뒤 후임이 같은 패러디 포맷으로 받아 9월 82만까지 회복했습니다 — 교훈은 "얼굴을 없애라"가 아니라 "화자를 여럿 두고 포맷을 회사 자산으로". Fal 가격은 한 세대 전 모델 기준이고, Higgsfield 무료 플랜은 상업 이용 불가입니다.</p>
+</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>20대 질문</a><h2 id="s3-t">20대가 맞다, 코어는 20대 후반~30대 초반, 진짜 충돌은 AI다</h2>
+<p>한국 인스타 최대 층이 25~34세라 유입 타깃으로도 그 구간이 맞고, 1~5년차 창작자가 딱 그 나이대라 공감 타깃과 갈리지 않습니다. 사내뷰공업 PD도 20대 말투를 흉내 낸 게 아니라 "내가 겪은 사소한 포인트"를 썼고, 반응이 오면 그들이 친구에게 공유한다고 했습니다. 나이는 광고·릴스 노출에 쓰고, 콘텐츠는 "이 파일명 쓰는 사람 또 있죠?"처럼 경험으로 말하면 됩니다.</p>
+<aside aria-label="주의" class="callout caution"><p class="callout-label"><svg aria-hidden="true" viewbox="0 0 24 24"><path d="M12 3.5 2.8 19.5h18.4z"></path><path d="M12 10v4.2"></path><path d="M12 17v.2"></path></svg>충돌은 한 곳</p>
+<p>16~24세 창작자가 AI 생성물에 가장 부정적(59.2%, 영국 표본 단독 출처)이고 Z세대는 AI 광고를 밀레니얼의 2배 가까이 싫어합니다. <mark>20대 창작자를 노리면서 AI 실사로 말 거는 조합만 피하면 됩니다.</mark></p>
+</aside>
+</section><section id="s4" aria-labelledby="s4-t"><a class="sec-num" href="#s4"><b>04</b>가져올 것</a><h2 id="s4-t">사례에서 옮길 반복 구조 다섯</h2>
+<ol>
+<li><strong>사내뷰공업(125만)</strong> — "사소한 대사 하나"와 일부러 넣은 답답함이 댓글을 만들고, 댓글로 캐릭터를 고친다. 주 3편을 1년 유지. C8판 소재는 클라이언트 피드백 한 줄·수정 요청 문구·파일명.</li>
+<li><strong>김햄찌(인스타 30.6만·유튜브 70만+)</strong> — 감정 하나 → 최대 5컷 → 30초. 성공 원인은 외모가 아니라 사람 관찰. AI인 걸 숨기지 않는 그림 캐릭터라서 라벨 반감이 없다.</li>
+<li><strong>오늘의집(130만)·Apple·노트폴리오(17.8만)</strong> — 유저 작업을 콘텐츠로 되돌리는 루프. Apple은 팔로워 100명짜리 사람도 허락받고 크레딧 고정으로 피처링. 노트폴리오는 표지를 "이 글을 봐야 하는 이유"로 바꾸자 5배(자기 보고).</li>
+<li><strong>충주시</strong> — 포맷은 사람보다 오래 간다. 화자 여럿 + 포맷 자산화 + IP는 회사 소유.</li>
+<li><strong>빙그레우스</strong> — 소개 없이 티징 6장 → 궁금증 → 서사 공개. 캐릭터 바이블은 문서로만.</li>
+</ol>
+<p>GPT가 든 사례와 볼트 문서의 사례는 전부 일반 소비자 대상 계정입니다. 창작자 대상 서비스로 10만+ 넘긴 한국 계정은 노트폴리오 하나만 확인됐고, 그마저 하루 3건 큐레이션형이라 2026-04 오리지널 정책에서 가장 불리한 구조입니다. 표지 카피 원칙만 가져옵니다.</p>
+</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>젠지의 다음 일</a><a class="sec-pending" href="#d1">정할 것 1</a><h2 id="s5-t">이번 주 네 단계</h2>
+<ul class="actions"><li class=""><span aria-hidden="true" class="box"></span><span class="what"><strong>1단계 리서치 보강</strong> — 노트폴리오 최근 30편 표지 카피, AI 캐릭터 계정 라벨 모니터링, 기존 C8 인스타 계정 유무 확인(4월 "당사 인스타" 광고 결과보고가 있다)</span><span class="who"><span>젠지</span><span>10/5(월)</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what"><strong>2단계 운영 원칙 1장</strong> — 화자 규칙(화자 문서 결과 반영)·4 Job ↔ 시리즈 5개 ↔ 기존 20편 원고 매핑·AI 사용 규칙·크레딧 고정 자리·오리지널 정책 체크리스트</span><span class="who"><span>젠지</span><span>10/6(화)</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what"><strong>3단계 첫 3편 시안</strong> — 게시물마다 스레드 1개, 편당 러프 2안. 앱 화면 검수는 나나</span><span class="who"><span>젠지</span><span>10/8(목)</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what"><strong>4단계 검증표·게시 체크리스트</strong> — 보내기/도달, 프로필 방문→팔로우, 저장, 댓글 "AI" 언급 비율, 프로필 링크→가입(UTM). 게시는 "진행할까요?"로 멈춘다</span><span class="who"><span>젠지</span><span>10/10(토)</span></span></li></ul>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>편</th>
+<th>훅</th>
+<th>형식</th>
+<th>검증 가설</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>첫째</td>
+<td>"그래서 무슨 일 하세요?"가 제일 어려운 사람</td>
+<td>캐러셀 6장(01 정체성 v6 진행분)</td>
+<td>캐러셀은 저장·댓글 빈칸 참여가 높다</td>
+</tr>
+<tr>
+<td>둘째</td>
+<td>최종본이라고 저장한 뒤부터 파일명이 더 길어집니다</td>
+<td>릴 6~8초, 실제 폴더 화면 녹화, AI 없음</td>
+<td>창작자 소재라도 직장인과 겹치면 보내기가 나온다</td>
+</tr>
+<tr>
+<td>셋째</td>
+<td>"좀 더 힙하게"라는 말을 들었을 때 이 사람은 이렇게 했어요</td>
+<td>릴 10~12초 또는 캐러셀, 실제 사람 Collab</td>
+<td>상황 표지 + 실제 크레딧이 팔로우 전환을 만든다</td>
+</tr>
+</tbody>
+</table></div>
+<p>셋째 편의 재료는 서포터즈 1기(10/6 시작)뿐 아니라 위클리 베스트 1회차(10/12~18) 수상자 중 동의자로 넓힙니다. 클라이언트 작업은 권리·NDA 문제가 있어 개인·공모전 작업이나 본인 재연 샘플로 한정합니다. 「둘이 같이 하면 뭐 나오지?」는 실제 쌍이 무언가 만든 뒤 4~6편째에 넣습니다.</p>
+<aside aria-label="미확인" class="callout unknown"><p class="callout-label"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4"></path><path d="M12 16.8v.2"></path></svg>미확인</p>
+<p>손·실루엣 호스트와 동물형 캐릭터의 인스타 라벨 적용 여부, 서포터즈 1기 현재 명단과 노출 동의 절차, 볼트 페르소나 문서의 빙그레우스 수치(원문 403, 인용 금지), AI 기본법 표시 의무의 SNS 계정 적용.</p>
+</aside>
+</section><section id="s6" aria-labelledby="s6-t"><a class="sec-num" href="#s6"><b>06</b>결정할 것</a><h2 id="s6-t">샐리가 누를 넷</h2>
+<details class="callout decide" id="d1"><summary class="callout-label"><span class="dn">01</span><span class="dq">결정 B. 첫 3편을 서포터즈·위클리 베스트 수상자 같은 실제 사람·실제 작업으로 채워도 될까요(인스타 노출 동의 절차 포함)?</span></summary><div class="callout-body">
+<p>안 되면 셋째 편은 「올리기 직전만 되면 갑자기 별로로 보이는 거, 저만 그런가요」(공감 릴)로 바꾸고 크레딧 검증은 동의가 되는 주로 미룹니다.</p><p class="rel">관련: <a class="xref" href="#s5">젠지의 다음 일</a></p>
+</div></details>
+<details class="callout decide" id="d2"><summary class="callout-label"><span class="dn">02</span><span class="dq">세계관은 설계는 먼저 하되 피드에서는 설명하지 않는 쪽으로 갈까요?</span></summary><div class="callout-body">
+<p>10/2 샐리는 "세계관 먼저"라 했고 W1 운영 크루는 컨펌 대기입니다. GPT v2와 캐리트(2024)의 "세계관 피로, 상황관으로"는 설명 없이 행동으로 보여 주는 쪽을 지지합니다.</p>
+</div></details>
+<details class="callout decide" id="d3"><summary class="callout-label"><span class="dn">03</span><span class="dq">콘텐츠 기획 HTML의 1안(정보형)과 2안(공감형)을 둘 다 올리나, 2안만 가나?</span></summary><div class="callout-body">
+<p>연출 배정표의 미결 질문입니다. 이 문서는 2안 기반이고 1안의 "기능 소개"는 CLUB 4편 안에서만 다룹니다.</p>
+</div></details>
+<details class="callout decide" id="d4"><summary class="callout-label"><span class="dn">04</span><span class="dq">Higgsfield는 이번 주 내부 시안에만 쓰고, 공개물 그래픽에 쓰려면 유료 플랜을 결제할까요?</span></summary><div class="callout-body">
+<p>무료 플랜은 상업 이용 불가(2차 출처). 첫 3편은 Higgsfield 없이 끝납니다.</p>
+</div></details>
+</section><section class="appendix" id="refs" aria-labelledby="refs-t"><h2>출처</h2>
+<p class="legend"><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span><span class="state"><i class="dot half" aria-hidden="true"></i>일부 확인</span><span class="state"><i class="dot" aria-hidden="true"></i>미확인</span></p><ol class="sources"><li id="r1"><span><a href="https://creators.instagram.com/blog/rewarding-original-creators-on-instagram">인스타 오리지널 정책</a><span class="src-meta">공식 · 2026-04-30</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r2"><span><a href="https://creators.instagram.com/blog/ai-generated-profile-label">인스타 AI-generated profile 라벨</a><span class="src-meta">공식 · 2026-08-31</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r3"><span><a href="https://www.socialmediatoday.com/news/instagram-shares-algorithm-2025/738034/">Mosseri 알고리즘 3신호</a><span class="src-meta">2025-01</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r4"><span><a href="https://napoleoncat.com/stats/instagram-users-in-republic-of-korea/">한국 인스타 연령 분포</a><span class="src-meta">NapoleonCat · 2026-09</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r5"><span><a href="https://www.fanpagekarma.com/insights/?p=17037">포맷별 도달</a><span class="src-meta">Fanpage Karma · 2026</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r6"><span><a href="https://www.hypebot.com/where-artists-draw-the-line-on-ai-uppbeat-creator-report/">창작자 AI 인식 Uppbeat 2026</a><span class="src-meta"></span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r7"><span><a href="https://blog.opensurvey.co.kr/trendreport/socialmedia-2026/">한국 소셜 이용자 AI 인식</a><span class="src-meta">오픈서베이 2026</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r8"><span><a href="https://www.cbs.dk/en/articles/ai-labels-reduce-social-media-engagement">AI 라벨 인게이지먼트 실험</a><span class="src-meta">CBS 2026</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r9"><span><a href="https://blog.youtube/intl/ko-kr/creator-and-artist-stories/creator-of-the-month-november/">김햄찌 제작 방식</a><span class="src-meta">YouTube 공식</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r10"><span><a href="https://business.google.com/kr/think/future-of-marketing/meet-the-creators-one-minute-musical-beautyfool-secret-to-creating-shorts-loved-by-gen-z/">사내뷰공업 인터뷰</a><span class="src-meta">Google</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r11"><span><a href="https://www.mt.co.kr/society/2026/09/14/2026091408325091876">충주시 감소·회복</a><span class="src-meta">머니투데이 · 2026-09</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r12"><span><a href="https://business.google.com/kr/think/future-of-marketing/leaders-interview-todayhouse-growth-strategy-focused-on-content-and-users/">오늘의집 인터뷰</a><span class="src-meta">Google · 2022</span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r13"><span><a href="https://www.sandollcloud.com/font-recommendations/article/324">노트폴리오 표지 카피</a><span class="src-meta">자기 보고 {2차}</span></span><span class="state"><i class="dot " aria-hidden="true"></i>미확인</span></li><li id="r14"><span><a href="https://ditoday.com/?p=38387">빙그레우스 운영</a> · <a href="https://www.careet.net/1483">세계관 피로</a><span class="src-meta"></span></span><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span></li><li id="r15"><span>GPT 대화 원문<span class="src-meta">옵시디언 같은 폴더 <code>참고_GPT대화원문_261004.md</code></span></span><span class="state"><i class="dot " aria-hidden="true"></i>미확인</span></li></ol>
+<h2>변경 이력</h2>
+<div class="table log"><table>
+<thead>
+<tr>
+<th>버전</th>
+<th>날짜</th>
+<th>바뀐 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.1</td>
+<td>2026. 10. 04</td>
+<td>결정 A(화자)를 「인스타 화자 제로베이스 재탐색」으로 이관</td>
+</tr>
+<tr>
+<td>v1.0</td>
+<td>2026. 10. 04</td>
+<td>GPT 대화 점검, 리서치 4갈래, 젠지 협의, 회의론자 검증 15건 반영</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+    </main>
+  </div>
+  <footer class="foot"><span>리서치 문서 · 인스타 방향 점검 · 문서 템플릿</span></footer>
+</div>
+<button class="to-top" id="to-top" type="button" aria-label="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 4000);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 링크 복사·공유 (기본 기능)
+  // 주소는 canonical이 있으면 그것, 없으면 지금 주소에서 # 뒤를 뗀 값. 문서 단위로 공유한다.
+  // 남이 열 수 있는 웹 주소(http·https)만 쓴다. canonical이 file:이거나 로컬 기준 상대 주소면 버리고 지금 주소로,
+  // 그것도 file:이면 공유할 주소가 없다 → null.
+  const webUrl = (u) => {
+    try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href.split('#')[0] : null; }
+    catch { return null; }
+  };
+  const docUrl = () => {
+    const c = $('link[rel="canonical"]')?.getAttribute('href');
+    return (c && webUrl(c)) || webUrl(location.href);
+  };
+  const NO_URL = '아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
+  const metaOf = (sel) => $(sel)?.content || '';
+  const legacyCopy = (v) => {
+    const ta = document.createElement('textarea');
+    ta.value = v; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  };
+  const copyText = (v) => (navigator.clipboard && window.isSecureContext)
+    ? navigator.clipboard.writeText(v).then(() => true, () => legacyCopy(v))
+    : Promise.resolve(legacyCopy(v));
+  $('#copy-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    copyText(docUrl()).then((ok) => say(ok ? '링크를 복사했습니다.' : '복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+  });
+  $('#share-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    const data = {
+      title: metaOf('meta[property="og:title"]') || document.title,
+      text: metaOf('meta[property="og:description"]') || metaOf('meta[name="description"]'),
+      url: docUrl()
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      // 공유 창을 연 뒤에는 사용자 동작이 소모돼 자동 복사가 막힐 수 있다(사파리). 실패하면 안내만 한다.
+      navigator.share(data).catch((e) => say(e && e.name === 'AbortError'
+        ? '공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.'
+        : '공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'));
+    } else {
+      copyText(data.url).then((ok) => say(ok
+        ? '링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.'
+        : '공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+    }
+  });
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const toTop = $('#to-top');
+  toTop?.addEventListener('click', () => { window.scrollTo({ top: 0 }); $('.skip')?.focus?.(); });
+  const onScroll = () => {
+    if (toTop) toTop.classList.toggle('show', scrollY > innerHeight * 2);
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  const hashId = (h) => { try { return decodeURIComponent(h.slice(1)); } catch { return h.slice(1); } };
+  // 목차·절 링크로 이동한 뒤 도착점이 밀렸으면 제자리로 다시 맞춘다. 가장 최근 이동에만 걸고, 손으로 스크롤하면 취소한다
+  let navId = 0;
+  const cancelSettle = () => { navId++; };
+  ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, cancelSettle, { passive: true }));
+  const settle = (id) => {
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    const mine = ++navId;
+    let done = false;
+    const fix = () => {
+      if (done || mine !== navId) return;
+      done = true;
+      const want = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+      const off = el.getBoundingClientRect().top - want;
+      const room = root.scrollHeight - innerHeight - scrollY;
+      if (Math.abs(off) > 4 && (off < 0 || room > 4)) window.scrollBy({ top: off, behavior: 'instant' });
+      update();
+    };
+    const y0 = scrollY;
+    if ('onscrollend' in window) {
+      addEventListener('scrollend', fix, { once: true });
+      setTimeout(() => { if (scrollY === y0) fix(); }, 200); // 이미 제자리라 스크롤이 일어나지 않으면 scrollend도 오지 않는다
+    } else setTimeout(fix, 1200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) settle(hashId(a.hash));
+  });
+
+  // 결정 모음: 주소가 가리키는 항목은 펼친다(표지 줄·절 머리 '정할 것'에서 올 때)
+  const openTarget = (id) => {
+    const el = id && document.getElementById(id);
+    const d = el && (el.tagName === 'DETAILS' ? el : el.closest('details'));
+    if (d) d.open = true;
+  };
+  addEventListener('hashchange', () => openTarget(hashId(location.hash)));
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) openTarget(hashId(a.hash));
+  });
+  openTarget(hashId(location.hash));
+  // 결정 항목이 셋 이상인 절에는 '모두 펼치기'를 둔다
+  $$('.doc > section').forEach((sec) => {
+    const items = $$(':scope > details.decide', sec);
+    if (items.length < 3) return;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'hub-toggle';
+    const sync = () => { btn.textContent = items.every((d) => d.open) ? '모두 접기' : '모두 펼치기'; };
+    btn.addEventListener('click', () => { const open = !items.every((d) => d.open); items.forEach((d) => { d.open = open; }); sync(); });
+    items.forEach((d) => d.addEventListener('toggle', sync));
+    // 소제목(h3)으로 묶었으면 첫 묶음 제목 앞에 둔다
+    const prev = items[0].previousElementSibling;
+    (prev && prev.tagName === 'H3' ? prev : items[0]).before(btn); sync();
+  });
+  // 인쇄할 때는 접힌 내용도 모두 싣는다
+  let closedForPrint = [];
+  addEventListener('beforeprint', () => { closedForPrint = $$('details:not([open])'); closedForPrint.forEach((d) => { d.open = true; }); });
+  addEventListener('afterprint', () => { closedForPrint.forEach((d) => { d.open = false; }); closedForPrint = []; });
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+
+</script>
+</body>
+</html>
