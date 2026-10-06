@@ -238,5 +238,13 @@
     "last_kind": "redeploy",
     "last_sha256": "3128f0531e737a590a069bb3f9662a41c1ef2d1b4fa7ccb3185465798965d692",
     "timestamp": "2026-10-06T08:42:23.139322Z"
+  },
+  "c8-video-cover-picker": {
+    "slug": "c8-video-cover-picker",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-video-cover-picker/",
+    "last_kind": "new",
+    "last_sha256": "242bdc43c250e4bcdc70cf1f6d7a8784e9e41bbd7fa5591abc9b4e4dd5f8c23a",
+    "timestamp": "2026-10-06T11:06:04.162785Z"
   }
 }
