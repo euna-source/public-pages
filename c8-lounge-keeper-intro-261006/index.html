@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{
-  --bg:#f7f6f3; --surface:#ffffff; --sunken:#efede8;
+  --bg:#fffaf3; --surface:#ffffff; --sunken:#fff0e0;
   --ink:#16150f; --ink-2:#4a4740; --ink-3:#8a867c;
-  --line:#dcd8cf; --line-strong:#16150f;
-  --accent:#c2551f;
+  --line:#f0dfcc; --line-strong:#16150f;
+  --accent:#ff5a1f; --pop:#ffd23f;
   --mono:ui-monospace,"SF Mono",Menlo,monospace;
   --sp-1:8px; --sp-2:16px; --sp-3:24px; --sp-4:40px; --sp-5:72px;
 }
@@ -20,13 +20,13 @@
   :root:not([data-theme="light"]){
     --bg:#121110; --surface:#1b1a18; --sunken:#181715;
     --ink:#f1efe9; --ink-2:#bdb9ae; --ink-3:#7f7b71;
-    --line:#2f2d29; --line-strong:#f1efe9; --accent:#e27a43;
+    --line:#2f2d29; --line-strong:#f1efe9; --accent:#ff7a45; --pop:#e8b923;
   }
 }
 :root[data-theme="dark"]{
   --bg:#121110; --surface:#1b1a18; --sunken:#181715;
   --ink:#f1efe9; --ink-2:#bdb9ae; --ink-3:#7f7b71;
-  --line:#2f2d29; --line-strong:#f1efe9; --accent:#e27a43;
+  --line:#2f2d29; --line-strong:#f1efe9; --accent:#ff7a45; --pop:#e8b923;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -52,8 +52,8 @@ h3{font-size:18px;line-height:1.45;font-weight:700}
 .hero .tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
 .hero h1{font-size:clamp(48px,9vw,100px);line-height:1;font-weight:800;margin:var(--sp-2) 0 var(--sp-3)}
 .hero .claim{font-size:clamp(20px,2.6vw,25px);line-height:1.55;font-weight:600;max-width:540px}
-.hero .entry{margin-top:var(--sp-3);border-left:2px solid var(--accent);padding:2px 0 2px var(--sp-2);font-family:var(--mono);font-size:15px;line-height:1.6}
-.hero .entry small{display:block;font-family:Pretendard,sans-serif;font-size:12px;color:var(--ink-3)}
+.hero .entry{margin-top:var(--sp-3);display:inline-block;background:var(--accent);color:#fff;border-radius:16px 16px 16px 4px;padding:12px 18px;font-size:16px;font-weight:600;line-height:1.55}
+.hero .entry small{display:block;font-size:12px;font-weight:500;opacity:.85}
 .hero figure{border:1px solid var(--line)}
 .hero figcaption{font-size:12px;color:var(--ink-3);padding:var(--sp-1) 12px;border-top:1px solid var(--line);background:var(--surface)}
 
@@ -106,6 +106,14 @@ h3{font-size:18px;line-height:1.45;font-weight:700}
 .refs li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
 .refs li a{color:var(--ink);font-weight:600}
 
+.chat{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.chat article{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:var(--sp-3)}
+.chat .k{font-size:13px;color:var(--ink-3);margin-bottom:var(--sp-1)}
+.bubble{border-radius:16px;padding:10px 14px;font-size:15px;line-height:1.55;max-width:92%}
+.bubble.guest{background:var(--sunken);color:var(--ink-2)}
+.bubble.host{background:var(--accent);color:#fff;font-weight:600;margin:10px 0 0 auto}
+.bubble.host b{display:block;font-size:11px;font-weight:700;opacity:.85;letter-spacing:.04em}
+.calm{margin-top:var(--sp-3);border-left:3px solid var(--pop);padding:4px 0 4px var(--sp-2);font-size:15px;color:var(--ink-2);max-width:760px}
 footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
 
 @media (max-width:820px){
@@ -115,7 +123,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
   .stats{grid-template-columns:1fr}
   .tried li{grid-template-columns:1fr;gap:4px}
   .rules li,.ask li{grid-template-columns:1fr;gap:4px}
-  .steps{grid-template-columns:1fr}
+  .steps,.chat{grid-template-columns:1fr}
   .shots{grid-template-columns:repeat(2,1fr)}
 }
 </style>
@@ -127,12 +135,12 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
     <div>
       <div class="tag">CREATOR CLUB INSTAGRAM PROPOSAL</div>
       <h1>라운지 지기</h1>
-      <p class="claim">크리에이터클럽 인스타를 24시간 열려 있는 창작자 라운지로 만들어요. 계정은 그 라운지를 지키는 지기의 눈으로 말해요.</p>
-      <p class="entry">02:10 작가라고 소개 못 하는 작가. 원고는 30매째.<small>지기의 영업일지 예시</small></p>
+      <p class="claim">크리에이터클럽 인스타를 24시간 열려 있는 창작자 라운지로 만들어요. 계정은 그 라운지의 찐팬, 지기가 말해요. 손님이 오면 제일 먼저 달려가 반겨요.</p>
+      <p class="entry">오늘의 라운지 기록: FINAL 뒤에 FINAL 또 등장! 최종 신기록이에요 👏<small>지기의 영업일지 예시</small></p>
     </div>
     <figure>
       <img src="img/01.jpg" alt="아침 라운지의 긴 나무 테이블에 노트북 다섯 대가 놓인 흑백 일러스트" width="900" height="1125">
-      <figcaption>첫 회차 표지 시안. 아직 아무도 안 온 아침 라운지예요.</figcaption>
+      <figcaption>첫 회차 표지 시안. 곧 첫 손님이 들어올 아침 라운지예요.</figcaption>
     </figure>
   </div>
 </header>
@@ -197,7 +205,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
       <cite>Ray Oldenburg. Project for Public Spaces 인용을 우리가 옮겼어요.</cite>
     </div>
     <div class="prose">
-      <p>공간이 정해지니 화자 문제가 풀렸어요. 주인도 크루도 필요 없고, <strong>불 켜 두고 자리를 지키는 사람 하나</strong>면 돼요. 그 사람이 지기예요. 지기 얼굴은 안 그려요. 카메라를 지기 눈높이에 두니까 게시물을 보는 사람이 지기 자리에 앉게 돼요. 심야식당의 마스터처럼 듣기만 하고, 주인공은 늘 찾아온 손님이에요.</p>
+      <p>공간이 정해지니 화자 문제가 풀렸어요. 주인도 크루도 필요 없고, <strong>불 켜 두고 자리를 지키는 사람 하나</strong>면 돼요. 그 사람이 지기예요. 지기는 손님 작업을 제일 먼저 보고, 제일 크게 반겨요. 얼굴은 안 그리고 손만 나와요. 박수 치고, 손 흔들고, 엄지 올리는 손이요. 주인공은 늘 찾아온 손님이에요.</p>
     </div>
     <p class="src">출처: <a href="https://www.pps.org/articles/roldenburg/" target="_blank" rel="noopener">Project for Public Spaces, Ray Oldenburg</a></p>
   </div>
@@ -208,8 +216,8 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
     <div class="num">05 지기의 원칙</div>
     <h2>이 네 줄에 걸리면<br>올리지 않아요</h2>
     <ul class="rules">
-      <li><h3>지기는 안 나와요</h3><p>지기 얼굴이 보이는 컷은 틀린 컷이에요. 손이나 소매는 한 편에 한 번까지예요.</p></li>
-      <li><h3>지기는 조언하지 않아요</h3><p>일지에 "힘내요"가 들어가면 틀린 일지예요. 본 것만 한 줄 적어요.</p></li>
+      <li><h3>지기는 손만 나와요</h3><p>지기 얼굴이 보이는 컷은 틀린 컷이에요. 손은 박수나 엄지처럼 반가운 동작으로만 나와요.</p></li>
+      <li><h3>지기는 조언 대신 감탄해요</h3><p>"힘내요"가 들어가면 틀린 글이에요. 손님 작업에서 좋았던 곳 하나를 콕 집어 크게 반겨요.</p></li>
       <li><h3>고민이 본체예요</h3><p>장면은 예쁜데 보는 사람이 가져갈 게 없으면 올리지 않아요. 넘기다가 "어, 나도" 하는 장이 하나는 있어야 해요.</p></li>
       <li><h3>손님은 진짜예요</h3><p>지금 시안 대사는 실제 창작자 글에서 말투를 빌렸어요. 실제 멤버가 오면 그 사람 이야기로 바꿔요.</p></li>
     </ul>
@@ -218,7 +226,33 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
 
 <section class="alt">
   <div class="wrap">
-    <div class="num">06 실행</div>
+    <div class="num">06 지기의 말투</div>
+    <h2>부르면 달려가서<br>제일 크게 반겨요</h2>
+    <div class="prose">
+      <p>지기는 우리 라운지의 찐팬이에요. 손님 이름을 크게 부르고, 작업에서 좋았던 곳 하나를 콕 집어 감탄해요. 텐션은 느낌표 개수보다 <strong>얼마나 구체적으로 짚느냐</strong>에서 나와요.</p>
+    </div>
+    <div class="chat">
+      <article><div class="k">신곡을 올리고 지기를 태그했을 때</div>
+        <p class="bubble guest">@라운지지기 신곡 올렸어요 들어 주세요</p>
+        <p class="bubble host"><b>지기</b>민지님 신곡 떴다!! 1분 10초에 베이스 들어오는 데서 소리 질렀어요 👏</p></article>
+      <article><div class="k">처음 온 신입</div>
+        <p class="bubble guest">처음 와 봤는데 여기 뭐 하는 데예요?</p>
+        <p class="bubble host"><b>지기</b>하늘님 어서 와요!! 24시간 불 켜진 작업실이에요. 첫 작업 올라오면 제가 제일 먼저 박수 칠게요 👏</p></article>
+      <article><div class="k">시안을 공유했을 때</div>
+        <p class="bubble guest">로고 시안 7번째… 이번엔 진짜 최종</p>
+        <p class="bubble host"><b>지기</b>7번째에서 'ㄹ' 둥글린 거 완전 신의 한 수예요. 이건 진짜 최종 맞아요!</p></article>
+      <article><div class="k">지기를 놀릴 때</div>
+        <p class="bubble guest">지기 맨날 손만 나와. 얼굴 공개해</p>
+        <p class="bubble host"><b>지기</b>얼굴은 비밀, 손은 언제든 공개 가능해요 ✋</p></article>
+    </div>
+    <p class="calm">앱 오류나 불만, 지기가 이름을 잘못 적은 실수에는 텐션을 내려요. 느낌표 없이 사과하고, 운영팀이 바로 이어받아요.</p>
+    <p class="src">모두 가상 예시예요.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">07 실행</div>
     <h2>회차, 손님, 다음 회차.<br>이 셋만 돌려요</h2>
     <div class="steps">
       <article><div class="k">1 회차</div><h3>일지형 캐러셀</h3><p>제목은 지기 일지 첫 줄처럼 달아요. 「09:40 최종(2)」, 「13:20 수정 20회째」. 장마다 위 띠에 고민 한 줄을 써요.</p></article>
@@ -235,9 +269,9 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
   </div>
 </section>
 
-<section>
+<section class="alt">
   <div class="wrap">
-    <div class="num">07 볼 숫자 하나</div>
+    <div class="num">08 볼 숫자 하나</div>
     <h2>손님이 말을 꺼냈는지만 봐요</h2>
     <div class="star">
       <div class="metric">회차마다, 자기 이야기를 남긴 댓글 수</div>
@@ -246,12 +280,12 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
   </div>
 </section>
 
-<section class="alt">
+<section>
   <div class="wrap">
-    <div class="num">08 예상 반론</div>
+    <div class="num">09 예상 반론</div>
     <h2>먼저 물어볼 만한 다섯 가지</h2>
     <ul class="qa">
-      <li><q>심야식당처럼 너무 잔잔하지 않을까요?</q><p>그림은 조용하게, 글은 짧고 세게 가요. 고민 상담 예능 '무엇이든 물어보살'이 안 지루한 건 한 사람은 직설하고 한 사람은 깐족여서예요. 우리는 손님 말이 속도를 내고 지기 한 줄이 끝을 비틀어요. 첫 두 편에서 릴스 3초 이탈이 나쁘면 표지를 손님 대사로 바꿔요.</p></li>
+      <li><q>심야식당처럼 너무 잔잔하지 않을까요?</q><p>심야식당에서 빌린 건 손님이 주인공이라는 구조뿐이에요. 지기는 손님 작업에 제일 먼저 박수 치는 찐팬이라, 반가움을 숨기지 않아요. 손님 말은 실제 창작자 말투로 빠르게 가요. 첫 두 편에서 릴스 3초 이탈이 나쁘면 표지를 손님 대사로 바꿔요.</p></li>
       <li><q>얼굴 없는 화자에게 정이 붙을까요?</q><p>이게 가장 약한 고리예요. 우리가 살펴본 국내 10만 팔로워 이상 계정 네 곳은 전부 고정된 얼굴이 있었고, 얼굴 없이 큰 계정은 아직 못 찾았어요. 그래서 12주 동안 자기 이야기 댓글이 늘지 않으면 얼굴을 다시 검토해요.</p></li>
       <li><q>창작자가 정말 외로워서 보나요?</q><p>소득과 부업 숫자는 있지만, 한국 창작자의 외로움을 직접 물은 조사는 못 찾았어요. 첫 회차 댓글이 그 조사를 대신해요. 고민보다 정보나 일감을 더 원한다는 반응이 많으면 회차 비중을 정보 쪽으로 옮겨요.</p></li>
       <li><q>AI로 그린 그림이면 반감이 없을까요?</q><p>사람처럼 보이는 AI 인물은 쓰지 않아요. 인스타의 AI 표시 의무는 사실적인 영상과 오디오가 대상이고, 일러스트 이미지는 대상이 아니에요.</p></li>
@@ -260,9 +294,9 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
   </div>
 </section>
 
-<section>
+<section class="alt">
   <div class="wrap">
-    <div class="num">09 결재 요청</div>
+    <div class="num">10 결재 요청</div>
     <h2>이 네 가지를 정해 주시면<br>바로 시작해요</h2>
     <ul class="ask">
       <li><h3>운영 기간과 주기</h3><p class="rec"><b>추천: 주 1편, 12주 시험.</b> 볼 숫자가 흐름을 보이려면 이 정도 회차가 필요해요.</p></li>
@@ -273,9 +307,9 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
   </div>
 </section>
 
-<section class="alt">
+<section>
   <div class="wrap">
-    <div class="num">10 참고한 곳</div>
+    <div class="num">11 참고한 곳</div>
     <h2>빌려 온 것들</h2>
     <div class="refs">
       <div>
@@ -291,7 +325,7 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-s
       <div>
         <h3>라운지의 모양</h3>
         <ul>
-          <li><a href="https://www.ajunews.com/view/20170612083114540" target="_blank" rel="noopener">심야식당</a>: 듣기만 하는 주인, 주인공은 손님</li>
+          <li><a href="https://www.ajunews.com/view/20170612083114540" target="_blank" rel="noopener">심야식당</a>: 회차마다 찾아온 손님이 주인공</li>
           <li><a href="https://weekly.khan.co.kr/article/201905101716381" target="_blank" rel="noopener">무엇이든 물어보살</a>: 고민 상담에 속도를 내는 역할 나누기</li>
           <li><a href="https://www.humansofnewyork.com/" target="_blank" rel="noopener">Humans of New York</a>: 묻는 사람은 안 나오고 답하는 사람만</li>
           <li><a href="https://www.instagram.com/apple/" target="_blank" rel="noopener">@apple Shot on iPhone</a>: 게시물마다 만든 사람 크레딧</li>
