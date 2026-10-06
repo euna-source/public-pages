@@ -235,8 +235,8 @@
     "slug": "c8-board-push-example",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-board-push-example/",
-    "last_kind": "new",
-    "last_sha256": "33bcad14060110e5602d76d3cee5456844aa1b55a613ed28f742eb56197df7fb",
-    "timestamp": "2026-10-06T05:53:47.526321Z"
+    "last_kind": "redeploy",
+    "last_sha256": "3128f0531e737a590a069bb3f9662a41c1ef2d1b4fa7ccb3185465798965d692",
+    "timestamp": "2026-10-06T08:42:23.139322Z"
   }
 }
