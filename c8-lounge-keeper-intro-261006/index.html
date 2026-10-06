@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>라운지 지기</title>
-<meta name="description" content="새벽 두 시에도 누군가는 작업 중이에요. 크리에이터클럽 인스타는 그 옆자리에서 본 걸 올려요.">
+<meta name="description" content="크리에이터클럽 인스타를 24시간 열려 있는 창작자 라운지로 만들자는 제안이에요. 왜 여기서 출발했는지부터 적었어요.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{
@@ -31,93 +31,92 @@
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif;
-  font-size:17px;line-height:1.7;word-break:keep-all;line-break:strict;overflow-wrap:break-word}
+  font-size:17px;line-height:1.75;word-break:keep-all;line-break:strict;overflow-wrap:break-word}
 img{display:block;max-width:100%;height:auto}
-a{color:inherit}
+a{color:inherit;text-underline-offset:3px}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 var(--sp-2)}
-.time{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.04em}
+.wrap{max-width:1000px;margin:0 auto;padding:0 var(--sp-2)}
+.num{font-family:var(--mono);font-size:13px;color:var(--accent);letter-spacing:.04em}
 section{padding:var(--sp-5) 0;border-top:1px solid var(--line)}
 section.alt{background:var(--sunken)}
-h2{font-size:clamp(26px,4vw,38px);line-height:1.3;font-weight:700;margin:6px 0 var(--sp-3)}
+h2{font-size:clamp(26px,4vw,36px);line-height:1.3;font-weight:700;margin:6px 0 var(--sp-3)}
 h3{font-size:18px;line-height:1.45;font-weight:700}
-.prose{max-width:640px;color:var(--ink-2)}
+.prose{max-width:660px;color:var(--ink-2)}
 .prose p+p{margin-top:var(--sp-2)}
-.log{font-family:var(--mono);font-size:15px;color:var(--ink)}
+.prose strong{color:var(--ink);font-weight:700}
+.src{font-size:13px;color:var(--ink-3);margin-top:var(--sp-2)}
+.src a{color:var(--ink-3)}
 
-/* 문 열기 */
 .hero{padding:var(--sp-5) 0}
-.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--sp-4);align-items:end}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--sp-4);align-items:end}
 .hero .tag{font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--ink-3)}
-.hero h1{font-size:clamp(52px,10vw,108px);line-height:1;font-weight:800;margin:var(--sp-2) 0 var(--sp-4)}
-.hero .entry{border-left:2px solid var(--accent);padding:4px 0 4px var(--sp-2);font-family:var(--mono);font-size:clamp(16px,2vw,19px);line-height:1.6;margin-bottom:var(--sp-3)}
-.hero .entry small{display:block;font-size:12px;color:var(--ink-3);margin-top:4px}
-.hero .intro{font-size:clamp(18px,2.2vw,21px);line-height:1.6;max-width:520px}
-.hero .intro + .intro{margin-top:var(--sp-1);color:var(--ink-2);font-size:17px}
+.hero h1{font-size:clamp(48px,9vw,100px);line-height:1;font-weight:800;margin:var(--sp-2) 0 var(--sp-3)}
+.hero .claim{font-size:clamp(20px,2.6vw,25px);line-height:1.55;font-weight:600;max-width:540px}
+.hero .entry{margin-top:var(--sp-3);border-left:2px solid var(--accent);padding:2px 0 2px var(--sp-2);font-family:var(--mono);font-size:15px;line-height:1.6}
+.hero .entry small{display:block;font-family:Pretendard,sans-serif;font-size:12px;color:var(--ink-3)}
 .hero figure{border:1px solid var(--line)}
 .hero figcaption{font-size:12px;color:var(--ink-3);padding:var(--sp-1) 12px;border-top:1px solid var(--line);background:var(--surface)}
 
-/* 오늘 온 손님 */
-.say{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:var(--sp-3)}
-.say div{background:var(--surface);padding:var(--sp-3)}
-.say .who{font-size:13px;color:var(--ink-3);margin-bottom:6px}
-.say q{quotes:none;font-size:19px;font-weight:600;line-height:1.5}
-.say .log{font-size:16px}
-.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2)}
-.flow figure{background:var(--surface);border:1px solid var(--line)}
-.flow figcaption{padding:12px 14px 16px;font-size:14px;color:var(--ink-2);line-height:1.55}
-.flow figcaption b{display:block;color:var(--ink);font-size:15px;margin-bottom:2px}
-.note{margin-top:var(--sp-2);font-size:14px;color:var(--ink-3)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:var(--sp-3) 0}
+.stats div{background:var(--surface);padding:var(--sp-3)}
+.stats b{display:block;font-family:var(--mono);font-size:clamp(28px,4vw,38px);font-weight:600;line-height:1.1;color:var(--ink);margin-bottom:6px}
+.stats span{font-size:14px;color:var(--ink-2)}
 
-/* 오늘의 일지 */
-.titles{list-style:none;border-top:1px solid var(--line-strong)}
-.titles li{display:grid;grid-template-columns:96px 1fr auto;gap:var(--sp-2);align-items:baseline;padding:var(--sp-2) 0;border-bottom:1px solid var(--line)}
-.titles .t{font-family:var(--mono);color:var(--accent)}
-.titles .what{font-size:clamp(18px,2.4vw,22px);font-weight:600}
-.titles .who{font-size:13px;color:var(--ink-3);white-space:nowrap}
+.tried{list-style:none;border-top:1px solid var(--line-strong)}
+.tried li{display:grid;grid-template-columns:110px 1fr 1.4fr;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--line);align-items:baseline}
+.tried .when{font-family:var(--mono);font-size:13px;color:var(--ink-3)}
+.tried h3 s{text-decoration-thickness:1px;color:var(--ink-3)}
+.tried p{font-size:15px;color:var(--ink-2)}
+.tried li.kept h3{color:var(--accent)}
 
-/* 영업 방침 */
-.rules{list-style:none;counter-reset:r;border-top:1px solid var(--line-strong)}
-.rules li{counter-increment:r;display:grid;grid-template-columns:48px 1fr;gap:var(--sp-2);padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
-.rules li::before{content:counter(r);font-family:var(--mono);font-size:24px;line-height:1.2;color:var(--ink-3)}
-.rules p{color:var(--ink-2);font-size:15px;margin-top:4px}
+.quote{border-left:2px solid var(--line-strong);padding:4px 0 4px var(--sp-3);margin:var(--sp-3) 0;max-width:660px}
+.quote p{font-size:19px;line-height:1.6;font-weight:600}
+.quote cite{display:block;font-style:normal;font-size:13px;color:var(--ink-3);margin-top:6px}
 
-/* 영업시간 */
-.hours{width:100%;border-collapse:collapse;font-size:15px}
-.hours th{font-size:13px;font-weight:400;color:var(--ink-3);text-align:left;padding:0 var(--sp-2) var(--sp-1) 0;border-bottom:1px solid var(--line-strong)}
-.hours td{padding:14px var(--sp-2) 14px 0;border-bottom:1px solid var(--line);vertical-align:top}
-.hours td:first-child{font-family:var(--mono);white-space:nowrap}
-.hours td:last-child{color:var(--ink-2)}
+.rules{list-style:none;border-top:1px solid var(--line-strong)}
+.rules li{display:grid;grid-template-columns:1fr 1.4fr;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
+.rules p{font-size:15px;color:var(--ink-2)}
 
-/* 옆 가게들 */
-.refs{list-style:none;border-top:1px solid var(--line-strong)}
-.refs li{display:grid;grid-template-columns:1fr 1.5fr;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
-.refs h3 a{text-decoration:none;border-bottom:1px solid var(--line-strong)}
-.refs h3 a:hover{color:var(--accent);border-color:var(--accent)}
-.refs .what{font-size:14px;color:var(--ink-3);margin-top:2px}
-.refs p{font-size:15px;color:var(--ink-2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-2)}
+.steps article{background:var(--surface);border:1px solid var(--line);padding:var(--sp-3)}
+.steps .k{font-family:var(--mono);font-size:13px;color:var(--accent)}
+.steps h3{margin:6px 0 var(--sp-1)}
+.steps p{font-size:15px;color:var(--ink-2)}
+.shots{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-2);margin-top:var(--sp-3)}
+.shots figure{border:1px solid var(--line);background:var(--surface)}
+.shots figcaption{font-size:13px;color:var(--ink-2);padding:10px 12px 12px;line-height:1.5}
 
-/* 못 정한 것 */
-.open{list-style:none;border-top:1px solid var(--line-strong)}
-.open li{padding:var(--sp-2) 0;border-bottom:1px solid var(--line);color:var(--ink-2);font-size:15px}
-.open b{color:var(--ink);font-weight:700;margin-right:6px}
+.star{border:1px solid var(--line-strong);background:var(--surface);padding:var(--sp-4) var(--sp-3);max-width:760px}
+.star .metric{font-size:clamp(22px,3vw,30px);font-weight:700;line-height:1.4}
+.star p{color:var(--ink-2);margin-top:var(--sp-2);font-size:15px}
 
-footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--ink-3)}
+.qa{list-style:none;border-top:1px solid var(--line-strong)}
+.qa li{padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
+.qa q{quotes:none;display:block;font-weight:700;font-size:17px;margin-bottom:6px}
+.qa p{font-size:15px;color:var(--ink-2);max-width:760px}
+
+.ask{list-style:none;border-top:1px solid var(--line-strong)}
+.ask li{display:grid;grid-template-columns:1fr 1.5fr;gap:var(--sp-3);padding:var(--sp-3) 0;border-bottom:1px solid var(--line)}
+.ask .rec{font-size:15px;color:var(--ink-2)}
+.ask .rec b{color:var(--ink)}
+
+.refs{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4)}
+.refs h3{font-size:15px;color:var(--ink-3);font-weight:600;margin-bottom:var(--sp-1)}
+.refs ul{list-style:none}
+.refs li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.refs li a{color:var(--ink);font-weight:600}
+
+footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-size:13px;color:var(--ink-3)}
 
 @media (max-width:820px){
   section{padding:var(--sp-4) 0}
   .hero{padding:var(--sp-4) 0}
-  .hero-grid{grid-template-columns:1fr}
-  .say{grid-template-columns:1fr}
-  .flow{grid-template-columns:repeat(2,1fr)}
-  .titles li{grid-template-columns:64px 1fr}
-  .titles .who{grid-column:2}
-  .rules li{grid-template-columns:32px 1fr}
-  .refs li{grid-template-columns:1fr;gap:var(--sp-1)}
-  .hours thead{display:none}
-  .hours tr{display:block;padding:12px 0;border-bottom:1px solid var(--line)}
-  .hours td{display:block;border:0;padding:2px 0}
-  .hours td:first-child{font-weight:600}
+  .hero-grid,.refs{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .tried li{grid-template-columns:1fr;gap:4px}
+  .rules li,.ask li{grid-template-columns:1fr;gap:4px}
+  .steps{grid-template-columns:1fr}
+  .shots{grid-template-columns:repeat(2,1fr)}
 }
 </style>
 </head>
@@ -126,140 +125,185 @@ footer{padding:var(--sp-4) 0 var(--sp-5);border-top:1px solid var(--line);font-f
 <header class="hero">
   <div class="wrap hero-grid">
     <div>
-      <div class="tag">CREATOR CLUB INSTAGRAM</div>
+      <div class="tag">CREATOR CLUB INSTAGRAM PROPOSAL</div>
       <h1>라운지 지기</h1>
-      <p class="entry">02:10 작가라고 소개 못 하는 작가.<br>원고는 30매째.<small>지기의 영업일지</small></p>
-      <p class="intro">새벽 두 시에도 누군가는 작업 중이에요. 크리에이터클럽 인스타는 그 옆자리에서 본 걸 올려요.</p>
-      <p class="intro">지기 얼굴은 안 나와요. 보는 사람이 지기 자리에 앉아요.</p>
+      <p class="claim">크리에이터클럽 인스타를 24시간 열려 있는 창작자 라운지로 만들어요. 계정은 그 라운지를 지키는 지기의 눈으로 말해요.</p>
+      <p class="entry">02:10 작가라고 소개 못 하는 작가. 원고는 30매째.<small>지기의 영업일지 예시</small></p>
     </div>
     <figure>
       <img src="img/01.jpg" alt="아침 라운지의 긴 나무 테이블에 노트북 다섯 대가 놓인 흑백 일러스트" width="900" height="1125">
-      <figcaption>아침 아홉 시 사십 분의 라운지. 아직 아무도 없어요.</figcaption>
+      <figcaption>첫 회차 표지 시안. 아직 아무도 안 온 아침 라운지예요.</figcaption>
     </figure>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <div class="time">09:40 오늘 온 손님</div>
-    <h2>최종이라고 저장했는데<br>또 고쳐 달래요</h2>
-    <div class="say">
-      <div><div class="who">손님이 한 말 (예시)</div><q>최종, 최종2, 진짜최종까지 저장했는데 오늘 또 수정 왔어요.</q></div>
-      <div><div class="who">그날 지기 일지</div><p class="log">09:40 확정.psd 다음에 파일이 하나 더 생김.</p></div>
-    </div>
-    <div class="flow">
-      <figure>
-        <img src="img/01.jpg" alt="라운지 테이블 위 노트북들" loading="lazy" width="900" height="1125">
-        <figcaption><b>1장 표지</b>오늘 회차 제목 「09:40 최종(2)」</figcaption>
-      </figure>
-      <figure>
-        <img src="img/02.jpg" alt="디자이너의 포토샵 파일 다섯 개가 뜬 노트북 화면" loading="lazy" width="900" height="1125">
-        <figcaption><b>2장 디자이너</b>최종 뒤에 말이 붙어요. 진짜최종, 확정, 진짜마지막최종결정.</figcaption>
-      </figure>
-      <figure>
-        <img src="img/04.jpg" alt="기획자의 다운로드 폴더 파일 다섯 개" loading="lazy" width="900" height="1125">
-        <figcaption><b>4장 기획자</b>(1)과 복사본은 컴퓨터가 알아서 붙여 줘요.</figcaption>
-      </figure>
-      <figure>
-        <img src="img/07.jpg" alt="새벽 빈 자리 노트북 메모장에 적힌 오늘의 질문" loading="lazy" width="900" height="1125">
-        <figcaption><b>7장 메모장</b>당신 직군의 레전드 최종은? 댓글이 다음 회차 재료가 돼요.</figcaption>
-      </figure>
-    </div>
-    <p class="note">파일명 편 7장 가운데 4장이에요. 화면 속 파일명은 실제 게시물과 업계 글, 프로그램에서 직접 저장해 본 이름으로 채웠어요. 표지 글씨는 일지형 제목으로 바꿀 거예요.</p>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="time">12:00 오늘의 일지</div>
-    <h2>다음 손님들도<br>벌써 와 있어요</h2>
-    <ul class="titles">
-      <li><span class="t">13:20</span><span class="what">수정 20회째</span><span class="who">영상 편집자</span></li>
-      <li><span class="t">16:05</span><span class="what">'무슨 일 하세요'에 0.5초 버벅임</span><span class="who">PD</span></li>
-      <li><span class="t">19:30</span><span class="what">포폴은 쌓이는데 어디로 가는지 모름</span><span class="who">일러스트레이터</span></li>
-      <li><span class="t">23:50</span><span class="what">1분에 1만 원짜리 컷편집</span><span class="who">영상 편집자</span></li>
-      <li><span class="t">02:10</span><span class="what">원고 30매째. 작가라고는 안 함</span><span class="who">글 작가</span></li>
-    </ul>
-    <p class="note">고민은 창작자들이 실제로 쓴 글에서 가져왔어요. 실제 멤버가 생기면 그 사람 이야기로 바꿔요.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="time">15:00 영업 방침</div>
-    <h2>정해 둔 건 네 개뿐이에요</h2>
-    <ol class="rules">
-      <li><div><h3>지기 얼굴은 안 나와요</h3><p>카메라가 지기 눈높이에 있어요. 화면 속 손님이 이쪽을 봐요.</p></div></li>
-      <li><div><h3>손이나 소매는 한 편에 한 번까지</h3><p>컵 쥔 큰 손, 담요 자락 정도예요. 사람인지 동물인지는 안 알려 줘요.</p></div></li>
-      <li><div><h3>지기는 조언 안 해요</h3><p>본 것만 한 줄 적어요. 힘내라는 말도 안 해요.</p></div></li>
-      <li><div><h3>고민 하나는 꼭 가져가게 해요</h3><p>예쁜 장면만 있는 편은 안 올려요. 넘기다 보면 "어, 나도" 하는 게 하나는 있어야 해요.</p></div></li>
-    </ol>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <div class="time">18:00 영업시간</div>
-    <h2>시간마다 오는 사람이 달라요</h2>
-    <table class="hours">
-      <thead><tr><th>시간</th><th>창밖</th><th>주로 오는 사람</th><th>그동안 지기는</th></tr></thead>
-      <tbody>
-        <tr><td>아침 6시~11시</td><td>낮은 햇빛이 창가로 들어와요</td><td>글 작가, 일러스트레이터</td><td>커피를 올려 두고 멀찍이 컵을 닦아요</td></tr>
-        <tr><td>낮 12시~5시</td><td>밝고 평평한 빛</td><td>디자이너, 사진가, 영상 편집자</td><td>긴 테이블을 비워 둬요</td></tr>
-        <tr><td>저녁 6시~10시</td><td>노란 램프가 켜져요</td><td>밴드, 뮤지션</td><td>무대 쪽 조명을 살짝 돌려 줘요</td></tr>
-        <tr><td>밤 10시~2시</td><td>스탠드 하나</td><td>작곡가, 프로듀서</td><td>카운터 끝에서 책을 읽어요</td></tr>
-        <tr><td>새벽 2시~6시</td><td>창이 파랗게 밝아 와요</td><td>댄서, 공연 끝낸 사람</td><td>따뜻한 국 한 그릇 내려놓고 물러서요</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="time">22:00 이 가게를 차린 이유</div>
-    <h2>사장님 자리는<br>비워 뒀어요</h2>
+    <div class="num">01 처음 질문</div>
+    <h2>"그래서 무슨 일 하세요?"에서<br>시작했어요</h2>
     <div class="prose">
-      <p>처음엔 클럽 사장님을 세우려고 했어요. 그런데 이 계정이 하는 일은 남의 크레딧을 챙겨 주는 거라, 사장이 서 있으면 위아래가 먼저 보였어요. 실제 사람 얼굴을 쓰면 그 사람이 떠날 때 계정도 같이 흔들리고요. 충주시 유튜브는 담당 주무관이 그만둔다고 밝힌 뒤 <a href="https://m.seoul.co.kr/news/2026/02/16/20260216500065" target="_blank" rel="noopener">나흘 만에 구독자 18만 명이 빠졌어요</a>.</p>
-      <p>그래서 공간부터 정했어요. 창작자가 아무 때나 와서 작업하고 고민을 털어놓는 24시간 라운지요. 여기엔 문 앞에서 사람 고르는 사람이 없어요. 불 켜 두는 사람만 있어요.</p>
-      <p>그 사람이 지기예요. 정체는 우리도 안 정했어요. 정해 두면 설명하고 싶어지고, 설명이 길어지면 손님 이야기가 묻혀요. 곰인지 사람인지는 댓글에서 맞혀 보시면 돼요.</p>
+      <p>9월 말, 계정 첫 게시물로 이 질문을 골랐어요. 창작자들은 자기 일을 한 줄로 말하는 걸 제일 어려워하거든요. 실제로 이런 글이 있어요. "요즘 누가 '무슨 일 하세요' 물으면 나 0.5초씩 버벅임."</p>
+      <p>게시물을 만들다 보니 질문이 하나 더 생겼어요. 이 이야기를 <strong>누가 들려주지?</strong> 계정에도 말하는 사람이 있어야 했어요. 처음 믿음은 단순했어요. 이름이 크리에이터'클럽'이니까 클럽 주인장이 손님을 소개하면 된다고요.</p>
+    </div>
+    <p class="src">인용: <a href="https://www.threads.com/@heyju.zip/post/DauBZQYkxc9" target="_blank" rel="noopener">스레드 공개 글</a></p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="num">02 우리가 본 문제</div>
+    <h2>걸리는 게 여럿이었는데<br>뿌리는 하나였어요</h2>
+    <div class="prose">
+      <p>팔로워는 0이에요. 앱 기능 설명만으로는 팔로우할 이유가 안 생겨요. 얼굴을 내밀 직원도 없고, 사람처럼 보이는 AI 인물은 창작자들이 싫어해요.</p>
+      <p>이걸 하나씩 풀다가 공통된 뿌리를 봤어요. <strong>창작자는 대부분 혼자 일해요.</strong> 혼자 일하는 사람이 굳이 팔로우할 계정은 앱 설명서보다 옆자리에 가까운 계정이에요.</p>
+    </div>
+    <div class="stats">
+      <div><b>2명 중 1명</b><span>예술인 가운데 소득이 적어 부업을 하는 사람</span></div>
+      <div><b>61.7%</b><span>전업 예술인 가운데 프리랜서 비율</span></div>
+      <div><b>1,055만 원</b><span>예술인 1인 평균 연소득. 국민 평균의 41.3%예요</span></div>
+    </div>
+    <div class="prose">
+      <p>옆에 누가 있다는 느낌만으로 혼자 하는 일이 달라진다는 건 이미 숫자로 나와 있어요. 남이 공부하는 모습만 몇 시간씩 보여 주는 '스터디 윗 미' 영상은 조회수 1,000만 회를 넘긴 것도 있어요. 이 장르는 "고립된 개인이 다른 사람과 공부를 같이 한다는 개념의 소통"으로 시작됐다는 분석이 있어요.</p>
+    </div>
+    <p class="src">출처: 문화체육관광부 2024 예술인 실태조사(<a href="https://www.jjan.kr/article/20250306580248" target="_blank" rel="noopener">전북일보 보도</a>), <a href="https://www.newsis.com/view/NISX20230216_0002195752" target="_blank" rel="noopener">뉴시스 2023</a>. 한국 창작자의 외로움을 직접 물은 조사는 아직 못 찾았어요.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">03 해 보고 버린 것</div>
+    <h2>주인장부터 그려 봤고,<br>네 번 틀렸어요</h2>
+    <ul class="tried">
+      <li><span class="when">10/2</span><h3><s>클럽 주인장</s></h3><p>이 계정이 할 일은 남의 크레딧을 챙겨 주는 거예요. 주인이 서 있으면 손님보다 위아래가 먼저 보였어요.</p></li>
+      <li><span class="when">10/2</span><h3><s>운영 크루 4~5명</s></h3><p>크루를 만들려면 가상의 창작자를 지어내야 해요. 실제 협업 흔적을 모으는 서비스가 가짜 창작자를 내세우는 셈이었어요.</p></li>
+      <li><span class="when">10/4</span><h3><s>실제 직원 얼굴, AI 인물</s></h3><p>사람 얼굴은 그 사람이 떠나면 계정이 흔들려요. 충주시 유튜브는 담당 주무관이 그만둔다고 밝힌 뒤 나흘 만에 구독자 18만 명이 빠졌어요. 완전히 AI로 만든 콘텐츠를 받아들이겠다는 창작자는 1,792명 가운데 6.7%였고요.</p></li>
+      <li><span class="when">10/5</span><h3><s>귀여운 캐릭터 25안</s></h3><p>곰, 고슴도치, 문어까지 그려 봤어요. 그릴수록 설정이 늘었고, 설정을 설명하느라 손님 이야기가 밀렸어요.</p></li>
+      <li class="kept"><span class="when">10/5 새벽</span><h3>클럽을 다시 읽기</h3><p>여기서 방향이 바뀌었어요. 다음 절이에요.</p></li>
+    </ul>
+    <p class="src">출처: <a href="https://m.seoul.co.kr/news/2026/02/16/20260216500065" target="_blank" rel="noopener">서울신문 2026.2.16</a>, <a href="https://www.hypebot.com/where-artists-draw-the-line-on-ai-uppbeat-creator-report/" target="_blank" rel="noopener">Uppbeat 창작자 조사</a></p>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="num">04 컨셉</div>
+    <h2>우리 클럽은<br>머무는 곳이에요</h2>
+    <div class="prose">
+      <p>'클럽'이라는 이름을 다시 읽었어요. 우리가 그린 클럽은 창작자들이 아무 때나 드나들며 작업하고, 고민을 털어놓는 곳이에요. 아침엔 창가에서 원고를 쓰는 작가가 오고, 새벽엔 연습을 마친 댄서가 들어와 따뜻한 국을 먹어요. 시간마다 오는 사람이 달라서 24시간 열어 둬요.</p>
+      <p>사회학자 레이 올든버그는 이런 곳을 '제3의 장소'라고 불렀어요.</p>
+    </div>
+    <div class="quote">
+      <p>"집과 일터 바깥에서, 사람들이 자발적이고 편하게, 반갑게 기다리며 모이는 공공의 장소."</p>
+      <cite>Ray Oldenburg. Project for Public Spaces 인용을 우리가 옮겼어요.</cite>
+    </div>
+    <div class="prose">
+      <p>공간이 정해지니 화자 문제가 풀렸어요. 주인도 크루도 필요 없고, <strong>불 켜 두고 자리를 지키는 사람 하나</strong>면 돼요. 그 사람이 지기예요. 지기 얼굴은 안 그려요. 카메라를 지기 눈높이에 두니까 게시물을 보는 사람이 지기 자리에 앉게 돼요. 심야식당의 마스터처럼 듣기만 하고, 주인공은 늘 찾아온 손님이에요.</p>
+    </div>
+    <p class="src">출처: <a href="https://www.pps.org/articles/roldenburg/" target="_blank" rel="noopener">Project for Public Spaces, Ray Oldenburg</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">05 지기의 원칙</div>
+    <h2>이 네 줄에 걸리면<br>올리지 않아요</h2>
+    <ul class="rules">
+      <li><h3>지기는 안 나와요</h3><p>지기 얼굴이 보이는 컷은 틀린 컷이에요. 손이나 소매는 한 편에 한 번까지예요.</p></li>
+      <li><h3>지기는 조언하지 않아요</h3><p>일지에 "힘내요"가 들어가면 틀린 일지예요. 본 것만 한 줄 적어요.</p></li>
+      <li><h3>고민이 본체예요</h3><p>장면은 예쁜데 보는 사람이 가져갈 게 없으면 올리지 않아요. 넘기다가 "어, 나도" 하는 장이 하나는 있어야 해요.</p></li>
+      <li><h3>손님은 진짜예요</h3><p>지금 시안 대사는 실제 창작자 글에서 말투를 빌렸어요. 실제 멤버가 오면 그 사람 이야기로 바꿔요.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="num">06 실행</div>
+    <h2>회차, 손님, 다음 회차.<br>이 셋만 돌려요</h2>
+    <div class="steps">
+      <article><div class="k">1 회차</div><h3>일지형 캐러셀</h3><p>제목은 지기 일지 첫 줄처럼 달아요. 「09:40 최종(2)」, 「13:20 수정 20회째」. 장마다 위 띠에 고민 한 줄을 써요.</p></article>
+      <article><div class="k">2 손님</div><h3>실제 멤버로 채우기</h3><p>서포터즈 1기와 위클리 베스트 수상자 가운데 동의한 분부터 손님으로 모셔요. 이름과 작업 크레딧을 꼭 달아요.</p></article>
+      <article><div class="k">3 다음 회차</div><h3>댓글이 재료</h3><p>마지막 장은 메모장 질문으로 닫아요. 댓글에 남은 고민과 파일명이 다음 회차가 돼요.</p></article>
+    </div>
+    <div class="shots">
+      <figure><img src="img/01.jpg" alt="라운지 표지" width="900" height="1125"><figcaption>1장 표지. 회차 제목이 들어가요.</figcaption></figure>
+      <figure><img src="img/02.jpg" alt="디자이너 파일명 화면" width="900" height="1125"><figcaption>2장 디자이너의 최종은 말이 늘어나요.</figcaption></figure>
+      <figure><img src="img/04.jpg" alt="기획자 다운로드 폴더 화면" width="900" height="1125"><figcaption>4장 기획자의 최종은 ver.35까지 가요.</figcaption></figure>
+      <figure><img src="img/07.jpg" alt="메모장 질문 화면" width="900" height="1125"><figcaption>7장 당신 직군의 레전드 최종은?</figcaption></figure>
+    </div>
+    <p class="src">첫 회차 「09:40 최종(2)」 시안 7장 가운데 4장이에요.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="num">07 볼 숫자 하나</div>
+    <h2>손님이 말을 꺼냈는지만 봐요</h2>
+    <div class="star">
+      <div class="metric">회차마다, 자기 이야기를 남긴 댓글 수</div>
+      <p>라운지가 제대로 열렸다는 증거는 손님이 먼저 입을 여는 거예요. "저는 영상인데 v3_진짜최종(2)까지 가 봤어요" 같은 댓글이요. 저장과 도달은 같이 보되 판단은 이 숫자로 해요. 이 댓글이 다음 회차 재료가 되니까, 숫자가 오르면 콘텐츠도 같이 쌓여요.</p>
     </div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <div class="time">01:00 옆 가게들</div>
-    <h2>많이 빌려 온 다섯 곳</h2>
-    <ul class="refs">
-      <li><div><h3><a href="https://www.ajunews.com/view/20170612083114540" target="_blank" rel="noopener">심야식당</a></h3><div class="what">밤 12시부터 아침 7시까지 여는 밥집</div></div>
-        <p>마스터는 말을 거의 안 하고, 회차마다 손님이 주인공이에요. 마스터 역 배우도 "주인공은 찾아오는 이들"이라고 했어요. 제일 많이 빌린 곳이에요.</p></li>
-      <li><div><h3><a href="https://weekly.khan.co.kr/article/201905101716381" target="_blank" rel="noopener">무엇이든 물어보살</a></h3><div class="what">KBS Joy 고민 상담 예능</div></div>
-        <p>고민 상담인데 안 지루해요. 서장훈이 짧게 직설하고 이수근이 옆에서 깐족이며 속도를 내요. 우리는 손님 말이 이수근, 지기 한 줄이 서장훈이에요.</p></li>
-      <li><div><h3><a href="https://www.humansofnewyork.com/" target="_blank" rel="noopener">Humans of New York</a></h3><div class="what">사진가 한 명이 찍고 묻는 계정</div></div>
-        <p>묻는 사람은 안 나오고 답하는 사람만 나와요. 지기가 앉은 자리랑 같아요.</p></li>
-      <li><div><h3><a href="https://www.instagram.com/apple/" target="_blank" rel="noopener">@apple Shot on iPhone</a></h3><div class="what">애플 공식 인스타그램</div></div>
-        <p>올라오는 사진이 전부 사용자 작품이고, 캡션마다 찍은 사람 이름을 달아요. 크레딧 챙기는 법은 여기서 배웠어요.</p></li>
-      <li><div><h3><a href="https://lofigirl.com/" target="_blank" rel="noopener">Lofi Girl</a></h3><div class="what">24시간 틀어 두는 공부 방송</div></div>
-        <p>같은 방, 같은 창가를 몇 년째 보여 주는데 설명 없이도 다들 알아봐요. 라운지를 매번 소개하지 않아도 되는 근거예요.</p></li>
+    <div class="num">08 예상 반론</div>
+    <h2>먼저 물어볼 만한 다섯 가지</h2>
+    <ul class="qa">
+      <li><q>심야식당처럼 너무 잔잔하지 않을까요?</q><p>그림은 조용하게, 글은 짧고 세게 가요. 고민 상담 예능 '무엇이든 물어보살'이 안 지루한 건 한 사람은 직설하고 한 사람은 깐족여서예요. 우리는 손님 말이 속도를 내고 지기 한 줄이 끝을 비틀어요. 첫 두 편에서 릴스 3초 이탈이 나쁘면 표지를 손님 대사로 바꿔요.</p></li>
+      <li><q>얼굴 없는 화자에게 정이 붙을까요?</q><p>이게 가장 약한 고리예요. 우리가 살펴본 국내 10만 팔로워 이상 계정 네 곳은 전부 고정된 얼굴이 있었고, 얼굴 없이 큰 계정은 아직 못 찾았어요. 그래서 12주 동안 자기 이야기 댓글이 늘지 않으면 얼굴을 다시 검토해요.</p></li>
+      <li><q>창작자가 정말 외로워서 보나요?</q><p>소득과 부업 숫자는 있지만, 한국 창작자의 외로움을 직접 물은 조사는 못 찾았어요. 첫 회차 댓글이 그 조사를 대신해요. 고민보다 정보나 일감을 더 원한다는 반응이 많으면 회차 비중을 정보 쪽으로 옮겨요.</p></li>
+      <li><q>AI로 그린 그림이면 반감이 없을까요?</q><p>사람처럼 보이는 AI 인물은 쓰지 않아요. 인스타의 AI 표시 의무는 사실적인 영상과 오디오가 대상이고, 일러스트 이미지는 대상이 아니에요.</p></li>
+      <li><q>앱 가입으로 이어지나요?</q><p>첫 12주는 앱 설명을 하지 않아요. 이름이 불린 멤버가 자기 계정에 다시 올리는 게 첫 유입 통로라고 보고 있어요. 이건 가설이라 12주 뒤 재게시 수와 앱 유입으로 확인해요.</p></li>
     </ul>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <div class="time">04:00 아직 못 정한 것</div>
-    <h2>불 끄기 전에 정할 네 가지</h2>
-    <ul class="open">
-      <li><b>첫 게시일</b>파일명 편은 최종본까지 나와 있어요. 표지 제목만 일지형으로 바꾸면 돼요.</li>
-      <li><b>그림 도구</b>Higgsfield 유료 플랜과 fal 종량제 가운데 하나를 골라야 해요. Higgsfield 무료 플랜으로 만든 그림은 상업적으로 못 써요.</li>
-      <li><b>AI 정보 라벨</b>일러스트는 인스타에서 표시 의무가 없어요. 그래도 우리가 먼저 켤지 정해야 해요.</li>
-      <li><b>첫 실제 멤버</b>어느 시간대 손님부터 실제 멤버로 채울지 정해야 해요.</li>
+    <div class="num">09 결재 요청</div>
+    <h2>이 네 가지를 정해 주시면<br>바로 시작해요</h2>
+    <ul class="ask">
+      <li><h3>운영 기간과 주기</h3><p class="rec"><b>추천: 주 1편, 12주 시험.</b> 볼 숫자가 흐름을 보이려면 이 정도 회차가 필요해요.</p></li>
+      <li><h3>첫 게시물</h3><p class="rec"><b>추천: 「09:40 최종(2)」부터.</b> 시안이 최종본까지 나와 있고 표지 제목만 바꾸면 돼요.</p></li>
+      <li><h3>첫 실제 손님</h3><p class="rec"><b>추천: 서포터즈 1기 가운데 동의한 분.</b> 노출 동의는 게시 일주일 전에 받아요.</p></li>
+      <li><h3>그림 도구와 AI 표시</h3><p class="rec"><b>추천: Higgsfield Starter 한 달, AI 정보 라벨은 켜기.</b> 무료 플랜으로 만든 그림은 상업적으로 못 써요. 라벨은 의무가 아니지만, 숨겼다는 말이 나오지 않게 먼저 밝혀요.</p></li>
     </ul>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="num">10 참고한 곳</div>
+    <h2>빌려 온 것들</h2>
+    <div class="refs">
+      <div>
+        <h3>이 제안서의 순서</h3>
+        <ul>
+          <li><a href="https://browsercompany.substack.com/p/letter-to-arc-members-2025" target="_blank" rel="noopener">Arc 멤버에게 보낸 편지</a>: 처음 믿음과 틀렸던 지점을 숨기지 않는 순서</li>
+          <li><a href="https://basecamp.com/about" target="_blank" rel="noopener">Basecamp 소개</a>: 우리가 먼저 겪은 장면에서 시작하기</li>
+          <li><a href="https://basecamp.com/shapeup/0.1-foreword" target="_blank" rel="noopener">Shape Up 서문</a>: 버린 방법을 먼저 공개하기</li>
+          <li><a href="https://blog.duolingo.com/handbook/" target="_blank" rel="noopener">Duolingo 핸드북</a>: 원칙마다 맞고 틀림을 가르는 한 문장 달기</li>
+          <li><a href="https://www.are.na/about" target="_blank" rel="noopener">Are.na 소개</a>: 하지 않을 것과 볼 숫자를 밝히기</li>
+        </ul>
+      </div>
+      <div>
+        <h3>라운지의 모양</h3>
+        <ul>
+          <li><a href="https://www.ajunews.com/view/20170612083114540" target="_blank" rel="noopener">심야식당</a>: 듣기만 하는 주인, 주인공은 손님</li>
+          <li><a href="https://weekly.khan.co.kr/article/201905101716381" target="_blank" rel="noopener">무엇이든 물어보살</a>: 고민 상담에 속도를 내는 역할 나누기</li>
+          <li><a href="https://www.humansofnewyork.com/" target="_blank" rel="noopener">Humans of New York</a>: 묻는 사람은 안 나오고 답하는 사람만</li>
+          <li><a href="https://www.instagram.com/apple/" target="_blank" rel="noopener">@apple Shot on iPhone</a>: 게시물마다 만든 사람 크레딧</li>
+          <li><a href="https://en.wikipedia.org/wiki/Lofi_Girl" target="_blank" rel="noopener">Lofi Girl</a>: 2017년부터 24시간 틀어 둔 같은 방</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">Creator Club Instagram. 라운지 영업일지, 2026년 10월.</div>
+  <div class="wrap">크리에이터클럽 인스타 컨셉 제안. 2026년 10월, 젠지가 정리했어요.</div>
 </footer>
 
 </body>
