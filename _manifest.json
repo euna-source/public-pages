@@ -227,8 +227,8 @@
     "slug": "c8-lounge-keeper-intro-261006",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-lounge-keeper-intro-261006/",
-    "last_kind": "new",
-    "last_sha256": "bd36cc98916c7212c28707f0a5e9e1afa816400f67d87c483eec0b3d4f2629d4",
-    "timestamp": "2026-10-06T02:57:28.170374Z"
+    "last_kind": "redeploy",
+    "last_sha256": "47f3ffc1ce82ca26bc73370385e0ae59db28a15aa1e081cef4d7efc12341aa23",
+    "timestamp": "2026-10-06T03:25:45.462359Z"
   }
 }
