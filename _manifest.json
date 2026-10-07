@@ -350,5 +350,13 @@
     "last_kind": "redeploy",
     "last_sha256": "be96cfcbc18ef09c8ea1b1d91e305e96faebea1a050e8b612ebefab5c5b79adf",
     "timestamp": "2026-10-06T15:39:20.665072Z"
+  },
+  "weekly-best-promo-plan": {
+    "slug": "weekly-best-promo-plan",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/weekly-best-promo-plan/",
+    "last_kind": "new",
+    "last_sha256": "385c8f03f478a673eb64cb4744535e8493a81b83241187e1475939eb570aeb94",
+    "timestamp": "2026-10-07T17:40:28.231069Z"
   }
 }
