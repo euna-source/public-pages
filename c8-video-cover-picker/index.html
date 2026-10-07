@@ -4,8 +4,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>포폴 영상 대표 장면</title>
-<meta name="description" content="포트폴리오 업로드에서 영상 미리보기와 겹치지 않게 대표 장면(썸네일)을 바꾸는 최소 변경안입니다. 실제 앱 녹화와 iOS 소스를 기준으로 그렸습니다.">
+<title>포폴 영상 커버 편집</title>
+<meta name="description" content="포트폴리오 업로드에서 동영상 칸마다 [커버 편집] 버튼을 두어 커버를 고르는 화면 시안입니다. 실제 앱 녹화와 iOS 소스를 기준으로 그렸습니다.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
 :root{
@@ -14,31 +14,22 @@
   --bg-canvas:#ffffff; --bg-sunken:#f5f5f7; --bg-surface:#fbfbfc;
   --ink-1:#111114; --ink-2:#4a4a52; --ink-3:#86868f;
   --line-soft:#ececf0; --line-medium:#dcdce2;
-  --accent:#0aa61d; --bad:#d23c3c;
-  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:64px;
+  --accent:#0aa61d;
+  --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:64px;
   --r-2:10px; --r-3:16px;
-  --a-bg:#121212; --a-surface:#181818; --a-row:#202020; --a-elev:#282828;
-  --a-t1:#F5F5F5; --a-t2:#888888; --a-t3:#666666; --a-dis:#444444;
+  --a-bg:#121212; --a-surface:#181818; --a-elev:#282828;
+  --a-t1:#F5F5F5; --a-t2:#888888; --a-dis:#444444;
   --a-brand:#20EF35; --a-cta:#07ED21; --a-cta-ink:#181818;
   --a-line:rgba(255,255,255,.059); --a-line2:rgba(255,255,255,.102);
   --pw:328px;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg-canvas:#0f0f12; --bg-sunken:#17171b; --bg-surface:#1c1c21;
-    --ink-1:#f2f2f5; --ink-2:#b4b4bd; --ink-3:#7c7c86;
-    --line-soft:#26262c; --line-medium:#33333a; --accent:#20EF35; --bad:#f87171;
-  }
+  :root:not([data-theme="light"]){ --bg-canvas:#0f0f12; --bg-sunken:#17171b; --bg-surface:#1c1c21; --ink-1:#f2f2f5; --ink-2:#b4b4bd; --ink-3:#7c7c86; --line-soft:#26262c; --line-medium:#33333a; --accent:#20EF35; }
 }
-:root[data-theme="dark"]{
-  --bg-canvas:#0f0f12; --bg-sunken:#17171b; --bg-surface:#1c1c21;
-  --ink-1:#f2f2f5; --ink-2:#b4b4bd; --ink-3:#7c7c86;
-  --line-soft:#26262c; --line-medium:#33333a; --accent:#20EF35; --bad:#f87171;
-}
+:root[data-theme="dark"]{ --bg-canvas:#0f0f12; --bg-sunken:#17171b; --bg-surface:#1c1c21; --ink-1:#f2f2f5; --ink-2:#b4b4bd; --ink-3:#7c7c86; --line-soft:#26262c; --line-medium:#33333a; --accent:#20EF35; }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg-canvas);color:var(--ink-1);font-family:var(--font-text);font-size:16px;line-height:1.55;
-  word-break:keep-all;line-break:strict;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
+body{margin:0;background:var(--bg-canvas);color:var(--ink-1);font-family:var(--font-text);font-size:16px;line-height:1.55;word-break:keep-all;line-break:strict;overflow-wrap:break-word;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1120px;margin:0 auto;padding:0 var(--sp-4)}
 header{padding:var(--sp-8) 0 var(--sp-6);border-bottom:1px solid var(--line-medium)}
 .eyebrow{font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--ink-3);text-transform:uppercase}
@@ -50,35 +41,25 @@ section.alt{background:var(--bg-sunken)}
 h2{font-size:clamp(20px,2.4vw,28px);margin:0 0 var(--sp-2);line-height:1.25}
 .sub{color:var(--ink-2);margin:0 0 var(--sp-5);max-width:780px}
 code{font-family:var(--font-mono);font-size:.92em}
-
-/* 비교표 */
-.cmp{width:100%;border-collapse:collapse;font-size:15px}
-.cmp th,.cmp td{text-align:left;vertical-align:top;padding:var(--sp-3);border-top:1px solid var(--line-medium)}
-.cmp thead th{font-size:13px;color:var(--ink-3);font-weight:600;border-top:0}
-.cmp tbody tr:last-child td,.cmp tbody tr:last-child th{border-bottom:1px solid var(--line-medium)}
-.cmp .pick{box-shadow:inset 3px 0 0 var(--accent);background:var(--bg-surface)}
-.cmp .no{color:var(--bad);font-weight:600}
-.cmp .ok{color:var(--accent);font-weight:600}
-.cmp small{display:block;color:var(--ink-2);font-size:13px;margin-top:2px}
-.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
-
-/* 폰 줄 */
 .phones{display:flex;flex-wrap:wrap;gap:var(--sp-6);align-items:flex-start}
 .ph-col{width:var(--pw);max-width:100%}
 .ph-cap{margin:0 0 var(--sp-3)}
 .ph-cap .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);text-transform:uppercase}
 .ph-cap h3{margin:2px 0 0;font-size:17px}
 .ph-cap p{margin:4px 0 0;font-size:14px;color:var(--ink-2)}
-.shot{width:var(--pw);max-width:100%;border-radius:36px;display:block;box-shadow:0 0 0 9px #1d1d20,0 0 0 10px #3a3a40;margin:10px 0}
+.notes{flex:1 1 300px;min-width:0}
+.notes ol{margin:0;padding:0;list-style:none;display:grid;gap:var(--sp-3)}
+.notes li{display:grid;grid-template-columns:26px 1fr;gap:var(--sp-2);font-size:15px}
+.notes li b{display:block}
+.notes li span{color:var(--ink-2);font-size:14px}
+.dot{width:22px;height:22px;border-radius:50%;background:var(--ink-1);color:var(--bg-canvas);font-size:12px;font-weight:700;display:grid;place-items:center;font-family:var(--font-mono)}
 
-.phone{width:var(--pw);max-width:100%;height:710px;border-radius:44px;background:var(--a-bg);position:relative;overflow:hidden;
-  box-shadow:0 0 0 9px #1d1d20,0 0 0 10px #3a3a40,0 18px 40px rgba(0,0,0,.18);color:var(--a-t1);margin:10px 0;user-select:none;-webkit-user-select:none}
+.phone{width:var(--pw);max-width:100%;height:710px;border-radius:44px;background:var(--a-bg);position:relative;overflow:hidden;box-shadow:0 0 0 9px #1d1d20,0 0 0 10px #3a3a40,0 18px 40px rgba(0,0,0,.18);color:var(--a-t1);margin:10px 0;user-select:none;-webkit-user-select:none}
 .phone *{letter-spacing:-.02em}
 .sb{height:44px;display:flex;justify-content:space-between;align-items:center;padding:6px 28px 0;font-size:14px;font-weight:600;position:relative;z-index:3}
 .sb i{font-style:normal;font-size:11px;opacity:.9}
-.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#000;z-index:4}
-.closebtn{position:absolute;top:48px;left:10px;width:36px;height:36px;border-radius:50%;background:rgba(18,18,18,.5);
-  box-shadow:inset 0 0 0 .75px rgba(255,255,255,.35),0 2px 7px rgba(0,0,0,.25);display:grid;place-items:center}
+.island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:96px;height:28px;border-radius:20px;background:#000;z-index:9}
+.closebtn{position:absolute;top:48px;left:10px;width:36px;height:36px;border-radius:50%;background:rgba(18,18,18,.5);box-shadow:inset 0 0 0 .75px rgba(255,255,255,.35),0 2px 7px rgba(0,0,0,.25);display:grid;place-items:center}
 .closebtn svg{width:18px;height:18px}
 .scr{position:absolute;inset:0;padding:96px 14px 0}
 .q{font-size:33px;font-weight:700;line-height:1.2;color:var(--a-brand);margin:0}
@@ -86,81 +67,70 @@ code{font-family:var(--font-mono);font-size:.92em}
 .optcard{border-radius:10px;background:var(--a-surface);box-shadow:inset 0 0 0 1px var(--a-line);margin-bottom:54px}
 .optrow{height:56px;display:flex;align-items:center;padding:0 14px;font-size:16px;font-weight:700;border-top:1px solid var(--a-line)}
 .optrow:first-child{border-top:0}
-.strip{display:flex;gap:14px;margin-top:28px;margin-right:-14px;overflow-x:auto;scrollbar-width:none;padding-right:14px}
+.strip{display:flex;gap:14px;margin-top:28px;margin-right:-14px;padding:0 14px 6px 0;overflow-x:auto;scrollbar-width:none}
 .strip::-webkit-scrollbar{display:none}
-.tile{width:76px;height:76px;border-radius:11px;position:relative;overflow:hidden;flex:none;background:#000}
+.tile{width:76px;height:76px;border-radius:11px;position:relative;overflow:hidden;flex:none;background:#000;cursor:pointer}
 .tile canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-.tile .play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:24px;height:28px;filter:drop-shadow(0 5px 5px rgba(0,0,0,.25))}
+.tile .play{position:absolute;left:50%;top:40%;transform:translate(-50%,-50%);width:20px;height:24px;filter:drop-shadow(0 4px 5px rgba(0,0,0,.3));pointer-events:none}
 .tile .x{position:absolute;top:2px;right:2px;width:20px;height:20px}
-.tile.add{background:transparent;box-shadow:inset 0 0 0 3px var(--a-line2);display:grid;place-items:center}
+.tile.add{background:transparent;box-shadow:inset 0 0 0 3px var(--a-line2);display:grid;place-items:center;cursor:default}
 .tile.add svg{width:28px;height:28px}
-.tile .num{position:absolute;left:4px;top:4px;font-size:10px;font-weight:800;background:rgba(0,0,0,.6);color:#fff;border-radius:5px;padding:0 4px}
-
-/* 대표 장면 행 */
-.crow{margin-top:14px;min-height:56px;border-radius:12px;background:var(--a-row);display:flex;align-items:center;gap:10px;padding:8px 12px 8px 8px;cursor:pointer;position:relative}
-.stack{display:flex;flex:none;align-items:center;padding-left:2px}
-.stack canvas{width:34px;height:34px;border-radius:7px;display:block;background:#000;box-shadow:0 0 0 2px var(--a-row);margin-left:-14px}
-.stack canvas:first-child{margin-left:0}
-.crow .cnt{font-size:11px;font-weight:700;color:var(--a-t1);background:var(--a-elev);border-radius:9px;padding:1px 6px;margin-left:2px}
-.stack.one canvas{width:40px;height:40px;border-radius:8px}
-.crow .txt{flex:1;min-width:0}
-.crow .t1{font-size:15px;font-weight:600;line-height:1.3;display:flex;align-items:center;gap:6px}
-.crow .t2{font-size:12.5px;color:rgba(245,245,245,.6);line-height:1.35;margin-top:1px}
-.crow .act{font-size:14px;font-weight:600;color:var(--a-brand);display:flex;align-items:center;gap:2px;flex:none}
-.crow .gdot{width:6px;height:6px;border-radius:50%;background:var(--a-brand);display:none}
-.crow.changed .gdot,.crow.dark .gdot{display:inline-block}
-.crow:focus-visible{outline:2px solid var(--a-brand);outline-offset:2px}
+.cbtn{position:absolute;left:0;right:0;bottom:0;height:24px;display:flex;align-items:center;justify-content:center;gap:3px;font-size:11px;font-weight:700;color:#fff;
+  background:rgba(0,0,0,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border:0;font-family:inherit;cursor:pointer;padding:0}
+.cbtn svg{width:11px;height:11px}
+.cbtn i{width:5px;height:5px;border-radius:50%;background:var(--a-brand);display:none;margin-left:1px}
+.tile.changed .cbtn i{display:inline-block}
+.tile.dark .cbtn{color:var(--a-brand)}
+.tile.flash{outline:2px solid var(--a-brand);outline-offset:2px}
+.hint{font-size:12.5px;color:rgba(245,245,245,.55);margin:12px 0 0;line-height:1.45}
 .cta-row{position:absolute;left:14px;right:14px;bottom:34px}
 .cta{height:52px;border-radius:999px;background:var(--a-cta);color:var(--a-cta-ink);font-size:16px;font-weight:700;display:grid;place-items:center;border:0;width:100%;font-family:inherit}
+.cta.sec{background:var(--a-elev);color:var(--a-t1);display:flex;gap:8px;align-items:center;justify-content:center}
+.cta.sec svg{width:18px;height:18px}
 .botfade{position:absolute;left:0;right:0;bottom:0;height:150px;background:linear-gradient(transparent,rgba(0,0,0,.34) 40%,rgba(0,0,0,.72));pointer-events:none}
-.toast{position:absolute;left:50%;bottom:104px;transform:translateX(-50%) translateY(10px);background:rgba(40,40,40,.96);color:#fff;font-size:13px;font-weight:600;padding:9px 14px;border-radius:12px;opacity:0;transition:all .25s;white-space:nowrap;pointer-events:none;z-index:6}
+.toast{position:absolute;left:50%;bottom:104px;transform:translateX(-50%) translateY(10px);background:rgba(40,40,40,.96);color:#fff;font-size:13px;font-weight:600;padding:9px 14px;border-radius:12px;opacity:0;transition:all .25s;white-space:nowrap;pointer-events:none;z-index:8}
 .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 
-/* 시트 */
-.dimmer{position:absolute;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:4}
-.sheet{position:absolute;left:0;right:0;bottom:0;top:54px;background:#1a1a1a;border-radius:14px 14px 0 0;z-index:5;display:flex;flex-direction:column;
-  transform:translateY(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
-.phone.open .dimmer{opacity:1}
-.phone.open .sheet{transform:none}
-.static .sheet{transform:none}
-.static .dimmer{opacity:1}
-.grab{width:36px;height:5px;border-radius:3px;background:rgba(255,255,255,.25);margin:6px auto 0}
-.sh-h{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 14px}
-.sh-h button{background:none;border:0;font-family:inherit;font-size:15px;padding:10px 2px;cursor:pointer;color:var(--a-t1)}
-.sh-h .done{color:var(--a-brand);font-weight:700}
-.sh-h .done:disabled{color:var(--a-dis);cursor:default}
-.sh-h .ttl{font-size:15px;font-weight:700}
-.vtabs{display:flex;gap:10px;padding:4px 16px 12px}
-.vtab{width:42px;height:42px;border-radius:9px;position:relative;padding:0;border:0;background:#000;cursor:pointer;box-shadow:inset 0 0 0 1px var(--a-line);flex:none}
-.vtab canvas{border-radius:9px}
-.vtab .n{position:absolute;left:3px;top:2px;font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 2px #000}
-.vtab em{position:absolute;left:50%;bottom:-15px;transform:translateX(-50%);font-style:normal;font-size:9.5px;font-weight:700;color:var(--a-t2);white-space:nowrap}
-.vtab .cdot,.vtab .wdot{position:absolute;right:-3px;top:-3px;width:9px;height:9px;border-radius:50%;box-shadow:0 0 0 2px #1a1a1a}
-.vtab .cdot{background:var(--a-brand)} .vtab .wdot{background:#FFC94D}
-.vtab canvas{width:100%;height:100%;display:block}
-.vtab.on::after{content:"";position:absolute;inset:0;border-radius:9px;box-shadow:inset 0 0 0 3px var(--a-brand)}
-.still{position:relative;flex:1 1 auto;min-height:0;margin:4px 16px 0;border-radius:12px;background:#000;overflow:hidden}
-.still canvas{position:absolute;top:0;bottom:0;left:50%;height:100%;transform:translateX(-50%);display:block}
-.still .tl{position:absolute;right:8px;bottom:8px;font-family:var(--font-mono);font-size:11px;background:rgba(0,0,0,.6);padding:3px 7px;border-radius:7px;letter-spacing:0}
-.still .covertag{position:absolute;left:8px;top:8px;font-size:11px;font-weight:700;background:var(--a-brand);color:#111;padding:2px 7px;border-radius:6px}
-.still .darktag{position:absolute;left:8px;bottom:8px;font-size:11px;font-weight:700;background:#FFC94D;color:#111;padding:3px 8px;border-radius:7px}
-.still .autotag{position:absolute;left:8px;bottom:8px;font-size:11px;font-weight:700;background:rgba(0,0,0,.6);padding:3px 8px;border-radius:7px}
+/* 커버 편집 화면 (전체화면) */
+.ed{position:absolute;inset:0;background:#000;z-index:7;display:flex;flex-direction:column;transform:translateY(100%);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.phone.open .ed{transform:none}
+.ed-h{height:46px;display:flex;align-items:center;justify-content:space-between;padding:0 12px}
+.ed-h .ttl{font-size:15px;font-weight:700}
+.ed-h button{background:none;border:0;font-family:inherit;color:var(--a-t1);cursor:pointer;padding:10px 4px}
+.ed-h .done{font-size:15px;font-weight:700;color:var(--a-brand)}
+.ed-h .done:disabled{color:var(--a-dis);cursor:default}
+.ed-h .xb svg{width:22px;height:22px;display:block}
+.still{position:relative;flex:1 1 auto;min-height:0;margin:6px 22px 0;border-radius:15px;background:#111;overflow:hidden}
+.still canvas,.still img{position:absolute;top:0;bottom:0;left:50%;height:100%;transform:translateX(-50%);display:block}
+.still .tag{position:absolute;font-size:11px;font-weight:700;padding:3px 8px;border-radius:7px}
+.still .covertag{left:8px;top:8px;background:var(--a-brand);color:#111}
+.still .auto{left:8px;bottom:8px;background:rgba(0,0,0,.6)}
+.still .dark{left:8px;bottom:8px;background:#FFC94D;color:#111}
+.still .gal{left:8px;bottom:8px;background:rgba(0,0,0,.6)}
+.still .tl{right:8px;bottom:8px;font-family:var(--font-mono);background:rgba(0,0,0,.6);letter-spacing:0;font-weight:500}
 .fguide{font-size:12.5px;color:var(--a-t2);text-align:center;margin:14px 0 8px}
-.film{position:relative;margin:0 22px;height:52px;cursor:ew-resize;touch-action:none}
+.film{position:relative;margin:0 26px;height:52px;cursor:ew-resize;touch-action:none}
 .film canvas{width:100%;height:100%;border-radius:6px;display:block}
-.film .sel{position:absolute;top:-3px;bottom:-3px;width:34px;border:3px solid #fff;border-radius:7px;transform:translateX(-50%);box-shadow:0 0 0 999px rgba(0,0,0,.0),0 2px 6px rgba(0,0,0,.4);pointer-events:none;overflow:hidden}
-.film .sel canvas{width:100%;height:100%;border-radius:3px}
-.revert{display:block;margin:14px auto 0;background:none;border:0;font-family:inherit;font-size:14px;font-weight:600;color:var(--a-t1);padding:10px 14px;cursor:pointer;min-height:44px}
-.revert:disabled{color:var(--a-dis);cursor:default}
-.sh-b{height:30px}
+.film .sel{position:absolute;top:-3px;bottom:-3px;width:34px;border:3px solid #fff;border-radius:7px;transform:translateX(-50%);box-shadow:0 2px 6px rgba(0,0,0,.5);pointer-events:none;overflow:hidden}
+.film .sel canvas{border-radius:3px}
+.film .dim{position:absolute;inset:0;border-radius:6px;background:rgba(0,0,0,.6);display:none}
+.ed .revert{display:block;margin:6px auto 0;background:none;border:0;font-family:inherit;font-size:13.5px;font-weight:600;color:var(--a-t1);padding:10px 14px;cursor:pointer;min-height:44px}
+.ed .revert:disabled{color:var(--a-dis);cursor:default}
+.ed-b{padding:4px 14px 30px}
 
-/* 행 상태 모음 */
-.rows{display:grid;gap:var(--sp-4);grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-.rowcase{background:var(--a-bg);border-radius:var(--r-3);padding:16px 14px}
-.rowcase h4{margin:0 0 2px;font-size:13px;color:#cfcfd4;font-weight:600}
-.rowcase p{margin:0 0 10px;font-size:12.5px;color:#8f8f97}
-.rowcase .crow{margin-top:0;color:var(--a-t1);cursor:default}
-
+/* 칸 해부 */
+.anat{display:flex;flex-wrap:wrap;gap:var(--sp-6);align-items:center}
+.bigtile{width:220px;height:220px;border-radius:30px;position:relative;overflow:hidden;background:#000;flex:none}
+.bigtile canvas{width:100%;height:100%;display:block}
+.bigtile .z{position:absolute;display:grid;place-items:center;font-size:12px;font-weight:700;border-radius:8px}
+.bigtile .zp{inset:0 0 70px 0;border:2px dashed rgba(255,255,255,.6);color:#fff;background:rgba(255,255,255,.06)}
+.bigtile .zx{top:4px;right:4px;width:62px;height:62px;border:2px dashed #FFC94D;color:#FFC94D;border-radius:12px}
+.bigtile .zc{left:0;right:0;bottom:0;height:70px;background:rgba(0,0,0,.62);color:#fff;border-top:2px dashed var(--a-brand)}
+.legend{flex:1 1 280px;min-width:0}
+.legend table{width:100%;border-collapse:collapse;font-size:15px}
+.legend th,.legend td{text-align:left;vertical-align:top;padding:var(--sp-3);border-top:1px solid var(--line-medium)}
+.legend th{width:120px;color:var(--ink-2);font-weight:600}
+.legend tr:last-child th,.legend tr:last-child td{border-bottom:1px solid var(--line-medium)}
 .specs{width:100%;border-collapse:collapse;font-size:15px}
 .specs th,.specs td{text-align:left;vertical-align:top;padding:var(--sp-3);border-top:1px solid var(--line-medium)}
 .specs th{width:170px;font-weight:600;color:var(--ink-2)}
@@ -169,77 +139,45 @@ code{font-family:var(--font-mono);font-size:.92em}
 .decide div{border-left:3px solid var(--accent);background:var(--bg-surface);padding:var(--sp-3) var(--sp-4);border-radius:0 var(--r-2) var(--r-2) 0}
 .decide b{display:block}
 .decide span{color:var(--ink-2);font-size:14px}
-.notes{flex:1 1 300px;min-width:0}
-.notes ol{margin:0;padding:0;list-style:none;display:grid;gap:var(--sp-3)}
-.notes li{display:grid;grid-template-columns:26px 1fr;gap:var(--sp-2);font-size:15px}
-.notes li b{display:block}
-.notes li span{color:var(--ink-2);font-size:14px}
-.dot{width:22px;height:22px;border-radius:50%;background:var(--ink-1);color:var(--bg-canvas);font-size:12px;font-weight:700;display:grid;place-items:center;font-family:var(--font-mono)}
 footer{padding:var(--sp-6) 0 var(--sp-8);color:var(--ink-3);font-size:13px}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
-@media (max-width:820px){ .specs th{width:110px} .phones{gap:var(--sp-5)} }
-@media (max-width:380px){ :root{--pw:300px} .phone{height:650px} .q{font-size:30px} }
+@media (max-width:820px){ .specs th{width:110px} .legend th{width:96px} .phones{gap:var(--sp-5)} }
+@media (max-width:380px){ :root{--pw:300px} .phone{height:650px} .q{font-size:30px} .bigtile{width:180px;height:180px} }
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
-    <div class="eyebrow">포트폴리오 업로드 · 동영상 대표 장면 · v3 (동영상 최대 5개)</div>
-    <h1>미리보기는 그대로 두고, 대표 장면은 칸 밖 한 줄에서 바꾼다</h1>
-    <p class="lede">동영상 칸을 누르면 지금처럼 전체 화면 미리보기가 열립니다. 칸 안에는 아무것도 더하지 않고, 썸네일 줄 아래에 <b>「대표 장면 · 바꾸기」 행 하나</b>를 둡니다. 동영상이 5개여도 행은 하나이고, 시트 위쪽 썸네일 줄에서 동영상을 바꿔 가며 장면을 고릅니다.</p>
-    <p class="sub" style="margin-top:var(--sp-4)">근거: 실제 앱 녹화(2026-10-07), iOS 최신 개발 소스, 타 서비스 조사, 세 가지 안 비교 심사(iOS 개발·UX 두 관점). v1의 「칸 아래 커버 편집 띠」는 미리보기 탭과 겹쳐서 뺐고, v3에서 동영상 여러 개(최대 5개)를 반영했습니다.</p>
+    <div class="eyebrow">포트폴리오 업로드 · 동영상 커버 · v4</div>
+    <h1>동영상 칸마다 [커버 편집] 버튼을 둔다</h1>
+    <p class="lede">틱톡처럼 썸네일에 <b>「커버 편집」</b>을 붙여 커버로 가는 길을 따로 줍니다. 칸을 누르면 지금처럼 미리보기가 열리고, 「커버 편집」을 누르면 그 동영상의 커버 편집 화면이 열립니다. 동영상이 5개면 버튼도 5개라 어느 영상의 커버인지 헷갈리지 않습니다.</p>
   </div>
 </header>
 
 <section>
   <div class="wrap">
-    <h2>지금 앱: 칸 하나에 탭·길게 누르기·삭제가 이미 다 들어 있다</h2>
-    <p class="sub">녹화에서 확인한 동작입니다. 90pt 칸을 누르면 시스템 전체 화면 플레이어가 열려 바로 재생되고, 길게 누르면 순서를 바꾸고, 오른쪽 위 X는 삭제입니다. 여기에 「편집」을 하나 더 얹으면 손가락이 닿는 자리가 겹칩니다.</p>
-    <div class="phones">
-      <div class="ph-col"><div class="ph-cap"><span class="tag">실제 화면 · 첨부 확인</span><h3>썸네일 아래가 비어 있다</h3><p>썸네일 줄과 「선택완료」 사이에 공간이 넉넉합니다. 새 행은 여기에 들어갑니다.</p></div>
-        <img class="shot" src="rec-2.5.jpg" alt="실제 앱의 첨부한 작업물 확인 화면" width="360" height="780" loading="lazy"></div>
-      <div class="ph-col"><div class="ph-cap"><span class="tag">실제 화면 · 칸을 누르면</span><h3>전체 화면 미리보기</h3><p>시스템 플레이어라서 이 화면에 우리 버튼을 얹기 어렵습니다(공식 문서상 버튼을 올리는 용도가 아님).</p></div>
-        <img class="shot" src="rec-7.2.jpg" alt="동영상 칸을 누르면 열리는 전체 화면 플레이어" width="360" height="780" loading="lazy"></div>
+    <h2>칸 하나에 누르는 자리를 세 곳으로 나눈다</h2>
+    <p class="sub">지금 칸은 「누르기 = 미리보기」, 「오른쪽 위 X = 삭제」, 「길게 누르기 = 순서 바꾸기」입니다. 여기에 아래쪽 띠 「커버 편집」을 더합니다. 띠의 누르는 영역은 칸 아래 여백까지 늘려 손가락이 빗나가지 않게 합니다.</p>
+    <div class="anat">
+      <div class="bigtile"><canvas class="rc" data-v="A" data-t="10" width="440" height="440"></canvas>
+        <div class="z zp">누르기 = 미리보기</div><div class="z zx">X 삭제</div><div class="z zc">커버 편집</div></div>
+      <div class="legend"><table>
+        <tr><th>칸 위쪽</th><td>지금처럼 전체 화면 미리보기. 재생 아이콘은 띠에 가리지 않게 조금 위로 올립니다.</td></tr>
+        <tr><th>오른쪽 위 X</th><td>삭제. 지금 그대로입니다.</td></tr>
+        <tr><th>아래쪽 띠</th><td>「커버 편집」. 보이는 높이는 약 24pt(칸의 1/4)이고, 누르는 영역은 칸 아래 여백까지 합쳐 44pt 이상으로 잡습니다.</td></tr>
+        <tr><th>길게 누르기</th><td>칸 어디를 길게 눌러도 순서 바꾸기. 띠 위에서 시작해도 같습니다.</td></tr>
+      </table></div>
     </div>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2>세 가지 진입 방식 중 「칸 밖 행」만 미리보기와 겹치지 않으면서 작게 끝난다</h2>
-    <p class="sub">숏폼 앱(릴스·틱톡·쇼츠)은 게시 화면의 썸네일이 하나라서 썸네일 자체를 커버 편집으로 씁니다. 우리처럼 여러 칸이 늘어선 작성기(인스타 캐러셀·스레드·X)는 칸 안에 커버 편집을 넣은 사례가 없었고, 핀터레스트처럼 칸 밖의 별도 항목으로 뺍니다.</p>
-    <div class="scroll-x">
-    <table class="cmp">
-      <thead><tr><th>안</th><th>미리보기와 겹침</th><th>찾기 쉬움</th><th>변경 크기</th><th>심사 결과</th></tr></thead>
-      <tbody>
-        <tr><th>A. 칸 안에 「커버 편집」 띠 (v1)<small>유튜브 쇼츠·틱톡 방식</small></th><td class="no">겹침<small>90pt 칸에 탭·길게 누르기·X·띠가 몰림</small></td><td>좋음</td><td>작음</td><td>제외</td></tr>
-        <tr><th>B. 미리보기 안에 「이 장면으로」 버튼<small>Vimeo·Wistia(데스크톱 웹)</small></th><td class="no">미리보기가 바뀜<small>시스템 플레이어를 자체 화면으로 교체해야 함</small></td><td>미리보기를 열어야 보임</td><td>큼</td><td>2/5점대, 탈락</td></tr>
-        <tr class="pick"><th>C. 칸 밖 「대표 장면」 행 + 고르기 시트<small>핀터레스트 'Edit cover' 항목 방식</small></th><td class="ok">겹침 없음<small>칸·미리보기 코드는 손대지 않음</small></td><td>좋음<small>지금 장면 미니 썸네일 + 「바꾸기」 글자</small></td><td>행 1개 + 시트 1개</td><td>두 심사 모두 1위</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <h2>동영상이 여러 개면 대표 장면도 동영상마다 하나씩이다</h2>
-    <p class="sub">한 포트폴리오에 사진·동영상을 합쳐 5개까지 올릴 수 있고, 5개가 모두 동영상일 수도 있습니다. iOS는 이미 동영상마다 썸네일을 따로 만들어 보냅니다. 그래서 대표 장면도 동영상마다 정합니다. 쓰이는 곳은 아래와 같습니다.</p>
-    <table class="specs">
-      <tr><th>포트폴리오 카드</th><td><b>첫 번째 칸</b>이 표지입니다. 첫 칸이 동영상이면 그 동영상의 대표 장면이, 사진이면 그 사진이 카드에 보입니다. 나머지 동영상의 대표 장면은 카드에 쓰이지 않습니다.</td></tr>
-      <tr><th>상세 화면</th><td>동영상마다 재생 전 화면(포스터)으로 쓰입니다. 단, 지금 iOS 상세는 영상이 준비되면 포스터를 곧바로 걷어 0초 화면이 보입니다. 재생 전까지 포스터를 유지하도록 함께 고쳐야 합니다.</td></tr>
-      <tr><th>첨부 칸</th><td>칸마다 자기 대표 장면이 보입니다. 순서를 바꿔도 장면은 그 동영상을 따라갑니다.</td></tr>
-    </table>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
-    <h2>행은 하나만 두고, 시트 위에서 동영상을 고른다</h2>
-    <p class="sub">동영상이 5개여도 행은 하나입니다. 시트 위쪽의 작은 썸네일 줄이 첨부 칸 순서 그대로 동영상을 보여 주고, 눌러서 바꿉니다. 영상을 고르는 단계가 따로 생기지 않습니다. 아래 예시는 「동영상 · 사진 · 동영상 · 동영상」 4개를 첨부한 경우입니다. 4번 칸 영상은 대부분 어두워서 자동 장면도 어둡습니다.</p>
+    <h2>눌러 보기: 칸마다 「커버 편집」 → 그 영상의 커버 편집 화면</h2>
+    <p class="sub">「동영상 · 사진 · 동영상 · 동영상」 4개를 첨부한 예시입니다. 4번 칸 영상은 대부분 어두워서 자동 커버도 어둡습니다. 아무 동영상의 「커버 편집」을 눌러 필름스트립을 끌고 「완료」를 눌러 보세요.</p>
     <div class="phones">
       <div class="ph-col">
-        <div class="ph-cap"><span class="tag">직접 눌러 보기</span><h3>첨부 확인 → 대표 장면 고르기</h3><p>행을 누르고, 위쪽 썸네일로 동영상을 바꿔 가며 장면을 골라 보세요. 「완료」 한 번에 모두 반영됩니다.</p></div>
+        <div class="ph-cap"><span class="tag">첨부 확인 → 커버 편집</span><h3>칸을 누르면 미리보기, 띠를 누르면 커버 편집</h3><p>칸을 눌렀을 때는 이 시안에서 안내만 띄웁니다.</p></div>
         <div class="phone" id="ph">
           <div class="island"></div>
           <div class="sb"><span>9:41</span><i>●●● ▮</i></div>
@@ -247,37 +185,31 @@ footer{padding:var(--sp-6) 0 var(--sp-8);color:var(--ink-3);font-size:13px}
             <div class="optcard ghost"><div class="optrow">유튜브 링크</div><div class="optrow">긴 글</div></div>
             <p class="q">첨부한 작업물을<br>확인해주세요</p>
             <div class="strip" id="strip"></div>
-            <div class="crow" id="crow" role="button" tabindex="0">
-              <div class="stack" id="stack"></div>
-              <div class="txt"><div class="t1"><span id="rowTitle">대표 장면</span><span class="gdot"></span></div><div class="t2" id="rowSub"></div></div>
-              <div class="act">바꾸기<svg width="14" height="14" viewBox="0 0 14 14"><path d="M5 3l4 4-4 4" stroke="#20EF35" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
-            </div>
+            <p class="hint" id="hint">동영상은 어두운 장면을 피해 커버를 골라 뒀어요. 「커버 편집」으로 바꿀 수 있어요.</p>
           </div>
           <div class="closebtn"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="#F5F5F5" stroke-width="1.5" stroke-linecap="round"/></svg></div>
           <div class="botfade"></div>
           <div class="cta-row"><button class="cta" type="button">선택완료</button></div>
-          <div class="toast" id="toast">대표 장면을 바꿨어요</div>
-          <div class="dimmer" id="dim"></div>
-          <div class="sheet" id="sheet" role="dialog" aria-label="대표 장면 고르기">
-            <div class="grab"></div>
-            <div class="sh-h"><button type="button" id="cancel">취소</button><span class="ttl">대표 장면 고르기</span><button type="button" class="done" id="done" disabled>완료</button></div>
-            <div class="vtabs" id="vtabs" role="tablist" aria-label="동영상 선택"></div>
-            <div class="still"><canvas id="stillC" width="270" height="480"></canvas><span class="autotag" id="autotag">자동으로 고른 장면</span><span class="covertag" id="covertag">카드 표지</span><span class="tl" id="tl">0:10</span><span class="darktag" id="darktag">장면이 어두워요</span></div>
-            <div class="fguide">밀어서 장면을 골라요</div>
-            <div class="film" id="film" role="slider" tabindex="0" aria-label="장면 선택"><canvas id="filmC" width="560" height="104"></canvas><div class="sel" id="sel"><canvas id="selC" width="68" height="104"></canvas></div></div>
+          <div class="toast" id="toast"></div>
+          <div class="ed" id="ed" role="dialog" aria-label="커버 편집">
+            <div class="sb"><span>9:41</span><i>●●● ▮</i></div>
+            <div class="ed-h"><button type="button" class="xb" id="edClose" aria-label="닫기"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></button><span class="ttl" id="edTitle">커버 편집</span><button type="button" class="done" id="done" disabled>완료</button></div>
+            <div class="still"><canvas id="stillC" width="270" height="480"></canvas><img id="stillImg" alt="" style="display:none">
+              <span class="tag covertag" id="tCover">카드 표지</span><span class="tag auto" id="tAuto">자동으로 고른 장면</span><span class="tag dark" id="tDark">장면이 어두워요</span><span class="tag gal" id="tGal">앨범 사진</span><span class="tag tl" id="tl">0:10</span></div>
+            <div class="fguide" id="fguide">밀어서 장면을 골라요</div>
+            <div class="film" id="film" role="slider" tabindex="0" aria-label="장면 선택"><canvas id="filmC" width="560" height="104"></canvas><div class="dim" id="fdim"></div><div class="sel" id="sel"><canvas id="selC" width="68" height="104"></canvas></div></div>
             <button class="revert" type="button" id="revert" disabled>자동 장면으로</button>
-            <div class="sh-b"></div>
+            <div class="ed-b"><button class="cta sec" type="button" id="gal"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3" fill="none" stroke="#F5F5F5" stroke-width="1.6"/><circle cx="9" cy="10" r="2" fill="#F5F5F5"/><path d="M4 18l5-5 4 4 3-3 4 4" fill="none" stroke="#F5F5F5" stroke-width="1.6" stroke-linejoin="round"/></svg>앨범에서 선택</button></div>
           </div>
         </div>
       </div>
       <div class="notes">
         <ol>
-          <li><span class="dot">1</span><div><b>칸은 그대로, 행은 하나</b><span>동영상이 몇 개든 행은 하나입니다. 왼쪽에 동영상들의 대표 장면을 겹쳐 보여 주고(최대 5장), 제목 옆 숫자는 동영상 개수입니다.</span></div></li>
-          <li><span class="dot">2</span><div><b>행 보조문이 할 일을 알려 준다</b><span>어두운 동영상이 있으면 「1개 장면이 어두워요. 바꿔 보세요」와 초록 점을 표시합니다. 바꾼 뒤에는 「2개를 직접 골랐어요」, 그 밖에는 「첫 동영상 장면이 카드 표지가 돼요」를 보여 줍니다.</span></div></li>
-          <li><span class="dot">3</span><div><b>시트는 손볼 동영상부터 연다</b><span>어두운 동영상이 있으면 그 동영상을, 없으면 첫 동영상을 먼저 엽니다.</span></div></li>
-          <li><span class="dot">4</span><div><b>동영상 고르는 줄 = 첨부 칸 순서</b><span>숫자는 첨부 칸 번호(1·3·4)라서 사진이 섞여도 어느 칸인지 헷갈리지 않습니다. 카드 표지가 되는 동영상에는 「표지」 글자를, 바꾼 동영상에는 초록 점을, 어두운 동영상에는 노란 점을 붙입니다.</span></div></li>
-          <li><span class="dot">5</span><div><b>한 번에 저장, 한 번에 취소</b><span>여러 동영상을 오가며 고른 뒤 「완료」 한 번으로 모두 반영합니다. 「취소」는 이번에 고른 것을 모두 버립니다. 하나라도 바꾸면 쓸어 닫기를 막습니다.</span></div></li>
-          <li><span class="dot">6</span><div><b>되돌리기는 동영상별</b><span>「자동 장면으로」는 지금 보고 있는 동영상만 자동 장면으로 돌립니다.</span></div></li>
+          <li><span class="dot">1</span><div><b>동영상 칸에만 「커버 편집」</b><span>사진 칸에는 붙이지 않습니다. 동영상이 5개면 버튼도 5개라, 어느 영상의 커버를 바꾸는지 따로 고를 필요가 없습니다.</span></div></li>
+          <li><span class="dot">2</span><div><b>상태는 띠로 알린다</b><span>자동 커버가 어두운 영상은 띠 글자가 초록이고, 직접 바꾼 영상은 띠에 초록 점이 붙습니다. 칸 아래 안내문 한 줄이 처음 보는 사람에게 기능을 알려 줍니다.</span></div></li>
+          <li><span class="dot">3</span><div><b>편집 화면은 업계 표준 모양</b><span>틱톡·인스타 릴스·네이버 클립처럼 큰 미리보기, 필름스트립 위 선택 창, 「앨범에서 선택」, 위쪽 X·완료입니다. 앱에 있는 동영상 자르기 화면의 헤더·프레임 줄과도 같은 모양입니다.</span></div></li>
+          <li><span class="dot">4</span><div><b>카드 표지 알림</b><span>첫 칸 동영상을 편집할 때만 미리보기에 「카드 표지」를 붙입니다. 이 장면이 포트폴리오 카드에도 쓰인다는 뜻입니다.</span></div></li>
+          <li><span class="dot">5</span><div><b>실수 방지와 되돌리기</b><span>바꾸기 전에는 「완료」가 꺼져 있습니다. 「자동 장면으로」로 언제든 자동 커버에 돌아갑니다. X는 바꾼 것을 버리고 닫습니다.</span></div></li>
         </ol>
       </div>
     </div>
@@ -286,66 +218,45 @@ footer{padding:var(--sp-6) 0 var(--sp-8);color:var(--ink-3);font-size:13px}
 
 <section>
   <div class="wrap">
-    <h2>행은 상황에 따라 문구만 바뀐다</h2>
-    <p class="sub">새 컴포넌트는 행 하나뿐입니다. 상태는 보조문과 점으로만 구분하고, 우선순위는 「어두움 → 직접 고름 → 표지 안내」입니다.</p>
-    <div class="rows">
-      <div class="rowcase"><h4>동영상 1개 · 첫 칸</h4><p>기본</p>
-        <div class="crow"><div class="stack" data-v="A"></div><div class="txt"><div class="t1">대표 장면</div><div class="t2">카드 표지로 이 장면이 보여요</div></div><div class="act">바꾸기 ›</div></div></div>
-      <div class="rowcase"><h4>동영상 3개 · 어두운 영상 있음</h4><p>할 일이 있을 때만 강조</p>
-        <div class="crow dark"><div class="stack" data-v="A,B,C"></div><div class="txt"><div class="t1">대표 장면 <b class="cnt">3</b><span class="gdot"></span></div><div class="t2">1개 장면이 어두워요. 바꿔 보세요</div></div><div class="act">바꾸기 ›</div></div></div>
-      <div class="rowcase"><h4>동영상 3개 · 직접 고른 뒤</h4><p>몇 개를 바꿨는지</p>
-        <div class="crow changed"><div class="stack" data-v="A,B,C"></div><div class="txt"><div class="t1">대표 장면 <b class="cnt">3</b><span class="gdot"></span></div><div class="t2">2개를 직접 골랐어요</div></div><div class="act">바꾸기 ›</div></div></div>
-      <div class="rowcase"><h4>첫 칸이 사진일 때</h4><p>카드 표지가 아니라는 걸 알려 줌</p>
-        <div class="crow"><div class="stack" data-v="B,C"></div><div class="txt"><div class="t1">대표 장면 <b class="cnt">2</b></div><div class="t2">상세에서 재생 전 화면으로 보여요</div></div><div class="act">바꾸기 ›</div></div></div>
-    </div>
+    <h2>동작 규칙</h2>
+    <table class="specs">
+      <tr><th>자동 커버</th><td>동영상마다 <code>min(10초, 길이÷2)</code> → 길이의 25% → 75% 순으로 보고, 처음으로 밝은 장면을 씁니다. 셋 다 어두우면 첫 후보를 쓰고 띠를 초록 글자로 표시합니다.</td></tr>
+      <tr><th>커버 편집 화면</th><td>그 동영상 하나만 다룹니다. 열면 지금 커버 위치에서 시작합니다. 「완료」는 그 동영상의 커버만 바꾸고 첨부 화면으로 돌아갑니다(토스트 「커버를 바꿨어요」).</td></tr>
+      <tr><th>앨범에서 선택</th><td>시스템 사진 선택기로 이미지 한 장을 고릅니다. 고르면 미리보기에 「앨범 사진」이 붙고 프레임 줄은 흐려집니다. 「자동 장면으로」를 누르면 영상 장면으로 돌아갑니다.</td></tr>
+      <tr><th>순서·삭제</th><td>순서를 바꿔도 커버는 그 동영상을 따라갑니다. 동영상이 첫 칸으로 오면 그 커버가 카드 표지가 됩니다. 지운 동영상은 커버도 지웁니다.</td></tr>
+      <tr><th>접근성</th><td>띠는 「1번 동영상 커버 편집」처럼 읽습니다. 프레임 줄은 위아래로 밀 때마다 1초씩 움직입니다.</td></tr>
+    </table>
   </div>
 </section>
 
 <section class="alt">
   <div class="wrap">
-    <h2>동작 규칙</h2>
-    <p class="sub">서버는 동영상마다 썸네일 한 장씩을 받습니다(새 등록 API). 앱이 0초 대신 고른 장면을 그 자리에 넣으면 됩니다.</p>
+    <h2>함께 풀어야 할 것</h2>
     <table class="specs">
-      <tr><th>자동 장면</th><td>동영상마다 <code>min(10초, 길이÷2)</code> → 길이의 25% → 75% 순으로 보고, 처음으로 밝은 장면을 씁니다. 셋 다 어두우면 첫 후보를 쓰고 「어두움」으로 표시합니다. 영상을 고른 직후 처리 시간에 함께 계산하며, 동영상이 5개여도 영상당 3장만 봐서 대기 시간이 크게 늘지 않게 합니다.</td></tr>
-      <tr><th>행 노출</th><td>동영상이 1개 이상일 때만 보입니다. 제목은 「대표 장면」이고, 동영상이 2개 이상이면 옆에 개수를 붙입니다.</td></tr>
-      <tr><th>시트 첫 화면</th><td>어두운 동영상이 있으면 그중 첫 번째 동영상을, 없으면 첫 동영상을 엽니다. 각 동영상은 마지막으로 고른 위치에서 시작합니다.</td></tr>
-      <tr><th>저장</th><td>「완료」 한 번에 모든 동영상의 변경을 반영합니다. 하나도 바꾸지 않았으면 「완료」는 꺼져 있습니다. 「취소」는 이번 변경을 모두 버립니다.</td></tr>
-      <tr><th>순서·삭제·추가</th><td>순서를 바꿔도 장면은 동영상을 따라갑니다. 동영상이 첫 칸으로 오면 그 장면이 카드 표지가 되고, 시트의 「표지」 글자도 옮겨 갑니다. 지운 동영상은 상태도 지웁니다. 새로 추가한 동영상은 자동 장면부터 시작합니다.</td></tr>
-      <tr><th>접근성</th><td>동영상 고르는 줄은 「3번 칸 동영상, 카드 표지 아님, 바뀜」처럼 읽습니다. 프레임 줄은 위아래로 밀 때마다 1초씩 움직입니다.</td></tr>
+      <tr><th>서버</th><td>동영상마다 커버를 받는 새 등록 API(CCE-4803)가 아직 메인에 합쳐지지 않았습니다.</td></tr>
+      <tr><th>Android</th><td>아직 커버를 한 장만 보내서 첫 칸 동영상 것만 저장됩니다. 새 등록 방식을 붙이기 전까지는 첫 칸 동영상만 「커버 편집」을 보여 주는 식으로 줄여야 합니다.</td></tr>
+      <tr><th>iOS 상세</th><td>영상이 준비되면 커버를 바로 걷어 0초 화면이 보입니다. 재생 전까지 커버를 유지하도록 고쳐야 고른 커버가 상세에서 보입니다.</td></tr>
     </table>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>함께 풀어야 할 것</h2>
-    <p class="sub">화면만 만들어서는 장면이 끝까지 보이지 않습니다. 코드로 확인한 선행 조건입니다.</p>
-    <table class="specs">
-      <tr><th>서버</th><td>동영상마다 썸네일을 받는 새 등록 API(CCE-4803)가 아직 메인에 합쳐지지 않았습니다. 합쳐져 배포돼야 iOS의 동영상별 장면이 저장됩니다.</td></tr>
-      <tr><th>Android</th><td>아직 옛 등록 방식이라 썸네일을 한 장만 보냅니다. 첫 칸이 동영상일 때 그 썸네일만 가고, 두 번째부터는 버려집니다. 새 등록 방식을 붙이기 전까지 Android는 「첫 동영상만 고르기」로 범위를 줄여야 합니다.</td></tr>
-      <tr><th>iOS 상세</th><td>영상이 준비되면 포스터를 걷어서, 고른 장면이 상세에서 거의 보이지 않습니다. 재생 전까지 포스터를 유지하도록 고쳐야 합니다.</td></tr>
-    </table>
-  </div>
-</section>
-
-<section class="alt">
-  <div class="wrap">
     <h2>정할 것</h2>
     <div class="decide">
-      <div><b>동영상마다 고르게 할까, 카드 표지가 되는 첫 동영상만 고르게 할까?</b><span>추천: 동영상마다. 상세에서도 동영상마다 첫 화면이 보이고, 서버(새 API)와 iOS 전송이 이미 동영상별입니다. 단 iOS 상세 포스터 수정이 같이 들어가야 의미가 있습니다. 이번에 상세를 못 고치면 「첫 동영상만」으로 줄이는 게 맞습니다.</span></div>
-      <div><b>Android를 iOS와 같이 낼까?</b><span>추천: 화면은 같이 내되, Android는 새 등록 방식이 붙을 때까지 첫 동영상만 반영합니다. 개발 일정 확인이 필요합니다.</span></div>
-      <div><b>용어는 「대표 장면」으로 할까?</b><span>추천: 그렇게 합니다. 행·시트·토스트·읽어 주기 문구를 모두 맞춥니다.</span></div>
+      <div><b>「앨범에서 선택」을 이번에 넣을까?</b><span>추천: 넣습니다. 틱톡·인스타·네이버 클립 모두 있고, 포트폴리오는 따로 만든 표지를 쓰고 싶은 경우가 많습니다. 빼면 편집 화면에서 버튼만 숨기면 됩니다.</span></div>
+      <div><b>띠 문구는 「커버 편집」, 「커버」 중 무엇으로 할까?</b><span>추천: 「커버 편집」. 76pt 칸에 들어가고, 틱톡 「Edit cover」와 같은 뜻이라 바로 읽힙니다.</span></div>
+      <div><b>Android를 iOS와 같이 낼까?</b><span>추천: 같이 내되, 새 등록 방식 전까지 Android는 첫 칸 동영상만 편집 가능하게 합니다.</span></div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">예시 영상 세 개(32초·20초·16초)는 화면 설명을 위해 코드로 그린 그림입니다. 실제 화면 두 장은 2026-10-07 앱 녹화에서 가져왔습니다. 앱 색·글꼴·크기는 iOS 디자인 토큰(다크 고정)을 약 0.84배로 줄여 따랐습니다.</div>
+  <div class="wrap">예시 영상 세 개(32초·20초·16초)는 화면 설명을 위해 코드로 그린 그림입니다. 앱 색·글꼴·크기는 iOS 디자인 토큰(다크 고정)을 약 0.84배로 줄여 따랐습니다. 근거 리서치: 동영상 커버 선택 화면 98장(틱톡·인스타 릴스·유튜브 쇼츠·네이버 클립 등).</div>
 </footer>
 
 <script>
 (function(){
-  // 예시 동영상 3개: A(32초, 앞 2초 페이드인) · B(20초) · C(16초, 대부분 어두운 공연장)
   const VIDS={
     A:{D:32,seg:8,order:[0,1,2,3],bright:t=>{let b=1;if(t<2)b=t/2;if(t>31)b=32-t;for(const c of[8,16,24]){const d=Math.abs(t-c);if(d<.5)b*=.25+.75*d/.5}return Math.max(0,b)}},
     B:{D:20,seg:10,order:[3,2],bright:t=>{let b=t<.8?t/.8:1;const d=Math.abs(t-10);if(d<.5)b*=.25+.75*d/.5;return b}},
@@ -393,80 +304,73 @@ footer{padding:var(--sp-6) 0 var(--sp-8);color:var(--ink-3);font-size:13px}
     const g=c.createLinearGradient(0,0,w,h); g.addColorStop(0,'#8fb3ff'); g.addColorStop(1,'#d9c2ff'); c.fillStyle=g; c.fillRect(0,0,w,h);
     c.fillStyle='rgba(255,255,255,.85)'; c.fillRect(w*.22,h*.18,w*.56,h*.64); c.fillStyle='#5b74da'; c.fillRect(w*.3,h*.27,w*.4,h*.25);
     c.fillStyle='#c969a9'; c.beginPath(); c.arc(w*.5,h*.68,w*.08,0,7); c.fill(); }
+
   const AUTO={A:autoPick('A'),B:autoPick('B'),C:autoPick('C')};
-  function stackInto(el,list,covers){ el.innerHTML=''; list.slice(0,5).forEach((v,i)=>{ const c=document.createElement('canvas'); c.width=72; c.height=72; el.appendChild(c); frameTo(c,v,covers?covers[v]:AUTO[v].t); }); el.classList.toggle('one',list.length===1); }
+  const isDark=(v,t)=>luma(v,t)<=.07;
+  document.querySelectorAll('canvas.rc').forEach(c=>frameTo(c,c.dataset.v,+c.dataset.t));
+  function galleryArt(w,h){ const c=document.createElement('canvas'); c.width=w; c.height=h; const x=c.getContext('2d');
+    x.fillStyle='#111'; x.fillRect(0,0,w,h); const g=x.createLinearGradient(0,h*.2,w,h*.8); g.addColorStop(0,'#20EF35'); g.addColorStop(1,'#5b74da');
+    x.fillStyle=g; x.beginPath(); x.arc(w*.5,h*.45,w*.36,0,7); x.fill(); x.fillStyle='#fff'; x.textAlign='center';
+    x.font='800 '+Math.round(w*.12)+'px Pretendard, sans-serif'; x.fillText('SHOWREEL',w*.5,h*.47);
+    x.font='600 '+Math.round(w*.055)+'px Pretendard, sans-serif'; x.fillText('2026 · portfolio',w*.5,h*.53); return c; }
+  const ART=galleryArt(270,480);
   const PLAY='<svg class="play" viewBox="0 0 24 28"><path d="M3 2.5v23a1.5 1.5 0 0 0 2.3 1.3l18-11.5a1.5 1.5 0 0 0 0-2.6L5.3 1.2A1.5 1.5 0 0 0 3 2.5z" fill="#F5F5F5"/></svg>';
   const XB='<svg class="x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="#D9D9D9"/><path d="M8 8l8 8M16 8l-8 8" stroke="#121212" stroke-width="2" stroke-linecap="round"/></svg>';
-
-  // 정적 행 예시
-  document.querySelectorAll('.rows .stack').forEach(el=>stackInto(el,el.dataset.v.split(',')));
-
-  // 첨부: 1 동영상A · 2 사진 · 3 동영상B · 4 동영상C
+  const PEN='<svg viewBox="0 0 12 12"><path d="M2 10l.6-2.4L8 2.2l1.8 1.8-5.4 5.4z" fill="currentColor"/></svg>';
   const ITEMS=[{k:'v',v:'A'},{k:'p'},{k:'v',v:'B'},{k:'v',v:'C'}];
   const VIDEOS=ITEMS.map((it,i)=>({...it,pos:i+1})).filter(it=>it.k==='v');
-  const cover={A:AUTO.A.t,B:AUTO.B.t,C:AUTO.C.t}; let draft={...cover}; let cur='A';
-  const strip=document.getElementById('strip'), tiles={};
-  ITEMS.forEach(it=>{ const d=document.createElement('div'); d.className='tile'; d.innerHTML='<canvas width="152" height="152"></canvas>'+(it.k==='v'?PLAY:'')+XB; strip.appendChild(d);
-    const c=d.querySelector('canvas'); if(it.k==='v') tiles[it.v]=c; else photo(c); });
+  const cover={}; VIDEOS.forEach(x=>cover[x.v]={mode:'video',t:AUTO[x.v].t});
+  const tiles={}, strip=document.getElementById('strip'), ph=document.getElementById('ph');
+  function toast(msg){ const el=document.getElementById('toast'); el.textContent=msg; el.classList.add('on'); clearTimeout(el._t); el._t=setTimeout(()=>el.classList.remove('on'),1700); }
+  function drawCover(canvas,v,c){ if(c.mode==='gallery'){ const ctx=canvas.getContext('2d'); const sr=270/480, dr=canvas.width/canvas.height; let sw,sh,sx,sy; if(dr>sr){sw=270;sh=sw/dr;sx=0;sy=(480-sh)/2;}else{sh=480;sw=sh*dr;sy=0;sx=(270-sw)/2;} ctx.drawImage(ART,sx,sy,sw,sh,0,0,canvas.width,canvas.height);} else frameTo(canvas,v,c.t); }
+  ITEMS.forEach((it,i)=>{ const d=document.createElement('div'); d.className='tile';
+    if(it.k==='v'){ const x=VIDEOS.find(y=>y.v===it.v);
+      d.innerHTML='<canvas width="152" height="152"></canvas>'+PLAY+XB+'<button type="button" class="cbtn" aria-label="'+x.pos+'번 동영상 커버 편집">'+PEN+'커버 편집<i></i></button>';
+      tiles[it.v]=d; d.querySelector('.cbtn').addEventListener('click',e=>{e.stopPropagation(); open(it.v);});
+      d.addEventListener('click',()=>toast('미리보기가 열려요 (지금과 같음)'));
+    } else { d.innerHTML='<canvas width="152" height="152"></canvas>'+XB; photo(d.querySelector('canvas')); d.addEventListener('click',()=>toast('미리보기가 열려요 (지금과 같음)')); }
+    strip.appendChild(d); });
   const add=document.createElement('div'); add.className='tile add'; add.innerHTML='<svg viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" stroke="#666" stroke-width="1.6" stroke-linecap="round"/></svg>'; strip.appendChild(add);
+  function refreshTiles(){ VIDEOS.forEach(x=>{ const d=tiles[x.v], c=cover[x.v]; drawCover(d.querySelector('canvas'),x.v,c);
+    const changed=c.mode==='gallery'||Math.abs(c.t-AUTO[x.v].t)>=.05; d.classList.toggle('changed',changed);
+    d.classList.toggle('dark',!changed&&c.mode==='video'&&isDark(x.v,c.t)); }); }
 
-  const ph=document.getElementById('ph'), crow=document.getElementById('crow'), rowSub=document.getElementById('rowSub'), rowTitle=document.getElementById('rowTitle'), stack=document.getElementById('stack');
-  const stillC=document.getElementById('stillC'), tl=document.getElementById('tl'), autotag=document.getElementById('autotag'), covertag=document.getElementById('covertag'), darktag=document.getElementById('darktag');
-  const filmEl=document.getElementById('film'), filmC=document.getElementById('filmC'), sel=document.getElementById('sel'), selC=document.getElementById('selC');
-  const done=document.getElementById('done'), revert=document.getElementById('revert'), vtabs=document.getElementById('vtabs');
-  const isDark=(v,t)=>luma(v,t)<=.07;
-  const changedOf=o=>VIDEOS.filter(x=>Math.abs(o[x.v]-AUTO[x.v].t)>=.05).length;
-
-  function applyCover(){
-    VIDEOS.forEach(x=>frameTo(tiles[x.v],x.v,cover[x.v]));
-    stackInto(stack,VIDEOS.map(x=>x.v),cover);
-    rowTitle.innerHTML=VIDEOS.length>1?('대표 장면 <b class="cnt">'+VIDEOS.length+'</b>'):'대표 장면';
-    const darkN=VIDEOS.filter(x=>isDark(x.v,cover[x.v])).length, chN=changedOf(cover);
-    crow.classList.toggle('dark',darkN>0); crow.classList.toggle('changed',darkN===0&&chN>0);
-    rowSub.textContent= darkN? (darkN+'개 장면이 어두워요. 바꿔 보세요') : chN? (chN+'개를 직접 골랐어요') : (ITEMS[0].k==='v'?'첫 동영상 장면이 카드 표지가 돼요':'상세에서 재생 전 화면으로 보여요');
-    crow.setAttribute('aria-label','대표 장면, 동영상 '+VIDEOS.length+'개, '+rowSub.textContent+', 바꾸기');
-  }
-  function buildTabs(){
-    vtabs.innerHTML='';
-    VIDEOS.forEach(x=>{ const b=document.createElement('button'); b.type='button'; b.className='vtab'+(x.v===cur?' on':''); b.setAttribute('role','tab');
-      const ch=Math.abs(draft[x.v]-AUTO[x.v].t)>=.05, dk=isDark(x.v,draft[x.v]);
-      b.setAttribute('aria-label',x.pos+'번 칸 동영상'+(x.pos===1?', 카드 표지':'')+(ch?', 바뀜':'')+(dk?', 어두움':''));
-      b.innerHTML='<canvas width="72" height="72"></canvas><span class="n">'+x.pos+'</span>'+(ch?'<i class="cdot"></i>':dk?'<i class="wdot"></i>':'')+(x.pos===1?'<em>표지</em>':'');
-      vtabs.appendChild(b); frameTo(b.querySelector('canvas'),x.v,draft[x.v]);
-      b.addEventListener('click',()=>{cur=x.v; film(filmC,cur); buildTabs(); renderSheet();}); });
-    vtabs.style.display=VIDEOS.length>1?'flex':'none';
-  }
+  const stillC=document.getElementById('stillC'), filmEl=document.getElementById('film'), filmC=document.getElementById('filmC'), sel=document.getElementById('sel'), selC=document.getElementById('selC');
+  const done=document.getElementById('done'), revert=document.getElementById('revert'), tl=document.getElementById('tl');
+  const T={cover:document.getElementById('tCover'),auto:document.getElementById('tAuto'),dark:document.getElementById('tDark'),gal:document.getElementById('tGal')};
+  let cur='A', draft=null;
   function sizeStill(){ const h=stillC.parentElement.clientHeight; if(h) stillC.style.width=(h*270/480)+'px'; }
-  function renderSheet(){
-    const D=VIDEOS.length&&VIDS[cur].D, t=draft[cur];
-    sizeStill(); frameTo(stillC,cur,t); tl.textContent=fmt(t);
-    const isAuto=Math.abs(t-AUTO[cur].t)<.05;
-    autotag.style.display=isAuto&&!isDark(cur,t)?'block':'none';
-    darktag.style.display=isDark(cur,t)?'block':'none';
-    covertag.style.display=(VIDEOS.find(x=>x.v===cur).pos===1)?'block':'none';
-    sel.style.left=(t/D*100)+'%'; frameTo(selC,cur,t);
-    filmEl.setAttribute('aria-valuemin',0); filmEl.setAttribute('aria-valuemax',Math.round(D)); filmEl.setAttribute('aria-valuenow',Math.round(t));
-    done.disabled=!VIDEOS.some(x=>Math.abs(draft[x.v]-cover[x.v])>=.05); revert.disabled=isAuto;
-    const tab=[...vtabs.children][VIDEOS.findIndex(x=>x.v===cur)]; if(tab){ frameTo(tab.querySelector('canvas'),cur,t); }
+  function render(){
+    sizeStill(); const D=VIDS[cur].D, isGal=draft.mode==='gallery';
+    if(isGal){ const ctx=stillC.getContext('2d'); ctx.drawImage(ART,0,0,270,480); } else frameTo(stillC,cur,draft.t);
+    const pos=VIDEOS.find(x=>x.v===cur).pos;
+    document.getElementById('edTitle').textContent='커버 편집 · '+pos+'번 동영상';
+    T.cover.style.display=pos===1?'block':'none';
+    const isAuto=!isGal&&Math.abs(draft.t-AUTO[cur].t)<.05, dk=!isGal&&isDark(cur,draft.t);
+    T.gal.style.display=isGal?'block':'none'; T.dark.style.display=dk?'block':'none'; T.auto.style.display=isAuto&&!dk?'block':'none';
+    tl.style.display=isGal?'none':'block'; tl.textContent=fmt(draft.t||0);
+    document.getElementById('fdim').style.display=isGal?'block':'none'; sel.style.display=isGal?'none':'block';
+    document.getElementById('fguide').textContent=isGal?'앨범 사진을 커버로 써요':'밀어서 장면을 골라요';
+    if(!isGal){ sel.style.left=(draft.t/D*100)+'%'; frameTo(selC,cur,draft.t); }
+    const c=cover[cur]; done.disabled=(c.mode===draft.mode)&&(isGal||Math.abs(c.t-draft.t)<.05);
+    revert.disabled=isAuto;
+    filmEl.setAttribute('aria-valuemin',0); filmEl.setAttribute('aria-valuemax',Math.round(D)); filmEl.setAttribute('aria-valuenow',Math.round(draft.t||0));
   }
-  function refreshTabMarks(){ const keep=cur; buildTabs(); cur=keep; }
-  function open(){ draft={...cover}; const dk=VIDEOS.find(x=>isDark(x.v,cover[x.v])); cur=(dk||VIDEOS[0]).v;
-    ph.classList.add('open'); film(filmC,cur); buildTabs(); requestAnimationFrame(renderSheet); }
+  function open(v){ cur=v; draft={...cover[v]}; if(draft.mode!=='video') draft.t=cover[v].t; ph.classList.add('open'); film(filmC,v); requestAnimationFrame(render); }
   function close(){ ph.classList.remove('open'); }
-  crow.addEventListener('click',open); crow.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
-  document.getElementById('cancel').addEventListener('click',close);
-  document.getElementById('dim').addEventListener('click',()=>{ if(done.disabled) close(); else document.getElementById('cancel').animate([{transform:'translateX(0)'},{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'translateX(0)'}],{duration:240}); });
-  done.addEventListener('click',()=>{ Object.assign(cover,draft); applyCover(); close(); const t=document.getElementById('toast'); t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),1800); });
-  revert.addEventListener('click',()=>{ draft[cur]=AUTO[cur].t; renderSheet(); refreshTabMarks(); });
+  document.getElementById('edClose').addEventListener('click',close);
+  done.addEventListener('click',()=>{ cover[cur]={...draft}; refreshTiles(); close(); toast('커버를 바꿨어요'); const d=tiles[cur]; d.classList.add('flash'); setTimeout(()=>d.classList.remove('flash'),900); });
+  revert.addEventListener('click',()=>{ draft={mode:'video',t:AUTO[cur].t}; render(); });
+  document.getElementById('gal').addEventListener('click',()=>{ draft={mode:'gallery',t:draft.t}; render(); });
   let drag=false;
   function tAt(e){const r=filmEl.getBoundingClientRect(),D=VIDS[cur].D; const x=Math.min(Math.max(e.clientX-r.left,0),r.width); return Math.min(Math.max(x/r.width*D,.3),D-.3);}
-  filmEl.addEventListener('pointerdown',e=>{drag=true; filmEl.setPointerCapture(e.pointerId); draft[cur]=tAt(e); renderSheet();});
-  filmEl.addEventListener('pointermove',e=>{ if(drag){draft[cur]=tAt(e); renderSheet();} });
-  filmEl.addEventListener('pointerup',()=>{drag=false; refreshTabMarks();});
-  filmEl.addEventListener('keydown',e=>{const D=VIDS[cur].D; let k=0; if(['ArrowRight','ArrowUp'].includes(e.key))k=1; if(['ArrowLeft','ArrowDown'].includes(e.key))k=-1; if(k){draft[cur]=Math.min(D-.3,Math.max(.3,draft[cur]+k)); renderSheet(); refreshTabMarks(); e.preventDefault();}});
-  window.addEventListener('resize',()=>{ if(ph.classList.contains('open')) renderSheet(); });
-  applyCover();
-  if(location.hash==='#sheet'){ open(); setTimeout(()=>{cur='B'; film(filmC,cur); draft.B=AUTO.B.t+9; buildTabs(); renderSheet();},400); }
+  filmEl.addEventListener('pointerdown',e=>{ if(draft.mode!=='video') return; drag=true; filmEl.setPointerCapture(e.pointerId); draft.t=tAt(e); render();});
+  filmEl.addEventListener('pointermove',e=>{ if(drag){draft.t=tAt(e); render();} });
+  filmEl.addEventListener('pointerup',()=>{drag=false;});
+  filmEl.addEventListener('keydown',e=>{ if(draft.mode!=='video') return; const D=VIDS[cur].D; let k=0; if(['ArrowRight','ArrowUp'].includes(e.key))k=1; if(['ArrowLeft','ArrowDown'].includes(e.key))k=-1; if(k){draft.t=Math.min(D-.3,Math.max(.3,draft.t+k)); render(); e.preventDefault();} });
+  window.addEventListener('resize',()=>{ if(ph.classList.contains('open')) render(); });
+  refreshTiles();
+  if(location.hash==='#edit'){ open('A'); setTimeout(()=>{ draft.t=20.5; render(); },300); }
 })();
 </script>
 </body>
