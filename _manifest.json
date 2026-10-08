@@ -358,5 +358,13 @@
     "last_kind": "new",
     "last_sha256": "385c8f03f478a673eb64cb4744535e8493a81b83241187e1475939eb570aeb94",
     "timestamp": "2026-10-07T17:40:28.231069Z"
+  },
+  "sally-crew": {
+    "slug": "sally-crew",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/sally-crew/",
+    "last_kind": "new",
+    "last_sha256": "f366fcfa000535a4e99fcf5e3f84e227bd4cb29a4b8da9c17f9c3456ecae163c",
+    "timestamp": "2026-10-08T17:19:08.112238Z"
   }
 }
