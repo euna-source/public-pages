@@ -366,5 +366,13 @@
     "last_kind": "redeploy",
     "last_sha256": "f4ca9f2a058a6af9fe8492a40b18ca8b9d20d4e7e44837e8b95b63453c1879f4",
     "timestamp": "2026-10-09T03:46:01.822853Z"
+  },
+  "kiki-icon-a2-v4": {
+    "slug": "kiki-icon-a2-v4",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/kiki-icon-a2-v4/",
+    "last_kind": "new",
+    "last_sha256": "73cf3f7322df1aba1d8dda45d2ee176dc13d93dc72034a98f64a878c8f90901e",
+    "timestamp": "2026-10-09T11:46:28.300786Z"
   }
 }
