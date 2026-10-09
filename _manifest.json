@@ -374,5 +374,13 @@
     "last_kind": "new",
     "last_sha256": "73cf3f7322df1aba1d8dda45d2ee176dc13d93dc72034a98f64a878c8f90901e",
     "timestamp": "2026-10-09T11:46:28.300786Z"
+  },
+  "kiki-icon-b7-v4": {
+    "slug": "kiki-icon-b7-v4",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/kiki-icon-b7-v4/",
+    "last_kind": "new",
+    "last_sha256": "f751bc92eb438b0db69ff7f396ee319b0638fdde8ddadfeba377302aab143fa7",
+    "timestamp": "2026-10-09T13:13:02.192617Z"
   }
 }
