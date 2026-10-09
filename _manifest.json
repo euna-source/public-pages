@@ -363,8 +363,8 @@
     "slug": "sally-crew",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/sally-crew/",
-    "last_kind": "new",
-    "last_sha256": "f366fcfa000535a4e99fcf5e3f84e227bd4cb29a4b8da9c17f9c3456ecae163c",
-    "timestamp": "2026-10-08T17:19:08.112238Z"
+    "last_kind": "redeploy",
+    "last_sha256": "95a706880311b40cb1b73f45da60254e89cf0ccf3a7a785c0b1bba6aabf4175c",
+    "timestamp": "2026-10-09T03:38:02.265200Z"
   }
 }
