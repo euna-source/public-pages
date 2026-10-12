@@ -2328,6 +2328,14 @@ html,body{max-width:100%;overflow-x:hidden}body{word-break:keep-all;line-break:s
 .btn-ghost{display:inline-block;border:1.5px solid var(--fg-primary);border-radius:999px;padding:6px 14px;font-size:13px;font-weight:700;margin:4px 6px 4px 0}
 .blank{background:var(--bg-sunken);border:1px dashed var(--line-strong);padding:0 6px;border-radius:4px;font-family:var(--font-mono);font-size:.9em}
 .chapter-divider{padding:72px 0 48px}
+.board{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:8px}
+@media(max-width:1100px){.board{grid-template-columns:repeat(2,1fr)}}@media(max-width:640px){.board{grid-template-columns:1fr}}
+.bcol{border:1px solid var(--line-medium);border-radius:10px;padding:14px;background:var(--bg-surface);display:flex;flex-direction:column;gap:10px}
+.bk{font-family:var(--font-mono);font-size:11px;letter-spacing:var(--tr-wide);text-transform:uppercase;color:var(--fg-tertiary);border-bottom:1px solid var(--line-soft);padding-bottom:8px}
+.bt{font-size:16px;font-weight:700}.bp{font-size:12.5px;line-height:1.55;color:var(--fg-secondary)}.bp small{color:var(--fg-tertiary)}
+.bcol .wire{padding:6px}.bcol .wire img{max-height:300px;object-fit:contain}
+.qrbox{display:flex;flex-direction:column;gap:8px}.qrr{border:1px solid var(--line-soft);border-radius:8px;padding:8px 10px;display:flex;flex-direction:column;gap:2px}.qrr b{font-size:12px}.qrr code{font-family:var(--font-mono);font-size:11px;color:var(--fg-tertiary)}.qrr span{font-size:12.5px}
+.appbox{display:flex;flex-direction:column;gap:8px}.ab{display:flex;flex-direction:column;gap:2px}.ab i{font-style:normal;font-size:11.5px;color:var(--fg-tertiary)}
 h2.sec-h{font-size:clamp(24px,2.4vw,32px);font-weight:700;margin:0 0 12px}
 .sec-sub{font-size:16px;color:var(--fg-secondary);margin:0 0 28px;max-width:760px;line-height:1.6}
 .compare-table td,.compare-table th{vertical-align:top}
@@ -2353,7 +2361,7 @@ h2.sec-h{font-size:clamp(24px,2.4vw,32px);font-weight:700;margin:0 0 12px}
 <li>10/19 딥링크 전에는 버튼 네 개가 모두 설치 화면으로 가요. 문구는 바꾸지 않아요.</li>
 </ul></div></div></section>
 
-<section class="chapter-divider"><div class="container"><div class="chapter-num">01</div><h2 class="chapter-title">시나리오 동선</h2><p class=chapter-sub>학생 한 명이 게시판 앞에서 앱 업로드까지 가는 길이에요.</p></div></section>
+<section class="chapter-divider"><div class="container"><div class="chapter-num">01</div><h2 class="chapter-title">시나리오 동선</h2><p class=chapter-sub>학생 한 명이 게시판 앞에서 앱 업로드까지 가는 길이에요. 아래 다섯 칸이 그 길에서 실제로 보는 것들이에요.</p></div></section>
 <section class="section "><div class="container"><div class="flow-canvas">
 <div class="flow-node flow-start"><span class="flow-node-k">01 · 게시판</span><span class="flow-node-h">포스터를 본다</span><span class="flow-node-p">3m 밖에서 「작품도, 프로필도 뽐내봐」. 가까이 오면 참여 대상·모집처·참여 방법.</span></div>
 <div class="flow-arrow"><span class="flow-arrow-line"></span><span class="flow-arrow-tip">▶</span></div>
@@ -2364,6 +2372,13 @@ h2.sec-h{font-size:clamp(24px,2.4vw,32px);font-weight:700;margin:0 0 12px}
 <div class="flow-node flow-step"><span class="flow-node-k">04 · 랜딩</span><span class="flow-node-h">환영 한 줄 + 참여 방법</span><span class="flow-node-p">「청강대 3번 티켓으로 오신 크리에이터, 환영해요」 아래 설치·프로필·작품 버튼.</span></div>
 <div class="flow-arrow"><span class="flow-arrow-line"></span><span class="flow-arrow-tip">▶</span></div>
 <div class="flow-node flow-end"><span class="flow-node-k">05 · 앱</span><span class="flow-node-h">설치 → 커버 → 작품</span><span class="flow-node-p">My 탭에서 커버·소개를 채우고, 업로드 화면에서 작품을 올려요.</span></div>
+</div>
+<div class="board">
+<div class="bcol"><div class="bk">01 · 포스터</div><div class="wire"><img src="img/poster-b.png" alt="포스터 B안"></div><div class="bt">작품도, 프로필도 뽐내봐</div><div class="bp">여기는 크리에이터클럽 · 매주 즐거운 혜택<br>참여 대상 앱 가입자 누구나 · 모집처 Cre8orClub 앱<br>① 앱 가입 ② 프로필 꾸미기 · 작품 올리기<br>QR을 찍고 참여 방법과 이번 주 혜택을 확인하세요.<br><small>보상은 주차마다 다르거나 없을 수 있어요.</small></div></div>
+<div class="bcol"><div class="bk">02 · 티켓</div><div class="wire"><img src="img/ticket-strip.png" alt="티켓 띠지"></div><div class="bt">클럽 티켓 10장</div><div class="bp">No.03 · CREATOR · CRE8OR CLUB · 청강 + QR<br>학교별 01~10 · 떼어진 자국이 다음 사람에게 보여요<br>본문 고정 QR은 그대로 남아요</div></div>
+<div class="bcol"><div class="bk">03 · QR</div><div class="qrbox"><div class="qrr"><b>티켓 QR</b><code>/weekly?s=ck&amp;t=03</code><span>청강대 3번 티켓으로 오신 크리에이터, 환영해요</span></div><div class="qrr"><b>고정 QR</b><code>/weekly?s=ck</code><span>청강대에서 오신 크리에이터, 환영해요</span></div><div class="qrr"><b>그 밖</b><code>/weekly</code><span>크리에이터클럽에 오신 걸 환영해요</span></div></div><div class="bp">학교 5 × 티켓 10 + 고정 5 = QR 55개<br>여는 페이지는 한 벌, 첫 줄만 달라요</div></div>
+<div class="bcol"><div class="bk">04 · 랜딩</div><div class="wire"><img src="img/landing-thumb.png" alt="랜딩 흐름" style="max-height:300px;object-fit:cover;object-position:top"></div><div class="bt">환영 한 줄 → 공통 페이지</div><div class="bp">0 환영 · 1 첫 화면(헤드라인·앱 한 줄·참여 방법 3단계·버튼) · 2 이번 주 혜택 · 3 작품 부문 · 4 크리에이터 부문 · 5 라운지 · 6 앱 소개(접힘) · 7 유의사항 + 버튼</div></div>
+<div class="bcol"><div class="bk">05 · 앱</div><div class="appbox"><div class="ab"><span class="btn-ghost">앱 설치하기</span><i>스토어 (iOS·Android 자동)</i></div><div class="ab"><span class="btn-ghost">내 프로필 열기</span><i>My 탭 — 커버·소개 먼저</i></div><div class="ab"><span class="btn-ghost">작품 올리기</span><i>업로드 화면 — 커버 없으면 프로필부터</i></div><div class="ab"><span class="btn-ghost">내 작업으로 상품권 도전</span><i>하단 고정 · ③과 같은 곳</i></div></div><div class="bp">10/19 딥링크 전엔 네 버튼 모두 설치 화면. 문구는 그대로.</div></div>
 </div></div></section>
 
 <section class="chapter-divider"><div class="container"><div class="chapter-num">02</div><h2 class="chapter-title">포스터</h2><p class=chapter-sub>문구는 두 안이 같고 아래쪽만 달라요. 추천은 B예요.</p></div></section>
