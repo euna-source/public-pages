@@ -56,12 +56,12 @@ html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 .lwrap{display:flex;gap:clamp(24px,4vw,64px);justify-content:center;align-items:flex-start;flex-wrap:wrap;width:100%}
 .stage{--ph:600px;--pw:277px;--z:0.71;position:relative;width:var(--pw);flex:none;margin-bottom:60px}
 .sticky{position:sticky;top:76px;height:0;z-index:3}.mask{position:absolute;left:-20px;top:-20px;width:calc(var(--pw) + 40px);height:20px;background:var(--n100);z-index:1}
-.page{width:390px;zoom:var(--z);background:#fff;border-radius:46px 46px 0 0;overflow:hidden;box-shadow:var(--sh3)}
+.page{width:390px;transform:scale(var(--z));transform-origin:top left;background:#fff;border-radius:46px 46px 0 0;overflow:hidden;box-shadow:var(--sh3)}
 .frame{position:absolute;left:0;top:0;width:var(--pw);height:var(--ph);border:calc(10px*var(--z)) solid #141414;border-radius:calc(48px*var(--z));pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.2),var(--sh3);z-index:3}
 .frame .notch{position:absolute;left:50%;top:calc(8px*var(--z));transform:translateX(-50%);width:calc(96px*var(--z));height:calc(26px*var(--z));background:#141414;border-radius:999px}
 .flab{position:absolute;right:-30px;top:50%;transform:translateX(100%) rotate(90deg);transform-origin:left center;font-size:11px;color:var(--n500);white-space:nowrap;letter-spacing:.04em}
 .fixedbar{position:absolute;left:0;right:0;bottom:0;padding:calc(14px*var(--z)) calc(22px*var(--z)) calc(18px*var(--z));background:linear-gradient(transparent,#fff 35%);pointer-events:auto;zoom:1}
-.fixedbar .btn{zoom:var(--z);display:flex;justify-content:center;width:100%}
+.fixedbar{width:390px;transform:scale(var(--z));transform-origin:bottom left;left:0;right:auto}.fixedbar .btn{display:flex;justify-content:center;width:100%}
 .fade{position:absolute;left:0;top:var(--ph);width:var(--pw);height:100vh;background:rgba(244,244,242,.78);z-index:2;pointer-events:none}
 .hero{background:var(--acc);padding:64px 26px 34px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.28)}
@@ -192,9 +192,12 @@ html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 <script>
 const school={ck:'청강대'};
 const tk=document.getElementById('tk');for(let i=1;i<=10;i++){const n=String(i).padStart(2,'0');tk.insertAdjacentHTML('beforeend',`<div class="t" data-s="ck" data-t="${n}" data-ab="B"><i></i><b>No.${n}</b><s>청강</s></div>`)}
-function fitStage(){const st=document.querySelector('.stage');if(!st)return;const ph=document.getElementById('posterA').offsetHeight||600;const z=ph/844;st.style.setProperty('--ph',ph+'px');st.style.setProperty('--pw',(390*z)+'px');st.style.setProperty('--z',z);}
+let lastPH=0;function fitStage(){const st=document.querySelector('.stage');if(!st)return;const ph=document.getElementById('posterA').offsetHeight||lastPH||600;lastPH=ph;const z=ph/844;st.style.setProperty('--ph',ph+'px');st.style.setProperty('--pw',(390*z)+'px');st.style.setProperty('--z',z);syncH();}
+function syncH(){const st=document.querySelector('.stage'),p=document.getElementById('page');if(!st||!p)return;const r=p.getBoundingClientRect();st.style.height=Math.round(r.height)+'px';st.style.marginBottom='0px';
+ const ph=parseFloat(st.style.getPropertyValue('--ph'))||600;const top=76;const stTop=st.getBoundingClientRect().top+window.scrollY;const vh=window.innerHeight;
+ const target=stTop+r.height-top-ph+vh;const cur=document.documentElement.scrollHeight;const mb=Math.max(0,Math.round(target-cur));st.style.marginBottom=mb+'px';}
 addEventListener('resize',fitStage);
-function openLanding(s,t,ab){fitStage();const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');document.getElementById('url').textContent=u;
+function openLanding(s,t,ab){fitStage();setTimeout(syncH,50);setTimeout(syncH,400);const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');document.getElementById('url').textContent=u;
  const st=document.getElementById('stubT');st.innerHTML=t?`Cre8orClub 티켓 <b>No.${t}</b> · ${school[s]}`:(s?`Cre8orClub · ${school[s]}`:'Cre8orClub');
  document.getElementById('wel2').innerHTML='이제,<br>네 작업을 보여줘';document.getElementById('wel3').innerHTML='완성작도, 작업 중인 것도.<br>여기서 뽐내봐.';
  document.getElementById('sideH').textContent=(ab==='B'&&t)?`B안 · 티켓 No.${t} QR로 열림`:(ab?`${ab}안 · 포스터 고정 QR로 열림`:'직접 입력');
@@ -205,6 +208,6 @@ function showPosters(){window.scrollTo(0,0);document.getElementById('vLanding').
 document.querySelectorAll('.qr,.t').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,e.dataset.t,e.dataset.ab));
 document.getElementById('back').onclick=showPosters;
 document.querySelectorAll('#vPosters .qr').forEach(q=>q.classList.add('pulse'));
-document.querySelectorAll('.acc').forEach(a=>a.onclick=()=>a.classList.toggle('open'));
+document.querySelectorAll('.acc').forEach(a=>a.onclick=()=>{a.classList.toggle('open');syncH();});
 let tt;document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const t=document.getElementById('toast');t.textContent='→ '+b.dataset.go;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200)});
 </script></body></html>
