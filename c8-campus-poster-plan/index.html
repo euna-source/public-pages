@@ -116,10 +116,10 @@ html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 @media(prefers-reduced-motion:reduce){.qr.pulse::before{animation:none}.view.on{animation:none}.pg,.btn{transition:none}}
 @media(max-width:1000px){.side{width:100%}.thumb{display:none}}
 </style></head><body>
-<header class="top"><div><div class="brand"><b>Cre8orClub</b>위클리 베스트 · 대학 포스터 프로토타입 · 2026-10-12</div><div class="ttl" id="ttl">포스터 A안 · B안 — QR이나 티켓을 누르면 랜딩이 열려요</div></div><div id="topr" class="hint"><i></i>초록으로 표시된 곳이 눌리는 곳이에요</div></header>
+<header class="top"><div><div class="brand"><b>Cre8orClub</b>위클리 베스트 · 대학 포스터 프로토타입 · 2026-10-12</div><div class="ttl" id="ttl">대학 포스터 A안 — QR을 누르면 앱 프로모션 페이지가 열려요</div></div><div id="topr" class="hint"><i></i>초록으로 표시된 곳이 눌리는 곳이에요</div></header>
 
 <section class="view on" id="vPosters"><div class="posters">
-<div class="pcol"><div class="plab"><b>A안 · 기본형</b>고정 QR 하나</div>
+<div class="pcol"><div class="plab"><b>A안 · 기본형 (확정)</b>고정 QR 하나 · A2</div>
 <div class="pg" id="posterA">
 <div class="pbrand">Cre8orClub</div><div class="ph">작품도,<br>프로필도<br>뽐내봐</div>
 <div class="ps1">여기는 Cre8orClub</div><div class="pill">매주 즐거운 혜택</div>
@@ -127,85 +127,34 @@ html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 <div class="qrrow"><div class="qrt">QR을 찍고 참여 방법과<br>이번 주 혜택을 확인하세요.</div><div class="qr" data-s="ck" data-t="" data-ab="A"><span>QR</span></div></div>
 <div class="mic">보상은 주차마다 다르거나 없을 수 있어요.</div>
 </div></div>
-<div class="pcol"><div class="plab"><b>B안 · 클럽 티켓형</b>고정 QR + 떼어 가는 티켓 10장</div>
-<div class="pg" id="posterB">
-<div class="pbrand">Cre8orClub</div><div class="ph">작품도,<br>프로필도<br>뽐내봐</div>
-<div class="ps1">여기는 Cre8orClub</div><div class="pill">매주 즐거운 혜택</div>
-<div class="ptbl"><div><b>참여 대상</b><span>Cre8orClub 앱 가입자 누구나</span></div><div><b>모집처</b><span>Cre8orClub 앱</span></div><div><b>참여 방법</b><span>① 앱 가입<br>② 프로필 꾸미기 · 작품 올리기</span></div></div>
-<div class="qrrow"><div class="qrt">QR을 찍고 참여 방법과<br>이번 주 혜택을 확인하세요.</div><div class="qr" data-s="ck" data-t="" data-ab="B"><span>QR</span></div></div>
-<div class="mic">보상은 주차마다 다르거나 없을 수 있어요.</div>
-<div class="tkhint">티켓을 누르면 그 번호로 랜딩이 열려요</div>
-<div class="tk" id="tk"></div>
-</div></div>
 </div></section>
 
 <section class="view" id="vLanding"><div class="lwrap">
 <div class="stage">
- <div class="sticky"><div class="mask"></div><div class="frame"><i class="notch"></i><div class="fixedbar"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></div><span class="flab">폰 화면에 보이는 만큼</span></div><div class="fade"></div></div>
- <div class="page" id="page">
-  <div class="hero">
-   <div class="stub" id="stub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><span id="stubT">Cre8orClub 티켓 <b id="stubN">No.03</b> · 청강대</span></div>
-   <div class="wel2" id="wel2">이제,<br>네 작업을 보여줘</div>
-   <div class="wel3" id="wel3">완성작도, 작업 중인 것도.<br>여기서 뽐내봐.</div>
-  </div>
-  <div class="sc">
-   <section class="sec">
-    <div class="h1">작품도,<br>프로필도 뽐내봐</div>
-    <div class="p lead">크리에이터가 작품과 프로필을 올리고<br>서로 리스펙트하는 앱, Cre8orClub</div>
-    <div class="eyebrow" style="margin-top:28px">참여 방법</div>
-    <div class="steps">
-     <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div><b>앱 가입</b><small>스토어에서 Cre8orClub을 받아요</small><span class="btn" data-go="스토어 설치 화면 (iOS·Android 자동 분기)">앱 설치하기</span></div></div>
-     <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><b>프로필 꾸미고 소통하기</b><small>커버와 소개를 채우고, 리스펙트를 보내고, 이야기해요</small><span class="btn" data-go="앱 My 탭 — 커버·소개 등록 (미설치면 설치 먼저)">내 프로필 열기</span></div></div>
-     <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div><b>작품 올리기</b><small>완성작도 작업 중인 것도 괜찮아요</small><span class="btn" data-go="앱 업로드 화면 (커버 미등록이면 프로필 등록 먼저)">작품 올리기</span></div></div>
-    </div>
-   </section>
-   <section class="sec">
-    <div class="eyebrow">이번 주 혜택</div>
-    <div class="h2">이번 주, 모든 분야를 합쳐</div>
-    <div class="amount">총 <span class="blank">[50]</span>만 원 상당 상품권</div>
-    <div class="p">작품 순위 · 크리에이터 순위 · 라운지 소통왕에게 나눠서 드려요.</div>
-    <div class="tbl"><i><b>1위</b><span class="blank">[ ]</span></i><i><b>2위</b><span class="blank">[ ]</span></i><i><b>3위</b><span class="blank">[ ]</span></i><i><b>4~10위</b><span class="blank">[ ]</span></i></div>
-    <div class="meta">이 순위표는 작품 부문과 크리에이터 부문에 똑같이 쓰여요.<br>라운지 소통왕 <span class="blank">[16]</span>명은 <span class="blank">[CU 상품권 1만 원]</span>이에요.<br>진행 기간 <span class="blank">[10/19(월) 00:00 ~ 10/25(일) 23:59]</span> · 발표 <span class="blank">[10/26(월)]</span></div>
-    <div class="notice">보상은 주차마다 다르거나 없을 수 있어요. 주차가 시작된 뒤에는 그 주차의 보상을 줄이거나 없애지 않아요.</div>
-   </section>
-   <section class="sec"><div class="eyebrow">작품 부문</div><div class="h2">올린 작품이 받은 리스펙트로<br>순위를 정해요</div><div class="p">완성작도, 작업 중인 것도, 폴더 속에 잠들어 있던 것도 괜찮아요.</div><div class="folders"><b>데모</b><b>쇼릴</b><b>콘티</b><b>시안</b><b>프로토타입</b></div><div class="p sm">한 사람이 작품 여러 개로 순위에 들 수도 있어요.</div></section>
-   <section class="sec"><div class="eyebrow">크리에이터 부문</div><div class="h2">전체공개 프로필로 쌓은<br>활동 점수로 순위를 정해요</div><div class="p strong">이게 다 활동이에요</div><div class="chips"><span>프로필 채우기</span><span>작품·프로젝트·영감 올리기</span><span>리스펙트 보내기</span><span>채팅</span><span>공유</span><span>팔로워 늘리기</span></div><div class="p sm">직접 올리는 활동에 더 높은 점수를 줘요. 채팅은 메시지 수만 세고 내용은 보지 않아요.</div></section>
-   <section class="sec"><div class="eyebrow">라운지</div><div class="h2">라운지 소통왕</div><div class="p">이번 주 라운지에서 가장 많이 이야기한 <span class="blank">[16]</span>명에게 운영진이 상품권을 드려요.</div></section>
-   <section class="sec tight">
-    <div class="acc">Cre8orClub은 어떤 앱이에요? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="accb">작곡가, 일러스트레이터, 영상감독, 사진작가, 배우, 웹툰 작가… 분야가 달라도 「만드는 사람」이면 누구나 모이는 곳이에요. 작품을 올리고, 프로필로 나를 소개하고, 서로 리스펙트를 보내고, 프로젝트와 영감을 나눠요. 위클리 베스트는 그중 이번 주에 가장 빛난 작품과 크리에이터를 매주 가려 뽑는 자리예요.</div>
-    <div class="acc">유의사항 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="accb"><ul><li>참여 대상은 Cre8orClub 앱 가입자 누구나예요.</li><li>작품 부문은 진행 기간 안에 전체공개로 올린 작품만 집계해요. 삭제하거나 공개 범위를 바꾸면 빠져요.</li><li>크리에이터 부문은 전체공개 프로필만 집계해요. 비공개로 바꾸면 순위에서 빠지고, 취소한 리스펙트·팔로우는 점수에서 빠져요.</li><li>활동 점수가 같으면 먼저 도달한 크리에이터가 앞서요.</li><li>보상이 있는 주차의 수상자에게는 결과 발표 후 지급을 위해 개별로 연락해요.</li><li>참여 규칙이나 보상이 바뀌면 바뀐 내용이 적용되는 주차가 시작하기 전에 안내해요.</li><li><u>운영 규칙 전체 보기</u></li></ul></div>
-   </section>
-   <section class="sec end"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></section>
-  </div>
- </div>
+ <div class="sticky"><div class="mask"></div><div class="frame"><i class="notch"></i><span class="flab">폰 화면에 보이는 만큼</span></div><div class="fade"></div></div>
+ <div class="page" id="page" style="min-height:844px"><img src="img/promo-page.png" alt="위클리 베스트 프로모션 페이지" id="promo" style="width:390px;display:block"></div>
 </div>
-<div class="side"><div class="thumb" id="thumb"></div><h3 id="sideH">어떻게 열렸나</h3>
-<div class="k">QR 주소</div><div><code id="url">/weekly</code></div>
-<div class="k">환영 영역 규칙</div><div>티켓 QR → 스텁 「Cre8orClub 티켓 No.03 · 청강대」<br>고정 QR → 스텁 「Cre8orClub · 청강대」<br>그 밖 → 스텁 「Cre8orClub」<br>큰 글씨 「이제, 네 작업을 보여줘」와 부제 「완성작도, 작업 중인 것도. 여기서 뽐내봐.」는 모두 같아요.<br><span style="color:var(--n500)">도착 순서가 아니라 티켓 번호라 「3번째」가 아니라 「3번 티켓」이에요.</span></div>
-<div class="k">보는 법</div><div>검은 프레임이 폰 한 화면이에요. 그 아래 흐린 부분이 스크롤하면 이어지는 내용이에요.</div>
-<div class="k">이 아래는 모두 같아요</div><div>첫 화면(헤드라인·앱 한 줄·참여 방법 3단계·버튼) → 이번 주 혜택 → 작품 부문 → 크리에이터 부문 → 라운지 → 앱 소개(접힘) → 유의사항(접힘) → 하단 고정 버튼</div>
-<div class="k">버튼 (10/19 딥링크 전)</div><div>네 버튼 모두 스토어 설치 화면. 문구는 그대로.</div>
-<div class="k"><span class="blank">[ ]</span></div><div>아직 확정 전인 값이에요.</div>
+<div class="side"><div class="thumb" id="thumb"></div><h3 id="sideH">A안 · 포스터 QR로 열림</h3>
+<div class="k">QR 목적지</div><div>앱 안 「위클리 베스트 프로모션 페이지」 그대로예요. 새 랜딩을 만들지 않아요.<br><a href="https://www.figma.com/design/99U80QeFrtYBqC9Pqn9gga/Cre8orClub_v3?node-id=23039-3400" target="_blank" rel="noopener" style="color:var(--n900)">Figma 23039-3400 →</a></div>
+<div class="k">페이지 순서</div><div>「뽐내봐 여기는 크리에이터클럽」 레터링 → 이번 주 총 50만 원 상당 상품권(쿠폰) → 부문별 보상 안내 → 작품 부문 「작품을 뽐내봐」 + 포트폴리오 등록하기 → 크리에이터 부문 「자신을 뽐내봐」 + 프로필 작성하기 → 라운지에서 놀면 깜짝 선물 → 유의사항</div>
+<div class="k">QR 주소</div><div><code id="url">/go/weekly?s=ck</code><br><span style="color:var(--n500)">학교 코드만 붙는 리다이렉트 링크(추천). 목적지를 나중에 바꿀 수 있고 학교별 스캔 수를 셀 수 있어요.</span></div>
+<div class="k">앱이 없을 때</div><div>스토어 설치 → 설치 후 이 페이지로 이어지게(딥링크, 10/19 확정 여부 확인 전)</div>
+<div class="k">보는 법</div><div>검은 프레임이 폰 한 화면이에요. 아래 흐린 부분이 스크롤하면 이어지는 내용이에요.</div>
 <div style="margin-top:18px"><button class="back" id="back">← 포스터로 돌아가기</button></div>
 </div></div></section>
 <div class="toast" id="toast"></div>
 <script>
-const school={ck:'청강대'};
-const tk=document.getElementById('tk');for(let i=1;i<=10;i++){const n=String(i).padStart(2,'0');tk.insertAdjacentHTML('beforeend',`<div class="t" data-s="ck" data-t="${n}" data-ab="B"><i></i><b>No.${n}</b><s>청강</s></div>`)}
 let lastPH=0;function fitStage(){const st=document.querySelector('.stage');if(!st)return;const ph=document.getElementById('posterA').offsetHeight||lastPH||600;lastPH=ph;const z=ph/844;st.style.setProperty('--ph',ph+'px');st.style.setProperty('--pw',(390*z)+'px');st.style.setProperty('--z',z);syncH();}
 function syncH(){const st=document.querySelector('.stage'),p=document.getElementById('page');if(!st||!p)return;const r=p.getBoundingClientRect();st.style.height=Math.round(r.height)+'px';st.style.marginBottom='0px';
  const ph=parseFloat(st.style.getPropertyValue('--ph'))||600;const top=76;const stTop=st.getBoundingClientRect().top+window.scrollY;const vh=window.innerHeight;
  const target=stTop+r.height-top-ph+vh;const cur=document.documentElement.scrollHeight;const mb=Math.max(0,Math.round(target-cur));st.style.marginBottom=mb+'px';}
 addEventListener('resize',fitStage);
-function openLanding(s,t,ab){fitStage();setTimeout(syncH,50);setTimeout(syncH,400);const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');document.getElementById('url').textContent=u;
- const st=document.getElementById('stubT');st.innerHTML=t?`Cre8orClub 티켓 <b>No.${t}</b> · ${school[s]}`:(s?`Cre8orClub · ${school[s]}`:'Cre8orClub');
- document.getElementById('wel2').innerHTML='이제,<br>네 작업을 보여줘';document.getElementById('wel3').innerHTML='완성작도, 작업 중인 것도.<br>여기서 뽐내봐.';
- document.getElementById('sideH').textContent=(ab==='B'&&t)?`B안 · 티켓 No.${t} QR로 열림`:(ab?`${ab}안 · 포스터 고정 QR로 열림`:'직접 입력');
- document.getElementById('ttl').textContent='QR 랜딩 — 와이어프레임 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
- const src=document.getElementById(ab==='A'?'posterA':'posterB');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr,.t').forEach(x=>{x.classList.remove('pulse');x.classList.toggle('on',x.dataset.t===(t||'')&&(t||x.classList.contains('qr')))});th.appendChild(c);}
+function openLanding(s,t,ab){fitStage();setTimeout(syncH,50);setTimeout(syncH,400);document.getElementById('url').textContent='/go/weekly?s='+(s||'ck');
+ document.getElementById('ttl').textContent='QR 랜딩 — 앱 프로모션 페이지 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
+ const src=document.getElementById('posterA');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr').forEach(x=>{x.classList.remove('pulse');x.classList.add('on')});th.appendChild(c);}
  document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');window.scrollTo(0,0);}
-function showPosters(){window.scrollTo(0,0);document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='포스터 A안 · B안 — QR이나 티켓을 누르면 랜딩이 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
-document.querySelectorAll('.qr,.t').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,e.dataset.t,e.dataset.ab));
+function showPosters(){window.scrollTo(0,0);document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='대학 포스터 A안 — QR을 누르면 앱 프로모션 페이지가 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
+document.querySelectorAll('.qr').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,'','A'));document.getElementById('promo').addEventListener('load',syncH);
 document.getElementById('back').onclick=showPosters;
 document.querySelectorAll('#vPosters .qr').forEach(q=>q.classList.add('pulse'));
 document.querySelectorAll('.acc').forEach(a=>a.onclick=()=>{a.classList.toggle('open');syncH();});
