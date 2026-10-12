@@ -51,25 +51,27 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 .t::before{content:'';position:absolute;left:0;right:0;top:calc(-1*var(--mm));height:calc(4*var(--mm));background:radial-gradient(circle at 50% 0,var(--n100) 0 calc(2*var(--mm)),transparent calc(2.2*var(--mm)))}
 .tkhint{position:absolute;left:0;right:0;bottom:calc(81*var(--mm));text-align:center;font-size:10.5px;color:var(--acc-ink);font-weight:600}
 /* ---- landing (page + frame overlay) ---- */
-#vLanding.on{align-items:flex-start;overflow-y:auto;padding-top:28px}
+#vLanding.on{align-items:flex-start;overflow-y:auto;overflow-x:hidden;padding-top:28px;height:calc(100vh - 61px);min-height:0}
+body{overflow:hidden}
 .lwrap{display:flex;gap:clamp(24px,4vw,64px);justify-content:center;align-items:flex-start;flex-wrap:wrap;width:100%}
 .stage{--ph:600px;--pw:277px;--z:0.71;position:relative;width:var(--pw);flex:none;margin-bottom:60px}
+.sticky{position:sticky;top:0;height:0;z-index:3}.mask{position:absolute;left:-20px;top:-40px;width:calc(var(--pw) + 40px);height:40px;background:var(--n100);z-index:1}
 .page{width:390px;zoom:var(--z);background:#fff;border-radius:46px 46px 0 0;overflow:hidden;box-shadow:var(--sh3)}
 .frame{position:absolute;left:0;top:0;width:var(--pw);height:var(--ph);border:calc(10px*var(--z)) solid #141414;border-radius:calc(48px*var(--z));pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.2),var(--sh3);z-index:3}
 .frame .notch{position:absolute;left:50%;top:calc(8px*var(--z));transform:translateX(-50%);width:calc(96px*var(--z));height:calc(26px*var(--z));background:#141414;border-radius:999px}
 .flab{position:absolute;right:-30px;top:50%;transform:translateX(100%) rotate(90deg);transform-origin:left center;font-size:11px;color:var(--n500);white-space:nowrap;letter-spacing:.04em}
 .fixedbar{position:absolute;left:0;right:0;bottom:0;padding:calc(14px*var(--z)) calc(22px*var(--z)) calc(18px*var(--z));background:linear-gradient(transparent,#fff 35%);pointer-events:auto;zoom:1}
 .fixedbar .btn{zoom:var(--z);display:flex;justify-content:center;width:100%}
-.fade{position:absolute;left:0;right:0;top:var(--ph);bottom:0;background:rgba(244,244,242,.78);z-index:2;pointer-events:none;border-radius:0}
+.fade{position:absolute;left:0;top:var(--ph);width:var(--pw);height:100vh;background:rgba(244,244,242,.78);z-index:2;pointer-events:none}
 .hero{background:var(--acc);padding:64px 26px 34px;position:relative;overflow:hidden}
 .hero::after{content:'';position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.28)}
 .hero::before{content:'';position:absolute;left:-50px;bottom:-90px;width:200px;height:200px;border-radius:50%;background:rgba(0,0,0,.06)}
 .stub{position:relative;display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:var(--r2);padding:9px 14px 9px 12px;box-shadow:var(--sh2);font-size:12.5px;font-weight:600;color:var(--n700);margin-bottom:22px}
-.stub b{font-family:var(--mono);font-size:13px;color:var(--n900);background:var(--n100);padding:2px 8px;border-radius:5px;letter-spacing:.02em}
+.stub b{font-family:var(--mono);font-size:13px;color:var(--n900);background:var(--n100);padding:2px 8px;border-radius:5px;letter-spacing:.02em;margin:0 2px}
 .stub::after{content:'';position:absolute;right:40px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
 .stub::before{content:'';position:absolute;right:40px;bottom:-5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
 .wel1{position:relative;font-size:15.5px;font-weight:600;color:var(--acc-ink);margin-bottom:8px}
-.wel2{position:relative;font-size:42px;font-weight:900;letter-spacing:-.04em;line-height:1.04;color:var(--n900)}
+.wel2{position:relative;font-size:44px;font-weight:900;letter-spacing:-.04em;line-height:1.04;color:var(--n900)}
 .wel3{position:relative;font-size:14px;color:var(--acc-ink);margin-top:16px;line-height:1.55}
 .sc{padding:8px 26px 40px}
 .sec{padding:36px 0;border-top:1px solid var(--n200)}.sec:first-child{border-top:0;padding-top:36px}.sec.tight{padding:28px 0}.sec.end{padding:12px 0 8px;border-top:0}
@@ -102,7 +104,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 .acc.open+.accb{display:block}.accb ul{padding-left:16px}.accb li{margin-bottom:5px}
 .blank{background:var(--n100);border:1px dashed var(--n300);padding:0 5px;font-family:var(--mono);font-size:.9em;border-radius:4px;color:var(--n700)}
 /* ---- side ---- */
-.side{width:320px;font-size:13px;line-height:1.6;color:var(--n700)}
+.side{width:320px;position:sticky;top:0;font-size:13px;line-height:1.6;color:var(--n700)}
 .side h3{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--n900);margin:0 0 6px}
 .side .k{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--n500);margin:16px 0 4px}
 .side code{font-family:var(--mono);font-size:12px;background:#fff;padding:2px 6px;border:1px solid var(--n200);border-radius:4px}
@@ -139,12 +141,12 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 
 <section class="view" id="vLanding"><div class="lwrap">
 <div class="stage">
+ <div class="sticky"><div class="mask"></div><div class="frame"><i class="notch"></i><div class="fixedbar"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></div><span class="flab">폰 화면에 보이는 만큼</span></div><div class="fade"></div></div>
  <div class="page" id="page">
   <div class="hero">
-   <div class="stub" id="stub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><span id="stubT">Cre8orClub 티켓</span><b id="stubN">No.03</b></div>
-   <div class="wel1" id="wel1">청강대 3번 티켓으로 오신 크리에이터</div>
-   <div class="wel2" id="wel2">환영해요,<br>잘 찾아오셨어요</div>
-   <div class="wel3" id="wel3">작품이든 프로필이든, 이번 주에 뽐낼 자리를 비워 뒀어요.</div>
+   <div class="stub" id="stub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><span id="stubT">Cre8orClub 티켓 <b id="stubN">No.03</b> · 청강대</span></div>
+   <div class="wel2" id="wel2">이제,<br>네 작업을 보여줘</div>
+   <div class="wel3" id="wel3">완성작도, 작업 중인 것도.<br>여기서 뽐내봐.</div>
   </div>
   <div class="sc">
    <section class="sec">
@@ -176,12 +178,10 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
    <section class="sec end"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></section>
   </div>
  </div>
-  <div class="frame"><i class="notch"></i><div class="fixedbar"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></div><span class="flab">폰 화면에 보이는 만큼</span></div>
-  <div class="fade"></div>
 </div>
 <div class="side"><div class="thumb" id="thumb"></div><h3 id="sideH">어떻게 열렸나</h3>
 <div class="k">QR 주소</div><div><code id="url">/weekly</code></div>
-<div class="k">환영 영역 규칙</div><div>티켓 QR → 「청강대 3번 티켓으로 오신 크리에이터 / 환영해요, 잘 찾아오셨어요」 + 티켓 스텁 No.03<br>고정 QR → 「청강대에서 오신 크리에이터 / 환영해요」 + 스텁 없음<br>그 밖 → 「Cre8orClub에 오신 걸 / 환영해요」<br><span style="color:var(--n500)">도착 순서가 아니라 티켓 번호라 「3번째」가 아니라 「3번 티켓」이에요.</span></div>
+<div class="k">환영 영역 규칙</div><div>티켓 QR → 스텁 「Cre8orClub 티켓 No.03 · 청강대」<br>고정 QR → 스텁 「Cre8orClub · 청강대」<br>그 밖 → 스텁 「Cre8orClub」<br>큰 글씨 「이제, 네 작업을 보여줘」와 부제 「완성작도, 작업 중인 것도. 여기서 뽐내봐.」는 모두 같아요.<br><span style="color:var(--n500)">도착 순서가 아니라 티켓 번호라 「3번째」가 아니라 「3번 티켓」이에요.</span></div>
 <div class="k">보는 법</div><div>검은 프레임이 폰 한 화면이에요. 그 아래 흐린 부분이 스크롤하면 이어지는 내용이에요.</div>
 <div class="k">이 아래는 모두 같아요</div><div>첫 화면(헤드라인·앱 한 줄·참여 방법 3단계·버튼) → 이번 주 혜택 → 작품 부문 → 크리에이터 부문 → 라운지 → 앱 소개(접힘) → 유의사항(접힘) → 하단 고정 버튼</div>
 <div class="k">버튼 (10/19 딥링크 전)</div><div>네 버튼 모두 스토어 설치 화면. 문구는 그대로.</div>
@@ -195,9 +195,8 @@ const tk=document.getElementById('tk');for(let i=1;i<=10;i++){const n=String(i).
 function fitStage(){const st=document.querySelector('.stage');if(!st)return;const ph=document.getElementById('posterA').offsetHeight||600;const z=ph/844;st.style.setProperty('--ph',ph+'px');st.style.setProperty('--pw',(390*z)+'px');st.style.setProperty('--z',z);}
 addEventListener('resize',fitStage);
 function openLanding(s,t,ab){fitStage();const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');document.getElementById('url').textContent=u;
- const w1=t?`${school[s]} ${+t}번 티켓으로 오신 크리에이터`:(s?`${school[s]}에서 오신 크리에이터`:'Cre8orClub에 오신 걸');
- document.getElementById('wel1').textContent=w1;document.getElementById('wel2').innerHTML=t?'환영해요,<br>잘 찾아오셨어요':'환영해요';
- const stub=document.getElementById('stub');stub.style.display=t?'inline-flex':'none';document.getElementById('stubN').textContent='No.'+(t||'');
+ const st=document.getElementById('stubT');st.innerHTML=t?`Cre8orClub 티켓 <b>No.${t}</b> · ${school[s]}`:(s?`Cre8orClub · ${school[s]}`:'Cre8orClub');
+ document.getElementById('wel2').innerHTML='이제,<br>네 작업을 보여줘';document.getElementById('wel3').innerHTML='완성작도, 작업 중인 것도.<br>여기서 뽐내봐.';
  document.getElementById('sideH').textContent=(ab==='B'&&t)?`B안 · 티켓 No.${t} QR로 열림`:(ab?`${ab}안 · 포스터 고정 QR로 열림`:'직접 입력');
  document.getElementById('ttl').textContent='QR 랜딩 — 와이어프레임 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
  const src=document.getElementById(ab==='A'?'posterA':'posterB');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr,.t').forEach(x=>{x.classList.remove('pulse');x.classList.toggle('on',x.dataset.t===(t||'')&&(t||x.classList.contains('qr')))});th.appendChild(c);}
