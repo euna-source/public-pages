@@ -3,19 +3,20 @@
 <title>위클리 베스트 대학 포스터 — 프로토타입</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>
-:root{--mm:1.12px;--k:#111;--g:#f3f3f3;--line:#ddd;--mono:ui-monospace,Menlo,monospace}
+:root{--mm:min(1.45px,calc((100vh - 170px)/594),calc((100vw - 120px)/860));--k:#111;--g:#f3f3f3;--line:#ddd;--mono:ui-monospace,Menlo,monospace}
 *{box-sizing:border-box;margin:0}html,body{height:100%}
-body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color:var(--k);background:#ececec;word-break:keep-all;line-break:strict}
+body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color:var(--k);background:#e9e8e4;word-break:keep-all;line-break:strict;display:flex;flex-direction:column;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(1200px 600px at 50% 0%,#f4f3ef,transparent 70%);pointer-events:none}
 .top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
 .brand{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#777}.brand b{color:var(--k);margin-right:12px}
 .ttl{font-size:14px;font-weight:700}
 .hint{font-size:12px;color:#777}
-.view{display:none;padding:28px 22px 40px}.view.on{display:block}
-.posters{display:flex;gap:28px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
-.pcol{display:flex;flex-direction:column;gap:10px;align-items:center}
+.view{display:none;flex:1;padding:24px 22px 32px;position:relative}.view.on{display:flex;align-items:center;justify-content:center;animation:in .35s ease-out}@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.posters{display:flex;gap:clamp(24px,4vw,64px);justify-content:center;align-items:center;flex-wrap:wrap;width:100%}
+.pcol{display:flex;flex-direction:column;gap:12px;align-items:center}.pcol:hover .pg{transform:translateY(-4px);box-shadow:0 1px 2px rgba(0,0,0,.08),0 28px 50px -14px rgba(0,0,0,.32)}
 .plab{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#777}.plab b{color:var(--k)}
 /* ---- poster ---- */
-.pg{width:calc(420*var(--mm));height:calc(594*var(--mm));background:#fff;border:1px solid #bbb;box-shadow:0 10px 30px rgba(0,0,0,.12);position:relative;padding:calc(22*var(--mm)) calc(22*var(--mm)) 0;overflow:hidden}
+.pg{width:calc(420*var(--mm));height:calc(594*var(--mm));background:#fff;border:1px solid #c9c8c3;box-shadow:0 1px 2px rgba(0,0,0,.08),0 18px 40px -12px rgba(0,0,0,.28);transition:transform .25s,box-shadow .25s;position:relative;padding:calc(22*var(--mm)) calc(22*var(--mm)) 0;overflow:hidden}
 .pbrand{font-weight:900;font-size:calc(11*var(--mm));letter-spacing:2px}
 .ph{font-weight:900;font-size:calc(56*var(--mm));line-height:1;letter-spacing:-2px;margin:calc(6*var(--mm)) 0 calc(8*var(--mm))}
 .ps1{font-weight:700;font-size:calc(15*var(--mm));margin-bottom:calc(4*var(--mm))}
@@ -24,7 +25,7 @@ body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color
 .ptbl div{display:flex;gap:calc(8*var(--mm));font-size:calc(10.5*var(--mm));line-height:1.3;padding:calc(3*var(--mm)) 0}.ptbl div+div{border-top:2px solid var(--k)}.ptbl b{width:calc(44*var(--mm));flex:none;font-weight:900}.ptbl span{font-weight:700}
 .qrrow{display:flex;justify-content:space-between;align-items:center}.qrt{font-weight:800;font-size:calc(11*var(--mm));line-height:1.35}
 .qr{width:calc(70*var(--mm));height:calc(70*var(--mm));border:3px solid var(--k);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:calc(9*var(--mm));background:repeating-linear-gradient(45deg,#fff 0 8px,#ddd 8px 16px);cursor:pointer;position:relative}
-.qr:hover,.t:hover{outline:3px solid #07ED21;outline-offset:2px}
+.qr:hover,.t:hover{outline:3px solid #07ED21;outline-offset:2px;background:#07ED21;color:#111}
 .qr::after{content:'클릭 → 랜딩';position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:600;color:#07a516;white-space:nowrap}
 .mic{font-size:calc(6*var(--mm));margin-top:calc(8*var(--mm))}
 .tk{position:absolute;left:0;right:0;bottom:0;height:calc(78*var(--mm));border-top:2px dashed var(--k);display:flex}
@@ -32,8 +33,8 @@ body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color
 .t i{width:calc(26*var(--mm));height:calc(26*var(--mm));border:2px solid var(--k);background:repeating-linear-gradient(45deg,#fff 0 4px,#ddd 4px 8px)}.t b{font-weight:900}.t s{text-decoration:none;color:#555}
 .tkhint{position:absolute;left:0;right:0;bottom:calc(80*var(--mm));text-align:center;font-size:10px;color:#07a516;font-weight:600}
 /* ---- landing ---- */
-.lwrap{display:flex;gap:28px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
-.phone{width:390px;height:min(820px,calc(100vh - 140px));border:2px solid var(--k);border-radius:30px;background:#fff;overflow-y:auto;overflow-x:hidden;scrollbar-width:thin;position:relative}
+.lwrap{display:flex;gap:clamp(24px,4vw,56px);justify-content:center;align-items:center;flex-wrap:wrap;width:100%}
+.phone{width:min(400px,92vw);height:min(840px,calc(100vh - 130px));border:10px solid #141414;border-radius:44px;background:#fff;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative;box-shadow:0 1px 2px rgba(0,0,0,.1),0 30px 60px -16px rgba(0,0,0,.4)}.phone::-webkit-scrollbar{display:none}
 .sc{padding:14px 16px 90px}
 .wel{border:1px dashed var(--k);padding:9px 10px;font-size:13px;font-weight:700;text-align:center;margin-bottom:14px;background:#fafafa}
 .h1{font-size:34px;line-height:1.1;font-weight:900;margin-bottom:10px}
@@ -58,13 +59,16 @@ body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color
 .blank{background:#f3f3f3;border:1px dashed #999;padding:0 5px;font-family:var(--mono);font-size:.9em}
 .fixed{position:sticky;bottom:0;background:#fff;padding:10px 16px 14px;border-top:1px solid var(--line);margin:0 -16px -90px}
 .fixed .btn{display:block;text-align:center;width:100%;padding:12px;font-size:14px}
-.side{width:300px;font-size:13px;line-height:1.6;color:#444}.side h3{font-size:14px;margin:0 0 8px}.side code{font-family:var(--mono);font-size:12px;background:#fff;padding:1px 5px;border:1px solid var(--line)}
+.side{width:320px;font-size:13px;line-height:1.6;color:#444}.side h3{font-size:14px;margin:0 0 8px}.side code{font-family:var(--mono);font-size:12px;background:#fff;padding:1px 5px;border:1px solid var(--line)}
 .side .k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#888;margin:14px 0 4px}
 .back{border:1px solid var(--k);background:#fff;border-radius:999px;padding:7px 14px;font-weight:700;font-size:13px;cursor:pointer}
+.thumb{--mm:0.42px;margin-bottom:14px;transform-origin:top left}.thumb .pg{box-shadow:0 8px 20px -8px rgba(0,0,0,.35);pointer-events:none}.thumb .qr::after,.thumb .tkhint{display:none}.thumb .qr.on,.thumb .t.on{background:#07ED21;outline:3px solid #07ED21}
+.qr.pulse{animation:pulse 1.6s ease-out 3}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(7,237,33,.75)}100%{box-shadow:0 0 0 18px rgba(7,237,33,0)}}
+@media(prefers-reduced-motion:reduce){.qr.pulse{animation:none}.view.on{animation:none}.pg{transition:none}}
 .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--k);color:#fff;padding:10px 16px;border-radius:999px;font-size:13px;opacity:0;transition:.25s;pointer-events:none;z-index:20}.toast.on{opacity:1}
-@media(max-width:1000px){:root{--mm:0.78px}.qr::after{font-size:9px}.side{width:100%}}
+@media(max-width:1000px){.qr::after{font-size:9px}.side{width:100%}.thumb{display:none}}
 </style></head><body>
-<header class="top"><div><div class="brand"><b>Cre8orClub</b>위클리 베스트 · 대학 포스터 프로토타입 · 2026-10-12</div><div class="ttl" id="ttl">포스터 A안 · B안 — QR이나 티켓을 클릭하면 랜딩이 열려요</div></div><div id="topr" class="hint">QR·티켓에 마우스를 올리면 초록 테두리가 보여요</div></header>
+<header class="top"><div><div class="brand"><b>Cre8orClub</b>위클리 베스트 · 대학 포스터 프로토타입 · 2026-10-12</div><div class="ttl" id="ttl">포스터 A안 · B안 — QR이나 티켓을 클릭하면 랜딩이 열려요</div></div><div id="topr" class="hint">초록으로 깜빡이는 곳이 눌리는 곳이에요</div></header>
 
 <section class="view on" id="vPosters"><div class="posters">
 <div class="pcol"><div class="plab"><b>A안 · 기본형</b> 고정 QR 하나</div>
@@ -111,7 +115,7 @@ body{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color
 <div class="acc">유의사항 <b>＋</b></div><div class="accb"><ul><li>참여 대상은 Cre8orClub 앱 가입자 누구나예요.</li><li>작품 부문은 진행 기간 안에 전체공개로 올린 작품만 집계해요. 삭제하거나 공개 범위를 바꾸면 빠져요.</li><li>크리에이터 부문은 전체공개 프로필만 집계해요. 비공개로 바꾸면 순위에서 빠지고, 취소한 리스펙트·팔로우는 점수에서 빠져요.</li><li>활동 점수가 같으면 먼저 도달한 크리에이터가 앞서요.</li><li>보상이 있는 주차의 수상자에게는 결과 발표 후 지급을 위해 개별로 연락해요.</li><li>참여 규칙이나 보상이 바뀌면 바뀐 내용이 적용되는 주차가 시작하기 전에 안내해요.</li><li><u>운영 규칙 전체 보기</u></li></ul></div>
 <div class="fixed"><span class="btn fill" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></div>
 </div></div>
-<div class="side"><h3 id="sideH">어떻게 열렸나</h3>
+<div class="side"><div class="thumb" id="thumb"></div><h3 id="sideH">어떻게 열렸나</h3>
 <div class="k">QR 주소</div><div><code id="url">/weekly</code></div>
 <div class="k">환영 한 줄 규칙</div><div>티켓 QR → 「청강대 3번 티켓으로 오신 크리에이터, 환영해요」<br>고정 QR → 「청강대에서 오신 크리에이터, 환영해요」<br>그 밖 → 「크리에이터클럽에 오신 걸 환영해요」<br><span style="color:#777">도착 순서가 아니라 티켓 번호라 「3번째」가 아니라 「3번 티켓」이에요.</span></div>
 <div class="k">이 아래는 모두 같아요</div><div>1 첫 화면(헤드라인·앱 한 줄·참여 방법 3단계·버튼) → 2 이번 주 혜택 → 3 작품 부문 → 4 크리에이터 부문 → 5 라운지 → 앱 소개(접힘) → 유의사항(접힘) → 하단 고정 버튼</div>
@@ -127,10 +131,11 @@ function openLanding(s,t,ab){const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');doc
  const w=t?`${school[s]} ${+t}번 티켓으로 오신 크리에이터, 환영해요`:(s?`${school[s]}에서 오신 크리에이터, 환영해요`:'크리에이터클럽에 오신 걸 환영해요');
  document.getElementById('wel').textContent=w;document.getElementById('sideH').textContent=(ab==='B'&&t)?`B안 · 티켓 No.${t} QR로 열림`:(ab?`${ab}안 · 포스터 고정 QR로 열림`:'직접 입력');
  document.getElementById('ttl').textContent='QR 랜딩 — 와이어프레임 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
- document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');document.querySelector('.phone').scrollTop=0;window.scrollTo(0,0);}
-function showPosters(){document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='포스터 A안 · B안 — QR이나 티켓을 클릭하면 랜딩이 열려요';document.getElementById('topr').textContent='QR·티켓에 마우스를 올리면 초록 테두리가 보여요';}
+ const src=document.getElementById(ab==='A'?'posterA':'posterB');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr,.t').forEach(x=>{x.classList.toggle('on',x.dataset.t===(t||'')&&(t||x.classList.contains('qr')))});th.appendChild(c);}
+document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');document.querySelector('.phone').scrollTop=0;window.scrollTo(0,0);}
+function showPosters(){document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='포스터 A안 · B안 — QR이나 티켓을 클릭하면 랜딩이 열려요';document.getElementById('topr').textContent='초록으로 깜빡이는 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
 document.querySelectorAll('.qr,.t').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,e.dataset.t,e.dataset.ab));
-document.getElementById('back').onclick=showPosters;
+document.getElementById('back').onclick=showPosters;document.querySelectorAll('#vPosters .qr').forEach(q=>q.classList.add('pulse'));
 document.querySelectorAll('.acc').forEach(a=>a.onclick=()=>a.classList.toggle('open'));
 let tt;document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const t=document.getElementById('toast');t.textContent='→ '+b.dataset.go;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200)});
 </script></body></html>
