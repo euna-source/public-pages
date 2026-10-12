@@ -251,8 +251,8 @@
     "slug": "c8-campus-poster-plan",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-campus-poster-plan/",
-    "last_kind": "new",
-    "last_sha256": "b8c3bd7a028df1a0198aba98a6f42c2727fe6f54cf69f3e52606c2a9b7494316",
-    "timestamp": "2026-10-12T09:56:30.052689Z"
+    "last_kind": "redeploy",
+    "last_sha256": "851a6f4c7935a46aac969263f6024b2a0c7259c50ea65f6c85013402aef1455b",
+    "timestamp": "2026-10-12T09:58:14.476489Z"
   }
 }
