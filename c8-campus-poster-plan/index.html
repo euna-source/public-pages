@@ -51,11 +51,11 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 .t::before{content:'';position:absolute;left:0;right:0;top:calc(-1*var(--mm));height:calc(4*var(--mm));background:radial-gradient(circle at 50% 0,var(--n100) 0 calc(2*var(--mm)),transparent calc(2.2*var(--mm)))}
 .tkhint{position:absolute;left:0;right:0;bottom:calc(81*var(--mm));text-align:center;font-size:10.5px;color:var(--acc-ink);font-weight:600}
 /* ---- landing (page + frame overlay) ---- */
-#vLanding.on{align-items:flex-start;overflow-y:auto;overflow-x:hidden;padding-top:28px;height:calc(100vh - 61px);min-height:0}
-body{overflow:hidden}
+#vLanding.on{align-items:flex-start;padding-top:28px;overflow:visible}
+html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 .lwrap{display:flex;gap:clamp(24px,4vw,64px);justify-content:center;align-items:flex-start;flex-wrap:wrap;width:100%}
 .stage{--ph:600px;--pw:277px;--z:0.71;position:relative;width:var(--pw);flex:none;margin-bottom:60px}
-.sticky{position:sticky;top:0;height:0;z-index:3}.mask{position:absolute;left:-20px;top:-40px;width:calc(var(--pw) + 40px);height:40px;background:var(--n100);z-index:1}
+.sticky{position:sticky;top:76px;height:0;z-index:3}.mask{position:absolute;left:-20px;top:-20px;width:calc(var(--pw) + 40px);height:20px;background:var(--n100);z-index:1}
 .page{width:390px;zoom:var(--z);background:#fff;border-radius:46px 46px 0 0;overflow:hidden;box-shadow:var(--sh3)}
 .frame{position:absolute;left:0;top:0;width:var(--pw);height:var(--ph);border:calc(10px*var(--z)) solid #141414;border-radius:calc(48px*var(--z));pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.2),var(--sh3);z-index:3}
 .frame .notch{position:absolute;left:50%;top:calc(8px*var(--z));transform:translateX(-50%);width:calc(96px*var(--z));height:calc(26px*var(--z));background:#141414;border-radius:999px}
@@ -104,7 +104,7 @@ body{overflow:hidden}
 .acc.open+.accb{display:block}.accb ul{padding-left:16px}.accb li{margin-bottom:5px}
 .blank{background:var(--n100);border:1px dashed var(--n300);padding:0 5px;font-family:var(--mono);font-size:.9em;border-radius:4px;color:var(--n700)}
 /* ---- side ---- */
-.side{width:320px;position:sticky;top:0;font-size:13px;line-height:1.6;color:var(--n700)}
+.side{width:320px;position:sticky;top:90px;font-size:13px;line-height:1.6;color:var(--n700)}
 .side h3{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--n900);margin:0 0 6px}
 .side .k{font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--n500);margin:16px 0 4px}
 .side code{font-family:var(--mono);font-size:12px;background:#fff;padding:2px 6px;border:1px solid var(--n200);border-radius:4px}
@@ -200,8 +200,8 @@ function openLanding(s,t,ab){fitStage();const u='/weekly'+(s?'?s='+s+(t?'&t='+t:
  document.getElementById('sideH').textContent=(ab==='B'&&t)?`B안 · 티켓 No.${t} QR로 열림`:(ab?`${ab}안 · 포스터 고정 QR로 열림`:'직접 입력');
  document.getElementById('ttl').textContent='QR 랜딩 — 와이어프레임 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
  const src=document.getElementById(ab==='A'?'posterA':'posterB');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr,.t').forEach(x=>{x.classList.remove('pulse');x.classList.toggle('on',x.dataset.t===(t||'')&&(t||x.classList.contains('qr')))});th.appendChild(c);}
- document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');document.getElementById('vLanding').scrollTop=0;window.scrollTo(0,0);}
-function showPosters(){document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='포스터 A안 · B안 — QR이나 티켓을 누르면 랜딩이 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
+ document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');window.scrollTo(0,0);}
+function showPosters(){window.scrollTo(0,0);document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='포스터 A안 · B안 — QR이나 티켓을 누르면 랜딩이 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
 document.querySelectorAll('.qr,.t').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,e.dataset.t,e.dataset.ab));
 document.getElementById('back').onclick=showPosters;
 document.querySelectorAll('#vPosters .qr').forEach(q=>q.classList.add('pulse'));
