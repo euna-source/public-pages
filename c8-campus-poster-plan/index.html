@@ -116,7 +116,7 @@ html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 @media(prefers-reduced-motion:reduce){.qr.pulse::before{animation:none}.view.on{animation:none}.pg,.btn{transition:none}}
 @media(max-width:1000px){.side{width:100%}.thumb{display:none}}
 </style></head><body>
-<header class="top"><div><div class="brand"><b>Cre8orClub</b>위클리 베스트 · 대학 포스터 프로토타입 · 2026-10-12</div><div class="ttl" id="ttl">대학 포스터 A안 — QR을 누르면 앱 프로모션 페이지가 열려요</div></div><div id="topr" class="hint"><i></i>초록으로 표시된 곳이 눌리는 곳이에요</div></header>
+<header class="top"><div><div class="brand"><b>Cre8orClub</b>위클리 베스트 · 대학 포스터 프로토타입 · 2026-10-12</div><div class="ttl" id="ttl">대학 포스터 A안 — QR을 누르면 웹 공유용 랜딩이 열려요</div></div><div id="topr" class="hint"><i></i>초록으로 표시된 곳이 눌리는 곳이에요</div></header>
 
 <section class="view on" id="vPosters"><div class="posters">
 <div class="pcol"><div class="plab"><b>A안 · 기본형 (확정)</b>고정 QR 하나 · A2</div>
@@ -132,11 +132,11 @@ html,body{height:auto;min-height:100%}body{overflow-x:hidden;overflow-y:auto}
 <section class="view" id="vLanding"><div class="lwrap">
 <div class="stage">
  <div class="sticky"><div class="mask"></div><div class="frame"><i class="notch"></i><span class="flab">폰 화면에 보이는 만큼</span></div><div class="fade"></div></div>
- <div class="page" id="page" style="min-height:844px"><img src="img/promo-page.png" alt="위클리 베스트 프로모션 페이지" id="promo" style="width:390px;display:block"></div>
+ <div class="page" id="page" style="min-height:844px"><iframe id="promo" src="landing.html" title="위클리 베스트 웹 랜딩" style="width:390px;height:5200px;border:0;display:block;background:#0b0b0b"></iframe></div>
 </div>
 <div class="side"><div class="thumb" id="thumb"></div><h3 id="sideH">A안 · 포스터 QR로 열림</h3>
-<div class="k">QR 목적지</div><div>앱 안 「위클리 베스트 프로모션 페이지」 그대로예요. 새 랜딩을 만들지 않아요.<br><a href="https://www.figma.com/design/99U80QeFrtYBqC9Pqn9gga/Cre8orClub_v3?node-id=23039-3400" target="_blank" rel="noopener" style="color:var(--n900)">Figma 23039-3400 →</a></div>
-<div class="k">페이지 순서</div><div>「뽐내봐 여기는 크리에이터클럽」 레터링 → 이번 주 총 50만 원 상당 상품권(쿠폰) → 부문별 보상 안내 → 작품 부문 「작품을 뽐내봐」 + 포트폴리오 등록하기 → 크리에이터 부문 「자신을 뽐내봐」 + 프로필 작성하기 → 라운지에서 놀면 깜짝 선물 → 유의사항</div>
+<div class="k">QR 목적지</div><div>앱 프로모션 페이지(피그마) 재료로 만든 <b>웹 공유용 랜딩</b>이에요. 앱이 없어도 열리고, 버튼은 앱·스토어로 보내요. <a href="landing.html" target="_blank" rel="noopener" style="color:var(--n900)">따로 열기 →</a><br><a href="https://www.figma.com/design/99U80QeFrtYBqC9Pqn9gga/Cre8orClub_v3?node-id=23039-3400" target="_blank" rel="noopener" style="color:var(--n900)">Figma 23039-3400 →</a></div>
+<div class="k">페이지 순서</div><div>「뽐내봐 여기는 크리에이터클럽」 레터링 → 이번 주 총 50만 원 상당 상품권(쿠폰) → 부문별 보상 안내 → 작품 부문 + 포트폴리오 등록하기 → 크리에이터 부문 + 프로필 작성하기 → 라운지 깜짝 선물 → 유의사항</div><div class="k">웹용으로 더한 것</div><div>상단 「앱으로 보기」 바 · 하단 고정 「앱에서 참여하기」 · 버튼마다 앱/스토어 분기 · 공유 썸네일(OG) · 주차 갱신 안내</div>
 <div class="k">QR 주소</div><div><code id="url">/go/weekly?s=ck</code><br><span style="color:var(--n500)">학교 코드만 붙는 리다이렉트 링크(추천). 목적지를 나중에 바꿀 수 있고 학교별 스캔 수를 셀 수 있어요.</span></div>
 <div class="k">앱이 없을 때</div><div>스토어 설치 → 설치 후 이 페이지로 이어지게(딥링크, 10/19 확정 여부 확인 전)</div>
 <div class="k">보는 법</div><div>검은 프레임이 폰 한 화면이에요. 아래 흐린 부분이 스크롤하면 이어지는 내용이에요.</div>
@@ -150,11 +150,11 @@ function syncH(){const st=document.querySelector('.stage'),p=document.getElement
  const target=stTop+r.height-top-ph+vh;const cur=document.documentElement.scrollHeight;const mb=Math.max(0,Math.round(target-cur));st.style.marginBottom=mb+'px';}
 addEventListener('resize',fitStage);
 function openLanding(s,t,ab){fitStage();setTimeout(syncH,50);setTimeout(syncH,400);document.getElementById('url').textContent='/go/weekly?s='+(s||'ck');
- document.getElementById('ttl').textContent='QR 랜딩 — 앱 프로모션 페이지 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
+ document.getElementById('ttl').textContent='QR 랜딩 — 웹 공유용 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
  const src=document.getElementById('posterA');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr').forEach(x=>{x.classList.remove('pulse');x.classList.add('on')});th.appendChild(c);}
  document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');window.scrollTo(0,0);}
-function showPosters(){window.scrollTo(0,0);document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='대학 포스터 A안 — QR을 누르면 앱 프로모션 페이지가 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
-document.querySelectorAll('.qr').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,'','A'));document.getElementById('promo').addEventListener('load',syncH);
+function showPosters(){window.scrollTo(0,0);document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='대학 포스터 A안 — QR을 누르면 웹 공유용 랜딩이 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
+document.querySelectorAll('.qr').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,'','A'));addEventListener('message',e=>{if(!e.data)return;if(e.data.type==='h'){document.getElementById('promo').style.height=e.data.h+'px';syncH();}if(e.data.type==='go'){const t=document.getElementById('toast');t.textContent='→ '+e.data.to;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2200);}});
 document.getElementById('back').onclick=showPosters;
 document.querySelectorAll('#vPosters .qr').forEach(q=>q.classList.add('pulse'));
 document.querySelectorAll('.acc').forEach(a=>a.onclick=()=>{a.classList.toggle('open');syncH();});
