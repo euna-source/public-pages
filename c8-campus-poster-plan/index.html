@@ -28,7 +28,7 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 /* ---- poster (print) ---- */
 .pg{width:calc(420*var(--mm));height:calc(594*var(--mm));background:#fff;border:1px solid var(--n300);box-shadow:var(--sh3);position:relative;padding:calc(22*var(--mm)) calc(22*var(--mm)) 0;overflow:hidden;transition:transform .25s cubic-bezier(.2,.7,.2,1),box-shadow .25s}
 .pcol:hover .pg{transform:translateY(-4px)}
-.pbrand{font-weight:800;font-size:calc(10*var(--mm));letter-spacing:.14em}
+.pbrand{font-weight:800;font-size:calc(11*var(--mm));letter-spacing:-.01em}
 .ph{font-weight:900;font-size:calc(56*var(--mm));line-height:.98;letter-spacing:-.035em;margin:calc(7*var(--mm)) 0 calc(9*var(--mm))}
 .ps1{font-weight:600;font-size:calc(14*var(--mm));margin-bottom:calc(5*var(--mm));color:var(--n700)}
 .pill{display:inline-block;border:calc(1.6*var(--mm)) solid var(--n900);font-weight:800;font-size:calc(20*var(--mm));padding:calc(2*var(--mm)) calc(10*var(--mm));border-radius:999px;margin-bottom:calc(11*var(--mm));letter-spacing:-.01em}
@@ -50,54 +50,57 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 .t b{font-weight:800}.t s{text-decoration:none;color:var(--n500)}
 .t::before{content:'';position:absolute;left:0;right:0;top:calc(-1*var(--mm));height:calc(4*var(--mm));background:radial-gradient(circle at 50% 0,var(--n100) 0 calc(2*var(--mm)),transparent calc(2.2*var(--mm)))}
 .tkhint{position:absolute;left:0;right:0;bottom:calc(81*var(--mm));text-align:center;font-size:10.5px;color:var(--acc-ink);font-weight:600}
-/* ---- landing (phone) ---- */
-.lwrap{display:flex;gap:clamp(24px,4vw,56px);justify-content:center;align-items:center;flex-wrap:wrap;width:100%}
-.phone{width:min(400px,92vw);height:min(840px,calc(100vh - 130px));border:10px solid #141414;border-radius:46px;background:#fff;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;position:relative;box-shadow:var(--sh3)}.phone::-webkit-scrollbar{display:none}
-.notch{position:sticky;top:0;z-index:3;height:0}.notch i{position:absolute;left:50%;top:8px;transform:translateX(-50%);width:96px;height:26px;background:#141414;border-radius:999px}
-.hero{background:var(--acc);padding:54px 22px 26px;position:relative;overflow:hidden}
-.hero::after{content:'';position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.28)}
-.hero::before{content:'';position:absolute;left:-40px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:rgba(0,0,0,.06)}
-.stub{position:relative;display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:var(--r2);padding:8px 12px 8px 10px;box-shadow:var(--sh2);font-size:12px;font-weight:600;color:var(--n700);margin-bottom:16px}
-.stub b{font-family:var(--mono);font-size:13px;color:var(--n900);background:var(--n100);padding:2px 7px;border-radius:5px;letter-spacing:.02em}
-.stub::after{content:'';position:absolute;right:38px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
-.stub::before{content:'';position:absolute;right:38px;bottom:-5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
-.wel1{position:relative;font-size:15px;font-weight:600;color:var(--acc-ink);margin-bottom:4px}
-.wel2{position:relative;font-size:38px;font-weight:900;letter-spacing:-.035em;line-height:1.05;color:var(--n900)}
-.wel3{position:relative;font-size:13.5px;color:var(--acc-ink);margin-top:12px;line-height:1.5}
-.sc{padding:18px 18px 96px}
-.card{background:var(--n0);border:1px solid var(--n200);border-radius:var(--r3);padding:18px;box-shadow:var(--sh1);margin-bottom:12px;position:relative}
-.eyebrow{font-size:11px;font-weight:600;letter-spacing:.06em;color:var(--n500);text-transform:uppercase;margin-bottom:6px}
-.h1{font-size:30px;line-height:1.08;font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
-.h2{font-size:19px;line-height:1.25;font-weight:700;letter-spacing:-.02em;margin-bottom:6px}
-.p{font-size:13.5px;line-height:1.55;color:var(--n700)}
-.p.sm{font-size:12px;color:var(--n500)}
-.steps{margin-top:14px;display:flex;flex-direction:column}
-.step{display:grid;grid-template-columns:36px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--n200)}
-.step .ic{width:36px;height:36px;border-radius:var(--r2);background:var(--n100);display:grid;place-items:center;color:var(--n900)}
-.step .ic svg{width:18px;height:18px}
-.step b{display:block;font-size:14px;font-weight:700;letter-spacing:-.01em}.step small{display:block;color:var(--n500);font-size:12px;margin-top:2px;line-height:1.45}
-.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--n900);border-radius:999px;padding:8px 14px;font-size:12.5px;font-weight:700;cursor:pointer;background:#fff;margin-top:8px;transition:transform .12s,box-shadow .12s,background .12s}
+/* ---- landing (page + frame overlay) ---- */
+#vLanding.on{align-items:flex-start;overflow-y:auto;padding-top:28px}
+.lwrap{display:flex;gap:clamp(24px,4vw,64px);justify-content:center;align-items:flex-start;flex-wrap:wrap;width:100%}
+.stage{--ph:600px;--pw:277px;--z:0.71;position:relative;width:var(--pw);flex:none;margin-bottom:60px}
+.page{width:390px;zoom:var(--z);background:#fff;border-radius:46px 46px 0 0;overflow:hidden;box-shadow:var(--sh3)}
+.frame{position:absolute;left:0;top:0;width:var(--pw);height:var(--ph);border:calc(10px*var(--z)) solid #141414;border-radius:calc(48px*var(--z));pointer-events:none;box-shadow:0 0 0 1px rgba(0,0,0,.2),var(--sh3);z-index:3}
+.frame .notch{position:absolute;left:50%;top:calc(8px*var(--z));transform:translateX(-50%);width:calc(96px*var(--z));height:calc(26px*var(--z));background:#141414;border-radius:999px}
+.flab{position:absolute;right:-30px;top:50%;transform:translateX(100%) rotate(90deg);transform-origin:left center;font-size:11px;color:var(--n500);white-space:nowrap;letter-spacing:.04em}
+.fixedbar{position:absolute;left:0;right:0;bottom:0;padding:calc(14px*var(--z)) calc(22px*var(--z)) calc(18px*var(--z));background:linear-gradient(transparent,#fff 35%);pointer-events:auto;zoom:1}
+.fixedbar .btn{zoom:var(--z);display:flex;justify-content:center;width:100%}
+.fade{position:absolute;left:0;right:0;top:var(--ph);bottom:0;background:rgba(244,244,242,.78);z-index:2;pointer-events:none;border-radius:0}
+.hero{background:var(--acc);padding:64px 26px 34px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-70px;top:-70px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.28)}
+.hero::before{content:'';position:absolute;left:-50px;bottom:-90px;width:200px;height:200px;border-radius:50%;background:rgba(0,0,0,.06)}
+.stub{position:relative;display:inline-flex;align-items:center;gap:10px;background:#fff;border-radius:var(--r2);padding:9px 14px 9px 12px;box-shadow:var(--sh2);font-size:12.5px;font-weight:600;color:var(--n700);margin-bottom:22px}
+.stub b{font-family:var(--mono);font-size:13px;color:var(--n900);background:var(--n100);padding:2px 8px;border-radius:5px;letter-spacing:.02em}
+.stub::after{content:'';position:absolute;right:40px;top:-5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.stub::before{content:'';position:absolute;right:40px;bottom:-5px;width:10px;height:10px;border-radius:50%;background:var(--acc)}
+.wel1{position:relative;font-size:15.5px;font-weight:600;color:var(--acc-ink);margin-bottom:8px}
+.wel2{position:relative;font-size:42px;font-weight:900;letter-spacing:-.04em;line-height:1.04;color:var(--n900)}
+.wel3{position:relative;font-size:14px;color:var(--acc-ink);margin-top:16px;line-height:1.55}
+.sc{padding:8px 26px 40px}
+.sec{padding:36px 0;border-top:1px solid var(--n200)}.sec:first-child{border-top:0;padding-top:36px}.sec.tight{padding:28px 0}.sec.end{padding:12px 0 8px;border-top:0}
+.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.06em;color:var(--n500);text-transform:uppercase;margin-bottom:10px}
+.h1{font-size:36px;line-height:1.06;font-weight:800;letter-spacing:-.035em;margin-bottom:14px}
+.h2{font-size:22px;line-height:1.25;font-weight:700;letter-spacing:-.025em;margin-bottom:10px}
+.p{font-size:14.5px;line-height:1.6;color:var(--n700)}.p.lead{font-size:15px}.p.sm{font-size:12.5px;color:var(--n500);margin-top:12px}.p.strong{font-weight:600;color:var(--n900);margin-top:8px}
+.steps{display:flex;flex-direction:column;gap:4px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:14px;padding:16px 0}.step+.step{border-top:1px solid var(--n200)}
+.step .ic{width:40px;height:40px;border-radius:var(--r2);background:var(--n100);display:grid;place-items:center;color:var(--n900)}
+.step .ic svg{width:19px;height:19px}
+.step b{display:block;font-size:15.5px;font-weight:700;letter-spacing:-.01em}.step small{display:block;color:var(--n500);font-size:12.5px;margin-top:3px;line-height:1.5}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--n900);border-radius:999px;padding:9px 16px;font-size:13px;font-weight:700;cursor:pointer;background:#fff;margin-top:10px;transition:transform .12s,box-shadow .12s,background .12s}
 .btn:hover{box-shadow:var(--sh1);transform:translateY(-1px)}.btn:active{transform:none}
 .btn.fill{background:var(--n900);color:#fff;border-color:var(--n900)}.btn.fill:hover{background:#000}
-.btn svg{width:14px;height:14px}
-.amount{font-size:34px;font-weight:900;letter-spacing:-.04em;line-height:1;margin:6px 0 4px;font-variant-numeric:tabular-nums}
-.amount .blank{font-size:.7em;vertical-align:middle}
-.tbl{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:12px 0 10px}
-.tbl i{font-style:normal;border:1px solid var(--n200);border-radius:var(--r1);padding:10px 4px;text-align:center;font-size:11.5px;background:var(--n50);display:flex;flex-direction:column;gap:4px;align-items:center}
-.tbl i b{font-size:12px}.tbl i:first-child{border-color:var(--n900);background:#fff}
-.meta{font-size:12px;color:var(--n500);line-height:1.6}
-.notice{margin-top:10px;padding:10px 12px;background:var(--n100);border-radius:var(--r1);font-size:11.5px;color:var(--n700);line-height:1.5}
-.folders{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:12px}
-.folders b{font-weight:600;font-size:10.5px;text-align:center;color:var(--n700)}
-.folders b::before{content:'';display:block;height:34px;margin:0 auto 5px;width:88%;border-radius:4px 4px 3px 3px;background:linear-gradient(var(--n300) 0 7px,var(--n200) 7px);border:1px solid var(--n300)}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.chips span{border:1px solid var(--n200);background:var(--n50);border-radius:999px;font-size:11.5px;padding:5px 10px;color:var(--n700)}
-.acc{border:1px solid var(--n200);background:#fff;border-radius:var(--r2);padding:13px 14px;font-size:13.5px;font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:10px;box-shadow:var(--sh1)}
+.btn.big{display:flex;justify-content:center;width:100%;padding:15px;font-size:15px;margin-top:0;box-shadow:var(--sh2)}
+.amount{font-size:36px;font-weight:900;letter-spacing:-.04em;line-height:1;margin:8px 0 10px;font-variant-numeric:tabular-nums}.amount .blank{font-size:.7em;vertical-align:middle}
+.tbl{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 14px}
+.tbl i{font-style:normal;border:1px solid var(--n200);border-radius:var(--r1);padding:12px 4px;text-align:center;font-size:12px;background:var(--n50);display:flex;flex-direction:column;gap:5px;align-items:center}
+.tbl i b{font-size:12.5px}.tbl i:first-child{border-color:var(--n900);background:#fff}
+.meta{font-size:12.5px;color:var(--n500);line-height:1.7}
+.notice{margin-top:14px;padding:12px 14px;background:var(--n100);border-radius:var(--r1);font-size:12px;color:var(--n700);line-height:1.55}
+.folders{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:18px}
+.folders b{font-weight:600;font-size:11px;text-align:center;color:var(--n700)}
+.folders b::before{content:'';display:block;height:40px;margin:0 auto 6px;width:88%;border-radius:5px 5px 4px 4px;background:linear-gradient(var(--n300) 0 8px,var(--n200) 8px);border:1px solid var(--n300)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.chips span{border:1px solid var(--n200);background:var(--n50);border-radius:999px;font-size:12.5px;padding:7px 12px;color:var(--n700)}
+.acc{border:1px solid var(--n200);background:#fff;border-radius:var(--r2);padding:15px 16px;font-size:14px;font-weight:600;display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:10px;box-shadow:var(--sh1)}
 .acc svg{width:16px;height:16px;transition:transform .2s}.acc.open svg{transform:rotate(45deg)}
-.acc+.accb{display:none;padding:4px 14px 14px;font-size:12.5px;line-height:1.6;color:var(--n700);margin:-6px 0 10px}
-.acc.open+.accb{display:block}.accb ul{padding-left:16px}.accb li{margin-bottom:4px}
+.acc+.accb{display:none;padding:4px 16px 16px;font-size:13px;line-height:1.65;color:var(--n700);margin:-6px 0 10px}
+.acc.open+.accb{display:block}.accb ul{padding-left:16px}.accb li{margin-bottom:5px}
 .blank{background:var(--n100);border:1px dashed var(--n300);padding:0 5px;font-family:var(--mono);font-size:.9em;border-radius:4px;color:var(--n700)}
-.fixed{position:sticky;bottom:0;background:linear-gradient(transparent,#fff 30%);padding:18px 18px 16px;margin:0 -18px -96px}
-.fixed .btn{display:flex;justify-content:center;width:100%;padding:14px;font-size:14.5px;box-shadow:var(--sh2)}
 /* ---- side ---- */
 .side{width:320px;font-size:13px;line-height:1.6;color:var(--n700)}
 .side h3{font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--n900);margin:0 0 6px}
@@ -116,16 +119,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 <section class="view on" id="vPosters"><div class="posters">
 <div class="pcol"><div class="plab"><b>A안 · 기본형</b>고정 QR 하나</div>
 <div class="pg" id="posterA">
-<div class="pbrand">CRE8OR CLUB</div><div class="ph">작품도,<br>프로필도<br>뽐내봐</div>
-<div class="ps1">여기는 크리에이터클럽</div><div class="pill">매주 즐거운 혜택</div>
+<div class="pbrand">Cre8orClub</div><div class="ph">작품도,<br>프로필도<br>뽐내봐</div>
+<div class="ps1">여기는 Cre8orClub</div><div class="pill">매주 즐거운 혜택</div>
 <div class="ptbl"><div><b>참여 대상</b><span>Cre8orClub 앱 가입자 누구나</span></div><div><b>모집처</b><span>Cre8orClub 앱</span></div><div><b>참여 방법</b><span>① 앱 가입<br>② 프로필 꾸미기 · 작품 올리기</span></div></div>
 <div class="qrrow"><div class="qrt">QR을 찍고 참여 방법과<br>이번 주 혜택을 확인하세요.</div><div class="qr" data-s="ck" data-t="" data-ab="A"><span>QR</span></div></div>
 <div class="mic">보상은 주차마다 다르거나 없을 수 있어요.</div>
 </div></div>
 <div class="pcol"><div class="plab"><b>B안 · 클럽 티켓형</b>고정 QR + 떼어 가는 티켓 10장</div>
 <div class="pg" id="posterB">
-<div class="pbrand">CRE8OR CLUB</div><div class="ph">작품도,<br>프로필도<br>뽐내봐</div>
-<div class="ps1">여기는 크리에이터클럽</div><div class="pill">매주 즐거운 혜택</div>
+<div class="pbrand">Cre8orClub</div><div class="ph">작품도,<br>프로필도<br>뽐내봐</div>
+<div class="ps1">여기는 Cre8orClub</div><div class="pill">매주 즐거운 혜택</div>
 <div class="ptbl"><div><b>참여 대상</b><span>Cre8orClub 앱 가입자 누구나</span></div><div><b>모집처</b><span>Cre8orClub 앱</span></div><div><b>참여 방법</b><span>① 앱 가입<br>② 프로필 꾸미기 · 작품 올리기</span></div></div>
 <div class="qrrow"><div class="qrt">QR을 찍고 참여 방법과<br>이번 주 혜택을 확인하세요.</div><div class="qr" data-s="ck" data-t="" data-ab="B"><span>QR</span></div></div>
 <div class="mic">보상은 주차마다 다르거나 없을 수 있어요.</div>
@@ -135,41 +138,51 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 </div></section>
 
 <section class="view" id="vLanding"><div class="lwrap">
-<div class="phone"><div class="notch"><i></i></div>
-<div class="hero">
- <div class="stub" id="stub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><span id="stubT">클럽 티켓</span><b id="stubN">No.03</b></div>
- <div class="wel1" id="wel1">청강대 3번 티켓으로 오신 크리에이터</div>
- <div class="wel2" id="wel2">환영해요,<br>잘 찾아오셨어요</div>
- <div class="wel3" id="wel3">작품이든 프로필이든, 이번 주에 뽐낼 자리를 비워 뒀어요.</div>
+<div class="stage">
+ <div class="page" id="page">
+  <div class="hero">
+   <div class="stub" id="stub"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9a3 3 0 0 1 0 6v3a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-3a3 3 0 0 1 0-6V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg><span id="stubT">Cre8orClub 티켓</span><b id="stubN">No.03</b></div>
+   <div class="wel1" id="wel1">청강대 3번 티켓으로 오신 크리에이터</div>
+   <div class="wel2" id="wel2">환영해요,<br>잘 찾아오셨어요</div>
+   <div class="wel3" id="wel3">작품이든 프로필이든, 이번 주에 뽐낼 자리를 비워 뒀어요.</div>
+  </div>
+  <div class="sc">
+   <section class="sec">
+    <div class="h1">작품도,<br>프로필도 뽐내봐</div>
+    <div class="p lead">크리에이터가 작품과 프로필을 올리고<br>서로 리스펙트하는 앱, Cre8orClub</div>
+    <div class="eyebrow" style="margin-top:28px">참여 방법</div>
+    <div class="steps">
+     <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div><b>앱 가입</b><small>스토어에서 Cre8orClub을 받아요</small><span class="btn" data-go="스토어 설치 화면 (iOS·Android 자동 분기)">앱 설치하기</span></div></div>
+     <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><b>프로필 꾸미고 소통하기</b><small>커버와 소개를 채우고, 리스펙트를 보내고, 이야기해요</small><span class="btn" data-go="앱 My 탭 — 커버·소개 등록 (미설치면 설치 먼저)">내 프로필 열기</span></div></div>
+     <div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div><b>작품 올리기</b><small>완성작도 작업 중인 것도 괜찮아요</small><span class="btn" data-go="앱 업로드 화면 (커버 미등록이면 프로필 등록 먼저)">작품 올리기</span></div></div>
+    </div>
+   </section>
+   <section class="sec">
+    <div class="eyebrow">이번 주 혜택</div>
+    <div class="h2">이번 주, 모든 분야를 합쳐</div>
+    <div class="amount">총 <span class="blank">[50]</span>만 원 상당 상품권</div>
+    <div class="p">작품 순위 · 크리에이터 순위 · 라운지 소통왕에게 나눠서 드려요.</div>
+    <div class="tbl"><i><b>1위</b><span class="blank">[ ]</span></i><i><b>2위</b><span class="blank">[ ]</span></i><i><b>3위</b><span class="blank">[ ]</span></i><i><b>4~10위</b><span class="blank">[ ]</span></i></div>
+    <div class="meta">이 순위표는 작품 부문과 크리에이터 부문에 똑같이 쓰여요.<br>라운지 소통왕 <span class="blank">[16]</span>명은 <span class="blank">[CU 상품권 1만 원]</span>이에요.<br>진행 기간 <span class="blank">[10/19(월) 00:00 ~ 10/25(일) 23:59]</span> · 발표 <span class="blank">[10/26(월)]</span></div>
+    <div class="notice">보상은 주차마다 다르거나 없을 수 있어요. 주차가 시작된 뒤에는 그 주차의 보상을 줄이거나 없애지 않아요.</div>
+   </section>
+   <section class="sec"><div class="eyebrow">작품 부문</div><div class="h2">올린 작품이 받은 리스펙트로<br>순위를 정해요</div><div class="p">완성작도, 작업 중인 것도, 폴더 속에 잠들어 있던 것도 괜찮아요.</div><div class="folders"><b>데모</b><b>쇼릴</b><b>콘티</b><b>시안</b><b>프로토타입</b></div><div class="p sm">한 사람이 작품 여러 개로 순위에 들 수도 있어요.</div></section>
+   <section class="sec"><div class="eyebrow">크리에이터 부문</div><div class="h2">전체공개 프로필로 쌓은<br>활동 점수로 순위를 정해요</div><div class="p strong">이게 다 활동이에요</div><div class="chips"><span>프로필 채우기</span><span>작품·프로젝트·영감 올리기</span><span>리스펙트 보내기</span><span>채팅</span><span>공유</span><span>팔로워 늘리기</span></div><div class="p sm">직접 올리는 활동에 더 높은 점수를 줘요. 채팅은 메시지 수만 세고 내용은 보지 않아요.</div></section>
+   <section class="sec"><div class="eyebrow">라운지</div><div class="h2">라운지 소통왕</div><div class="p">이번 주 라운지에서 가장 많이 이야기한 <span class="blank">[16]</span>명에게 운영진이 상품권을 드려요.</div></section>
+   <section class="sec tight">
+    <div class="acc">Cre8orClub은 어떤 앱이에요? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="accb">작곡가, 일러스트레이터, 영상감독, 사진작가, 배우, 웹툰 작가… 분야가 달라도 「만드는 사람」이면 누구나 모이는 곳이에요. 작품을 올리고, 프로필로 나를 소개하고, 서로 리스펙트를 보내고, 프로젝트와 영감을 나눠요. 위클리 베스트는 그중 이번 주에 가장 빛난 작품과 크리에이터를 매주 가려 뽑는 자리예요.</div>
+    <div class="acc">유의사항 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="accb"><ul><li>참여 대상은 Cre8orClub 앱 가입자 누구나예요.</li><li>작품 부문은 진행 기간 안에 전체공개로 올린 작품만 집계해요. 삭제하거나 공개 범위를 바꾸면 빠져요.</li><li>크리에이터 부문은 전체공개 프로필만 집계해요. 비공개로 바꾸면 순위에서 빠지고, 취소한 리스펙트·팔로우는 점수에서 빠져요.</li><li>활동 점수가 같으면 먼저 도달한 크리에이터가 앞서요.</li><li>보상이 있는 주차의 수상자에게는 결과 발표 후 지급을 위해 개별로 연락해요.</li><li>참여 규칙이나 보상이 바뀌면 바뀐 내용이 적용되는 주차가 시작하기 전에 안내해요.</li><li><u>운영 규칙 전체 보기</u></li></ul></div>
+   </section>
+   <section class="sec end"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></section>
+  </div>
+ </div>
+  <div class="frame"><i class="notch"></i><div class="fixedbar"><span class="btn fill big" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></div><span class="flab">폰 화면에 보이는 만큼</span></div>
+  <div class="fade"></div>
 </div>
-<div class="sc">
-<div class="card">
-<div class="h1">작품도,<br>프로필도 뽐내봐</div>
-<div class="p">크리에이터가 작품과 프로필을 올리고 서로 리스펙트하는 앱, Cre8orClub</div>
-<div class="steps">
-<div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><div><b>1 · 앱 가입</b><small>스토어에서 Cre8orClub을 받아요</small><span class="btn" data-go="스토어 설치 화면 (iOS·Android 자동 분기)">앱 설치하기</span></div></div>
-<div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div><b>2 · 프로필 꾸미고 소통하기</b><small>커버와 소개를 채우고, 리스펙트를 보내고, 이야기해요</small><span class="btn" data-go="앱 My 탭 — 커버·소개 등록 (미설치면 설치 먼저)">내 프로필 열기</span></div></div>
-<div class="step"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div><div><b>3 · 작품 올리기</b><small>완성작도 작업 중인 것도 괜찮아요</small><span class="btn" data-go="앱 업로드 화면 (커버 미등록이면 프로필 등록 먼저)">작품 올리기</span></div></div>
-</div></div>
-<div class="card">
-<div class="eyebrow">이번 주 혜택</div>
-<div class="h2">이번 주, 모든 분야를 합쳐</div>
-<div class="amount">총 <span class="blank">[50]</span>만 원 상당 상품권</div>
-<div class="p">작품 순위 · 크리에이터 순위 · 라운지 소통왕에게 나눠서 드려요.</div>
-<div class="tbl"><i><b>1위</b><span class="blank">[ ]</span></i><i><b>2위</b><span class="blank">[ ]</span></i><i><b>3위</b><span class="blank">[ ]</span></i><i><b>4~10위</b><span class="blank">[ ]</span></i></div>
-<div class="meta">이 순위표는 작품 부문과 크리에이터 부문에 똑같이 쓰여요.<br>라운지 소통왕 <span class="blank">[16]</span>명은 <span class="blank">[CU 상품권 1만 원]</span>이에요.<br>진행 기간 <span class="blank">[10/19(월) 00:00 ~ 10/25(일) 23:59]</span> · 발표 <span class="blank">[10/26(월)]</span></div>
-<div class="notice">보상은 주차마다 다르거나 없을 수 있어요. 주차가 시작된 뒤에는 그 주차의 보상을 줄이거나 없애지 않아요.</div>
-</div>
-<div class="card"><div class="eyebrow">작품 부문</div><div class="h2">올린 작품이 받은 리스펙트로 순위를 정해요</div><div class="p">완성작도, 작업 중인 것도, 폴더 속에 잠들어 있던 것도 괜찮아요.</div><div class="folders"><b>데모</b><b>쇼릴</b><b>콘티</b><b>시안</b><b>프로토타입</b></div><div class="p sm" style="margin-top:10px">한 사람이 작품 여러 개로 순위에 들 수도 있어요.</div></div>
-<div class="card"><div class="eyebrow">크리에이터 부문</div><div class="h2">전체공개 프로필로 쌓은 활동 점수로 순위를 정해요</div><div class="p" style="font-weight:600;color:var(--n900);margin-top:6px">이게 다 활동이에요</div><div class="chips"><span>프로필 채우기</span><span>작품·프로젝트·영감 올리기</span><span>리스펙트 보내기</span><span>채팅</span><span>공유</span><span>팔로워 늘리기</span></div><div class="p sm" style="margin-top:10px">직접 올리는 활동에 더 높은 점수를 줘요. 채팅은 메시지 수만 세고 내용은 보지 않아요.</div></div>
-<div class="card"><div class="eyebrow">라운지</div><div class="h2">라운지 소통왕</div><div class="p">이번 주 라운지에서 가장 많이 이야기한 <span class="blank">[16]</span>명에게 운영진이 상품권을 드려요.</div></div>
-<div class="acc">크리에이터클럽은 어떤 앱이에요? <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="accb">작곡가, 일러스트레이터, 영상감독, 사진작가, 배우, 웹툰 작가… 분야가 달라도 「만드는 사람」이면 누구나 모이는 곳이에요. 작품을 올리고, 프로필로 나를 소개하고, 서로 리스펙트를 보내고, 프로젝트와 영감을 나눠요. 위클리 베스트는 그중 이번 주에 가장 빛난 작품과 크리에이터를 매주 가려 뽑는 자리예요.</div>
-<div class="acc">유의사항 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div><div class="accb"><ul><li>참여 대상은 Cre8orClub 앱 가입자 누구나예요.</li><li>작품 부문은 진행 기간 안에 전체공개로 올린 작품만 집계해요. 삭제하거나 공개 범위를 바꾸면 빠져요.</li><li>크리에이터 부문은 전체공개 프로필만 집계해요. 비공개로 바꾸면 순위에서 빠지고, 취소한 리스펙트·팔로우는 점수에서 빠져요.</li><li>활동 점수가 같으면 먼저 도달한 크리에이터가 앞서요.</li><li>보상이 있는 주차의 수상자에게는 결과 발표 후 지급을 위해 개별로 연락해요.</li><li>참여 규칙이나 보상이 바뀌면 바뀐 내용이 적용되는 주차가 시작하기 전에 안내해요.</li><li><u>운영 규칙 전체 보기</u></li></ul></div>
-<div class="fixed"><span class="btn fill" data-go="앱 업로드 화면 (③과 같은 곳 · 딥링크 전엔 설치 화면)">내 작업으로 상품권 도전</span></div>
-</div></div>
 <div class="side"><div class="thumb" id="thumb"></div><h3 id="sideH">어떻게 열렸나</h3>
 <div class="k">QR 주소</div><div><code id="url">/weekly</code></div>
-<div class="k">환영 영역 규칙</div><div>티켓 QR → 「청강대 3번 티켓으로 오신 크리에이터 / 환영해요, 잘 찾아오셨어요」 + 티켓 스텁 No.03<br>고정 QR → 「청강대에서 오신 크리에이터 / 환영해요」 + 스텁 없음<br>그 밖 → 「크리에이터클럽에 오신 걸 / 환영해요」<br><span style="color:var(--n500)">도착 순서가 아니라 티켓 번호라 「3번째」가 아니라 「3번 티켓」이에요.</span></div>
+<div class="k">환영 영역 규칙</div><div>티켓 QR → 「청강대 3번 티켓으로 오신 크리에이터 / 환영해요, 잘 찾아오셨어요」 + 티켓 스텁 No.03<br>고정 QR → 「청강대에서 오신 크리에이터 / 환영해요」 + 스텁 없음<br>그 밖 → 「Cre8orClub에 오신 걸 / 환영해요」<br><span style="color:var(--n500)">도착 순서가 아니라 티켓 번호라 「3번째」가 아니라 「3번 티켓」이에요.</span></div>
+<div class="k">보는 법</div><div>검은 프레임이 폰 한 화면이에요. 그 아래 흐린 부분이 스크롤하면 이어지는 내용이에요.</div>
 <div class="k">이 아래는 모두 같아요</div><div>첫 화면(헤드라인·앱 한 줄·참여 방법 3단계·버튼) → 이번 주 혜택 → 작품 부문 → 크리에이터 부문 → 라운지 → 앱 소개(접힘) → 유의사항(접힘) → 하단 고정 버튼</div>
 <div class="k">버튼 (10/19 딥링크 전)</div><div>네 버튼 모두 스토어 설치 화면. 문구는 그대로.</div>
 <div class="k"><span class="blank">[ ]</span></div><div>아직 확정 전인 값이에요.</div>
@@ -179,14 +192,16 @@ body::before{content:'';position:fixed;inset:0;background:radial-gradient(1100px
 <script>
 const school={ck:'청강대'};
 const tk=document.getElementById('tk');for(let i=1;i<=10;i++){const n=String(i).padStart(2,'0');tk.insertAdjacentHTML('beforeend',`<div class="t" data-s="ck" data-t="${n}" data-ab="B"><i></i><b>No.${n}</b><s>청강</s></div>`)}
-function openLanding(s,t,ab){const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');document.getElementById('url').textContent=u;
- const w1=t?`${school[s]} ${+t}번 티켓으로 오신 크리에이터`:(s?`${school[s]}에서 오신 크리에이터`:'크리에이터클럽에 오신 걸');
+function fitStage(){const st=document.querySelector('.stage');if(!st)return;const ph=document.getElementById('posterA').offsetHeight||600;const z=ph/844;st.style.setProperty('--ph',ph+'px');st.style.setProperty('--pw',(390*z)+'px');st.style.setProperty('--z',z);}
+addEventListener('resize',fitStage);
+function openLanding(s,t,ab){fitStage();const u='/weekly'+(s?'?s='+s+(t?'&t='+t:''):'');document.getElementById('url').textContent=u;
+ const w1=t?`${school[s]} ${+t}번 티켓으로 오신 크리에이터`:(s?`${school[s]}에서 오신 크리에이터`:'Cre8orClub에 오신 걸');
  document.getElementById('wel1').textContent=w1;document.getElementById('wel2').innerHTML=t?'환영해요,<br>잘 찾아오셨어요':'환영해요';
  const stub=document.getElementById('stub');stub.style.display=t?'inline-flex':'none';document.getElementById('stubN').textContent='No.'+(t||'');
  document.getElementById('sideH').textContent=(ab==='B'&&t)?`B안 · 티켓 No.${t} QR로 열림`:(ab?`${ab}안 · 포스터 고정 QR로 열림`:'직접 입력');
  document.getElementById('ttl').textContent='QR 랜딩 — 와이어프레임 (프로토타입)';document.getElementById('topr').innerHTML='<button class="back" id="back2">← 포스터로</button>';document.getElementById('back2').onclick=showPosters;
  const src=document.getElementById(ab==='A'?'posterA':'posterB');const th=document.getElementById('thumb');th.innerHTML='';if(src){const c=src.cloneNode(true);c.removeAttribute('id');c.querySelectorAll('.qr,.t').forEach(x=>{x.classList.remove('pulse');x.classList.toggle('on',x.dataset.t===(t||'')&&(t||x.classList.contains('qr')))});th.appendChild(c);}
- document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');document.querySelector('.phone').scrollTop=0;window.scrollTo(0,0);}
+ document.getElementById('vPosters').classList.remove('on');document.getElementById('vLanding').classList.add('on');document.getElementById('vLanding').scrollTop=0;window.scrollTo(0,0);}
 function showPosters(){document.getElementById('vLanding').classList.remove('on');document.getElementById('vPosters').classList.add('on');document.getElementById('ttl').textContent='포스터 A안 · B안 — QR이나 티켓을 누르면 랜딩이 열려요';document.getElementById('topr').innerHTML='<i></i>초록으로 표시된 곳이 눌리는 곳이에요';document.querySelectorAll('#vPosters .qr').forEach(q=>{q.classList.remove('pulse');void q.offsetWidth;q.classList.add('pulse')});}
 document.querySelectorAll('.qr,.t').forEach(e=>e.onclick=()=>openLanding(e.dataset.s,e.dataset.t,e.dataset.ab));
 document.getElementById('back').onclick=showPosters;
