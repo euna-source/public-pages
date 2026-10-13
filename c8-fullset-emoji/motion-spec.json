@@ -1,0 +1,174 @@
+{
+  "source": "Figma Cre8orClub_v3 node 22078:23354 (라운지 채팅방)",
+  "decided": "2026-10-13 크리스",
+  "tap": {
+    "pressScale": 0.96,
+    "pressDurationSec": 0.12,
+    "fontStartPt": 16,
+    "fontStepPt": 1,
+    "fontMaxPt": null,
+    "fontTransitionSec": 0.18,
+    "fontEasing": "cubic-bezier(0.2,0.8,0.2,1)",
+    "bubbleMaxWidthPt": 260
+  },
+  "reducedMotion": "particles fade near touch point over 0.6s, no fall",
+  "particles": {
+    "count": 6,
+    "spawnIntervalSec": 0.04,
+    "origin": "touch point",
+    "sizePt": [
+      26,
+      42
+    ],
+    "pop": {
+      "scaleKeys": [
+        [
+          0,
+          0
+        ],
+        [
+          0.12,
+          1.3
+        ],
+        [
+          0.2,
+          1.0
+        ]
+      ]
+    },
+    "upVelocityPtPerSec": {
+      "base": 520,
+      "randomFactor": [
+        0.75,
+        1.25
+      ]
+    },
+    "sideVelocityPtPerSec": [
+      -170,
+      170
+    ],
+    "gravityPtPerSec2": 1500,
+    "rotationStartDeg": [
+      -8,
+      8
+    ],
+    "rotationVelocityDegPerSec": [
+      -30,
+      30
+    ],
+    "removeWhen": "y > screenHeight + 48",
+    "dtClampSec": 0.033,
+    "layer": "above chat, header and input · no touch blocking"
+  },
+  "emoji": {
+    "pool": [
+      "😎",
+      "🤩",
+      "👍",
+      "👏",
+      "🙌",
+      "🤘",
+      "💚",
+      "❤️",
+      "🧡",
+      "💜",
+      "🔥",
+      "✨",
+      "⭐",
+      "🌟",
+      "⚡",
+      "🌈",
+      "🌤️",
+      "🌙",
+      "❄️",
+      "☃️",
+      "🎉",
+      "🎊",
+      "🎈",
+      "🎁",
+      "🎂",
+      "🎵",
+      "🎶",
+      "🎤",
+      "🎧",
+      "🎸",
+      "🥁",
+      "🎹",
+      "🎷",
+      "🎙️",
+      "🎨",
+      "🎬",
+      "📸",
+      "🎭",
+      "🖌️",
+      "🩰",
+      "✍️",
+      "📚",
+      "💻",
+      "🎮",
+      "🧵",
+      "🪡",
+      "👗",
+      "🦡",
+      "🦊",
+      "🐺",
+      "🦉",
+      "🦋",
+      "🦚",
+      "🦜",
+      "🐈",
+      "🐝",
+      "🦫",
+      "🐢",
+      "🦖",
+      "🍄",
+      "🌵",
+      "🌻",
+      "🍀",
+      "💐",
+      "☕",
+      "🍻",
+      "🧋",
+      "🧃",
+      "🥤",
+      "🥐",
+      "🍞",
+      "🥯",
+      "🍩",
+      "🍪",
+      "🍫",
+      "🍬",
+      "🍿",
+      "🍕",
+      "🍔",
+      "🍜",
+      "🍙",
+      "🛸",
+      "🗿",
+      "🪩",
+      "✈️",
+      "🚂",
+      "🎡",
+      "🎢"
+    ],
+    "count": 88,
+    "selection": "uniform without replacement within each tap",
+    "modes": {
+      "1": {
+        "kinds": 1,
+        "particlesPerKind": 6,
+        "file": "demo-1.html"
+      },
+      "2": {
+        "kinds": 2,
+        "particlesPerKind": 3,
+        "shuffle": "Fisher-Yates",
+        "file": "demo-2.html"
+      }
+    },
+    "repeatAcrossTaps": true,
+    "emptyPoolFallback": "👍",
+    "oneCandidateFallback": "six copies of that candidate"
+  },
+  "basis": "2026-10-13 C8 Full Set 88종 기획 및 랜덤 1종·2종 시연 요청. 기존 모션 값 유지."
+}
