@@ -27,7 +27,7 @@
     :root[data-theme=light]{color-scheme:light;--bg:#fafaf8;--ink:#191d19;--muted:#62695f;--line:#d4d9d0;--green:#067d14;--button-ink:#fff;--hover:#086a16}
     html{-webkit-text-size-adjust:100%}p{orphans:2;widows:2}
     body{overflow-wrap:break-word;font-family:var(--font);font-size:16px;line-height:1.7}h1{font-weight:800;letter-spacing:-.035em}h2{font-size:17px;font-weight:700}.summary{font-size:17px}.facts div,.file{font-size:14px}.badge,summary{font-weight:700}.download{color:var(--button-ink);font-weight:800}.download:hover{background:var(--hover)}
-    .brand{gap:16px}.brand strong{font-size:14px;letter-spacing:.08em}.tools{display:flex;gap:4px;flex-shrink:0}.tool{font:400 13px/1 var(--font);border:0;background:transparent;color:var(--muted);min-height:44px;padding:0 10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border-radius:6px}.tool:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 5%,transparent)}.tool svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}.tool:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+    .brand{gap:16px}.brand strong{font-size:14px;letter-spacing:.08em}.tools{display:flex;gap:4px;flex-shrink:0}.tool{font:400 13px/1 var(--font);border:0;background:transparent;color:var(--muted);min-height:44px;padding:0 10px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;border-radius:6px}.tool:hover{color:var(--ink);background:color-mix(in srgb,var(--ink) 5%,transparent)}.brand .tool span{font-size:inherit;color:inherit}.tool svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.6}.tool:focus-visible{outline:2px solid var(--green);outline-offset:2px}
     .document-footer{margin-top:48px;padding-top:24px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;gap:20px 48px;color:var(--muted);font-size:12px}.document-footer h2{font-size:13px;margin:0 0 12px;color:var(--ink)}.document-footer p{margin:0 0 8px}.document-footer a{color:var(--muted);text-underline-offset:3px}.document-footer time{font-variant-numeric:tabular-nums}.document-footer .basis{grid-column:1/-1;margin:0;font-size:12px}.revision{display:grid;grid-template-columns:36px 80px 1fr;gap:8px;margin-bottom:8px}.revision span:last-child{color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
     @media(max-width:850px){.document-footer{margin-top:32px;grid-template-columns:1fr;gap:24px}.content h1{font-size:32px}.summary{font-size:16px}.tools{gap:0}.tool{padding-inline:8px}.brand{padding-bottom:12px}.document-footer .basis{grid-column:1}.revision{grid-template-columns:34px 78px 1fr}}
     @media(max-width:390px){.content h1{font-size:29px}}
@@ -52,7 +52,7 @@
       <dl class="facts">
         <div><dt>조합</dt><dd>서로 다른 2종, 하나씩 총 2개</dd></div>
         <div><dt>반응</dt><dd>한 번 탭, 이모지 효과와 글자 확대</dd></div>
-        <div><dt>횟수</dt><dd>사용자별 최대 5회, 메시지 최대 12회 (시연)</dd></div>
+        <div><dt>횟수</dt><dd>사용자별 최대 5회, 메시지 최대 12회</dd></div>
         <div><dt>대상</dt><dd>다른 사람이 보낸 메시지</dd></div>
       </dl>
       <div class="files-section">
@@ -71,7 +71,6 @@
   <footer class="document-footer">
     <section aria-labelledby="sources-title"><h2 id="sources-title">출처</h2><p><a href="https://cre8orclub.atlassian.net/browse/CCO-135" target="_blank" rel="noopener">CCO-135 · 채팅 메시지 반응 ↗</a></p><p><a href="motion-spec.json" target="_blank" rel="noopener">모션 설정</a> · <a href="README.md" target="_blank" rel="noopener">개발 적용 안내</a></p></section>
     <section aria-labelledby="history-title"><h2 id="history-title">변경 이력</h2><div class="revision"><span>v1.1</span><time datetime="2026-10-13">2026. 10. 13</time><span>기존 구성 복원 · 글꼴과 색감 정리 · 테마와 링크 기능 추가</span></div><div class="revision"><span>v1.0</span><time datetime="2026-10-13">2026. 10. 13</time><span>확정 2안 시연과 개발용 소스 제공</span></div></section>
-    <p class="basis">적용 근거: 기존 시연·설명 배치를 유지하고 글꼴·색상·공통 기능만 반영했습니다.</p>
   </footer>
   <span class="sr-only" id="tool-status" role="status" aria-live="polite"></span>
 </main>
