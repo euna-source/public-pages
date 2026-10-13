@@ -6,10 +6,19 @@
     "pressDurationSec": 0.12,
     "fontStartPt": 16,
     "fontStepPt": 1,
-    "fontMaxPt": null,
+    "fontMaxPt": 28,
     "fontTransitionSec": 0.18,
     "fontEasing": "cubic-bezier(0.2,0.8,0.2,1)",
-    "bubbleMaxWidthPt": 260
+    "bubbleMaxWidthPt": 260,
+    "trigger": "double-click or double-tap",
+    "fontGrowthLimit": 12,
+    "afterGrowthLimit": "emoji burst continues; font stays 28pt",
+    "scope": "per bubble",
+    "touchDoubleTapMaxIntervalMs": 350,
+    "touchDoubleTapMaxDistancePx": 24,
+    "touchTapMaxDurationMs": 350,
+    "touchTapMaxMovementPx": 12,
+    "keyboard": "Enter or Space twice within 350ms"
   },
   "reducedMotion": "particles fade near touch point over 0.6s, no fall",
   "particles": {
@@ -170,5 +179,5 @@
     "emptyPoolFallback": "👍",
     "oneCandidateFallback": "six copies of that candidate"
   },
-  "basis": "2026-10-13 C8 Full Set 88종 기획 및 랜덤 1종·2종 시연 요청. 기존 모션 값 유지."
+  "basis": "2026-10-13 C8 Full Set88종, 1종·2종 비교 및 더블클릭·12회 글자확대 상한 요청. 기존 입자모션값 유지."
 }

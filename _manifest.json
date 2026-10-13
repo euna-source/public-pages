@@ -267,8 +267,8 @@
     "slug": "c8-fullset-emoji",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-fullset-emoji/",
-    "last_kind": "new",
-    "last_sha256": "e710f5ef7d3341a53e6783a9dcb7bebb5e6da2bd286b7290e20c453f0ae65000",
-    "timestamp": "2026-10-13T11:52:43.344729Z"
+    "last_kind": "redeploy",
+    "last_sha256": "24f593a3c65fe662095cc3994a7fa9e4de4759a04bf6239c3b7906fb8bcf9c46",
+    "timestamp": "2026-10-13T12:04:25.165747Z"
   }
 }
