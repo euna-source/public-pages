@@ -283,8 +283,8 @@
     "slug": "c8-home-draft",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-home-draft/",
-    "last_kind": "new",
-    "last_sha256": "bbb9f2938ae92494999b5a938733f6434238e73f342c2c1773b50ad7fa5fd6bf",
-    "timestamp": "2026-10-13T14:56:06.774245Z"
+    "last_kind": "redeploy",
+    "last_sha256": "cbcf69535969a29ce99d116c2bfe38803bbfb60fd7f85a6902eab4744625af86",
+    "timestamp": "2026-10-13T16:17:11.698011Z"
   }
 }
