@@ -259,8 +259,8 @@
     "slug": "c8-reactions-20261013",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-reactions-20261013/",
-    "last_kind": "new",
-    "last_sha256": "07ff0a58ff1d8ded289771d66387ff227b2cb0f57246ca08560e6d470e259116",
-    "timestamp": "2026-10-13T07:04:07.682115Z"
+    "last_kind": "redeploy",
+    "last_sha256": "a262721c13280ed3a0d6966fe3808f04f0c7139a0f0bbabf5da8bd0bfbec2d4b",
+    "timestamp": "2026-10-13T07:09:37.801986Z"
   }
 }
