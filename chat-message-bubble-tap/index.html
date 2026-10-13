@@ -1,59 +1,743 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta name="robots" content="noindex, nofollow">
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#101112">
-  <meta name="description" content="채팅 메시지 반응 확정 2안. 서로 다른 이모지 2개 조합을 체험하고 개발용 소스 ZIP을 내려받으세요.">
-  <title>채팅 메시지 반응 · 확정 2안</title>
-  <link rel="icon" href="data:,">
-  <style>
-    :root{color-scheme:dark;--bg:#101112;--ink:#f3f4f4;--muted:#a6abad;--line:#303536;--green:#20ef4a}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 -apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;word-break:keep-all}
-    main{max-width:1040px;margin:auto;padding:40px 28px 64px}.brand{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:34px}.brand strong{font-size:15px;letter-spacing:.1em}.brand span{color:var(--muted);font-size:12px}
-    .badge{display:inline-flex;gap:8px;align-items:center;font-size:12px;color:var(--green);font-weight:650}.badge:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
-    h1{font-size:clamp(27px,4vw,40px);line-height:1.25;letter-spacing:-.055em;margin:12px 0 18px}p{margin:0 0 16px;color:var(--muted)}.layout{display:grid;grid-template-columns:430px minmax(0,1fr);gap:64px;align-items:start}.preview{padding:6px 0 0}.screen{display:block;width:100%;max-width:402px;height:810px;border:1px solid var(--line);border-radius:22px;background:#121212;margin:auto}.caption{display:flex;justify-content:space-between;gap:12px;padding:12px 16px;font-size:12px}.caption a{color:var(--muted)}.content{padding-top:14px}
-    .summary{font-size:16px;line-height:1.8;margin-bottom:28px}.download{background:var(--green);color:#08250d;display:flex;justify-content:space-between;align-items:center;padding:16px 19px;border-radius:12px;font-weight:750;text-decoration:none;font-size:16px}.download:hover{background:#68ff80}.download span{font-size:22px;line-height:1}.filemeta{font-size:12px;margin:10px 0 28px;color:var(--muted)}
-    .facts{border-top:1px solid var(--line);margin:0;padding:6px 0 0}.facts div{display:grid;grid-template-columns:86px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.facts dt{color:var(--muted)}.facts dd{margin:0}h2{font-size:16px;margin:29px 0 12px;letter-spacing:-.02em}.files{display:grid;gap:9px}.file{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:11px 13px;border:1px solid var(--line);border-radius:9px;font-size:13px}.file span{color:var(--muted);font-size:12px}.files-note{font-size:12px;margin-top:12px}.textlink{color:var(--ink);text-underline-offset:4px}a:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}
-    details{margin-top:34px;padding-top:20px;border-top:1px solid var(--line)}summary{cursor:pointer;font-weight:600;font-size:14px}.pool{font-size:26px;line-height:2.2;letter-spacing:.18em;margin:16px 0}.foot{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:20px;margin-top:24px}
-    @media(max-width:850px){main{max-width:590px;padding:22px 18px 42px}.brand{margin-bottom:22px}.layout{display:flex;flex-direction:column-reverse;gap:24px}.content,.preview{width:100%;padding-top:0}.content h1{font-size:32px}.summary{margin-bottom:20px}.filemeta{margin-bottom:22px}.screen{height:780px}.caption{max-width:402px;margin:auto}.files-section{display:none}.facts div{padding:10px 0}.foot{margin-top:20px}}
-    @media(max-width:390px){main{padding-inline:12px}.screen{height:740px}.brand span{font-size:11px}.content h1{font-size:29px}}
-  </style>
-</head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FAFAF8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="서로 다른 이모지 두 개가 나오는 확정 2안입니다. 동작을 체험하고 개발에 필요한 소스와 자산을 내려받을 수 있습니다.">
+<meta property="og:title" content="채팅 메시지 반응 확정 2안과 개발 파일">
+<meta property="og:description" content="서로 다른 이모지 두 개가 나오는 확정 2안입니다. 동작을 체험하고 개발에 필요한 소스와 자산을 내려받을 수 있습니다.">
+<link rel="canonical" href="https://euna-source.github.io/public-pages/chat-message-bubble-tap/">
+<title>채팅 메시지 반응 확정 2안과 개발 파일</title>
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   doc-template v2 · 기획·리서치 문서
+   색은 테마가 넣는다(:root{--bg:#FAFAF8;--panel:#F0F0EC;--line:#D6D6D1;--text:#1A1A1A;--muted:#5C5C5C;--accent:#067D14;--mark:#B6F0B4;--marktext:#1A1A1A;--link:#1A1A1A;--linkline:#5C5C5C;--obi:#067D14;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#65C864;--mark:#62C561;--marktext:#161716;--link:#ECEBE6;--linkline:#B4B3AC;--obi:#62C561;--obitext:#161716;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#65C864;--mark:#62C561;--marktext:#161716;--link:#ECEBE6;--linkline:#B4B3AC;--obi:#62C561;--obitext:#161716;color-scheme:dark}
+). 역할: bg panel line text muted accent mark marktext link linkline obi obitext
+   근거 번호 [L##]는 UX 리서치 장부. 시그니처: 절마다 반복되는 타공 헤어라인(하라 켄야의 타공 금속 사인).
+   ───────────────────────────────────────────── */
+:root{
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Nanum Myeongjo","Batang",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* 글자 [L30·L33·L34·L72·L73] */
+  --fs-body:1.125rem; --lh-body:1.7;
+  --fs-lead:1.25rem; --fs-deck:1.3125rem; --fs-obi:1.5rem;
+  --fs-h1:clamp(2.125rem,1.2rem + 3.4vw,3.5rem); --fs-h2:1.875rem; --fs-h3:1.375rem;
+  --fs-ui:1rem; --fs-small:.9375rem; --fs-cap:.875rem; --fs-label:.8125rem; --fs-min:.75rem;
+  /* 폭 [L31·L87·L92] */
+  --measure:36em; --wide:48rem; --gutter:40px; --header-h:60px;
+  /* 간격 */
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:96px;
+  --sec-gap:var(--s-10); --block-gap:var(--s-7);
+  /* 모서리·선 [L47·L54·L65] */
+  --r-mark:2px; --r-btn:6px; --r-box:12px; --hair:1px; --rule:2px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+:root{--bg:#FAFAF8;--panel:#F0F0EC;--line:#D6D6D1;--text:#1A1A1A;--muted:#5C5C5C;--accent:#067D14;--mark:#B6F0B4;--marktext:#1A1A1A;--link:#1A1A1A;--linkline:#5C5C5C;--obi:#067D14;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#65C864;--mark:#62C561;--marktext:#161716;--link:#ECEBE6;--linkline:#B4B3AC;--obi:#62C561;--obitext:#161716;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#161716;--panel:#1F201E;--line:#3D3E3B;--text:#ECEBE6;--muted:#B4B3AC;--accent:#65C864;--mark:#62C561;--marktext:#161716;--link:#ECEBE6;--linkline:#B4B3AC;--obi:#62C561;--obitext:#161716;color-scheme:dark}
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1rem;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss06"}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--linkline);text-underline-offset:.2em;transition:text-decoration-color 120ms var(--ease),color 120ms var(--ease)}
+a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:30;background:var(--bg);color:var(--text);padding:10px 14px;border:var(--rule) solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 도구 줄: 문서 위 한 겹만 반투명 [L28·L29] ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:var(--hair) solid var(--line)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:var(--s-4)}
+.bar-title{min-width:0;display:flex;align-items:baseline;gap:10px;font-size:var(--fs-cap)}
+.bar-kind{color:var(--accent);font-weight:700;white-space:nowrap}
+.bar-title .sep{color:var(--line)}
+.bar-title b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;border:0;border-radius:var(--r-btn);background:none;font-size:var(--fs-cap);color:var(--muted);transition:background-color 120ms var(--ease),color 120ms var(--ease)}
+.tool:hover{background:var(--panel);color:var(--text)}
+.tool[aria-pressed="true"]{color:var(--text)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.cover{padding-top:var(--s-7)}
+.issue{display:flex;justify-content:space-between;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--rule) solid var(--text);font-size:var(--fs-label);letter-spacing:.02em;color:var(--muted);font-variant-numeric:tabular-nums}
+.issue strong{color:var(--text);font-weight:600}
+.issue a,.meta dd a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.issue a:hover,.meta dd a:hover{text-decoration-thickness:2px}
+.cover-main{padding:var(--s-9) 0 var(--s-8);max-width:52rem}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:var(--fs-label);font-weight:700;letter-spacing:.04em;margin-bottom:var(--s-5)}
+.kind::before{content:"";width:20px;height:var(--rule);background:currentColor}
+.kind:empty{display:none}
+h1{font-family:var(--serif);font-weight:800;font-size:var(--fs-h1);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.deck{margin-top:var(--s-6);max-width:var(--measure);font-size:var(--fs-deck);line-height:1.55;color:var(--muted);text-wrap:pretty}
+.deck:empty{display:none}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+.meta div{padding:var(--s-4) var(--s-4) var(--s-4) 0;min-width:0}
+.meta div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.meta dt{font-size:var(--fs-min);color:var(--muted);margin-bottom:4px;letter-spacing:.02em}
+.meta dd{font-size:var(--fs-small);font-weight:600;overflow-wrap:anywhere}
+
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 본문 폭에 맞춘 결론 한 줄 + 세 칸 ── */
+.obi{margin-top:var(--s-8);max-width:none;border:var(--rule) solid var(--text)}
+.obi-head{background:var(--obi);color:var(--obitext);padding:var(--s-6) var(--s-7);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.obi-label{display:inline-block;font-size:var(--fs-min);font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:2px 8px;margin-bottom:var(--s-3)}
+.obi-head p{font-size:var(--fs-obi);font-weight:700;line-height:1.45;text-wrap:pretty}
+.obi-head a{color:inherit;text-decoration-color:currentColor}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:var(--s-5) var(--s-6) var(--s-6)}
+.obi-grid div+div{border-left:var(--hair) solid var(--line)}
+.obi-grid h2{font-size:var(--fs-label);color:var(--muted);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.obi-grid p{font-size:var(--fs-small);line-height:1.6;overflow-wrap:anywhere}
+
+/* ── 본문 배치 [L122·L126] ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,var(--wide));gap:var(--s-9);padding:var(--s-9) 0 var(--s-10)}
+.toc{position:sticky;top:calc(var(--header-h) + 24px);align-self:start;max-height:calc(100dvh - var(--header-h) - 48px);overflow:auto;font-size:var(--fs-cap);scrollbar-width:thin}
+.toc-title{font-size:var(--fs-min);color:var(--muted);letter-spacing:.04em;margin-bottom:var(--s-3)}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:36px;padding:8px 0 8px 12px;border-left:var(--rule) solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc .n,.toc-mobile .n{font-size:var(--fs-min);color:var(--accent);font-variant-numeric:tabular-nums;font-weight:700}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+/* 본문 열에서 글줄·표·제목의 오른쪽 경계를 일치시킨다. */
+.doc :is(p,ul,ol,blockquote,h2,h3,.callout,.legend,.sec-num){max-width:100%}
+.doc>section{position:relative}
+.doc>section+section{margin-top:var(--sec-gap);padding-top:var(--s-7)}
+/* 시그니처: 타공 헤어라인 — 절 시작마다 같은 간격의 작은 구멍 */
+.doc>section+section::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background-image:radial-gradient(circle,var(--line) 1.1px,transparent 1.4px);background-size:7px 3px;background-repeat:repeat-x}
+.doc p+p{margin-top:1.2em}
+.doc :is(ul,ol):not([class]){padding-left:1.25em;margin:1.2em 0}
+.doc li+li{margin-top:.4em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+.sec-num{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-label);font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:var(--s-3);text-decoration:none}
+.sec-num b{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.sec-num b::after{content:"";display:inline-block;width:14px;height:var(--rule);background:currentColor;vertical-align:middle;margin-left:10px}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:var(--fs-h2);line-height:1.3;font-weight:700;margin-bottom:var(--s-6);text-wrap:balance}
+.doc h3{font-size:var(--fs-h3);line-height:1.4;font-weight:700;margin:var(--s-8) 0 var(--s-3)}
+.doc h2+h3{margin-top:0}
+.lead{font-size:var(--fs-lead);line-height:1.65}
+sup.ref{font-size:.7em;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px;color:var(--link)}
+
+/* 형광펜 [L119·L120·L121] */
+mark{background:var(--mark);color:var(--marktext);font-weight:600;padding:.04em .12em;border-radius:var(--r-mark);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+mark a{color:inherit;text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 이름표 */
+.tag{display:inline-block;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 6px;border:1.5px solid currentColor;border-radius:var(--r-mark);margin-left:6px;vertical-align:.15em;white-space:nowrap;letter-spacing:.02em}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:var(--block-gap) 0;border-top:var(--rule) solid var(--text)}
+.stats div{padding:var(--s-4) var(--s-4) var(--s-5) 0}
+.stats div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.stats b{display:block;font-size:2.5rem;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats b small{font-size:1rem;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:var(--fs-cap);line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 색이 아니라 모양으로 [L18·L47·L117] */
+.callout{margin:var(--block-gap) 0;padding:var(--s-5) var(--s-6);font-size:var(--fs-small);line-height:1.65;border-radius:var(--r-box);border:1px solid transparent}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:var(--fs-cap);font-weight:700;margin-bottom:4px}
+.callout-label svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border:1.5px solid var(--text)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.5em}
+
+/* 접이 상자와 결정 모음: 제목 한 줄만 보이고, 누르면 배경이 펼쳐진다 */
+details.callout{padding:0}
+details.callout>summary{display:flex;align-items:flex-start;gap:10px;min-height:48px;padding:13px var(--s-6);margin:0;cursor:pointer;list-style:none;border-radius:inherit}
+details.callout>summary::-webkit-details-marker{display:none}
+details.callout>summary::after{content:"";flex:none;margin:.35em 2px 0 auto;width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform 180ms var(--ease)}
+details.callout[open]>summary::after{transform:rotate(-135deg);margin-top:.6em}
+@media (hover:hover){details.callout>summary:hover{background:var(--panel)}}
+details.callout .dq{min-width:0;line-height:1.55}
+.callout-body{padding:0 var(--s-6) var(--s-5)}
+.callout-body>*+*{margin-top:.5em}
+.callout.decide{border:var(--hair) solid var(--line);border-radius:var(--r-mark)}
+.callout.decide+.callout.decide{margin-top:calc(var(--block-gap) * -1 + var(--s-2))}
+.callout.decide[open]{border-color:var(--text)}
+.callout.decide>summary{font-size:var(--fs-ui);font-weight:700}
+.callout.decide .dn{flex:none;color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em;line-height:1.55}
+.callout.decide .callout-body{padding-left:calc(var(--s-6) + 10px + 2ch)}
+.callout.decide:target,.doc>section:target>h2{scroll-margin-top:calc(var(--header-h) + 16px)}
+.xref{font-weight:600;white-space:nowrap}
+.callout-body .rel{font-size:var(--fs-cap);color:var(--muted)}
+.doc h3+details.callout,.doc h3+.hub-toggle{margin-top:0}
+.doc h3:has(+details.decide){margin-top:var(--s-7);font-size:var(--fs-ui);color:var(--muted)}
+.xref::after{content:" ↗";font-size:.85em}
+/* 절 머리의 '정할 것 N': 결정 모음의 해당 항목으로 간다 */
+.sec-pending{display:inline-flex;align-items:center;margin-left:var(--s-3);vertical-align:top;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid var(--accent);color:var(--accent);border-radius:var(--r-mark);text-decoration:none;letter-spacing:.02em}
+.sec-pending:hover{background:var(--accent);color:var(--bg)}
+/* 표지 아래 한 줄 */
+.pending{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:var(--s-4);max-width:none;font-size:var(--fs-small);color:var(--muted)}
+.pending a{font-weight:700;color:var(--text);text-underline-offset:3px}
+.hub-toggle{margin:0 0 var(--s-3);border:0;background:none;padding:6px 0;min-height:44px;font:inherit;font-size:var(--fs-cap);font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.hub-toggle:hover{color:var(--text)}
+
+/* 인용 */
+.pull{margin:var(--s-8) 0;padding:4px 0 4px var(--s-6);border-left:var(--rule) solid var(--accent);font-family:var(--serif);font-size:1.625rem;font-weight:700;line-height:1.5;text-wrap:balance}
+.pull cite{display:block;margin-top:var(--s-3);font-family:var(--sans);font-size:var(--fs-cap);font-style:normal;font-weight:400;color:var(--muted)}
+
+/* 표 [L48·L127·L128·L129] */
+.table{margin:var(--block-gap) 0;position:relative}
+.table table{width:100%;border-collapse:collapse;font-size:var(--fs-small);line-height:1.6;font-variant-numeric:tabular-nums}
+.table :is(th,td):first-child{min-width:4.5em}
+.table caption{text-align:left;font-size:var(--fs-cap);font-weight:700;margin-bottom:var(--s-2)}
+.table th{text-align:left;font-size:var(--fs-label);font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:var(--rule) solid var(--text);white-space:nowrap;vertical-align:bottom}
+.table td{padding:13px 16px 13px 0;border-bottom:var(--hair) solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.table .num{text-align:right}
+.table tr.pick td{font-weight:600}
+.table tr.pick td:first-child{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:12px}
+.table.compare{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+.table-hint{display:none;font-size:var(--fs-min);color:var(--muted);margin-top:6px}
+.table-note{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.6;max-width:var(--measure)}
+
+/* 그림 */
+.figure{margin:var(--block-gap) 0}
+.figure figcaption{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.5;max-width:var(--measure)}
+
+/* 다음 행동 [L23] */
+.actions{list-style:none;margin:var(--block-gap) 0;padding:0;border-top:var(--rule) solid var(--text);max-width:none!important}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;column-gap:14px;align-items:start;padding:14px 0;border-bottom:var(--hair) solid var(--line);font-size:var(--fs-ui);line-height:26px;min-height:44px}
+.actions li+li{margin-top:0}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:4px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{display:grid;grid-template-columns:6em 6em;column-gap:16px;font-size:var(--fs-cap);line-height:26px;color:var(--muted);white-space:nowrap}
+
+/* 출처·이력 */
+.appendix{margin-top:var(--sec-gap)!important;padding-top:var(--s-7);border-top:var(--rule) solid var(--text)}
+.appendix::before{display:none}
+.appendix h2{font-size:1.375rem;margin-top:0}
+.appendix h2+*{margin-top:0}
+.appendix h2:not(:first-child){margin-top:var(--s-8)}
+.sources{list-style:none;margin:var(--s-5) 0;padding:0;font-size:var(--fs-small);line-height:1.6;max-width:none!important}
+.sources li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:var(--hair) solid var(--line)}
+.sources li+li{margin-top:0}
+.sources li::before{content:counter(list-item);font-size:var(--fs-label);color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:var(--fs-label);color:var(--muted)}
+.sources .state{font-size:var(--fs-label);color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--fs-label);color:var(--muted)}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+
+.foot{border-top:var(--hair) solid var(--line);padding:var(--s-6) 0 var(--s-8);display:flex;justify-content:space-between;gap:var(--s-5);font-size:var(--fs-label);color:var(--muted)}
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--text);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity 150ms var(--ease);z-index:15}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:var(--r-btn);font-size:var(--fs-cap);max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 흑백: 검정·흰색 두 색만. 반투명·회색 면 대신 선과 반전 ── */
+[data-bw] .bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+[data-bw] .tool{color:var(--text)}
+[data-bw] .tool:hover{background:var(--bg);outline:1px solid var(--text);outline-offset:-4px}
+[data-bw] .toc a{border-left-color:transparent}
+[data-bw] .toc a[aria-current="true"]{border-left-color:var(--text);font-weight:700}
+[data-bw] .toc a:not([aria-current="true"]){font-weight:400}
+[data-bw] .callout.note{border:1px solid var(--text)}
+[data-bw] .callout.decide{border-color:var(--text)}
+[data-bw] .sec-pending{border-color:var(--text);color:var(--text)}
+[data-bw] .sec-pending:hover{background:var(--text);color:var(--bg)}
+[data-bw] .meta dt,[data-bw] .stats span,[data-bw] .issue,[data-bw] .table th{font-weight:600}
+[data-bw] .actions li.done .what{text-decoration-color:var(--text)}
+[data-bw] .sources li:target{background:var(--bg);box-shadow:none;outline:1px solid var(--text)}
+[data-bw] img{filter:grayscale(1)}
+[data-bw] .to-top{border-color:var(--text)}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  :root{--gutter:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:var(--s-8)}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div+div{border-left:0;border-top:var(--hair) solid var(--line)}
+}
+/* ── 모바일 [L30·L31·L122·L123] ── */
+@media screen and (max-width:768px){
+  :root{--fs-body:1.0625rem;--lh-body:1.65;--fs-lead:1.125rem;--fs-deck:1.125rem;--fs-obi:1.25rem;--fs-h2:1.5rem;--fs-h3:1.1875rem;--gutter:20px;--header-h:56px;--sec-gap:var(--s-9);--block-gap:28px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .cover-main{padding:var(--s-8) 0 var(--s-7)}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .meta div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:var(--s-7)}
+  .obi-head{padding:var(--s-5)}
+  .obi-grid div{padding:var(--s-4) var(--s-5)}
+  .layout{display:block;padding:var(--s-7) 0 var(--s-9)}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:var(--s-8);border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:var(--fs-small);font-weight:600;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:8px;height:8px;border-right:1.6px solid var(--text);border-bottom:1.6px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform 180ms var(--ease)}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 8px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:var(--fs-small)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .stats div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .stats b{font-size:2.125rem}
+  .callout{padding:var(--s-4) 18px}
+  details.callout{padding:0}
+  details.callout>summary{padding:12px 16px}
+  .callout-body{padding:0 16px var(--s-4)}
+  .callout.decide .callout-body{padding-left:16px}
+  .pull{font-size:1.3125rem;padding-left:18px}
+  /* 목록형 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:var(--hair) solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:var(--rule) solid var(--text)}
+  .table.stack td{border:0;padding:3px 0 3px 104px;position:relative}
+  .table.stack td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:92px;font-size:var(--fs-label);color:var(--muted);font-weight:600;line-height:1.5}
+  .table.stack td:first-child{font-weight:700;padding-left:0;margin-bottom:4px;font-size:var(--fs-ui)}
+  .table.stack td:first-child::before{display:none}
+  .table.stack td:empty{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:14px}
+  .table.stack .num{text-align:left}
+  /* 두 칸 표(항목 | 내용)는 이름표가 매 행 같은 말이라 빼고 내용을 전체 폭으로 */
+  .table.stack tr:has(> td:nth-child(2):last-child) td{padding-left:0}
+  .table.stack tr:has(> td:nth-child(2):last-child) td::before{display:none}
+  /* 비교표 → 가로 스크롤 + 첫 열 고정 */
+  .table.compare table{min-width:520px}
+  .table.compare :is(th,td):first-child{min-width:5.5em;position:sticky;left:0;background:var(--bg);z-index:1;box-shadow:1px 0 0 var(--line)}
+  .table.compare+.table-hint,.table-hint{display:block}
+  .actions li{grid-template-columns:22px minmax(0,1fr)}
+  .who{grid-column:2;display:flex;flex-wrap:wrap;column-gap:0;font-size:var(--fs-label);line-height:22px}
+  .who span+span::before{content:"·";margin:0 6px}
+  .sources li{grid-template-columns:24px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  :root{--gutter:16px}
+  .table.stack td{padding-left:88px}
+  .table.stack td::before{width:78px}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) img{filter:brightness(.9)}}
+:root[data-theme="dark"] img{filter:brightness(.9)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:1ms!important;animation:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (forced-colors:active){
+  mark{background:Mark;color:MarkText;forced-color-adjust:none}
+  .callout.note{border-color:CanvasText}
+  .obi-head{border-bottom:1px solid CanvasText}
+}
+
+/* ── 인쇄·PDF: 테마의 라이트 토큰 + 흰 바탕 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FAFAF8;--panel:#F0F0EC;--line:#D6D6D1;--text:#1A1A1A;--muted:#5C5C5C;--accent:#067D14;--mark:#B6F0B4;--marktext:#1A1A1A;--link:#1A1A1A;--linkline:#5C5C5C;--obi:#067D14;--obitext:#FFFFFF;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
+  .bar,.toc,.toc-mobile,.toast,.skip,.to-top{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:24px}
+  .cover-main{padding:24px 0}
+  h1{font-size:28pt}
+  .doc{font-size:11pt}
+  .doc h2{font-size:16pt}
+  .doc>section+section{margin-top:28px}
+  mark{font-weight:700}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats,.pull{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+
+/* 문맥상 문단은 유지하고 시각적 개행만 좁은 화면에서 다시 흐른다. */
+.cover-main .deck{max-width:100%}
+.doc :is(p,li,dd,blockquote){overflow-wrap:anywhere;line-break:strict}
+.doc p{text-wrap:pretty}
+@media(max-width:600px){br.prose-break{display:none}}
+
+</style>
+<style id="doc-theme">@font-face{font-family:"NanumSquare";src:url("https://euna-source.github.io/public-pages/doc-density-proposal/NanumSquareL.woff") format("woff");font-weight:300;font-display:swap}@font-face{font-family:"NanumSquare";src:url("https://euna-source.github.io/public-pages/doc-density-proposal/NanumSquareR.woff") format("woff");font-weight:400;font-display:swap}@font-face{font-family:"NanumSquare";src:url("https://euna-source.github.io/public-pages/doc-density-proposal/NanumSquareB.woff") format("woff");font-weight:700;font-display:swap}@font-face{font-family:"NanumSquare";src:url("https://euna-source.github.io/public-pages/doc-density-proposal/NanumSquareEB.woff") format("woff");font-weight:800;font-display:swap}body,h1,h2,h3,p,li,td,th,.mast{font-family:"NanumSquare","Apple SD Gothic Neo",sans-serif!important;font-synthesis:none}:root{--sans:"NanumSquare","Apple SD Gothic Neo",sans-serif;--serif:"NanumSquare","Apple SD Gothic Neo",sans-serif}</style><style>
+.bubble-preview{margin:24px 0}.bubble-frame{display:block;width:100%;max-width:402px;height:810px;margin:auto;border:1px solid var(--line);border-radius:18px;background:#121212}.bubble-caption{text-align:center;font-size:14px;margin-top:12px}.doc-download{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:10px 18px;border:1px solid var(--accent);border-radius:8px;color:var(--link);font-weight:700;text-decoration:none}.download-meta{font-size:14px;color:var(--muted);margin-top:8px}.doc-tools{display:flex;justify-content:flex-end;gap:14px;flex-wrap:wrap;margin:12px 0 22px}.doc-tools a{display:inline-flex;align-items:center;min-height:44px;font-size:14px;color:var(--muted)}.emoji-list{line-height:2.2;font-size:25px;letter-spacing:.16em;overflow-wrap:anywhere}.emoji-tray{margin-top:24px}.emoji-tray summary{cursor:pointer;min-height:44px;display:list-item}.doc img{max-width:100%}
+@media(max-width:480px){.bubble-frame{height:760px}.doc-download{width:100%;justify-content:center}.doc-tools{justify-content:flex-start}.cover h1{word-break:keep-all}}
+@media print{.bubble-frame{display:none}.bubble-caption:before{content:'온라인 문서에서 시연을 확인하세요. '}.doc-tools{display:none}}
+</style></head>
 <body>
-<main>
-  <header class="brand"><strong>C8 / CHAT</strong><span>MESSAGE REACTION</span></header>
-  <div class="layout">
-    <section class="preview" aria-label="확정 2안 시연">
-      <iframe class="screen" src="demo.html" title="확정 2안 — 이모지 2개 랜덤 조합 시연"></iframe>
-      <div class="caption"><span>회색 메시지를 한 번 눌러 보세요.</span><a href="demo.html" target="_blank" rel="noopener">전체 화면 ↗</a></div>
-    </section>
-    <section class="content">
-      <span class="badge">2안 · 확정본</span>
-      <h1>반응은 두 개,<br>조합은 매번 새롭게.</h1>
-      <p class="summary">88종 중 서로 다른 이모지 두 개가<br>메시지를 누른 자리에서 튀어 오릅니다.</p>
-      <a class="download" href="chat-message-bubble-tap-source.zip" download="chat-message-bubble-tap-source.zip">개발용 소스 다운로드 <span aria-hidden="true">↓</span></a>
-      <p class="filemeta">ZIP · 131 KB · 코드, 이미지, 모션 설정, 적용 설명서</p>
-      <dl class="facts">
-        <div><dt>조합</dt><dd>서로 다른 2종, 하나씩 총 2개</dd></div>
-        <div><dt>반응</dt><dd>한 번 탭, 이모지 효과와 글자 확대</dd></div>
-        <div><dt>횟수</dt><dd>사용자별 최대 5회, 메시지 최대 12회</dd></div>
-        <div><dt>대상</dt><dd>다른 사람이 보낸 메시지</dd></div>
-      </dl>
-      <div class="files-section">
-        <h2>개발에 필요한 파일을 한 번에</h2>
-        <div class="files">
-          <div class="file">모션 소스 <span>JavaScript · CSS</span></div>
-          <div class="file">디자인 자산 <span>PNG · WOFF2</span></div>
-          <div class="file">모션 명세와 적용 안내 <span>JSON · README</span></div>
-        </div>
-        <p class="files-note">압축을 풀면 수정 가능한 코드와 실행 예제가 있습니다.<br>앱의 API와 햅틱 연결 방법은 동봉한 설명서에서 확인하세요.</p>
-      </div>
-      <details><summary>전체 이모지 88종 보기</summary><div class="pool">😎 🤩 👍 👏 🙌 🤘 💚 ❤️ 🧡 💜 🔥 ✨ ⭐ 🌟 ⚡ 🌈 🌤️ 🌙 ❄️ ☃️ 🎉 🎊 🎈 🎁 🎂 🎵 🎶 🎤 🎧 🎸 🥁 🎹 🎷 🎙️ 🎨 🎬 📸 🎭 🖌️ 🩰 ✍️ 📚 💻 🎮 🧵 🪡 👗 🦡 🦊 🐺 🦉 🦋 🦚 🦜 🐈 🐝 🦫 🐢 🦖 🍄 🌵 🌻 🍀 💐 ☕ 🍻 🧋 🧃 🥤 🥐 🍞 🥯 🍩 🍪 🍫 🍬 🍿 🍕 🍔 🍜 🍙 🛸 🗿 🪩 ✈️ 🚂 🎡 🎢</div></details>
-      <p class="foot">브라우저 시연입니다. 햅틱은 지원되는 환경에서만 동작합니다.<br><a class="textlink" href="README.md" target="_blank" rel="noopener">개발 안내 보기 ↗</a></p>
-    </section>
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">개발 전달</span><span class="sep" aria-hidden="true">·</span><b>채팅 메시지 반응</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="강조 표시"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span></button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span></button>
+      <button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button>
+      <button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span></button>
+    </div>
   </div>
-</main>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>개발 전달</strong><span><a href="https://cre8orclub.atlassian.net/browse/CCO-135" target="_blank" rel="noopener">CCO-135</a> · v1.0</span></div>
+    <div class="cover-main">
+      <p class="kind">채팅방 · 메시지 반응</p>
+      <h1>채팅 메시지 반응 <br class="prose-break">확정 2안과 개발 파일</h1>
+      <p class="deck">서로 다른 이모지 두 개가 나오는 확정 2안입니다. <br class="prose-break">동작을 체험하고 개발에 필요한 소스와 자산을 내려받을 수 있습니다.</p>
+    </div>
+    <dl class="meta"><div><dt>상위 문서</dt><dd><a href="https://cre8orclub.atlassian.net/browse/CCO-135" target="_blank" rel="noopener">CCO-135</a></dd></div><div><dt>확정안</dt><dd>2개 조합 랜덤</dd></div><div><dt>최종 갱신</dt><dd>2026. 10. 13</dd></div></dl>
+    <div class="doc-tools"><a href="#s2">시연 보기</a><a href="chat-message-bubble-tap-source.zip" download="chat-message-bubble-tap-source.zip">개발용 ZIP ↓</a></div>
+    <section class="obi" aria-labelledby="obi-title"><div class="obi-head"><span class="obi-label" id="obi-title">확정</span><p>서로 다른 이모지를 하나씩, 한 번에 총 2개 표시합니다.</p></div><div class=obi-grid><div><h2>표시 방식</h2><p>88종에서 서로 다른 두 종류를 고릅니다.</p></div><div><h2>개발 전달</h2><p>코드·이미지·모션 설정·적용 설명서를 ZIP으로 제공합니다.</p></div><div><h2>적용 범위</h2><p>앱의 메시지 API와 네이티브 햅틱은 개발 단계에서 연결합니다.</p></div></div></section><p class="pending"><span>아직 정하지 않은 것이 2가지 있습니다.</span><a href="#s4">모아 보기<span aria-hidden="true"> →</span></a></p>
+  </header>
+  <div class="layout">
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>반응 방식</a></li><li><a href="#s2"><span class="n">02</span>시연</a></li><li><a href="#s3"><span class="n">03</span>개발 파일</a></li><li><a href="#s4"><span class="n">04</span>결정 모음</a></li><li><a href="#s5"><span class="n">05</span>적용 안내</a></li><li><a href="#refs"><span class="n">··</span>출처·변경 이력</a></li></ol></nav>
+    <main class="doc" id="doc">
+      <details class="toc-mobile"><summary>목차 · 5개 절</summary><ol><li><a href="#s1"><span class="n">01</span>반응 방식</a></li><li><a href="#s2"><span class="n">02</span>시연</a></li><li><a href="#s3"><span class="n">03</span>개발 파일</a></li><li><a href="#s4"><span class="n">04</span>결정 모음</a></li><li><a href="#s5"><span class="n">05</span>적용 안내</a></li><li><a href="#refs"><span class="n">··</span>출처·변경 이력</a></li></ol></details>
+
+<section id="s1" aria-labelledby="s1-t"><a class="sec-num" href="#s1"><b>01</b>반응 방식</a><a class="sec-pending" href="#d1">정할 것 1</a><h2 id="s1-t">메시지를 한 번 눌러 공감을 표현합니다</h2>
+<p>말을 더하지 않고 메시지에 반응을 남깁니다. 탭한 자리에서 이모지가 튀어 오르고 글자가 한 단계 커집니다.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>적용 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이모지</td>
+<td>88종 중 서로 다른 2종을 골라 하나씩 표시</td>
+</tr>
+<tr>
+<td>입력</td>
+<td>메시지 영역을 한 번 탭</td>
+</tr>
+<tr>
+<td>대상</td>
+<td>다른 사람이 보낸 메시지</td>
+</tr>
+<tr>
+<td>사용자 제한</td>
+<td>한 사용자가 같은 메시지에 최대 5회</td>
+</tr>
+<tr>
+<td>확대 상한</td>
+<td>메시지 최대 12단계</td>
+</tr>
+<tr>
+<td>햅틱</td>
+<td>지원되는 환경에서 동작</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="s2" aria-labelledby="s2-t"><a class="sec-num" href="#s2"><b>02</b>시연</a><a class="sec-pending" href="#d2">정할 것 1</a><h2 id="s2-t">회색 메시지를 한 번 눌러 보세요</h2>
+<p>한 번의 반응에 <mark>총 2개</mark>의 이모지가 나옵니다. 같은 조합이 다음 반응에서 다시 나올 수 있습니다. ‘다시 체험’을 누르면 시연 횟수가 초기화됩니다.</p>
+<figure class="bubble-preview"><iframe class="bubble-frame" src="demo.html" title="확정 2안 — 이모지 2개 랜덤 조합 시연"></iframe><figcaption class="bubble-caption"><a href="demo.html" target="_blank" rel="noopener">시연 전체 화면 열기 ↗</a></figcaption></figure>
+</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>개발 파일</a><h2 id="s3-t">수정 가능한 소스와 자산을 함께 제공합니다</h2>
+<p><a class="doc-download" href="chat-message-bubble-tap-source.zip" download="chat-message-bubble-tap-source.zip">개발용 소스 다운로드 <span aria-hidden="true">↓</span></a></p><p class="download-meta">ZIP · 131 KB · 코드, 이미지, 모션 설정, 적용 설명서</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>파일 묶음</th>
+<th>포함 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>동작 코드</td>
+<td>JavaScript 모션·추첨·횟수 판정, CSS</td>
+</tr>
+<tr>
+<td>화면 자산</td>
+<td>PNG 이미지 4개, WOFF2 글꼴 2개</td>
+</tr>
+<tr>
+<td>모션 설정</td>
+<td>이모지 88종, 속도·중력·회전·접근성 설정</td>
+</tr>
+<tr>
+<td>실행과 적용</td>
+<td>실행 예제, 로컬 서버, 검사 코드, README, 앱 연결 설명서</td>
+</tr>
+</tbody>
+</table></div>
+<p>압축을 풀면 수정 가능한 브라우저 소스를 실행할 수 있습니다. 네이티브 앱은 모션 설정을 옮기고 기존 메시지 API·텍스트 렌더러·햅틱에 연결합니다.</p>
+<details class="emoji-tray"><summary>전체 이모지 88종 보기</summary><p class="emoji-list">😎 🤩 👍 👏 🙌 🤘 💚 ❤️ 🧡 💜 🔥 ✨ ⭐ 🌟 ⚡ 🌈 🌤️ 🌙 ❄️ ☃️ 🎉 🎊 🎈 🎁 🎂 🎵 🎶 🎤 🎧 🎸 🥁 🎹 🎷 🎙️ 🎨 🎬 📸 🎭 🖌️ 🩰 ✍️ 📚 💻 🎮 🧵 🪡 👗 🦡 🦊 🐺 🦉 🦋 🦚 🦜 🐈 🐝 🦫 🐢 🦖 🍄 🌵 🌻 🍀 💐 ☕ 🍻 🧋 🧃 🥤 🥐 🍞 🥯 🍩 🍪 🍫 🍬 🍿 🍕 🍔 🍜 🍙 🛸 🗿 🪩 ✈️ 🚂 🎡 🎢</p></details>
+</section><section id="s4" aria-labelledby="s4-t"><a class="sec-num" href="#s4"><b>04</b>결정 모음</a><h2 id="s4-t">앱에 적용하기 전에 두 정책을 확인합니다</h2>
+<details class="callout decide" id="d1"><summary class="callout-label"><span class="dn">01</span><span class="dq">메시지 최대 12회는 참여자 전체의 누적 합산 기준인가요?</span></summary><div class="callout-body">
+<p>시연에서는 참여자 전체 누적으로 계산합니다. 실제 앱의 합산 범위는 적용 전에 확인해야 합니다.</p><p class="rel">관련: <a class="xref" href="#s1">반응 방식</a></p>
+</div></details>
+<details class="callout decide" id="d2"><summary class="callout-label"><span class="dn">02</span><span class="dq">확대 상한 뒤에도 이모지와 햅틱을 계속 보여줄까요?</span></summary><div class="callout-body">
+<p>시연에서는 사용자별 5회 또는 메시지 12회 상한 뒤 추가 효과를 멈춥니다. 이 처리가 확정된 앱 정책을 뜻하지는 않습니다.</p><p class="rel">관련: <a class="xref" href="#s2">시연</a></p>
+</div></details>
+</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>적용 안내</a><h2 id="s5-t">연결 방법은 동봉한 설명서를 확인하세요</h2>
+<p>브라우저 시연의 횟수는 해당 브라우저에만 저장합니다. 실제 서버 연동과 다른 사용자·기기 간 동기화는 앱에서 구현합니다. 햅틱은 지원되는 브라우저에서만 동작하며 실제 기기에서의 확인이 필요합니다.</p>
+<p><a href="https://euna-source.github.io/public-pages/chat-message-bubble-tap/README.md">개발 안내 보기</a></p>
+</section><section class="appendix" id="refs" aria-labelledby="refs-t"><h2>출처</h2>
+<p class="legend"><span class="state"><i class="dot full" aria-hidden="true"></i>원문 확인</span><span class="state"><i class="dot half" aria-hidden="true"></i>일부 확인</span><span class="state"><i class="dot" aria-hidden="true"></i>미확인</span></p><ol class="sources"><li id="r1"><span><a href="https://cre8orclub.atlassian.net/browse/CCO-135">개발 요건 · CCO-135</a><span class="src-meta">채팅 메시지 반응 기능</span></span><span class="state"><i class="dot " aria-hidden="true"></i>미확인</span></li><li id="r2"><span><a href="https://euna-source.github.io/public-pages/chat-message-bubble-tap/motion-spec.json">모션 설정</a><span class="src-meta">확정 2안의 이모지와 모션 값</span></span><span class="state"><i class="dot " aria-hidden="true"></i>미확인</span></li></ol>
+<h2>변경 이력</h2>
+<div class="table log"><table>
+<thead>
+<tr>
+<th>버전</th>
+<th>날짜</th>
+<th>바뀐 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>v1.0</td>
+<td>2026. 10. 13</td>
+<td>기획서형 문서 양식 적용. 확정 2안 시연과 개발용 ZIP 제공</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+    </main>
+  </div>
+  <footer class="foot"><span>채팅 메시지 반응 · 확정 2안</span></footer>
+</div>
+<button class="to-top" id="to-top" type="button" aria-label="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 4000);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 링크 복사·공유 (기본 기능)
+  // 주소는 canonical이 있으면 그것, 없으면 지금 주소에서 # 뒤를 뗀 값. 문서 단위로 공유한다.
+  // 남이 열 수 있는 웹 주소(http·https)만 쓴다. canonical이 file:이거나 로컬 기준 상대 주소면 버리고 지금 주소로,
+  // 그것도 file:이면 공유할 주소가 없다 → null.
+  const webUrl = (u) => {
+    try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href.split('#')[0] : null; }
+    catch { return null; }
+  };
+  const docUrl = () => {
+    const c = $('link[rel="canonical"]')?.getAttribute('href');
+    return (c && webUrl(c)) || webUrl(location.href);
+  };
+  const NO_URL = '아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
+  const metaOf = (sel) => $(sel)?.content || '';
+  const legacyCopy = (v) => {
+    const ta = document.createElement('textarea');
+    ta.value = v; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  };
+  const copyText = (v) => (navigator.clipboard && window.isSecureContext)
+    ? navigator.clipboard.writeText(v).then(() => true, () => legacyCopy(v))
+    : Promise.resolve(legacyCopy(v));
+  $('#copy-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    copyText(docUrl()).then((ok) => say(ok ? '링크를 복사했습니다.' : '복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+  });
+  $('#share-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    const data = {
+      title: metaOf('meta[property="og:title"]') || document.title,
+      text: metaOf('meta[property="og:description"]') || metaOf('meta[name="description"]'),
+      url: docUrl()
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      // 공유 창을 연 뒤에는 사용자 동작이 소모돼 자동 복사가 막힐 수 있다(사파리). 실패하면 안내만 한다.
+      navigator.share(data).catch((e) => say(e && e.name === 'AbortError'
+        ? '공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.'
+        : '공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'));
+    } else {
+      copyText(data.url).then((ok) => say(ok
+        ? '링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.'
+        : '공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+    }
+  });
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const toTop = $('#to-top');
+  toTop?.addEventListener('click', () => { window.scrollTo({ top: 0 }); $('.skip')?.focus?.(); });
+  const onScroll = () => {
+    if (toTop) toTop.classList.toggle('show', scrollY > innerHeight * 2);
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  const hashId = (h) => { try { return decodeURIComponent(h.slice(1)); } catch { return h.slice(1); } };
+  // 목차·절 링크로 이동한 뒤 도착점이 밀렸으면 제자리로 다시 맞춘다. 가장 최근 이동에만 걸고, 손으로 스크롤하면 취소한다
+  let navId = 0;
+  const cancelSettle = () => { navId++; };
+  ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, cancelSettle, { passive: true }));
+  const settle = (id) => {
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    const mine = ++navId;
+    let done = false;
+    const fix = () => {
+      if (done || mine !== navId) return;
+      done = true;
+      const want = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+      const off = el.getBoundingClientRect().top - want;
+      const room = root.scrollHeight - innerHeight - scrollY;
+      if (Math.abs(off) > 4 && (off < 0 || room > 4)) window.scrollBy({ top: off, behavior: 'instant' });
+      update();
+    };
+    const y0 = scrollY;
+    if ('onscrollend' in window) {
+      addEventListener('scrollend', fix, { once: true });
+      setTimeout(() => { if (scrollY === y0) fix(); }, 200); // 이미 제자리라 스크롤이 일어나지 않으면 scrollend도 오지 않는다
+    } else setTimeout(fix, 1200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) settle(hashId(a.hash));
+  });
+
+  // 결정 모음: 주소가 가리키는 항목은 펼친다(표지 줄·절 머리 '정할 것'에서 올 때)
+  const openTarget = (id) => {
+    const el = id && document.getElementById(id);
+    const d = el && (el.tagName === 'DETAILS' ? el : el.closest('details'));
+    if (d) d.open = true;
+  };
+  addEventListener('hashchange', () => openTarget(hashId(location.hash)));
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) openTarget(hashId(a.hash));
+  });
+  openTarget(hashId(location.hash));
+  // 결정 항목이 셋 이상인 절에는 '모두 펼치기'를 둔다
+  $$('.doc > section').forEach((sec) => {
+    const items = $$(':scope > details.decide', sec);
+    if (items.length < 3) return;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'hub-toggle';
+    const sync = () => { btn.textContent = items.every((d) => d.open) ? '모두 접기' : '모두 펼치기'; };
+    btn.addEventListener('click', () => { const open = !items.every((d) => d.open); items.forEach((d) => { d.open = open; }); sync(); });
+    items.forEach((d) => d.addEventListener('toggle', sync));
+    // 소제목(h3)으로 묶었으면 첫 묶음 제목 앞에 둔다
+    const prev = items[0].previousElementSibling;
+    (prev && prev.tagName === 'H3' ? prev : items[0]).before(btn); sync();
+  });
+  // 인쇄할 때는 접힌 내용도 모두 싣는다
+  let closedForPrint = [];
+  addEventListener('beforeprint', () => { closedForPrint = $$('details:not([open])'); closedForPrint.forEach((d) => { d.open = true; }); });
+  addEventListener('afterprint', () => { closedForPrint.forEach((d) => { d.open = false; }); closedForPrint = []; });
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+
+</script>
 </body>
 </html>
