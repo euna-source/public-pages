@@ -275,8 +275,8 @@
     "slug": "chat-message-bubble-tap",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/chat-message-bubble-tap/",
-    "last_kind": "new",
-    "last_sha256": "24f593a3c65fe662095cc3994a7fa9e4de4759a04bf6239c3b7906fb8bcf9c46",
-    "timestamp": "2026-10-13T12:09:56.828299Z"
+    "last_kind": "redeploy",
+    "last_sha256": "e32b42a29b7099a9ff566816156767bf3eb505b2385ee9beade701a0120fdab1",
+    "timestamp": "2026-10-13T13:13:33.863208Z"
   }
 }

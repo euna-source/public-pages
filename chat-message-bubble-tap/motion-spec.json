@@ -1,74 +1,6 @@
 {
-  "source": "Figma Cre8orClub_v3 node 22078:23354 (라운지 채팅방)",
-  "decided": "2026-10-13 크리스",
-  "tap": {
-    "pressScale": 0.96,
-    "pressDurationSec": 0.12,
-    "fontStartPt": 16,
-    "fontStepPt": 1,
-    "fontMaxPt": 28,
-    "fontTransitionSec": 0.18,
-    "fontEasing": "cubic-bezier(0.2,0.8,0.2,1)",
-    "bubbleMaxWidthPt": 260,
-    "trigger": "double-click or double-tap",
-    "fontGrowthLimit": 12,
-    "afterGrowthLimit": "emoji burst continues; font stays 28pt",
-    "scope": "per bubble",
-    "touchDoubleTapMaxIntervalMs": 350,
-    "touchDoubleTapMaxDistancePx": 24,
-    "touchTapMaxDurationMs": 350,
-    "touchTapMaxMovementPx": 12,
-    "keyboard": "Enter or Space twice within 350ms"
-  },
-  "reducedMotion": "particles fade near touch point over 0.6s, no fall",
-  "particles": {
-    "count": 6,
-    "spawnIntervalSec": 0.04,
-    "origin": "touch point",
-    "sizePt": [
-      26,
-      42
-    ],
-    "pop": {
-      "scaleKeys": [
-        [
-          0,
-          0
-        ],
-        [
-          0.12,
-          1.3
-        ],
-        [
-          0.2,
-          1.0
-        ]
-      ]
-    },
-    "upVelocityPtPerSec": {
-      "base": 520,
-      "randomFactor": [
-        0.75,
-        1.25
-      ]
-    },
-    "sideVelocityPtPerSec": [
-      -170,
-      170
-    ],
-    "gravityPtPerSec2": 1500,
-    "rotationStartDeg": [
-      -8,
-      8
-    ],
-    "rotationVelocityDegPerSec": [
-      -30,
-      30
-    ],
-    "removeWhen": "y > screenHeight + 48",
-    "dtClampSec": 0.033,
-    "layer": "above chat, header and input · no touch blocking"
-  },
+  "version": "2.0.0",
+  "variant": "2",
   "emoji": {
     "pool": [
       "😎",
@@ -160,24 +92,46 @@
       "🎡",
       "🎢"
     ],
-    "count": 88,
-    "selection": "uniform without replacement within each tap",
-    "modes": {
-      "1": {
-        "kinds": 1,
-        "particlesPerKind": 6,
-        "file": "demo-1.html"
-      },
-      "2": {
-        "kinds": 2,
-        "particlesPerKind": 3,
-        "shuffle": "Fisher-Yates",
-        "file": "demo-2.html"
-      }
-    },
-    "repeatAcrossTaps": true,
-    "emptyPoolFallback": "👍",
-    "oneCandidateFallback": "six copies of that candidate"
+    "countPerReaction": 2,
+    "selection": "two distinct entries, uniform without replacement",
+    "repeatAcrossReactions": true
   },
-  "basis": "2026-10-13 C8 Full Set88종, 1종·2종 비교 및 더블클릭·12회 글자확대 상한 요청. 기존 입자모션값 유지."
+  "interaction": {
+    "trigger": "single tap / click / Enter / Space",
+    "perUserPerMessageLimit": 5,
+    "perMessageLimit": 12,
+    "excludeOwnMessage": true,
+    "growthPerAcceptedReaction": "one typography step relative to the current device setting",
+    "haptic": "native callback; web vibration only if supported"
+  },
+  "motion": {
+    "spawnIntervalMs": 40,
+    "sizeRange": [
+      26,
+      42
+    ],
+    "upVelocity": 520,
+    "upRandomFactor": [
+      0.75,
+      1.25
+    ],
+    "sideVelocity": 170,
+    "gravity": 1500,
+    "initialRotation": 8,
+    "rotationVelocity": 30,
+    "popDurationSec": 0.2,
+    "peakScale": 1.3,
+    "removeBelow": 48,
+    "reducedMotionDurationSec": 0.6,
+    "dtClampSec": 0.033
+  },
+  "integration": {
+    "stateAuthority": "app server; demo uses browser localStorage only",
+    "nativeUnits": "map motion coordinates to platform logical coordinates; do not copy CSS font sizes",
+    "pendingPolicy": [
+      "12회 합산 범위는 앱 연결 전 확인",
+      "상한 이후 이모지·햅틱 유지 여부는 앱 연결 전 확인"
+    ],
+    "demoPolicy": "12회는 메시지 전체 누적으로 계산하며 상한 뒤 추가 효과를 멈춤"
+  }
 }
