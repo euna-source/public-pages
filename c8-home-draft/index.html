@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>크리에이터클럽</title>
+<meta name="description" content="당신의 작업을 보여주고, 서로의 작업에 반응하며, 새로운 인맥을 만나보세요. 작업과 이력을 한곳에 모아 보여주고, 대화와 협업으로 이어지는 크리에이터 네트워크.">
+<meta name="robots" content="noindex">
+<script>document.documentElement.classList.add("js")</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  /* Figma Cre8orClub_v3 변수 */
+  --text-primary:#f5f5f5;
+  --bg-brand:#07ed21;
+  --action-primary-bg:#07ed21;
+  --action-primary-text:#181818;
+  --sub-blue:#5b74da;
+  --sub-coral:#e45f4e;
+  --black:#000;
+  --white:#fff;
+  --bg-alt:#111;
+  --line:rgba(255,255,255,.1);
+  --muted:rgba(245,245,245,.62);
+  --radius-full:9999px;
+  --sp-4:12px; --sp-6:20px; --sp-7:24px;
+  --glow:#1ef035;
+  --wrap:1264px;
+  --gutter:clamp(16px,5vw,72px);
+  --h2:clamp(34px,3.75vw,72px);
+  --lead:clamp(17px,1.46vw,28px);
+  --sec-pad:clamp(80px,6.4vw,122px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--black);color:var(--text-primary);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo",sans-serif;word-break:keep-all;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.wrap{width:100%;max-width:calc(var(--wrap) + var(--gutter)*2);margin:0 auto;padding:0 var(--gutter)}
+.sec{position:relative;padding:var(--sec-pad) 0;overflow:hidden;scroll-margin-top:72px}
+.sec.alt{background:var(--bg-alt)}
+
+/* 제목 2단 — Figma: 72 ExtraBold / 78.8 / -3.1  ·  오른쪽 28 Bold / 1.5 */
+.head{display:grid;grid-template-columns:1fr minmax(0,1fr);gap:24px 64px;align-items:start}
+.h2{font-size:var(--h2);font-weight:800;line-height:1.094;letter-spacing:-.043em}
+.lead{font-size:var(--lead);font-weight:700;line-height:1.5;padding-top:.35em}
+.lead.c,.h2.c{text-align:center}
+.head.center{grid-template-columns:1fr;justify-items:center;text-align:center}
+.h2 .ln{display:block;overflow:hidden}
+.h2 .ln>span{display:inline-block;transition:transform .9s cubic-bezier(.2,.7,.1,1)}
+.js .h2 .ln>span{transform:translateY(105%)}
+.js .in .h2 .ln>span{transform:none}
+.h2 .ln:nth-child(2)>span{transition-delay:.08s}
+.h2 .ln:nth-child(3)>span{transition-delay:.16s}
+.rv{transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.1,1)}
+.js .rv{opacity:0;transform:translateY(28px)}
+.js .in .rv,.js .rv.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}.d4{transition-delay:.48s}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-4);background:var(--action-primary-bg);color:var(--action-primary-text);font-weight:700;border-radius:var(--radius-full);white-space:nowrap;transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(7,237,33,.35)}
+.btn:focus-visible,a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--bg-brand);outline-offset:3px}
+.btn-m{padding:12px var(--sp-6);font-size:18px;letter-spacing:-.03em;line-height:1.5}
+.btn-l{padding:16px var(--sp-7);font-size:clamp(18px,1.25vw,24px);letter-spacing:-.02em;line-height:1.4}
+
+/* 기기 목업 — Figma 실물 형태 아이폰 프레임 위에 앱 화면 */
+.phone{position:relative;aspect-ratio:500/750;width:100%}
+.phone .frame{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.phone .screen{position:absolute;left:var(--sx,19%);top:var(--sy,4.6%);width:var(--sw,62%);height:var(--sh,90.2%);object-fit:cover;object-position:top;border-radius:9% / 4.2%;z-index:1;background:#000}
+.phone.frame-top .frame{z-index:0}
+.phone.frame-top .screen{z-index:1}
+
+/* 머리 메뉴 */
+.hdr{position:fixed;inset:0 0 auto 0;height:72px;z-index:50;transition:background .3s ease}
+.hdr.solid{background:rgba(0,0,0,.72);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hdr .wrap{height:100%;display:flex;align-items:center;justify-content:space-between;max-width:1920px;padding:0 clamp(16px,10.6vw,204px) 0 clamp(16px,11vw,211px)}
+.logo img{height:clamp(44px,3.6vw,64px);width:auto}
+.nav{display:flex;align-items:center;gap:40px}
+.nav ul{display:flex;gap:40px;list-style:none}
+.nav ul a{font-size:16px;font-weight:700;line-height:22.4px;opacity:.88;transition:opacity .2s}
+.nav ul a:hover,.nav ul a.on{opacity:1;color:var(--bg-brand)}
+
+/* 장면 점 내비 (토스 좌측 점) */
+.dots{position:fixed;left:clamp(12px,1.6vw,28px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:9px}
+.dots a{display:block;width:14px;height:2px;background:rgba(255,255,255,.28);transition:width .3s,background .3s}
+.dots a.on{width:22px;background:var(--bg-brand)}
+.dots a span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* 1 첫 화면 */
+#intro{height:clamp(640px,62.5vw,1200px);padding:0;background:#000}
+#intro .glow{position:absolute;left:50%;transform:translateX(-50%);border-radius:50%;background:var(--glow);pointer-events:none}
+#intro .g1{width:39.4vw;height:39.4vw;max-width:757px;max-height:757px;bottom:-39vw;filter:blur(min(26vw,500px))}
+#intro .g2{width:26.2vw;height:26.2vw;max-width:503px;max-height:503px;bottom:-13vw;filter:blur(min(7.8vw,150px));opacity:.9}
+#intro .ghost{position:absolute;left:calc(45.83% - 29.2vw);top:23.4%;font-size:min(11.46vw,220px);line-height:1.05;font-weight:800;letter-spacing:-.055em;color:#fff;opacity:.1;filter:blur(1px);white-space:nowrap;text-shadow:0 0 4px rgba(0,0,0,.4)}
+#intro .hand{position:absolute;left:calc(50% + 3px);bottom:0;transform:translateX(-50%);width:min(52vw,1000px);aspect-ratio:1000/1058;overflow:hidden}
+#intro .hand img.h{position:absolute;left:0;top:0;width:100%;height:auto}
+#intro .hand .scr{position:absolute;left:35.6%;top:26.3%;width:28%;height:59.5%;object-fit:cover;object-position:top;border-radius:12% / 5.4%;z-index:2}
+#intro .hand .scrwrap{position:absolute;inset:0;z-index:2}
+#intro .copy{position:absolute;left:calc(66.67% - 52px*var(--k,1));top:25.4%;font-size:var(--lead);font-weight:700;line-height:1.5;z-index:3}
+#intro .copy .btn{margin-top:28px}
+#intro .scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:4;font-size:12px;letter-spacing:.2em;opacity:.55}
+
+/* 2 올리기 */
+.types{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(40px,4vw,72px)}
+.chip{display:inline-flex;align-items:center;height:44px;padding:0 18px;border-radius:var(--radius-full);border:1px solid rgba(255,255,255,.18);font-size:16px;font-weight:600;letter-spacing:-.02em;white-space:nowrap}
+.chip.k{background:var(--bg-brand);border-color:var(--bg-brand);color:#000;font-weight:700}
+.upload-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,96px);align-items:center;margin-top:clamp(48px,5vw,96px)}
+.roles{font-size:clamp(28px,3.2vw,60px);font-weight:800;letter-spacing:-.04em;line-height:1.25}
+.roles .who{color:var(--muted);display:block;font-size:.5em;font-weight:700;letter-spacing:-.02em;margin-bottom:.35em;min-height:1.5em}
+.roles .what{display:inline-block;color:var(--bg-brand);min-width:4ch}
+.roles .what.swap{animation:swap .55s cubic-bezier(.2,.7,.1,1)}
+@keyframes swap{from{opacity:0;transform:translateY(40%)}to{opacity:1;transform:none}}
+.formats{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.formats .chip{height:38px;font-size:15px;padding:0 14px;color:var(--muted)}
+.note{margin-top:28px;font-size:clamp(15px,1.05vw,20px);font-weight:600;line-height:1.6;color:var(--muted)}
+.note b{color:var(--text-primary);font-weight:700}
+.fan{position:relative;height:clamp(340px,30vw,560px)}
+.fan img{position:absolute;width:52%;aspect-ratio:382/500;object-fit:cover;border-radius:22px;box-shadow:0 30px 60px rgba(0,0,0,.6);transition:transform .9s cubic-bezier(.2,.7,.1,1)}
+.fan img:nth-child(1){left:0;top:10%;transform:rotate(-9deg) translateX(30%)}
+.fan img:nth-child(2){left:24%;top:0;z-index:2;transform:translateY(10%)}
+.fan img:nth-child(3){right:0;top:12%;transform:rotate(9deg) translateX(-30%)}
+.in .fan img:nth-child(1){transform:rotate(-9deg)}
+.in .fan img:nth-child(2){transform:none}
+.in .fan img:nth-child(3){transform:rotate(9deg)}
+
+/* 3 프로필 — Figma 2 */
+#profile{padding-bottom:0}
+.feat{list-style:none;margin-top:28px;display:grid;gap:14px}
+.feat li{display:flex;gap:12px;font-size:clamp(15px,1.05vw,20px);font-weight:600;line-height:1.55;color:var(--muted)}
+.feat li b{color:var(--text-primary);font-weight:700;white-space:nowrap}
+.feat li::before{content:"";flex:none;width:6px;height:6px;border-radius:50%;background:var(--bg-brand);margin-top:.62em}
+.phones4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vw,30px);margin-top:clamp(40px,5vw,96px);padding:0 clamp(0px,1vw,20px);align-items:start}
+.phones4 .phone:nth-child(odd){margin-top:clamp(40px,4.4vw,84px)}
+.phones4 .phone{transition:transform 1s cubic-bezier(.2,.7,.1,1);transform:translateY(80px)}
+.in .phones4 .phone{transform:none}
+.in .phones4 .phone:nth-child(2){transition-delay:.08s}.in .phones4 .phone:nth-child(3){transition-delay:.16s}.in .phones4 .phone:nth-child(4){transition-delay:.24s}
+.tpl-label{position:absolute;z-index:3;left:50%;bottom:6%;transform:translateX(-50%);font-size:13px;font-weight:700;background:rgba(0,0,0,.66);border:1px solid var(--line);padding:6px 12px;border-radius:var(--radius-full);white-space:nowrap;backdrop-filter:blur(6px)}
+
+/* 4 디스커버리 — Figma 3 기울어진 띠 */
+#discovery{padding-bottom:var(--sec-pad)}
+.bands{position:relative;height:clamp(420px,46vw,880px);margin-top:clamp(24px,2vw,40px)}
+.band{position:absolute;left:-8%;width:130%;transform:rotate(-6.89deg);overflow:hidden}
+.band.b1{top:4%}
+.band.b2{top:46%}
+.track{display:flex;gap:clamp(8px,.82vw,15.7px);width:max-content;animation:flow 60s linear infinite}
+.band.b2 .track{animation-direction:reverse;animation-duration:70s}
+.track img{width:clamp(130px,13.78vw,264.5px);aspect-ratio:264.5/330.6;object-fit:cover;border-radius:clamp(14px,1.36vw,26px);flex:none}
+@keyframes flow{to{transform:translateX(-50%)}}
+.how{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(40px,4vw,72px)}
+.card{background:#111;border:1px solid var(--line);border-radius:24px;padding:28px 28px 30px}
+.card .k{display:inline-block;font-size:13px;font-weight:700;color:var(--bg-brand);margin-bottom:12px;letter-spacing:-.01em}
+.card h3{font-size:clamp(19px,1.3vw,24px);font-weight:800;letter-spacing:-.03em;line-height:1.35;margin-bottom:10px}
+.card p{font-size:clamp(15px,.94vw,17px);font-weight:500;line-height:1.6;color:var(--muted)}
+.gesture{display:flex;align-items:center;gap:8px;margin-bottom:18px;height:28px}
+.gesture i{display:block;width:28px;height:28px;border-radius:50%;border:2px solid var(--bg-brand);position:relative}
+.gesture i::after{content:"";position:absolute;inset:7px;border-radius:50%;background:var(--bg-brand)}
+.g-x i{animation:gx 2.2s ease-in-out infinite}
+.g-y i{animation:gy 2.2s ease-in-out infinite}
+.g-h i{animation:gh 2.2s ease-in-out infinite}
+@keyframes gx{0%,15%{transform:translateX(0)}55%,70%{transform:translateX(56px)}100%{transform:translateX(0)}}
+@keyframes gy{0%,15%{transform:translateY(-6px)}55%,70%{transform:translateY(10px)}100%{transform:translateY(-6px)}}
+@keyframes gh{0%,20%{box-shadow:0 0 0 0 rgba(7,237,33,.6)}60%{box-shadow:0 0 0 14px rgba(7,237,33,0)}100%{box-shadow:0 0 0 0 rgba(7,237,33,0)}}
+
+/* 5 리스펙트 */
+.respect-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,120px);align-items:center;margin-top:clamp(48px,5vw,96px)}
+.work{position:relative;max-width:440px;margin:0 auto;width:100%}
+.work img{width:100%;aspect-ratio:606/758;object-fit:cover;border-radius:28px}
+.goat{position:absolute;top:18px;left:18px;display:flex;align-items:center;gap:6px;background:var(--bg-brand);color:#000;font-weight:900;font-size:15px;letter-spacing:.04em;padding:8px 14px;border-radius:var(--radius-full);transform:scale(.4);opacity:0;transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .3s}
+.goat.on{transform:none;opacity:1}
+.pips{position:absolute;left:18px;right:18px;bottom:18px;display:flex;gap:6px;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);padding:12px;border-radius:18px;align-items:center}
+.pips span{flex:1;height:8px;border-radius:4px;background:rgba(255,255,255,.18);transition:background .25s}
+.pips span.on{background:var(--bg-brand)}
+.pips b{font-size:14px;font-weight:800;margin-left:6px;min-width:3.4ch;text-align:right}
+.bubble{position:absolute;background:#fff;color:#111;font-size:14px;font-weight:700;padding:10px 14px;border-radius:18px 18px 18px 4px;box-shadow:0 12px 30px rgba(0,0,0,.4);opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;white-space:nowrap}
+.bubble.on{opacity:1;transform:none}
+.bubble.b-a{right:-12%;top:20%}
+.bubble.b-b{left:-14%;top:46%;border-radius:18px 18px 4px 18px}
+.bubble.b-c{right:-8%;top:64%}
+.respect-copy .big{font-size:clamp(56px,7vw,132px);font-weight:900;letter-spacing:-.05em;line-height:1;color:var(--bg-brand)}
+.respect-copy .big small{font-size:.3em;color:var(--text-primary);letter-spacing:-.02em;font-weight:800;margin-left:.3em}
+.respect-copy p{margin-top:20px;font-size:clamp(16px,1.15vw,22px);font-weight:600;line-height:1.6;color:var(--muted)}
+.respect-copy p b{color:var(--text-primary)}
+
+/* 6 검색·셔플 */
+.search-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.subhead{margin-top:clamp(64px,6vw,120px);scroll-margin-top:96px}
+.subhead .h3{font-size:clamp(26px,2.5vw,48px);font-weight:800;letter-spacing:-.04em;line-height:1.15}
+.subhead p{margin-top:10px;font-size:var(--lead);font-weight:700;line-height:1.5;color:var(--muted)}
+.panel{background:#111;border:1px solid var(--line);border-radius:28px;padding:clamp(24px,2.4vw,44px);min-height:clamp(300px,24vw,440px);display:flex;flex-direction:column}
+.panel h3{font-size:clamp(22px,1.6vw,30px);font-weight:800;letter-spacing:-.03em}
+.panel>p{margin-top:8px;color:var(--muted);font-weight:500;font-size:clamp(15px,.94vw,17px);line-height:1.6}
+.sbar{margin-top:auto;display:flex;align-items:center;gap:10px;height:56px;border-radius:16px;background:#1c1c1c;padding:0 18px;font-size:16px;color:var(--muted)}
+.sbar svg{flex:none}
+.sbar .caret{display:inline-block;width:2px;height:20px;background:var(--bg-brand);animation:blink 1s steps(1) infinite;margin-left:2px;vertical-align:middle}
+@keyframes blink{50%{opacity:0}}
+.filters{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.filters .chip{height:36px;font-size:14px}
+.filters .chip.k{background:#fff;border-color:#fff}
+.cloud{margin-top:auto;display:flex;flex-wrap:wrap;gap:10px;padding-top:24px}
+.cloud button{height:44px;padding:0 18px;border-radius:var(--radius-full);border:1px solid rgba(255,255,255,.18);font-size:15px;font-weight:700;transition:background .2s,color .2s,transform .2s}
+.cloud button:hover{transform:translateY(-2px)}
+.cloud button.on{background:var(--bg-brand);border-color:var(--bg-brand);color:#000}
+.shuffle-out{display:flex;gap:8px;margin-top:16px;min-height:76px}
+.shuffle-out img{width:58px;height:76px;object-fit:cover;border-radius:12px;animation:pop .45s cubic-bezier(.3,1.5,.5,1) both}
+.shuffle-out img:nth-child(2){animation-delay:.06s}.shuffle-out img:nth-child(3){animation-delay:.12s}.shuffle-out img:nth-child(4){animation-delay:.18s}
+@keyframes pop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+
+/* 7 클럽 — Figma 4 */
+#club{padding-bottom:0}
+.club-stage{position:relative;width:100vw;max-width:1920px;left:50%;transform:translateX(-50%);height:min(46.5vw,892px);margin-top:clamp(24px,2vw,40px);overflow:hidden}
+.club-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:18%;background:linear-gradient(transparent,var(--bg-alt));z-index:5;pointer-events:none}
+.club-pill{position:absolute;left:50%;top:0;transform:translateX(-50%);z-index:5;display:flex;align-items:center;justify-content:center;padding:clamp(12px,1.04vw,20px) clamp(16px,1.25vw,24px);border-radius:100px;font-weight:700;font-size:clamp(18px,1.67vw,32px);line-height:.8;white-space:nowrap;transition:background .4s,color .4s;background:var(--sub-blue);color:var(--text-primary)}
+.club-pill.project{background:var(--sub-coral);color:#fff}
+.club-pill.team{background:var(--bg-brand);color:#000}
+.club-phone{position:absolute;left:50%;transform:translateX(-50%);top:min(4.74vw,91px);width:min(44.8vw,861px)}
+.club-phone .phone .screen{object-position:top}
+.ring{position:absolute;width:clamp(64px,7.8vw,150px);display:flex;flex-direction:column;align-items:center;z-index:4;transition:transform .5s,opacity .5s,filter .5s}
+.ring img{width:93.7%;aspect-ratio:1;border-radius:50%;object-fit:cover}
+.ring em{position:absolute;bottom:-10%;font-style:normal;font-weight:700;font-size:clamp(12px,1.34vw,25.7px);line-height:1.45;padding:0 clamp(8px,.73vw,14px);border-radius:var(--radius-full);white-space:nowrap;letter-spacing:-.03em}
+.ring.lounge em{background:var(--sub-blue);color:#181818}
+.ring.project em{background:var(--sub-coral);color:#fff}
+.ring.team em{background:var(--bg-brand);color:#000}
+.ring.dim{opacity:.35;filter:grayscale(.6);transform:scale(.9)}
+.ring.r1{left:calc(25% + 5.83%);top:9.1vw}
+.ring.r2{left:calc(75% - 1.35%);top:18.5vw}
+.ring.r3{left:calc(25% + 8.07%);top:32.9vw}
+.ring.r4{left:calc(58.33% + 2.55%);top:11.6vw}
+.ring.r5{left:calc(8.33% + 10.16%);top:19.3vw}
+.ring.r6{left:calc(58.33% + .68%);top:28.6vw}
+.club-tabs{position:relative;z-index:6;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:clamp(24px,2vw,40px);padding:0 0 var(--sec-pad)}
+.club-tabs button{text-align:left;background:#0b0b0b;border:1px solid var(--line);border-radius:24px;padding:26px 26px 28px;transition:border-color .3s,background .3s}
+.club-tabs button[aria-selected="true"]{border-color:rgba(255,255,255,.5);background:#181818}
+.club-tabs .tag{display:inline-block;font-size:13px;font-weight:800;padding:4px 10px;border-radius:var(--radius-full);margin-bottom:12px}
+.club-tabs .t-lounge{background:var(--sub-blue);color:#181818}
+.club-tabs .t-project{background:var(--sub-coral);color:#fff}
+.club-tabs .t-team{background:var(--bg-brand);color:#000}
+.club-tabs h3{font-size:clamp(18px,1.25vw,22px);font-weight:800;letter-spacing:-.03em;margin-bottom:8px}
+.club-tabs p{font-size:15px;line-height:1.6;color:var(--muted);font-weight:500}
+.club-wrap-bottom{background:linear-gradient(transparent,var(--bg-alt) 30%)}
+
+/* 8 노크 */
+.knock-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,120px);align-items:center;margin-top:clamp(48px,5vw,96px)}
+.knocks{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.knocks button{font-size:clamp(20px,1.8vw,34px);font-weight:800;letter-spacing:-.04em;padding:.5em .9em;border-radius:var(--radius-full);border:1.5px solid rgba(255,255,255,.22);transition:all .25s}
+.knocks button[aria-pressed="true"]{background:var(--bg-brand);border-color:var(--bg-brand);color:#000}
+.knocks button:hover{border-color:#fff}
+.knock-hint{margin-top:20px;font-size:14px;color:var(--muted);font-weight:600}
+.kcard{background:#151515;border:1px solid var(--line);border-radius:28px;padding:28px;max-width:440px;width:100%;margin:0 auto;box-shadow:0 40px 80px rgba(0,0,0,.5)}
+.kcard .from{display:flex;align-items:center;gap:14px}
+.kcard .from img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+.kcard .from b{display:block;font-size:17px;font-weight:800}
+.kcard .from span{font-size:14px;color:var(--muted);font-weight:500}
+.kcard .msg{margin:22px 0;font-size:clamp(24px,2vw,34px);font-weight:900;letter-spacing:-.04em;line-height:1.25}
+.kcard .msg.swap{animation:swap .5s cubic-bezier(.2,.7,.1,1)}
+.kcard .intro{font-size:14px;line-height:1.6;color:var(--muted);background:#0d0d0d;border-radius:16px;padding:14px 16px}
+.kcard .act{display:grid;grid-template-columns:1fr 1.4fr;gap:10px;margin-top:20px}
+.kcard .act span{display:flex;align-items:center;justify-content:center;height:50px;border-radius:14px;font-weight:700;font-size:16px;background:#232323}
+.kcard .act span.ok{background:var(--bg-brand);color:#000}
+.flow-line{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;font-size:14px;font-weight:700;color:var(--muted);flex-wrap:wrap}
+.flow-line i{font-style:normal;color:var(--bg-brand)}
+
+/* 9 채티 */
+.chatty-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,6vw,120px);align-items:center;margin-top:clamp(48px,5vw,96px)}
+.rows{list-style:none;border-top:1px solid var(--line)}
+.rows li{border-bottom:1px solid var(--line)}
+.rows button{width:100%;text-align:left;padding:26px 0;display:grid;grid-template-columns:auto 1fr;gap:6px 18px;align-items:baseline}
+.rows .n{font-size:14px;font-weight:800;color:var(--muted);transition:color .3s}
+.rows h3{font-size:clamp(22px,1.8vw,34px);font-weight:800;letter-spacing:-.04em;opacity:.45;transition:opacity .3s}
+.rows p{grid-column:2;font-size:clamp(15px,1vw,18px);line-height:1.6;color:var(--muted);font-weight:500;max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s}
+.rows button[aria-expanded="true"] h3{opacity:1}
+.rows button[aria-expanded="true"] .n{color:var(--bg-brand)}
+.rows button[aria-expanded="true"] p{max-height:160px;opacity:1}
+.chatlist{background:#0d0d0d;border:1px solid var(--line);border-radius:32px;padding:22px 18px;max-width:420px;width:100%;margin:0 auto;min-height:420px}
+.chatlist .top{display:flex;justify-content:space-between;align-items:center;padding:4px 6px 16px}
+.chatlist .top b{font-size:22px;font-weight:800;letter-spacing:-.03em}
+.seg{display:flex;gap:6px}
+.seg span{font-size:13px;font-weight:700;padding:6px 12px;border-radius:var(--radius-full);background:#1d1d1d;color:var(--muted)}
+.seg span.on{background:#fff;color:#000}
+.pane{display:none}
+.pane.on{display:block;animation:fade .45s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.ci{display:flex;align-items:center;gap:12px;padding:12px 6px;border-radius:16px}
+.ci img{width:46px;height:46px;border-radius:50%;object-fit:cover;flex:none}
+.ci .t{flex:1;min-width:0}
+.ci .t b{display:flex;align-items:center;gap:6px;font-size:15px;font-weight:700}
+.ci .t>span{display:block;font-size:13px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:2px}
+.tag-s{font-size:11px;font-weight:800;padding:2px 8px;border-radius:var(--radius-full);flex:none}
+.tag-s.lounge{background:var(--sub-blue);color:#181818}
+.tag-s.project{background:var(--sub-coral);color:#fff}
+.tag-s.team{background:var(--bg-brand);color:#000}
+.tag-s.knock{background:#fff;color:#000}
+.tag-s.rel{background:#2a2a2a;color:#ddd}
+.dial{position:relative;height:300px;margin-top:6px}
+.dial .c{position:absolute;border-radius:50%;object-fit:cover;border:2px solid #0d0d0d}
+.dial .orbit{position:absolute;left:50%;top:50%;border:1px dashed rgba(255,255,255,.18);border-radius:50%;transform:translate(-50%,-50%)}
+.dial .lbl{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);font-size:13px;color:var(--muted);font-weight:600;white-space:nowrap}
+
+/* 10 팀 */
+.team-page{margin-top:clamp(48px,5vw,96px);background:#0d0d0d;border:1px solid var(--line);border-radius:36px;overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr}
+.team-side{padding:clamp(28px,3vw,56px);display:flex;flex-direction:column;gap:22px;border-right:1px solid var(--line)}
+.team-badge{display:inline-flex;align-self:flex-start;align-items:center;gap:8px;font-size:13px;font-weight:800;background:var(--bg-brand);color:#000;padding:6px 12px;border-radius:var(--radius-full)}
+.team-name{font-size:clamp(30px,2.8vw,52px);font-weight:900;letter-spacing:-.05em;line-height:1.05}
+.team-side p{color:var(--muted);font-size:15px;line-height:1.65;font-weight:500}
+.members{display:flex;align-items:center}
+.members img{width:52px;height:52px;border-radius:50%;object-fit:cover;border:3px solid #0d0d0d;margin-left:-12px}
+.members img:first-child{margin-left:0}
+.members span{margin-left:14px;font-size:14px;color:var(--muted);font-weight:600}
+.who-for{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.who-for .chip{height:34px;font-size:13px}
+.team-works{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px}
+.team-works img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:22px}
+.team-works figure{position:relative}
+.team-works figcaption{position:absolute;left:12px;bottom:12px;font-size:12px;font-weight:700;background:rgba(0,0,0,.6);backdrop-filter:blur(6px);padding:5px 10px;border-radius:var(--radius-full)}
+
+/* 11 보상 — Figma 5 */
+.reward{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:center;min-height:clamp(560px,62.5vw,1200px)}
+.reward .txt{display:flex;flex-direction:column;gap:clamp(28px,2.55vw,49px);align-items:flex-start;padding-left:clamp(0px,4vw,96px)}
+.reward .lead{padding:0}
+.reward .phone{width:min(31.3vw,601px);margin:0 auto}
+
+/* 12 시작하기 — 이런 분들 + 선언 */
+.fit{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(48px,5vw,96px)}
+.fit .card{min-height:220px;display:flex;flex-direction:column}
+.fit .card .num{font-size:44px;font-weight:900;letter-spacing:-.05em;color:var(--bg-brand);line-height:1;margin-bottom:auto}
+.fit .card p{color:var(--text-primary);font-weight:700;font-size:clamp(16px,1.05vw,19px);line-height:1.5;margin-top:28px}
+.manifesto{margin-top:clamp(80px,8vw,160px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3vw,56px) clamp(16px,2vw,40px);text-align:center}
+.manifesto .w{font-size:clamp(40px,5.2vw,100px);font-weight:900;letter-spacing:-.05em;line-height:1.05}
+.manifesto p{margin-top:12px;font-size:clamp(12px,.8vw,15px);line-height:1.6;color:rgba(255,255,255,.55);font-weight:500}
+.manifesto .sig{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.manifesto .sig img{width:min(70%,220px)}
+.manifesto .sig .uic{font-family:"Brush Script MT","Segoe Script",cursive;font-size:clamp(28px,2.4vw,46px);color:var(--bg-brand);margin-top:6px;transform:rotate(-4deg)}
+.endcta{display:flex;flex-direction:column;align-items:center;gap:28px;margin-top:clamp(80px,8vw,140px);text-align:center}
+.endcta .h2{max-width:16ch}
+.echo{font-size:min(6.5vw,124px);font-weight:800;letter-spacing:-.055em;line-height:1.05;color:var(--bg-brand);text-shadow:0 0 40px rgba(7,237,33,.35)}
+
+/* FAQ — Figma 7 */
+#faq{background:var(--bg-alt)}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:40px clamp(40px,5vw,96px);align-items:start}
+.faq .left{display:flex;flex-direction:column;gap:clamp(32px,3.6vw,70px)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;padding:24px 36px 24px 0;font-size:18px;font-weight:600;line-height:28.8px;position:relative}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:6px;top:50%;width:10px;height:10px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-70%) rotate(45deg);transition:transform .25s;opacity:.6}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq .ans{padding:0 0 24px;color:var(--muted);font-size:16px;line-height:1.7;font-weight:500}
+.faq .ans.tbd{color:#e8c25a}
+footer{border-top:1px solid var(--line);padding:48px 0 64px;background:#000}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+footer img{height:48px;width:auto}
+footer small{font-size:13px;color:rgba(255,255,255,.45)}
+
+/* 반응형 */
+@media (max-width:1023px){
+  .nav ul{display:none}
+  .dots{display:none}
+  .head{grid-template-columns:1fr}
+  .lead{padding-top:0}
+  .upload-grid,.respect-grid,.knock-grid,.chatty-grid,.reward,.faq{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr}
+  .search-grid{grid-template-columns:1fr}
+  .club-tabs{grid-template-columns:1fr}
+  .team-page{grid-template-columns:1fr}
+  .team-side{border-right:0;border-bottom:1px solid var(--line)}
+  .fit{grid-template-columns:1fr 1fr}
+  .reward{min-height:0;padding:var(--sec-pad) 0}
+  .reward .txt{padding-left:0}
+  .reward .phone{width:min(78vw,420px)}
+  .bubble.b-a{right:-2%}.bubble.b-b{left:-2%}.bubble.b-c{right:0}
+}
+@media (max-width:767px){
+  .hdr{height:60px}
+  .hdr .wrap{padding:0 16px}
+  .btn-m{font-size:15px;padding:9px 16px}
+  #intro{height:auto;min-height:100svh;display:flex;flex-direction:column;padding-top:84px}
+  #intro .ghost{position:relative;left:auto;top:auto;padding:0 16px;font-size:20vw;margin-top:10px}
+  #intro .copy{position:relative;left:auto;top:auto;padding:0 16px;margin-top:-24vw;z-index:3}
+  #intro .hand{position:relative;left:auto;transform:none;margin:-14vw 0 0 -9vw;width:118vw;max-width:none}
+  #intro .g1{width:120vw;height:120vw;bottom:-90vw;filter:blur(60px)}
+  #intro .g2{width:80vw;height:80vw;bottom:-40vw;filter:blur(40px)}
+  #intro .scroll-cue{display:none}
+  .phones4{grid-template-columns:repeat(4,64vw);overflow-x:auto;scroll-snap-type:x mandatory;margin-left:calc(var(--gutter)*-1);margin-right:calc(var(--gutter)*-1);padding:0 var(--gutter) 24px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .phones4::-webkit-scrollbar{display:none}
+  .phones4 .phone{scroll-snap-align:center}
+  .phones4 .phone:nth-child(odd){margin-top:0}
+  .club-stage{height:132vw;left:auto;transform:none;width:auto;margin-left:calc(var(--gutter)*-1);margin-right:calc(var(--gutter)*-1)}
+  .club-pill{font-size:16px;padding:12px 16px}
+  .club-phone{top:64px;width:92vw}
+  .ring{width:72px}
+  .ring.r1{left:2%;top:30vw}.ring.r2{left:auto;right:2%;top:60vw}.ring.r3{left:3%;top:88vw}
+  .ring.r4{left:auto;right:4%;top:24vw}.ring.r5{display:none}.ring.r6{left:auto;right:6%;top:100vw}
+  .club-tabs{margin-top:24px}
+  .fit{grid-template-columns:1fr}
+  .fit .card{min-height:0}
+  .manifesto{grid-template-columns:1fr 1fr}
+  .manifesto .sig{grid-column:1/-1}
+  .bubble{font-size:12px;padding:8px 11px}
+  .kcard .msg{font-size:26px}
+  .faq summary{font-size:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  .js .h2 .ln>span{transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="logo" href="#intro" aria-label="크리에이터클럽 처음으로"><img src="assets/logo.png" alt="Cre8orClub"></a>
+    <nav class="nav" aria-label="주 메뉴">
+      <ul>
+        <li><a href="#profile" data-grp="about">앱 소개</a></li>
+        <li><a href="#club" data-grp="together">함께하기</a></li>
+        <li><a href="#reward" data-grp="reward">보상</a></li>
+        <li><a href="#start" data-grp="start">시작하기</a></li>
+        <li><a href="#faq" data-grp="faq">자주 묻는 질문</a></li>
+      </ul>
+      <a class="btn btn-m" href="#start" data-dl>앱 다운로드</a>
+    </nav>
+  </div>
+</header>
+
+<nav class="dots" aria-label="장면 이동">
+  <a href="#intro"><span>첫 화면</span></a>
+  <a href="#profile"><span>프로필</span></a>
+  <a href="#upload"><span>올리기</span></a>
+  <a href="#discovery"><span>디스커버리</span></a>
+  <a href="#respect"><span>리스펙트</span></a>
+  <a href="#club"><span>클럽</span></a>
+  <a href="#knock"><span>노크</span></a>
+  <a href="#chatty"><span>채티</span></a>
+  <a href="#team"><span>팀</span></a>
+  <a href="#reward"><span>보상</span></a>
+  <a href="#start"><span>시작하기</span></a>
+</nav>
+
+<main>
+
+<!-- 1 첫 화면 · 토스 #intro -->
+<section class="sec" id="intro" data-grp="about">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="ghost" aria-hidden="true">뽐내봐<br>여기는<br>크리에이터클럽</div>
+  <h1 class="copy rv">작품을 보여주고,<br>크리에이터를 만나고,<br>클럽에서 함께 활동하는 앱.</h1>
+  <div class="hand rv d2">
+    <img class="h" src="assets/hero-hand.png" alt="">
+    <img class="scr" src="assets/scr-discovery.png" alt="디스커버리 첫 화면">
+  </div>
+  <div class="scroll-cue" aria-hidden="true">SCROLL</div>
+</section>
+
+<!-- 2 프로필 · 토스 #transfer(첫 행동, 템플릿·AI가 대신 만들어 줌) · Figma 2 -->
+<section class="sec" id="profile" data-grp="about">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>나를 소개하고,</span></span><span class="ln"><span>내 작품을 보여줘</span></span></h2>
+      <div>
+        <p class="lead rv d1">커버에는 나의 직업과 한 줄 소개,<br>표지와 프로필 사진을 담아보세요.</p>
+        <ul class="feat rv d2">
+          <li><span><b>템플릿</b> — 작업 분위기에 맞는 템플릿을 고르면 디자인 고민 없이 완성돼요.</span></li>
+          <li><span><b>AI 추천사</b> — 나의 강점과 개성을 소개해줘요.</span></li>
+          <li><span><b>한 번 만들고 계속</b> — 작업과 이력이 한 링크에 쌓여요.</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="phones4">
+      <div class="phone"><img class="screen" src="assets/scr-profile-a.png" alt="프로필 템플릿 A"><img class="frame" src="assets/phone-frame.png" alt=""></div>
+      <div class="phone"><img class="screen" src="assets/scr-profile-b.png" alt="프로필 템플릿 B"><img class="frame" src="assets/phone-frame.png" alt=""></div>
+      <div class="phone"><img class="screen" src="assets/scr-profile-c.png" alt="프로필 템플릿 C"><img class="frame" src="assets/phone-frame.png" alt=""></div>
+      <div class="phone"><img class="screen" src="assets/scr-profile-d.png" alt="프로필 템플릿 D"><img class="frame" src="assets/phone-frame.png" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 올리기 · 토스 #assets(무엇이든 한곳에) -->
+<section class="sec" id="upload" data-grp="about">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>어떤 작업이든,</span></span><span class="ln"><span>그 모습 그대로</span></span></h2>
+      <p class="lead rv d1">영감, 포트폴리오, 프로젝트 중<br>올리고 싶은 형식을 고르세요.</p>
+    </div>
+    <div class="upload-grid">
+      <div>
+        <div class="types rv" style="margin-top:0" aria-label="올리기 형식">
+          <span class="chip k">영감</span><span class="chip k">포트폴리오</span><span class="chip k">프로젝트</span>
+        </div>
+        <p class="roles rv d1" style="margin-top:36px">
+          <span class="who" id="roleWho">음악 프로듀서는</span>
+          <span class="what" id="roleWhat">트랙을</span>
+        </p>
+        <div class="formats rv d2" aria-label="담을 수 있는 방식">
+          <span class="chip">사진</span><span class="chip">영상</span><span class="chip">오디오</span><span class="chip">PDF</span><span class="chip">긴 글</span><span class="chip">유튜브 링크</span>
+        </div>
+        <p class="note rv d3"><b>내 이름으로도, 함께 작업한 팀 이름으로도</b><br>올릴 수 있습니다.</p>
+      </div>
+      <div class="fan" aria-hidden="true">
+        <img src="assets/card1.png" alt="">
+        <img src="assets/card2.png" alt="">
+        <img src="assets/card3.png" alt="">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 디스커버리 · 토스 #finance(대신 찾아줌) · Figma 3 -->
+<section class="sec" id="discovery" data-grp="about">
+  <div class="wrap">
+    <div class="head center">
+      <h2 class="h2 c"><span class="ln"><span>눈길이 가는 작품</span></span><span class="ln"><span>만나고 싶은 사람</span></span></h2>
+    </div>
+  </div>
+  <div class="bands" aria-hidden="true">
+    <div class="band b1"><div class="track" id="t1"></div></div>
+    <div class="band b2"><div class="track" id="t2"></div></div>
+  </div>
+  <div class="wrap">
+    <p class="lead c rv">Discovery 피드에서<br>새로운 작품과 크리에이터를 만나보세요.</p>
+    <div class="how">
+      <div class="card rv"><div class="gesture g-x"><i></i></div><span class="k">옆으로 넘기면</span><h3>그 크리에이터의 다른 작품과 프로필</h3><p>마음에 든 작업에서 바로 그 사람에게로 이어져요.</p></div>
+      <div class="card rv d1"><div class="gesture g-y"><i></i></div><span class="k">아래로 내리면</span><h3>또 다른 크리에이터의 작업물</h3><p>둘러보다 새로운 소식을 만나고, 시그니처 키워드를 고르거나 OX 퀴즈에 참여해요.</p></div>
+      <div class="card rv d2"><div class="gesture g-h"><i></i></div><span class="k">길게 누르면</span><h3>가벼운 미니게임</h3><p>추천 크리에이터를 발견하고, 카드를 길게 눌러 잠깐 쉬어 가요.</p></div>
+    </div>
+    <div class="subhead rv" id="search"><h3 class="h3">찾을 땐 검색, 헤맬 땐 셔플</h3><p>원하는 크리에이터와 작품을 검색과 필터로, 키워드 한 번으로.</p></div>
+    <div class="search-grid">
+      <div class="panel rv">
+        <h3>검색</h3>
+        <p>크리에이터, 포트폴리오, 프로젝트를 검색과 필터로 찾을 수 있습니다.</p>
+        <div class="sbar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-3.5-3.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span id="typed"></span><span class="caret"></span></div>
+        <div class="filters"><span class="chip k">크리에이터</span><span class="chip">포트폴리오</span><span class="chip">프로젝트</span></div>
+      </div>
+      <div class="panel rv d1">
+        <h3>셔플</h3>
+        <p>키워드를 눌러 어울리는 크리에이터와 작품을 바로 만나보세요.</p>
+        <div class="cloud" id="cloud">
+          <button type="button" class="on">무드</button><button type="button">MV</button><button type="button">보컬</button><button type="button">화보</button><button type="button">아트워크</button><button type="button">릴</button><button type="button">연재</button>
+        </div>
+        <div class="shuffle-out" id="shuffleOut" aria-hidden="true"></div>
+      </div>
+  </div>
+</section>
+
+<!-- 5 리스펙트 · 토스 #investment(반응·자신감) -->
+<section class="sec alt" id="respect" data-grp="about">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>좋았다면,</span></span><span class="ln"><span>리스펙트</span></span></h2>
+      <p class="lead rv d1">어떤 점이 좋았는지 메시지로 전하며<br>크리에이터를 응원할 수 있습니다.</p>
+    </div>
+    <div class="respect-grid">
+      <div class="work rv" id="respectWork">
+        <img src="assets/work3.jpg" alt="리스펙트를 받는 작품 예시">
+        <div class="goat" id="goat">★ GOAT</div>
+        <div class="bubble b-a">색감이 계속 생각나요</div>
+        <div class="bubble b-b">이 구도 어떻게 잡았어요?</div>
+        <div class="bubble b-c">다음 작업도 기대할게요</div>
+        <div class="pips" id="pips" aria-label="리스펙트 수"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><b id="pipN">0/8</b></div>
+      </div>
+      <div class="respect-copy rv d1">
+        <div class="big">8<small>번의 리스펙트</small></div>
+        <p>리스펙트를 8번 받은 작품에는 <b>GOAT 배지</b>가 붙어,<br>많은 응원을 받은 작업임을 보여줍니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 클럽 · 토스 #shopping(혼자→함께 전환점) · Figma 4 -->
+<section class="sec alt" id="club" data-grp="together">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>같은 관심으로 모여,</span></span><span class="ln"><span>함께해봐</span></span></h2>
+      <p class="lead rv d1">내가 하고 싶은 활동에 맞는<br>클럽을 둘러보고,<br>참여한 사람들과 Chatty에서<br>대화를 이어가세요.</p>
+    </div>
+    <div class="club-stage">
+      <div class="club-pill" id="clubPill">이야기를 나누는 오픈채팅</div>
+      <div class="ring lounge r1" data-k="lounge"><img src="assets/ring1.jpg" alt=""><em>오픈채팅</em></div>
+      <div class="ring lounge r2" data-k="lounge"><img src="assets/ring1.jpg" alt=""><em>오픈채팅</em></div>
+      <div class="ring project r3" data-k="project"><img src="assets/ring2.jpg" alt=""><em>프로젝트</em></div>
+      <div class="ring team r4" data-k="team"><img src="assets/ring3.jpg" alt=""><em>팀</em></div>
+      <div class="ring team r5" data-k="team"><img src="assets/ring3.jpg" alt=""><em>팀</em></div>
+      <div class="ring lounge r6" data-k="lounge"><img src="assets/ring4.jpg" alt=""><em>오픈채팅</em></div>
+      <div class="club-phone"><div class="phone"><img class="screen" src="assets/scr-club.png" alt="클럽 첫 화면"><img class="frame" src="assets/phone-frame.png" alt=""></div></div>
+    </div>
+    <div class="club-tabs" role="tablist" aria-label="클럽 구성">
+      <button role="tab" aria-selected="true" data-k="lounge" data-pill="이야기를 나누는 오픈채팅"><span class="tag t-lounge">오픈채팅</span><h3>관심사가 맞는 사람들과</h3><p>관심사가 맞는 크리에이터들과 자유롭게 이야기합니다.</p></button>
+      <button role="tab" aria-selected="false" data-k="project" data-pill="함께할 사람을 찾는 프로젝트"><span class="tag t-project">프로젝트</span><h3>모집하고, 지원하고</h3><p>함께할 크리에이터를 모집하거나 지원 메시지를 보냅니다. 수락되면 프로젝트 채팅방에서 이어가요.</p></button>
+      <button role="tab" aria-selected="false" data-k="team" data-pill="함께 만든 걸 보여주는 팀"><span class="tag t-team">팀</span><h3>함께 만든 결과물을 팀 이름으로</h3><p>멤버를 모아 팀을 만들고, 팀 소개·포트폴리오·멤버를 한 페이지에 모읍니다.</p></button>
+    </div>
+  </div>
+</section>
+
+<!-- 8 노크 · 첫 연결 -->
+<section class="sec" id="knock" data-grp="together">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>첫 대화는,</span></span><span class="ln"><span>노크 한 번</span></span></h2>
+      <p class="lead rv d1">처음부터 긴 메시지를<br>쓰지 않아도 됩니다.</p>
+    </div>
+    <div class="knock-grid">
+      <div class="rv">
+        <div class="knocks" id="knocks">
+          <button type="button" aria-pressed="true">같이 팀해요</button>
+          <button type="button" aria-pressed="false">피드백 주세요</button>
+          <button type="button" aria-pressed="false">섭외하고 싶어요</button>
+        </div>
+        <p class="knock-hint">상황에 맞는 노크를 고르면 내 소개와 함께 전해집니다.</p>
+      </div>
+      <div class="rv d1">
+        <div class="kcard">
+          <div class="from"><img src="assets/ring2.jpg" alt=""><div><b>노크가 도착했어요</b><span>일러스트레이터 · 포폴 12</span></div></div>
+          <div class="msg" id="kmsg">같이 팀해요</div>
+          <div class="intro">내 소개가 함께 전해져요 — 직업, 한 줄 소개, 대표 작업.</div>
+          <div class="act"><span>나중에</span><span class="ok">수락하기</span></div>
+        </div>
+        <div class="flow-line"><span>노크</span><i>→</i><span>수락</span><i>→</i><span>채티에서 대화 시작</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 채티 · 토스 #payment(관계를 이어가는 도구) -->
+<section class="sec alt" id="chatty" data-grp="together">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>모든 대화와 인맥,</span></span><span class="ln"><span>채티 한곳에서</span></span></h2>
+      <p class="lead rv d1">내가 참여하는 대화와<br>나에게 연결된 인맥을 모아 보여줘요.</p>
+    </div>
+    <div class="chatty-grid">
+      <ul class="rows rv" id="rows">
+        <li><button type="button" aria-expanded="true" data-p="p-chat"><span class="n">01</span><h3>채팅</h3><p>오픈채팅, 노크로 시작한 1:1 대화, 프로젝트 채팅, 소속된 팀 채팅을 한곳에서 이어갑니다. 프로젝트 채팅방에선 공지·파일·이미지도 나눠요.</p></button></li>
+        <li><button type="button" aria-expanded="false" data-p="p-rel"><span class="n">02</span><h3>인맥관리</h3><p>나와 연결된 일촌, 나를 팔로우하는 크리에이터, 내가 팔로우하는 크리에이터를 찾아볼 수 있습니다.</p></button></li>
+        <li><button type="button" aria-expanded="false" data-p="p-dial"><span class="n">03</span><h3>다이얼</h3><p>팔로워의 인맥을 따라 파도타기하며 새로운 크리에이터를 발견할 수 있습니다.</p></button></li>
+      </ul>
+      <div class="chatlist rv d1" aria-hidden="true">
+        <div class="top"><b>Chatty</b><div class="seg"><span class="on" data-s="p-chat">채팅</span><span data-s="p-rel">인맥관리</span><span data-s="p-dial">다이얼</span></div></div>
+        <div class="pane on" id="p-chat">
+          <div class="ci"><img src="assets/ring1.jpg" alt=""><div class="t"><b>로컬 촬영 스팟 공유 <span class="tag-s lounge">오픈채팅</span></b><span>을지로 쪽 해 질 녘 빛 좋아요</span></div></div>
+          <div class="ci"><img src="assets/ring2.jpg" alt=""><div class="t"><b>일러스트레이터 <span class="tag-s knock">노크</span></b><span>같이 팀해요 · 수락됨</span></div></div>
+          <div class="ci"><img src="assets/work1.jpg" alt=""><div class="t"><b>로컬 매거진 창간 <span class="tag-s project">프로젝트</span></b><span>📌 공지 · 촬영 일정 확정</span></div></div>
+          <div class="ci"><img src="assets/ring3.jpg" alt=""><div class="t"><b>우리 크루 <span class="tag-s team">팀</span></b><span>시안 파일 올렸어요</span></div></div>
+        </div>
+        <div class="pane" id="p-rel">
+          <div class="ci"><img src="assets/ring4.jpg" alt=""><div class="t"><b>일촌 <span class="tag-s rel">양방향</span></b><span>서로 연결된 크리에이터</span></div></div>
+          <div class="ci"><img src="assets/ring2.jpg" alt=""><div class="t"><b>팔로워 <span class="tag-s rel">나를</span></b><span>나를 팔로우하는 크리에이터</span></div></div>
+          <div class="ci"><img src="assets/ring1.jpg" alt=""><div class="t"><b>팔로잉 <span class="tag-s rel">내가</span></b><span>내가 팔로우하는 크리에이터</span></div></div>
+        </div>
+        <div class="pane" id="p-dial">
+          <div class="dial">
+            <div class="orbit" style="width:120px;height:120px"></div>
+            <div class="orbit" style="width:220px;height:220px"></div>
+            <img class="c" src="assets/ring3.jpg" alt="" style="width:64px;height:64px;left:calc(50% - 32px);top:calc(50% - 46px)">
+            <img class="c" src="assets/ring1.jpg" alt="" style="width:44px;height:44px;left:calc(50% + 30px);top:calc(50% - 70px)">
+            <img class="c" src="assets/ring2.jpg" alt="" style="width:44px;height:44px;left:calc(50% - 82px);top:calc(50% - 10px)">
+            <img class="c" src="assets/ring4.jpg" alt="" style="width:36px;height:36px;left:calc(50% + 86px);top:calc(50% + 10px)">
+            <img class="c" src="assets/work1.jpg" alt="" style="width:36px;height:36px;left:calc(50% - 120px);top:calc(50% - 86px)">
+            <img class="c" src="assets/work4.jpg" alt="" style="width:36px;height:36px;left:calc(50% + 20px);top:calc(50% + 70px)">
+            <span class="lbl">팔로워의 인맥을 따라 파도타기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 팀 · 토스 #business(만드는 사람 → 함께 만든 이름) -->
+<section class="sec" id="team" data-grp="together">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>함께 만든 건,</span></span><span class="ln"><span>팀 이름으로</span></span></h2>
+      <p class="lead rv d1">팀 소개와 포트폴리오, 멤버를<br>한 페이지에 모아 소개하세요.</p>
+    </div>
+    <div class="team-page rv">
+      <div class="team-side">
+        <span class="team-badge">TEAM</span>
+        <div class="team-name">우리 크루</div>
+        <p>함께 작업하는 멤버를 모아 팀을 만들고, 함께 만든 결과물을 팀 이름으로 보여줍니다.</p>
+        <div class="members"><img src="assets/ring1.jpg" alt=""><img src="assets/ring2.jpg" alt=""><img src="assets/ring3.jpg" alt=""><img src="assets/ring4.jpg" alt=""><span>멤버 4</span></div>
+        <div class="who-for"><span class="chip">디렉터</span><span class="chip">프로듀서</span><span class="chip">크루</span></div>
+      </div>
+      <div class="team-works">
+        <figure><img src="assets/work1.jpg" alt="팀 포트폴리오 예시 1"><figcaption>팀 포폴</figcaption></figure>
+        <figure><img src="assets/work4.jpg" alt="팀 포트폴리오 예시 2"><figcaption>팀 포폴</figcaption></figure>
+        <figure><img src="assets/work2.jpg" alt="팀 포트폴리오 예시 3"><figcaption>팀 포폴</figcaption></figure>
+        <figure><img src="assets/work3.jpg" alt="팀 포트폴리오 예시 4"><figcaption>팀 포폴</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 보상 · Figma 5 -->
+<section class="sec" id="reward" data-grp="reward" style="padding:0">
+  <div class="wrap">
+    <div class="reward">
+      <div class="txt">
+        <h2 class="h2"><span class="ln"><span>포폴 올리고</span></span><span class="ln"><span>활동해서</span></span><span class="ln"><span>상품권 받아 가세요</span></span></h2>
+        <p class="lead rv d1">두 부문의 위클리 베스트 순위를 확인하고,<br>명예의 전당에서 선정된 작품과 크리에이터를<br>만나보세요.</p>
+        <a class="btn btn-l rv d2" href="#faq">이벤트 보기</a>
+      </div>
+      <div class="phone rv d1"><img class="screen" src="assets/scr-weekly.png" alt="위클리 베스트 프로모션 화면"><img class="frame" src="assets/phone-frame.png" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 시작하기 · 토스 #daily + #global(비전으로 닫기) -->
+<section class="sec alt" id="start" data-grp="start">
+  <div class="wrap">
+    <div class="head">
+      <h2 class="h2"><span class="ln"><span>이런 분들에게</span></span><span class="ln"><span>추천해요</span></span></h2>
+      <p class="lead rv d1">작업을 보여주고, 반응하고,<br>새로운 인맥을 만나고 싶다면.</p>
+    </div>
+    <div class="fit">
+      <div class="card rv"><span class="num">01</span><p>포트폴리오와 경력을 한 링크로 공유하고 싶은 프리랜서·크리에이터</p></div>
+      <div class="card rv d1"><span class="num">02</span><p>음악, 영상, 디자인, 사진, 글 등 다양한 작업을 한곳에 모으고 싶은 창작자</p></div>
+      <div class="card rv d2"><span class="num">03</span><p>새로운 협업에 참여하거나 함께할 크리에이터를 찾고 싶은 분</p></div>
+      <div class="card rv d3"><span class="num">04</span><p>함께 만든 결과물을 팀 단위로 보여주고 싶은 디렉터·프로듀서·크루</p></div>
+    </div>
+
+    <div class="manifesto" aria-label="크리에이터클럽 선언">
+      <div class="rv"><div class="w">미쳤다</div><p>라는 말을 듣는 사람들, 현실에 안주하지 못하고 다른 것을 꿈꾸는 사람들, 터무니없고 낯선, 비현실적인 아이디어를</p></div>
+      <div class="rv d1"><div class="w">말하는</div><p>사람들이 있습니다. 이런 사람들은 기존의 상식을 벗어나는 생각으로 종종 광적인 사람으로 비추어지기도 합니다.</p></div>
+      <div class="rv d2"><div class="w">영감은</div><p>바로 그 광기 같은 생각과 열정에서 비롯되며, 상식을 뛰어 넘고, 불가능을 의심하게 하며, 새로운 것들을 만들어 냅니다.</p></div>
+      <div class="rv"><div class="w">세상을</div><p>변화시키는 영감은 낯설고, 때로는 위험하며, 불가능해 보입니다. 하지만 이런 생각을 현실화하고자 하는 시도는 미래를</p></div>
+      <div class="rv d1"><div class="w">바꾸는</div><p>영감의 원천이 되기도 하며 이런 영감은 같은 열정을 가지고 있는 사람들과의 피드백과 커뮤니케이션을 통해 지치지 않는</p></div>
+      <div class="rv d2"><div class="w">원동력</div><p>이 되고 영감의 연결은 현실적으로 이루기 어려운 것들을 구체화하고 터무니없는 영감을 현실로 만들어 줍니다.</p></div>
+      <div class="rv"><div class="w">그리고</div><p>이러한 영감을 가진 사람들이 포기하지 않도록 연결을 돕고, 같은 광기와 영감을 공유할 수 있는 공간이 필요합니다.</p></div>
+      <div class="rv d1"><div class="w">이곳은</div><p>미쳤다는 것이 축복이 되고, 같은 광기가 있는 사람들이 모여 세상을 바꿀 혁신적인 영감을 현실로 만들어 낼 공간입니다.</p></div>
+      <div class="sig rv d2"><img src="assets/logo.png" alt="Cre8orClub"><div class="uic">United in Crazy</div></div>
+    </div>
+
+    <div class="endcta">
+      <p class="echo rv" aria-hidden="true">뽐내봐<br>여기는<br>크리에이터클럽</p>
+      <h2 class="h2 c rv">지금 크리에이터클럽에서 나의 작업을 보여주세요</h2>
+      <a class="btn btn-l rv d1" href="#start" data-dl>앱 다운로드</a>
+      <p class="note" id="dlNote" role="status" style="margin-top:0;min-height:1.6em"></p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ · Figma 7 -->
+<section class="sec" id="faq" data-grp="faq">
+  <div class="wrap">
+    <div class="faq">
+      <div class="left">
+        <h2 class="h2"><span class="ln"><span>처음이라</span></span><span class="ln"><span>궁금한 것들</span></span></h2>
+        <p class="lead rv d1" style="padding:0">올리기부터 클럽 참여까지,<br>시작할 때 필요한 내용을 모았어요.</p>
+      </div>
+      <div class="rv">
+        <details><summary>어떤 작품을 올릴 수 있나요?</summary><div class="ans">영감, 포트폴리오, 프로젝트 중 형식을 고르고 사진, 영상, 오디오, PDF, 긴 글, 유튜브 링크까지 작업에 맞는 방식으로 담을 수 있어요. 내 이름으로도, 팀 이름으로도 올릴 수 있습니다.</div></details>
+        <details><summary>공개 범위는 어떻게 정하나요?</summary><div class="ans tbd">[답변 확정 필요] 공개 범위 정책 문구를 받아 채웁니다.</div></details>
+        <details><summary>리스펙트와 활동 점수는 어떻게 다른가요?</summary><div class="ans tbd">[답변 확정 필요] 리스펙트는 작품에 남기는 응원(8번이면 GOAT 배지)입니다. 활동 점수 정의를 받아 채웁니다.</div></details>
+        <details><summary>보상은 어떤 조건으로 받나요?</summary><div class="ans tbd">[답변 확정 필요] 위클리 베스트 두 부문·명예의 전당 선정 기준과 지급 조건을 받아 채웁니다.</div></details>
+        <details><summary>노크는 무엇인가요?</summary><div class="ans">처음 대화를 거는 방법이에요. ‘같이 팀해요’, ‘피드백 주세요’, ‘섭외하고 싶어요’처럼 상황에 맞는 노크를 고르면 내 소개와 함께 전해지고, 상대가 수락하면 채티에서 대화를 시작할 수 있어요.</div></details>
+        <details><summary>오픈채팅·프로젝트·팀은 어떻게 다른가요?</summary><div class="ans">오픈채팅은 관심사가 맞는 크리에이터들과 자유롭게 이야기하는 곳, 프로젝트는 함께할 사람을 모집하고 지원하는 곳, 팀은 함께 만든 결과물을 팀 이름으로 보여주는 곳이에요.</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" alt="Cre8orClub">
+    <small>© Cre8orClub. United in Crazy.</small>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 다운로드 — 스토어 주소 확정 전 시안: 시작하기로 이동 후 안내
+  document.querySelectorAll("[data-dl]").forEach(function(a){ a.addEventListener("click",function(){
+    document.getElementById("dlNote").textContent="11월 2일 업데이트와 함께 스토어 링크가 연결됩니다.";
+  }); });
+
+  // 디스커버리 띠 — Figma 순서(1·2·1·2·1·2·3·4) 두 번 반복해 끊김 없이
+  var order=['work1','work2','work1','work2','work1','work2','work3','work4'];
+  ['t1','t2'].forEach(function(id){
+    var t=document.getElementById(id), html='';
+    for(var r=0;r<2;r++) order.forEach(function(n){ html+='<img src="assets/'+n+'.jpg" alt="" loading="lazy">'; });
+    t.innerHTML=html;
+  });
+
+  // 등장
+  if(!('IntersectionObserver' in window)){ window.IntersectionObserver=function(cb){ this.observe=function(el){ cb([{isIntersecting:true,target:el}]); }; this.unobserve=this.disconnect=function(){}; }; }
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.18});
+  document.querySelectorAll('.sec').forEach(function(s){ io.observe(s); });
+
+  // 머리 메뉴 배경 · 점 내비 · 메뉴 활성
+  var hdr=document.getElementById('hdr');
+  var secs=[].slice.call(document.querySelectorAll('main .sec'));
+  var dots=[].slice.call(document.querySelectorAll('.dots a'));
+  var navs=[].slice.call(document.querySelectorAll('.nav ul a'));
+  function onScroll(){
+    hdr.classList.toggle('solid', window.scrollY>40);
+    var mid=window.innerHeight*.45, cur=secs[0];
+    secs.forEach(function(s){ if(s.getBoundingClientRect().top<mid) cur=s; });
+    dots.forEach(function(d){ d.classList.toggle('on', d.getAttribute('href')==='#'+cur.id); });
+    navs.forEach(function(a){ a.classList.toggle('on', a.dataset.grp===cur.dataset.grp && cur.id!=='intro'); });
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  // 올리기 — 직군별로 각자의 형식 그대로
+  var roles=[['음악 프로듀서는','트랙을'],['영상 편집자는','릴을'],['디자이너는','아트워크를'],['사진가는','화보를'],['웹툰 작가는','연재작을']];
+  var ri=0, who=document.getElementById('roleWho'), what=document.getElementById('roleWhat');
+  if(!reduce) setInterval(function(){
+    ri=(ri+1)%roles.length; who.textContent=roles[ri][0]; what.textContent=roles[ri][1];
+    what.classList.remove('swap'); void what.offsetWidth; what.classList.add('swap');
+  },2200);
+
+  // 리스펙트 8번 → GOAT
+  var pips=[].slice.call(document.querySelectorAll('#pips span')), pipN=document.getElementById('pipN');
+  var goat=document.getElementById('goat'), bubbles=[].slice.call(document.querySelectorAll('.bubble'));
+  var rio=new IntersectionObserver(function(es){
+    if(!es[0].isIntersecting) return; rio.disconnect();
+    var n=0;
+    (function step(){
+      if(n<8){ pips[n].classList.add('on'); n++; pipN.textContent=n+'/8';
+        if(n===2) bubbles[0].classList.add('on'); if(n===5) bubbles[1].classList.add('on'); if(n===7) bubbles[2].classList.add('on');
+        setTimeout(step, reduce?0:260); }
+      else goat.classList.add('on');
+    })();
+  },{threshold:.5});
+  rio.observe(document.getElementById('respectWork'));
+
+  // 검색 타이핑
+  var words=['영상 편집','보컬','브랜드 디자이너','웹툰'], wi=0, ci=0, del=false, typed=document.getElementById('typed');
+  (function type(){
+    var w=words[wi];
+    if(!del){ ci++; if(ci>w.length){ del=true; return setTimeout(type,1400);} }
+    else { ci--; if(ci===0){ del=false; wi=(wi+1)%words.length; } }
+    typed.textContent=w.slice(0,ci);
+    if(!reduce) setTimeout(type, del?50:110);
+  })();
+
+  // 셔플
+  var pool=['work1','work2','work3','work4','ring1','ring2','ring3','ring4'];
+  var out=document.getElementById('shuffleOut');
+  function shuffle(){ var p=pool.slice().sort(function(){return Math.random()-.5}).slice(0,4);
+    out.innerHTML=p.map(function(n){return '<img src="assets/'+n+'.jpg" alt="">'}).join(''); }
+  document.getElementById('cloud').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.classList.toggle('on',x===b)}); shuffle(); });
+  shuffle();
+
+  // 클럽 탭 — 오픈채팅·프로젝트·팀
+  var pill=document.getElementById('clubPill'), rings=[].slice.call(document.querySelectorAll('.ring'));
+  var tabs=[].slice.call(document.querySelectorAll('.club-tabs button'));
+  function setClub(b){
+    tabs.forEach(function(t){ t.setAttribute('aria-selected', t===b?'true':'false'); });
+    pill.textContent=b.dataset.pill; pill.className='club-pill '+(b.dataset.k==='lounge'?'':b.dataset.k);
+    rings.forEach(function(r){ r.classList.toggle('dim', r.dataset.k!==b.dataset.k); });
+  }
+  tabs.forEach(function(b){ b.addEventListener('click',function(){ setClub(b); clearInterval(clubTimer); }); });
+  var ct=0, clubTimer=reduce?null:setInterval(function(){ ct=(ct+1)%3; setClub(tabs[ct]); },3200);
+  setClub(tabs[0]);
+
+  // 노크
+  var kmsg=document.getElementById('kmsg');
+  document.getElementById('knocks').addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    this.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed', x===b?'true':'false')});
+    kmsg.textContent=b.textContent; kmsg.classList.remove('swap'); void kmsg.offsetWidth; kmsg.classList.add('swap');
+  });
+
+  // 채티 행 ↔ 화면
+  var rowBtns=[].slice.call(document.querySelectorAll('#rows button'));
+  function setRow(b){
+    rowBtns.forEach(function(x){ x.setAttribute('aria-expanded', x===b?'true':'false'); });
+    document.querySelectorAll('.pane').forEach(function(p){ p.classList.toggle('on', p.id===b.dataset.p); });
+    document.querySelectorAll('.seg span').forEach(function(s){ s.classList.toggle('on', s.dataset.s===b.dataset.p); });
+  }
+  rowBtns.forEach(function(b){ b.addEventListener('click',function(){ setRow(b); }); });
+})();
+</script>
+</body>
+</html>
