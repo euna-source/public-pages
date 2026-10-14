@@ -1,4 +1,4 @@
-import { SPEC } from './config.js';
+import { SPEC } from './config.js?v=20261014b';
 
 /** Each result contains two whole emoji strings, never UTF-16 fragments. */
 export function choosePair(input = SPEC.emoji.pool, random = Math.random) {

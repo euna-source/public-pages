@@ -1,5 +1,5 @@
-import { SPEC } from './config.js';
-import { choosePair } from './reaction.js';
+import { SPEC } from './config.js?v=20261014b';
+import { choosePair } from './reaction.js?v=20261014b';
 
 /** Standalone renderer. State, API calls and typography stay with the host app. */
 export class BubbleTapEffect {
@@ -18,6 +18,8 @@ export class BubbleTapEffect {
 
   play({ clientX, clientY }) {
     if (this.destroyed) return [];
+    // A new reaction replaces the previous pair, including pending spawns.
+    this.clear();
     const glyphs = choosePair(this.pool, this.random);
     const bounds = this.layer.getBoundingClientRect();
     const sx = bounds.width / this.layer.clientWidth || 1;

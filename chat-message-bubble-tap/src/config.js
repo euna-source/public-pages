@@ -105,7 +105,8 @@ export const SPEC = {
     "growthPerAcceptedReaction": "one typography step relative to the current device setting",
     "haptic": "native callback; web vibration only if supported",
     "doubleTapWindowMs": 350,
-    "doubleTapMaxDistancePx": 32
+    "doubleTapMaxDistancePx": 32,
+    "activeReactionPolicy": "replace previous visible emoji and pending spawns; maximum two visible emoji"
   },
   "motion": {
     "spawnIntervalMs": 40,

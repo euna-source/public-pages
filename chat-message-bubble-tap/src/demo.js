@@ -1,6 +1,6 @@
-import { BubbleTapEffect, bindBubbleTap } from './bubble-tap.js';
-import { nextReaction } from './reaction.js';
-import { SPEC } from './config.js';
+import { BubbleTapEffect, bindBubbleTap } from './bubble-tap.js?v=20261014b';
+import { nextReaction } from './reaction.js?v=20261014b';
+import { SPEC } from './config.js?v=20261014b';
 
 const STORAGE_KEY = 'c8-bubble-tap-final-v2';
 const stage = document.querySelector('#stage');
