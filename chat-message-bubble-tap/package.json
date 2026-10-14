@@ -1,9 +1,0 @@
-{
-  "name": "chat-message-bubble-tap",
-  "version": "2.0.0",
-  "private": true,
-  "type": "module",
-  "description": "C8 chat message reaction, final variant 2",
-  "scripts": { "start": "node serve.mjs", "test": "node --test test/*.test.js", "configure": "node sync-config.mjs" },
-  "engines": { "node": ">=20" }
-}
