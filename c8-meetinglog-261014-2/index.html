@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="ko" data-bw>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="코드에서 뽑은 HTML 정본으로 기획·디자인·개발이 같은 기준을 보자는 제안을 논의했습니다. 원음 전사와 대조해 결정, 할 일, 개발 쪽 우려, 남은 질문을 정리했습니다.">
+<meta name="generator" content="doc-template · 흑백">
+<meta property="og:title" content="HTML 정본 방식은 이번 버전이 아니라, 11월 다음 버전에서 먼저 시험합니다">
+<meta property="og:description" content="코드에서 뽑은 HTML 정본으로 기획·디자인·개발이 같은 기준을 보자는 제안을 논의했습니다. 원음 전사와 대조해 결정, 할 일, 개발 쪽 우려, 남은 질문을 정리했습니다.">
+<link rel="canonical" href="https://euna-source.github.io/public-pages/c8-meetinglog-261014-2/">
+<title>HTML 정본 방식은 이번 버전이 아니라, 11월 다음 버전에서 먼저 시험합니다</title>
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   doc-template v2 · 기획·리서치 문서
+   색은 테마가 넣는다(:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+). 역할: bg panel line text muted accent mark marktext link linkline obi obitext
+   근거 번호 [L##]는 UX 리서치 장부. 시그니처: 절마다 반복되는 타공 헤어라인(하라 켄야의 타공 금속 사인).
+   ───────────────────────────────────────────── */
+:root{
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Nanum Myeongjo","Batang",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* 글자 [L30·L33·L34·L72·L73] */
+  --fs-body:1.125rem; --lh-body:1.7;
+  --fs-lead:1.25rem; --fs-deck:1.3125rem; --fs-obi:1.5rem;
+  --fs-h1:clamp(2.125rem,1.2rem + 3.4vw,3.5rem); --fs-h2:1.875rem; --fs-h3:1.375rem;
+  --fs-ui:1rem; --fs-small:.9375rem; --fs-cap:.875rem; --fs-label:.8125rem; --fs-min:.75rem;
+  /* 폭 [L31·L87·L92] */
+  --measure:36em; --wide:48rem; --gutter:40px; --header-h:60px;
+  /* 간격 */
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:96px;
+  --sec-gap:var(--s-10); --block-gap:var(--s-7);
+  /* 모서리·선 [L47·L54·L65] */
+  --r-mark:2px; --r-btn:6px; --r-box:12px; --hair:1px; --rule:2px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1rem;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss06"}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--linkline);text-underline-offset:.2em;transition:text-decoration-color 120ms var(--ease),color 120ms var(--ease)}
+a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:30;background:var(--bg);color:var(--text);padding:10px 14px;border:var(--rule) solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 도구 줄: 문서 위 한 겹만 반투명 [L28·L29] ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:var(--hair) solid var(--line)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:var(--s-4)}
+.bar-title{min-width:0;display:flex;align-items:baseline;gap:10px;font-size:var(--fs-cap)}
+.bar-kind{color:var(--accent);font-weight:700;white-space:nowrap}
+.bar-title .sep{color:var(--line)}
+.bar-title b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;border:0;border-radius:var(--r-btn);background:none;font-size:var(--fs-cap);color:var(--muted);transition:background-color 120ms var(--ease),color 120ms var(--ease)}
+.tool:hover{background:var(--panel);color:var(--text)}
+.tool[aria-pressed="true"]{color:var(--text)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.cover{padding-top:var(--s-7)}
+.issue{display:flex;justify-content:space-between;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--rule) solid var(--text);font-size:var(--fs-label);letter-spacing:.02em;color:var(--muted);font-variant-numeric:tabular-nums}
+.issue strong{color:var(--text);font-weight:600}
+.issue a,.meta dd a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.issue a:hover,.meta dd a:hover{text-decoration-thickness:2px}
+.cover-main{padding:var(--s-9) 0 var(--s-8);max-width:52rem}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:var(--fs-label);font-weight:700;letter-spacing:.04em;margin-bottom:var(--s-5)}
+.kind::before{content:"";width:20px;height:var(--rule);background:currentColor}
+.kind:empty{display:none}
+h1{font-family:var(--serif);font-weight:800;font-size:var(--fs-h1);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.deck{margin-top:var(--s-6);max-width:var(--measure);font-size:var(--fs-deck);line-height:1.55;color:var(--muted);text-wrap:pretty}
+.deck:empty{display:none}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+.meta div{padding:var(--s-4) var(--s-4) var(--s-4) 0;min-width:0}
+.meta div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.meta dt{font-size:var(--fs-min);color:var(--muted);margin-bottom:4px;letter-spacing:.02em}
+.meta dd{font-size:var(--fs-small);font-weight:600;overflow-wrap:anywhere}
+
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 본문 폭에 맞춘 결론 한 줄 + 세 칸 ── */
+.obi{margin-top:var(--s-8);max-width:none;border:var(--rule) solid var(--text)}
+.obi-head{background:var(--obi);color:var(--obitext);padding:var(--s-6) var(--s-7);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.obi-label{display:inline-block;font-size:var(--fs-min);font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:2px 8px;margin-bottom:var(--s-3)}
+.obi-head p{font-size:var(--fs-obi);font-weight:700;line-height:1.45;text-wrap:pretty}
+.obi-head a{color:inherit;text-decoration-color:currentColor}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:var(--s-5) var(--s-6) var(--s-6)}
+.obi-grid div+div{border-left:var(--hair) solid var(--line)}
+.obi-grid h2{font-size:var(--fs-label);color:var(--muted);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.obi-grid p{font-size:var(--fs-small);line-height:1.6;overflow-wrap:anywhere}
+
+/* ── 본문 배치 [L122·L126] ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,var(--wide));gap:var(--s-9);padding:var(--s-9) 0 var(--s-10)}
+.toc{position:sticky;top:calc(var(--header-h) + 24px);align-self:start;max-height:calc(100dvh - var(--header-h) - 48px);overflow:auto;font-size:var(--fs-cap);scrollbar-width:thin}
+.toc-title{font-size:var(--fs-min);color:var(--muted);letter-spacing:.04em;margin-bottom:var(--s-3)}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:36px;padding:8px 0 8px 12px;border-left:var(--rule) solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc .n,.toc-mobile .n{font-size:var(--fs-min);color:var(--accent);font-variant-numeric:tabular-nums;font-weight:700}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+/* 본문 열에서 글줄·표·제목의 오른쪽 경계를 일치시킨다. */
+.doc :is(p,ul,ol,blockquote,h2,h3,.callout,.legend,.sec-num){max-width:100%}
+.doc>section{position:relative}
+.doc>section+section{margin-top:var(--sec-gap);padding-top:var(--s-7)}
+/* 시그니처: 타공 헤어라인 — 절 시작마다 같은 간격의 작은 구멍 */
+.doc>section+section::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background-image:radial-gradient(circle,var(--line) 1.1px,transparent 1.4px);background-size:7px 3px;background-repeat:repeat-x}
+.doc p+p{margin-top:1.2em}
+.doc :is(ul,ol):not([class]){padding-left:1.25em;margin:1.2em 0}
+.doc li+li{margin-top:.4em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+.sec-num{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-label);font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:var(--s-3);text-decoration:none}
+.sec-num b{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.sec-num b::after{content:"";display:inline-block;width:14px;height:var(--rule);background:currentColor;vertical-align:middle;margin-left:10px}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:var(--fs-h2);line-height:1.3;font-weight:700;margin-bottom:var(--s-6);text-wrap:balance}
+.doc h3{font-size:var(--fs-h3);line-height:1.4;font-weight:700;margin:var(--s-8) 0 var(--s-3)}
+.doc h2+h3{margin-top:0}
+.lead{font-size:var(--fs-lead);line-height:1.65}
+sup.ref{font-size:.7em;line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px;color:var(--link)}
+
+/* 형광펜 [L119·L120·L121] */
+mark{background:var(--mark);color:var(--marktext);font-weight:600;padding:.04em .12em;border-radius:var(--r-mark);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+mark a{color:inherit;text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 이름표 */
+.tag{display:inline-block;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 6px;border:1.5px solid currentColor;border-radius:var(--r-mark);margin-left:6px;vertical-align:.15em;white-space:nowrap;letter-spacing:.02em}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:var(--block-gap) 0;border-top:var(--rule) solid var(--text)}
+.stats div{padding:var(--s-4) var(--s-4) var(--s-5) 0}
+.stats div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.stats b{display:block;font-size:2.5rem;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats b small{font-size:1rem;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:var(--fs-cap);line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 색이 아니라 모양으로 [L18·L47·L117] */
+.callout{margin:var(--block-gap) 0;padding:var(--s-5) var(--s-6);font-size:var(--fs-small);line-height:1.65;border-radius:var(--r-box);border:1px solid transparent}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:var(--fs-cap);font-weight:700;margin-bottom:4px}
+.callout-label svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border:1.5px solid var(--text)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.5em}
+
+/* 접이 상자와 결정 모음: 제목 한 줄만 보이고, 누르면 배경이 펼쳐진다 */
+details.callout{padding:0}
+details.callout>summary{display:flex;align-items:flex-start;gap:10px;min-height:48px;padding:13px var(--s-6);margin:0;cursor:pointer;list-style:none;border-radius:inherit}
+details.callout>summary::-webkit-details-marker{display:none}
+details.callout>summary::after{content:"";flex:none;margin:.35em 2px 0 auto;width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform 180ms var(--ease)}
+details.callout[open]>summary::after{transform:rotate(-135deg);margin-top:.6em}
+@media (hover:hover){details.callout>summary:hover{background:var(--panel)}}
+details.callout .dq{min-width:0;line-height:1.55}
+.callout-body{padding:0 var(--s-6) var(--s-5)}
+.callout-body>*+*{margin-top:.5em}
+.callout.decide{border:var(--hair) solid var(--line);border-radius:var(--r-mark)}
+.callout.decide+.callout.decide{margin-top:calc(var(--block-gap) * -1 + var(--s-2))}
+.callout.decide[open]{border-color:var(--text)}
+.callout.decide>summary{font-size:var(--fs-ui);font-weight:700}
+.callout.decide .dn{flex:none;color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em;line-height:1.55}
+.callout.decide .callout-body{padding-left:calc(var(--s-6) + 10px + 2ch)}
+.callout.decide:target,.doc>section:target>h2{scroll-margin-top:calc(var(--header-h) + 16px)}
+.xref{font-weight:600;white-space:nowrap}
+.callout-body .rel{font-size:var(--fs-cap);color:var(--muted)}
+.doc h3+details.callout,.doc h3+.hub-toggle{margin-top:0}
+.doc h3:has(+details.decide){margin-top:var(--s-7);font-size:var(--fs-ui);color:var(--muted)}
+.xref::after{content:" ↗";font-size:.85em}
+/* 절 머리의 '정할 것 N': 결정 모음의 해당 항목으로 간다 */
+.sec-pending{display:inline-flex;align-items:center;margin-left:var(--s-3);vertical-align:top;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid var(--accent);color:var(--accent);border-radius:var(--r-mark);text-decoration:none;letter-spacing:.02em}
+.sec-pending:hover{background:var(--accent);color:var(--bg)}
+/* 표지 아래 한 줄 */
+.pending{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:var(--s-4);max-width:none;font-size:var(--fs-small);color:var(--muted)}
+.pending a{font-weight:700;color:var(--text);text-underline-offset:3px}
+.hub-toggle{margin:0 0 var(--s-3);border:0;background:none;padding:6px 0;min-height:44px;font:inherit;font-size:var(--fs-cap);font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.hub-toggle:hover{color:var(--text)}
+
+/* 인용 */
+.pull{margin:var(--s-8) 0;padding:4px 0 4px var(--s-6);border-left:var(--rule) solid var(--accent);font-family:var(--serif);font-size:1.625rem;font-weight:700;line-height:1.5;text-wrap:balance}
+.pull cite{display:block;margin-top:var(--s-3);font-family:var(--sans);font-size:var(--fs-cap);font-style:normal;font-weight:400;color:var(--muted)}
+
+/* 표 [L48·L127·L128·L129] */
+.table{margin:var(--block-gap) 0;position:relative}
+.table table{width:100%;border-collapse:collapse;font-size:var(--fs-small);line-height:1.6;font-variant-numeric:tabular-nums}
+.table :is(th,td):first-child{min-width:4.5em}
+.table caption{text-align:left;font-size:var(--fs-cap);font-weight:700;margin-bottom:var(--s-2)}
+.table th{text-align:left;font-size:var(--fs-label);font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:var(--rule) solid var(--text);white-space:nowrap;vertical-align:bottom}
+.table td{padding:13px 16px 13px 0;border-bottom:var(--hair) solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.table .num{text-align:right}
+.table tr.pick td{font-weight:600}
+.table tr.pick td:first-child{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:12px}
+.table.compare{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+.table-hint{display:none;font-size:var(--fs-min);color:var(--muted);margin-top:6px}
+.table-note{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.6;max-width:var(--measure)}
+
+/* 그림 */
+.figure{margin:var(--block-gap) 0}
+.figure figcaption{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.5;max-width:var(--measure)}
+
+/* 다음 행동 [L23] */
+.actions{list-style:none;margin:var(--block-gap) 0;padding:0;border-top:var(--rule) solid var(--text);max-width:none!important}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;column-gap:14px;align-items:start;padding:14px 0;border-bottom:var(--hair) solid var(--line);font-size:var(--fs-ui);line-height:26px;min-height:44px}
+.actions li+li{margin-top:0}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:4px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{display:grid;grid-template-columns:6em 6em;column-gap:16px;font-size:var(--fs-cap);line-height:26px;color:var(--muted);white-space:nowrap}
+
+/* 출처·이력 */
+.appendix{margin-top:var(--sec-gap)!important;padding-top:var(--s-7);border-top:var(--rule) solid var(--text)}
+.appendix::before{display:none}
+.appendix h2{font-size:1.375rem;margin-top:0}
+.appendix h2+*{margin-top:0}
+.appendix h2:not(:first-child){margin-top:var(--s-8)}
+.sources{list-style:none;margin:var(--s-5) 0;padding:0;font-size:var(--fs-small);line-height:1.6;max-width:none!important}
+.sources li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:var(--hair) solid var(--line)}
+.sources li+li{margin-top:0}
+.sources li::before{content:counter(list-item);font-size:var(--fs-label);color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:var(--fs-label);color:var(--muted)}
+.sources .state{font-size:var(--fs-label);color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--fs-label);color:var(--muted)}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+
+.foot{border-top:var(--hair) solid var(--line);padding:var(--s-6) 0 var(--s-8);display:flex;justify-content:space-between;gap:var(--s-5);font-size:var(--fs-label);color:var(--muted)}
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--text);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity 150ms var(--ease);z-index:15}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:var(--r-btn);font-size:var(--fs-cap);max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 흑백: 검정·흰색 두 색만. 반투명·회색 면 대신 선과 반전 ── */
+[data-bw] .bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+[data-bw] .tool{color:var(--text)}
+[data-bw] .tool:hover{background:var(--bg);outline:1px solid var(--text);outline-offset:-4px}
+[data-bw] .toc a{border-left-color:transparent}
+[data-bw] .toc a[aria-current="true"]{border-left-color:var(--text);font-weight:700}
+[data-bw] .toc a:not([aria-current="true"]){font-weight:400}
+[data-bw] .callout.note{border:1px solid var(--text)}
+[data-bw] .callout.decide{border-color:var(--text)}
+[data-bw] .sec-pending{border-color:var(--text);color:var(--text)}
+[data-bw] .sec-pending:hover{background:var(--text);color:var(--bg)}
+[data-bw] .meta dt,[data-bw] .stats span,[data-bw] .issue,[data-bw] .table th{font-weight:600}
+[data-bw] .actions li.done .what{text-decoration-color:var(--text)}
+[data-bw] .sources li:target{background:var(--bg);box-shadow:none;outline:1px solid var(--text)}
+[data-bw] img{filter:grayscale(1)}
+[data-bw] .to-top{border-color:var(--text)}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  :root{--gutter:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:var(--s-8)}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div+div{border-left:0;border-top:var(--hair) solid var(--line)}
+}
+/* ── 모바일 [L30·L31·L122·L123] ── */
+@media screen and (max-width:768px){
+  :root{--fs-body:1.0625rem;--lh-body:1.65;--fs-lead:1.125rem;--fs-deck:1.125rem;--fs-obi:1.25rem;--fs-h2:1.5rem;--fs-h3:1.1875rem;--gutter:20px;--header-h:56px;--sec-gap:var(--s-9);--block-gap:28px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .cover-main{padding:var(--s-8) 0 var(--s-7)}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .meta div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:var(--s-7)}
+  .obi-head{padding:var(--s-5)}
+  .obi-grid div{padding:var(--s-4) var(--s-5)}
+  .layout{display:block;padding:var(--s-7) 0 var(--s-9)}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:var(--s-8);border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:var(--fs-small);font-weight:600;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:8px;height:8px;border-right:1.6px solid var(--text);border-bottom:1.6px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform 180ms var(--ease)}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 8px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:var(--fs-small)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .stats div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .stats b{font-size:2.125rem}
+  .callout{padding:var(--s-4) 18px}
+  details.callout{padding:0}
+  details.callout>summary{padding:12px 16px}
+  .callout-body{padding:0 16px var(--s-4)}
+  .callout.decide .callout-body{padding-left:16px}
+  .pull{font-size:1.3125rem;padding-left:18px}
+  /* 목록형 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:var(--hair) solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:var(--rule) solid var(--text)}
+  .table.stack td{border:0;padding:3px 0 3px 104px;position:relative}
+  .table.stack td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:92px;font-size:var(--fs-label);color:var(--muted);font-weight:600;line-height:1.5}
+  .table.stack td:first-child{font-weight:700;padding-left:0;margin-bottom:4px;font-size:var(--fs-ui)}
+  .table.stack td:first-child::before{display:none}
+  .table.stack td:empty{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:14px}
+  .table.stack .num{text-align:left}
+  /* 두 칸 표(항목 | 내용)는 이름표가 매 행 같은 말이라 빼고 내용을 전체 폭으로 */
+  .table.stack tr:has(> td:nth-child(2):last-child) td{padding-left:0}
+  .table.stack tr:has(> td:nth-child(2):last-child) td::before{display:none}
+  /* 비교표 → 가로 스크롤 + 첫 열 고정 */
+  .table.compare table{min-width:520px}
+  .table.compare :is(th,td):first-child{min-width:5.5em;position:sticky;left:0;background:var(--bg);z-index:1;box-shadow:1px 0 0 var(--line)}
+  .table.compare+.table-hint,.table-hint{display:block}
+  .actions li{grid-template-columns:22px minmax(0,1fr)}
+  .who{grid-column:2;display:flex;flex-wrap:wrap;column-gap:0;font-size:var(--fs-label);line-height:22px}
+  .who span+span::before{content:"·";margin:0 6px}
+  .sources li{grid-template-columns:24px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  :root{--gutter:16px}
+  .table.stack td{padding-left:88px}
+  .table.stack td::before{width:78px}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) img{filter:brightness(.9)}}
+:root[data-theme="dark"] img{filter:brightness(.9)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:1ms!important;animation:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (forced-colors:active){
+  mark{background:Mark;color:MarkText;forced-color-adjust:none}
+  .callout.note{border-color:CanvasText}
+  .obi-head{border-bottom:1px solid CanvasText}
+}
+
+/* ── 인쇄·PDF: 테마의 라이트 토큰 + 흰 바탕 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
+  .bar,.toc,.toc-mobile,.toast,.skip,.to-top{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:24px}
+  .cover-main{padding:24px 0}
+  h1{font-size:28pt}
+  .doc{font-size:11pt}
+  .doc h2{font-size:16pt}
+  .doc>section+section{margin-top:28px}
+  mark{font-weight:700}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats,.pull{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+
+/* 문맥상 문단은 유지하고 시각적 개행만 좁은 화면에서 다시 흐른다. */
+.cover-main .deck{max-width:100%}
+.doc :is(p,li,dd,blockquote){overflow-wrap:anywhere;line-break:strict}
+.doc p{text-wrap:pretty}
+@media(max-width:600px){br.prose-break{display:none}}
+
+</style>
+<style>
+.mtg-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s-5)}
+.mtg-actions button{font:inherit;font-size:var(--fs-small);font-weight:600;color:var(--text);background:transparent;border:var(--hair) solid var(--line);padding:8px 14px;cursor:pointer;min-height:40px}
+.mtg-actions button:hover{background:var(--panel)}
+.mtg-actions button:focus-visible{outline:2px solid var(--text);outline-offset:2px}
+.mtg-note{margin-top:8px;font-size:var(--fs-cap);color:var(--muted)}
+.mtg-toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--text);color:var(--bg);padding:10px 16px;font-size:var(--fs-small);opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+.mtg-toast.on{opacity:1}
+@media print{.mtg-actions,.mtg-note{display:none}}
+</style></head>
+<body>
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">meeting</span><span class="sep" aria-hidden="true">·</span><b>10/14 HTML 정본 회의록</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="강조 표시"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span></button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span></button>
+      <button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button>
+      <button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span></button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>meeting</strong><span></span></div>
+    <div class="cover-main">
+      <p class="kind">회의록 · HTML 정본 · 10/14</p>
+      <h1>HTML 정본 방식은 이번 버전이 아니라, <br class="prose-break">11월 다음 버전에서 먼저 시험합니다</h1>
+      <p class="deck">코드에서 뽑은 HTML 정본으로 기획·디자인·개발이 같은 기준을 보자는 제안을 논의했습니다. <br class="prose-break">원음 전사와 대조해 결정, 할 일, 개발 쪽 우려, 남은 질문을 정리했습니다.</p>
+    </div>
+    <dl class="meta"><div><dt>상태</dt><dd><span class="state"><i class="dot full" aria-hidden="true"></i>확정</span></dd></div><div><dt>작성</dt><dd>기획 이은희</dd></div><div><dt>회의</dt><dd>2026. 10. 14(수), 38분</dd></div><div><dt>참석</dt><dd>유재욱 · 임민석 · 이은희 · 권태환 · 하민</dd></div><div><dt>최종 갱신</dt><dd>2026. 10. 14</dd></div></dl>
+    <section class="obi" aria-labelledby="obi-title"><div class="obi-head"><span class="obi-label" id="obi-title">결론</span><p>이번 버전은 지금 방식대로 마치고, <br class="prose-break">정본 방식은 11월 다음 버전에서 시험한 뒤 <br class="prose-break">도입 여부를 다시 정합니다.</p></div><div class=obi-grid><div><h2>이번 버전</h2><p>Figma·문서로 <br class="prose-break">하던 대로 마칩니다.</p></div><div><h2>11월</h2><p>유재욱이 정본 앱으로 <br class="prose-break">다음 버전을 시험합니다.</p></div><div><h2>걱정</h2><p>AI가 틀리면 개발이 <br class="prose-break">두 번 작업할 수 있습니다.</p></div></div></section><p class="pending"><span>아직 정하지 않은 것이 3가지 있습니다.</span><a href="#s7">모아 보기<span aria-hidden="true"> →</span></a></p><div class="mtg-actions" role="group" aria-label="회의록 복사·내려받기"><button type="button" data-act="url">URL 복사</button><button type="button" data-act="minutes">회의록 전체 복사</button><button type="button" data-act="copy-tr">대화 원문 전체 복사</button><button type="button" data-act="dl-tr" data-name="회의록_2026-10-14_HTML정본">대화 원문 내려받기</button></div><p class="mtg-note">대화 원문은 음성 자동 전사입니다.</p><div class="mtg-toast" id="mtg-toast" role="status" aria-live="polite"></div><script type="text/plain" id="mtg-minutes">## 정한 것 | 이번 버전은 그대로, 정본은 시험부터
+
+| 항목 | 내용 |
+|---|---|
+| 이번 버전 | 이미 진행 중이라 기존 방식(Figma·문서)으로 마칩니다 (유재욱) |
+| 정본 방식 | 11월 다음 버전에서 먼저 시험하고, 결과를 보고 다시 논의합니다 (유재욱 제안, 하민 동의) |
+
+## 제안 | 코드에서 뽑은 정본 하나를 모두가 봅니다
+
+- 유재욱의 제안입니다.  
+  Bitbucket의 iOS·Android·API 코드를 읽어 정본을 만들고, 화면은 바이브 코딩으로 만든 뒤 세밀한 부분만 Figma에서 다듬습니다.
+- 기획이 바뀌면 정본을 갱신하고, 각자 앱에서 달라진 부분만 받습니다.  
+  버전마다 변경 사항 목록이 나와 클라이언트는 화면을, 백엔드는 추가된 API를 확인합니다.
+- 목표는 한 팀을 빠르게 하는 게 아니라 일정 확인, 요구 조건 누락, QA 공수를 줄이는 것입니다.  
+  스타일 가이드를 정본에서 한 번 바꾸면 전체에 반영되는 점을 가장 큰 이점으로 꼽았습니다.
+
+## 화면 기준 | API·UI 기준에 흐름도와 빈 상태가 더해졌습니다
+
+- 유재욱은 화면마다 API와 UI 기준만 있으면 된다고 봤고, 권태환은 흐름도가 중요하다고 했습니다.
+- 하민은 AI가 흐름도를 읽을 수 있어 좋다며, 목록이 비었을 때 같은 빈 상태 화면도 필요하다고 짚었습니다.  
+  이런 화면은 기획자가 챙겨 만듭니다.
+- 유재욱은 AI에 요청할 범위를 너무 넓거나 세밀하게 잡으면 엉뚱한 결과가 나온다고 주의를 줬습니다.
+
+## 개발 쪽 의견 | 장점은 인정하고, 이중 작업을 걱정합니다
+
+- 임민석(백엔드)은 Figma에서 놓치는 부분을 잡는 장점은 있지만, 백엔드는 무엇으로 받든 큰 차이가 없다고 했습니다.
+- 임민석은 AI가 아직 부정확해 클라이언트가 먼저 개발하면 **두 번 작업**이 생길 수 있다고 했습니다.  
+  이중 작업을 받아들일 수 있다면 API 스캐폴딩부터 하자고 했습니다.
+- 하민(iOS)은 화면 이름이 분명한 점이 Figma보다 낫고, 컴포넌트 재사용 문제는 기술적으로 풀어 뒀다고 했습니다.  
+  Figma로도 두세 번 작업한 적이 있으니 11월에 시험해 보자고 제안했습니다.
+- 유재욱은 열 번 중 두 번 틀리는 정도면 진행하자는 기준을 냈고, 새 페이지의 API 정리가 개발 PRD가 될 수 있다고 봤습니다.
+
+## 운영 | 기준은 배포된 서비스, 당분간 기존 관리 유지
+
+- 정본의 기준은 지금 배포된 서비스 버전으로 잡자는 게 유재욱의 의견입니다.
+- 자동 갱신이 안정될 때까지는 기존 관리 방식을 유지합니다.
+- 웹뷰로 띄우는 웹 페이지는 정본으로 만들기 어렵습니다.
+
+## 그 밖에 | 키즈 버전과 가입·프로젝트 화면 얘기가 나왔습니다
+
+- 키즈 버전(로 들림)이 들어가면 정본이 두 배로 늘지만 스타일만 바꾸면 된다고 유재욱이 봤습니다.  
+  권태환은 같은 계정에서 색만 바뀌면 문제가 생길 수 있다고 했고, 하민은 아예 분리하자고 했습니다.
+- 권태환은 회원가입에서 여전히 무슨 앱인지 모른 채 가입부터 시킨다고 지적했습니다.
+- 이은희는 프로젝트 북마크·설정 개선과, 비가입자도 프로젝트 게시물을 보게 하고 댓글은 빼는 방안을 냈습니다.
+
+## 결정할 것 | 시험 결과를 보고 셋을 정합니다
+
+&gt; [!decide]- 정본 방식을 정식으로 도입할까요?
+&gt; 11월 시험 결과를 보고 다시 정하기로 했습니다.
+
+&gt; [!decide]- 정본 방식에서도 CCQ 티켓(로 들림)을 따로 끊어 할 일을 추적할까요?
+&gt; 이은희가 물었고, 유재욱이 정본 앱의 작업 이력 기능을 시험 중입니다.
+
+&gt; [!decide]- 클라이언트가 먼저 개발해 생길 이중 작업을 어디까지 받아들일까요?
+&gt; 임민석은 받아들일 수 있다면 API 스캐폴딩부터 하자고 했습니다.
+
+&gt; [!unknown]- 녹음이 불분명한 표기
+&gt; 시험 대상 버전 번호(4.4·4.5로 들림)와 '키즈 버전' 표기는 확인이 필요합니다.
+
+## 다음 행동 | 유재욱의 11월 시험이 먼저입니다
+
+- [ ] 다음 버전 화면을 정본 앱으로 만들며 시험하기 @유재욱 ~11월
+- [ ] 시험 뒤 나온 문제를 모아 공유하기 @유재욱 ~시험 뒤
+- [ ] 정본 앱을 팀에 배포하기 @유재욱 ~기한 미정
+- [ ] 화면 이름 목록을 정리해 정본에 붙이기 @이은희 ~기한 미정
+- [ ] 정본 방식에 더 필요한 항목을 유재욱에게 요청하기 @각자 ~시험 전
+</script><script type="text/plain" id="mtg-transcript"># 10/14 HTML 정본 논의 대화 원문
+
+음성 자동 전사입니다. 화자 이름은 목소리 대조 뒤 확인한 것입니다. 「이름·이름」 줄은 두 목소리가 섞인 구간입니다.
+
+[00:00.0] 유재욱: 그 같이 체크해서 지는 게 제일 좋을 것 같긴 하거든요. 그러니까 예를 들어서 조금 좀 주었어가지고.  
+[00:31.3] 유재욱: 어쨌든 근데 작업이 줄어야지 늘어나면 안 되잖아요. 그렇죠 그게 핵심이라고 보이거든요. 그러니까 빈번하게 업데이트도 엄청 자주 입고.  
+[00:47.9] 유재욱: 그래서 지금 제가 다음 버전 11월 22일 버전 말고 44 버전 말고 사업 버전이 되게 그때 버전부터는 정보원  
+[01:21.3] 유재욱: 정보원에서 작업을할 까 그거든요 이게 지금 어떤 기준에 있냐면 지금 기트버켓에 있는 iOS랑 안드로이드나 API 쪽을 다 갖고 와서 SFM 파일로 다 만들고 하면 들  
+[01:33.0] 유재욱: 그래서 예를 들어 채팅 클럽 같은 화면들을 이걸 기준으로 만들고 이런 식으로 나와요. 저도 그럼 저도 이제 여기서 바이브로 할 거고 그리고 이제 어긋나는 분 피그마로 제가 따로 가져와서 다시  
+[01:51.5] 유재욱: 만 그래서 지금 제가 고민인 부분은 이렇게 됐을 때 화면 단위에서  
+[02:02.4] 유재욱: 노출되는 부분이 들거든요 근데 제가 보니까 AI까지는 이렇게 놓을 수 있긴 하더라고요. 현재의 버전으로 제가 상상하는 구조는싱 만들어요. 기존 정본과 AI 구조가 있을 거잖아요. 기 가져올 수 있는 도 뽑고  
+[02:16.9] 유재욱: 그리고 싱크는 제 각각 개발제를 테스를 해줘야겠지만 기본적인 건 이제 신규하면 만들어서 가져올 수 있을 거라는 생각이 들어요. 전체를 알고 있는 상황이니까 맞지는 않는 경우는 있더라도  
+[02:27.8] 유재욱: 그래서 대충은 가져오 것 같긴 하더라고요. 현재는 저도 최종적으 싱크 맞춰진 않았는데 그래서 아 어차피 기 소스로 그냥 크 될 같고 배선도 잡아주시고 사실상 배선의 기준에서 있는 배선들을 그냥 기존 AP로 잡으면 될 것 같고 없는 배선에 대한 에이P 작업들을 하면 되지 않을까라는 게  
+[02:47.3] 유재욱: 맥락이기는 해요. 그래서 지금 현재 버전에서 채팅은 기존 버전이다 보니까 이건 최종 버전 아니에요. 여기랑 확실 채팅 아직 안 해봤는데 이제 A파이 후보군 아 못 갔거든. 그래서 이건 제가 신규하면 어차피 사업 버전을 만들면서 테스 좀 해볼 거예요. 기존  
+[03:06.7] 유재욱: 있는 정원에서 갖고 올 있는 AI들 있는지라든지 이런 것들은 물론 그게 클로트가 지 맘대로 가져오는 거니까 백앤드에서 그걸 보면서 테스트해줄 될 거 같고 최종적으로는 여기 화면 속에서 없는 따로 규격이 있을 테니까  
+[03:22.6] 유재욱: 덤이라도 작성이 되지 않을까라고 생각을 하고 있어요. 그래서 사 버전부터는 그렇게 작업이 되면 저희 업이트할 때보다는 그런 식으로 좋을 거라고 생각은 드는데 이렇게 작업이 변경됐을 때 각각의 개발이나 기획 쪽에서 또 필요한 사람들이 있으면 업데이트해서 같이 하는 좋을 것 같긴 하거든요.  
+[03:42.8] 유재욱: 저는 이제 요걸로 사업 전을 해볼 생각이기 때문에 그리고 이 앱 이게 앱 자체로 만들어가지고 앱을 이 제가 0라기보다는 기사 올려놓을 건데 다운받으시면 여기 버튼 두 개 있을 거예요. 이제 비트버킷 접속 버튼하고  
+[03:58.0] 유재욱: 개인 프로도 접속 버튼 그리고 이제 터미널 플러드를 개인 플러드로 구독하시는 걸로 쓰시고 비트코인 연결하시면 정보는 다운 받으실 거예요. 그리고 이럴 수 있잖아요.  
+[04:08.4] 유재욱: 기획장 중간에 바꿀 수도 있고 그럴 때 제 업데이트 해주시면 각각의 비트크도 내려서 다시 정보를 받을 수 구조적으로 그렇게 할 생각이고 정보는 하나 놓고 이 안에 현재 기준을 잡고 있는 정보들은 포함시키고 그걸로 컴을 하는 게 낫지 않을까  
+[04:24.5] 유재욱: 제 생각은 현재 생각은 그래요 근데 이건 어 아이디어처럼 트 한번 만들어 놓은 거라서 실질적으로 이게 작업이 반용됐을 때 어떤 휴일도 가져올지 모르겠네.  
+[04:35.7] 유재욱·임민석: 그렇지 근데 아까 말씀하셨던 것 중에서 기획자분들이 수정을 하실 수 있다고 하셨잖아요. 이게 새는 거죠 클럽에서 이런 식으로 수정이 돼요.  
+[05:10.3] 유재욱: 회사 가면 이쪽 클로드로 보내가지고 이 클로드가 정보를 잠드는 방식 자 또는 뭐 선택을 해서 할 수 있고 뭐 이런 식으로 수정을 할 수 아직 테스거든이어서 이런 식으로 수정도 할 수 있고 피그마의 모든 기을 가져오진 않는데 웬만한 바이브 코딩이에서 그리고 그런 디테일한 수작을 여기 못하는 건 제가 요거를 피그머로 떠가지고  
+[05:29.1] 유재욱: 피그마에서 디테일 수준을 다시 업로드 시킬 거예요 어차피 그렇게 되면 피그만 점만 쓰면 될 것 같고 정보를 다 같이 보여 필요 없잖아요. 아니면 그 방식도 있어요. 이걸 그대로 풀서 옮기는 방식도 있는데 그러면 모든 업계를 할 때부터 계속 옮겨 되거든 사실  
+[05:44.8] 유재욱: 그래서 그런 특수한 경우 전체 아이 바꾼다든지 이런 경우는 제가 피을 따로옮겨서 변경한 거 업데이트 취 예정이긴 하거든요. 근데 그런 디 수 같은 다들 보실 필요 없으시니까  
+[05:57.7] 유재욱: 바꿨네 이런 식으로 바꾸면 쓰는 거게  
+[06:04.6] 유재욱: 근데 제 어차피 이런 기능적인 수정은 사실상 기획이랑 제가 거리 할 거고 이게 저희 둘이 수정이 완료됐을 때 이제 공유를 하겠죠. 공유해야 될 때도 이런 식으로 고민되지 않을 거고 여기 뭐 이런 게 생기겠죠. 4.6버전 변경사항 그래서 생겨가지고 화면이 나오겠죠.  
+[06:20.4] 유재욱: 그러면 이제 클라이언트 쪽은 그 화면을 보고 이 앱에 입히시면 될 것 같고 백다른 화면에서 추가된 API를 체크하셔서고 만들어주면 않을까라고 추론만 하고 있어요.  
+[06:32.9] 유재욱: 그리고 이제 변경 업데이트는 정권이 바뀔 때마다 항목들 나오긴 할 거예요. 거친 항목들이 그것도 이제 뭐 생각 중인데 어떻게 하는 게 효율적일까 그래서 그 어쨌든 최종 버전이니까 기존 버전과 바뀐 버전의 전공 관리가 되면은  
+[06:51.4] 유재욱: 체크 사람도 나오지 않을 긴 하거든요 수정사 내역들이.  
+[06:57.3] 유재욱: 어쨌든 하고 싶은 건 그거였어요 그냥 이렇게 빠르게 바뀌는데 일정을 체크하기 너무 어렵고 그리고 그 할 때마다 요구 조건들이 되게 모르는 놓치는 부분도 많고 하다 보니까 그냥 한 번에 합치는 게 낫지 않을까 해서  
+[07:12.4] 유재욱: 해봐야 알 것 같기는 하네요 저도 그래서 근데 이 어쨌든 저는 먼저 이걸 한번 작업을 해볼 생각인데 어쨌든 제가 하면서 테스트 할 거잖아요. 그래서 화면 단위 어디까지 노출되는 게 제일 좋을지는 좀 문의 주고 싶었어요.  
+[07:28.4] 유재욱: 예를 들어서 클럽이 추가됐어요 이화이 추가됐어요 예를 들어 이하을 저희가 검토를 해야 되잖아요. 가까이 다. 유아인은 제가 디자인을 검토할 거고 기획자는 기획적으로 검토할 거고 그리고 이 클라이드 따나고 이 백앤드 따라서 이 화면을 검토할 때 어떤 기준으로 검토하고 어떻게 작업이 되는지 알면  
+[07:46.7] 유재욱: 여기서 추가적으로 이 페이지에 속한 속들을 좀 더 적용해가 명확하게 나지 않을까 제가 기준으로는 API하고 UI제 기준만 나오면 될 거라고 생각이 들긴 했는데  
+[07:59.4] 유재욱: 그리고 링크 기준들 뭐 버튼으로서 어디 흐름도 흐름도도 있긴 한데 이건 좀 만져야 될 것 같긴 한데  
+[08:09.3] 권태환: 흐름도가 중요하죠 있으면  
+[08:15.4] 유재욱·권태환: 이렇게는 못 볼 것 같은데 그냥 버튼이 클립되는 게 낫지 않을까? 그거 이제 사람 기준이고 흐름도라는 건 어떤 거죠 그  
+[08:26.7] 하민: AI는 볼 수 있으니까 그 흐름수가 있는 것 자체는 되게 좋은 것 같고요 그리고 한 가지 말씀드리고 싶은 게 만약에 지금 라운지 바로 대화해요 화면을 놓고서 말씀을 드리자면 만약에 아이템이 하나도 없어요.  
+[08:42.9] 하민·유재욱: 그러면은 그때는 이제 뭔가가 될 거잖아요. 그런 거에 대한 케이스에 대한 화면도 그건 제 기획자는 얘기해서 한 만들어 줄 것 같기는 해요.  
+[08:53.8] 유재욱: 누락하면은 이런 것들 화면 단위에서 만들어지겠지 그런 건 이 기획자가 체크해서 만들겠지 지금도 피그맨 붙여 놓는 것처럼. 여기 뭐 몇 지 생기겠죠?  
+[09:05.3] 유재욱: 물론 이제 이게 이점에 변수가 우리도 모르는데 뭔가 파일이 생겼다는 게 변수인데 그런 거 이제 가까의 기획팀하고 자인팀 알아서 체크하면서  
+[09:18.2] 유재욱: 그대로 해서 어쨌든 한 넘겨서 가 한 결과물 확인하는 패턴이 생기잖아요 그러 그리고 저희가 모르는 뭔가 이 생길 수 있거든요 그런 것들만 좀 주의해서 하면 될 것 같긴 해요.  
+[09:30.7] 유재욱: 기획도 요청할 때 너무 디테일하게 요청하면 엄청 이상한 지 많이 생기니까 범위를 잘 산정해서 요청하시 하셔야 되고 예를 들어서 모든 범에 빠진 페이지 해주고 그러면 별의별 표정이 잘 안 되거든 사실.  
+[09:44.0] 유재욱·권태환: 그런 것들만 저희가 어떤 범주 안에서 제가 활용하면은 적정선에서 잘 나는 것 같긴 한데 이는 잘 모르겠네요 저희  
+[09:53.8] 유재욱·권태환: 맞는 건 조금 애매해요 저도 그게 사실 이렇게 하면 클라이드 따는 일이 많이 줄 것 같긴 해요 기획도 그렇고 화면 단 가 정해져 있으니까지 잘 모르겠는데 가 이상한 걸 가져다 을 것 같아가지고요. 그래서  
+[10:08.0] 유재욱: 어쨌든 화면 UI 제 줄 아요 지금 사실 이 다 다 주셔도 이번 주 아 다음 주 끝날 것 같은데 저는 그거 이거를 고집하는 아 했을 때 좋을지 나쁠지 저 판단을 해보시고 좋다면 진행하는 거고 안 좋다고 하면 이래도 돼요 그냥 기획해  
+[10:29.5] 유재욱: 둘만 하고 그냥 피로 떠서 들으면 되기는 해요. 페이지로 그게 더 편해 그렇게 되는데 실 이에서 던 수 있는 AI가 다 아무 좋지 않을까 하는 거든요.  
+[10:42.7] 유재욱: 하고 있어 이렇게 해놨어요 그래서 클로도 연결하면은 뭐야 이거  
+[10:51.5] 유재욱: 똑같이 그냥 위아래로 접속하게 플로도 연결되고 비트버킷을 하면 킥카드 되기 건데 아마 늘면 될 거예요. 그래서 이 그냥 내부에서 신하시면 돼요.  
+[11:08.3] 유재욱: 그래서 지금 당장은 아니고 한 11월부터 이번 버전까지는 이미 작업이 진행되고 있으니까  
+[11:17.3] 임민석: 그냥 제 생각에는 전본관리를 한다는 측면에서 그 코드를 기반으로 해서 그걸 뽑아내가지고 그걸로 관리를 하는 거잖아요. 그러니까 피그마에서 놓칠 수 있는 부분을 잡을 수 있다는 점에서는 좀 것 같은 데  
+[11:32.5] 임민석: 근데 일단 I 백앤드 서버 백앤드 관점에서만 말씀드리면 사실 뭐 정체 문서를 글로 해서 주시든 피그마루 주시든 이걸로 주시든 크게 뭐 상관은 없을 것 같아요. 그게 이걸로 한다고 해서 이렇게 만하시고 좋아질 건데 그 없을까요?  
+[11:52.8] 유재욱·임민석: 근데 어차피 저희가 던지는 거나 얘가 던지는 거나 그게 그런가 저도 뭐 이걸 고 하는 건 아닌데 어쨌든 제가 가고 싶은 방향은  
+[12:03.2] 유재욱: 좀 더 각각의 업무들이 AI 던지는 과정들을 통합시켜 줬다고 생각하는 거든요. 어차피 다 이렇게 하잖아 문서 주면 각각의 AI 쓰고 계신 어떤 방송론에 따라서 조정해서 집어넣으시잖아요. 가능하면 그것까지 고려해서 이  
+[12:19.2] 유재욱: 하다고 생각이 들어가지고 나온 숙제였어요 저도 사실 그맨 작업하고 어차피 완전 똑같거든요 근데 제가 좋은 점은 이렇게 됐을 때는 쓸데없는 커도 덜 해도 되는 거죠 뭐 에 체크라든지 하면 U아 체크라든지 이런 건 좀 덜 할 수 있고 그리고 기존의  
+[12:35.9] 유재욱: 스타의 가이드를 그대로 채워서 쓰는 거잖아요. 그러면 예를 들어서 기존에는 피그나 해서 아이폰을 썼는데 이제 아이콘 나눠서 넣어주고 이런 것들이 장점이 있긴 해요  
+[12:45.7] 유재욱: 기획 쪽은 어차피 화면 정에 내릴 때 어차피 H 뽑으시니까 어차피 뽑아진 에이 고려돼서 나오는 거니까 현재 정부는 훨씬 더 수월할 생각이 들고 클라이튼 쪽에서는 지금 드는 생각은 그냥 피그마이 제이슨 파일을 다운받아서 쓰시는 게 좀 더 수월하게 받는 정도 수준일 거 같고  
+[13:04.0] 유재욱: 현재 생각에서는 근데 그렇게 됐을 때 좀 좋은 방법이 없을까요? 쓰고 계시는 어떤 방법들이 있을지 거니까 아마 다 있을 것 같은 느낌  
+[13:17.2] 하민: 이걸 조시는 계속 화를 나오 생각 이게 기존 피그몬보다 더 좋은 점이라고 한다면은 이 화면 이름 같은 것들이 너무 강력하고 그 다음에 좀 블록킹포인트라고 한다면은 기존에 있는 컴포넌트를 어떻게 재사용할 수 있을까  
+[13:36.4] 하민: 가 제 기록힌 포인트인데 그거는 이제 기술적으로 해결이 가능하도록 해놨어요. 그래서 C팀이 지금으로서는 기그만보다는 더 좋은 환경인 것 같습니다.  
+[13:49.6] 유재욱: 그리고 아마 iOS는 거의 맞을 거예요. ios 정보로를 컴퍼런스를 갖고 온 거여서지고 저도 이제 여기서 컴퓨터 없는 것들은 스타일에 추가되기 때문에 똑같이 피그피그가 오히려 없는 게 많잖아요.  
+[14:02.4] 유재욱: 그리고 제가 사실상 요거를 생각했던 포인트 중에서 가장 큰 거는 키사스 변경제 었어요. 제가 키서 변경제 자체를 그냥 이 정보에다 한 번에 만약에 스타일 가이드만 변경을 시켜놓으면은 반영하시면 다 끝나잖아요.  
+[14:17.8] 유재욱: 그리고 그 다음부터 배설이 이런 거 디자인 변경은 오히려 월하잖 않을까 싶은 거죠.  
+[14:33.7] 유재욱: 이게 iOS 정보지 뭐  
+[14:40.0] 유재욱: 운동을 왜 하고 있냐? 하는데  
+[14:51.6] 유재욱: 그래서 지간 단계 뭔가 결정한다기 보다는 이 방향으로 가는 거에 대한 부분에 대한 게 첫 번째 했던 거고 이 방향으로 간다고 하면은 어떤 것들을 업데이트 돼야지 우리에게 작업을 하는 게 좀 더 수월할 수 있을까?  
+[15:06.3] 유재욱: 어떤 한 팀 자체를 빠르게 한다는 표현보다는 어쨌든 전공 관리를 통해서 모든 팀들이 좀 더 수월했으면 좋겠거든요.  
+[15:18.8] 유재욱: 사실 뺑앤들도 잘 모르겠어요 솔직히 그리고 클라 끝까지 집 그림이 그려지는데 백앤들 어차피 에P 정해지면 다시 다 만드셔야 되잖아요 근데 그 에이피 만드실 때도 보통 API 기준점들이 있지 않으세요? 그러니까 저도 지금 드는 생각이 만약에 이게 좀 백앤드의 업무를 수월하게 해주려고 한다면  
+[15:39.3] 임민석: API 스펙홀딩이라고 해가지고 그 기능들을 보고 대충 API 구조만 잡아주는 그런 게 있어요 근데 제가 여태까지 AI라는 일을 해왔을 때 느낀 점은  
+[15:52.3] 임민석: 나중에는 AI 성능이 좋아서 낫겠지만 아직까지는 조금 멍청하거든요. 그래서 만약에 얘가 한 걸 통해서 먼저 플라이트 개발하고 계시면 나중에 저희가 보고 어 이거 아닌데 이래가지고 다시 두 번 작업하는 일이 발생할 수가 있어요.  
+[16:08.3] 권태환·임민석: 그래서 지금까지는 없었어요. 네  
+[16:13.9] 하민: 그런 차가 어떤 경우가 발생하셨어요?  
+[16:21.8] 하민: 저희 회사에서 있었던 일이신가요? 아니면 이에서 채팅 했을 때 화면을 보고 이 API는 아이다라고 판단이 드셨던 그런 점이 있으 AI 구조 자체가 잘못  
+[16:35.7] 유재욱: 그리고 뭐지 아 그래 컨셉 답은 없어 아예 없다고 볼 수는 없죠 전 그거죠 그러 그럼에도 감안하고 그렇게 하는 게 나을지 아니면 정말로 따다다 하는 게 낫지 그러니까 이런 10번 중에 두 번이 주는 경우가 있다고 본다면 그냥 진행하고 두 새로 하는 나 수 있는 거고 근데 10번을 했는 번이 그런다 그러면 다른 방안을 찾는 거잖아요  
+[16:59.1] 유재욱: 그런 관점으로 보고 싶은 거지 저 테스트해보긴 했어요. 그냥 가상화 이 뽑아달라고 편지 만들 때 존에 붙어있는 패턴들 보고 근데 물론 이제 진 대충 뽑겠지 걔네 도 모르는 애니까 그렇다고 디 연결해가지고 할 수는 없는 거거든 아니 그것도 다 보게 할 수는 있죠.  
+[17:30.3] 유재욱·임민석: 제 AI는 디비도 보고 백앤 코드도 보고 다 보고 그 AI를 보면 되는 거 아니에요? 근데 이제 그 결과가 제가 붙표했을 때 잘 나올 때도 있어요. 근데 그 검토는 각각 다 하긴 해야죠 이게 완성본이 아니죠 저도 이제 AI가 제가 예를 들어서 이번에 채팅 부분에 상대편 이런 기능을  
+[17:48.2] 유재욱: 나올 거잖아요 그 페이지를 보고 단순정을 해야 당연히 근데 제가 하고 싶은 거는 나올 때 전반적인 앱을 다 고려해서 나온다는 거예요. 지금은 그냥 1이 그려가면서 이 파일 어디 있지 찾아보고 살 게 아니라 그걸 고려해서 표지가 나오니까 아무래도  
+[18:05.0] 유재욱: 완성도가 더 정확하고 대신에 거기서 라든지 이런 흐름들은 제가 디테일을 잡아요. 그런 작업들은 개인이 하는 건데 그냥 그런 것들을 두세 번 작업 안 하고 한 작업함으로써 다 합천되게 나. 예를 거예요. 기획팀이 예를 들어 클럽 부분에 상을 만들어서 여기에다 붙여놨어요. 그럼 제가 보겠죠  
+[18:23.6] 유재욱: 보면서 유적 고치겠죠. 그런 클라이에서 보면서 고 하실 고 백앤드는 A 붙인 작업 하실 거고 근데 대신 그때 그 붙인 작업도 좀 더 했으면 좋겠다. 그러면 일정은  
+[18:37.9] 유재욱: 일정을 좀 더 당기고 우리는 좀 더 고민 점에서도 초점을 맞추든가 하는 게 좋지 않나 싶은 거죠.  
+[18:52.3] 임민석: 근데 어쨌든 이거는 어쨌든 작업자에 이게 제일 중요해가지고 그 만약에 클라이언트에서 두 번 작업하는 게 항상 그렇지는 않겠죠. 근데 이제 때에 따라서 2번 작업하는 게 수용 가능하다고 하시면 스캔폴링을 하고 작업시면 될 것 같아요.  
+[19:08.1] 하민: 일단은 피그마로 했을 때랑 지금이랑 CTML을 돌려봤을 때랑 비교를 해서 보면은 사실 피그마로 작업해도 2 번 3번 작업한 경우가 있었고 피엘은 같은 이슈가 있다고 하더라도 기능이 더  
+[19:22.6] 하민: 좀 클라이언트 신화적으로 나와 있어서 어쨌든 샌드퍼시은 접점으로서 잘 될 수 있을 것 같거든요. 그래서 한번 11월에 테스트웨이트 띄워보고 해보고 그 다음에 말씀 나누면 좋을 것 같습니다.  
+[19:36.4] 임민석: 가 저희 모든 비법킷 포 보고 있는 거죠. 근데 제가 권한을 안 드렸는데 어떻게 보고 계시죠? 그냥 읽기만 하고 있어요 쓰기 권한은 없어 저도 맥포 번호를 해 있던데요? 어떻게 저번  
+[19:51.7] 권태환: 저번에 다 들렸을걸  
+[19:56.8] 유재욱·임민석: 아니 원 출 때 되셨는데 저 확인하고 있습니다 읽고 안하기 해요. 그래서 이제 API를 파면 단위로 체크해서 붙이는 작업을 하고 있었어요.  
+[20:09.8] 유재욱: 붙일까 애들이 이렇게 해도 되 건데? 안 맞는 것들도 있을 것 같은 누르니까 여기는 A가 다 나오더라고요 아마 iOS에서 그 작업을 AP 붙인다고 혼으셔가지고 아마 APN에 싱크 맞췄다가 나오는 것 같아  
+[20:28.3] 유재욱: 근데 이런 기준들이 있으면 저는 그렇게 생각하는 거죠. 물론 제 상상이긴 한데 이 정도로 있으면 비슷한 유예가 나왔을 때는 얘가 알아서 API는 갖다 쓸 것 같다고 생각하는 거  
+[20:39.5] 유재욱: 같은 API라면 근데 신규 페이지에서는 상금의 가 존에 들은 아서 붙을 거 중에 쪽에서 체크만 내면 맞는 거 클라이트도 마찬가 체크만 되는 것 같아가 그렇게까지 되면 좀 수월하지 않을까라고 생각했었어요.  
+[20:59.0] 유재욱: 그러 그 넥슨 투도 가능할지 모르겠지만 현재까지 구성하는데 그 외쪽으로 생성될 에F에 정리까지 해주면  
+[21:08.3] 유재욱: 오히려 그게 개발 PRD가 될 수 있지 않을까 생각 다. 그래서 클럽에 신규 기능들은 없는 에이파가 있을 거잖아요. 그런 것들은 대략적인 개가 그룹 이 어떤 게 필냐고 얘기해줘도 훨씬 편하  
+[21:23.2] 유재욱·임민석: 아  
+[21:28.0] 유재욱: 그렇게 얘기해 면 있겠잖아요. 될지 모르겠어요 테트 좀 해봐야 돼가지고 어쨌든 26버전 할 때는 클럽에 상생페이어 할 때는 그걸 적용해서 한번 해볼 생각이 좀.  
+[21:41.0] 유재욱·이은희: 기획 쪽에서는 그거 필요하고 그랬죠 메모 메모랑 이제 모 이렇게 말풍성 하면 설명 해? 네네네, 피그마처럼 지금처럼.  
+[21:58.3] 이은희: 근데 만약에 이렇게 하면 시식오 티켓을 따야 될까요? 어쨌든 그 할인 목록이나 뭐 이런 거 추적을 위해서 필요할까?  
+[22:10.0] 유재욱: 근데 사실 제가 지금 만들고 있는 화면에서는 그게 있어요. 이거를 이제 처음에 그 비트롭게 등록하실 때  
+[22:21.7] 유재욱: 그 직업분이 있어요. 디자인을 하고 직업분이 있어요 그래서 그걸 바꾸면 한림 목록이 생기기는 해요. 근데 이 그게 정확하게 테스 해봐야 돼가지고 오늘 일단 가구 가되 어느 정도 이게 그런 문제가 없었을 때고 버전 체크해 저는 최종적인 이 정본이 바뀌면은  
+[22:39.5] 유재욱: 각각이 갖고 있는 최종 전공과 다른 점을 체크해서 틀린 점만 계속 그냥 푸시 나가면 될 것 같거든요 저는 그리고 사실 그때부터는 사실상 지화 관리가 필요 없이 정보 관련 싱크가 계속 맞춰가는 작업만 되면 될 거라고 생각이 드는데 지금 이게 믿을스럽지 않잖아요. 테스 보니까.  
+[22:56.5] 유재욱: 그래서 당분간은 이 당분간 유지하고 그게 안정화 되고 자동도 된다고 봤을 때 예를 들 기 자가 면 추가했어요 자 완료 그러 시버튼을 하면은 기 최종 조금이 올라가겠죠 그럼 각각의 로컬에서 앱을 켰을 때  
+[23:14.6] 유재욱: 내가 갖고 있는 전공과 기대 있는 전공의 다른 부분을 체크해서 보여줄 수 있겠죠.  
+[23:21.2] 이은희: 공할 수 있죠.  
+[23:26.6] 유재욱: 라고 상상을 했어요 거기까지는 대충으로 나중에는 그냥 맥맨으로 돌려줄 것 같기도 하고 이렇게  
+[23:38.6] 권태환·유재욱: 뭐 46일에는 누가 생각하고 있어요 프로젝트 상대 있잖아요 3세 페이지 개  
+[23:49.9] 유재욱: 다음 주에 다 들어가긴 할 건데 그것도 요걸로 한번 해볼래  
+[23:55.6] 권태환: 주형 전 이미 한번 해봤어 준영 한번 해봐야지.  
+[24:05.4] 이은희: 44분 정  
+[24:29.9] 권태환: 어차피 디테일이 없는 저우는 뒤에서 들어가긴 해야 돼서 그건 뭐 어쩔 수 없죠 다마  
+[24:40.6] 권태환: 빨라지긴 할 뻔해 그 디테일이 담는 부분에서 시간이 조금 좋은 거 같은데  
+[24:47.6] 권태환: 미리 보여드리려고 만든 거잖아요 결국 보시고 나면 이제 느낌이 다르니까 수정되는 그런 게 있어 저는 약간 그런 생각을 했어요.  
+[24:58.0] 유재욱: 어쨌든 이게 저희가 공용화된 AI로 전체를 연결해 간다면 AA가 있는 문수나 동의적으로 각하거든요. 그러니까 쉽게 말하면 DBR 때도 UI쪽까지 다 판단하고 A가 써야 되고 저도 디비라든지 뭐 SDK 정도는 다 알고 AI를 써야지 그냥  
+[25:16.9] 유재욱: 잠순하게 쓰게 되면 나중에 격차가 많이 벌어지니까 그래서 통합관리하는 중심되는 정보는 있어야겠더라고요 그렇게 됐을 때 뭐가 추가되거나 삭제됐을 때 전반적으로 파악이 시계 훨씬 더 빠르게 되니까 예를 들어서 여기서 제가 뭐  
+[25:32.9] 유재욱: 트를 1포트 낮췄어 그럼 지금까지는 그거를 올려가지고 찾아가지고 1포트 낮춰달라고 요청하고 또 이제 Q에도 하고 그런 개념이 아니라 정보이 올라가면 낮은 거는 알아서 체크해서 바꾸면은 사실 Q 공수 훨씬 줄여야 되잖아요.  
+[25:49.2] 유재욱: 그리고 바뀐 곳은 체크 아도 되고. 그리고 패턴은 그렇게 생각해요. 그리고 사 그러니까 저는 사사 버전이 배포되면은 사사 버전으로 정보는 어떻게 되게 배포된 기준을 가야 되니까.  
+[26:02.6] 유재욱: 그렇게 최종 배포는 최종 정보는 현재 올라가 있는 서비스 기준으로 보는 게 맞는 것 같아요.  
+[26:22.8] 유재욱: 근데 생각보다 잘 가졌던데? 생각보다 잘 가져더라고요. 전체 SK 국립까지 알아서 세상이 좋아져가지고  
+[26:32.0] 유재욱: 에치티로 만들라고 만들어봤어요  
+[26:37.1] 유재욱: 웹이 조금 문제 애매  
+[26:43.9] 유재욱: 웹이 여기 안에서 페이지를 읽고 오게 하는데 에스케이션 페이지만 다는 덮고잖아요. 사실 그 그 안에 페이지도 웹에서 주고 있고 그래서 페이지까지 생산하기가 좀 애매하죠. 이미지 맨달로 가서 오시고 계시  
+[26:58.5] 하민: 뭘로 가져온 전 정확히 모르겠어요. 실 내부스는 모르겠는데 16부터 들어왔던 기능이라서 그걸로 다져 오시고 계신 것 같아요.  
+[27:11.9] 유재욱: 웹 버전이 중간에 디페이지가 안 것 어요 웹에도 돌고 있는 이 이 웹드로 안 본 것 같긴  
+[27:21.2] 유재욱: 나머지 펜드 다 두는 것 같아  
+[27:33.7] 유재욱: 어쨌든 기존 페이지보다는 신규 페이지 관리 중에 더 중요하니까 신규 페이지 나올 때는 도 전제 관리 될 일단은 제 생각은 그래요.  
+[27:43.7] 유재욱: 의견들 있으시면 주시고 일단은 그러면 사료 버전 한번 테스트해보는 하나 테스트 한번 해보고 그 전에 뭐 필요한 이런 방식으로 봤을 때 더 필요한 항목이 있으시면 요청 주시고  
+[28:02.5] 유재욱: 그리고 키사 들이면 정보는 두 배로 늘려서.  
+[28:08.5] 유재욱: 티비로부터 키스 들어가래요.  
+[28:14.6] 유재욱: 격려는 갈 수밖에 없을 것 같아요. 두 개 되는 해가지고 얼마 안 것 같아 보대로 기능이 되면 별로 안 걸릴 것 같아요 저도  
+[28:26.2] 유재욱: 기능이 보는 그러면 아마 되게 바꿔도 아마 스타일이 컬러 값들만 바뀔 거고 전체적으로 팔트 보더라고 그 아이폰 같은 거 귀엽게 만들 거고 그 정도  
+[28:38.1] 권태환: 같은 계정이라서지고 컬러가가 바뀌면 나중에 문제 생길 수도 있습니다. 어떻게 하면 안 되요? 뭔가 바뀌어야죠  
+[28:50.3] 유재욱: 구성이 메뉴가 다고 주변이 구성이라도 뭐가 좀 바뀌어야 되고 메뉴가 바뀔 것 같고 명칭이 이런 건 좀 바뀌겠죠 근데 제가 갖고 있는 기본 레이아웃이라든지 안에 있는 컴포넌트들은 명칭들한테 안 바뀔 것 같은데 명칭 바꿔야 되는 건가요?  
+[29:07.1] 권태환·유재욱: 명칭은 이 아 보여칭이나 하면 느낌이 그러면 피디를 몇 개 더 이렇게 UIP  
+[29:19.7] 하민: 결국에는 완전히 따로 가시게 될 거잖아요. 그래서 아예 그냥 분리해서 생각을 하시는 게 또 괜찮잖아요. 클럽은 필요 없을 거잖아요.  
+[29:32.3] 유재욱: 페이지 뭐 그런 거 이제 지워버리고 제가 봤을 때 빠지면 라운지 쪽으로 빠지고 프로젝트가 강화돼서 메인을 나오겠죠. 그럴 가능성이 있어. 라운지는 굳이 필요 없을 것 같아요. 프로젝트는 커리큘로 용도로 쓰실 거니까 사료 버전에 게시판 기능이 들어가면서 그런 걸로 부활에 들어갈 예정이긴 한데  
+[29:59.5] 유재욱: 일단 제가 드리고 싶은 말씀 이야기를 드렸어요.  
+[30:10.2] 유재욱: 이거  
+[30:17.5] 권태환: 다 안 바뀌었네  
+[30:22.5] 권태환·이은희: 왠지 빨리 봐서 그래 저런 거 확인하는 게 조금 오래 걸리겠죠 결국 이 툴 업데이트 하는  
+[30:35.0] 유재욱: 계속 추가하다 보면은 오래 생기고 이게 잡아가면서 하는 근데 완료됐을 때를 기대하면서 만드는 거지 뭐  
+[30:44.5] 유재욱·이은희: 꾸준히 계속 업데이트 해야죠. 그리고 앱 업테이 집중해주셔도 돼요 자빠지 계속 추가 달라고 하려고  
+[31:14.1] 유재욱: 네  
+[31:22.1] 유재욱: 테스트를 해보고 그러면 또 한번 이슈 사에 맞춰줄게요.  
+[31:29.6] 권태환: 보지마 휴일이 보고 있죠. 뭔가 수정을 해야지  
+[31:43.0] 이은희: 요번에는 생각보다 빨리 큐웨이를 해가지고 지금은 리 있겠어요.  
+[31:52.7] 이은희: 카톡 똑같이 카페를 떠가지고 오히려 디테일한 문구 잡는 거 뭐 그런 것 좀 보고 로그 회원 가입 쪽 보고 있고.  
+[32:05.9] 권태환·이은희: 회원 가입을 좀 바꿔셔야 아요 음 회원 가입  
+[32:13.7] 권태환: 뭔가 여기에는 그냥 여전이 아가지고 여전히 어떤 거죠? 뭔 앱인지 모르고 뭔 앱인지 일단 가입만 가입 먼저 시켜.  
+[32:26.8] 이은희: 가입을 하는데 그 가입하고 나서 그 보여지는 그 뭐 영감은 뭐 그 메시지 나오고 그것들이 좀  
+[32:57.5] 이은희·유재욱: CC 점검 폐지 여기 처음 봤어. 시스 전검 페이를 애들이 처음 봤어요. 아 처음 봤어요. 저도 거의 못 봤어요. 저는 페이 있는 줄 몰랐어 거의 못 봤다.  
+[33:10.7] 이은희·유재욱: 만 다 봤어 뭔가 조금씩 있긴 있어요. 이 있었구나 뭐 어떤 거요? 이런 피부에 이 사람도 있는데?  
+[33:28.6] 이은희: 저 쓰나 이거 물어보면 얘기해줘 돼 페지 쓰냐고 아 그러면 저는 거기에다가 화면 이름 지 같은 거 화면 이름을 정리할 때 거기다가 다 붙여놓으면 되겠다.  
+[33:43.6] 이은희·유재욱: 근데 여기 이 iOS에 쓰는 화면 이름 기준으로 돼 있긴 해요. 섹시면 기로 있죠. 네, iOS랑 안드로이드랑 어차피 동일하게 쓰거든요 화면 영어나 이런 거  
+[33:56.1] 이은희·유재욱: 그리고 나중에 할 예요 사 오히려 이 하는 것도 수 찍어놓고 여기에 해산하는 한 만들어주고 그리고 토스트 메시지나 이런 것도 한 번에 쫙 배포될 수 있죠.  
+[34:12.1] 이은희: 하잖아 한 판을 모아보고 싶었는데 여기 있으니까.  
+[34:21.1] 유재욱: 이런 것들이 이사태 나온 거는 실제로 이삭해야 나는지 여기서 이 나오는지 모르겠어. 제가 보기엔 여기에서만 이상하게 나오는 거 아닐까? 알림이 있긴 하더라고요. 그리고  
+[34:33.4] 유재욱: 웹 하면 이런 게 안 나오더라  
+[34:39.7] 유재욱: 설정 이건 안 쓰는 거 같은데?  
+[34:47.1] 이은희: 그리고 그 프로젝트도 북마크로 넣어야 되는 거 아니에요? 그러면서 설정을 그 설정에 그 북마크나 이런 걸 좀 개선을 해야 될 것 같아서.  
+[35:03.9] 유재욱: 잘 바꿔주나 모르겠다. 내가 클럽에 피그마을 체종 바꿔달라고.  
+[35:15.9] 이은희: 요것만 봐주시면 되고  
+[35:20.8] 이은희: 프로젝트 아직 가입 안 한 사람들 게시물 볼 수 있고 댓글은 그냥 날려버리면 될 거 같고 밑에는 뭐예요 캐릭터 명이네? 이거 프로젝트 명  
+[35:33.5] 유재욱: 저렇게 버튼하고 프로젝트 바로바이 버튼 게 낫지 나 그 버튼 그동 유지하지 지 아 근데 이게 무슨 프로젝트인지 모를 건데 아니 상세를 돌았는데 프로트 토에서 돌아왔을 텐데.  
+[35:47.9] 이은희·유재욱: 아예 안 가 거기서 게시물에서 놀러 가는 것들 거 밖에 없잖아요. 그럼 그걸로 바꿔주시면 될 것 같네요. 일단 기재로 해놓겠습니다.  
+[36:14.4] 유재욱: JK 아니 술을 사  
+[36:22.3] 미확인: 조치는 되어 있으니 추가만 회사 해보면 된다는데 올해도  
+[36:29.3] 미확인: 감사  
+[36:35.8] 이은희·유재욱: 비트버킷에 앱이 올라가 있었으면 지금 빌드 버전이 다 있어요.  
+[37:03.1] 임민석: 고맙습니다.  
+[37:24.1] 유재욱: 아니 리듬이는 누가 만드는 걸까? 클로드가 만든 거야? 리듬이  
+[37:33.1] 유재욱: 비트버킷에 전보 팔을 물어놨는데 리듬이 누어서놨어요.  
+[37:41.5] 유재욱: 인간이 작업을 안 하는 좋은 거 아니야?  
+</script><script>
+(function(){
+  function txt(id){var t=document.createElement('textarea');t.innerHTML=document.getElementById(id).innerHTML;return t.value;}
+  function toast(m){var e=document.getElementById('mtg-toast');e.textContent=m;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},1800);}
+  function fb(v,m){var t=document.createElement('textarea');t.value=v;t.style.position='fixed';t.style.opacity='0';document.body.appendChild(t);t.select();try{document.execCommand('copy');toast(m)}catch(e){toast('복사하지 못했습니다')}document.body.removeChild(t);}
+  function copy(v,m){if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(v).then(function(){toast(m)},function(){fb(v,m)});}else fb(v,m);}
+  document.querySelector('.mtg-actions').addEventListener('click',function(ev){
+    var b=ev.target.closest('button');if(!b)return;var a=b.dataset.act;
+    if(a==='url'){var c=document.querySelector('link[rel=canonical]');var u=c&&/^https:/.test(c.href)?c.href:(/^https?:/.test(location.href)?location.href.split(/[?#]/)[0]:'');if(!u){toast('배포 전이라 URL이 없습니다');return;}copy(u,'URL을 복사했습니다');}
+    else if(a==='minutes')copy(txt('mtg-minutes'),'회의록 전체를 복사했습니다');
+    else if(a==='copy-tr')copy(txt('mtg-transcript'),'대화 원문 전체를 복사했습니다');
+    else if(a==='dl-tr'){var bl=new Blob([txt('mtg-transcript')],{type:'text/markdown;charset=utf-8'});var l=document.createElement('a');l.href=URL.createObjectURL(bl);l.download=b.dataset.name;document.body.appendChild(l);l.click();setTimeout(function(){URL.revokeObjectURL(l.href);l.remove()},0);toast('대화 원문을 내려받았습니다');}
+  });
+})();
+</script>
+  </header>
+  <div class="layout">
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>정한 것</a></li><li><a href="#s2"><span class="n">02</span>제안</a></li><li><a href="#s3"><span class="n">03</span>화면 기준</a></li><li><a href="#s4"><span class="n">04</span>개발 쪽 의견</a></li><li><a href="#s5"><span class="n">05</span>운영</a></li><li><a href="#s6"><span class="n">06</span>그 밖에</a></li><li><a href="#s7"><span class="n">07</span>결정할 것</a></li><li><a href="#s8"><span class="n">08</span>다음 행동</a></li></ol></nav>
+    <main class="doc" id="doc">
+      <details class="toc-mobile"><summary>목차 · 8개 절</summary><ol><li><a href="#s1"><span class="n">01</span>정한 것</a></li><li><a href="#s2"><span class="n">02</span>제안</a></li><li><a href="#s3"><span class="n">03</span>화면 기준</a></li><li><a href="#s4"><span class="n">04</span>개발 쪽 의견</a></li><li><a href="#s5"><span class="n">05</span>운영</a></li><li><a href="#s6"><span class="n">06</span>그 밖에</a></li><li><a href="#s7"><span class="n">07</span>결정할 것</a></li><li><a href="#s8"><span class="n">08</span>다음 행동</a></li></ol></details>
+
+<section id="s1" aria-labelledby="s1-t"><a class="sec-num" href="#s1"><b>01</b>정한 것</a><h2 id="s1-t">이번 버전은 그대로, 정본은 시험부터</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이번 버전</td>
+<td>이미 진행 중이라 기존 방식(Figma·문서)으로 마칩니다 (유재욱)</td>
+</tr>
+<tr>
+<td>정본 방식</td>
+<td>11월 다음 버전에서 먼저 시험하고, 결과를 보고 다시 논의합니다 (유재욱 제안, 하민 동의)</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="s2" aria-labelledby="s2-t"><a class="sec-num" href="#s2"><b>02</b>제안</a><h2 id="s2-t">코드에서 뽑은 정본 하나를 모두가 봅니다</h2>
+<ul>
+<li>유재욱의 제안입니다. <br class="prose-break"/>
+Bitbucket의 iOS·Android·API 코드를 읽어 정본을 만들고, 화면은 바이브 코딩으로 만든 뒤 세밀한 부분만 Figma에서 다듬습니다.</li>
+<li>기획이 바뀌면 정본을 갱신하고, 각자 앱에서 달라진 부분만 받습니다. <br class="prose-break"/>
+버전마다 변경 사항 목록이 나와 클라이언트는 화면을, 백엔드는 추가된 API를 확인합니다.</li>
+<li>목표는 한 팀을 빠르게 하는 게 아니라 일정 확인, 요구 조건 누락, QA 공수를 줄이는 것입니다. <br class="prose-break"/>
+스타일 가이드를 정본에서 한 번 바꾸면 전체에 반영되는 점을 가장 큰 이점으로 꼽았습니다.</li>
+</ul>
+</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>화면 기준</a><h2 id="s3-t">API·UI 기준에 흐름도와 빈 상태가 더해졌습니다</h2>
+<ul>
+<li>유재욱은 화면마다 API와 UI 기준만 있으면 된다고 봤고, 권태환은 흐름도가 중요하다고 했습니다.</li>
+<li>하민은 AI가 흐름도를 읽을 수 있어 좋다며, 목록이 비었을 때 같은 빈 상태 화면도 필요하다고 짚었습니다. <br class="prose-break"/>
+이런 화면은 기획자가 챙겨 만듭니다.</li>
+<li>유재욱은 AI에 요청할 범위를 너무 넓거나 세밀하게 잡으면 엉뚱한 결과가 나온다고 주의를 줬습니다.</li>
+</ul>
+</section><section id="s4" aria-labelledby="s4-t"><a class="sec-num" href="#s4"><b>04</b>개발 쪽 의견</a><h2 id="s4-t">장점은 인정하고, 이중 작업을 걱정합니다</h2>
+<ul>
+<li>임민석(백엔드)은 Figma에서 놓치는 부분을 잡는 장점은 있지만, 백엔드는 무엇으로 받든 큰 차이가 없다고 했습니다.</li>
+<li>임민석은 AI가 아직 부정확해 클라이언트가 먼저 개발하면 <strong>두 번 작업</strong>이 생길 수 있다고 했습니다. <br class="prose-break"/>
+이중 작업을 받아들일 수 있다면 API 스캐폴딩부터 하자고 했습니다.</li>
+<li>하민(iOS)은 화면 이름이 분명한 점이 Figma보다 낫고, 컴포넌트 재사용 문제는 기술적으로 풀어 뒀다고 했습니다. <br class="prose-break"/>
+Figma로도 두세 번 작업한 적이 있으니 11월에 시험해 보자고 제안했습니다.</li>
+<li>유재욱은 열 번 중 두 번 틀리는 정도면 진행하자는 기준을 냈고, 새 페이지의 API 정리가 개발 PRD가 될 수 있다고 봤습니다.</li>
+</ul>
+</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>운영</a><h2 id="s5-t">기준은 배포된 서비스, 당분간 기존 관리 유지</h2>
+<ul>
+<li>정본의 기준은 지금 배포된 서비스 버전으로 잡자는 게 유재욱의 의견입니다.</li>
+<li>자동 갱신이 안정될 때까지는 기존 관리 방식을 유지합니다.</li>
+<li>웹뷰로 띄우는 웹 페이지는 정본으로 만들기 어렵습니다.</li>
+</ul>
+</section><section id="s6" aria-labelledby="s6-t"><a class="sec-num" href="#s6"><b>06</b>그 밖에</a><h2 id="s6-t">키즈 버전과 가입·프로젝트 화면 얘기가 나왔습니다</h2>
+<ul>
+<li>키즈 버전(로 들림)이 들어가면 정본이 두 배로 늘지만 스타일만 바꾸면 된다고 유재욱이 봤습니다. <br class="prose-break"/>
+권태환은 같은 계정에서 색만 바뀌면 문제가 생길 수 있다고 했고, 하민은 아예 분리하자고 했습니다.</li>
+<li>권태환은 회원가입에서 여전히 무슨 앱인지 모른 채 가입부터 시킨다고 지적했습니다.</li>
+<li>이은희는 프로젝트 북마크·설정 개선과, 비가입자도 프로젝트 게시물을 보게 하고 댓글은 빼는 방안을 냈습니다.</li>
+</ul>
+</section><section id="s7" aria-labelledby="s7-t"><a class="sec-num" href="#s7"><b>07</b>결정할 것</a><h2 id="s7-t">시험 결과를 보고 셋을 정합니다</h2>
+<details class="callout decide" id="d1"><summary class="callout-label"><span class="dn">01</span><span class="dq">정본 방식을 정식으로 도입할까요?</span></summary><div class="callout-body">
+<p>11월 시험 결과를 보고 다시 정하기로 했습니다.</p>
+</div></details>
+<details class="callout decide" id="d2"><summary class="callout-label"><span class="dn">02</span><span class="dq">정본 방식에서도 CCQ 티켓(로 들림)을 따로 끊어 할 일을 추적할까요?</span></summary><div class="callout-body">
+<p>이은희가 물었고, 유재욱이 정본 앱의 작업 이력 기능을 시험 중입니다.</p>
+</div></details>
+<details class="callout decide" id="d3"><summary class="callout-label"><span class="dn">03</span><span class="dq">클라이언트가 먼저 개발해 생길 이중 작업을 어디까지 받아들일까요?</span></summary><div class="callout-body">
+<p>임민석은 받아들일 수 있다면 API 스캐폴딩부터 하자고 했습니다.</p>
+</div></details>
+<details class="callout unknown"><summary class="callout-label"><svg aria-hidden="true" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M9.6 9.3a2.5 2.5 0 1 1 3.4 2.3c-.6.3-1 .8-1 1.5v.4"></path><path d="M12 16.8v.2"></path></svg><span class="dq">녹음이 불분명한 표기</span></summary><div class="callout-body">
+<p>시험 대상 버전 번호(4.4·4.5로 들림)와 '키즈 버전' 표기는 확인이 필요합니다.</p>
+</div></details>
+</section><section id="s8" aria-labelledby="s8-t"><a class="sec-num" href="#s8"><b>08</b>다음 행동</a><h2 id="s8-t">유재욱의 11월 시험이 먼저입니다</h2>
+<ul class="actions"><li class=""><span aria-hidden="true" class="box"></span><span class="what">다음 버전 화면을 정본 앱으로 만들며 시험하기</span><span class="who"><span>유재욱</span><span>11월</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">시험 뒤 나온 문제를 모아 공유하기 뒤</span><span class="who"><span>유재욱</span><span>시험</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">정본 앱을 팀에 배포하기 미정</span><span class="who"><span>유재욱</span><span>기한</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">화면 이름 목록을 정리해 정본에 붙이기 미정</span><span class="who"><span>이은희</span><span>기한</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">정본 방식에 더 필요한 항목을 유재욱에게 요청하기 전</span><span class="who"><span>각자</span><span>시험</span></span></li></ul>
+</section>
+    </main>
+  </div>
+  <footer class="foot"><span>meeting · 문서 템플릿</span></footer>
+</div>
+<button class="to-top" id="to-top" type="button" aria-label="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 4000);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 링크 복사·공유 (기본 기능)
+  // 주소는 canonical이 있으면 그것, 없으면 지금 주소에서 # 뒤를 뗀 값. 문서 단위로 공유한다.
+  // 남이 열 수 있는 웹 주소(http·https)만 쓴다. canonical이 file:이거나 로컬 기준 상대 주소면 버리고 지금 주소로,
+  // 그것도 file:이면 공유할 주소가 없다 → null.
+  const webUrl = (u) => {
+    try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href.split('#')[0] : null; }
+    catch { return null; }
+  };
+  const docUrl = () => {
+    const c = $('link[rel="canonical"]')?.getAttribute('href');
+    return (c && webUrl(c)) || webUrl(location.href);
+  };
+  const NO_URL = '아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
+  const metaOf = (sel) => $(sel)?.content || '';
+  const legacyCopy = (v) => {
+    const ta = document.createElement('textarea');
+    ta.value = v; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  };
+  const copyText = (v) => (navigator.clipboard && window.isSecureContext)
+    ? navigator.clipboard.writeText(v).then(() => true, () => legacyCopy(v))
+    : Promise.resolve(legacyCopy(v));
+  $('#copy-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    copyText(docUrl()).then((ok) => say(ok ? '링크를 복사했습니다.' : '복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+  });
+  $('#share-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    const data = {
+      title: metaOf('meta[property="og:title"]') || document.title,
+      text: metaOf('meta[property="og:description"]') || metaOf('meta[name="description"]'),
+      url: docUrl()
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      // 공유 창을 연 뒤에는 사용자 동작이 소모돼 자동 복사가 막힐 수 있다(사파리). 실패하면 안내만 한다.
+      navigator.share(data).catch((e) => say(e && e.name === 'AbortError'
+        ? '공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.'
+        : '공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'));
+    } else {
+      copyText(data.url).then((ok) => say(ok
+        ? '링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.'
+        : '공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+    }
+  });
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const toTop = $('#to-top');
+  toTop?.addEventListener('click', () => { window.scrollTo({ top: 0 }); $('.skip')?.focus?.(); });
+  const onScroll = () => {
+    if (toTop) toTop.classList.toggle('show', scrollY > innerHeight * 2);
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  const hashId = (h) => { try { return decodeURIComponent(h.slice(1)); } catch { return h.slice(1); } };
+  // 목차·절 링크로 이동한 뒤 도착점이 밀렸으면 제자리로 다시 맞춘다. 가장 최근 이동에만 걸고, 손으로 스크롤하면 취소한다
+  let navId = 0;
+  const cancelSettle = () => { navId++; };
+  ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, cancelSettle, { passive: true }));
+  const settle = (id) => {
+    const el = id && document.getElementById(id);
+    if (!el) return;
+    const mine = ++navId;
+    let done = false;
+    const fix = () => {
+      if (done || mine !== navId) return;
+      done = true;
+      const want = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+      const off = el.getBoundingClientRect().top - want;
+      const room = root.scrollHeight - innerHeight - scrollY;
+      if (Math.abs(off) > 4 && (off < 0 || room > 4)) window.scrollBy({ top: off, behavior: 'instant' });
+      update();
+    };
+    const y0 = scrollY;
+    if ('onscrollend' in window) {
+      addEventListener('scrollend', fix, { once: true });
+      setTimeout(() => { if (scrollY === y0) fix(); }, 200); // 이미 제자리라 스크롤이 일어나지 않으면 scrollend도 오지 않는다
+    } else setTimeout(fix, 1200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) settle(hashId(a.hash));
+  });
+
+  // 결정 모음: 주소가 가리키는 항목은 펼친다(표지 줄·절 머리 '정할 것'에서 올 때)
+  const openTarget = (id) => {
+    const el = id && document.getElementById(id);
+    const d = el && (el.tagName === 'DETAILS' ? el : el.closest('details'));
+    if (d) d.open = true;
+  };
+  addEventListener('hashchange', () => openTarget(hashId(location.hash)));
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) openTarget(hashId(a.hash));
+  });
+  openTarget(hashId(location.hash));
+  // 결정 항목이 셋 이상인 절에는 '모두 펼치기'를 둔다
+  $$('.doc > section').forEach((sec) => {
+    const items = $$(':scope > details.decide', sec);
+    if (items.length < 3) return;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'hub-toggle';
+    const sync = () => { btn.textContent = items.every((d) => d.open) ? '모두 접기' : '모두 펼치기'; };
+    btn.addEventListener('click', () => { const open = !items.every((d) => d.open); items.forEach((d) => { d.open = open; }); sync(); });
+    items.forEach((d) => d.addEventListener('toggle', sync));
+    // 소제목(h3)으로 묶었으면 첫 묶음 제목 앞에 둔다
+    const prev = items[0].previousElementSibling;
+    (prev && prev.tagName === 'H3' ? prev : items[0]).before(btn); sync();
+  });
+  // 인쇄할 때는 접힌 내용도 모두 싣는다
+  let closedForPrint = [];
+  addEventListener('beforeprint', () => { closedForPrint = $$('details:not([open])'); closedForPrint.forEach((d) => { d.open = true; }); });
+  addEventListener('afterprint', () => { closedForPrint.forEach((d) => { d.open = false; }); closedForPrint = []; });
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+
+</script>
+</body>
+</html>
