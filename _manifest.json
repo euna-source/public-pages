@@ -291,8 +291,8 @@
     "slug": "c8-meetinglog-261014",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-meetinglog-261014/",
-    "last_kind": "new",
-    "last_sha256": "2d787b64afaac13e5b180dece3c461679bbdb1766d6fa4cfb6ffaec00e484857",
-    "timestamp": "2026-10-14T03:21:39.402793Z"
+    "last_kind": "redeploy",
+    "last_sha256": "b1f6ec72af33db6ec8d36f5ccda8a6430278efcb4497287c79df5b658407c6b6",
+    "timestamp": "2026-10-14T03:27:19.351331Z"
   }
 }
