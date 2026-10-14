@@ -38,15 +38,17 @@ test('the previous pair is excluded from the next draw', () => {
   const pool = SPEC.emoji.pool;
   for (let i = 0; i < 500; i++) { const prev = choosePair(pool); const next = choosePair(pool, Math.random, prev); assert.ok(!next.some(e => prev.includes(e))); }
 });
-test('one user stops at five, while three participants together stop at twelve', () => {
+test('text grows five times per user and twelve per message, while emoji keep playing after', () => {
   let totalCount = 0;
   for (const expected of [5, 5, 2]) {
-    let userCount = 0, accepted = 0;
+    let userCount = 0, grown = 0;
     for (let i = 0; i < 7; i++) {
       const result = nextReaction({ userCount, totalCount });
-      if (result.accepted) { userCount = result.userCount; totalCount = result.totalCount; accepted++; }
+      assert.equal(result.accepted, true, 'emoji always play for other people\'s messages');
+      if (result.grow) grown++;
+      userCount = result.userCount; totalCount = result.totalCount;
     }
-    assert.equal(accepted, expected);
+    assert.equal(grown, expected);
   }
   assert.equal(totalCount, 12);
 });

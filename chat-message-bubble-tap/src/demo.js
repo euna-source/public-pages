@@ -1,6 +1,6 @@
-import { BubbleTapEffect, bindBubbleTap } from './bubble-tap.js?v=20261014e';
-import { nextReaction } from './reaction.js?v=20261014e';
-import { SPEC } from './config.js?v=20261014e';
+import { BubbleTapEffect, bindBubbleTap } from './bubble-tap.js?v=20261014f';
+import { nextReaction } from './reaction.js?v=20261014f';
+import { SPEC } from './config.js?v=20261014f';
 
 const STORAGE_KEY = 'c8-bubble-tap-final-v2';
 const stage = document.querySelector('#stage');
@@ -47,12 +47,12 @@ document.querySelectorAll('.bb').forEach(button => {
     effect,
     react: () => {
       const result = nextReaction({ ...counts(), own });
-      if (result.accepted) { state[id] = { userCount: result.userCount, totalCount: result.totalCount }; save(); }
+      if (result.accepted && result.grow) { state[id] = { userCount: result.userCount, totalCount: result.totalCount }; save(); }
       return result;
     },
-    onAccepted: ({ userCount }) => { render(); feedback.textContent = `이 메시지에 ${userCount}/${SPEC.interaction.perUserPerMessageLimit}회 반응했습니다.`; },
+    onAccepted: ({ grow, reason, userCount }) => { render(); feedback.textContent = grow ? `이 메시지에 ${userCount}/${SPEC.interaction.perUserPerMessageLimit}회 반응했습니다.` : ({'message-limit':'글자는 최대 단계예요. 이모지는 계속 나와요.','user-limit':'글자는 다섯 번까지 커져요. 이모지는 계속 나와요.'})[reason]; },
     onHaptic: () => { if (typeof navigator.vibrate === 'function') navigator.vibrate(10); },
-    onRejected: ({ reason }) => { feedback.textContent = ({'message-limit':'이 메시지는 최대 단계까지 커졌습니다.','user-limit':'이 메시지에는 다섯 번까지 반응할 수 있어요.','own-message':'본인 메시지에는 반응할 수 없어요.'})[reason] || '반응 정보를 확인하지 못했습니다. 다시 체험해 주세요.'; },
+    onRejected: ({ reason }) => { feedback.textContent = ({'own-message':'본인 메시지에는 반응할 수 없어요.'})[reason] || '반응 정보를 확인하지 못했습니다. 다시 체험해 주세요.'; },
     onError: () => { feedback.textContent = '반응을 처리하지 못했습니다. 다시 눌러 주세요.'; }
   }));
   button.addEventListener('demo-reset', render);

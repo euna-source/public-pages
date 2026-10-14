@@ -1,5 +1,5 @@
 {
-  "version": "2.1.0",
+  "version": "2.2.0",
   "variant": "2",
   "emoji": {
     "pool": [
@@ -108,7 +108,8 @@
     "haptic": "native callback; web vibration only if supported",
     "doubleTapWindowMs": 350,
     "doubleTapMaxDistancePx": 32,
-    "activeReactionPolicy": "each reaction adds six new emoji; earlier emoji keep falling and mix with them (designer original)"
+    "activeReactionPolicy": "each reaction adds six new emoji; earlier emoji keep falling and mix with them (designer original)",
+    "afterLimit": "emoji keep playing; text growth and counts stop (user after 5, message after 12)"
   },
   "motion": {
     "spawnIntervalMs": 40,
@@ -135,9 +136,8 @@
     "stateAuthority": "app server; demo uses browser localStorage only",
     "nativeUnits": "map motion coordinates to platform logical coordinates; do not copy CSS font sizes",
     "pendingPolicy": [
-      "12회 합산 범위는 앱 연결 전 확인",
-      "상한 이후 이모지·햅틱 유지 여부는 앱 연결 전 확인"
+      "12회 합산 범위는 앱 연결 전 확인"
     ],
-    "demoPolicy": "12회는 메시지 전체 누적으로 계산하며 상한 뒤 추가 효과를 멈춤"
+    "demoPolicy": "12회는 메시지 전체 누적으로 계산하며, 상한 뒤에는 글자 확대만 멈추고 이모지는 계속 나옴"
   }
 }

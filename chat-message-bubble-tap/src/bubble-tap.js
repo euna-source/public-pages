@@ -1,5 +1,5 @@
-import { SPEC } from './config.js?v=20261014e';
-import { choosePair, buildBurst } from './reaction.js?v=20261014e';
+import { SPEC } from './config.js?v=20261014f';
+import { choosePair, buildBurst } from './reaction.js?v=20261014f';
 
 /** Standalone renderer. State, API calls and typography stay with the host app. */
 export class BubbleTapEffect {

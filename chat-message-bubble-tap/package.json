@@ -1,6 +1,6 @@
 {
   "name": "chat-message-bubble-tap",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "description": "C8 chat message reaction, final variant 2",

@@ -24,7 +24,7 @@ effect.destroy();
 
 `#message`는 실제 button 요소, `#effects`는 화면 위 오버레이입니다. 위 예제의 `messageApi`, `nativeBridge`, 화면 함수들은 앱이 구현할 연결 지점입니다. 이 패키지에 포함된 함수가 아닙니다.
 
-`react()`는 동기 값 또는 Promise로 `{ accepted: true, userCount: 3, totalCount: 8 }`을 반환합니다. 거절 응답은 `{ accepted: false, reason: 'user-limit' }` 형태입니다. `own-message`, `message-limit`도 처리할 수 있습니다. 기존 서버 형식은 어댑터에서 변환하세요.
+`react()`는 동기 값 또는 Promise로 `{ accepted: true, grow: true, userCount: 3, totalCount: 8 }`을 반환합니다. 상한을 넘으면 `{ accepted: true, grow: false, reason: 'user-limit' }`(또는 `message-limit`)로 이모지만 재생하고 글자는 키우지 않습니다. 거절은 본인 메시지 `{ accepted: false, reason: 'own-message' }`뿐입니다. 기존 서버 형식은 어댑터에서 변환하세요.
 
 서버 응답을 기다리는 동안 같은 메시지의 추가 요청을 막습니다. 오류 때 성공 효과를 표시하지 않습니다. 햅틱 연결 실패는 시각적 반응에 영향을 주지 않습니다.
 

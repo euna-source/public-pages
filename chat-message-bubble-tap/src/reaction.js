@@ -1,4 +1,4 @@
-import { SPEC } from './config.js?v=20261014e';
+import { SPEC } from './config.js?v=20261014f';
 
 /** Each result contains two whole emoji strings, never UTF-16 fragments. Entries in `exclude` are skipped while enough remain. */
 export function choosePair(input = SPEC.emoji.pool, random = Math.random, exclude = []) {
@@ -26,7 +26,8 @@ export function nextReaction({ own = false, userCount = 0, totalCount = 0 }, lim
     return { accepted: false, reason: 'invalid-state' };
   }
   if (own) return { accepted: false, reason: 'own-message' };
-  if (totalCount >= limits.perMessageLimit) return { accepted: false, reason: 'message-limit' };
-  if (userCount >= limits.perUserPerMessageLimit) return { accepted: false, reason: 'user-limit' };
-  return { accepted: true, userCount: userCount + 1, totalCount: totalCount + 1 };
+  // Past either limit the emoji still play; only the text growth and counts stop.
+  if (totalCount >= limits.perMessageLimit) return { accepted: true, grow: false, reason: 'message-limit', userCount, totalCount };
+  if (userCount >= limits.perUserPerMessageLimit) return { accepted: true, grow: false, reason: 'user-limit', userCount, totalCount };
+  return { accepted: true, grow: true, userCount: userCount + 1, totalCount: totalCount + 1 };
 }
