@@ -98,12 +98,14 @@ export const SPEC = {
     "repeatAcrossReactions": true
   },
   "interaction": {
-    "trigger": "single tap / click / Enter / Space",
+    "trigger": "double tap / double click; Enter / Space for keyboard accessibility",
     "perUserPerMessageLimit": 5,
     "perMessageLimit": 12,
     "excludeOwnMessage": true,
     "growthPerAcceptedReaction": "one typography step relative to the current device setting",
-    "haptic": "native callback; web vibration only if supported"
+    "haptic": "native callback; web vibration only if supported",
+    "doubleTapWindowMs": 350,
+    "doubleTapMaxDistancePx": 32
   },
   "motion": {
     "spawnIntervalMs": 40,

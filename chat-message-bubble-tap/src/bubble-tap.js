@@ -87,7 +87,7 @@ export class BubbleTapEffect {
   destroy() { this.clear(); this.destroyed = true; }
 }
 
-/** Use real <button> elements: one click covers touch, mouse, Enter and Space. */
+/** Pointer input requires two consecutive taps; keyboard activation stays accessible. */
 export function bindBubbleTap(button, { effect, react, onAccepted = () => {}, onHaptic = () => {}, onRejected = () => {}, onError = () => {} }) {
   let pending = false, disposed = false;
   async function activate(event) {
@@ -108,6 +108,32 @@ export function bindBubbleTap(button, { effect, react, onAccepted = () => {}, on
     } catch (error) { if (!disposed) onError(error); }
     finally { pending = false; }
   }
-  button.addEventListener('click', activate);
-  return () => { disposed = true; button.removeEventListener('click', activate); };
+  let firstTap = null;
+  const resetTap = () => { firstTap = null; };
+  const resetOutside = event => { if (!button.contains(event.target)) resetTap(); };
+  function handleClick(event) {
+    if (pending || disposed || button.disabled) { resetTap(); return; }
+    // Keyboard and assistive technology produce clicks with detail 0.
+    if (event.detail === 0) { resetTap(); activate(event); return; }
+    const tap = { time: event.timeStamp, x: event.clientX, y: event.clientY };
+    if (firstTap && tap.time - firstTap.time <= SPEC.interaction.doubleTapWindowMs
+        && Math.hypot(tap.x - firstTap.x, tap.y - firstTap.y) <= SPEC.interaction.doubleTapMaxDistancePx) {
+      resetTap(); activate(event);
+    } else { firstTap = tap; }
+  }
+  button.addEventListener('click', handleClick);
+  button.addEventListener('demo-reset', resetTap);
+  document.addEventListener('pointerdown', resetOutside, true);
+  document.addEventListener('pointercancel', resetTap, true);
+  document.addEventListener('scroll', resetTap, true);
+  window.addEventListener('blur', resetTap);
+  return () => {
+    disposed = true; resetTap();
+    button.removeEventListener('click', handleClick);
+    button.removeEventListener('demo-reset', resetTap);
+    document.removeEventListener('pointerdown', resetOutside, true);
+    document.removeEventListener('pointercancel', resetTap, true);
+    document.removeEventListener('scroll', resetTap, true);
+    window.removeEventListener('blur', resetTap);
+  };
 }

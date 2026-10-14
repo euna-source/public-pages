@@ -50,3 +50,6 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
 @media (prefers-reduced-motion:reduce){.bb .tx{transition:none}}
 @media (max-width:500px){.holder{width:100vw!important;height:100dvh!important}.stage{width:100vw;height:100dvh;transform:none!important}.phone{border-radius:0;box-shadow:none}.status{display:none}.header{top:env(safe-area-inset-top,0px);width:100%;height:auto}.input{width:100%;height:auto;bottom:env(safe-area-inset-bottom,0px)}.scroll{top:calc(env(safe-area-inset-top,0px) + 58px)}}
 .demo-tools{width:min(100%,402px);padding:10px 14px;display:flex;align-items:center;gap:10px;min-height:48px}.demo-tools p{font:400 12px/1.5 P,sans-serif;color:#aaa;flex:1}.demo-tools button{border:1px solid #444;background:#222;color:#eee;border-radius:9px;padding:8px 10px;cursor:pointer}.bb[disabled]{cursor:default}.bb[disabled]:active{transform:none}@media(max-width:500px){.holder,.stage{height:calc(100dvh - 58px)!important}}
+
+/* Keep double tapping from zooming the message. */
+.bb{touch-action:manipulation;user-select:none;-webkit-user-select:none}

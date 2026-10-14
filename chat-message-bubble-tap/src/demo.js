@@ -60,6 +60,6 @@ document.querySelectorAll('.bb').forEach(button => {
 document.querySelector('#reset').addEventListener('click', () => {
   state = {}; save(); effect.clear();
   document.querySelectorAll('.bb').forEach(b => b.dispatchEvent(new Event('demo-reset')));
-  feedback.textContent = '회색 메시지를 한 번 눌러 보세요.';
+  feedback.textContent = '상대방 메시지를 두 번 연속 탭해 보세요.';
 });
 addEventListener('pagehide', () => { effect.clear(); });
