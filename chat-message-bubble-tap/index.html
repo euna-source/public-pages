@@ -82,7 +82,7 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
 @media (prefers-reduced-motion:reduce){.bb .tx{transition:none}}
 @media (max-width:500px){.holder{width:100vw!important;height:100dvh!important}.stage{width:100vw;height:100dvh;transform:none!important}.phone{border-radius:0;box-shadow:none}.status{display:none}.header{top:env(safe-area-inset-top,0px);width:100%;height:auto}.input{width:100%;height:auto;bottom:env(safe-area-inset-bottom,0px)}.scroll{top:calc(env(safe-area-inset-top,0px) + 58px)}}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
 &lt;div class=&quot;hd&quot; hidden&gt;&lt;h1&gt;라운지 채팅방 · 말풍선 터치 모션&lt;/h1&gt;
-&lt;p&gt;말풍선을 두 번 연속 탭해 보세요. 그때마다 글자가 1pt 커지고, 서로 다른 이모지 2개가 튀어 올랐다가 화면 아래로 떨어집니다. (피그마 선택 프레임 «라운지 채팅방» 그대로 옮긴 화면)&lt;/p&gt;&lt;/div&gt;
+&lt;p&gt;말풍선을 두 번 연속 눌러 보세요. 그때마다 글자가 1pt 커지고, 이모지 2종이 튀어 올랐다가 화면 아래로 떨어집니다. (피그마 선택 프레임 «라운지 채팅방» 그대로 옮긴 화면)&lt;/p&gt;&lt;/div&gt;
 &lt;div class=&quot;wrap&quot;&gt;
  &lt;div class=&quot;holder&quot; id=&quot;holder&quot;&gt;&lt;div class=&quot;stage&quot; id=&quot;stage&quot;&gt;&lt;div class=&quot;phone&quot; id=&quot;phone&quot;&gt;
   &lt;img class=&quot;status&quot; src=&quot;data:image/png;base64,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&quot; alt=&quot;&quot;&gt;
@@ -124,16 +124,16 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
  function pickPair(){var c=POOL.filter(function(e){return prev.indexOf(e)&lt;0});
   var a=Math.floor(Math.random()*c.length),b=Math.floor(Math.random()*(c.length-1));if(b&gt;=a)b++;
   prev=[c[a],c[b]];return prev.slice();}
- function clearParts(){parts.forEach(function(p){p.el.remove()});parts=[];timers.forEach(clearTimeout);timers=[];}
- var timers=[];
+ function mix(n){var pair=pickPair(),a=[];for(var i=0;i&lt;n;i++)a.push(pair[i%2]);
+  for(var i=a.length-1;i&gt;0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
  function burst(x,y){
-  clearParts();var pair=pickPair(),n=pair.length,up=[420,520,620,720,820][kH.value-1],g=[1100,1500,1900,2400,3000][kG.value-1];
-  for(var i=0;i&lt;n;i++)(function(i){timers.push(setTimeout(function(){
-   var el=document.createElement(&#x27;span&#x27;);el.className=&#x27;th&#x27;;el.textContent=pair[i];fx.appendChild(el);
+  var n=+kN.value,seq=mix(n),up=[420,520,620,720,820][kH.value-1],g=[1100,1500,1900,2400,3000][kG.value-1];
+  for(var i=0;i&lt;n;i++)(function(i){setTimeout(function(){
+   var el=document.createElement(&#x27;span&#x27;);el.className=&#x27;th&#x27;;el.textContent=seq[i];fx.appendChild(el);
    var size=26+Math.random()*16;el.style.fontSize=size+&#x27;px&#x27;;
    parts.push({el:el,x:x-size/2,y:y-size/2,vx:(Math.random()*2-1)*170,vy:-(up*(.75+Math.random()*.5)),r:(Math.random()*2-1)*8,vr:(Math.random()*2-1)*30,g:g,t:0,x0:x-size/2+(Math.random()*2-1)*40,y0:y-size/2-30-Math.random()*40});
    if(!run){run=true;last=performance.now();requestAnimationFrame(step);}
-  },i*40))})(i);
+  },i*40)})(i);
  }
  var last=0;
  function step(now){var dt=Math.min(.033,(now-last)/1000);last=now;
@@ -160,33 +160,33 @@ body{min-height:100vh;display:flex;flex-direction:column;align-items:center;just
   });
  });
  document.getElementById(&#x27;reset&#x27;).addEventListener(&#x27;click&#x27;,function(){
-  clearParts();document.querySelectorAll(&#x27;.bb&#x27;).forEach(function(b){b._fs=16;b.querySelector(&#x27;.tx&#x27;).style.fontSize=&#x27;&#x27;;});now.textContent=&#x27;방금 누른 말풍선: —&#x27;;});
+  document.querySelectorAll(&#x27;.bb&#x27;).forEach(function(b){b._fs=16;b.querySelector(&#x27;.tx&#x27;).style.fontSize=&#x27;&#x27;;});now.textContent=&#x27;방금 누른 말풍선: —&#x27;;});
 })();
 &lt;/script&gt;&lt;/body&gt;&lt;/html&gt;"></iframe>
   <a href="demo.html?v=20261014c" target="_blank" rel="noopener">전체 화면으로 열기 ↗</a></div>
  <div>
   <h1>라운지 채팅방 · 말풍선 터치 모션</h1>
-  <p class="sub">말풍선을 두 번 연속 탭하면 글자가 1pt 커지고, 서로 다른 이모지 2개가 랜덤 조합으로 튀어 올랐다가 화면 아래로 떨어집니다. 왼쪽 화면을 두 번 연속 눌러 확인하세요. 값은 2026-10-13 크리스 확정값이며, 2026-10-14에 시작 방식과 이모지 두 가지만 바뀌었습니다.</p>
+  <p class="sub">말풍선을 두 번 연속 누를 때마다 글자가 1pt 커지고, 이모지 2종이 3개씩 총 6개가 하나씩 튀어 올랐다가 화면 아래로 떨어집니다. 왼쪽 화면을 두 번 연속 눌러 확인하세요. 값은 2026-10-13 크리스 확정값입니다.</p>
   <div class="dl"><a class="main" href="demo.html?v=20261014c" download>데모 HTML</a><a href="motion-spec.json?v=20261014c" download>값 JSON</a><a href="README.md?v=20261014c" download>설명서 md</a></div>
-  <h2>움직임 값</h2><div class="tw"><table><tr><th>시작</th><td>말풍선 더블 탭 (1번 탭 → 2번 탭)</td><td>같은 말풍선에서 0.35초·24pt 안의 두 번째 탭에 터짐 · 한 번 탭은 반응 없음 · 말풍선마다 따로 셈 <b>(10/14 변경)</b></td></tr><tr><th>눌림</th><td>scale 0.96 → 1</td><td>0.12초 · ease-out</td></tr><tr><th>글자</th><td>더블 탭마다 +1pt (16 → 17 → 18 …)</td><td>0.18초 · cubic-bezier(0.2, 0.8, 0.2, 1) · 상한 없음 · 말풍선 최대 폭 260pt 그대로(넘치면 줄바꿈)</td></tr><tr><th>이모지 개수</th><td>2개 · 서로 다른 2종</td><td>Full Set 88종에서 랜덤 조합 · 직전 조합의 이모지는 다음 번에 나오지 않음 <b>(10/14 변경)</b></td></tr><tr><th>나오는 간격</th><td>0.04초에 하나씩</td><td>2개 = 0.04초 동안</td></tr><tr><th>나오는 자리</th><td>손가락이 닿은 점</td><td>이모지 중심 = 탭 좌표</td></tr><tr><th>이모지 크기</th><td>26 ~ 42pt 무작위</td><td>시스템 이모지 (Full Set 88종)</td></tr><tr><th>튀어나옴</th><td>크기 0 → 1.3 (0.12초) → 1.0 (0.08초)</td><td>카톡 공감처럼 «뿅»</td></tr><tr><th>위로 튀는 속도</th><td>390 ~ 650 pt/s 무작위 (기준 520 × 0.75~1.25)</td><td>«튀는 높이 조금 낮게» = 5단계 중 2</td></tr><tr><th>옆으로 퍼짐</th><td>-170 ~ +170 pt/s 무작위</td><td></td></tr><tr><th>중력</th><td>1500 pt/s²</td><td>«떨어지는 속도 조금 느리게» = 5단계 중 2</td></tr><tr><th>회전</th><td>처음 -8 ~ +8° · 초당 -30 ~ +30°</td><td>이모지가 거꾸로 서 보이지 않게 작게 둠</td></tr><tr><th>사라짐</th><td>화면 아래 끝 + 48pt를 지나면 지움</td><td>투명도 변화 없음 · 화면 밖으로 떨어져 나감</td></tr><tr><th>걸리는 시간</th><td>약 1.0 ~ 1.4초</td><td>탭 위치에 따라 다름</td></tr><tr><th>층</th><td>채팅 화면 위 · 상단바·입력창보다도 위</td><td>터치를 막지 않음(pointer-events none) · 화면 밖은 잘림</td></tr><tr><th>연타</th><td>더블 탭마다 새 조합 2개</td><td>앞의 2개는 지우고 새 2개만 보임 · 글자는 계속 +1pt</td></tr><tr><th>움직임 줄이기 설정</th><td>이모지가 탭 근처에 떠서 0.6초 동안 사라짐 · 낙하 없음</td><td>iOS 동작 줄이기 / Android 애니메이션 제거</td></tr></table></div>
-  <p class="note">단위 pt = 화면 폭 402 기준 논리 픽셀(iOS pt · Android dp와 같은 크기). 무작위 값은 이모지마다 따로 뽑습니다.</p>
+  <h2>움직임 값</h2><div class="tw"><table><tr><th>시작</th><td>말풍선 더블 탭(1번 탭 → 2번 탭)</td><td>말풍선마다 따로 셈 · 0.35초 · 24pt 안의 두 번째 탭에 시작</td></tr><tr><th>눌림</th><td>scale 0.96 → 1</td><td>0.12초 · ease-out</td></tr><tr><th>글자</th><td>더블 탭마다 +1pt (16 → 17 → 18 …)</td><td>0.18초 · cubic-bezier(0.2, 0.8, 0.2, 1) · 상한 없음 · 말풍선 최대 폭 260pt 그대로(넘치면 줄바꿈)</td></tr><tr><th>이모지 개수</th><td>6개 (2종 × 3개)</td><td>크리스 선택값 · 2종은 매번 랜덤</td></tr><tr><th>나오는 간격</th><td>0.04초에 하나씩</td><td>6개 = 0.2초 동안</td></tr><tr><th>나오는 자리</th><td>손가락이 닿은 점</td><td>이모지 중심 = 탭 좌표</td></tr><tr><th>이모지 크기</th><td>26 ~ 42pt 무작위</td><td>시스템 이모지 · Full Set 88종 중 서로 다른 2종</td></tr><tr><th>튀어나옴</th><td>크기 0 → 1.3 (0.12초) → 1.0 (0.08초)</td><td>카톡 공감처럼 «뿅»</td></tr><tr><th>위로 튀는 속도</th><td>390 ~ 650 pt/s 무작위 (기준 520 × 0.75~1.25)</td><td>«튀는 높이 조금 낮게» = 5단계 중 2</td></tr><tr><th>옆으로 퍼짐</th><td>-170 ~ +170 pt/s 무작위</td><td></td></tr><tr><th>중력</th><td>1500 pt/s²</td><td>«떨어지는 속도 조금 느리게» = 5단계 중 2</td></tr><tr><th>회전</th><td>처음 -8 ~ +8° · 초당 -30 ~ +30°</td><td>이모지가 거꾸로 서 보이지 않게 작게 둠</td></tr><tr><th>사라짐</th><td>화면 아래 끝 + 48pt를 지나면 지움</td><td>투명도 변화 없음 · 화면 밖으로 떨어져 나감</td></tr><tr><th>걸리는 시간</th><td>약 1.0 ~ 1.4초</td><td>탭 위치에 따라 다름</td></tr><tr><th>층</th><td>채팅 화면 위 · 상단바·입력창보다도 위</td><td>터치를 막지 않음(pointer-events none) · 화면 밖은 잘림</td></tr><tr><th>연타</th><td>더블 탭마다 새로 6개</td><td>앞의 이모지와 섞여 떨어짐 · 글자도 계속 +1pt</td></tr><tr><th>움직임 줄이기 설정</th><td>이모지가 탭 근처에 떠서 0.6초 동안 사라짐 · 낙하 없음</td><td>iOS 동작 줄이기 / Android 애니메이션 제거</td></tr></table></div>
+  <p class="note">단위 pt = 화면 폭 402 기준 논리 픽셀(iOS pt · Android dp와 같은 크기). 무작위 값은 이모지마다 따로 뽑습니다. 2종은 직전 더블 탭에 나온 이모지를 빼고 뽑습니다.</p>
   <h2>화면 값 (피그마 원본)</h2><div class="tw"><table><tr><th>피그마</th><td colspan=2>Cre8orClub_v3 › [26.10] 디자인 업데이트 › 섹션 «10월 업데이트» › «라운지 채팅방» (node 22078:23354)</td></tr><tr><th>말풍선</th><td colspan=2>radius 16 (radius/xl) · padding 12 (spacing/4) · 최대 폭 260 · 내 말 #07ED21 · 상대 #D9D9D9 (color/gray/200)</td></tr><tr><th>글자</th><td colspan=2>Pretendard Regular 16 · 행간 150% · 자간 -3% · #282828 (color/gray/800) · 스타일 body/md</td></tr><tr><th>시간·이름</th><td colspan=2>12pt #666666 · 이름 14pt #888888 · 날짜 14pt #444444</td></tr></table></div>
   <h2>계산 코드 원문 (웹 시안 · 그대로 옮기면 같은 움직임)</h2>
-  <pre><code>// up = 520, g = 1500 · 이모지 2개(서로 다른 2종)
+  <pre><code>// up = 520, g = 1500, n = 6  (튀는 높이 2단계 · 떨어지는 속도 2단계 · 개수 6 = 2종 × 3개)
  var POOL=[/* Full Set 88종 · motion-spec.json */],prev=[];
  function pickPair(){var c=POOL.filter(function(e){return prev.indexOf(e)&lt;0});
   var a=Math.floor(Math.random()*c.length),b=Math.floor(Math.random()*(c.length-1));if(b&gt;=a)b++;
   prev=[c[a],c[b]];return prev.slice();}
- function clearParts(){parts.forEach(function(p){p.el.remove()});parts=[];timers.forEach(clearTimeout);timers=[];}
- var timers=[];
+ function mix(n){var pair=pickPair(),a=[];for(var i=0;i&lt;n;i++)a.push(pair[i%2]);
+  for(var i=a.length-1;i&gt;0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
  function burst(x,y){
-  clearParts();var pair=pickPair(),n=pair.length,up=[420,520,620,720,820][kH.value-1],g=[1100,1500,1900,2400,3000][kG.value-1];
-  for(var i=0;i&lt;n;i++)(function(i){timers.push(setTimeout(function(){
-   var el=document.createElement(&#x27;span&#x27;);el.className=&#x27;th&#x27;;el.textContent=pair[i];fx.appendChild(el);
+  var n=+kN.value,seq=mix(n),up=[420,520,620,720,820][kH.value-1],g=[1100,1500,1900,2400,3000][kG.value-1];
+  for(var i=0;i&lt;n;i++)(function(i){setTimeout(function(){
+   var el=document.createElement(&#x27;span&#x27;);el.className=&#x27;th&#x27;;el.textContent=seq[i];fx.appendChild(el);
    var size=26+Math.random()*16;el.style.fontSize=size+&#x27;px&#x27;;
    parts.push({el:el,x:x-size/2,y:y-size/2,vx:(Math.random()*2-1)*170,vy:-(up*(.75+Math.random()*.5)),r:(Math.random()*2-1)*8,vr:(Math.random()*2-1)*30,g:g,t:0,x0:x-size/2+(Math.random()*2-1)*40,y0:y-size/2-30-Math.random()*40});
    if(!run){run=true;last=performance.now();requestAnimationFrame(step);}
-  },i*40))})(i);
+  },i*40)})(i);
  }
  var last=0;
  function step(now){var dt=Math.min(.033,(now-last)/1000);last=now;

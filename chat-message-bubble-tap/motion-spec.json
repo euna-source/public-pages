@@ -12,13 +12,12 @@
     "bubbleMaxWidthPt": 260,
     "trigger": "double tap on the same bubble (second tap within 350ms and 24pt); single tap does nothing",
     "doubleTapMaxIntervalMs": 350,
-    "doubleTapMaxDistancePt": 24,
-    "fontStep": "+1pt per double tap, no upper limit"
+    "doubleTapMaxDistancePt": 24
   },
   "reducedMotion": "emoji fade near touch point over 0.6s, no fall",
-  "changed": "2026-10-14: 시작을 더블 탭으로, 엄지 6개를 서로 다른 이모지 2개 랜덤 조합으로 변경. 그 외 값은 원본 그대로.",
+  "changed": "2026-10-14: 시작을 더블 탭으로, 엄지 6개를 이모지 2종 × 3개(총 6개)로 변경. 그 외 값은 원본 그대로.",
   "emoji": {
-    "count": 2,
+    "count": 6,
     "spawnIntervalSec": 0.04,
     "origin": "touch point",
     "sizePt": [
@@ -65,7 +64,9 @@
     "dtClampSec": 0.033,
     "layer": "above chat, header and input · no touch blocking",
     "kinds": 2,
-    "rule": "two different emoji per burst, chosen at random from pool; neither emoji of the previous pair is used in the next pair",
+    "perKind": 3,
+    "order": "shuffled",
+    "rule": "two different emoji per double tap from pool; emoji of the previous double tap are excluded",
     "pool": [
       "😎",
       "🤩",
@@ -156,7 +157,6 @@
       "🎡",
       "🎢"
     ],
-    "poolCount": 88,
-    "rapidTaps": "previous pair is removed; only the newest pair is shown"
+    "poolCount": 88
   }
 }

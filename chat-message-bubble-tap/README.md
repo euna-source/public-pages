@@ -1,12 +1,12 @@
 # 라운지 채팅방 · 말풍선 터치 모션 전달서
 
-- **시작**: 말풍선 더블 탭(1번 탭 → 2번 탭) — 같은 말풍선에서 0.35초·24pt 안의 두 번째 탭에 터짐 · 한 번 탭은 반응 없음 · 말풍선마다 따로 셈 **(10/14 변경)**
+- **시작**: 말풍선 더블 탭(1번 탭 → 2번 탭) — 말풍선마다 따로 셈 · 0.35초 · 24pt 안의 두 번째 탭에 시작
 - **눌림**: scale 0.96 → 1 — 0.12초 · ease-out
 - **글자**: 더블 탭마다 +1pt (16 → 17 → 18 …) — 0.18초 · cubic-bezier(0.2, 0.8, 0.2, 1) · 상한 없음 · 말풍선 최대 폭 260pt 그대로(넘치면 줄바꿈)
-- **이모지 개수**: 2개 · 서로 다른 2종 — Full Set 88종(motion-spec.json)에서 랜덤 조합, 직전 조합의 이모지는 다음 번에 나오지 않음 **(10/14 변경)**
-- **나오는 간격**: 0.04초에 하나씩 — 2개 = 0.04초 동안
+- **이모지 개수**: 6개 (2종 × 3개) — 크리스 선택값 · 2종은 매번 랜덤
+- **나오는 간격**: 0.04초에 하나씩 — 6개 = 0.2초 동안
 - **나오는 자리**: 손가락이 닿은 점 — 이모지 중심 = 탭 좌표
-- **이모지 크기**: 26 ~ 42pt 무작위 — 시스템 이모지
+- **이모지 크기**: 26 ~ 42pt 무작위 — 시스템 이모지 · Full Set 88종(motion-spec.json) 중 서로 다른 2종, 직전 더블 탭의 이모지는 빼고 뽑음
 - **튀어나옴**: 크기 0 → 1.3 (0.12초) → 1.0 (0.08초) — 카톡 공감처럼 «뿅»
 - **위로 튀는 속도**: 390 ~ 650 pt/s 무작위 (기준 520 × 0.75~1.25) — «튀는 높이 조금 낮게» = 5단계 중 2
 - **옆으로 퍼짐**: -170 ~ +170 pt/s 무작위
@@ -15,7 +15,7 @@
 - **사라짐**: 화면 아래 끝 + 48pt를 지나면 지움 — 투명도 변화 없음 · 화면 밖으로 떨어져 나감
 - **걸리는 시간**: 약 1.0 ~ 1.4초 — 탭 위치에 따라 다름
 - **층**: 채팅 화면 위 · 상단바·입력창보다도 위 — 터치를 막지 않음(pointer-events none) · 화면 밖은 잘림
-- **연타**: 더블 탭마다 새 조합 2개 — 앞의 2개는 지우고 새 2개만 보임 · 글자도 계속 +1pt
+- **연타**: 더블 탭마다 새로 6개 — 앞의 이모지와 섞여 떨어짐 · 글자도 계속 +1pt
 - **움직임 줄이기 설정**: 이모지가 탭 근처에 떠서 0.6초 동안 사라짐 · 낙하 없음 — iOS 동작 줄이기 / Android 애니메이션 제거
 
 ## 화면 값 (피그마)
@@ -26,21 +26,21 @@
 
 ## 계산 코드 (웹)
 ```js
-// up = 520, g = 1500 · 이모지 2개(서로 다른 2종)
+// up = 520, g = 1500, n = 6  (튀는 높이 2단계 · 떨어지는 속도 2단계 · 개수 6 = 2종 × 3개)
  var POOL=[/* Full Set 88종 · motion-spec.json */],prev=[];
  function pickPair(){var c=POOL.filter(function(e){return prev.indexOf(e)<0});
   var a=Math.floor(Math.random()*c.length),b=Math.floor(Math.random()*(c.length-1));if(b>=a)b++;
   prev=[c[a],c[b]];return prev.slice();}
- function clearParts(){parts.forEach(function(p){p.el.remove()});parts=[];timers.forEach(clearTimeout);timers=[];}
- var timers=[];
+ function mix(n){var pair=pickPair(),a=[];for(var i=0;i<n;i++)a.push(pair[i%2]);
+  for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;}return a;}
  function burst(x,y){
-  clearParts();var pair=pickPair(),n=pair.length,up=[420,520,620,720,820][kH.value-1],g=[1100,1500,1900,2400,3000][kG.value-1];
-  for(var i=0;i<n;i++)(function(i){timers.push(setTimeout(function(){
-   var el=document.createElement('span');el.className='th';el.textContent=pair[i];fx.appendChild(el);
+  var n=+kN.value,seq=mix(n),up=[420,520,620,720,820][kH.value-1],g=[1100,1500,1900,2400,3000][kG.value-1];
+  for(var i=0;i<n;i++)(function(i){setTimeout(function(){
+   var el=document.createElement('span');el.className='th';el.textContent=seq[i];fx.appendChild(el);
    var size=26+Math.random()*16;el.style.fontSize=size+'px';
    parts.push({el:el,x:x-size/2,y:y-size/2,vx:(Math.random()*2-1)*170,vy:-(up*(.75+Math.random()*.5)),r:(Math.random()*2-1)*8,vr:(Math.random()*2-1)*30,g:g,t:0,x0:x-size/2+(Math.random()*2-1)*40,y0:y-size/2-30-Math.random()*40});
    if(!run){run=true;last=performance.now();requestAnimationFrame(step);}
-  },i*40))})(i);
+  },i*40)})(i);
  }
  var last=0;
  function step(now){var dt=Math.min(.033,(now-last)/1000);last=now;
