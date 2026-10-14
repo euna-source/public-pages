@@ -294,5 +294,13 @@
     "last_kind": "redeploy",
     "last_sha256": "b1f6ec72af33db6ec8d36f5ccda8a6430278efcb4497287c79df5b658407c6b6",
     "timestamp": "2026-10-14T03:27:19.351331Z"
+  },
+  "c8-home-wireframe": {
+    "slug": "c8-home-wireframe",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-home-wireframe/",
+    "last_kind": "new",
+    "last_sha256": "f5059c928cacc5cf05c216d6f8189df6c41d97160fe9216bc896ea5420b26135",
+    "timestamp": "2026-10-14T06:24:55.418902Z"
   }
 }
