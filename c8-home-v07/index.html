@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="크리에이터클럽 홈 v0.7 시안을 스토리보드와 디자인 시안 두 보기로 비교하는 페이지예요.">
+<title>C8 홈 v0.7</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  --bar:52px;--bg:#F4F4F1;--surface:#FFFFFF;--ink:#111111;--ink-2:#4A4A4A;--ink-3:#6B6B6B;--line:rgba(0,0,0,.09);
+  --seg:#E9E9E4;--seg-on:#111111;--seg-on-ink:#FFFFFF;--accent:#0B7A17;--frame:#0B0B0B;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0A0A0A;--surface:#121212;--ink:#F5F5F5;--ink-2:#B3B3B3;--ink-3:#8C8C8C;--line:rgba(255,255,255,.09);--seg:#1F1F1F;--seg-on:#F5F5F5;--seg-on-ink:#111111;--accent:#20EF35;color-scheme:dark}
+}
+:root[data-theme="dark"]{--bg:#0A0A0A;--surface:#121212;--ink:#F5F5F5;--ink-2:#B3B3B3;--ink-3:#8C8C8C;--line:rgba(255,255,255,.09);--seg:#1F1F1F;--seg-on:#F5F5F5;--seg-on-ink:#111111;--accent:#20EF35;color-scheme:dark}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased;overflow:hidden;letter-spacing:-.01em}
+.bar{position:fixed;inset:0 0 auto;height:var(--bar);z-index:10;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:0 16px;background:var(--surface);border-bottom:1px solid var(--line)}
+.ver{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:700;white-space:nowrap;min-width:0}
+.ver i{width:8px;height:8px;border-radius:50%;background:#20EF35;box-shadow:0 0 0 1px var(--line)}
+.ver span{color:var(--ink-3);font-weight:500;overflow:hidden;text-overflow:ellipsis}
+.seg{display:flex;padding:3px;border-radius:999px;background:var(--seg)}
+.seg button{border:0;background:none;font:inherit;font-size:13.5px;font-weight:600;color:var(--ink-2);height:32px;padding:0 16px;border-radius:999px;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s}
+.seg button[aria-pressed="true"]{background:var(--seg-on);color:var(--seg-on-ink)}
+.seg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.seg .sp{display:none}
+@media (min-width:1280px){.seg .sp{display:block}}
+.end{justify-self:end;font-size:12px;color:var(--ink-3);white-space:nowrap;margin:0}@media (max-width:1179px){.end{display:none}}
+@media (max-width:640px){.bar{grid-template-columns:auto 1fr;padding:0 12px}.ver span,.end{display:none}.seg{justify-self:end}.seg button{padding:0 12px}}
+.views{position:fixed;inset:var(--bar) 0 0;display:flex;background:var(--frame)}
+.views iframe{border:0;position:absolute;top:0;bottom:0;left:0;width:100%;height:100%;visibility:hidden;background:var(--bg)}
+.views[data-v="story"] .fs,.views[data-v="design"] .fd{visibility:visible}
+.views[data-v="split"] iframe{visibility:visible;width:50%}
+.views[data-v="split"] .fd{left:50%}
+.views[data-v="split"] .fs{border-right:1px solid var(--line)}
+</style>
+</head>
+<body>
+<div class="bar">
+  <p class="ver"><i aria-hidden="true"></i>C8 홈 v0.7<span>· 서비스 홈 시안</span></p>
+  <div class="seg" role="group" aria-label="보기 전환">
+    <button type="button" data-v="story" aria-pressed="false">스토리보드</button>
+    <button type="button" data-v="design" aria-pressed="true">디자인 시안</button>
+    <button type="button" data-v="split" class="sp" aria-pressed="false">나란히 보기</button>
+  </div>
+  <p class="end">화면 속 이름과 작업, 대화는 예시예요. 인물과 작업 이미지는 AI로 만든 예시예요.</p>
+</div>
+<main class="views" data-v="design">
+  <iframe class="fs" src="story.html" title="스토리보드"></iframe>
+  <iframe class="fd" src="design.html" title="디자인 시안"></iframe>
+</main>
+<script>
+(function(){
+  var views=document.querySelector('.views'), btns=[].slice.call(document.querySelectorAll('.seg button'));
+  var fs=document.querySelector('.fs'), fd=document.querySelector('.fd');
+  var wide=matchMedia('(min-width: 1280px)'), KEY='c8-home-v06-view', ok={story:1,design:1,split:1};
+  function stored(){try{return localStorage.getItem(KEY);}catch(e){return null;}}
+  function store(v){try{localStorage.setItem(KEY,v);}catch(e){}}
+  function frameOf(v){return v==='story'?fs:fd;}
+  /* 지금 보는 장면을 찾아 다른 보기도 같은 장면으로 맞춘다(같은 장면 id를 쓴다) */
+  var IDS=['intro','upload','openchat','respect','knock','project','shuffle','versions','team','crazy','weekly','faq','finale'];
+  function sceneOf(f){
+    try{var w=f.contentWindow,doc=f.contentDocument,mid=w.innerHeight*0.4,best=null;
+      for(var i=0;i<IDS.length;i++){var el=doc.getElementById(IDS[i]); if(!el)continue; var r=el.getBoundingClientRect(); if(r.top<=mid)best=IDS[i];}
+      return best;}catch(e){return null;}
+  }
+  function goScene(f,id){
+    if(!id)return;
+    try{var el=f.contentDocument.getElementById(id); if(el){var w=f.contentWindow; w.scrollTo({top:el.getBoundingClientRect().top+w.pageYOffset,behavior:'auto'});}}catch(e){}
+  }
+  var cur=null;
+  function set(v,push){
+    if(!ok[v])v='design';
+    if(v==='split'&&!wide.matches)v='design';
+    var from=cur?(cur==='split'?fd:frameOf(cur)):null, id=from?sceneOf(from):null;
+    cur=v; views.setAttribute('data-v',v);
+    btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-v')===v));});
+    if(id){var sync=function(){ if(v==='split'){goScene(fs,id);} else if(frameOf(v)!==from){goScene(frameOf(v),id);} };setTimeout(sync,120);setTimeout(sync,700);}
+    store(v);
+    if(push!==false&&location.hash!=='#'+v){try{history.replaceState(null,'','#'+v);}catch(e){location.hash=v;}}
+    document.title=(v==='story'?'스토리보드':v==='split'?'나란히 보기':'디자인 시안')+' · C8 홈 v0.7';
+  }
+  btns.forEach(function(b){b.addEventListener('click',function(){set(b.getAttribute('data-v'));});});
+  addEventListener('hashchange',function(){set(location.hash.slice(1),false);});
+  if(wide.addEventListener)wide.addEventListener('change',function(){if(cur==='split'&&!wide.matches)set('design');});
+  var h=location.hash.slice(1);
+  set(ok[h]?h:(stored()||'design'),true);
+})();
+</script>
+</body>
+</html>
