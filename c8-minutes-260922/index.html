@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="ko">
-<head>
+<head><!--doc-template-kit:start generator--><meta name="generator" content="doc-template kit"><!--doc-template-kit:end generator-->
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -163,7 +163,34 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 
 .columns,section.block,.content{min-width:0}.block>p+p{margin-top:.65em}
 
-</style></head>
+</style><!--doc-template-kit:start table--><style data-dk="table">/* 표 반응형.
+   .dk-table  : 원본 모양은 그대로 두고 ① 칸 안 낱말(어절)을 쪼개지 않게 ② 폭이 모자라면 줄마다 카드로 쌓는다(덧대기).
+   .dk-frame  : 템플릿이 모양을 정하는 표 — 칸마다 위·왼쪽 선만 긋고 바깥 틀은 감싸개가 그려 병합 칸에서도 선이 끊기지 않는다. */
+.dk-table{--dk-tl:var(--line,#E5E5EA);--dk-tf:var(--frame,var(--line2,var(--line,#D9D9DE)));--dk-th:var(--sunken,#F6F6F8);--dk-tm:var(--fg2,var(--muted,#6B6B73));
+  position:relative;box-sizing:border-box;max-width:100%;min-width:0}
+.dk-table:not(.dk-stack)>table :is(th,td),.dk-table:not(.dk-stack)>table :is(th,td) *{overflow-wrap:normal!important;word-break:keep-all!important}
+.dk-table img{max-width:100%;height:auto}
+.dk-table tr[hidden]{display:none!important}
+/* 틀 */
+.dk-table.dk-frame{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;border:1px solid var(--dk-tf);border-radius:var(--r,12px);background:var(--bg,transparent)}
+.dk-frame>table{border-collapse:separate!important;border-spacing:0!important;width:calc(100% + 1px)!important;min-width:0!important;max-width:none!important;margin:-1px 0 0 -1px!important;table-layout:auto}
+.dk-frame>table>*>tr>:is(th,td),.dk-frame>table>tr>:is(th,td){border:0!important;border-top:1px solid var(--dk-tl)!important;border-left:1px solid var(--dk-tl)!important;white-space:normal!important;box-sizing:border-box}
+/* 쌓기: 줄 하나가 카드 하나 */
+.dk-table.dk-stack{overflow:visible}
+.dk-table.dk-stack>table,.dk-table.dk-stack>table>:is(thead,tbody,tfoot),.dk-table.dk-stack>table>*>tr,.dk-table.dk-stack>table>tr{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;box-sizing:border-box}
+.dk-table.dk-stack>table>:is(caption,colgroup){display:block}
+.dk-table.dk-stack>table>colgroup{display:none}
+.dk-table.dk-stack>table>*>tr,.dk-table.dk-stack>table>tr{border-top:1px solid var(--dk-tl);padding:6px 0}
+.dk-table.dk-stack>table>*>tr.dk-first,.dk-table.dk-stack>table>tr.dk-first{border-top:0}
+.dk-table.dk-stack>table>*>tr.dk-head,.dk-table.dk-stack>table>tr.dk-head{display:none!important}
+.dk-table.dk-stack>table>*>tr>:is(th,td),.dk-table.dk-stack>table>tr>:is(th,td){display:block!important;width:auto!important;min-width:0!important;max-width:100%!important;border:0!important;padding:6px 14px!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere;position:static!important}
+.dk-table.dk-stack :is(th,td)[data-dk-label]::before{content:attr(data-dk-label);display:block;margin-bottom:2px;font-size:12px;line-height:1.5;font-weight:600;color:var(--dk-tm)}
+.dk-table.dk-stack .dk-title{font-weight:700}
+.dk-table.dk-stack .dk-grp{margin:-6px 0 4px!important;padding:10px 14px!important;background:var(--dk-th);font-weight:700}
+.dk-table.dk-stack :is(th,td):empty{display:none!important}
+.dk-table[tabindex]:focus-visible{outline:2px solid var(--accent,#2B59C3);outline-offset:2px}
+@media print{.dk-table.dk-frame{overflow:visible}.dk-table :is(th,td),.dk-table :is(th,td) *{overflow-wrap:anywhere!important}}
+</style><!--doc-template-kit:end table--></head>
 <body>
 <a class="skip" href="#notes">본문으로 이동</a>
 <div class="shell">
@@ -214,7 +241,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 <li><strong>채팅 첨부</strong>: 용량과 PDF 미지원은 지금대로 둔다. 대용량·AI 같은 차별화 기능은 아이디어로만 남긴다. <span class="ts">[01:12:34]</span> <span class="ts">[01:14:21]</span></li>
 </ul>
 <p><strong>화자 분리</strong>: 적용됨. 화자 번호는 11개이고, 화자를 판정하지 못한 줄이 1줄 있다. 번호 수가 곧 참석자 수는 아니다. </p><p>민석은 화자3·화자4 두 번호로 나뉘었고, 화자10에는 재욱과 민석의 발언이 섞여 있어 발언별로 나눠 적었다. 진영은 불참했고 이름만 나왔다.</p>
-<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table class="speakers">
+<div class="table-scroll dk-table" role="region" tabindex="0" aria-label="표"><table class="speakers">
 <thead>
 <tr>
 <th>번호</th>
@@ -310,7 +337,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 <ul>
 <li><strong>쟁점</strong>: 프로젝트가 끝난 뒤 참여 경력을 어디서 어떻게 남길지 <span class="ts">[06:42]</span></li>
 </ul>
-<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<div class="table-scroll dk-table" role="region" tabindex="0" aria-label="표"><table>
 <thead>
 <tr>
 <th>제안</th>
@@ -392,7 +419,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 <li class="k-dec"><strong>결정</strong>: <span class="hl">이 기간에 올린 새 포폴</span>을 대상으로, <span class="hl">2주 안에 들어온 리스펙트</span>로 순위를 낸다. 은희가 제안하고 재욱이 &quot;그렇게 합시다, 일단&quot;이라고 했다. 기존 리스펙트 수는 건드리지 않는다. <span class="ts">[32:31]</span> <span class="ts">[34:43]</span> <span class="ts">[32:06]</span></li>
 <li><strong>남은 고민</strong>: 재욱은 2주마다 포폴이 20~100개나 올라올지, 초반 운영과 기간·횟수를 어떻게 할지 더 고민하자고 했다 <span class="ts">[33:09]</span> <span class="ts">[34:15]</span>. 은희는 첫 회에 대상 범위를 넓힐지 물었다. <span class="ts">[28:07]</span></li>
 </ul>
-<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<div class="table-scroll dk-table" role="region" tabindex="0" aria-label="표"><table>
 <thead>
 <tr>
 <th>운영안 (확정 발언 없음)</th>
@@ -492,7 +519,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 <ul>
 <li><strong>요청</strong>: 재욱이 채팅만의 콘셉트를 만들 기술 아이디어를 달라고 했다. &quot;지금 당장 할 건 아니에요&quot;라고 덧붙였다. <span class="ts">[41:44]</span> <span class="ts">[43:41]</span></li>
 </ul>
-<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<div class="table-scroll dk-table" role="region" tabindex="0" aria-label="표"><table>
 <thead>
 <tr>
 <th>아이디어</th>
@@ -644,7 +671,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 </ul></section>
 </div>
 <section class="block closing"><h2 id="_15">후속 업무</h2>
-<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<div class="table-scroll dk-table" role="region" tabindex="0" aria-label="표"><table>
 <thead>
 <tr>
 <th>업무</th>
@@ -747,7 +774,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 </tbody>
 </table></div></section>
 <section class="block closing"><h2 id="_16">다음 일정</h2>
-<div class="table-scroll" role="region" tabindex="0" aria-label="표"><table>
+<div class="table-scroll dk-table" role="region" tabindex="0" aria-label="표"><table>
 <thead>
 <tr>
 <th>날짜 (녹음일 9/22 화 기준 계산)</th>
@@ -845,7 +872,7 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 </div>
 <footer class="srct" id="sources" aria-label="출처"><details><summary>출처 <span class="srct-n">· 2</span></summary><div class="srct-body"><div class="srct-row"><b>원본 녹음</b><span>Tiro — [9/22 정기미팅] 프로젝트 상태값·명예전당·다운로드 정책 점검</span></div><div class="srct-row"><b>녹음 길이</b><span>78분 29초</span></div></div></details></footer><aside class="hpanel" id="histPanel" role="dialog" aria-modal="false" aria-labelledby="histTitle" tabindex="-1" hidden data-ui>
 <div class="gp-head"><b id="histTitle">버전 기록</b><button class="gp-close" id="histClose" type="button" aria-label="닫기">✕</button></div>
-<div class="gp-body"><ol class="vlist"><li><div class="vhead"><span class="vno">버전 1.0</span><span class="vdate">2026-09-22</span></div><p>최초 작성</p><p class="vsub">디자인 템플릿 적용(2026-09-27) — 내용 변경 없음</p><p class="vsub">안건 지도를 열린 연결 중심 한 줄 목록으로 다시 배치(2026-09-27) — 관계 7개는 그대로</p></li></ol></div>
+<div class="gp-body"><div class="vrow"><b>v</b><span>표 잘림 수리 — 좁은 화면에서 줄마다 카드로(내용 변화 없음) (2026-10-17)</span></div><ol class="vlist"><li><div class="vhead"><span class="vno">버전 1.0</span><span class="vdate">2026-09-22</span></div><p>최초 작성</p><p class="vsub">디자인 템플릿 적용(2026-09-27) — 내용 변경 없음</p><p class="vsub">안건 지도를 열린 연결 중심 한 줄 목록으로 다시 배치(2026-09-27) — 관계 7개는 그대로</p></li></ol></div>
 </aside>
 <script>
 (function(){
@@ -869,7 +896,89 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
   function go(){ var t=document.querySelector('.srct'); if(!t) return; var id=decodeURIComponent(location.hash.slice(1)); if(id&&(t.id===id)){ var d=t.querySelector('details'); if(d) d.open=true; } }
   window.addEventListener('hashchange',go); go();
 })();
-</script></body>
+</script><!--doc-template-kit:start table-body--><script data-dk="table">(function () {
+  // 표 반응형: 칸 격자(rowspan·colspan)를 계산해 머리글 이름표를 달고, 폭이 모자라면 카드로 쌓는다.
+  var MINCOL = 150;  // 세 칸 이상 표는 칸마다 이만큼(px)이 안 되면 쌓는다 — 휴대폰 폭에서 좁은 칸 여럿보다 카드가 읽힌다
+  function text(el) { return (el.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function grid(t) {
+    var rows = [].slice.call(t.rows), occ = [], info = [];
+    rows.forEach(function (tr, ri) {
+      occ[ri] = occ[ri] || []; var c = 0;
+      [].slice.call(tr.cells).forEach(function (cell) {
+        while (occ[ri][c]) c++;
+        var rs = cell.rowSpan, cs = Math.max(1, cell.colSpan || 1);
+        if (rs === 0) { var sec = tr.parentElement, idx = [].indexOf.call(sec.rows, tr); rs = sec.rows.length - idx; }   // rowspan="0": 줄 묶음 끝까지
+        rs = Math.max(1, rs || 1);
+        for (var r = 0; r < rs; r++) { occ[ri + r] = occ[ri + r] || []; for (var k = 0; k < cs; k++) occ[ri + r][c + k] = cell; }
+        info.push({ cell: cell, r: ri, c: c, rs: rs, cs: cs }); c += cs;
+      });
+    });
+    var cols = 0; occ.forEach(function (o) { cols = Math.max(cols, o.length); });
+    return { rows: rows, occ: occ, info: info, cols: cols };
+  }
+  function prepare(w) {
+    var t = w.querySelector(':scope>table'); if (!t || w.dataset.dkReady) return;
+    w.dataset.dkReady = '1';
+    var g = grid(t), head = [];
+    g.rows.forEach(function (tr, ri) {
+      var cells = [].slice.call(tr.cells);
+      var isHead = tr.parentElement.tagName === 'THEAD' || (ri === head.length && cells.length && cells.every(function (c) { return c.tagName === 'TH'; }) && g.rows.length > 1);
+      if (isHead) { head.push(ri); tr.classList.add('dk-head'); }
+    });
+    var first = g.rows.filter(function (tr) { return !tr.classList.contains('dk-head'); })[0];
+    if (first) first.classList.add('dk-first');
+    var label = [];
+    for (var c = 0; c < g.cols; c++) {
+      var parts = []; head.forEach(function (ri) { var h = g.occ[ri] && g.occ[ri][c]; var s = h ? text(h) : ''; if (s && parts.indexOf(s) < 0) parts.push(s); });
+      label[c] = parts.join(' · ');
+    }
+    // 낭독기용: 머리글 칸이 열 머리글인지 줄 머리글인지 알린다(이미 있으면 둔다)
+    head.forEach(function (ri) { [].slice.call(g.rows[ri].cells).forEach(function (c) { if (c.tagName === 'TH' && !c.hasAttribute('scope')) c.setAttribute('scope', c.colSpan > 1 ? 'colgroup' : 'col'); }); });
+    g.info.forEach(function (x) { if (head.indexOf(x.r) < 0 && x.cell.tagName === 'TH' && !x.cell.hasAttribute('scope')) x.cell.setAttribute('scope', x.rs > 1 ? 'rowgroup' : 'row'); });
+    var seenTitle = {};
+    g.info.forEach(function (x) {
+      if (head.indexOf(x.r) >= 0) return;
+      if (x.rs > 1) { x.cell.classList.add('dk-grp'); return; }
+      if (!seenTitle[x.r]) { seenTitle[x.r] = 1; x.cell.classList.add('dk-title'); return; }
+      if (label[x.c] && label[x.c] !== text(x.cell)) x.cell.setAttribute('data-dk-label', label[x.c]);
+    });
+    w.dataset.dkCols = g.cols;
+  }
+  function fit(w) {
+    var t = w.querySelector(':scope>table'); if (!t) return;
+    var cols = +w.dataset.dkCols || 1;
+    w.classList.remove('dk-stack');
+    // 낱말(어절)을 쪼개지 않고 들어가는지 본다 — 칸은 overflow-wrap:normal이라 안 들어가면 표가 감싸개보다 넓어진다
+    var room = w.clientWidth; if (!room) return;   // 숨은 탭 안 표는 보일 때(크기 바뀜) 다시 잰다
+    var over = t.scrollWidth - room;
+    var tooNarrow = cols >= 3 && room < cols * MINCOL;
+    if ((over > 2 || tooNarrow) && cols >= 2) w.classList.add('dk-stack');
+    // 그래도 가로로 넘치면(쌓을 수 없는 한 칸 표 등) 키보드로도 옆으로 움직일 수 있게
+    if (w.scrollWidth > w.clientWidth + 2) { if (!w.hasAttribute('tabindex')) { w.setAttribute('tabindex', '0'); w.dataset.dkTab = '1'; } }
+    else if (w.dataset.dkTab) { w.removeAttribute('tabindex'); delete w.dataset.dkTab; }
+  }
+  function wrap(t) {
+    // 엔진 열린 표(.table)·배치용 표·표 안의 표·머리·목차 안 표는 건드리지 않는다
+    if (t.closest('.dk-table, .table, nav, header') || t.hasAttribute('data-dk-skip') || t.getAttribute('role') === 'presentation' || (t.parentElement && t.parentElement.closest('td,th'))) return null;
+    var p = t.parentElement;
+    if (p && p.children.length === 1 && /^(DIV|FIGURE)$/.test(p.tagName) && p !== document.body) { p.classList.add('dk-table'); return p; }
+    var d = document.createElement('div'); d.className = 'dk-table'; t.parentNode.insertBefore(d, t); d.appendChild(t); return d;
+  }
+  function run() {
+    [].slice.call(document.querySelectorAll('table')).forEach(wrap);
+    var ws = [].slice.call(document.querySelectorAll('.dk-table'));
+    ws.forEach(prepare); ws.forEach(fit);
+    if ('ResizeObserver' in window) {
+      var last = new WeakMap();
+      var ro = new ResizeObserver(function (es) { es.forEach(function (e) { var w = Math.round(e.contentRect.width); if (last.get(e.target) !== w) { last.set(e.target, w); fit(e.target); } }); });
+      ws.forEach(function (w) { ro.observe(w); });
+    } else window.addEventListener('resize', function () { ws.forEach(fit); });
+    window.addEventListener('beforeprint', function () { ws.forEach(function (w) { w.classList.remove('dk-stack'); }); });
+    window.addEventListener('afterprint', function () { ws.forEach(fit); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script><!--doc-template-kit:end table-body--></body>
 </html>
 
 <!-- voice-meeting-minutes-html cbd426a276f4cd3a603a7e3ba35ec816814d1f428279cc9ffe4313299955cf45 -->
