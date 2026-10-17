@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ko"><head>
+<html lang="ko"><head><!--doc-template-kit:start generator--><meta name="generator" content="doc-template kit"><!--doc-template-kit:end generator-->
 <meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>[신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시</title>
 <meta name="description" content="CCO-111 개발요건정의서 — [신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시. 정의·배경과 의도·목표·핵심 흐름·주요 기능·결정 사항.">
@@ -104,7 +104,34 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 
 .sb>p+p{margin-top:.75em}.sb,.main,.tbl{min-width:0}
 
-</style></head>
+</style><!--doc-template-kit:start table--><style data-dk="table">/* 표 반응형.
+   .dk-table  : 원본 모양은 그대로 두고 ① 칸 안 낱말(어절)을 쪼개지 않게 ② 폭이 모자라면 줄마다 카드로 쌓는다(덧대기).
+   .dk-frame  : 템플릿이 모양을 정하는 표 — 칸마다 위·왼쪽 선만 긋고 바깥 틀은 감싸개가 그려 병합 칸에서도 선이 끊기지 않는다. */
+.dk-table{--dk-tl:var(--line,#E5E5EA);--dk-tf:var(--frame,var(--line2,var(--line,#D9D9DE)));--dk-th:var(--sunken,#F6F6F8);--dk-tm:var(--fg2,var(--muted,#6B6B73));
+  position:relative;box-sizing:border-box;max-width:100%;min-width:0}
+.dk-table:not(.dk-stack)>table :is(th,td),.dk-table:not(.dk-stack)>table :is(th,td) *{overflow-wrap:normal!important;word-break:keep-all!important}
+.dk-table img{max-width:100%;height:auto}
+.dk-table tr[hidden]{display:none!important}
+/* 틀 */
+.dk-table.dk-frame{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;border:1px solid var(--dk-tf);border-radius:var(--r,12px);background:var(--bg,transparent)}
+.dk-frame>table{border-collapse:separate!important;border-spacing:0!important;width:calc(100% + 1px)!important;min-width:0!important;max-width:none!important;margin:-1px 0 0 -1px!important;table-layout:auto}
+.dk-frame>table>*>tr>:is(th,td),.dk-frame>table>tr>:is(th,td){border:0!important;border-top:1px solid var(--dk-tl)!important;border-left:1px solid var(--dk-tl)!important;white-space:normal!important;box-sizing:border-box}
+/* 쌓기: 줄 하나가 카드 하나 */
+.dk-table.dk-stack{overflow:visible}
+.dk-table.dk-stack>table,.dk-table.dk-stack>table>:is(thead,tbody,tfoot),.dk-table.dk-stack>table>*>tr,.dk-table.dk-stack>table>tr{display:block!important;width:100%!important;min-width:0!important;max-width:100%!important;margin:0!important;box-sizing:border-box}
+.dk-table.dk-stack>table>:is(caption,colgroup){display:block}
+.dk-table.dk-stack>table>colgroup{display:none}
+.dk-table.dk-stack>table>*>tr,.dk-table.dk-stack>table>tr{border-top:1px solid var(--dk-tl);padding:6px 0}
+.dk-table.dk-stack>table>*>tr.dk-first,.dk-table.dk-stack>table>tr.dk-first{border-top:0}
+.dk-table.dk-stack>table>*>tr.dk-head,.dk-table.dk-stack>table>tr.dk-head{display:none!important}
+.dk-table.dk-stack>table>*>tr>:is(th,td),.dk-table.dk-stack>table>tr>:is(th,td){display:block!important;width:auto!important;min-width:0!important;max-width:100%!important;border:0!important;padding:6px 14px!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere;position:static!important}
+.dk-table.dk-stack :is(th,td)[data-dk-label]::before{content:attr(data-dk-label);display:block;margin-bottom:2px;font-size:12px;line-height:1.5;font-weight:600;color:var(--dk-tm)}
+.dk-table.dk-stack .dk-title{font-weight:700}
+.dk-table.dk-stack .dk-grp{margin:-6px 0 4px!important;padding:10px 14px!important;background:var(--dk-th);font-weight:700}
+.dk-table.dk-stack :is(th,td):empty{display:none!important}
+.dk-table[tabindex]:focus-visible{outline:2px solid var(--accent,#2B59C3);outline-offset:2px}
+@media print{.dk-table.dk-frame{overflow:visible}.dk-table :is(th,td),.dk-table :is(th,td) *{overflow-wrap:anywhere!important}}
+</style><!--doc-template-kit:end table--></head>
 <body>
 <div class="shell">
 <nav class="toc" aria-label="목차"><b>개발요건정의서</b><a href="#s1"><span class="n">01</span>정의</a><a href="#s2"><span class="n">02</span>배경과 의도</a><a href="#s3"><span class="n">03</span>목표 · MVP</a><a href="#s4"><span class="n">04</span>주요 사용자와 핵심 흐름</a><a href="#s5"><span class="n">05</span>주요 기능</a><a href="#s6"><span class="n">06</span>추가 기획 의사결정 사항</a></nav>
@@ -112,16 +139,16 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
 <header class="head">
 <p class="eyebrow">크리에이터클럽 · 개발요건정의서 · 에픽</p>
 <h1>[신규기능] 팀 — 팀 생성·관리팀 포폴 업로드 주체 설정·팀 정보 표시</h1>
-<ul class="meta"><li><b>버전 1.0</b></li><li>상위 <a href="https://cre8orclub.atlassian.net/browse/CCO-111">CCO-111</a></li><li><span class="st">QA 완료</span></li><li>최종 업데이트 2026-09-22</li></ul>
+<ul class="meta"><li><b>버전 1.1</b></li><li>상위 <a href="https://cre8orclub.atlassian.net/browse/CCO-111">CCO-111</a></li><li><span class="st">QA 완료</span></li><li>최종 업데이트 2026-09-22</li></ul>
 <nav class="hbtns" aria-label="문서 도구"><button type="button" class="hbtn primary" id="histOpen" aria-controls="histPanel">버전 기록</button><a class="hbtn" href="https://cre8orclub.atlassian.net/browse/CCO-111" target="_blank" rel="noopener">Jira에서 보기</a></nav>
 </header>
-<section class="sec" id="s1"><header class="sh"><span class="sn">01</span><h2>정의</h2><p class="sq">어떤 집단을 팀이라고 하는가</p></header><div class="sb"><p><b>2명 이상의 크리에이터가 함께 작업물을 만들고, 팀으로서 그 작업물을 시장에 보여주는 집단</b></p></div></section><section class="sec" id="s2"><header class="sh"><span class="sn">02</span><h2>배경과 의도</h2><p class="sq">왜 만드는가</p></header><div class="sb"><p>크리에이터들이 C8 안에서 노크로 말을 걸고, 그룹 채팅으로 함께 작업을 하게됩니다.</p><p>그런데 함께 만든 작업물을 올릴 곳은 <b>개인 프로필뿐</b>입니다.</p><p><b>함께 만든 작업물이 팀의 이름으로 남을 자리가 필요합니다. </b></p><p>[참고] — Behance는 구성원과 작업을 팀 단위로 묶어 보여줍니다.</p><div class="tbl"><table><tr><th><p><b>비핸스 참고 영상 </b></p></th><th><p><b>팀 포트폴리오 - 하단 </b></p></th><th><p><b>팀 프로필 </b></p></th><th><p><b>팀원 개인 프로필 </b></p></th></tr><tr><td class="endrow"><a class="att" href="https://cre8orclub.atlassian.net/browse/CCO-111" target="_blank" rel="noopener">▶ Behance 팀_refer.MP4 <span>(Jira 첨부에서 보기)</span></a></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224618.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224618.png" alt="image-20260826-224618.png" loading="lazy"></a></figure></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224632.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224632.png" alt="image-20260826-224632.png" loading="lazy"></a></figure><figure class="fig"><a href="assets/image-20260826-224643.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224643.png" alt="image-20260826-224643.png" loading="lazy"></a></figure><figure class="fig"><a href="assets/image-20260826-224650.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224650.png" alt="image-20260826-224650.png" loading="lazy"></a></figure></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224704.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224704.png" alt="image-20260826-224704.png" loading="lazy"></a></figure></td></tr></table></div></div></section><section class="sec" id="s3"><header class="sh"><span class="sn">03</span><h2>목표 · MVP</h2><p class="sq">이번에 어디까지 하는가</p></header><div class="sb"><h4>오픈 스펙 — 팀 생성 · 팀 그룹채팅 · 팀 프로필 · 팀 포트폴리오</h4><p>이번 버전에서 크리에이터는 앱 안에서 팀을 만들고, 팀원을 모으고, 자동으로 생긴 팀 채팅에서 대화를 나누고, 함께 만든 작업물을 팀의 이름으로 보여줍니다.</p><ul><li><p><b>팀 생성</b> — 팀 이름(영문 소문자 기준 중복체크) · 팀 프로필 사진 · 팀 한줄 소개를 입력 시 팀이 생성됩니다.</p></li><li><p><b>팀 구성원 초대</b> — 팀원 이름을 검색해 초대합니다.</p></li><li><p><b>팀 그룹채팅</b> — 팀을 새로 만들면 팀 전용 그룹채팅방이 함께 열립니다.</p></li><li><p><b>팀 포트폴리오</b> — 팀원이 한 번 등록하면 팀 프로필과 참여한 팀원의 개인 프로필에 함께 게시됩니다.</p></li><li><p><b>팀 프로필</b> — 팀을 새로 만들면 팀 프로필이 생성됩니다. 프로필은 팀 소개 · 팀 작업물 · 팀 구성원을 보여줍니다.</p></li></ul><ul><li class="imgonly"><figure class="fig"><a href="assets/image-20260826-223717.png" target="_blank" rel="noopener"><img src="assets/image-20260826-223717.png" alt="image-20260826-223717.png" loading="lazy"></a></figure></li></ul></div></section><section class="sec" id="s4"><header class="sh"><span class="sn">04</span><h2>주요 사용자와 핵심 흐름</h2><p class="sq">누가 어떻게 쓰는가</p></header><div class="sb"><h4><b>팀 생성(그룹채팅방 자동 생성) → 팀원 초대 → 합류 → 팀 포트폴리오 등록</b></h4><p>팀 관리자가 팀을 만들면 전용 그룹채팅방이 함께 열리고, 이름 검색으로 초대받은 크리에이터가 팀원으로 합류해 포트폴리오를 등록합니다.</p><p>이미 프로젝트 채팅방에서 협업 중인 구성원은, 멤버가 정해진 시점에 채팅방에서 팀 프로필을 만들어 같은 흐름을 따릅니다. 이때 채팅방은 쓰던 방을 그대로 씁니다.</p></div></section><section class="sec" id="s5"><header class="sh"><span class="sn">05</span><h2>주요 기능</h2><p class="sq">무엇을 개발하는가</p></header><div class="sb"><div class="tbl"><table><tr><th><p>역할</p></th><th><p>기능 · 흐름 순서</p></th><th><p>주요 요구사항</p></th></tr><tr><td rowspan="3"><p><b>팀 관리자</b></p></td><td><p><b>① 팀 생성</b></p></td><td><ul><li><p>팀 이름 · 팀 프로필 사진 · 팀 한줄 소개 입력 → 팀 생성</p></li><li><p>팀 이름은 한글 · 영문 · 이모지 허용, 중복 불가(영문 소문자 기준 중복 체크) </p></li><li><p>생성과 동시에 팀 전용 그룹채팅방 개설</p></li></ul></td></tr><tr><td><p><b>② 팀정보 관리</b></p></td><td><ul><li><p>팀 관리자(팀 생성자)만 팀 이름 · 팀 프로필 사진 · 팀 소개 수정 가능</p></li></ul></td></tr><tr><td><p><b>③ 팀원 초대</b></p></td><td><ul><li><p>앱 내 크리에이터 이름 검색 → 초대, 인원 제한 없음</p></li><li><p>거절한 크리에이터에게 다시 초대 가능, 초대 기한 없음</p></li><li><p>팀 관리자만 팀원 내보내기 가능</p></li></ul></td></tr><tr><td rowspan="2"><p><b>팀원</b></p></td><td><p><b>④ 초대 알림</b></p></td><td><ul><li><p>앱 푸시, 앱 알림 </p></li></ul></td></tr><tr><td><p><b>⑤ 팀 합류</b></p></td><td><ul><li><p>Chatty &gt; [팀] 팀 초대 확인 → 수락 · 거절</p></li></ul></td></tr><tr><td rowspan="4" class="endrow"><p><b>공통</b></p></td><td><p><b>⑥ 팀 그룹채팅</b></p></td><td><ul><li><p>초대받은 팀원은 팀 채팅방에 자동으로 입장</p></li><li><p>팀 관리자는 팀 해체하기 시 팀 해체되며 </p></li><li><p>팀 멤버는 팀에서 나가기 시 팀 채팅방에서도 자동으로 나가짐</p></li><li><p>그 외 메세지 읽음처리, 채팅방 알림 설정, 메세지 복사 등은 채팅 공통 기준 따름</p></li></ul></td></tr><tr><td><p><b>⑦ 팀 프로필 </b></p></td><td><ul><li><p>팀 멤버는 초대 수락 시점에 자동으로 팀 팔로잉 됨</p></li><li><p>팀 멤버 모두 팀 팔로잉을 해제 가능 </p></li><li><p>팀 관리자는 팀 정보 수정 및 팀 멤버 초대 가능</p></li></ul></td></tr><tr><td><p><b>⑧ 팀 포트폴리오</b></p></td><td><ul><li><p>업로드 시점에 팀 포트폴리오를 선택해 등록 가능 </p></li><li><p>등록 후 개인 포폴 OR 다른 팀 포폴로 전환 가능 </p></li><li><p>등록 시점의 팀원 전체와 팀 프로필에 동시 게시</p></li><li><p>공개 범위는 무조건 전체 공개 </p></li><li><p>수정 · 삭제는 업로드한 크리에이터만 가능 </p></li></ul></td></tr><tr><td class="endrow"><p><b>⑨ 팀 해체</b></p></td><td class="endrow"><ul><li><p>팀 관리자만 팀 프로필 수정화면에서 해체 가능 </p></li><li><p>팀 해체 시 팀 멤버는 2주간 팀 채팅방 읽기 전용으로 조회 가능 </p></li><li><p>팀 해체 시 팀 포트폴리오는 유지 (단! 팀 포폴에서 개인 포트폴리오로 수정 시 이전 팀 멤버 프로필 화면에서는 해당 팀 포폴 미 노출)</p></li></ul></td></tr></table></div><p>팀 나가기 · 팀 해체 · 회원 탈퇴 뒤의 노출 정책은 확정되어 있고, 상세는 개발 PRD가 담습니다.</p></div></section><section class="sec" id="s6"><header class="sh"><span class="sn">06</span><h2>추가 기획 의사결정 사항</h2></header><div class="sb"><ul class="tasks"><li class="done"><span class="tick" aria-label="완료"></span><span>팀 생성 기능 위치 - 연락처 </span></li><li class="done"><span class="tick" aria-label="완료"></span><span>프로젝트 멤버 결정 후 팀 생성 사용 플로우 → 오픈 스펙에서 제외 </span></li><li class="done"><span class="tick" aria-label="완료"></span><span>내가 올리지 않은 팀 포폴 상세화면 상단에 팀 정보 노출 → 일단 허용. 개발된걸 보고 판단예정</span></li><li class="done"><span class="tick" aria-label="완료"></span><span>팀 채팅방 →오 픈 스펙으로 포함 </span></li></ul></div></section>
+<section class="sec" id="s1"><header class="sh"><span class="sn">01</span><h2>정의</h2><p class="sq">어떤 집단을 팀이라고 하는가</p></header><div class="sb"><p><b>2명 이상의 크리에이터가 함께 작업물을 만들고, 팀으로서 그 작업물을 시장에 보여주는 집단</b></p></div></section><section class="sec" id="s2"><header class="sh"><span class="sn">02</span><h2>배경과 의도</h2><p class="sq">왜 만드는가</p></header><div class="sb"><p>크리에이터들이 C8 안에서 노크로 말을 걸고, 그룹 채팅으로 함께 작업을 하게됩니다.</p><p>그런데 함께 만든 작업물을 올릴 곳은 <b>개인 프로필뿐</b>입니다.</p><p><b>함께 만든 작업물이 팀의 이름으로 남을 자리가 필요합니다. </b></p><p>[참고] — Behance는 구성원과 작업을 팀 단위로 묶어 보여줍니다.</p><div class="tbl dk-table dk-frame"><table><tr><th><p><b>비핸스 참고 영상 </b></p></th><th><p><b>팀 포트폴리오 - 하단 </b></p></th><th><p><b>팀 프로필 </b></p></th><th><p><b>팀원 개인 프로필 </b></p></th></tr><tr><td class="endrow"><a class="att" href="https://cre8orclub.atlassian.net/browse/CCO-111" target="_blank" rel="noopener">▶ Behance 팀_refer.MP4 <span>(Jira 첨부에서 보기)</span></a></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224618.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224618.png" alt="image-20260826-224618.png" loading="lazy"></a></figure></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224632.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224632.png" alt="image-20260826-224632.png" loading="lazy"></a></figure><figure class="fig"><a href="assets/image-20260826-224643.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224643.png" alt="image-20260826-224643.png" loading="lazy"></a></figure><figure class="fig"><a href="assets/image-20260826-224650.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224650.png" alt="image-20260826-224650.png" loading="lazy"></a></figure></td><td class="endrow"><figure class="fig"><a href="assets/image-20260826-224704.png" target="_blank" rel="noopener"><img src="assets/image-20260826-224704.png" alt="image-20260826-224704.png" loading="lazy"></a></figure></td></tr></table></div></div></section><section class="sec" id="s3"><header class="sh"><span class="sn">03</span><h2>목표 · MVP</h2><p class="sq">이번에 어디까지 하는가</p></header><div class="sb"><h4>오픈 스펙 — 팀 생성 · 팀 그룹채팅 · 팀 프로필 · 팀 포트폴리오</h4><p>이번 버전에서 크리에이터는 앱 안에서 팀을 만들고, 팀원을 모으고, 자동으로 생긴 팀 채팅에서 대화를 나누고, 함께 만든 작업물을 팀의 이름으로 보여줍니다.</p><ul><li><p><b>팀 생성</b> — 팀 이름(영문 소문자 기준 중복체크) · 팀 프로필 사진 · 팀 한줄 소개를 입력 시 팀이 생성됩니다.</p></li><li><p><b>팀 구성원 초대</b> — 팀원 이름을 검색해 초대합니다.</p></li><li><p><b>팀 그룹채팅</b> — 팀을 새로 만들면 팀 전용 그룹채팅방이 함께 열립니다.</p></li><li><p><b>팀 포트폴리오</b> — 팀원이 한 번 등록하면 팀 프로필과 참여한 팀원의 개인 프로필에 함께 게시됩니다.</p></li><li><p><b>팀 프로필</b> — 팀을 새로 만들면 팀 프로필이 생성됩니다. 프로필은 팀 소개 · 팀 작업물 · 팀 구성원을 보여줍니다.</p></li></ul><ul><li class="imgonly"><figure class="fig"><a href="assets/image-20260826-223717.png" target="_blank" rel="noopener"><img src="assets/image-20260826-223717.png" alt="image-20260826-223717.png" loading="lazy"></a></figure></li></ul></div></section><section class="sec" id="s4"><header class="sh"><span class="sn">04</span><h2>주요 사용자와 핵심 흐름</h2><p class="sq">누가 어떻게 쓰는가</p></header><div class="sb"><h4><b>팀 생성(그룹채팅방 자동 생성) → 팀원 초대 → 합류 → 팀 포트폴리오 등록</b></h4><p>팀 관리자가 팀을 만들면 전용 그룹채팅방이 함께 열리고, 이름 검색으로 초대받은 크리에이터가 팀원으로 합류해 포트폴리오를 등록합니다.</p><p>이미 프로젝트 채팅방에서 협업 중인 구성원은, 멤버가 정해진 시점에 채팅방에서 팀 프로필을 만들어 같은 흐름을 따릅니다. 이때 채팅방은 쓰던 방을 그대로 씁니다.</p></div></section><section class="sec" id="s5"><header class="sh"><span class="sn">05</span><h2>주요 기능</h2><p class="sq">무엇을 개발하는가</p></header><div class="sb"><div class="tbl dk-table dk-frame"><table><tr><th><p>역할</p></th><th><p>기능 · 흐름 순서</p></th><th><p>주요 요구사항</p></th></tr><tr><td rowspan="3"><p><b>팀 관리자</b></p></td><td><p><b>① 팀 생성</b></p></td><td><ul><li><p>팀 이름 · 팀 프로필 사진 · 팀 한줄 소개 입력 → 팀 생성</p></li><li><p>팀 이름은 한글 · 영문 · 이모지 허용, 중복 불가(영문 소문자 기준 중복 체크) </p></li><li><p>생성과 동시에 팀 전용 그룹채팅방 개설</p></li></ul></td></tr><tr><td><p><b>② 팀정보 관리</b></p></td><td><ul><li><p>팀 관리자(팀 생성자)만 팀 이름 · 팀 프로필 사진 · 팀 소개 수정 가능</p></li></ul></td></tr><tr><td><p><b>③ 팀원 초대</b></p></td><td><ul><li><p>앱 내 크리에이터 이름 검색 → 초대, 인원 제한 없음</p></li><li><p>거절한 크리에이터에게 다시 초대 가능, 초대 기한 없음</p></li><li><p>팀 관리자만 팀원 내보내기 가능</p></li></ul></td></tr><tr><td rowspan="2"><p><b>팀원</b></p></td><td><p><b>④ 초대 알림</b></p></td><td><ul><li><p>앱 푸시, 앱 알림 </p></li></ul></td></tr><tr><td><p><b>⑤ 팀 합류</b></p></td><td><ul><li><p>Chatty &gt; [팀] 팀 초대 확인 → 수락 · 거절</p></li></ul></td></tr><tr><td rowspan="4" class="endrow"><p><b>공통</b></p></td><td><p><b>⑥ 팀 그룹채팅</b></p></td><td><ul><li><p>초대받은 팀원은 팀 채팅방에 자동으로 입장</p></li><li><p>팀 관리자는 팀 해체하기 시 팀 해체되며 </p></li><li><p>팀 멤버는 팀에서 나가기 시 팀 채팅방에서도 자동으로 나가짐</p></li><li><p>그 외 메세지 읽음처리, 채팅방 알림 설정, 메세지 복사 등은 채팅 공통 기준 따름</p></li></ul></td></tr><tr><td><p><b>⑦ 팀 프로필 </b></p></td><td><ul><li><p>팀 멤버는 초대 수락 시점에 자동으로 팀 팔로잉 됨</p></li><li><p>팀 멤버 모두 팀 팔로잉을 해제 가능 </p></li><li><p>팀 관리자는 팀 정보 수정 및 팀 멤버 초대 가능</p></li></ul></td></tr><tr><td><p><b>⑧ 팀 포트폴리오</b></p></td><td><ul><li><p>업로드 시점에 팀 포트폴리오를 선택해 등록 가능 </p></li><li><p>등록 후 개인 포폴 OR 다른 팀 포폴로 전환 가능 </p></li><li><p>등록 시점의 팀원 전체와 팀 프로필에 동시 게시</p></li><li><p>공개 범위는 무조건 전체 공개 </p></li><li><p>수정 · 삭제는 업로드한 크리에이터만 가능 </p></li></ul></td></tr><tr><td class="endrow"><p><b>⑨ 팀 해체</b></p></td><td class="endrow"><ul><li><p>팀 관리자만 팀 프로필 수정화면에서 해체 가능 </p></li><li><p>팀 해체 시 팀 멤버는 2주간 팀 채팅방 읽기 전용으로 조회 가능 </p></li><li><p>팀 해체 시 팀 포트폴리오는 유지 (단! 팀 포폴에서 개인 포트폴리오로 수정 시 이전 팀 멤버 프로필 화면에서는 해당 팀 포폴 미 노출)</p></li></ul></td></tr></table></div><p>팀 나가기 · 팀 해체 · 회원 탈퇴 뒤의 노출 정책은 확정되어 있고, 상세는 개발 PRD가 담습니다.</p></div></section><section class="sec" id="s6"><header class="sh"><span class="sn">06</span><h2>추가 기획 의사결정 사항</h2></header><div class="sb"><ul class="tasks"><li class="done"><span class="tick" aria-label="완료"></span><span>팀 생성 기능 위치 - 연락처 </span></li><li class="done"><span class="tick" aria-label="완료"></span><span>프로젝트 멤버 결정 후 팀 생성 사용 플로우 → 오픈 스펙에서 제외 </span></li><li class="done"><span class="tick" aria-label="완료"></span><span>내가 올리지 않은 팀 포폴 상세화면 상단에 팀 정보 노출 → 일단 허용. 개발된걸 보고 판단예정</span></li><li class="done"><span class="tick" aria-label="완료"></span><span>팀 채팅방 →오 픈 스펙으로 포함 </span></li></ul></div></section>
 </main>
 </div>
 <footer class="srct" id="sources" aria-label="출처"><details><summary>출처 <span class="srct-n">· 3</span></summary><div class="srct-body"><div class="srct-row"><b>원문 티켓</b><span><a href="https://cre8orclub.atlassian.net/browse/CCO-111">CCO-111</a> · Jira 2026-09-22 갱신본</span></div><div class="srct-row"><b>첨부 이미지</b><span>티켓 첨부 6장을 이 문서에 함께 올렸습니다</span></div><div class="srct-row"><b>첨부 영상</b><span><a href="https://cre8orclub.atlassian.net/browse/CCO-111">Behance 팀_refer.MP4</a> (Jira에서 보기)</span></div></div></details></footer>
 <aside class="hpanel" id="histPanel" hidden aria-label="버전 기록" role="dialog" aria-modal="false">
 <div class="gp-head"><b>버전 기록</b><button type="button" class="gp-close" id="histClose" aria-label="닫기">✕</button></div>
-<div class="gp-body"><div class="vrow"><b>v1.0</b><span>CCO-111 본문(Jira 2026-09-22 갱신본)을 기획서형 템플릿으로 옮겼습니다. 글자는 티켓 원문 그대로입니다.</span></div></div>
+<div class="gp-body"><div class="vrow"><b>v1.1</b><span>표 선 끊김·좁은 화면 잘림 수리(내용 변화 없음) (2026-10-17)</span></div><div class="vrow"><b>v1.0</b><span>CCO-111 본문(Jira 2026-09-22 갱신본)을 기획서형 템플릿으로 옮겼습니다. 글자는 티켓 원문 그대로입니다.</span></div></div>
 </aside>
 <script>
 (function(){
@@ -139,4 +166,86 @@ h1,h2,h3{word-break:keep-all;overflow-wrap:anywhere;text-wrap:balance}
   function go(){ var t=document.querySelector('.srct'); if(!t) return; var id=decodeURIComponent(location.hash.slice(1)); if(id&&(t.id===id)){ var d=t.querySelector('details'); if(d) d.open=true; } }
   window.addEventListener('hashchange',go); go();
 })();
-</script></body></html>
+</script><!--doc-template-kit:start table-body--><script data-dk="table">(function () {
+  // 표 반응형: 칸 격자(rowspan·colspan)를 계산해 머리글 이름표를 달고, 폭이 모자라면 카드로 쌓는다.
+  var MINCOL = 150;  // 세 칸 이상 표는 칸마다 이만큼(px)이 안 되면 쌓는다 — 휴대폰 폭에서 좁은 칸 여럿보다 카드가 읽힌다
+  function text(el) { return (el.textContent || '').replace(/\s+/g, ' ').trim(); }
+  function grid(t) {
+    var rows = [].slice.call(t.rows), occ = [], info = [];
+    rows.forEach(function (tr, ri) {
+      occ[ri] = occ[ri] || []; var c = 0;
+      [].slice.call(tr.cells).forEach(function (cell) {
+        while (occ[ri][c]) c++;
+        var rs = cell.rowSpan, cs = Math.max(1, cell.colSpan || 1);
+        if (rs === 0) { var sec = tr.parentElement, idx = [].indexOf.call(sec.rows, tr); rs = sec.rows.length - idx; }   // rowspan="0": 줄 묶음 끝까지
+        rs = Math.max(1, rs || 1);
+        for (var r = 0; r < rs; r++) { occ[ri + r] = occ[ri + r] || []; for (var k = 0; k < cs; k++) occ[ri + r][c + k] = cell; }
+        info.push({ cell: cell, r: ri, c: c, rs: rs, cs: cs }); c += cs;
+      });
+    });
+    var cols = 0; occ.forEach(function (o) { cols = Math.max(cols, o.length); });
+    return { rows: rows, occ: occ, info: info, cols: cols };
+  }
+  function prepare(w) {
+    var t = w.querySelector(':scope>table'); if (!t || w.dataset.dkReady) return;
+    w.dataset.dkReady = '1';
+    var g = grid(t), head = [];
+    g.rows.forEach(function (tr, ri) {
+      var cells = [].slice.call(tr.cells);
+      var isHead = tr.parentElement.tagName === 'THEAD' || (ri === head.length && cells.length && cells.every(function (c) { return c.tagName === 'TH'; }) && g.rows.length > 1);
+      if (isHead) { head.push(ri); tr.classList.add('dk-head'); }
+    });
+    var first = g.rows.filter(function (tr) { return !tr.classList.contains('dk-head'); })[0];
+    if (first) first.classList.add('dk-first');
+    var label = [];
+    for (var c = 0; c < g.cols; c++) {
+      var parts = []; head.forEach(function (ri) { var h = g.occ[ri] && g.occ[ri][c]; var s = h ? text(h) : ''; if (s && parts.indexOf(s) < 0) parts.push(s); });
+      label[c] = parts.join(' · ');
+    }
+    // 낭독기용: 머리글 칸이 열 머리글인지 줄 머리글인지 알린다(이미 있으면 둔다)
+    head.forEach(function (ri) { [].slice.call(g.rows[ri].cells).forEach(function (c) { if (c.tagName === 'TH' && !c.hasAttribute('scope')) c.setAttribute('scope', c.colSpan > 1 ? 'colgroup' : 'col'); }); });
+    g.info.forEach(function (x) { if (head.indexOf(x.r) < 0 && x.cell.tagName === 'TH' && !x.cell.hasAttribute('scope')) x.cell.setAttribute('scope', x.rs > 1 ? 'rowgroup' : 'row'); });
+    var seenTitle = {};
+    g.info.forEach(function (x) {
+      if (head.indexOf(x.r) >= 0) return;
+      if (x.rs > 1) { x.cell.classList.add('dk-grp'); return; }
+      if (!seenTitle[x.r]) { seenTitle[x.r] = 1; x.cell.classList.add('dk-title'); return; }
+      if (label[x.c] && label[x.c] !== text(x.cell)) x.cell.setAttribute('data-dk-label', label[x.c]);
+    });
+    w.dataset.dkCols = g.cols;
+  }
+  function fit(w) {
+    var t = w.querySelector(':scope>table'); if (!t) return;
+    var cols = +w.dataset.dkCols || 1;
+    w.classList.remove('dk-stack');
+    // 낱말(어절)을 쪼개지 않고 들어가는지 본다 — 칸은 overflow-wrap:normal이라 안 들어가면 표가 감싸개보다 넓어진다
+    var room = w.clientWidth; if (!room) return;   // 숨은 탭 안 표는 보일 때(크기 바뀜) 다시 잰다
+    var over = t.scrollWidth - room;
+    var tooNarrow = cols >= 3 && room < cols * MINCOL;
+    if ((over > 2 || tooNarrow) && cols >= 2) w.classList.add('dk-stack');
+    // 그래도 가로로 넘치면(쌓을 수 없는 한 칸 표 등) 키보드로도 옆으로 움직일 수 있게
+    if (w.scrollWidth > w.clientWidth + 2) { if (!w.hasAttribute('tabindex')) { w.setAttribute('tabindex', '0'); w.dataset.dkTab = '1'; } }
+    else if (w.dataset.dkTab) { w.removeAttribute('tabindex'); delete w.dataset.dkTab; }
+  }
+  function wrap(t) {
+    // 엔진 열린 표(.table)·배치용 표·표 안의 표·머리·목차 안 표는 건드리지 않는다
+    if (t.closest('.dk-table, .table, nav, header') || t.hasAttribute('data-dk-skip') || t.getAttribute('role') === 'presentation' || (t.parentElement && t.parentElement.closest('td,th'))) return null;
+    var p = t.parentElement;
+    if (p && p.children.length === 1 && /^(DIV|FIGURE)$/.test(p.tagName) && p !== document.body) { p.classList.add('dk-table'); return p; }
+    var d = document.createElement('div'); d.className = 'dk-table'; t.parentNode.insertBefore(d, t); d.appendChild(t); return d;
+  }
+  function run() {
+    [].slice.call(document.querySelectorAll('table')).forEach(wrap);
+    var ws = [].slice.call(document.querySelectorAll('.dk-table'));
+    ws.forEach(prepare); ws.forEach(fit);
+    if ('ResizeObserver' in window) {
+      var last = new WeakMap();
+      var ro = new ResizeObserver(function (es) { es.forEach(function (e) { var w = Math.round(e.contentRect.width); if (last.get(e.target) !== w) { last.set(e.target, w); fit(e.target); } }); });
+      ws.forEach(function (w) { ro.observe(w); });
+    } else window.addEventListener('resize', function () { ws.forEach(fit); });
+    window.addEventListener('beforeprint', function () { ws.forEach(function (w) { w.classList.remove('dk-stack'); }); });
+    window.addEventListener('afterprint', function () { ws.forEach(fit); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run); else run();
+})();
+</script><!--doc-template-kit:end table-body--></body></html>
