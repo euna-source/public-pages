@@ -406,5 +406,13 @@
     "last_kind": "redeploy",
     "last_sha256": "1ecb3f43d8f80d3d29cddda2266363979b145ffe9c08593322dc93669c760edc",
     "timestamp": "2026-10-18T08:59:44.082739Z"
+  },
+  "c8-home-v08-plan": {
+    "slug": "c8-home-v08-plan",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-home-v08-plan/",
+    "last_kind": "new",
+    "last_sha256": "8a65dd5315f5467ef3c479cda90ac52e49512576deae9c7b2adf565b76c316b4",
+    "timestamp": "2026-10-18T09:08:41.568906Z"
   }
 }
