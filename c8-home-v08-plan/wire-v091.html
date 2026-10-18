@@ -460,7 +460,9 @@ body.pre-release .tile .poster{filter:blur(1.5px)}
 .pv-intro i + i{width:68%}
 .pv-knock{align-self:flex-start;font-size:12.5px;color:var(--ink-3);border:1px dashed var(--line);border-radius:999px;padding:3px 12px}
 .pv-works{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.pv-works .ph{height:90px;padding:4px;font-size:11px;filter:blur(1.1px);opacity:.75}
+.pv-works .ph{height:90px;padding:4px;font-size:11px;filter:blur(1.1px);opacity:.75;cursor:pointer;background-size:cover;background-position:center;font-family:inherit;color:inherit}
+.pv-works .ph.has{filter:none;opacity:1}
+.pv-works .ph.has > span{display:none}
 .pv-works .ex{top:-6px;right:-4px}
 .photo-ask{position:absolute;left:12px;right:12px;bottom:12px;z-index:3;background:var(--surface);border:1.5px solid var(--ink);border-radius:var(--r-m);padding:12px;display:grid;gap:10px;font-size:13.5px;line-height:1.5;box-shadow:0 8px 24px rgba(0,0,0,.14)}
 .photo-ask[hidden]{display:none}
@@ -685,7 +687,7 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
           <div><b><span class="ln">따로 신청하지 않아도,</span><span class="ln">이번 주 베스트에 참여돼요.</span></b><span class="scr">Weekly Best · 규칙 화면 '별도 신청 없이 참여' · 상금 가림</span></div>
         </div>
       </div>
-      <h2 class="bridge" id="bridge" tabindex="-1"><span class="pin">8-2</span><span class="ln d">좋아하던 작업자의 새 글을, 석 달째 기다렸어요.</span><span class="ln d">먼저 말을 걸었을까요?</span><span class="ln m">좋아하던 작업자의 새 글,</span><span class="ln m">석 달째 기다렸어요.</span><span class="ln m">먼저 말 걸었을까요?</span></h2>
+      <h2 class="bridge" id="bridge" tabindex="-1"><span class="pin">8-2</span><span class="ln d">감독 한 사람이, 좋아하는 사진가의 새 글을 석 달째 기다렸어요.</span><span class="ln d">그가 먼저 말을 걸었을까요?</span><span class="ln m">감독 한 사람이,</span><span class="ln m">새 글을 석 달째 기다렸어요.</span><span class="ln m">그가 먼저 말을 걸었을까요?</span></h2>
       <p class="bridge-sub"><span class="ph" aria-hidden="true"><span>EP2<br>포스터</span></span><span>방금 본 네 가지가, 이 1분에 다 나와요.</span></p>
       <ol class="notes">
         <li><span class="pin">8-1</span><span>(10/19 피드백 반영) 상자 이름 '앱 안에 더 있어요'와 '곧 열려요'를 없애고 받을 것을 제목으로 · 클럽 '같이 할 사람이 없다면, / 모집 글부터 올려요.' · Weekly Best '따로 신청하지 않아도, / 이번 주 베스트에 참여돼요.'(규칙 화면 '별도 신청 없이 참여') · 정할 것 5: 11/2 빌드에서 둘 다 확인될 때까지 빼는 안이 권장이라 기본 꺼 둠 · 위 '8-1 띠' 스위치로 넣은 판 미리보기 · (QA 수리) 넣으면 주석 끈 화면에서 다리가 1440 260 → 403(+143), 390 340 → 501(+161)이라 05장 시작이 그만큼 늦어짐(주석 켠 화면 기준 +366은 주석 칸 포함 값) · 높이 예산·정할 것 5에 함께 적을 것</span></li>
@@ -828,10 +830,15 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
               </div>
               <div class="pv-intro" role="img" aria-label="소개 두 줄 자리"><i></i><i></i></div>
               <span class="pv-knock">노크 받기를 켜면 여기 보여요</span>
-              <div class="pv-works" id="pvWorks" role="group" aria-label="예시 작업 세 칸"><span class="ex">예시</span><span class="ph"><span>작업</span></span><span class="ph"><span>작업</span></span><span class="ph"><span>작업</span></span></div>
+              <div class="pv-works" id="pvWorks" role="group" aria-label="작업 세 칸, 눌러서 내 작업 사진 넣기"><span class="ex" id="pvWorksEx">예시</span><button class="ph" type="button" data-w="0" aria-label="작업 칸 1, 눌러서 내 작업 사진 넣기"><span>작업</span></button><button class="ph" type="button" data-w="1" aria-label="작업 칸 2, 눌러서 내 작업 사진 넣기"><span>작업</span></button><button class="ph" type="button" data-w="2" aria-label="작업 칸 3, 눌러서 내 작업 사진 넣기"><span>작업</span></button></div>
+              <input type="file" id="worksIn" accept="image/*" hidden>
               <div class="photo-ask" id="photoAsk" hidden>
                 <p><b>본인 사진만 넣어 주세요.</b> 사진은 이 화면에만 보이고, 저장 이미지에는 이름 첫 글자가 들어가요.</p>
                 <div><button class="btn sm" type="button" id="photoGo">사진 고르기</button><button class="btn sm ghost" type="button" id="photoNo">취소</button></div>
+              </div>
+              <div class="photo-ask" id="photoAskW" hidden>
+                <p><b>내가 만든 작업 사진만 넣어 주세요.</b> 이 화면에만 보이고, 저장 이미지에는 들어가지 않아요.</p>
+                <div><button class="btn sm" type="button" id="photoGoW">사진 고르기</button><button class="btn sm ghost" type="button" id="photoNoW">취소</button></div>
               </div>
               <input type="file" id="photoIn" accept="image/*" hidden>
             </div>
@@ -910,10 +917,10 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
   var EPS=[
     {n:1,ord:2,title:"올리자마자, 지우고 싶었어요",name:"싱어송라이터 | 한겨울",msg:"덜 된 두 줄도, 버릴 게 없어요",hook:"“죄송해요”를 쓰다 지우는 엄지, 끊긴 파형",poster:"끊긴 파형",jobs:["음악"],side:"받는 편",item:"ch01-1",fname:"01 올리기"},
     {n:2,ord:3,title:"말은 못 걸고, 새 글만 기다렸어요",name:"뮤직비디오 감독 | 박현",msg:"좋은 작업을 봤다면, 먼저 말 걸어요",hook:"박현의 엄지가 은솔의 밤 사진 열한 칸을 끝까지 내려요",poster:"밤 사진 한 칸",jobs:["영상","사진"],side:"하는 편",item:"ch02-1",fname:"02 발견·리스펙트"},
-    {n:3,ord:4,title:"혼자만 듣던 노래, 처음 남에게 들려줘요",name:"개발자 | 우진",msg:"혼자 끙끙 말고, 같은 취미 방에 물어봐요",hook:"헤드폰 걸린 퇴근 책상, 끝 안 난 데모 파일들",poster:"헤드폰 걸린 퇴근 책상",jobs:["음악","개발"],side:"하는 편",item:"s8",fname:"클럽 · 오픈채팅"},
-    {n:4,ord:6,title:"드럼 7년 쳤는데, ‘그냥 회사원’이라 썼어요",name:"회계팀 과장 | 강도윤",msg:"7년 한 취미, 겸손하게 쓰지 마요",hook:"닳은 스틱 옆 빈 지원서 칸 ‘0/300’, 뒤에 사원증",poster:"닳은 스틱",jobs:["음악","회사원"],side:"하는 편",item:"ch03-3",fname:"03 프로필"},
-    {n:5,ord:5,title:"표지 그려 줄 사람, 7화에서 이미 만났어요",name:"CS팀 매니저 | 서하",msg:"혼자 못 채운 칸, 모집 한 줄로 채워요",hook:"빈 표지 칸 옆, 7화 문장 “우산은 하나였고, 비는 둘에게 왔다”",poster:"접힌 우산 하나",jobs:["글","회사원"],side:"하는 편",item:"s8",fname:"클럽 · 프로젝트 모집"},
-    {n:6,ord:1,title:"4년째 점심마다, 서로를 1분씩 그려요",name:"점심 크로키 모임 | 넷",msg:"우리끼리 그린 4년, 이제 밖에 보여 줘요",hook:"네 사람이 서로 그린 점심 그림이 이어 붙어 움직여요",poster:"이어 붙인 점심 그림 네 장",jobs:["그림·디자인"],side:"하는 편",item:"s8",fname:"클럽 · 팀"}
+    {n:3,ord:4,title:"혼자만 듣던 노래, 처음 남에게 들려줬어요",name:"개발자 | 우진",msg:"같은 취미 방엔, 물어볼 사람이 있어요",hook:"헤드폰 걸린 퇴근 책상, 끝 안 난 데모 파일들",poster:"헤드폰 걸린 퇴근 책상",jobs:["음악","개발"],side:"하는 편",item:"s8",fname:"클럽 · 오픈채팅"},
+    {n:4,ord:6,title:"드럼 7년 쳤는데, ‘그냥 회사원’이라 썼어요",name:"회계팀 과장 | 강도윤",msg:"7년 한 취미도, 이미 경력이에요",hook:"닳은 스틱 옆 빈 지원서 칸 ‘0/300’, 뒤에 사원증",poster:"닳은 스틱",jobs:["음악","회사원"],side:"하는 편",item:"ch03-3",fname:"03 프로필"},
+    {n:5,ord:5,title:"표지 그려 줄 사람, 7화 댓글에 있었어요",name:"CS팀 매니저 | 서하",msg:"혼자 못 채운 칸, 모집 한 줄로 채워져요",hook:"빈 표지 칸 옆, 7화 문장 “우산은 하나였고, 비는 둘에게 왔다”",poster:"접힌 우산 하나",jobs:["글","회사원"],side:"하는 편",item:"s8",fname:"클럽 · 프로젝트 모집"},
+    {n:6,ord:1,title:"4년째 점심마다, 서로를 1분씩 그려요",name:"점심 크로키 모임 | 넷",msg:"우리끼리 그린 4년이, 밖에서도 보여요",hook:"네 사람이 서로 그린 점심 그림이 이어 붙어 움직여요",poster:"이어 붙인 점심 그림 네 장",jobs:["그림·디자인"],side:"하는 편",item:"s8",fname:"클럽 · 팀"}
   ];
   /* 장 데이터 표 한 벌: 틀 하나에 데이터만 바꿔 찍음(11/2에 빠지는 기능은 행만 지움) */
   var CHAPTERS=[
@@ -1127,7 +1134,7 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
   /* ---------- 11 내 프로필 미리보기: 모두 이 화면 안에서만(전송·저장·주소창 기록 없음) ---------- */
   var JOBS=[["작곡가",["데모 곡","편곡 작업","라이브 클립"]],["싱어송라이터",["자작곡 데모","커버 영상","가사 노트"]],["프로듀서",["비트","믹스 전후","참여 곡"]],["영상 감독",["뮤직비디오","단편 스틸","콘티"]],["사진작가",["인물 사진","거리 사진","촬영 현장"]],["일러스트레이터",["캐릭터","표지 그림","스케치"]],["디자이너",["포스터","브랜드 작업","화면 시안"]],["작가",["단편 원고","연재 글","메모"]],["편집자",["편집 컷","자막 작업","타이틀"]],["회사원",["주말 습작","사이드 작업","기록"]]];
   var exp=$("exp"), jobPick=$("jobPick"), jobCustom=$("jobCustom"), expName=$("expName"), expOut=$("expOut");
-  var st={job:"",works:null,photo:null,started:false,done:false};
+  var st={job:"",works:null,photo:null,wphotos:[null,null,null],wslot:0,started:false,done:false};
   jobPick.innerHTML=JOBS.map(function(j,i){return '<button class="chip" type="button" role="radio" aria-checked="false" tabindex="'+(i===0?0:-1)+'" data-j="'+i+'">'+j[0]+'</button>';}).join("")+'<button class="chip add" type="button" role="radio" aria-checked="false" tabindex="-1" data-j="add">+ 직접 추가하기</button>';
   /* QA 수리: 하나만 고르는 칩이라 radiogroup · 화살표로 옮기며 고름(390은 화살표로는 다음 단계로 안 넘어감) */
   jobPick.addEventListener("keydown",function(e){
@@ -1143,6 +1150,7 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
     pj.textContent=st.job||"[하는 일]"; pj.classList.toggle("empty",!st.job);
     var w=st.works||["작업","작업","작업"];
     qa(".ph > span",$("pvWorks")).forEach(function(s,i){s.textContent=w[i];});
+    var anyW=st.wphotos.some(Boolean); $("pvWorksEx").textContent=anyW?"내 작업":"예시";
     clearTimeout(doneT);
     if(!st.done && st.job && nm && !mobile.matches) doneT=setTimeout(completeDesk,1000);
   }
@@ -1225,8 +1233,19 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
     var fc=$("pvFace"); fc.style.backgroundImage='url("'+st.photo+'")'; fc.classList.add("has"); fc.setAttribute("aria-label","얼굴 자리, 고른 사진(이 화면에만 보임), 눌러서 바꾸기");
     ev("exp_photo",{});
   });
-  window.addEventListener("pagehide",function(){ if(st.photo) URL.revokeObjectURL(st.photo); });
-  /* 이미지로 저장: 사진 대신 이름 첫 글자 · 한가운데 '미리보기 · 실제 프로필 아님' · 인증 표시 없음 */
+  /* 눈 2각(10/19): 작업 칸을 내 작업 사진으로 채움 — 화면 안에서만, 저장·전송 없음 */
+  $("pvWorks").addEventListener("click",function(e){ var b=e.target.closest("[data-w]"); if(!b) return; st.wslot=+b.dataset.w; $("photoAskW").hidden=false; $("photoGoW").focus(); });
+  $("photoNoW").addEventListener("click",function(){ $("photoAskW").hidden=true; });
+  $("photoGoW").addEventListener("click",function(){ $("photoAskW").hidden=true; $("worksIn").click(); });
+  $("worksIn").addEventListener("change",function(){
+    var f=this.files&&this.files[0]; this.value=""; if(!f||!/^image\//.test(f.type)) return;
+    var i=st.wslot; if(st.wphotos[i]) URL.revokeObjectURL(st.wphotos[i]);
+    st.wphotos[i]=URL.createObjectURL(f);
+    var b=qa("[data-w]",$("pvWorks"))[i]; b.style.backgroundImage='url("'+st.wphotos[i]+'")'; b.classList.add("has"); b.setAttribute("aria-label","작업 칸 "+(i+1)+", 내 작업 사진(이 화면에만 보임), 눌러서 바꾸기");
+    render(); ev("exp_work_photo",{});
+  });
+  window.addEventListener("pagehide",function(){ if(st.photo) URL.revokeObjectURL(st.photo); st.wphotos.forEach(function(u){ if(u) URL.revokeObjectURL(u); }); });
+  /* 이미지로 저장: 사진 대신 이름 첫 글자 · 작업 사진도 넣지 않음(법무 확인 전) · 오른쪽 위 '미리보기 · 실제 프로필 아님' · 인증 표시 없음 */
   function drawSave(cb){
     var W=720,H=1080,c=document.createElement("canvas"); c.width=W; c.height=H; var g=c.getContext("2d");
     var F='-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif';
@@ -1243,10 +1262,9 @@ footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(-
     g.fillStyle="#E6E6E6"; g.fillRect(76,300,568,18); g.fillRect(76,334,390,18);
     g.setLineDash([8,6]); g.strokeStyle="#9A9A9A"; g.lineWidth=2; g.strokeRect(76,380,400,52); g.setLineDash([]);
     g.fillStyle="#5E5E5E"; g.font="22px "+F; g.fillText("노크 받기를 켜면 여기 보여요",96,406);
-    for(var i=0;i<3;i++){ var x=76+i*196; g.fillStyle="#E6E6E6"; g.fillRect(x,470,176,240); g.fillStyle="#5E5E5E"; fit("예시 · "+w[i],156,20); g.fillText("예시 · "+w[i],x+10,590); }
-    g.save(); g.translate(W/2,H/2+60); g.rotate(-Math.PI/14); g.textAlign="center";
-    g.fillStyle="rgba(255,255,255,.85)"; g.fillRect(-330,-52,660,104);
-    g.fillStyle="#B93C0B"; fit("미리보기 · 실제 프로필 아님",620,52,"800"); g.fillText("미리보기 · 실제 프로필 아님",0,2); g.restore();
+    for(var i=0;i<3;i++){ var x=76+i*196; g.fillStyle="#E6E6E6"; g.fillRect(x,470,176,240); g.fillStyle="#5E5E5E"; var lab=(st.wphotos[i]?"내 작업 · ":"예시 · ")+w[i]; fit(lab,156,20); g.fillText(lab,x+10,590); }
+    /* 눈 2각(10/19): 표시는 한가운데 대신 오른쪽 위 모서리 */
+    g.save(); g.textAlign="right"; g.fillStyle="#B93C0B"; fit("미리보기 · 실제 프로필 아님",400,26,"800"); g.fillText("미리보기 · 실제 프로필 아님",W-48,124); g.restore();
     g.textAlign="center"; g.fillStyle="#5E5E5E"; fit("크리에이터클럽 · 앱에서 만들면 링크 하나가 돼요",W-120,22); g.fillText("크리에이터클럽 · 앱에서 만들면 링크 하나가 돼요",W/2,H-70);
     c.toBlob(cb,"image/png");
   }
