@@ -4,13 +4,12 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>크루네 리뉴얼 시안 v3</title>
+<title>크루네 리뉴얼 시안 v4</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/wanted-sans@1.0.3/fonts/webfonts/variable/split/WantedSansVariable.min.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700&display=swap">
 <style>
-/* ── 페이지 ── */
 :root{--pg-bg:#ececea;--pg-fg:#18181a;--pg-sub:#66666c;--pg-line:#d4d4d0;--pg-card:#fff;--pg-acc:#930500}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--pg-bg:#08090c;--pg-fg:#f2f2f0;--pg-sub:#9b9ca4;--pg-line:#26282f;--pg-card:#121318;--pg-acc:#f6aaa2}}
 :root[data-theme="dark"]{--pg-bg:#08090c;--pg-fg:#f2f2f0;--pg-sub:#9b9ca4;--pg-line:#26282f;--pg-card:#121318;--pg-acc:#f6aaa2}
@@ -20,138 +19,143 @@ body{margin:0;background:var(--pg-bg);color:var(--pg-fg);font-family:"Pretendard
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace;letter-spacing:.02em}
 .hero{display:flex;flex-wrap:wrap;gap:16px;align-items:end;justify-content:space-between}
 .hero h1{margin:6px 0 0;font-family:"Wanted Sans Variable",sans-serif;font-weight:900;font-size:clamp(34px,6vw,56px);letter-spacing:-.04em;line-height:1.02;color:var(--pg-acc)}
-.hero p{margin:10px 0 0;color:var(--pg-sub);max-width:680px;font-size:15px}
+.hero p{margin:10px 0 0;color:var(--pg-sub);max-width:700px;font-size:15px}
 .eyebrow{font-size:12px;color:var(--pg-sub);text-transform:uppercase}
 .seg{display:inline-flex;border:1px solid var(--pg-line);border-radius:999px;padding:3px;background:var(--pg-card)}
 .seg button{border:0;background:none;color:var(--pg-fg);font:inherit;font-size:14px;padding:0 18px;min-height:44px;border-radius:999px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--pg-fg);color:var(--pg-bg);font-weight:700}
 section{margin-top:48px}
 section>h2{font-size:22px;margin:0 0 4px;letter-spacing:-.02em}
-section>.q{margin:0 0 18px;color:var(--pg-sub);font-size:15px}
-.row{display:flex;gap:24px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x mandatory}
+section>.q{margin:0 0 18px;color:var(--pg-sub);font-size:15px;max-width:820px}
+.row{display:flex;gap:28px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x mandatory}
 figure{margin:0;flex:0 0 auto;scroll-snap-align:start}
 figcaption{margin-top:12px;font-size:14px;max-width:360px}
 figcaption b{display:block;font-size:16px}
 figcaption span{color:var(--pg-sub)}
-.shot{width:360px;display:block;border-radius:28px;border:1px solid var(--pg-line)}
-.changes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:8px}
-.changes div{background:var(--pg-card);border:1px solid var(--pg-line);border-radius:16px;padding:16px}
-.changes b{display:block;font-size:15px;margin-bottom:4px}
-.changes span{color:var(--pg-sub);font-size:14px}
-.fontrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
-.fontrow div{background:var(--pg-card);border:1px solid var(--pg-line);border-radius:16px;padding:18px}
-.fontrow .s1{font-family:"Wanted Sans Variable";font-weight:900;font-size:40px;letter-spacing:-.04em;line-height:1.1}
-.fontrow .s2{font-family:"Pretendard Variable";font-size:17px}
-.fontrow .s3{font-family:"JetBrains Mono";font-weight:700;font-size:22px}
-.ask{margin-top:18px;padding:18px 20px;border-radius:16px;background:var(--pg-card);border:1px solid var(--pg-line);font-size:15px}
+.demo{margin-top:10px;min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--pg-line);background:var(--pg-card);color:var(--pg-fg);font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+.cmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.cmp div{background:var(--pg-card);border:1px solid var(--pg-line);border-radius:16px;padding:16px}
+.cmp b{display:block;font-size:16px;margin-bottom:4px}
+.cmp span{color:var(--pg-sub);font-size:14px}
+.ask{margin-top:6px;padding:18px 20px;border-radius:16px;background:var(--pg-card);border:1px solid var(--pg-line);font-size:15px}
 .ask ol{margin:6px 0 0;padding-left:20px}
 footer{margin-top:56px;color:var(--pg-sub);font-size:13px}
 footer a{color:inherit}
 
-/* ── 폰: 크루네 v3 토큰(체리 무드 색 그대로, 구조·서체·밀도만 바꿈) ── */
-.phone{--bg:#fffcf6;--surface:#fff;--surface-2:#edf3fc;--line:rgba(36,22,18,.10);--text:#241612;--muted:#6b5a52;--title:#930500;--label:#2f5ea8;--accent:#930500;--accent-ink:#fff;--soft:#dbe7f8;--soft-ink:#1f4a8a;--ok:#2e7d4f;--warn:#c4161c;--wait:#8a5a00;--wait-ink:#fff;--wait-bg:#fbf0d9;
-  width:360px;height:760px;border-radius:28px;border:1px solid var(--pg-line);background:var(--bg);color:var(--text);overflow:hidden;position:relative;display:flex;flex-direction:column;font-family:"Pretendard Variable",sans-serif;font-size:15px;line-height:1.5}
-.phone.dark{--bg:#0d1322;--surface:#161e31;--surface-2:#1f2a42;--line:rgba(149,187,234,.14);--text:#fff8e7;--muted:#a9b4c8;--title:#f6aaa2;--label:#95bbea;--accent:#c8352a;--accent-ink:#fff;--soft:#26385a;--soft-ink:#cfe0f7;--ok:#6fcf97;--warn:#ff8a80;--wait:#f2c46b;--wait-ink:#2a1d00;--wait-bg:#2a2414}
-.phone .body{flex:1;overflow:hidden;padding:0 16px}
-.phone .status{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-weight:700;font-size:14px}
-.ph-eyebrow{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;color:var(--label);letter-spacing:.04em;text-transform:uppercase}
-.ph-title{font-family:"Wanted Sans Variable",sans-serif;font-weight:900;font-size:40px;letter-spacing:-.045em;line-height:1;color:var(--title);margin:4px 0 16px}
-.tiles{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:auto auto;gap:8px;margin-bottom:12px}
-.tile{border-radius:20px;padding:14px 16px;background:var(--surface-2);color:var(--text);display:flex;flex-direction:column;justify-content:space-between;min-height:68px}
+/* ── 폰 공통 ── */
+.phone{width:360px;height:760px;border-radius:30px;border:1px solid var(--pg-line);background:var(--bg);color:var(--text);overflow:hidden;position:relative;display:flex;flex-direction:column;font-family:"Pretendard Variable",sans-serif;font-size:15px;line-height:1.5}
+.status{height:44px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-weight:700;font-size:13px;font-family:"JetBrains Mono",monospace;background:var(--head-bg);color:var(--head-ink);position:relative;z-index:3}
+.scroller{flex:1;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;position:relative}
+.scroller::-webkit-scrollbar{display:none}
+.head{background:var(--head-bg);color:var(--head-ink);padding:4px 16px 16px;border-radius:0 0 var(--head-r) var(--head-r)}
+.eb{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--eb)}
+.ttl{font-family:"Wanted Sans Variable",sans-serif;font-weight:900;font-size:44px;letter-spacing:-.05em;line-height:1;margin:6px 0 16px;color:var(--ttl)}
+.tiles{display:grid;grid-template-columns:1.3fr 1fr;gap:8px}
+.tile{border-radius:22px;padding:14px 16px;display:flex;flex-direction:column;justify-content:space-between;min-height:70px;background:var(--tile-bg);color:var(--tile-ink);border:var(--tile-border)}
 .tile .k{font-size:13px;font-weight:700}
 .tile .n{font-family:"Wanted Sans Variable";font-weight:900;font-size:30px;letter-spacing:-.03em;line-height:1}
 .tile .n small{font-family:"Pretendard Variable";font-size:14px;font-weight:700;margin-left:2px}
-.tile.big{grid-row:span 2;background:var(--wait);color:var(--wait-ink);min-height:144px}
-.tile.big .n{font-size:58px}
-.tile.big .who{font-size:12.5px;opacity:.92;line-height:1.35}
+.tile.big{background:var(--big-bg);color:var(--big-ink);min-height:148px;border:0}
+.tile.big .n{font-size:62px}
+.tile.big .who{font-size:12.5px;line-height:1.35;font-weight:600}
+.minis{display:grid;gap:8px}
+.mini{position:absolute;left:0;right:0;top:44px;height:0;z-index:2}
+.bar{position:absolute;left:0;right:0;top:0;height:56px;display:flex;align-items:center;gap:6px;padding:0 12px 0 16px;background:var(--head-bg);color:var(--head-ink);border-bottom:var(--bar-line);transform:translateY(-8px);opacity:0;pointer-events:none;transition:transform .22s cubic-bezier(.2,.8,.2,1),opacity .18s}
+.phone.compact .bar{transform:none;opacity:1;pointer-events:auto}
+.bar .bt{font-family:"Wanted Sans Variable";font-weight:900;font-size:22px;letter-spacing:-.04em;color:var(--ttl);margin-right:auto}
+.pill{height:36px;padding:0 12px;border-radius:999px;display:inline-flex;align-items:center;gap:5px;font-size:13px;font-weight:700;background:var(--tile-bg);color:var(--tile-ink);border:var(--tile-border)}
+.pill b{font-family:"Wanted Sans Variable";font-weight:900;font-size:16px}
+.pill.on{background:var(--big-bg);color:var(--big-ink);border:0}
+.content{padding:14px 16px 24px}
 .strip{display:flex;gap:8px;overflow:hidden;margin:0 -16px 16px;padding:0 16px}
-.cchip{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px 0 6px;border-radius:999px;border:1px solid var(--line);background:var(--surface);font-size:13.5px;font-weight:600}
-.cchip.on{background:var(--text);color:var(--bg);border-color:var(--text);padding-left:14px}
-.av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);font-size:14px;flex:0 0 auto}
-.sec{display:flex;align-items:baseline;justify-content:space-between;margin:4px 2px 8px}
+.cchip{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 14px 0 5px;border-radius:999px;background:var(--chip-bg);border:var(--chip-border);font-size:13.5px;font-weight:600;color:var(--text)}
+.cchip.on{background:var(--text);color:var(--bg);padding-left:14px;border-color:transparent}
+.av{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--av-bg);font-size:14px;flex:0 0 auto}
+.sec{display:flex;align-items:baseline;justify-content:space-between;margin:6px 2px 10px}
 .sec b{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.06em;color:var(--muted)}
-.sec span{font-size:13px;color:var(--label);font-weight:700}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:14px 16px 14px 18px;margin-bottom:10px;position:relative;overflow:hidden}
-.card.need::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--wait)}
-.card.block::before{content:"";position:absolute;left:0;top:14px;bottom:14px;width:4px;border-radius:0 4px 4px 0;background:var(--warn)}
+.sec span{font-size:13px;color:var(--link);font-weight:700}
+.card{background:var(--card-bg);border:var(--card-border);border-radius:24px;padding:16px;margin-bottom:10px;position:relative}
 .meta{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--muted)}
 .meta .av{width:22px;height:22px;font-size:12px}
 .meta .t{margin-left:auto;font-family:"JetBrains Mono",monospace;font-size:12px}
-.card h3{margin:6px 0 4px;font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.35}
-.st{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--wait-bg);color:var(--wait)}
-.phone.dark .st{color:var(--wait)}
+.card h3{margin:8px 0 6px;font-size:18px;font-weight:800;letter-spacing:-.025em;line-height:1.35}
+.st{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:800;padding:3px 10px;border-radius:999px;background:var(--st-bg);color:var(--st-ink)}
 .st::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
-.st.b{background:color-mix(in srgb,var(--warn) 12%,transparent);color:var(--warn)}
-.st.r{background:var(--surface-2);color:var(--label)}
-.card p{margin:8px 0 0;font-size:14.5px;color:var(--text);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.st.b{background:var(--stb-bg);color:var(--stb-ink)}
+.st.r{background:var(--str-bg);color:var(--str-ink)}
+.card p{margin:8px 0 0;font-size:14.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.btn{height:44px;padding:0 16px;border-radius:999px;border:0;font:inherit;font-size:14px;font-weight:700;display:inline-flex;align-items:center;background:var(--soft);color:var(--soft-ink)}
-.btn.p{background:var(--accent);color:var(--accent-ink)}
+.btn{height:44px;padding:0 16px;border-radius:999px;font-size:14px;font-weight:800;display:inline-flex;align-items:center;background:var(--b2-bg);color:var(--b2-ink)}
+.btn.p{background:var(--b1-bg);color:var(--b1-ink)}
 .btn.g{background:none;color:var(--muted);padding:0 10px}
-.btn.w{width:100%;justify-content:center;height:52px;font-size:16px}
-.tabbar{height:72px;border-top:1px solid var(--line);background:var(--bg);display:grid;grid-template-columns:repeat(4,1fr);align-items:start;padding-top:8px}
-.tab{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11.5px;color:var(--muted);position:relative}
-.tab i{width:56px;height:30px;border-radius:999px;display:grid;place-items:center;font-style:normal}
-.tab.on{color:var(--text);font-weight:800}
-.tab.on i{background:var(--soft);color:var(--soft-ink)}
+.tabbar{position:absolute;left:16px;right:16px;bottom:16px;height:64px;border-radius:999px;background:var(--tab-bg);border:var(--tab-border);display:grid;grid-template-columns:repeat(4,1fr);align-items:center;z-index:4;isolation:isolate}
+.tab{display:flex;flex-direction:column;align-items:center;gap:1px;font-size:11px;color:var(--tab-ink);position:relative;font-weight:600}
 .tab svg{width:22px;height:22px}
-.badge{position:absolute;top:-4px;left:calc(50% + 10px);min-width:18px;height:18px;border-radius:9px;background:var(--wait);color:var(--wait-ink);font-size:11px;font-weight:800;display:grid;place-items:center;padding:0 5px;font-family:"JetBrains Mono"}
-.bar{display:flex;align-items:center;gap:8px;height:52px;padding:0 8px;border-bottom:1px solid var(--line)}
-.bar .back{display:flex;align-items:center;height:44px;padding:0 8px;color:var(--label);font-weight:700;font-size:15px}
-.bar .grow{flex:1}
-.dot3{width:44px;height:44px;display:grid;place-items:center;font-weight:900;color:var(--muted)}
-.dhead{padding:18px 0 4px}
-.dhead h2{font-family:"Wanted Sans Variable";font-weight:900;font-size:24px;letter-spacing:-.035em;line-height:1.25;margin:8px 0 6px}
+.tab.on{color:var(--tab-on);font-weight:800}
+.tab.on::before{content:"";position:absolute;inset:-6px 6px;border-radius:999px;background:var(--tab-on-bg);z-index:-1}
+.badge{position:absolute;top:-6px;left:calc(50% + 8px);min-width:18px;height:18px;border-radius:9px;background:var(--big-bg);color:var(--big-ink);font-size:11px;font-weight:800;display:grid;place-items:center;padding:0 5px;font-family:"JetBrains Mono"}
+.spacer{height:96px}
+.dbar{display:flex;align-items:center;height:52px;padding:0 8px;background:var(--head-bg);color:var(--head-ink);flex:0 0 auto}
+.dbar .back{height:44px;display:flex;align-items:center;padding:0 8px;font-weight:700;color:var(--ttl)}
+.dbar .x{margin-left:auto;width:44px;height:44px;display:grid;place-items:center;font-weight:900}
+.dhead{background:var(--head-bg);color:var(--head-ink);padding:6px 16px 22px;border-radius:0 0 var(--head-r) var(--head-r)}
+.dhead h2{font-family:"Wanted Sans Variable";font-weight:900;font-size:27px;letter-spacing:-.04em;line-height:1.18;margin:10px 0 10px;color:var(--ttl)}
+.dhead .meta{color:var(--eb)}
 .lbl{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:700;letter-spacing:.06em;color:var(--muted);margin:16px 2px 6px;text-transform:uppercase}
-.req{background:var(--surface-2);border-radius:16px;padding:12px 14px;font-size:14.5px}
-.rep{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:14px 16px;font-size:14.5px}
+.req{background:var(--chip-bg);border:var(--chip-border);border-radius:18px;padding:12px 14px;font-size:14.5px}
+.rep{background:var(--card-bg);border:var(--card-border);border-radius:24px;padding:16px;font-size:14.5px}
 .rep b{font-size:16px}
 .rep ul{margin:6px 0;padding-left:18px}
-.callout{margin-top:10px;border-radius:14px;background:var(--wait-bg);padding:10px 12px;font-weight:700;font-size:14px}
-.callout small{display:block;font-family:"JetBrains Mono";font-size:11px;color:var(--wait);letter-spacing:.05em}
-.dock{padding:10px 16px 18px;border-top:1px solid var(--line);display:grid;gap:8px}
-.dock .two{display:grid;grid-template-columns:1fr 44px;gap:8px}
-.btn.o{background:none;border:1px solid var(--line);color:var(--text);justify-content:center}
-.chatbar{display:flex;align-items:center;gap:10px;height:60px;padding:0 8px;border-bottom:1px solid var(--line)}
-.chatbar .av{width:36px;height:36px;font-size:18px}
-.chatbar b{display:block;font-size:16px}
-.chatbar small{color:var(--ok);font-size:12px;font-weight:700}
-.thread{padding:12px 0;display:flex;flex-direction:column;gap:6px}
-.day{align-self:center;font-family:"JetBrains Mono";font-size:11px;color:var(--muted);letter-spacing:.06em;margin:4px 0 8px}
-.bub{max-width:78%;padding:10px 14px;border-radius:20px;font-size:15px;line-height:1.45}
-.bub.t{background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:6px}
-.bub.m{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:6px}
-.tm{font-family:"JetBrains Mono";font-size:10.5px;color:var(--muted);margin:0 6px}
-.tm.r{align-self:flex-end}
-.reply{margin:0 0 8px;border-radius:14px;background:var(--surface-2);padding:8px 12px;font-size:13px;display:flex;justify-content:space-between;align-items:center}
-.composer{padding:8px 12px 18px;border-top:1px solid var(--line)}
-.qw{display:flex;gap:6px;margin-bottom:8px}
-.qw span{height:32px;padding:0 12px;border-radius:999px;background:var(--surface-2);font-size:13px;font-weight:700;display:inline-flex;align-items:center}
+.callout{margin-top:10px;border-radius:16px;background:var(--st-bg);color:var(--st-ink);padding:10px 12px;font-weight:800;font-size:14px}
+.callout small{display:block;font-family:"JetBrains Mono";font-size:11px;letter-spacing:.05em}
+.dock{flex:0 0 auto;padding:10px 12px 18px;background:var(--bg);border-top:var(--bar-line);display:grid;gap:8px}
 .inp{display:flex;gap:8px;align-items:center}
-.inp .f{flex:1;height:44px;border-radius:22px;background:var(--surface-2);display:flex;align-items:center;padding:0 16px;color:var(--muted);font-size:15px}
-.circ{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--surface-2);color:var(--text);flex:0 0 auto}
-.circ.s{background:var(--accent);color:var(--accent-ink)}
-.rooms .r{display:flex;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
-.rooms .av{width:48px;height:48px;font-size:24px;position:relative}
-.rooms .on::after{content:"";position:absolute;right:0;bottom:2px;width:12px;height:12px;border-radius:50%;background:var(--ok);border:2px solid var(--bg)}
-.rooms .r div{flex:1;min-width:0}
-.rooms b{font-size:16px}
-.rooms p{margin:2px 0 0;font-size:13.5px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rooms .t{font-family:"JetBrains Mono";font-size:11px;color:var(--muted);align-self:flex-start;margin-top:4px}
-.unread{width:8px;height:8px;border-radius:50%;background:var(--accent);align-self:center}
-.live{display:flex;gap:-6px;margin-bottom:14px;align-items:center}
-.live .av{width:32px;height:32px;border:2px solid var(--bg);margin-right:-8px;font-size:15px}
-.live span{margin-left:16px;font-size:13px;color:var(--muted)}
-@media (max-width:520px){.shot{width:300px}}
+.inp .f{flex:1;height:44px;border-radius:22px;background:var(--chip-bg);border:var(--chip-border);display:flex;align-items:center;padding:0 16px;color:var(--muted);font-size:15px}
+.circ{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--chip-bg);border:var(--chip-border);flex:0 0 auto;font-weight:800}
+
+/* ── 방향 ① 상그리아 블록 ── */
+.d1{--bg:#fff8e7;--text:#241612;--muted:#6b5a52;--link:#2f5ea8;
+  --head-bg:#930500;--head-ink:#fff8e7;--head-r:32px;--eb:#ffc9c2;--ttl:#fff8e7;
+  --tile-bg:#7a0400;--tile-ink:#fff8e7;--tile-border:0;--big-bg:#f2c46b;--big-ink:#2a1d00;
+  --bar-line:0;--chip-bg:#fff;--chip-border:1px solid rgba(36,22,18,.10);--av-bg:#f3e6cf;
+  --card-bg:#fff;--card-border:1px solid rgba(36,22,18,.08);
+  --st-bg:#fbeacc;--st-ink:#7a4f00;--stb-bg:#fde3e1;--stb-ink:#b3141a;--str-bg:#e3ecf8;--str-ink:#2f5ea8;
+  --b1-bg:#930500;--b1-ink:#fff;--b2-bg:#f3e6cf;--b2-ink:#3a2a1f;
+  --tab-bg:#241612;--tab-border:0;--tab-ink:#bba79c;--tab-on:#241612;--tab-on-bg:#f2c46b}
+.d1.dark{--bg:#120c0b;--text:#fff1e6;--muted:#b9a59b;--link:#95bbea;
+  --head-bg:#3a0b09;--eb:#f6aaa2;--ttl:#fff1e6;--tile-bg:#521310;--big-bg:#f2c46b;--big-ink:#2a1d00;
+  --chip-bg:#1d1513;--chip-border:1px solid rgba(255,241,230,.10);--av-bg:#2a1f1b;
+  --card-bg:#1d1513;--card-border:1px solid rgba(255,241,230,.08);
+  --st-bg:#3a2e14;--st-ink:#f2c46b;--stb-bg:#3d1615;--stb-ink:#ff8a80;--str-bg:#1f2a42;--str-ink:#95bbea;
+  --b1-bg:#e0483b;--b1-ink:#fff;--b2-bg:#2a1f1b;--b2-ink:#fff1e6;
+  --tab-bg:#fff1e6;--tab-ink:#6b5a52;--tab-on:#241612;--tab-on-bg:#f2c46b}
+/* ── 방향 ② 뉴트럴 그리드 ── */
+.d2{--bg:#ededea;--text:#141414;--muted:#6a6a66;--link:#141414;
+  --head-bg:#ededea;--head-ink:#141414;--head-r:0;--eb:#2f5ea8;--ttl:#141414;
+  --tile-bg:#fff;--tile-ink:#141414;--tile-border:0;--big-bg:#2f5ea8;--big-ink:#fff;
+  --bar-line:1px solid rgba(0,0,0,.08);--chip-bg:#fff;--chip-border:0;--av-bg:#ededea;
+  --card-bg:#fff;--card-border:0;
+  --st-bg:#e3ecf8;--st-ink:#2f5ea8;--stb-bg:#fde3e1;--stb-ink:#c4161c;--str-bg:#ededea;--str-ink:#444;
+  --b1-bg:#141414;--b1-ink:#fff;--b2-bg:#ededea;--b2-ink:#141414;
+  --tab-bg:#fff;--tab-border:1px solid rgba(0,0,0,.08);--tab-ink:#8a8a86;--tab-on:#fff;--tab-on-bg:#141414}
+.d2.dark{--bg:#0b0b0c;--text:#f2f2ef;--muted:#9a9a96;--link:#f2f2ef;
+  --head-bg:#0b0b0c;--head-ink:#f2f2ef;--eb:#95bbea;--ttl:#f2f2ef;--tile-bg:#1a1a1c;--tile-ink:#f2f2ef;--big-bg:#95bbea;--big-ink:#0b1630;
+  --bar-line:1px solid rgba(255,255,255,.08);--chip-bg:#1a1a1c;--av-bg:#262628;--card-bg:#1a1a1c;
+  --st-bg:#1f2a42;--st-ink:#95bbea;--stb-bg:#3d1615;--stb-ink:#ff8a80;--str-bg:#262628;--str-ink:#ccc;
+  --b1-bg:#f2f2ef;--b1-ink:#0b0b0c;--b2-bg:#262628;--b2-ink:#f2f2ef;
+  --tab-bg:#1a1a1c;--tab-border:1px solid rgba(255,255,255,.08);--tab-ink:#8a8a86;--tab-on:#0b0b0c;--tab-on-bg:#f2f2ef}
+.d2 .ttl{font-size:52px}
+.d2 .card h3{font-size:19px}
+@media (max-width:520px){.row{gap:20px}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header class="hero">
   <div>
-    <div class="eyebrow mono">CREWNE · RENEWAL · V3 · 2026.10.18</div>
-    <h1>크루네 리뉴얼 시안 v3</h1>
-    <p>B 타일을 넣고, 서체와 밀도를 바꿔서 전체 인상이 달라지게 그렸어요. 색은 고르셨던 체리 무드(상그리아·콘플라워·라테)를 그대로 쓰고, 유리·그림자·그라디언트는 넣지 않았어요. 폰 화면은 그림이 아니라 실제 웹폰트로 그린 화면이에요.</p>
+    <div class="eyebrow mono">CREWNE · RENEWAL · V4 · 2026.10.18</div>
+    <h1>크루네 리뉴얼 시안 v4</h1>
+    <p>B 타일을 기준으로 두 방향을 그렸어요. 두 방향 모두 목록을 내리면 위쪽 상태 타일이 얇은 막대로 접혀요. 폰 화면 안을 직접 스크롤해 보거나 「스크롤 해 보기」를 눌러 보세요.</p>
   </div>
   <div class="seg" role="group" aria-label="화면 밝기">
     <button type="button" data-t="light" aria-pressed="true">라이트</button>
@@ -160,147 +164,127 @@ footer a{color:inherit}
 </header>
 
 <section>
-  <h2>무엇이 달라졌나</h2>
-  <p class="q">v2(10/14)는 접근성 정리만 해서 겉모습이 거의 같았어요. v3은 눈에 보이는 네 가지를 바꿨어요.</p>
-  <div class="changes">
-    <div><b>① 큰 제목과 숫자</b><span>탭 제목을 40px 원티드 산스 블랙으로, 건수를 58px 숫자로 키웠어요. 화면마다 주인공이 하나씩 생겨요.</span></div>
-    <div><b>② B 타일</b><span>「확인 필요」를 색 채운 큰 타일로, 진행 중·나중에는 회색 작은 타일로 나눴어요. 누르면 거르기가 돼요.</span></div>
-    <div><b>③ 기계 라벨</b><span>시각·건수·묶음 이름을 JetBrains Mono로 작게 달아서, 내용(한글)과 정보(숫자)가 갈라져 보여요.</span></div>
-    <div><b>④ 둥근 덩어리</b><span>카드·타일 반경을 20으로 키우고, 단추는 모두 44px 알약으로 맞췄어요. 확인 필요 카드엔 왼쪽 색 띠를 달았어요.</span></div>
+  <h2>두 방향</h2>
+  <p class="q">v3보다 더 바꿨어요. 두 방향 모두 유리·그림자·그라디언트는 쓰지 않았어요.</p>
+  <div class="cmp">
+    <div><b>① 상그리아 블록</b><span>화면 위쪽을 상그리아(진한 빨강) 덩어리로 채우고, 확인 필요는 버터 노랑 타일로 띄워요. 탭바는 검정 알약으로 떠 있어요. 지금 크루네 색을 지키면서 가장 크게 달라 보이는 안이에요.</span></div>
+    <div><b>② 뉴트럴 그리드</b><span>바탕을 회색으로 바꾸고 흰 덩어리만 쌓아요. 색은 확인 필요(콘플라워 파랑) 한 곳에만 쓰고, 단추는 검정이에요. 레퍼런스 시안(Swapper Arcade)에 가장 가까운 안이에요.</span></div>
   </div>
 </section>
 
 <section>
-  <h2>1. 보고 탭 — B 타일</h2>
-  <p class="q">왼쪽은 지금 화면, 오른쪽이 v3이에요.</p>
-  <div class="row">
-    <figure><img class="shot" data-src="before-reports" alt="지금 보고 탭"><figcaption><b>지금</b><span>작은 머리띠, 상태와 크루가 한 줄 칩에 섞여 있어요.</span></figcaption></figure>
-    <figure><div class="phone" data-ph>
-      <div class="status"><span class="mono">9:41</span><span class="mono" style="font-size:12px">5G ▮</span></div>
-      <div class="body">
-        <div class="ph-eyebrow">Inbox · 10.18 Sat</div>
-        <div class="ph-title">보고</div>
+  <h2>1. 보고 탭 — B 타일 + 스크롤하면 접힘</h2>
+  <p class="q">조금만 내려도 상태 타일이 위쪽 얇은 막대(확인 3 · 진행 2 · 나중 1)로 바뀌어 붙어 있고, 맨 위로 올리면 다시 펼쳐져요. 막대의 알약을 누르면 거르기가 돼요.</p>
+  <div class="row" id="reports"></div>
+</section>
+
+<section>
+  <h2>2. 보고 상세</h2>
+  <p class="q">결정 단추와 「이어서 말하기」 입력칸이 아래에 함께 붙어 있어요.</p>
+  <div class="row" id="details"></div>
+</section>
+
+<section>
+  <h2>정할 것</h2>
+  <div class="ask">어느 방향으로 갈까요?
+    <ol><li>① 상그리아 블록 — 지금 색을 지키면서 크게 달라져요. 추천이에요.</li>
+    <li>② 뉴트럴 그리드 — 레퍼런스에 가장 가깝고, 색이 훨씬 줄어요.</li>
+    <li>섞기 — 예: ①의 머리 블록 + ②의 흰 카드처럼 말씀해 주시면 그렇게 다시 그려요.</li></ol>
+  </div>
+</section>
+
+<footer>이전 시안: <a href="v3.html">v3</a> · <a href="v2.html">v2</a> · 정적 시안이에요. 앱에는 아직 반영하지 않았어요.</footer>
+</div>
+
+<template id="tpl-report">
+  <figure><div class="phone">
+    <div class="status"><span>9:41</span><span>5G ▮</span></div>
+    <div class="mini"><div class="bar"><span class="bt">보고</span><span class="pill on">확인 <b>3</b></span><span class="pill">진행 <b>2</b></span><span class="pill">나중 <b>1</b></span></div></div>
+    <div class="scroller">
+      <div class="head">
+        <div class="eb">Inbox · 10.18 Sat</div>
+        <div class="ttl">보고</div>
         <div class="tiles">
           <div class="tile big"><span class="k">확인 필요</span><span class="n">3<small>건</small></span><span class="who">키키 · 루프 · 레인이<br>샐리 답을 기다려요</span></div>
-          <div class="tile"><span class="k">진행 중</span><span class="n">2<small>건</small></span></div>
-          <div class="tile"><span class="k">나중에</span><span class="n">1<small>건</small></span></div>
-        </div>
-        <div class="strip"><span class="cchip on">전체</span><span class="cchip"><span class="av">🐱</span>키키</span><span class="cchip"><span class="av">🔁</span>루프</span><span class="cchip"><span class="av">🌧️</span>레인</span><span class="cchip"><span class="av">🍑</span>나나</span></div>
-        <div class="sec"><b>NEEDS YOU · 03</b><span>골라서 확인</span></div>
-        <div class="card need">
-          <div class="meta"><span class="av">🐱</span>키키 · 집맥<span class="t">09:42</span></div>
-          <h3>10월 3주차 크루네 알림 문구 정리</h3>
-          <span class="st">확인 필요</span>
-          <p>알림 문구 12개를 말투별로 묶었어요. 「확인했어요」가 두 번 겹치는 곳은 하나로 줄였어요. 1안은 짧고 담백하고, 2안은 조금 따뜻해요.</p>
-          <div class="acts"><span class="btn p">1안으로 갈게</span><span class="btn">직접 말할래</span><span class="btn g">업무 완료</span></div>
-        </div>
-        <div class="card block">
-          <div class="meta"><span class="av">🔁</span>루프 · 집맥<span class="t">09:31</span></div>
-          <h3>결재 L261012-1 복구 회차</h3>
-          <span class="st b">막힘</span>
-          <p>배포 직전에 회귀 시험 한 건이 실패해서 멈췄어요.</p>
+          <div class="minis"><div class="tile"><span class="k">진행 중</span><span class="n">2<small>건</small></span></div><div class="tile"><span class="k">나중에</span><span class="n">1<small>건</small></span></div></div>
         </div>
       </div>
-      <nav class="tabbar">
-        <span class="tab on"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></i>보고<span class="badge">3</span></span>
-        <span class="tab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></i>채팅</span>
-        <span class="tab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></i>자료</span>
-        <span class="tab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i>나</span>
-      </nav>
-    </div><figcaption><b>v3 · B 타일</b><span>확인 필요가 화면의 주인공이에요. 크루 거르기는 아바타 칩으로 따로 한 줄에 둬요.</span></figcaption></figure>
-  </div>
-</section>
+      <div class="content">
+        <div class="strip"><span class="cchip on">전체</span><span class="cchip"><span class="av">🐱</span>키키</span><span class="cchip"><span class="av">🔁</span>루프</span><span class="cchip"><span class="av">🌧️</span>레인</span><span class="cchip"><span class="av">🍑</span>나나</span></div>
+        <div class="sec"><b>NEEDS YOU · 03</b><span>골라서 확인</span></div>
+        <div class="card"><div class="meta"><span class="av">🐱</span>키키 · 집맥<span class="t">09:42</span></div><h3>10월 3주차 크루네 알림 문구 정리</h3><span class="st">확인 필요</span><p>알림 문구 12개를 말투별로 묶었어요. 「확인했어요」가 두 번 겹치는 곳은 하나로 줄였어요. 1안은 짧고 담백하고, 2안은 조금 따뜻해요.</p><div class="acts"><span class="btn p">1안으로 갈게</span><span class="btn">직접 말할래</span><span class="btn g">업무 완료</span></div></div>
+        <div class="card"><div class="meta"><span class="av">🔁</span>루프 · 집맥<span class="t">09:31</span></div><h3>결재 L261012-1 복구 회차</h3><span class="st b">막힘</span><p>배포 직전에 회귀 시험 한 건이 실패해서 멈췄어요. 원인은 받기 막힘 절차의 같은 줄 겹침이에요.</p><div class="acts"><span class="btn">이어서 말하기</span><span class="btn g">업무 완료</span></div></div>
+        <div class="card"><div class="meta"><span class="av">🌧️</span>레인 · 회맥<span class="t">09:05</span></div><h3>앱앤장 2세대 리서치 검증</h3><span class="st">확인 필요</span><p>출처 7곳 중 2곳이 같은 상류 자료예요. 독립 출처는 5곳으로 세었어요.</p><div class="acts"><span class="btn p">확인했어</span><span class="btn g">업무 완료</span></div></div>
+        <div class="sec"><b>IN PROGRESS · 02</b><span></span></div>
+        <div class="card"><div class="meta"><span class="av">🍑</span>나나 · 집맥<span class="t">09:20</span></div><h3>크루네 당겨서 새로고침 손보기</h3><span class="st r">진행 중 · 3단계</span></div>
+        <div class="card"><div class="meta"><span class="av">🔁</span>루프 · 집맥<span class="t">08:50</span></div><h3>야간 정제 누락 감사</h3><span class="st r">진행 중 · 2단계</span></div>
+        <div class="spacer"></div>
+      </div>
+    </div>
+    <nav class="tabbar">
+      <span class="tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>보고<span class="badge">3</span></span>
+      <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg>채팅</span>
+      <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>자료</span>
+      <span class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>나</span>
+    </nav>
+  </div><figcaption><b></b><span></span></figcaption><button type="button" class="demo">스크롤 해 보기</button></figure>
+</template>
 
-<section>
-  <h2>2. 보고 상세와 채팅</h2>
-  <p class="q">상세는 업무 제목이 가장 크고, 결정 단추는 아래 한 덩어리로 모여요. 채팅은 말풍선 모양과 내 말풍선 색을 그대로 둬요.</p>
-  <div class="row">
-    <figure><div class="phone" data-ph>
-      <div class="status"><span class="mono">9:42</span><span class="mono" style="font-size:12px">5G ▮</span></div>
-      <div class="bar"><span class="back">‹ 보고</span><span class="grow"></span><span class="dot3">⋯</span></div>
-      <div class="body">
-        <div class="dhead"><span class="st">확인 필요</span><h2>10월 3주차 크루네 알림 문구 정리</h2><div class="meta"><span class="av">🐱</span>키키 · 집맥<span class="t">TODAY 09:42</span></div></div>
+<template id="tpl-detail">
+  <figure><div class="phone">
+    <div class="status"><span>9:42</span><span>5G ▮</span></div>
+    <div class="dbar"><span class="back">‹ 보고</span><span class="x">⋯</span></div>
+    <div class="scroller">
+      <div class="dhead"><span class="st">확인 필요</span><h2>10월 3주차 크루네 알림 문구 정리</h2><div class="meta"><span class="av">🐱</span>키키 · 집맥<span class="t">TODAY 09:42</span></div></div>
+      <div class="content">
         <div class="lbl">Sally asked</div>
         <div class="req">이번 주 알림 문구를 말투별로 묶어서 정리해 줘. 겹치는 건 줄이고.</div>
         <div class="lbl">Kiki reports</div>
         <div class="rep"><b>정리 결과</b><ul><li>1안 · 짧고 담백해요 (7개)</li><li>2안 · 조금 따뜻해요 (5개)</li></ul><div class="callout"><small>NEEDS YOU</small>어느 말투로 갈지 골라 주세요.</div></div>
       </div>
-      <div class="dock"><div class="acts" style="margin:0"><span class="btn p">1안으로 갈게</span><span class="btn">2안으로 갈게</span><span class="btn g">업무 완료</span></div><div class="inp"><span class="circ">＋</span><span class="f">이 업무에 이어서 말하기</span><span class="circ">↑</span></div></div>
-    </div><figcaption><b>v3 · 상세</b><span>요청·보고·내가 할 일이 라벨로 나뉘고, 결정 단추와 「이어서 말하기」 입력칸이 화면 아래에 함께 붙어 있어요. 고를 것이 없으면 입력칸으로 바로 이어 말해요.</span></figcaption></figure>
+    </div>
+    <div class="dock"><div class="acts" style="margin:0"><span class="btn p">1안으로 갈게</span><span class="btn">2안으로 갈게</span><span class="btn g">업무 완료</span></div><div class="inp"><span class="circ">＋</span><span class="f">이 업무에 이어서 말하기</span><span class="circ">↑</span></div></div>
+  </div><figcaption><b></b><span></span></figcaption></figure>
+</template>
 
-    <figure><div class="phone" data-ph>
-      <div class="status"><span class="mono">9:44</span><span class="mono" style="font-size:12px">5G ▮</span></div>
-      <div class="chatbar"><span class="back" style="color:var(--label);font-weight:700;padding:0 6px">‹</span><span class="av">🐱</span><div><b>키키</b><small>● 일하는 중 · 알림 문구 정리</small></div></div>
-      <div class="body"><div class="thread">
-        <span class="day">TODAY</span>
-        <div class="bub t">알림 문구 정리 끝났어요. 1안은 짧고, 2안은 조금 따뜻해요.</div>
-        <div class="bub t">어느 쪽으로 갈까요?</div><span class="tm">09:40</span>
-        <div class="bub m">1안으로 가자. 「확인했어요」는 한 번만 쓰고.</div><span class="tm r">09:42</span>
-        <div class="bub t">알겠어요. 겹친 문구는 지우고 오늘 안에 다시 올릴게요.</div><span class="tm">09:43</span>
-      </div></div>
-      <div class="composer">
-        <div class="reply"><span><b style="font-size:12px;color:var(--label)">키키에게 답장</b><br>겹친 문구는 지우고 오늘 안에…</span><span>✕</span></div>
-        <div class="qw"><span>Ultrathink</span><span>다이나믹워크플로우</span><span>＋</span></div>
-        <div class="inp"><span class="circ">＋</span><span class="f">오늘 오후 3시 전에 보여 주세요</span><span class="circ s">↑</span></div>
-      </div>
-    </div><figcaption><b>v3 · 채팅방</b><span>입력칸과 단추를 모두 44px로 맞추고, 시각은 작은 라벨로 내렸어요.</span></figcaption></figure>
-
-    <figure><div class="phone" data-ph>
-      <div class="status"><span class="mono">9:45</span><span class="mono" style="font-size:12px">5G ▮</span></div>
-      <div class="body">
-        <div class="ph-eyebrow">Chats · 5 crew</div>
-        <div class="ph-title">채팅</div>
-        <div class="live"><span class="av">🐱</span><span class="av">🔁</span><span class="av">🍑</span><span>지금 3명이 일하는 중</span></div>
-        <div class="rooms">
-          <div class="r"><span class="av on">🐱</span><div><b>키키</b><p>알림 문구 정리 · 진행 중 2단계</p></div><span class="t">09:43</span></div>
-          <div class="r"><span class="av on">🔁</span><div><b>루프</b><p>확인 필요 · 결재 L261012-1 복구 회차</p></div><span class="unread"></span></div>
-          <div class="r"><span class="av">🌧️</span><div><b>레인</b><p>앱앤장 2세대 리서치 검증 보고 왔어요</p></div><span class="t">09:05</span></div>
-          <div class="r"><span class="av">🎀</span><div><b>젠지</b><p>카드뉴스 3장 초안을 올렸어요</p></div><span class="t">어제</span></div>
-          <div class="r"><span class="av on">🍑</span><div><b>나나</b><p>당겨서 새로고침 손보는 중</p></div><span class="t">09:20</span></div>
-          <div class="r"><span class="av">🏡</span><div><b>크루방</b><p>아침 회의 · 정할 것 하나</p></div><span class="t">09:32</span></div>
-        </div>
-      </div>
-      <nav class="tabbar">
-        <span class="tab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></i>보고<span class="badge">3</span></span>
-        <span class="tab on"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/></svg></i>채팅</span>
-        <span class="tab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg></i>자료</span>
-        <span class="tab"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></i>나</span>
-      </nav>
-    </div><figcaption><b>v3 · 채팅 목록</b><span>지금 일하는 크루를 겹친 아바타로 위에 보여 주고, 안 읽은 방엔 점을 달아요.</span></figcaption></figure>
-  </div>
-</section>
-
-<section>
-  <h2>3. 웹폰트 세 가지</h2>
-  <p class="q">모두 무료(OFL) 글꼴이에요. 앱에서는 지금처럼 같은 주소에서 직접 내보내고, 「나 › 글꼴」에서 바꾸는 기능은 그대로 둬요.</p>
-  <div class="fontrow">
-    <div><div class="eyebrow mono">TITLE · 원티드 산스 블랙</div><div class="s1">보고 3건</div><span style="color:var(--pg-sub);font-size:14px">탭 제목·건수 숫자·상세 제목</span></div>
-    <div><div class="eyebrow mono">BODY · 프리텐다드</div><div class="s2">알림 문구 12개를 말투별로 묶었어요. 어느 쪽 문구로 갈지 골라 주세요.</div><span style="color:var(--pg-sub);font-size:14px">본문·단추·목록(지금 기본 글꼴)</span></div>
-    <div><div class="eyebrow mono">LABEL · JetBrains Mono</div><div class="s3">09:42 · NEEDS YOU · 03</div><span style="color:var(--pg-sub);font-size:14px">시각·건수·묶음 라벨(영문·숫자만, 새로 받는 글꼴)</span></div>
-  </div>
-</section>
-
-<section>
-  <h2>정할 것</h2>
-  <div class="ask">이 방향으로 앱에 넣을까요?
-    <ol><li>v3 그대로 진행 → 보고 탭·상세·채팅·채팅 목록 순으로 바꾸고, 단계마다 운영에 올려요.</li>
-    <li>더 바꾸기 → 색까지 바꾸고 싶으면 무드 하나를 새로 만들어 시안을 한 장 더 그려요.</li></ol>
-  </div>
-</section>
-
-<footer>v2 시안(10/14, 접근성 정리만): <a href="v2.html">v2 보기</a> · 정적 시안이에요. 앱에는 아직 반영하지 않았어요.</footer>
-</div>
 <script>
 (function(){
+  var DIRS=[["d1","① 상그리아 블록","위쪽 덩어리가 진한 빨강, 확인 필요는 버터 노랑. 접히면 빨강 막대가 위에 붙어요."],
+            ["d2","② 뉴트럴 그리드","회색 바탕에 흰 덩어리, 색은 파랑 한 곳. 접히면 회색 막대에 알약 셋이 남아요."]];
+  function fill(tplId,boxId,detail){
+    var tpl=document.getElementById(tplId),box=document.getElementById(boxId);
+    DIRS.forEach(function(d){
+      var n=tpl.content.cloneNode(true),ph=n.querySelector('.phone');
+      ph.classList.add(d[0]);
+      n.querySelector('figcaption b').textContent=d[1]+(detail?' · 상세':'');
+      n.querySelector('figcaption span').textContent=detail?'상세 머리도 같은 덩어리 안에 업무 제목을 크게 둬요.':d[2];
+      box.appendChild(n);
+    });
+  }
+  fill('tpl-report','reports',false); fill('tpl-detail','details',true);
+  // 스크롤하면 접힘 — 상태 타일이 화면 위로 넘어가기 시작하면 얇은 막대로 바꾼다
+  document.querySelectorAll('#reports .phone').forEach(function(ph){
+    var sc=ph.querySelector('.scroller'),head=ph.querySelector('.head');
+    function upd(){ph.classList.toggle('compact',sc.scrollTop>head.offsetHeight-120)}
+    sc.addEventListener('scroll',upd,{passive:true}); upd();
+  });
+  document.querySelectorAll('#reports .demo').forEach(function(b){
+    b.addEventListener('click',function(){
+      var sc=b.closest('figure').querySelector('.scroller');
+      var down=sc.scrollTop<40; sc.scrollTo({top:down?360:0,behavior:'smooth'});
+      b.textContent=down?'맨 위로':'스크롤 해 보기';
+    });
+  });
   var root=document.documentElement,btns=document.querySelectorAll('.seg button');
   function set(t){
     root.setAttribute('data-theme',t);
     btns.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.t===t))});
-    document.querySelectorAll('[data-ph]').forEach(function(p){p.classList.toggle('dark',t==='dark')});
-    document.querySelectorAll('img[data-src]').forEach(function(i){i.src='img/'+i.dataset.src+'-'+t+'.png'});
+    document.querySelectorAll('.phone').forEach(function(p){p.classList.toggle('dark',t==='dark')});
   }
   btns.forEach(function(b){b.addEventListener('click',function(){set(b.dataset.t)})});
   set(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+  // 미리보기 사진용: ?scrolled 이면 보고 폰을 내려 둔다
+  if(/scrolled/.test(location.search))document.querySelectorAll('#reports .scroller').forEach(function(s){s.scrollTop=360});
 })();
 </script>
 </body>
