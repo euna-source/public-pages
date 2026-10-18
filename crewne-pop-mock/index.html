@@ -39,6 +39,22 @@ th{font-family:Galmuri11,monospace;font-weight:700}
 .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--card);margin-top:16px}
 .seg button{border:0;background:none;color:var(--fg);font:14px Galmuri11,monospace;padding:0 16px;min-height:44px;border-radius:999px;cursor:pointer}
 .seg button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+
+.wcmp{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.wbox{background:#f6f4f0;border:1px solid var(--line);border-radius:22px;padding:16px;color:#2e2e33}
+.wbox .lab{font-size:13px;color:#8c8781;margin-bottom:10px}
+.wbox .dh{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
+.wbox .dh b{font-family:Galmuri11,monospace;font-size:22px;-webkit-font-smoothing:none}
+.wbox .dh span{font-size:15px;color:#8c8781}
+.wbox .tl{display:grid;grid-template-columns:1.25fr 1fr;gap:8px}
+.wbox .tt{border-radius:18px;padding:12px 14px;background:#fff}
+.wbox .tt.big{background:#ffe08a;grid-row:span 2}
+.wbox .tt .k{font-size:13px;font-weight:600}
+.wbox .tt .n{font-family:Galmuri11,monospace;font-size:22px;line-height:1.1;-webkit-font-smoothing:none}
+.wbox .tt.big .n{font-size:44px}
+.wbox .tt .n small{font-family:"Pretendard Variable";font-size:12px;font-weight:600;margin-left:2px}
+.copy td:nth-child(2){color:var(--sub)}
+.copy td:nth-child(3){font-weight:600}
 footer{margin-top:48px;color:var(--sub);font-size:13px}
 footer a{color:inherit}
 @media (max-width:640px){h1{font-size:33px}.refs{grid-template-columns:1fr}}
@@ -48,13 +64,55 @@ footer a{color:inherit}
 <div class="wrap">
   <div class="px" style="color:var(--sub);font-size:12px">CREWNE · POP PIXEL · 2026.10.18</div>
   <h1>크루네 깨발랄 시안<span class="dot"> ♥</span></h1>
-  <p class="lead">맨 위가 최신(바뀌는 아래 막대 데모)이에요. 키키 알림 알약의 룩앤필(흰 캡슐·픽셀 얼굴·회색 칩·갈무리 픽셀 글꼴)과 깨발랄한 색으로 크루네를 다시 그렸어요. 이미지 생성으로 만든 시안이라 글자나 아이콘에 작은 어긋남이 있을 수 있어요. 구조(B 타일·접힘·4탭)는 그대로예요.</p>
+  <p class="lead">맨 위가 최신(큰 글자 굵기 비교·알림 문구·자료 탭)이에요. 키키 알림 알약의 룩앤필(흰 캡슐·픽셀 얼굴·회색 칩·갈무리 픽셀 글꼴)과 깨발랄한 색으로 크루네를 다시 그렸어요. 이미지 생성으로 만든 시안이라 글자나 아이콘에 작은 어긋남이 있을 수 있어요. 구조(B 타일·접힘·4탭)는 그대로예요.</p>
   <div class="pills"><span class="pill y">확인 필요 <i>보드 4장</i></span><span class="pill">갈무리11 <i>제목·탭·숫자</i></span><span class="pill">본문 <i>프리텐다드</i></span></div>
   <div class="seg" role="group" aria-label="화면 밝기"><button type="button" data-t="light" aria-pressed="true">라이트</button><button type="button" data-t="dark" aria-pressed="false">다크</button></div>
 
   <section>
-    <h2>바뀌는 아래 막대 · 직접 눌러 보기 (최신)</h2>
-    <p class="q">아래 막대 하나가 화면에 따라 모양을 바꿔요. 탭 화면에서는 둥근 탭바예요. 채팅방에서는 「← 뒤로 · + 첨부 · 입력칸」이 되고, 입력칸을 누르면 뒤로·+가 접히며 보내기가 나와요. 시안·문서를 열면 「닫기 · 펜 · 콕 찍기 · 수정 요청」이 돼요. <a href="dock.html"><b>폰에서 직접 눌러 보기 →</b></a></p>
+    <h2>큰 글자 굵기 · 실제 글꼴로 비교 (최신)</h2>
+    <p class="q">이미지 생성이 아니라 실제 갈무리 글꼴로 그린 비교예요. A는 날짜와 숫자를 모두 굵게, B는 확인 필요 큰 「3」만 굵게 하고 날짜와 작은 숫자는 보통 굵기, C는 모두 보통 굵기예요. 추천은 B예요. 날짜가 가벼워져 화면이 덜 세 보이고, 그래도 확인 필요 숫자는 첫눈에 들어와요.</p>
+    <div class="wcmp"><div class="wbox"><div class="lab">A · 모두 굵게</div><div class="dh"><b style="font-weight:700">10월 18일</b><span>일요일</span></div>
+<div class="tl"><div class="tt big"><div class="k">확인 필요</div><div class="n" style="font-weight:700">3<small>건</small></div><div style="font-size:12.5px;margin-top:6px">키키 · 루프 · 레인이<br>샐리 답을 기다려요</div></div>
+<div class="tt"><div class="k">진행 중</div><div class="n" style="font-weight:700">2<small>건</small></div></div><div class="tt"><div class="k">나중에</div><div class="n" style="font-weight:700">1<small>건</small></div></div></div></div><div class="wbox"><div class="lab">B · 큰 숫자만 굵게 (추천)</div><div class="dh"><b style="font-weight:400">10월 18일</b><span>일요일</span></div>
+<div class="tl"><div class="tt big"><div class="k">확인 필요</div><div class="n" style="font-weight:700">3<small>건</small></div><div style="font-size:12.5px;margin-top:6px">키키 · 루프 · 레인이<br>샐리 답을 기다려요</div></div>
+<div class="tt"><div class="k">진행 중</div><div class="n" style="font-weight:400">2<small>건</small></div></div><div class="tt"><div class="k">나중에</div><div class="n" style="font-weight:400">1<small>건</small></div></div></div></div><div class="wbox"><div class="lab">C · 모두 보통</div><div class="dh"><b style="font-weight:400">10월 18일</b><span>일요일</span></div>
+<div class="tl"><div class="tt big"><div class="k">확인 필요</div><div class="n" style="font-weight:400">3<small>건</small></div><div style="font-size:12.5px;margin-top:6px">키키 · 루프 · 레인이<br>샐리 답을 기다려요</div></div>
+<div class="tt"><div class="k">진행 중</div><div class="n" style="font-weight:400">2<small>건</small></div></div><div class="tt"><div class="k">나중에</div><div class="n" style="font-weight:400">1<small>건</small></div></div></div></div></div>
+  </section>
+
+  <section>
+    <h2>알림 문구 · 깨발랄 톤 (최신)</h2>
+    <p class="q">「루프가 보고했어요」 대신 「루프 보고 도착!」처럼 크루 이름을 앞에 두고 짧고 밝게 써요. 느낌표는 한 문장에 하나만 써요. 막힘과 오류는 장난치지 않고, 도움이 필요하다는 걸 분명히 써요. 연결이 끊기는 것 같은 시스템 상태는 차분하게 둬요.</p>
+    <table class="copy">
+      <tr><th>상황</th><th>지금</th><th>새 문구</th></tr>
+      <tr><td>크루가 보고를 보냄</td><td>루프가 보고했어요</td><td>루프 보고 도착!</td></tr>
+      <tr><td>맡긴 일이 끝남</td><td>끝났어요</td><td>키키 일 끝! 확인해 주세요</td></tr>
+      <tr><td>질문이 있음</td><td>질문이 있어요</td><td>레인이 물어봐요!</td></tr>
+      <tr><td>막힘</td><td>막혔어요</td><td>루프 막혔어요, 도와주세요!</td></tr>
+      <tr><td>승인이 필요함</td><td>승인이 필요해요</td><td>나나가 승인 기다려요!</td></tr>
+      <tr><td>일하는 중</td><td>진행 중 · 2단계</td><td>젠지 열일 중… 2단계</td></tr>
+      <tr><td>회의록·시안이 옴</td><td>회의록이 준비됐어요</td><td>회의록 도착! / 시안 도착!</td></tr>
+      <tr><td>곧 있는 일정</td><td>55분 뒤 디자인 리뷰</td><td>55분 뒤 디자인 리뷰!</td></tr>
+      <tr><td>수정 요청을 보냄</td><td>보냈어요</td><td>수정 요청 2건 슝!</td></tr>
+      <tr><td>사용량이 빠듯함</td><td>빠듯해요</td><td>Claude 24% 남았어요, 아껴 써요!</td></tr>
+      <tr><td>연결 끊김(차분하게)</td><td>연결이 끊겼어요</td><td>lucete217 연결이 끊겼어요 · 다시 연결</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>자료 탭 · 새 구조 (최신)</h2>
+    <p class="q">세 가지만 남겼어요. ① 새로 온 자료를 한 장씩 넘기며 담기·빼기, ② 프로젝트 문서 보기와 요청, ③ 담은 자료 다시 쓰기예요. 거르기 칩 6개, 자료실·문서함 분절, 칸반, 여러 개 체크, 자료 쪽 「나중에」는 뺐어요(데이터는 지우지 않고 숨기기만 해요). 맡기기는 크루 얼굴을 한 번 누르면 끝나요. 프로젝트에는 자동으로 붙는 단계만 남겼어요. (「불어 열려요」는 「붙어 열려요」의 생성 오탈자예요.)</p>
+    <figure><img src="img/L1.jpg" alt="자료 탭 새 구조"></figure>
+    <table style="margin-top:12px">
+      <tr><th>지금</th><th>새로</th></tr>
+      <tr><td>자료실 | 문서함 분절, 서랍 3개(새 자료·지식창고·나중에), 거르기 6개, 보드 | 전체 문서, 5열 칸반, 체크 여러 개, 일 맡기기 시트, 이 Mac 문서함</td>
+          <td>날짜 머리 + ＋(링크 담기·수집 방향) → 찾기 하나 → 새로 온 자료(한 장씩 담기·빼기) → 프로젝트(문서 타임라인·요청) → 담은 자료(원문·빼기·얼굴 눌러 맡기기)</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>바뀌는 아래 막대 · 직접 눌러 보기</h2>
+    <p class="q">아래 막대 하나가 화면에 따라 모양을 바꿔요. 탭 화면에서는 둥근 탭바예요. 채팅방에서는 「← 뒤로 · + 첨부 · 입력칸」이 되고, 입력칸을 누르면 뒤로·+가 접히며 보내기가 나와요. 시안·문서를 열면 화면을 꽉 채운 미리보기에 「닫기 · 펜 · 콕 찍기 · 수정 요청」이 떠요. <a href="dock.html?v=2"><b>폰에서 직접 눌러 보기 →</b></a></p>
   </section>
 
   <section>
