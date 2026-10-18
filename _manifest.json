@@ -403,8 +403,8 @@
     "slug": "crewne-pop-mock",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-pop-mock/",
-    "last_kind": "new",
-    "last_sha256": "f9e581c4b5a888452eb6e9da617caaa21f79c22be5fa71b0a25f091d329f8fbb",
-    "timestamp": "2026-10-18T08:03:46.074035Z"
+    "last_kind": "redeploy",
+    "last_sha256": "8d1d7a7304a9c648e407336ccb532697f97215a3f6f0b26bc9400d7ed1f741da",
+    "timestamp": "2026-10-18T08:10:32.352894Z"
   }
 }
