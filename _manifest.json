@@ -414,5 +414,13 @@
     "last_kind": "redeploy",
     "last_sha256": "f056050f73deeb576e033a0d7ae44a8ba5221845b0c69533d8940a4f166cf49e",
     "timestamp": "2026-10-18T10:31:32.287048Z"
+  },
+  "crewne-fold-mock": {
+    "slug": "crewne-fold-mock",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-fold-mock/",
+    "last_kind": "new",
+    "last_sha256": "fa229bc7f975cc3cac61e2d599d520cdd54e7d85163ea918e01dbbdf0878e919",
+    "timestamp": "2026-10-18T12:25:57.108652Z"
   }
 }

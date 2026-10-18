@@ -1,0 +1,48 @@
+/* 컬러 무드 — 무드(체리·시트러스·바스) × 밝기(라이트·다크) 색 토큰 정본(2026-10-12 샐리 무드보드 3장).
+   값은 WCAG 대비를 계산해 맞췄다: 본문 7:1·나머지 글자 4.5:1 이상(가이드: 옵시디언 20_Strategy/Claude_교육/크루네_컬러무드·글래스_디자인가이드_2026-10-12.md).
+   data-mood·data-theme 은 appearance.js·index.html 이 단다. 아무것도 없을 때(첫 그림 전)는 체리 라이트. */
+/* 체리 — 하얀 바탕 · 체리 제목 · 하늘색 포인트 */
+:root, :root[data-mood="cherry"] {
+  --bg: #fffcf6; --surface: #ffffff; --surface-2: #edf3fc; --line: rgba(147,5,0,0.10); --text: #241612;
+  --muted: #6b5a52; --title: #930500; --label: #2f5ea8; --accent: #930500; --accent-ink: #ffffff;
+  --soft: #dbe7f8; --soft-ink: #1f4a8a; --ok: #2e7d4f; --warn: #c4161c; --wait: #8a5a00;
+  --wait-ink: #ffffff; --idle: #a1958e; --mac-home: #2f5ea8; --mac-work: #930500; --mac-ink: #ffffff;
+  --pattern-ink: rgba(147,5,0,0.08);
+}
+:root[data-theme="dark"], :root[data-mood="cherry"][data-theme="dark"] {
+  --bg: #0d1322; --surface: #161e31; --surface-2: #1f2a42; --line: rgba(149,187,234,0.14); --text: #fff8e7;
+  --muted: #a9b4c8; --title: #f6aaa2; --label: #95bbea; --accent: #c8352a; --accent-ink: #ffffff;
+  --soft: #95bbea; --soft-ink: #0d1322; --ok: #6fcf97; --warn: #ff8a80; --wait: #f2c46b;
+  --wait-ink: #2a1d00; --idle: #5f6b80; --mac-home: #95bbea; --mac-work: #f6aaa2; --mac-ink: #0d1322;
+  --pattern-ink: rgba(149,187,234,0.08);
+}
+/* 시트러스 — 흰 바탕 · 귤빛 버튼 · 쨍한 파랑 제목 */
+:root[data-mood="citrus"] {
+  --bg: #fffef9; --surface: #ffffff; --surface-2: #fff8d6; --line: rgba(26,31,90,0.10); --text: #17182b;
+  --muted: #5c5f70; --title: #1f2bb8; --label: #c24600; --accent: #cc4800; --accent-ink: #ffffff;
+  --soft: #ffee9b; --soft-ink: #2a35d6; --ok: #5c7a0c; --warn: #c4162a; --wait: #3546ff;
+  --wait-ink: #ffffff; --idle: #a3a3ad; --mac-home: #3546ff; --mac-work: #cc4800; --mac-ink: #ffffff;
+  --pattern-ink: rgba(233,85,0,0.10);
+}
+:root[data-mood="citrus"][data-theme="dark"] {
+  --bg: #12131f; --surface: #1c1d2c; --surface-2: #272838; --line: rgba(255,238,155,0.12); --text: #fffaf0;
+  --muted: #b3b4c4; --title: #ffee9b; --label: #9aa2ff; --accent: #ff7a26; --accent-ink: #1a0f00;
+  --soft: #adc642; --soft-ink: #1a2000; --ok: #c3dc5a; --warn: #ff6b6b; --wait: #9aa2ff;
+  --wait-ink: #0b0f40; --idle: #5c5e70; --mac-home: #9aa2ff; --mac-work: #ff9a5c; --mac-ink: #12131f;
+  --pattern-ink: rgba(255,238,155,0.07);
+}
+/* 바스 — 쿨블루 흰 바탕 · 플럼 글씨 · 와사비 포인트 */
+:root[data-mood="bath"] {
+  --bg: #f9fcff; --surface: #ffffff; --surface-2: #e3f3ff; --line: rgba(53,30,40,0.10); --text: #351e28;
+  --muted: #6e5a63; --title: #351e28; --label: #7b4a5f; --accent: #351e28; --accent-ink: #e9f056;
+  --soft: #e9f056; --soft-ink: #351e28; --ok: #3a7a35; --warn: #b42318; --wait: #1f6fb2;
+  --wait-ink: #ffffff; --idle: #a69ca1; --mac-home: #2c6a99; --mac-work: #6b3a50; --mac-ink: #ffffff;
+  --pattern-ink: rgba(53,30,40,0.07);
+}
+:root[data-mood="bath"][data-theme="dark"] {
+  --bg: #160d12; --surface: #22151c; --surface-2: #2e1f27; --line: rgba(215,239,255,0.12); --text: #f3f9ff;
+  --muted: #b9aab2; --title: #d7efff; --label: #e9f056; --accent: #e9f056; --accent-ink: #351e28;
+  --soft: #d7efff; --soft-ink: #351e28; --ok: #9fd88a; --warn: #ff7a6e; --wait: #7cc4ff;
+  --wait-ink: #0b2236; --idle: #6a5a62; --mac-home: #a8d8ff; --mac-work: #e9f056; --mac-ink: #351e28;
+  --pattern-ink: rgba(215,239,255,0.07);
+}

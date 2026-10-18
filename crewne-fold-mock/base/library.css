@@ -1,0 +1,163 @@
+/* 자료 탭 — styles.css 의 색·간격 토큰을 그대로 쓴다 */
+.lib .lib-shelves { padding-left: 0; padding-right: 0; }
+.lib-list { list-style: none; margin: 4px 0 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+.lib-list li + li { border-top: 1px solid var(--line); }
+.lib-list li.on { background: var(--surface-2); }
+.lib-row { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; min-height: 48px; }
+.lib-row input { width: 20px; height: 20px; margin: 2px 0 0; flex: none; accent-color: var(--accent); }
+.lib-title { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; text-align: left; line-height: 1.45; overflow-wrap: anywhere; }
+.lib-body { padding: 0 14px 14px 44px; min-width: 0; overflow-wrap: anywhere; }
+.lib-body .prose blockquote { margin: 8px 0; padding-left: 10px; border-left: 3px solid var(--line); color: var(--muted); }
+/* 키보드가 떠 있으면(--kbb, main.jsx) 탭바 대신 키보드 위에 붙고, 보이는 높이를 넘으면 시트 안에서 스크롤한다 */
+.lib-bar, .lib-sheet { position: fixed; left: 0; right: 0; bottom: var(--kbb, calc(var(--tabbar) + var(--safe-b))); z-index: 5;
+  max-height: calc(var(--kbvh, calc(100dvh - var(--tabbar) - var(--safe-b))) - var(--safe-t) - 8px); overflow-y: auto; overscroll-behavior: contain;
+  max-width: 720px; margin: 0 auto; padding: 10px max(16px, var(--safe-r)) 12px max(16px, var(--safe-l));
+  background: var(--surface); border-top: 1px solid var(--line); box-shadow: var(--shadow); }
+.lib-bar .decision-actions { margin-top: 6px; }
+.lib-sheet { display: flex; flex-direction: column; gap: 8px; }
+.lib-sheet p { margin: 0; }
+.lib-sheet .lib-crew { padding: 0; }
+.lib-sheet textarea { width: 100%; min-height: 72px; padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--bg); color: var(--text); font: inherit; font-size: 16px; resize: vertical; }
+/* 막대가 마지막 항목을 가리지 않게 */
+.lib:has(.lib-bar, .lib-sheet) { padding-bottom: 200px; }
+.lib-body a.btn { color: inherit; text-decoration: none; }
+.lib-sheet .lib-crew { background: transparent; border: 0; }
+.lib-sheet .quick-words { padding: 0; }
+/* 수집 요청 · 링크 넣기 */
+.lib-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.lib-tools { display: flex; gap: 6px; }
+.lib-panel { display: flex; flex-direction: column; gap: 8px; margin: 4px 0 10px; padding: 12px 14px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); }
+.lib-panel p { margin: 0; }
+.lib-panel input, .lib-panel textarea { width: 100%; padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--line);
+  background: var(--bg); color: var(--text); font: inherit; font-size: 16px; }
+.lib-panel textarea { resize: vertical; }
+.lib-brief { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.lib-brief li { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.lib-brief li:last-child { border-bottom: 0; }
+.lib-brief .btn { flex: none; }
+/* 자료실 · 문서함 전환과 문서함 목록 */
+.lib-views { display: inline-flex; margin: 0 0 10px; padding: 3px; gap: 2px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+.lib-views button { min-height: 34px; padding: 0 16px; border-radius: 999px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.lib-views button[aria-selected="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgb(0 0 0 / .08); }
+.docbox-bar { display: flex; gap: 8px; align-items: center; margin: 2px 0 6px; flex-wrap: wrap; }
+.docbox-bar input { flex: 1; min-width: 160px; min-height: 44px; padding: 0 14px; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--surface); color: var(--text); font: inherit; font-size: 16px; }
+.docbox-bar .btn { flex: none; text-decoration: none; color: inherit; }
+.docbox-bar .lib-views { margin: 0; }
+.docbox-n { margin: 0 2px 6px; font-variant-numeric: tabular-nums; }
+.docbox-row { display: flex; align-items: center; gap: 10px; padding: 10px 10px 10px 14px; min-height: 56px; }
+.docbox-title { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; color: inherit; text-decoration: none; line-height: 1.45; overflow-wrap: anywhere; }
+.docbox-title > span:first-child { font-weight: 600; }
+.docbox-title .small { font-variant-numeric: tabular-nums; }
+.docbox-acts { display: flex; gap: 4px; flex: none; }
+.docbox-acts .btn { text-decoration: none; color: inherit; }
+.docbox-acts .docbox-edit { color: var(--accent); font-weight: 700; }
+.docbox-group { margin: 6px 0 16px; }
+.docbox-gh { margin: 8px 2px 6px; font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.docbox-gh .small { font-weight: 500; font-variant-numeric: tabular-nums; }
+.docbox-hist { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; margin-top: 4px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.docbox-hist i { font-style: normal; padding: 0 7px; border-radius: 6px; background: var(--surface-2); line-height: 20px; color: var(--text); }
+.docbox-hist i.now { background: var(--text); color: var(--surface); }
+/* ── 보드(10/18) — 열=상태, 카드=프로젝트. 플랫·색은 뜻에만(--wait 샐리 차례, --idle 멈춤, --ok 완료) */
+.docbox { position: relative; }
+.docbox-quick { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 0 0 8px; }
+.docbox-quick .filter { position: relative; }
+.docbox-quick .filter::before { content: ""; position: absolute; inset: -7px 0; }
+.docbox-quick .docbox-n { margin: 0 0 0 auto; }
+.docbox-board { display: grid; grid-template-columns: repeat(5, minmax(220px, 1fr)); gap: 10px; align-items: start; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x proximity; }
+@media (max-width: 1023px) { .docbox-board { display: flex; gap: 10px; } .docbox-col { flex: 0 0 86%; scroll-snap-align: start; } }
+@media (display-mode: standalone) and (min-width: 600px) { .docbox-board { display: flex; gap: 10px; } .docbox-col { flex: 0 0 86%; scroll-snap-align: start; } .tab-body:has(.docbox-wide) { max-width: 390px; } }
+.docbox-col { background: var(--surface-2); border-radius: var(--r-md); min-height: 120px; display: flex; flex-direction: column; min-width: 0; }
+.docbox-ch { display: flex; align-items: center; justify-content: space-between; padding: 10px 12px 6px; }
+.docbox-ch h3 { margin: 0; font-size: 13px; font-weight: 700; letter-spacing: .02em; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.docbox-ch h3 span { font-variant-numeric: tabular-nums; color: var(--text); }
+.docbox-ch h3 em { font-style: normal; font-size: 12px; font-weight: 600; padding: 0 6px; border-radius: 999px; background: var(--surface); color: var(--muted); }
+.docbox-col.col-2 .docbox-ch h3 { color: var(--text); }
+.docbox-ib { width: 32px; height: 32px; border-radius: 999px; color: var(--idle); font-size: 14px; font-weight: 700; position: relative; display: grid; place-items: center; }
+.docbox-ib::before { content: ""; position: absolute; inset: -6px; }
+.docbox-ib:hover { background: var(--surface); color: var(--muted); }
+.docbox-cb { display: flex; flex-direction: column; gap: 8px; padding: 0 8px 10px; }
+.docbox-card { width: 100%; text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 10px 12px; display: flex; flex-direction: column; gap: 5px; min-height: 44px; }
+.docbox-card:hover { border-color: var(--line2, var(--line)); }
+.docbox-card.sel { border-color: var(--text); }
+.docbox-card.me { box-shadow: inset 4px 0 0 var(--wait); }
+.docbox-card.nudge { box-shadow: inset 4px 0 0 var(--text); }
+.docbox-card.quiet { box-shadow: inset 4px 0 0 var(--idle); }
+.docbox-card.done { box-shadow: inset 4px 0 0 var(--ok); }
+.docbox-card.bl { border-style: dashed; }
+.docbox-cw { position: relative; } .docbox-cw .docbox-card { padding-right: 40px; }
+.docbox-more { position: absolute; right: 2px; bottom: 2px; width: 36px; height: 36px; font-size: 18px; color: var(--muted); }
+.docbox-menu { position: absolute; right: 4px; top: calc(100% - 2px); z-index: 5; min-width: 220px; background: var(--surface); border: 1px solid var(--line2, var(--line)); border-radius: var(--r-md); padding: 4px; }
+.docbox-menu button { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; width: 100%; min-height: 44px; padding: 6px 10px; border-radius: var(--r-sm, 6px); text-align: left; font-size: 14px; font-weight: 600; }
+.docbox-menu button:hover, .docbox-menu button:focus-visible { background: var(--surface-2); }
+.docbox-ct { display: flex; justify-content: space-between; gap: 8px; font-size: 15px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; }
+.docbox-ct .key, .docbox-wt .key { font-size: 12px; color: var(--muted); font-weight: 700; letter-spacing: .02em; white-space: nowrap; }
+.docbox-sig { font-size: 13px; } .docbox-sig b { font-variant-numeric: tabular-nums; }
+.flag { color: var(--warn); font-weight: 700; font-size: 12px; }
+.docbox-cl { font-size: 13px; color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.docbox-cf { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px; }
+.kind { padding: 0 7px; border-radius: 999px; background: var(--surface-2); line-height: 20px; font-weight: 600; font-size: 12px; color: var(--muted); white-space: nowrap; }
+.docbox-cempty { font-size: 12px; color: var(--muted); padding: 6px 6px 8px; line-height: 1.5; margin: 0; }
+.lnk { font-size: 12.5px; font-weight: 600; color: var(--muted); text-decoration: underline; text-underline-offset: 2px; min-height: 32px; position: relative; background: none; border: 0; padding: 0 2px; }
+.lnk::before { content: ""; position: absolute; inset: -6px 0; }
+/* 창 — PC 오른쪽 아래(dock) · 가운데(expand) · 제목 줄(min). 보드와 다른 층임을 아주 옅게(샐리 10/18): 오른쪽 아래로 갈수록 0→11% 막 */
+.docbox-veil { position: fixed; inset: 0; z-index: 30; pointer-events: none; background: linear-gradient(to bottom right, rgb(36 22 18 / 0) 30%, rgb(36 22 18 / .055) 70%, rgb(36 22 18 / .11) 100%); }
+.docbox-veil.scrim { pointer-events: auto; background: rgb(36 22 18 / .35); }
+.docbox-win { position: fixed; right: 24px; bottom: calc(var(--tabbar) + var(--safe-b) + 8px); width: 640px; max-height: calc(100dvh - var(--tabbar) - 48px); height: 760px; z-index: 31; background: var(--surface); border: 1px solid var(--line2, var(--line)); border-radius: var(--r-lg); display: flex; flex-direction: column; overflow: hidden; animation: docbox-up 200ms cubic-bezier(.2,.8,.2,1); }
+.docbox-win.expand { left: 50%; right: auto; top: 40px; bottom: auto; transform: translateX(-50%); width: min(1100px, calc(100vw - 48px)); height: calc(100dvh - 80px); }
+.docbox-win.min { height: 48px; }
+.docbox-win.closing { animation: docbox-down 200ms cubic-bezier(.2,.8,.2,1) forwards; }
+@keyframes docbox-up { from { transform: translateY(24px); opacity: 0; } }
+@keyframes docbox-down { to { transform: translateY(100%); opacity: 0; } }
+.docbox-win.expand.closing { animation: docbox-fade 150ms forwards; }
+@keyframes docbox-fade { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .docbox-win, .docbox-win.closing { animation: docbox-fade 120ms forwards; } .docbox-win:not(.closing) { animation: none; } }
+.docbox-wt { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 6px 0 16px; background: var(--surface-2); flex: none; }
+.docbox-wt b { font-size: 15px; } .docbox-wb { margin-left: auto; display: flex; } .docbox-wb .docbox-ib { width: 40px; height: 40px; font-size: 18px; color: var(--muted); }
+.docbox-st { margin: 10px 16px 0; padding: 8px 12px; border-radius: var(--r-md); background: var(--surface-2); display: flex; flex-direction: column; gap: 1px; flex: none; }
+.docbox-st.me { background: color-mix(in oklab, var(--wait) 12%, var(--surface)); }
+.docbox-st b { font-size: 14px; } .docbox-st span { font-size: 12.5px; color: var(--muted); }
+.docbox-wa { display: flex; gap: 6px; padding: 8px 16px 0; flex: none; flex-wrap: wrap; } .docbox-wa .btn { min-height: 40px; text-decoration: none; }
+.docbox-who { margin: 8px 16px 0; padding: 10px 12px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface); flex: none; }
+.docbox-who p { margin: 0 0 8px; font-size: 13px; font-weight: 700; } .docbox-who p.small { margin: 8px 0 0; font-weight: 400; }
+.docbox-who div { display: flex; gap: 6px; flex-wrap: wrap; } .docbox-who .btn { min-height: 44px; } .docbox-who .btn.on { background: var(--text); color: var(--bg); border-color: var(--text); }
+.docbox-steps { display: flex; gap: 4px; padding: 8px 16px; margin: 0; list-style: none; flex: none; align-items: center; overflow-x: auto; scrollbar-width: none; }
+.docbox-steps li { flex: none; display: inline-flex; align-items: center; gap: 5px; height: 28px; padding: 0 10px; border-radius: 999px; font-size: 12.5px; color: var(--muted); background: var(--surface-2); }
+.docbox-steps li.done { color: var(--text); } .docbox-steps li.done b::before { content: "✓ "; color: var(--ok); }
+.docbox-steps li.todo { background: transparent; border: 1px dashed var(--line); }
+.docbox-steps li.cur { color: var(--text); background: var(--surface); border: 1.5px solid var(--text); font-weight: 700; }
+.docbox-steps li.fix { background: transparent; padding: 0 4px; }
+.docbox-tl { flex: 1; min-height: 0; overflow-y: auto; margin: 0; padding: 6px 16px 10px; list-style: none; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.docbox-ti { display: grid; grid-template-columns: 46px 1fr auto; gap: 8px; position: relative; padding: 5px 0; align-items: center; }
+.docbox-ti::before { content: ""; position: absolute; left: 52px; top: 0; bottom: 0; width: 2px; background: var(--line); }
+.docbox-ti time { font-size: 12px; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; padding-top: 2px; }
+.docbox-ti time::after { content: ""; position: absolute; left: 47px; top: 16px; width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--idle); }
+.docbox-ti.sel time::after { border-color: var(--text); background: var(--text); } .docbox-ti.meet time::after { border-color: var(--soft-ink); }
+.docbox-tc { margin-left: 14px; width: calc(100% - 14px); text-align: left; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; min-height: 44px; }
+.docbox-ti.sel .docbox-tc { border: 2px solid var(--text); padding: 9px 11px; } .docbox-ti.meet .docbox-tc { background: var(--surface-2); } .docbox-ti.batch .tt { color: var(--muted); }
+.docbox-tc .th { display: flex; align-items: center; gap: 8px; font-size: 12px; } .selb { color: var(--text); font-weight: 700; font-size: 12px; }
+.docbox-tc .tt { font-size: 14px; font-weight: 600; line-height: 1.35; }
+.docbox-ti .open { padding: 0 6px; }
+.docbox-compose { flex: none; border-top: 1px solid var(--line2, var(--line)); padding: 8px 16px 12px; display: flex; flex-direction: column; gap: 8px; background: var(--bg); }
+.docbox-quote { display: flex; align-items: center; gap: 8px; min-height: 44px; padding: 4px 12px; border-radius: var(--r-md); background: var(--surface-2); font-size: 13px; overflow: hidden; }
+.docbox-quote b { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; } .docbox-quote .small { white-space: nowrap; }
+.docbox-av { width: 28px; height: 28px; font-size: 12px; font-weight: 700; background: var(--soft); color: var(--soft-ink); }
+.docbox-to { display: inline-flex; align-items: center; gap: 6px; min-height: 36px; padding: 0 8px 0 0; font-size: 13px; font-weight: 600; white-space: nowrap; flex: none; }
+.docbox-qx { margin-left: auto; width: 36px; height: 36px; font-size: 18px; color: var(--muted); flex: none; }
+.docbox-compose .docbox-who { margin: 0; }
+.docbox-composer textarea { min-height: 44px; }
+.docbox-composer .send { width: 44px; height: 44px; }
+/* 폰 — 아래에서 올라오는 시트(92%), 머리는 얇게 고정, 타임라인 따로 스크롤 */
+.docbox-sheet-back { align-items: flex-end; }
+.docbox-sheet { width: 100%; max-height: 92dvh; height: 92dvh; display: flex; flex-direction: column; padding: 0 0 var(--safe-b); overflow: hidden; }
+.docbox-sheet .docbox-wt { background: transparent; border-bottom: 1px solid var(--line); }
+.docbox-sheet .docbox-tl { padding-top: 10px; }
+.docbox-phead { flex: none; display: flex; flex-direction: column; gap: 6px; padding: 8px 16px; border-bottom: 1px solid var(--line); }
+.docbox-sheet .docbox-st { margin: 0; flex-direction: row; align-items: center; gap: 8px; min-height: 44px; padding: 6px 12px; overflow: hidden; }
+.docbox-sheet .docbox-st b { flex: none; white-space: nowrap; } .docbox-sheet .docbox-st span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.docbox-stchip { display: flex; align-items: center; gap: 8px; min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; overflow: hidden; white-space: nowrap; }
+.docbox-stchip b { flex: none; } .docbox-stchip span { overflow: hidden; text-overflow: ellipsis; } .docbox-stchip span:last-child { margin-left: auto; flex: none; }
+.docbox-pmore { flex: none; max-height: 40dvh; overflow-y: auto; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+.docbox-sheet .docbox-tl { border-top: 0; }
+.docbox-sheet.closing { animation: docbox-down 200ms cubic-bezier(.2,.8,.2,1) forwards; }

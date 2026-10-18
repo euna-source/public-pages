@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>크루네 두 칸 시안</title>
+<link rel="stylesheet" href="base/fonts-local.css">
+<style>
+:root { --bg: #f3f1ee; --ink: #1d1b19; --sub: #6f6a64; --line: #dcd7d0; --card: #fff; --chip: #ebe7e1; --on: #1d1b19; --onText: #fff; --desk: #e4e0da; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #191817; --ink: #f2efea; --sub: #a39d95; --line: #34312e; --card: #232120; --chip: #2c2a28; --on: #f2efea; --onText: #191817; --desk: #121110; } }
+:root[data-theme="dark"] { --bg: #191817; --ink: #f2efea; --sub: #a39d95; --line: #34312e; --card: #232120; --chip: #2c2a28; --on: #f2efea; --onText: #191817; --desk: #121110; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Pretendard Variable", -apple-system, "Apple SD Gothic Neo", sans-serif; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding: 32px 16px 56px; }
+h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -0.02em; }
+.lead { color: var(--sub); margin: 0 0 22px; font-size: 15px; max-width: 720px; }
+.ctrl { display: flex; flex-wrap: wrap; gap: 8px 18px; align-items: center; margin-bottom: 14px; }
+.seg { display: inline-flex; background: var(--chip); border-radius: 999px; padding: 3px; gap: 2px; flex-wrap: wrap; }
+.seg button { border: 0; background: transparent; color: var(--ink); font: inherit; font-size: 14px; padding: 7px 14px; border-radius: 999px; cursor: pointer; min-height: 36px; }
+.seg button[aria-pressed="true"] { background: var(--on); color: var(--onText); font-weight: 600; }
+.lbl { font-size: 12px; color: var(--sub); margin-right: 6px; }
+.stage { background: var(--desk); border-radius: 18px; padding: 28px 16px; display: flex; justify-content: center; overflow: hidden; }
+.fit { transform-origin: top center; }
+.win { width: 800px; height: 808px; background: var(--card); border-radius: 12px; overflow: hidden; border: 1px solid var(--line); display: flex; flex-direction: column; transition: width .35s ease; }
+.title { height: 28px; flex: none; display: flex; align-items: center; gap: 7px; padding: 0 10px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--sub); }
+.title i { width: 11px; height: 11px; border-radius: 50%; background: #ff5f57; display: inline-block; } .title i:nth-child(2) { background: #febc2e; } .title i:nth-child(3) { background: #28c840; }
+.title span { flex: 1; text-align: center; margin-right: 50px; }
+.panes { flex: 1; display: flex; min-height: 0; }
+.panes iframe { border: 0; height: 100%; display: block; background: #fff; }
+#L { width: 390px; flex: none; }
+.hinge { width: 1px; flex: none; background: var(--line); }
+.rightbox { flex: 1; min-width: 0; position: relative; }
+#R { width: 100%; }
+.tag { position: absolute; top: 8px; right: 10px; z-index: 2; font-size: 12px; background: var(--on); color: var(--onText); padding: 3px 10px; border-radius: 999px; pointer-events: none; }
+.win.appdark { background:#0d1220; border-color:#2a3042; } .win.appdark .title { color:#9aa3b5; border-color:#2a3042; }
+.single .hinge, .single .rightbox { display: none; }
+.note { margin-top: 16px; display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.note div { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 14px; }
+.note b { display: block; margin-bottom: 2px; }
+.note p { margin: 0; color: var(--sub); }
+.foot { margin-top: 26px; font-size: 13px; color: var(--sub); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>크루네 PC — 두 칸 시안</h1>
+  <p class="lead">아이폰 폴드(iPhone Duo)를 펼친 것처럼, 왼쪽은 목록이고 오른쪽은 고른 것을 엽니다. 칸 하나하나는 지금 앱 화면(실제 앱 CSS·문서함은 실제 화면에서 뜬 구조) 그대로예요.</p>
+  <div class="ctrl">
+    <div><span class="lbl">장면</span><span class="seg" id="scene">
+      <button data-v="inbox" aria-pressed="true">받은함</button><button data-v="chat">채팅</button><button data-v="docs">문서함</button><button data-v="kiki">키키 붙이기</button><button data-v="now">지금(한 칸)</button></span></div>
+    <div><span class="lbl">창 폭</span><span class="seg" id="width">
+      <button data-v="800" aria-pressed="true">폰 두 장 · 800</button><button data-v="1100">폴드 비율 · 1100</button></span></div>
+    <div><span class="lbl">앱 테마</span><span class="seg" id="theme">
+      <button data-v="light" aria-pressed="true">라이트</button><button data-v="dark">다크</button></span></div>
+  </div>
+  <div class="stage" id="stage"><div class="fit" id="fit">
+    <div class="win" id="win">
+      <div class="title"><i></i><i></i><i></i><span>크루네</span></div>
+      <div class="panes"><iframe id="L" title="왼쪽 칸"></iframe><div class="hinge"></div><div class="rightbox"><span class="tag" id="tag" hidden>키키 붙여 둠</span><iframe id="R" title="오른쪽 칸"></iframe></div></div>
+    </div>
+  </div></div>
+  <div class="note" id="note"></div>
+  <p class="foot">시안 — 앱 코드는 아직 바꾸지 않았어요. 창 폭 760px 이상에서만 두 칸이 되고, 폰은 지금 그대로예요. 2026-10-18</p>
+</div>
+<script>
+const S = {
+  inbox: { L: "reports", R: "detail", n: [["왼쪽 · 받은함", "카드 목록은 그대로 두고"], ["오른쪽 · 카드 상세", "고른 카드의 답·승인 단추. 「뒤로」 없이 다른 카드를 바로 누른다"]] },
+  chat: { L: "chats", R: "room", n: [["왼쪽 · 방 목록", "누가 무슨 말을 했는지 한눈에"], ["오른쪽 · 그 방 대화", "방을 바꿔도 목록이 사라지지 않는다"]] },
+  docs: { L: "board", R: "win", n: [["왼쪽 · 문서함 보드", "열은 지금처럼 가로로 넘김"], ["오른쪽 · 프로젝트 창", "지금 오른쪽 아래에 뜨는 창이 이 칸에 고정 — 보드를 가리지 않는다"]] },
+  kiki: { L: "reports", R: "room", tag: true, n: [["왼쪽 · 아무 탭", "받은함·문서함 무엇이든"], ["오른쪽 · 키키 채팅 붙여 두기", "보면서 바로 맡긴다(아이폰 듀오의 「시리를 앱 옆에」와 같은 쌍)"]] },
+  now: { L: "reports", single: true, n: [["지금 · 한 칸 390", "카드를 열면 목록이 사라지고 「뒤로」로 돌아온다"]] },
+};
+let st = { scene: "inbox", width: "800", theme: "light" };
+const $ = id => document.getElementById(id);
+function render() {
+  const s = S[st.scene], q = "?theme=" + st.theme;
+  $("L").src = "panes/" + s.L + ".html" + q;
+  if (s.R) $("R").src = "panes/" + s.R + ".html" + q;
+  $("win").classList.toggle("single", !!s.single);
+  $("win").style.width = (s.single ? 391 : +st.width) + "px";
+  $("tag").hidden = !s.tag;
+  $("win").classList.toggle("appdark", st.theme === "dark");
+  $("note").innerHTML = s.n.map(([b, p]) => `<div><b>${b}</b><p>${p}</p></div>`).join("");
+  fit();
+}
+function fit() {
+  const w = parseFloat($("win").style.width), avail = $("stage").clientWidth - 32, k = Math.min(1, avail / w);
+  $("fit").style.transform = `scale(${k})`; $("stage").style.height = (808 * k + 56) + "px";
+}
+for (const g of ["scene", "width", "theme"]) $(g).addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  st[g] = b.dataset.v; for (const x of $(g).children) x.setAttribute("aria-pressed", x === b);
+  render();
+});
+addEventListener("resize", fit);
+render();
+</script>
+</body>
+</html>

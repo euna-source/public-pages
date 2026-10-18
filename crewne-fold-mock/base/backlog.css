@@ -1,0 +1,31 @@
+/* 백로그 — 보고 탭 「나중에」 거르기 안. 자료 탭 목록(lib-list)과 같은 결 */
+.backlog { padding: 8px max(16px, var(--safe-r)) 24px max(16px, var(--safe-l)); display: flex; flex-direction: column; gap: 8px; }
+.backlog-add { align-self: flex-start; }
+.backlog-list { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); overflow: hidden; }
+.backlog-list:empty { display: none; }
+.backlog-list li + li { border-top: 1px solid var(--line); }
+.backlog-list li.on { background: var(--surface-2); }
+.backlog-list li.st-sent .backlog-title { color: var(--muted); text-decoration: line-through; }
+.backlog-group { display: flex; flex-direction: column; gap: 4px; }
+.backlog-group-head { margin: 4px 2px 0; font-weight: 600; letter-spacing: .02em; }
+.backlog-head { display: flex; gap: 8px; align-items: baseline; }
+.backlog-title { flex: 1 1 auto; min-width: 0; font-weight: 600; }
+.backlog-when { flex: 0 0 auto; white-space: nowrap; }
+.backlog-line { overflow-wrap: anywhere; }
+/* 채팅방 입력칸 위 띠 — 백로그에서 넘겨받았을 때 담당 바꾸기 */
+.quote-bar-move { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.quote-bar-move .filter { padding: 2px 9px; font-size: 12px; min-height: 26px; }
+.backlog-row { display: flex; flex-direction: column; gap: 3px; width: 100%; padding: 12px 14px; min-height: 48px; text-align: left; background: none; border: 0; color: var(--text); font: inherit; line-height: 1.45; overflow-wrap: anywhere; }
+.backlog-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.backlog-meta .chip { font-size: 11px; }
+.backlog-body { padding: 0 14px 14px; display: flex; flex-direction: column; gap: 6px; }
+.backlog-body p { margin: 0; overflow-wrap: anywhere; }
+.backlog-body .decision-actions { margin-top: 4px; }
+.backlog-form { display: flex; flex-direction: column; gap: 8px; padding: 10px 12px 12px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-md); }
+.backlog-form input, .backlog-form textarea { width: 100%; padding: 10px 12px; border-radius: var(--r-md); border: 1px solid var(--line); background: var(--bg); color: var(--text); font: inherit; font-size: 16px; }
+.backlog-form textarea { min-height: 72px; resize: vertical; }
+.backlog-form .lib-crew, .backlog-form .filters { padding: 0; }
+.backlog-form .decision-actions { margin-top: 2px; }
+.backlog-form p[role="alert"] { margin: 0; color: var(--danger, #b00); }
+/* 거르기 셋 + 크루 — 320px 에서도 한 줄 가로 스크롤 */
+.filter.on.later { background: var(--surface-2); border-color: var(--text); color: var(--text); }
