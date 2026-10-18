@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>C8 홈 와이어프레임</title>
+<meta name="description" content="C8 서비스 홈 v0.8 구성안과 에피소드 시즌 1 v2(편마다 메시지 하나)를 함께 놓은 로파이 와이어프레임. 1440·390 반응형.">
+<style>
+:root{
+  color-scheme: light;
+  --bg:#FFFFFF;
+  --surface:#FFFFFF;
+  --on-ink:#FFFFFF;
+  --on-accent:#FFFFFF;
+  --glass:rgba(255,255,255,.96);
+  --glass-2:rgba(255,255,255,.7);
+  --scrim-a:rgba(230,230,230,.95);
+  --scrim-b:rgba(230,230,230,0);
+  --canvas:#F6F6F4;
+  --fill:#E6E6E6;
+  --fill-2:#EFEFEF;
+  --line:#9A9A9A;
+  --line-soft:#C9C9C9;
+  --ink:#1F1F1F;
+  --ink-2:#4A4A4A;
+  --ink-3:#5E5E5E;
+  --accent:#B93C0B;      /* 주석(번호 원·태그·접힘선) 전용 */
+  --accent-soft:#FBEDE6;
+  --r-s:6px; --r-m:10px; --r-l:14px;
+  --gutter:16px;
+  --maxw:1200px;
+  --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:24px; --sp-6:32px; --sp-7:48px; --sp-8:72px;
+  --font: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", "Malgun Gothic", "Segoe UI", sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme: dark;
+  --bg:#121212; --surface:#1C1C1C; --canvas:#1A1A1A; --fill:#2C2C2C; --fill-2:#242424;
+  --line:#7E7E7E; --line-soft:#444444; --ink:#EDEDED; --ink-2:#C6C6C6; --ink-3:#A9A9A9;
+  --accent:#FF8F63; --accent-soft:#2E1B12; --on-ink:#121212; --on-accent:#1A0D07;
+  --glass:rgba(18,18,18,.94); --glass-2:rgba(28,28,28,.72); --scrim-a:rgba(44,44,44,.95); --scrim-b:rgba(44,44,44,0);
+}}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#121212; --surface:#1C1C1C; --canvas:#1A1A1A; --fill:#2C2C2C; --fill-2:#242424;
+  --line:#7E7E7E; --line-soft:#444444; --ink:#EDEDED; --ink-2:#C6C6C6; --ink-3:#A9A9A9;
+  --accent:#FF8F63; --accent-soft:#2E1B12; --on-ink:#121212; --on-accent:#1A0D07;
+  --glass:rgba(18,18,18,.94); --glass-2:rgba(28,28,28,.72); --scrim-a:rgba(44,44,44,.95); --scrim-b:rgba(44,44,44,0);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{overflow-x:clip;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.6;word-break:keep-all;overflow-wrap:anywhere}
+h1,h2,h3,p{margin:0}
+button,input{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:2px;border-radius:4px}
+.sr{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{width:100%;max-width:calc(var(--maxw) + 2*var(--gutter));margin:0 auto;padding:0 var(--gutter)}
+@media (min-width:721px){:root{--gutter:24px}}
+
+/* ---------- 주석 층 ---------- */
+.annot-legend{background:var(--canvas);border-bottom:1px dashed var(--line);font-size:13px;color:var(--ink-2)}
+.annot-legend .wrap{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:center;padding-top:10px;padding-bottom:10px}
+.annot-legend b{color:var(--ink)}
+.legend-keys{display:flex;flex-wrap:wrap;gap:4px 12px}
+.toggle-annot{margin-left:auto;border:1px solid var(--accent);background:var(--bg);color:var(--accent);border-radius:999px;padding:4px 12px;font-size:13px;cursor:pointer;min-height:32px}
+.tag{display:inline-flex;flex-wrap:wrap;align-items:center;gap:4px 10px;font-size:12.5px;line-height:1.4;color:var(--accent);background:var(--accent-soft);border:1px solid var(--accent);border-radius:var(--r-s);padding:5px 10px;margin-bottom:var(--sp-5);max-width:100%}
+.tag .no{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--on-accent);font-weight:700;font-size:12px;flex:none}
+.tag .nm{font-weight:700}
+.tag .ht{font-family:var(--mono);font-size:12px}
+.tag .live{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+.pin{display:inline-grid;place-items:center;min-width:20px;height:20px;padding:0 5px;border-radius:999px;background:var(--accent);color:var(--on-accent);font:700 11px/1 var(--mono);vertical-align:middle;margin-right:6px;flex:none}
+.notes{margin:var(--sp-6) 0 0;padding:var(--sp-4);list-style:none;border:1px dashed var(--accent);border-radius:var(--r-m);background:var(--surface);font-size:13px;line-height:1.5;color:var(--ink-2);display:grid;gap:6px;grid-template-columns:1fr}
+@media (min-width:900px){.notes{grid-template-columns:1fr 1fr;column-gap:24px}}
+.notes li{display:flex;gap:2px;align-items:flex-start}
+.notes .q{color:var(--accent)}
+.fold{position:absolute;left:0;right:0;top:100svh;border-top:2px dashed var(--accent);pointer-events:none;z-index:5}
+.fold span{position:absolute;right:var(--gutter);top:-24px;font-size:11.5px;color:var(--accent);background:var(--bg);padding:1px 6px;border:1px solid var(--accent);border-radius:4px}
+body.no-annot .annot,body.no-annot .tag,body.no-annot .pin,body.no-annot .notes,body.no-annot .fold{display:none!important}
+
+/* ---------- 공통 와이어 부품 ---------- */
+.sec{position:relative;padding:var(--sp-7) 0;border-bottom:1px dashed var(--line)}
+.ph{position:relative;display:grid;place-items:center;text-align:center;background:
+  linear-gradient(to top right,transparent calc(50% - .6px),var(--line-soft) 50%,transparent calc(50% + .6px)),
+  linear-gradient(to top left,transparent calc(50% - .6px),var(--line-soft) 50%,transparent calc(50% + .6px)),
+  var(--fill);border:1px solid var(--line);border-radius:var(--r-m);color:var(--ink-2);font-size:12.5px;line-height:1.45;padding:10px;overflow:hidden}
+.ph > span{background:var(--fill);padding:4px 8px;border-radius:4px;max-width:92%}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:var(--r-m);border:1.5px solid var(--ink);background:var(--ink);color:var(--on-ink);font-weight:700;font-size:15px;text-decoration:none;cursor:pointer}
+.btn.ghost{background:var(--bg);color:var(--ink)}
+.btn.sm{min-height:40px;padding:0 14px;font-size:14px;border-radius:8px}
+.link{display:inline-flex;align-items:center;gap:6px;min-height:44px;font-weight:600;text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--line);background:none;border:0;padding:0;cursor:pointer;font-size:15px}
+.badge-store{display:inline-flex;align-items:center;justify-content:center;min-height:48px;min-width:150px;padding:0 14px;border:1.5px dashed var(--line);border-radius:var(--r-s);background:var(--fill-2);font-size:13px;color:var(--ink-2);text-decoration:none}
+.eyebrow{font-size:13px;letter-spacing:.02em;color:var(--ink-3);font-weight:600}
+.h2{font-size:clamp(24px,3.2vw,36px);line-height:1.3;letter-spacing:-.02em;font-weight:800}
+.lead{font-size:17px;color:var(--ink-2)}
+.chip{display:inline-flex;align-items:center;min-height:36px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--bg);font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"],.chip[aria-checked="true"]{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.chip.static{cursor:default;min-height:26px;padding:0 10px;font-size:12.5px;background:var(--fill-2);border-color:var(--line-soft);color:var(--ink-2)}
+.pending{font-size:12px;color:var(--ink-3);font-family:var(--mono)}
+.muted{color:var(--ink-3)}
+
+/* ---------- 0 상단 바 ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:var(--glass);border-bottom:1px solid var(--line-soft)}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em}
+.logo .ph{width:34px;height:34px;border-radius:8px;padding:0}
+.topbar .tag{margin:0;font-size:11.5px;padding:3px 8px}
+.topbar-mid{flex:1;display:flex;justify-content:center;min-width:0}
+@media (max-width:720px){.topbar-mid{display:none}}
+
+/* ---------- 1 브랜딩 ---------- */
+.hero{min-height:calc(100svh - 60px);display:flex;align-items:center;padding:var(--sp-7) 0}
+.hero-grid{display:grid;gap:var(--sp-6);align-items:center;grid-template-columns:1fr}
+@media (min-width:960px){.hero-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:var(--sp-8)}}
+.hero h1{font-size:clamp(34px,5.4vw,64px);line-height:1.18;letter-spacing:-.03em;font-weight:850;margin:12px 0 18px;text-wrap:balance}
+.hero .sub{font-size:clamp(17px,1.6vw,20px);color:var(--ink-2);max-width:30em}
+.cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--sp-5);align-items:center}
+.typer-box{border:1.5px solid var(--line);border-radius:var(--r-l);background:var(--canvas);padding:var(--sp-5)}
+.typer-label{font-size:12.5px;color:var(--ink-3);margin-bottom:8px}
+.typer{min-height:56px;display:flex;align-items:center;border:1.5px solid var(--ink-2);border-radius:var(--r-s);background:var(--surface);padding:0 14px;font-size:clamp(17px,1.8vw,21px);font-weight:600}
+.caret{display:inline-block;width:2px;height:1.2em;background:var(--ink);margin-left:2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.typer-send{display:flex;justify-content:flex-end;margin-top:10px}
+.typer-send span{font-size:13px;border:1px solid var(--line);border-radius:999px;padding:4px 12px;color:var(--ink-2);background:var(--surface)}
+.typer-meta{margin-top:12px;font-size:12.5px;color:var(--ink-3)}
+@media (max-width:959px){.typer-box{max-width:520px}}
+
+/* ---------- 2 생겨난 이유 ---------- */
+.why-grid{display:grid;gap:var(--sp-6);grid-template-columns:1fr}
+@media (min-width:960px){.why-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:var(--sp-8)}}
+.why-body{font-size:clamp(19px,2vw,24px);line-height:1.65;letter-spacing:-.01em;font-weight:500}
+.quotes{display:grid;gap:var(--sp-4)}
+.qcard{border:1px solid var(--line);border-radius:var(--r-m);background:var(--canvas);padding:var(--sp-5);font-size:16px}
+.qcard .src{margin-top:10px;font-size:12.5px;color:var(--ink-3)}
+.roll{display:block;height:1.6em;overflow:hidden;margin-bottom:8px;font-weight:700;font-size:14px;color:var(--ink-3)}
+.roll ul{list-style:none;margin:0;padding:0}
+.roll li{height:1.6em}
+.roll.go ul{animation:roll 3.2s cubic-bezier(.2,.7,.2,1) 1 forwards}
+@keyframes roll{0%{transform:translateY(0)}20%{transform:translateY(-1.6em)}40%{transform:translateY(-3.2em)}60%,100%{transform:translateY(-4.8em)}}
+.handoff{margin-top:var(--sp-7);font-size:clamp(20px,2.4vw,28px);font-weight:800;letter-spacing:-.02em;text-align:center}
+.strike{position:relative;white-space:nowrap}
+.strike::after{content:"";position:absolute;left:0;right:0;top:55%;height:3px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.strike.on::after{transform:scaleX(1)}
+
+/* ---------- 3 표준 기능 ---------- */
+.feat-head{max-width:760px;margin-bottom:var(--sp-6)}
+.feat-head .lead{margin-top:12px}
+.cards{display:grid;gap:var(--sp-4);grid-template-columns:1fr}
+@media (min-width:640px){.cards{grid-template-columns:1fr 1fr}}
+@media (min-width:1080px){.cards{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{display:flex;flex-direction:column;gap:12px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--surface);padding:var(--sp-4);min-width:0}
+.card .step{font:700 12px/1 var(--mono);color:var(--ink-3)}
+.card h3{font-size:19px;line-height:1.35;letter-spacing:-.015em}
+.card h3 small{display:block;font-size:14px;font-weight:600;color:var(--ink-3);letter-spacing:0}
+.card p{font-size:14.5px;color:var(--ink-2)}
+.card .ph{aspect-ratio:4/5;margin-top:auto}
+@media (max-width:639px){
+  .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--gutter);margin:0 calc(-1*var(--gutter));padding:4px var(--gutter) 12px;gap:12px;overscroll-behavior-x:contain}
+  .card{flex:0 0 272px;scroll-snap-align:start}
+  .card .ph{aspect-ratio:16/10}
+}
+.thought{position:absolute;top:12px;left:12px;font-size:12.5px;color:var(--ink-3);background:var(--surface);border:1px dashed var(--line);border-radius:12px;padding:3px 9px}
+.ep-link{align-self:flex-start}
+.band{margin-top:var(--sp-4);display:grid;gap:0;border:1px solid var(--line);border-radius:var(--r-m);background:var(--canvas);grid-template-columns:1fr}
+@media (min-width:900px){.band{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.band > div{padding:var(--sp-4);display:flex;flex-direction:column;gap:4px;min-width:0}
+.band > div + div{border-top:1px dashed var(--line)}
+@media (min-width:900px){.band > div + div{border-top:0;border-left:1px dashed var(--line)}}
+.band b{font-size:16px}
+.band .k{font:700 12px/1 var(--mono);color:var(--ink-3)}
+.band p{font-size:14px;color:var(--ink-2)}
+.install{margin-top:var(--sp-4);display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between;border:1.5px solid var(--ink);border-radius:var(--r-m);padding:var(--sp-4)}
+.install p{font-size:14.5px;color:var(--ink-2)}
+.install .stores{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- 4 에피소드 ---------- */
+.ep-head{display:grid;gap:12px;margin-bottom:var(--sp-4)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.featured{display:grid;gap:var(--sp-5);grid-template-columns:1fr;border:1px solid var(--line);border-radius:var(--r-l);padding:var(--sp-5);background:var(--canvas)}
+@media (min-width:900px){.featured{grid-template-columns:minmax(0,1fr) 300px;gap:var(--sp-7);align-items:center;padding:var(--sp-5) var(--sp-6)}}
+.f-text{display:flex;flex-direction:column;gap:12px;min-width:0}
+.f-ep{font:700 13px/1 var(--mono);color:var(--ink-3)}
+.nametag{display:inline-flex;align-self:flex-start;font-size:13px;border:1px solid var(--ink-2);border-radius:4px;padding:2px 8px;background:var(--surface)}
+.f-title{font-size:clamp(24px,2.8vw,34px);line-height:1.3;letter-spacing:-.02em;font-weight:800}
+.f-msg{border-left:3px solid var(--line);padding-left:14px;font-size:18px;color:var(--ink-2)}
+.f-hook{font-size:14px;color:var(--ink-3)}
+.f-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.player{position:relative;width:300px;max-width:100%;aspect-ratio:9/16;border:1.5px solid var(--ink-2);border-radius:var(--r-l);background:var(--fill);overflow:hidden;justify-self:center}
+@media (max-width:899px){.player{order:-1;width:100%;max-width:358px;aspect-ratio:2/3;justify-self:center}}
+@media (max-width:720px){
+  #s4.sec{padding:var(--sp-6) 0}
+  #s4 .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 calc(-1*var(--gutter));padding:2px var(--gutter) 6px;scrollbar-width:none;overscroll-behavior-x:contain}
+  #s4 .chips .chip{flex:none}
+  .featured{padding:var(--sp-4);gap:var(--sp-4)}
+  .player{aspect-ratio:4/5;max-width:288px}
+  .featured .nametag,.featured .f-title,.featured .f-hook{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+}
+.p-band{position:absolute;top:0;left:0;right:0;padding:12px 12px 0;display:grid;gap:4px;z-index:2}
+.p-band .l1{background:var(--surface);border-radius:4px;padding:4px 8px;font-size:13px;font-weight:700;line-height:1.35}
+.p-band .l1 em{font-style:normal;font-weight:500;color:var(--ink-3)}
+.p-band .l2{border:1.5px dashed var(--ink-3);border-radius:4px;padding:4px 8px;font-size:12px;color:var(--ink-2);background:var(--glass-2)}
+.p-ph{position:absolute;inset:0;border:0;border-radius:0}
+.p-ph > span{max-width:78%}
+.p-name{position:absolute;left:12px;bottom:92px;z-index:2;font-size:12.5px;background:var(--surface);border:1px solid var(--ink-2);border-radius:4px;padding:2px 8px}
+.p-sound-hint{position:absolute;left:12px;right:12px;bottom:128px;z-index:2;font-size:13px;font-weight:700;background:var(--surface);border:1.5px solid var(--ink);border-radius:8px;padding:6px 10px;text-align:center}
+.p-ctrl{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:10px 12px 12px;display:grid;gap:8px;background:linear-gradient(to top,var(--scrim-a),var(--scrim-b))}
+.p-ctrl .row{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.p-btn{min-height:40px;min-width:40px;border:1.5px solid var(--ink);background:var(--surface);border-radius:999px;padding:0 12px;font-size:13px;font-weight:700;cursor:pointer}
+.bar{height:4px;background:var(--line-soft);border-radius:2px;overflow:hidden}
+.bar i{display:block;height:100%;width:100%;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.bar.run i{animation:prog 60s linear infinite}
+.bar.paused i{animation-play-state:paused}
+@keyframes prog{to{transform:scaleX(1)}}
+.p-state{position:absolute;top:50%;left:50%;transform:translate(-50%,40px);z-index:2;font-size:11.5px;color:var(--ink-2);background:var(--surface);border-radius:4px;padding:2px 8px;white-space:nowrap}
+.states{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:var(--sp-4)}
+@media (max-width:720px){.states{grid-template-columns:repeat(2,minmax(0,1fr))}.states > :last-child{grid-column:span 2}}
+.st{border:1px dashed var(--accent);border-radius:var(--r-s);padding:8px;font-size:12px;line-height:1.4;color:var(--ink-2);background:var(--surface)}
+.st b{display:block;color:var(--accent);font-size:12px}
+.tiles-wrap{position:relative;margin-top:var(--sp-4)}
+.tiles-head{display:flex;justify-content:space-between;align-items:center;gap:8px 12px;margin-bottom:10px}
+.tiles-head .eyebrow{min-width:0}
+.tiles{list-style:none;margin:0;padding:2px 2px 12px;display:flex;gap:var(--sp-4);overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:2px;overscroll-behavior-x:contain;scrollbar-width:thin}
+.tile{flex:0 0 calc((100% - 2*var(--sp-4))/3.15);scroll-snap-align:start;display:grid;grid-template-columns:160px minmax(0,1fr);gap:14px;border:1px solid var(--line);border-radius:var(--r-m);background:var(--surface);padding:12px;min-width:0;transition:border-color .2s}
+@media (min-width:721px) and (max-width:1079px){.tile{flex-basis:calc((100% - var(--sp-4))/2.15)}}
+.tile.match{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.tile.current{background:var(--canvas)}
+.poster{width:160px;aspect-ratio:2/3;border-radius:8px;font-size:11.5px;align-content:center;gap:8px}
+.poster > span{display:block}
+.poster .hook{font-weight:700;color:var(--ink);font-size:12px}
+.t-body{display:flex;flex-direction:column;gap:6px;min-width:0}
+.t-ep{font:700 12px/1 var(--mono);color:var(--ink-3)}
+.t-name{font-size:12px;color:var(--ink-2)}
+.t-title{font-size:16px;line-height:1.35;font-weight:800;letter-spacing:-.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.t-msg{font-size:13.5px;color:var(--ink-3);line-height:1.45}
+.t-foot{margin-top:auto;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-content:space-between}
+.t-go{min-height:40px;font-size:14px}
+.shelf-nav{display:flex;gap:8px;flex:none}
+@media (max-width:720px){
+  .tiles{gap:12px;scroll-padding-left:var(--gutter);margin:0 calc(-1*var(--gutter));padding:4px var(--gutter) 12px;-webkit-overflow-scrolling:touch}
+  .tile{flex:0 0 180px;grid-template-columns:1fr;gap:10px;padding:0;border:0;background:none}
+  .tile.match{box-shadow:none}
+  .tile.match .poster{border-color:var(--ink);border-width:2px}
+  .poster{width:180px;height:270px}
+}
+.ep-end{margin-top:var(--sp-5);display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+@media (max-width:720px){.ep-end{margin-top:var(--sp-3)}.ep-end .btn{display:none}}
+.disclaim{font-size:13px;color:var(--ink-3)}
+
+/* ---------- 5 당신 차례 ---------- */
+.turn-grid{display:grid;gap:var(--sp-6);grid-template-columns:1fr}
+@media (min-width:960px){.turn-grid{grid-template-columns:minmax(0,1fr) 380px;gap:var(--sp-8);align-items:start}}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+legend{font-weight:700;font-size:15px;margin-bottom:10px;padding:0}
+.req{font-size:12.5px;color:var(--ink-3);font-weight:500}
+.field{margin-top:var(--sp-5)}
+.field label{display:block;font-weight:700;font-size:15px;margin-bottom:8px}
+.input-row{position:relative}
+.input-row input{width:100%;min-height:56px;border:1.5px solid var(--ink-2);border-radius:var(--r-s);padding:0 64px 0 14px;font-size:17px;background:var(--surface)}
+.input-row input:focus-visible{outline:3px solid var(--ink);outline-offset:1px}
+.count{position:absolute;right:12px;top:50%;transform:translateY(-50%);font:600 13px/1 var(--mono);color:var(--ink-3)}
+.hint{margin-top:8px;font-size:13px;color:var(--ink-3)}
+.pcard{border:1.5px solid var(--ink-2);border-radius:var(--r-l);background:var(--surface);padding:var(--sp-5);display:grid;gap:12px}
+.pcard-top{display:flex;gap:12px;align-items:center}
+.avatar{width:56px;height:56px;border-radius:50%;padding:0;flex:none}
+.pcard .nm{font-weight:800;font-size:17px}
+.pcard .job{font-size:13px;color:var(--ink-3)}
+.pcard .one{font-size:17px;font-weight:600;min-height:1.6em;border-top:1px dashed var(--line-soft);padding-top:12px}
+.pcard .one.empty{color:var(--ink-3);font-weight:500}
+.pcard-ph{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.pcard-ph .ph{aspect-ratio:1;padding:0;border-radius:6px}
+.turn-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:var(--sp-4)}
+.status{min-height:1.5em;margin-top:8px;font-size:14px;color:var(--ink-2)}
+
+/* ---------- 6 신뢰 띠 ---------- */
+.trust{display:grid;gap:var(--sp-4);grid-template-columns:1fr}
+@media (min-width:900px){.trust{grid-template-columns:minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr)}}
+.works{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.works .ph{aspect-ratio:1;font-size:11px;padding:4px}
+.tbox{border:1px solid var(--line);border-radius:var(--r-m);padding:var(--sp-4);display:flex;flex-direction:column;gap:6px;min-width:0}
+.tbox b{font-size:15px}
+.tbox p{font-size:14px;color:var(--ink-2)}
+.advisor{display:flex;gap:12px;align-items:center}
+.advisor .ph{width:52px;height:52px;border-radius:50%;padding:0;flex:none}
+
+/* ---------- 7 FAQ ---------- */
+.faq{max-width:820px}
+.faq details{border-top:1px solid var(--line-soft)}
+.faq details:last-of-type{border-bottom:1px solid var(--line-soft)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:center;min-height:56px;padding:12px 0;font-weight:700;font-size:16.5px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:400 22px/1 var(--mono);color:var(--ink-3);flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq .a{padding:0 0 16px;color:var(--ink-2);font-size:15.5px}
+.faq-end{margin-top:var(--sp-6);display:grid;gap:14px;justify-items:start}
+.faq-end p{font-size:clamp(19px,2vw,24px);font-weight:800;letter-spacing:-.015em}
+
+/* ---------- 8 푸터 ---------- */
+footer.sec{background:var(--canvas);border-bottom:0;font-size:13.5px;color:var(--ink-2)}
+.foot-grid{display:grid;gap:var(--sp-4);grid-template-columns:1fr}
+@media (min-width:900px){.foot-grid{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}}
+.fictional{border:1.5px solid var(--ink-2);border-radius:var(--r-m);background:var(--surface);padding:var(--sp-4);color:var(--ink)}
+.fictional b{display:block;margin-bottom:4px}
+.foot-links{display:flex;flex-wrap:wrap;gap:4px 16px}
+.foot-links a{min-height:36px;display:inline-flex;align-items:center}
+
+/* ---------- 390 하단 고정 바 ---------- */
+.stickybar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:none;background:var(--surface);border-top:1px solid var(--line);padding:8px var(--gutter) calc(8px + env(safe-area-inset-bottom));transform:translateY(110%);transition:transform .22s cubic-bezier(.2,.7,.2,1)}
+.stickybar .btn{width:100%;min-height:44px}
+.stickybar .tag{position:absolute;right:var(--gutter);top:-30px;margin:0;font-size:11px;padding:2px 8px}
+@media (max-width:720px){.stickybar{display:block}body{padding-bottom:64px}}
+.stickybar.show{transform:none}
+
+/* 공용 상태 안내(토스트) */
+.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);z-index:40;max-width:calc(100% - 32px);background:var(--ink);color:var(--on-ink);font-size:13.5px;border-radius:8px;padding:8px 14px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+  .caret{display:none}
+  .bar i{animation:none!important;transform:scaleX(0)}
+}
+</style>
+</head>
+<body>
+
+<a class="sr" href="#main">본문 바로가기</a>
+
+<!-- 와이어 안내(주석 층) -->
+<div class="annot-legend annot" role="note" aria-label="와이어프레임 안내">
+  <div class="wrap">
+    <span><b>C8 서비스 홈 v0.8 · 와이어프레임</b> · 2026-10-18 · 에피소드 시즌 1 v2(편마다 메시지 하나) 반영</span>
+    <span class="legend-keys" aria-label="반응 장치 기호">
+      <span>▶&#xFE0E; 탭하면 재생</span><span>Ⅱ 일시정지</span><span>↻ 루프</span><span>↔&#xFE0E; 가로 스크롤</span><span>⇣ 스크롤 따라 등장</span><span>⌨&#xFE0E; 입력</span><span>⧉ 복사</span><span>↗&#xFE0E; 외부 이동</span><span>▣ 고정 요소</span><span>[대괄호] 미정 카피</span>
+    </span>
+    <button class="toggle-annot" type="button" aria-pressed="true" id="toggleAnnot">주석 끄기</button>
+  </div>
+</div>
+
+<!-- 0 상단 바 -->
+<header class="topbar" id="s0" data-sec>
+  <div class="wrap">
+    <div class="logo"><span class="ph" aria-hidden="true"></span><span>Cre8orClub</span><span class="sr">로고 자리</span></div>
+    <div class="topbar-mid"><span class="tag"><span class="no">0</span><span class="nm">상단 바</span><span class="ht">60px</span><span>반응 장치: ▣ 상단 고정 · ↗&#xFE0E; 스토어</span></span></div>
+    <a class="btn sm" href="#install">앱 받기</a>
+  </div>
+</header>
+
+<main id="main">
+<div class="fold annot" aria-hidden="true"><span>첫 화면 접힘선 · 1440: 900px / 390: 844px</span></div>
+
+<!-- 1 브랜딩 -->
+<section class="sec hero" id="s1" data-sec aria-labelledby="h1">
+  <div class="wrap">
+    <span class="tag"><span class="no">1</span><span class="nm">브랜딩</span><span class="ht">100vh</span><span>반응 장치: ⌨&#xFE0E; 입력칸 타이핑 1회 · ↗&#xFE0E; 앱 받기</span><span class="live" data-live></span></span>
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow"><span class="pin">1-1</span>크리에이터 네트워크 앱 · 크리에이터클럽</p>
+        <h1 id="h1"><span class="pin">1-2</span>작업이 발견되고, 사람과 연결되는 곳</h1>
+        <p class="sub"><span class="pin">1-3</span>작업과 이력은 한 장에, 함께할 사람에겐 노크 한 번.</p>
+        <div class="cta-row">
+          <span class="pin">1-5</span>
+          <a class="btn" href="#install">앱 받기</a>
+          <a class="link" href="#s4">1분 에피소드 보기 ↓</a>
+        </div>
+      </div>
+      <div class="typer-box">
+        <p class="typer-label"><span class="pin">1-4</span>입력칸 타이핑 연출 자리 · 1회 재생</p>
+        <div class="typer" aria-hidden="true"><span id="typed"></span><span class="caret"></span></div>
+        <p class="sr">겸손은 여기서 안 통합니다.</p>
+        <div class="typer-send" aria-hidden="true"><span>보내기</span></div>
+        <p class="typer-meta annot">'아직 부족하지만,' 입력 → 지움 → '겸손은 여기서 안 통합니다.' 남음 · 모션 줄이기 설정이면 마지막 문장만</p>
+      </div>
+    </div>
+    <ol class="notes">
+      <li><span class="pin">1-1</span><span>눈썹 · 범주를 제목보다 먼저 보여 줘 '뭐 하는 데지?'에 바로 답함 · 정적</span></li>
+      <li><span class="pin">1-2</span><span>제목 20자 · C8.official 프로필 원문 · LCP 후보라 미디어는 H1보다 작게 <span class="q">· 대안 '크리에이터는 유튜버가 아니다' A/B는 정할 것</span></span></li>
+      <li><span class="pin">1-3</span><span>보조문 · 360px 폭에서 두 줄 안 · 첫 화면 안에 다 보이게 고정</span></li>
+      <li><span class="pin">1-4</span><span>⌨&#xFE0E; 입력칸 · 화면에 들어오면 1회 재생 → 마지막 문장 유지 · 5초 안에 끝나 일시정지 버튼 불필요 · 숫자 자랑·돌아가는 헤드라인 없음</span></li>
+      <li><span class="pin">1-5</span><span>앱 받기 하나(↗&#xFE0E; 스토어 배지 2는 3단 설치 띠) · 보조 링크 → 4단 앵커 · 390은 1단을 벗어나면 하단 고정 바(▣ 56px)가 이어받음</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 2 생겨난 이유 -->
+<section class="sec" id="s2" data-sec aria-labelledby="h2why">
+  <div class="wrap">
+    <span class="tag"><span class="no">2</span><span class="nm">생겨난 이유</span><span class="ht">50–80vh · 390: 70–100vh</span><span>반응 장치: ⇣ 직함 크레딧 1회 · ⇣ 취소선</span><span class="live" data-live></span></span>
+    <h2 class="sr" id="h2why">C8이 생겨난 이유</h2>
+    <div class="why-grid">
+      <p class="why-body"><span class="pin">2-1</span>창작자를 위한 공간은 여전히 콘텐츠 중심에 머물러 있고 사람을 중심에 둔 연결은 부족했어요. 창작자에게 필요한 건 거래가 아니라 기회였어요. 실력은 있지만 보여줄 무대가 없던 창작자들. 소속이 없어도, 명함이 없어도 당신의 이름으로 기회가 시작돼요.</p>
+      <div class="quotes">
+        <figure class="qcard" style="margin:0">
+          <span class="pin">2-2</span>
+          <span class="roll" id="roll" aria-hidden="true"><ul><li>디자이너</li><li>편집자</li><li>작곡가</li><li>개발자</li></ul></span>
+          <blockquote style="margin:0">"디자이너, 편집자, 작곡가, 개발자. 직함은 다 다른데 하는 건 같다. 없던 걸 만든다. 그게 크리에이터다."</blockquote>
+          <figcaption class="src">원문 카드 「크리에이터란?」</figcaption>
+        </figure>
+        <figure class="qcard" style="margin:0">
+          <span class="pin">2-3</span>
+          <blockquote style="margin:0">"프로, 지망생, 아마추어. 연결되면 산업이 돼요. 이것이 우리가 Cre8orClub을 만든 이유예요."</blockquote>
+          <figcaption class="src">원문 카드 「크리에이터란?」 마지막 장 줄임</figcaption>
+        </figure>
+      </div>
+    </div>
+    <p class="handoff"><span class="pin">2-4</span><span class="strike" id="strike">자기검열</span> 그만하고 자기소개 좀 하세요.</p>
+    <ol class="notes">
+      <li><span class="pin">2-1</span><span>본문 140자 · 원문 조합, 어미만 해요체 · 판에 박힌 두 문장·출처 미확인 수치는 뺌</span></li>
+      <li><span class="pin">2-2</span><span>인용 카드 1 · ⇣ 화면에 들어오면 직함이 크레딧처럼 1회 흐름(3초) · 모션 줄이기 설정이면 정지</span></li>
+      <li><span class="pin">2-3</span><span>인용 카드 2 · 정적 · 자동 흐름 마퀴로 바꾸면 Ⅱ 일시정지 버튼 필수(WCAG 2.2.2)</span></li>
+      <li><span class="pin">2-4</span><span>넘김 문장 · ⇣ '자기검열'에 취소선이 그어지며 3단으로 넘어감 · CTA 없음</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 3 표준 기능 -->
+<section class="sec" id="s3" data-sec aria-labelledby="h3feat">
+  <div class="wrap">
+    <span class="tag"><span class="no">3</span><span class="nm">표준 기능</span><span class="ht">100–120vh · 390: 160–200vh</span><span>반응 장치: ▶&#xFE0E; 카드 → 4단 대표 자리 교체 · ↔&#xFE0E; 390 카드 선반 · ↗&#xFE0E; 설치 띠</span><span class="live" data-live></span></span>
+    <div class="feat-head">
+      <h2 class="h2" id="h3feat"><span class="pin">3-1</span>작업물이 말하게 하라고요? 그거 20년째 안 먹힌 전략입니다.</h2>
+      <p class="lead">작업을 올리고 좋은 작업을 찾아 리스펙트를 보내고 같이 하고 싶은 사람에게 노크하면 돼요.</p>
+    </div>
+    <div class="cards" tabindex="0" role="region" aria-label="표준 기능 카드 네 장">
+      <article class="card">
+        <span class="step"><span class="pin">3-2</span>1 · 발견</span>
+        <h3>뭐라고 찾을지 모를 땐 <small>셔플</small></h3>
+        <p>분야 하나만 골라도 처음 보는 작업이 섞여 나와요.</p>
+        <div class="ph"><span>[화면] 셔플 '#작곡' 묶음<br>빌드 대조 필요</span></div>
+        <button class="link ep-link" type="button" data-goto="1">이 장면이 나오는 편 ▶&#xFE0E; EP1</button>
+      </article>
+      <article class="card">
+        <span class="step"><span class="pin">3-3</span>2 · 리스펙트</span>
+        <h3>좋아요로는 모자랄 땐 <small>리스펙트</small></h3>
+        <p>좋은 작업엔 한마디 여덟 개 중에서 골라 마음을 보내요.</p>
+        <div class="ph"><span>[화면] 한마디 시트 → GOAT 카드<br>리스펙트 녹화 12.4초 재사용</span></div>
+        <button class="link ep-link" type="button" data-goto="3">이 장면이 나오는 편 ▶&#xFE0E; EP3</button>
+      </article>
+      <article class="card">
+        <span class="step"><span class="pin">3-4</span>3 · 프로필</span>
+        <h3>명함 대신 <small>링크 하나</small></h3>
+        <p>작업과 이력을 한 장에 정리하고, 링크 하나로 보내요.</p>
+        <div class="ph"><span class="thought">이거 누가 만들었지?</span><span>[화면] 프로필 카드 뷰·이력서 뷰<br>+ 팔로우 버튼</span></div>
+        <button class="link ep-link" type="button" data-goto="2">이 장면이 나오는 편 ▶&#xFE0E; EP2</button>
+      </article>
+      <article class="card">
+        <span class="step"><span class="pin">3-5</span>4 · 노크</span>
+        <h3>첫 마디가 어렵다면 <small>노크부터</small></h3>
+        <p>용건을 고르고 첫 메시지를 보내요. 상대가 받아주면 대화가 열려요.</p>
+        <div class="ph"><span>[화면] 보내는 쪽 작성 · 받는 쪽 소개 카드<br>받은 노크 1:1은 11/2 녹화</span></div>
+        <button class="link ep-link" type="button" data-goto="5">이 장면이 나오는 편 ▶&#xFE0E; EP5</button>
+      </article>
+    </div>
+    <div class="band" role="list" aria-label="카드 아래 띠">
+      <div role="listitem"><span class="k"><span class="pin">3-6a</span>올리기</span><b>완성 전의 나도 작업으로 남겨요</b><p>완성작은 포트폴리오로, 같이 할 일은 프로젝트 카드로 따로 올려요.</p><button class="link ep-link" type="button" data-goto="1">이 장면이 나오는 편 ▶&#xFE0E; EP1</button></div>
+      <div role="listitem"><span class="k"><span class="pin">3-6b</span>클럽</span><b>아는 사람이 없을 땐 모집 글부터</b><p>같은 고민은 오픈채팅에서, 같이 할 사람은 모집 글로 찾고 함께하기로 했으면 팀으로 묶어요.</p><span class="pending">편 링크 없음 · 시즌 2 후보</span></div>
+      <div role="listitem"><span class="k"><span class="pin">3-6c</span>Weekly Best</span><b>따로 신청하지 않아도 뽐내기만 하면 돼요</b><p>평소처럼 올리고 활동하면 이미 참여한 거예요. <a href="#s3">선정 기준·혜택 보기 →</a></p><span class="pending">편 링크 없음 · [혜택 유무 확인]</span></div>
+    </div>
+    <div class="install" id="install">
+      <p><span class="pin">3-7</span>iOS·Android · 무료 <span class="pending">[유료 기능 여부 확인 후 표기]</span></p>
+      <div class="stores"><a class="badge-store" href="#install">App Store 배지</a><a class="badge-store" href="#install">Google Play 배지</a></div>
+    </div>
+    <ol class="notes">
+      <li><span class="pin">3-1</span><span>머리 문장 원문 · 요약 한 줄 · '할 수 있어요' 대신 쓰면 생기는 일로 씀</span></li>
+      <li><span class="pin">3-2</span><span>순서는 앱 버튼 흐름: 발견 → 리스펙트 → '누가 만들었지?'·프로필·팔로우 → 노크(기존 제안 흐름에서 노크만 뒤로) <span class="q">· 순서는 정할 것</span></span></li>
+      <li><span class="pin">3-3</span><span>카드마다 편 하나만 연결 · ▶&#xFE0E; 누르면 4단으로 내려가고 그 편이 대표 자리에 옴 · 발견·올리기 EP1, 리스펙트 EP3, 프로필 EP2, 노크 EP5</span></li>
+      <li><span class="pin">3-4</span><span>머리줄은 '3 · 프로필'만 · 회색 속말 '이거 누가 만들었지?'는 홈에선 이 카드의 화면 자리 안 점선 칩으로만 · 영상에선 EP1·EP4 장면 속에 나옴(타일 훅 문장엔 안 씀) · 카드 링크는 프로필이 주인공인 EP2 · 화면 자리는 X 상자, 실제 화면은 빌드 대조 뒤</span></li>
+      <li><span class="pin">3-5</span><span>1440 4열 · 640–1079 2×2 · 390 ↔&#xFE0E; 가로 선반(카드 272, 다음 카드 peek) · 세로 쌓기면 약 3화면이라 선반으로 바꿈</span></li>
+      <li><span class="pin">3-6</span><span>띠 세 칸 · a 올리기만 EP1 링크 · b 클럽·c Weekly Best는 링크 없음 · 11/2 배포판에 없는 기능은 빼거나 '곧 열려요'</span></li>
+      <li><span class="pin">3-7</span><span>설치 띠 · ↗&#xFE0E; 스토어 · 지원 OS·요금 범위는 제품 담당 확인 전 <span class="q">· 무료 표기 확정?</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 4 에피소드 -->
+<section class="sec" id="s4" data-sec aria-labelledby="h4ep">
+  <div class="wrap">
+    <span class="tag"><span class="no">4</span><span class="nm">에피소드</span><span class="ht">130–145vh · 390: 140–160vh</span><span>반응 장치: ↻ 대표편 무음 자동 재생 · Ⅱ · ▶&#xFE0E; 쇼츠 ↗&#xFE0E; · ↔&#xFE0E; 타일 선반(모든 폭) ← →</span><span class="live" data-live></span></span>
+    <div class="ep-head">
+      <p class="eyebrow"><span class="pin">4-1</span>시즌 1 「똑똑, 1분」 <span class="pending">[가칭 · 후보 2개 중 정할 것]</span></p>
+      <h2 class="h2" id="h4ep">한 편에 한 사람, 1분 이야기.<br>어느 편부터 봐도 돼요.</h2>
+      <div class="chips" role="group" aria-label="직군으로 고르기"><span class="pin">4-2</span>
+        <button class="chip" type="button" aria-pressed="true" data-job="">전체</button>
+        <button class="chip" type="button" aria-pressed="false" data-job="음악">음악</button>
+        <button class="chip" type="button" aria-pressed="false" data-job="영상">영상</button>
+        <button class="chip" type="button" aria-pressed="false" data-job="사진">사진</button>
+        <button class="chip" type="button" aria-pressed="false" data-job="그림·디자인">그림·디자인</button>
+        <button class="chip" type="button" aria-pressed="false" data-job="글">글</button>
+      </div>
+    </div>
+
+    <div class="featured" id="featured" aria-live="polite">
+      <div class="f-text">
+        <span class="f-ep"><span class="pin">4-3</span><span id="fEp">EP6 · 1분 · 대표편</span></span>
+        <span class="nametag" id="fName">사진작가 | 하은</span>
+        <h3 class="f-title" id="fTitle">공짜로 해 달라는 연락, 처음 거절했어요</h3>
+        <p class="f-msg" id="fMsg">받을지 말지는 내가 정해요</p>
+        <p class="f-hook" id="fHook"></p>
+        <div class="f-actions">
+          <span class="chip static" id="fChip">노크 받기</span>
+          <a class="btn" id="fGo" href="#s4" data-external>이 편 보기 ▶&#xFE0E;</a>
+          <span class="pending annot"><span class="pin">4-7</span>1차: 유튜브 쇼츠 새 탭 ↗&#xFE0E; · 2차: 전체 화면 세로 플레이어</span>
+        </div>
+      </div>
+      <div class="player" id="player">
+        <div class="p-band" aria-hidden="true">
+          <div class="l1" id="pL1">공짜로 해 달라는 연락, 처음 거절했어요 <em>· 똑똑 1분 EP6</em></div>
+          <div class="l2">[띠 2줄 · C8 색] 반전 순간에만 켜짐 · 사실 한 줄</div>
+        </div>
+        <div class="ph p-ph" aria-hidden="true"><span id="pPh">9:16 원본 · 무음 루프 · 포스터</span></div>
+        <span class="p-name" id="pName" aria-hidden="true">사진작가 | 하은</span>
+        <span class="p-sound-hint" id="pSoundHint" hidden>♪ 노래가 여기서 끊겨요 · 소리 켜고 보기</span>
+        <span class="p-state" id="pState" aria-hidden="true">무음 자동 재생 중</span>
+        <div class="p-ctrl">
+          <div class="bar run" id="pBar" aria-hidden="true"><i></i></div>
+          <div class="row">
+            <button class="p-btn" type="button" id="pSound" aria-pressed="false">소리 켜기</button>
+            <span class="pin" style="margin:0">4-4</span>
+            <button class="p-btn" type="button" id="pPause" aria-pressed="false" aria-label="일시정지">Ⅱ</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="states annot" aria-label="대표 플레이어 상태 다섯 판">
+      <div class="st"><b>기본</b>무음 자동 재생 · 왼쪽 아래 소리 켜기 · Ⅱ</div>
+      <div class="st"><b>포스터</b>불러오기 전 · 0~3초 첫 프레임 정지 컷</div>
+      <div class="st"><b>모션 줄이기</b>포스터만 · 자동 재생 끔</div>
+      <div class="st"><b>탭 후</b>1차 쇼츠 새 탭 ↗&#xFE0E; · 2차 세로 플레이어, 소리 켜고 시작</div>
+      <div class="st"><b>공개 전</b>흐린 포스터 + 공개일 [11/○ 공개]</div>
+    </div>
+
+    <div class="tiles-wrap">
+      <div class="tiles-head">
+        <p class="eyebrow"><span class="pin">4-5</span><span class="pin">4-6</span>여섯 편 · 받는 편 셋(EP1·3·4) · 하는 편 셋(EP2·5·6)</p>
+        <div class="shelf-nav">
+          <button class="p-btn" type="button" id="shPrev" aria-label="이전 편">←</button>
+          <button class="p-btn" type="button" id="shNext" aria-label="다음 편">→</button>
+        </div>
+      </div>
+      <ul class="tiles" id="tiles" tabindex="0" aria-label="에피소드 여섯 편"></ul>
+    </div>
+
+    <div class="ep-end">
+      <p class="disclaim">인물·대화·장면은 모두 가상 각색이에요 · 화면은 예시예요</p>
+      <a class="btn ghost" href="#install">앱 받기</a>
+    </div>
+
+    <ol class="notes">
+      <li><span class="pin">4-1</span><span>시즌 이름은 꼬리표로만, 머리는 캡션으로 풀어 씀 · 저녁 판 캡션(한 결 약속)은 버림</span></li>
+      <li><span class="pin">4-2</span><span>직군 칩 · 고르면 그 직군 편이 맨 앞으로 오고 테두리 강조 · 5단 칩도 같이 바뀜 <span class="q">· 칩 목록은 v2 직군에 맞춘 가안</span></span></li>
+      <li><span class="pin">4-3</span><span>대표편 글 · EP 번호·이름표·제목·메시지 인용·칩·버튼 · 기본값 EP6(소리 없이도 훅이 섬) <span class="q">· EP6 거절 클라이맥스 불채택이면 EP2</span> · 새 편 공개 주엔 그 편</span></li>
+      <li><span class="pin">4-4</span><span>1440 9:16 300×533 · 390 포스터 4:5(288×360), 제목·이름표는 플레이어 띠로 합치고 글은 EP·메시지·칩+버튼 한 줄만 · ↻ 무음 자동 재생은 화면 안 1개만 · Ⅱ 상시 · 띠 2줄째는 반전 순간에만 켜짐 · EP1이 대표면 '소리 켜고 보기' 얹고 소리 켤 때만 재생</span></li>
+      <li><span class="pin">4-5</span><span>타일 = 첫 프레임 · ① 포스터(훅 첫 문장) ② EP n · 1분 ③ 이름표 ④ 제목 2줄 ⑤ 회색 메시지(반전은 안 씀) ⑥ 기능 칩 ⑦ 이 편 보기 ▶&#xFE0E; · 길이 배지는 포스터 위에 안 얹음</span></li>
+      <li><span class="pin">4-6</span><span>결정: 모든 폭 1행 ↔&#xFE0E; 가로 선반 · 1440 가로 타일 3장 + 넷째 장 peek(포스터 160×240 + 오른쪽 글) · 721–1079 2장 + peek · 390 세로 타일 180(포스터 180×270) · 390 직군 칩도 한 줄 ↔&#xFE0E; · ← → 버튼 모든 폭 · 자동 회전 없음 · 높이 목표(1.45·1.6화면)를 맞추려고 플레이어 300×533도 함께 적용 · 직군 칩을 고르면 맞는 편이 선반 맨 앞으로</span></li>
+      <li><span class="pin">4-7</span><span>와이어에서는 '이 편 보기'가 대표 자리 교체로 동작(실제 1차는 쇼츠 새 탭) · 링크 이름 'EP n 제목, 1분 영상 보기' · 390은 구간 끝 '앱 받기'를 빼고 하단 고정 바가 맡음</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 5 당신 차례 -->
+<section class="sec" id="s5" data-sec aria-labelledby="h5turn">
+  <div class="wrap">
+    <span class="tag"><span class="no">5</span><span class="nm">당신 차례</span><span class="ht">60–80vh · 390: 90–110vh</span><span>반응 장치: ⌨&#xFE0E; 30자 입력 → 카드 미리보기 · ⧉ 한 줄 복사 · ↗&#xFE0E; 스토어</span><span class="live" data-live></span></span>
+    <div class="turn-grid">
+      <div>
+        <h2 class="h2" id="h5turn"><span class="pin">5-1</span>보내기 전에, 한 줄만 써 봐요</h2>
+        <form id="turnForm" onsubmit="return false" style="margin-top:var(--sp-5)">
+          <fieldset>
+            <legend><span class="pin">5-2</span>무슨 작업을 하세요? <span class="req">(필수)</span></legend>
+            <div class="chips" role="radiogroup" aria-label="직군" id="turnChips">
+              <button class="chip" type="button" role="radio" aria-checked="true" data-job="음악">음악</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-job="영상">영상</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-job="사진">사진</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-job="그림·디자인">그림·디자인</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-job="글">글</button>
+              <button class="chip" type="button" role="radio" aria-checked="false" data-job="그 밖의 창작">그 밖의 창작</button>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="oneLine"><span class="pin">5-3</span>한 줄 소개 <span class="req">(선택, 30자)</span></label>
+            <div class="input-row">
+              <input id="oneLine" type="text" maxlength="30" autocomplete="off" aria-describedby="oneHint oneCount" placeholder="">
+              <span class="count" id="oneCount" aria-live="polite">0/30</span>
+            </div>
+            <p class="hint" id="oneHint">쓴 글은 이 화면 밖으로 보내지 않아요.</p>
+          </div>
+          <div class="turn-actions">
+            <span class="pin">5-5</span>
+            <button class="btn ghost" type="button" id="copyBtn">한 줄 복사</button>
+            <a class="btn" href="#install">이 한 줄 들고 작업 하나 올리러 가기 → 앱 받기</a>
+          </div>
+          <p class="status" id="copyStatus" role="status"></p>
+        </form>
+      </div>
+      <div>
+        <p class="eyebrow" style="margin-bottom:10px"><span class="pin">5-4</span>내 프로필 카드 미리보기</p>
+        <div class="pcard" aria-live="polite">
+          <div class="pcard-top">
+            <span class="ph avatar" aria-hidden="true"></span>
+            <div><div class="nm">[내 이름]</div><div class="job" id="pcJob">음악</div></div>
+          </div>
+          <p class="one empty" id="pcOne">한 줄 소개가 여기에 채워져요</p>
+          <div class="pcard-ph" aria-hidden="true"><span class="ph"></span><span class="ph"></span><span class="ph"></span></div>
+          <span class="chip static" style="justify-self:start">노크 환영</span>
+        </div>
+      </div>
+    </div>
+    <ol class="notes">
+      <li><span class="pin">5-1</span><span>제목 · 4단 시청 직후 같은 동작(한 줄 쓰기)으로 이어짐</span></li>
+      <li><span class="pin">5-2</span><span>직군 칩 필수 · 4단 칩과 연동 · 예시 문구가 칩마다 바뀜 <span class="q">· 영상만 제안서 확정 문구, 나머지 [미정]</span></span></li>
+      <li><span class="pin">5-3</span><span>⌨&#xFE0E; 30자 · 입력값은 서버·GA4로 보내지 않음 · 390은 키보드가 올라올 공간 포함, 하단 고정 바 숨김</span></li>
+      <li><span class="pin">5-4</span><span>미리보기 카드 · 입력하는 대로 채워짐 · 사진·작업 칸은 자리표시</span></li>
+      <li><span class="pin">5-5</span><span>⧉ 한 줄 복사 → 클립보드에 담고 스토어로(↗&#xFE0E; 와이어는 복사만) · 입력 없이도 앱 받기 버튼은 바로 누를 수 있음</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 6 신뢰 띠 -->
+<section class="sec" id="s6" data-sec aria-labelledby="h6trust">
+  <div class="wrap">
+    <span class="tag"><span class="no">6</span><span class="nm">신뢰 띠</span><span class="ht">40vh · 390: 70vh</span><span>반응 장치: 없음(정적)</span><span class="live" data-live></span></span>
+    <h2 class="sr" id="h6trust">여기 사람 있어요</h2>
+    <div class="trust">
+      <div class="tbox"><b><span class="pin">6-1</span>지금 올라온 회원 작업</b>
+        <div class="works"><span class="ph"><span>회원 작업 1<br>공개 동의</span></span><span class="ph"><span>회원 작업 2<br>공개 동의</span></span><span class="ph"><span>회원 작업 3<br>공개 동의</span></span></div>
+      </div>
+      <div class="tbox"><b><span class="pin">6-2</span>Advisor</b>
+        <div class="advisor"><span class="ph" aria-hidden="true"></span><p>김형석 작곡가<br><span class="pending">[사용 범위 담당 확인]</span></p></div>
+      </div>
+      <div class="tbox"><b><span class="pin">6-3</span>무료 · iOS·Android</b><p>앱은 무료로 받아요. <span class="pending">[유료 기능 여부 · 지원 OS 버전 확인 후 표기]</span></p></div>
+    </div>
+    <ol class="notes">
+      <li><span class="pin">6-1</span><span>회원 작업 3점 · 개별 공개 동의 받은 것만 · 프로필 수치(리스펙트 97 등)는 쓰지 않음</span></li>
+      <li><span class="pin">6-2</span><span>Advisor · 기존 홈 자산 · 사용 범위 확인 전에는 이름만</span></li>
+      <li><span class="pin">6-3</span><span>무료 여부·지원 OS · '여기 사람 있어? 누가 운영해?'에 답함 <span class="q">· 운영사 표기 위치는 푸터?</span></span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- 7 FAQ -->
+<section class="sec" id="s7" data-sec aria-labelledby="h7faq">
+  <div class="wrap">
+    <span class="tag"><span class="no">7</span><span class="nm">FAQ</span><span class="ht">60vh · 390: 100vh</span><span>반응 장치: 아코디언 펼침 · ↗&#xFE0E; 앱 받기</span><span class="live" data-live></span></span>
+    <h2 class="h2" id="h7faq" style="margin-bottom:var(--sp-5)"><span class="pin">7-1</span>자주 묻는 질문</h2>
+    <div class="faq">
+      <details><summary>데모도 올려도 돼요?</summary><p class="a">포트폴리오에 오디오로 올려요. 데모도, 완성곡도요. <span class="pending">[형식·용량 확인 뒤 숫자 추가]</span></p></details>
+      <details><summary>노크는 DM이랑 뭐가 달라요?</summary><p class="a">상대가 받아줘야 대화가 열려요. 노크엔 내 소개 카드와 첫 메시지가 같이 가요. 노크를 아예 안 받게 해 둘 수도 있어요.</p></details>
+      <details><summary>팀엔 어떻게 들어가요?</summary><p class="a">팀 관리자가 보낸 초대를 수락하면 들어가요. 수락하면 팀 채팅이 생기고, 그 팀도 팔로우돼요.</p></details>
+      <details><summary>내 작업은 누가 봐요?</summary><p class="a">작업을 올릴 때마다 공개 범위를 골라요. 일촌에게만 보이게 하거나 나만 볼 수도 있어요.</p></details>
+      <details><summary>일이 들어오나요?</summary><p class="a">일을 연결해 주거나 보장하지는 않아요. 다만 내 작업을 본 누군가가 노크로 먼저 말을 걸어올 수는 있어요.</p></details>
+      <details><summary>무료예요? 어디서 받아요?</summary><p class="a">App Store와 Google Play에서 받아요. <span class="pending">[무료·유료 기능 범위 확인 후 표기]</span></p></details>
+    </div>
+    <div class="faq-end">
+      <p><span class="pin">7-2</span>밖에서는 욕먹을 자랑, 여기서는 프로필입니다.</p>
+      <a class="btn" href="#install">앱 받기</a>
+    </div>
+    <ol class="notes">
+      <li><span class="pin">7-1</span><span>v0.7 5문항 + Q6 · Q5 '보장하지 않아요'를 그대로 · 처음엔 모두 접힘</span></li>
+      <li><span class="pin">7-2</span><span>마지막 버튼 위 원문 한 줄 · FAQ 끝 CTA 1개</span></li>
+    </ol>
+  </div>
+</section>
+</main>
+
+<!-- 8 푸터 -->
+<footer class="sec" id="s8" data-sec>
+  <div class="wrap">
+    <span class="tag"><span class="no">8</span><span class="nm">푸터</span><span class="ht">약 30vh</span><span>반응 장치: 없음</span><span class="live" data-live></span></span>
+    <div class="foot-grid">
+      <div class="fictional"><b><span class="pin">8-1</span>에피소드 안내</b>에피소드 속 인물·대화·장면은 모두 가상 각색이에요. 화면은 예시예요. 끝 카드마다 실제 작품을 만든 작가 이름을 함께 적어요.</div>
+      <div>
+        <div class="foot-links"><a href="#s8">이용약관</a><a href="#s8">개인정보처리방침</a><a href="#s8">운영정책</a><a href="#s8">문의</a></div>
+        <p style="margin-top:8px">[회사명 · 대표 · 사업자등록번호 · 주소]</p>
+        <p class="muted">© Cre8orClub</p>
+      </div>
+    </div>
+    <ol class="notes">
+      <li><span class="pin">8-1</span><span>가상 인물 고지 · 11/2 녹화와 대조가 끝난 편만 '가상 인물·대화 · 앱 화면은 출시 버전을 바탕으로 다시 꾸몄어요'로 바꿈 · 영상 설명란 첫 줄·끝 카드에도 같은 문구</span></li>
+    </ol>
+  </div>
+</footer>
+
+<div class="stickybar" id="stickybar" aria-hidden="true">
+  <span class="tag annot">▣ 390 하단 고정 · 56px · 1단 벗어나면 등장, 5단에서 숨김</span>
+  <a class="btn" href="#install" tabindex="-1">앱 받기</a>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  "use strict";
+  var EPS = [
+    {n:1, title:"큰맘 먹고, 노래 두 줄만 올렸어요", name:"싱어송라이터 | 한겨울", msg:"중간 결과물도, 버릴 게 없어요", feat:"올리기", poster:"끊긴 파형", hook:"“…여기까지밖에 없어.” 노래가 뚝 끊겨요. “어? 여기서 끝이야?”", jobs:["음악"], side:"받는 편"},
+    {n:2, title:"새 글만 석 달째 기다렸어요", name:"뮤직비디오 감독 | 박현", msg:"먼저 말 거는 쪽이 생각보다 반가워요", feat:"프로필", poster:"열한 칸 밤 사진 격자 위 엄지", hook:"열한 칸이 모두 밤 사진인 포트폴리오를, 엄지가 끝까지 내려요.", jobs:["영상","사진"], side:"하는 편"},
+    {n:3, title:"회의에선 A안 고르신 분이었는데요", name:"일러스트레이터 | 서유진", msg:"회의의 결정과 한 사람의 취향은 따로 있어요", feat:"리스펙트", poster:"밤 11:40, '내 스타일이에요' 위 엄지", hook:"밤 11:40, 피드 맨 위 연필 그림에 '내 스타일이에요'를 골라요.", jobs:["그림·디자인"], side:"받는 편"},
+    {n:4, title:"저는 그냥 회사원인데요", name:"회사원 | 이서담", msg:"직업이 아니어도, 쓰면 쓰는 사람이에요", feat:"내 프로필", poster:"명함 '경영지원팀 대리'", hook:"명함 '경영지원팀 대리 이서담' 위로 제목이 떠요.", jobs:["글"], side:"받는 편"},
+    {n:5, title:"첫 줄에 금액부터 썼어요", name:"인디 밴드 보컬 | 최로운", msg:"부탁할 땐, 대가를 먼저 말하는 쪽이 닿아요", feat:"노크", poster:"남의 잠금 화면 노크 미리보기", hook:"잠금 화면 첫 줄: '작업비 50만 원 드리고 싶어요'", jobs:["음악","그림·디자인"], side:"하는 편"},
+    {n:6, title:"공짜로 해 달라는 연락, 처음 거절했어요", name:"사진작가 | 하은", msg:"받을지 말지는 내가 정해요", feat:"노크 받기", poster:"두 버튼 사이 엄지", hook:"“끝나고 밥 살게요 :)” 아래, 두 버튼 사이에서 엄지가 멈춰요.", jobs:["사진"], side:"하는 편"}
+  ];
+  var EXAMPLES = {
+    "음악":"[음악 예시 한 줄 · 미정]",
+    "영상":"편집자의 첫 노크: 컷 23번에서 숨 쉬는 자리요.",
+    "사진":"[사진 예시 한 줄 · 미정]",
+    "그림·디자인":"[그림·디자인 예시 한 줄 · 미정]",
+    "글":"[글 예시 한 줄 · 미정]",
+    "그 밖의 창작":"[그 밖의 창작 예시 한 줄 · 미정]"
+  };
+  var VS = "︎";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var $ = function(id){return document.getElementById(id);};
+  var toastT;
+  function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("on");},2600);}
+
+  /* 주석 켜고 끄기 */
+  var tg=$("toggleAnnot");
+  tg.addEventListener("click",function(){
+    var off=document.body.classList.toggle("no-annot");
+    tg.setAttribute("aria-pressed", String(!off));
+    tg.textContent = off ? "주석 켜기" : "주석 끄기";
+  });
+  // 주석을 끈 뒤에도 버튼은 다시 켤 수 있게 안내 띠만 남김
+  document.querySelector(".annot-legend").classList.remove("annot");
+
+  /* 타일 렌더 */
+  var tiles=$("tiles"), current=6;
+  function tileHTML(e){
+    var label="EP"+e.n+" "+e.title+", 1분 영상 보기";
+    return '<li class="tile" data-n="'+e.n+'">'+
+      '<div class="ph poster" aria-hidden="true"><span>9:16 → 2:3 · 첫 프레임</span><span class="hook">'+e.hook+'</span><span>['+e.poster+']</span></div>'+
+      '<div class="t-body">'+
+        '<span class="t-ep">EP'+e.n+' · 1분 · '+e.side+'</span>'+
+        '<span class="t-name">'+e.name+'</span>'+
+        '<h3 class="t-title">'+e.title+'</h3>'+
+        '<p class="t-msg">'+e.msg+'</p>'+
+        '<div class="t-foot"><span class="chip static">'+e.feat+'</span>'+
+        '<button class="link t-go" type="button" data-goto="'+e.n+'" aria-label="'+label+'">이 편 보기 ▶'+VS+'</button></div>'+
+      '</div></li>';
+  }
+  tiles.innerHTML=EPS.map(tileHTML).join("");
+
+  /* 대표편 교체 */
+  function setFeatured(n, opts){
+    var e=EPS.filter(function(x){return x.n===n;})[0]; if(!e) return;
+    current=n;
+    $("fEp").textContent="EP"+e.n+" · 1분 · "+(n===6?"대표편 기본값":"대표 자리");
+    $("fName").textContent=e.name;
+    $("fTitle").textContent=e.title;
+    $("fMsg").textContent=e.msg;
+    $("fHook").textContent="첫 3초 · "+e.hook;
+    $("fChip").textContent=e.feat;
+    $("fGo").setAttribute("aria-label","EP"+e.n+" "+e.title+", 1분 영상 보기");
+    $("pL1").innerHTML=e.title+' <em>· 똑똑 1분 EP'+e.n+'</em>';
+    $("pPh").textContent="9:16 · 첫 프레임 ["+e.poster+"]";
+    $("pName").textContent=e.name;
+    var isEp1 = n===1;
+    $("pSoundHint").hidden = !isEp1;
+    Array.prototype.forEach.call(tiles.children,function(li){li.classList.toggle("current", Number(li.dataset.n)===n);});
+    if(isEp1){ setPlaying(false, "EP1은 소리 켤 때만 재생"); } else { setPlaying(!reduce.matches); }
+    if(opts && opts.scroll){
+      $("featured").scrollIntoView({behavior: reduce.matches?"auto":"smooth", block:"start"});
+      $("fGo").focus({preventScroll:true});
+    }
+  }
+  var playing=false, userPaused=false;
+  function setPlaying(on, label){
+    playing=on;
+    var bar=$("pBar");
+    bar.classList.toggle("run", true);
+    bar.classList.toggle("paused", !on);
+    $("pPause").textContent = on ? "Ⅱ" : "▶"+VS;
+    $("pPause").setAttribute("aria-label", on ? "일시정지" : "재생");
+    $("pPause").setAttribute("aria-pressed", String(!on));
+    $("pState").textContent = label || (reduce.matches ? "모션 줄이기 · 포스터만" : (on ? "무음 자동 재생 중" : "일시정지됨"));
+  }
+  $("pPause").addEventListener("click",function(){
+    if(current===1 && $("pSound").getAttribute("aria-pressed")!=="true"){ toast("EP1은 소리를 켜고 누를 때만 재생해요"); return; }
+    userPaused=playing; setPlaying(!playing);
+  });
+  $("pSound").addEventListener("click",function(){
+    var on=this.getAttribute("aria-pressed")!=="true";
+    this.setAttribute("aria-pressed",String(on));
+    this.textContent = on ? "소리 끄기" : "소리 켜기";
+    if(on && current===1){ setPlaying(true,"소리 켜고 재생 중"); }
+  });
+  $("fGo").addEventListener("click",function(ev){ev.preventDefault();toast("실제 1차: 유튜브 쇼츠 새 탭으로 열려요 ↗"+VS);});
+
+  document.addEventListener("click",function(ev){
+    var b=ev.target.closest("[data-goto]"); if(!b) return;
+    var n=Number(b.dataset.goto);
+    setFeatured(n,{scroll:true});
+    toast("EP"+n+" 편을 대표 자리에 올렸어요");
+  });
+
+  /* 직군 칩: 맞는 편을 맨 앞으로 */
+  var epChips=document.querySelectorAll("#s4 .chips .chip");
+  Array.prototype.forEach.call(epChips,function(c){
+    c.addEventListener("click",function(){
+      Array.prototype.forEach.call(epChips,function(x){x.setAttribute("aria-pressed",String(x===c));});
+      var job=c.dataset.job, items=Array.prototype.slice.call(tiles.children);
+      items.sort(function(a,b){
+        var ea=EPS[a.dataset.n-1], eb=EPS[b.dataset.n-1];
+        var ma=job && ea.jobs.indexOf(job)>-1 ?0:1, mb=job && eb.jobs.indexOf(job)>-1 ?0:1;
+        return (ma-mb)||(ea.n-eb.n);
+      });
+      var count=0;
+      items.forEach(function(li){var m=!!job && EPS[li.dataset.n-1].jobs.indexOf(job)>-1; if(m)count++; li.classList.toggle("match",m); tiles.appendChild(li);});
+      tiles.scrollLeft=0;
+      if(job){ selectTurnJob(job); toast(job+" 편 "+count+"개를 앞으로 옮겼어요"); }
+    });
+  });
+
+  /* 390 선반 화살표 */
+  function shelfStep(dir){var t=tiles.querySelector(".tile"); var gap=parseFloat(getComputedStyle(tiles).columnGap)||16; var w=t?t.getBoundingClientRect().width+gap:232; tiles.scrollBy({left:dir*Math.round(w),behavior:reduce.matches?"auto":"smooth"});}
+  $("shPrev").addEventListener("click",function(){shelfStep(-1);});
+  $("shNext").addEventListener("click",function(){shelfStep(1);});
+
+  /* 5 당신 차례 */
+  var turnChips=document.querySelectorAll("#turnChips .chip"), turnJob="음악";
+  function selectTurnJob(job){
+    turnJob=job;
+    Array.prototype.forEach.call(turnChips,function(x){x.setAttribute("aria-checked",String(x.dataset.job===job)); x.tabIndex = x.dataset.job===job?0:-1;});
+    $("pcJob").textContent=job;
+    $("oneLine").placeholder="예: "+EXAMPLES[job];
+  }
+  Array.prototype.forEach.call(turnChips,function(c,i){
+    c.addEventListener("click",function(){selectTurnJob(c.dataset.job);});
+    c.addEventListener("keydown",function(ev){
+      var d = (ev.key==="ArrowRight"||ev.key==="ArrowDown")?1:(ev.key==="ArrowLeft"||ev.key==="ArrowUp")?-1:0;
+      if(!d) return; ev.preventDefault();
+      var nx=turnChips[(i+d+turnChips.length)%turnChips.length]; selectTurnJob(nx.dataset.job); nx.focus();
+    });
+  });
+  selectTurnJob("음악");
+  var one=$("oneLine");
+  one.addEventListener("input",function(){
+    var v=one.value.trim();
+    $("oneCount").textContent=one.value.length+"/30";
+    $("pcOne").textContent = v || "한 줄 소개가 여기에 채워져요";
+    $("pcOne").classList.toggle("empty",!v);
+  });
+  $("copyBtn").addEventListener("click",function(){
+    var v=one.value.trim();
+    if(!v){ $("copyStatus").textContent="한 줄을 먼저 써 주세요. 비워 둬도 앱 받기는 바로 눌러요."; one.focus(); return; }
+    function done(){ $("copyStatus").textContent="복사했어요. 실제로는 이어서 스토어로 넘어가요."; }
+    if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(v).then(done,function(){fallback(v);done();}); }
+    else { fallback(v); done(); }
+  });
+  function fallback(v){ try{ var ta=document.createElement("textarea"); ta.value=v; ta.setAttribute("readonly",""); ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); document.execCommand("copy"); ta.remove(); }catch(e){} }
+
+  /* 1단 타이핑 1회 */
+  var typed=$("typed"), FIRST="아직 부족하지만,", LAST="겸손은 여기서 안 통합니다.";
+  function runTyper(){
+    if(reduce.matches){ typed.textContent=LAST; return; }
+    var i=0, phase=0;
+    (function step(){
+      if(phase===0){ typed.textContent=FIRST.slice(0,++i); if(i<FIRST.length) return setTimeout(step,95); phase=1; return setTimeout(step,700); }
+      if(phase===1){ typed.textContent=FIRST.slice(0,--i); if(i>0) return setTimeout(step,45); phase=2; return setTimeout(step,300); }
+      if(phase===2){ typed.textContent=LAST.slice(0,++i); if(i<LAST.length) return setTimeout(step,85); }
+    })();
+  }
+
+  /* 화면 진입 1회 연출 */
+  var once=new Map();
+  once.set($("s1"),runTyper);
+  once.set(document.querySelector(".qcard"),function(){ if(!reduce.matches) $("roll").classList.add("go"); });
+  once.set($("strike"),function(){ $("strike").classList.add("on"); });
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(en){ if(en.isIntersecting && once.has(en.target)){ var f=once.get(en.target); once.delete(en.target); io.unobserve(en.target); f(); } });
+    },{threshold:.4});
+    once.forEach(function(_,el){io.observe(el);});
+    /* 대표편: 화면 밖이면 멈춤(화면 안 1개만 재생) */
+    var pio=new IntersectionObserver(function(ents){ ents.forEach(function(en){ if(current===1||reduce.matches||userPaused) return; setPlaying(en.isIntersecting); }); },{threshold:.5});
+    pio.observe($("player"));
+    /* 하단 고정 바 */
+    var heroOut=false, turnIn=false, bar=$("stickybar");
+    function sync(){ bar.classList.toggle("show", heroOut && !turnIn && document.activeElement!==one); }
+    new IntersectionObserver(function(e){ heroOut=!e[0].isIntersecting; sync(); },{threshold:0}).observe(document.querySelector("#s1 .cta-row"));
+    new IntersectionObserver(function(e){ turnIn=e[0].isIntersecting; sync(); },{threshold:.15}).observe($("s5"));
+    one.addEventListener("focus",sync); one.addEventListener("blur",sync);
+  } else { once.forEach(function(f){f();}); }
+
+  /* 구간 실측 높이(화면 수) */
+  function measure(){
+    var vh=window.innerHeight||1, b=document.body, wasOff=b.classList.contains("no-annot"), hs=[];
+    var secs=Array.prototype.slice.call(document.querySelectorAll("[data-sec]"));
+    b.classList.add("no-annot");   // 주석 층을 끈 화면 그대로 잰다(그리기 전에 되돌림)
+    secs.forEach(function(s){
+      var h=s.offsetHeight;
+      if(s.id==="s1"){ var top=document.getElementById("s0").offsetHeight; h=Math.max(h, vh-top); }
+      hs.push(h);
+    });
+    if(!wasOff) b.classList.remove("no-annot");
+    secs.forEach(function(s,i){ var l=s.querySelector("[data-live]"); if(l) l.textContent="실측(주석 끈 화면) "+(hs[i]/vh).toFixed(2)+"화면"; });
+  }
+  window.addEventListener("resize",measure); window.addEventListener("load",measure);
+
+  setFeatured(6);
+  measure();
+})();
+</script>
+</body>
+</html>
