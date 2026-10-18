@@ -7,156 +7,93 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css">
 <style>
-:root{--bg:#f6f4f0;--card:#fff;--ink:#1c1c1e;--sub:#8a857c;--line:#e8e4dd;--pill:#efece6;--violet:#6b5ce7;--red:#e5484d}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#24211b;--ink:#f6f4f0;--sub:#a59f94;--line:#35312a;--pill:#2f2b24;--violet:#9d92ff}}
-:root[data-theme="dark"]{--bg:#17150f;--card:#24211b;--ink:#f6f4f0;--sub:#a59f94;--line:#35312a;--pill:#2f2b24;--violet:#9d92ff}
+:root{--bg:#f6f4f0;--card:#fff;--ink:#1c1c1e;--sub:#8a857c;--off:#a39e95;--line:#e8e4dd;--pill:#efece6;--violet:#6b5ce7}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#24211b;--ink:#f6f4f0;--sub:#a59f94;--off:#7d776d;--line:#35312a;--pill:#312d26;--violet:#9d92ff}}
+:root[data-theme="dark"]{--bg:#17150f;--card:#24211b;--ink:#f6f4f0;--sub:#a59f94;--off:#7d776d;--line:#35312a;--pill:#312d26;--violet:#9d92ff}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",-apple-system,sans-serif;line-height:1.55}
 .wrap{max-width:720px;margin:0 auto;padding:36px 16px 72px}
 h1{font-family:Galmuri11,monospace;font-weight:700;font-size:33px;margin:4px 0 8px}
-.lead{color:var(--sub);margin:0 0 28px}
+.lead{color:var(--sub);margin:0 0 20px}
 .eb{font-family:Galmuri11,monospace;font-size:12px;color:var(--sub)}
-.stage{display:flex;justify-content:center;padding:40px 0 24px}
-.tabbar{position:relative;display:grid;grid-template-columns:repeat(4,1fr);width:min(100%,380px);height:72px;border-radius:999px;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06)}
-.ind{position:absolute;top:8px;bottom:8px;left:0;width:calc(25% - 8px);margin-left:4px;border-radius:999px;background:var(--pill);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
-.tab{position:relative;z-index:1;border:0;background:none;color:var(--sub);font:500 12px "Pretendard Variable",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;min-height:44px;-webkit-tap-highlight-color:transparent}
-.tab[aria-selected="true"]{color:var(--ink);font-weight:600}
-.ico{position:relative;width:26px;height:26px}
-.ico svg{position:absolute;inset:0;width:26px;height:26px}
-.line{transition:opacity .14s ease-out,transform .14s ease-out}
+.stage{display:flex;justify-content:center;padding:36px 0 24px}
+.tabbar{position:relative;display:grid;grid-template-columns:repeat(4,1fr);width:min(100%,340px);height:64px;border-radius:999px;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06)}
+.ind{position:absolute;top:8px;bottom:8px;left:0;border-radius:999px;background:var(--pill);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.tab{position:relative;z-index:1;border:0;background:none;color:var(--off);display:flex;align-items:center;justify-content:center;cursor:pointer;min-height:44px;-webkit-tap-highlight-color:transparent}
+.ico{position:relative;width:28px;height:28px}
+.ico svg{position:absolute;inset:0;width:28px;height:28px}
+.line{transition:opacity .12s ease-out,transform .12s ease-out}
 .tab[aria-selected="true"] .line{opacity:0;transform:scale(.6)}
 .px rect{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(0)}
-.tab[aria-selected="true"] .px rect{animation:pop .26s cubic-bezier(.2,.9,.3,1.25) forwards;animation-delay:calc(var(--d) * 1ms)}
-@keyframes pop{0%{opacity:0;transform:scale(0)}70%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}
-.tab[aria-selected="true"] .px rect.v{animation:pop .26s cubic-bezier(.2,.9,.3,1.25) forwards,twinkle .9s ease-in-out .5s 2;animation-delay:calc(var(--d) * 1ms),calc(var(--d) * 1ms + 300ms)}
-@keyframes twinkle{50%{opacity:.25}}
-.badge{position:absolute;top:-6px;right:-10px;min-width:17px;height:17px;padding:0 5px;border-radius:9px;background:var(--red);color:#fff;font:700 10.5px/17px Galmuri11,monospace;text-align:center}
+.tab[aria-selected="true"] .px rect{animation:pop .24s cubic-bezier(.2,.9,.3,1.3) forwards;animation-delay:calc(var(--d) * 1ms)}
+@keyframes pop{0%{opacity:0;transform:scale(0)}70%{opacity:1;transform:scale(1.3)}100%{opacity:1;transform:scale(1)}}
+.tab[aria-selected="true"] .px{animation:hop .36s cubic-bezier(.2,.8,.2,1) .22s}
+@keyframes hop{40%{transform:translateY(-3px)}100%{transform:none}}
+.dot{position:absolute;top:0;right:-2px;width:6px;height:6px;border-radius:50%;background:var(--ink);transition:opacity .15s}
+.tab[aria-selected="true"] .dot{opacity:0}
 .ctl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
 .ctl button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px "Pretendard Variable",sans-serif;cursor:pointer}
 .ctl button.p{background:var(--violet);border-color:transparent;color:#fff;font-weight:600}
-.notes{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;font-size:14.5px}
+.zoom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
+.zoom div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;font-size:13px;color:var(--sub)}
+.zoom svg{width:64px;height:64px;display:block;margin:0 auto 6px}
+.notes{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;font-size:14.5px}
 .notes ul{margin:6px 0 0;padding-left:18px}
 .notes li{margin:4px 0}
-.zoom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
-.zoom div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;font-size:13px;color:var(--sub)}
-.zoom svg{color:var(--ink);width:64px;height:64px;display:block;margin:0 auto 6px}
 a{color:inherit}
-@media (prefers-reduced-motion:reduce){.ind,.line{transition:none}.tab[aria-selected="true"] .px rect{animation:none;opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.ind,.line{transition:none}.tab[aria-selected="true"] .px rect{animation:none;opacity:1;transform:none}.tab[aria-selected="true"] .px{animation:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <div class="eb">CREWNE · TAB MOTION · 2026.10.18</div>
   <h1>탭 픽셀 애니메이션</h1>
-  <p class="lead">탭을 눌러 보세요. 꺼진 탭은 얇은 선 아이콘이에요. 누르면 같은 모양이 픽셀 조각으로 톡톡 맞춰지고, 보라 픽셀 하나가 반짝여요. 회색 알약은 눌린 탭으로 미끄러져 가요.</p>
+  <p class="lead">탭을 눌러 보세요. 탭에는 글자 없이 아이콘만 있어요. 꺼진 탭은 회색 선 아이콘이고, 알림은 색 없는 작은 점 하나로만 보여 줘요. 누르면 같은 모양이 크루 얼굴처럼 색 입힌 픽셀로 톡톡 맞춰지고, 살짝 뛰어올라요.</p>
   <div class="stage"><nav class="tabbar" role="tablist" aria-label="탭 메뉴"><span class="ind" aria-hidden="true"></span></nav></div>
   <div class="ctl"><button type="button" class="p" id="auto">자동으로 돌려 보기</button><button type="button" id="theme">다크로 보기</button></div>
   <div class="zoom" id="zoom"></div>
   <div class="notes">
-    <b>앱에 넣을 때</b>
+    <b>색은 크루에게서 빌렸어요</b>
     <ul>
-      <li>이 데모는 웹 코드(SVG+CSS)로 만든 움직임이에요. 앱에도 이 방식 그대로 넣으면 Lottie 파일 없이 가볍게 돌아가요.</li>
-      <li>픽셀이 맞춰지는 시간은 0.3초 안이에요. 탭은 자주 누르는 곳이라 이보다 길게 하지 않았어요.</li>
-      <li>「동작 줄이기」를 켠 기기에서는 움직임 없이 바로 바뀌어요.</li>
+      <li>보고 = 젠지 색(버터 노랑 상자, 분홍 하트 편지) · 채팅 = 나나 색(라벤더 말풍선) · 자료 = 레인 색(남색 표지, 노랑 줄) · 나 = 루프 색(주황 얼굴).</li>
+      <li>픽셀이 맞춰지는 시간은 0.3초 안이에요. 탭은 자주 누르는 곳이라 이보다 길게 하지 않았어요. 「동작 줄이기」를 켠 기기에서는 바로 바뀌어요.</li>
+      <li>웹 코드(SVG+CSS)로 만든 움직임이라 앱에도 Lottie 파일 없이 그대로 넣을 수 있어요.</li>
     </ul>
   </div>
   <p class="eb" style="margin-top:24px"><a href="index.html">← 시안 페이지로</a></p>
 </div>
 <script>
 (function(){
-  // 픽셀 아이콘 13칸 격자: # 잉크, v 보라, . 빈칸
-  var PX = {
-    "보고": [
-      ".............",
-      "..#########v.",
-      ".##.......##.",
-      ".#.........#.",
-      "##.........##",
-      "#...........#",
-      "####.....####",
-      "#..#######..#",
-      "#...........#",
-      "#############",
-      "#############",
-      "............."],
-    "채팅": [
-      "...#######...",
-      ".###########.",
-      "#############",
-      "#############",
-      "##.v.v.v.####",
-      "#############",
-      "#############",
-      ".###########.",
-      "..########...",
-      "..###........",
-      ".##..........",
-      "............."],
-    "자료": [
-      ".....v.......",
-      "####.....####",
-      "######.######",
-      "#..###.###..#",
-      "######.######",
-      "#..###.###..#",
-      "######.######",
-      "#..###.###..#",
-      "######.######",
-      "#############",
-      "......#......",
-      "............."],
-    "나": [
-      "....#####..v.",
-      "...#######...",
-      "...#######...",
-      "...#######...",
-      "....#####....",
-      ".............",
-      "..#########..",
-      ".###########.",
-      "#############",
-      "#############",
-      "#############",
-      "............."]
-  };
+  // 색 입힌 픽셀 아이콘 — 시안 보드(TB3)의 픽셀 아이콘을 칸 단위로 옮긴 색 격자(null = 빈칸)
+  var ICON = {"보고": [[null, null, null, null, "#111623", "#0d101c", "#0c1019", "#0f131f", "#0e131f", "#0e131f", "#0e1422", "#111726", "#0e121c", "#0e111a", null, null, null], [null, null, null, "#05040b", null, null, null, null, null, null, null, null, null, null, "#070c1c", null, null], [null, null, null, "#0d101b", null, null, null, null, null, null, null, null, null, null, "#101522", null, null], [null, null, null, "#0c111a", null, null, null, "#fc92c0", null, null, "#fd88bd", null, null, null, "#0a0d14", null, null], [null, null, "#45464a", "#0b0e16", null, null, null, "#fe8cb9", "#ff8dbc", "#fe8fbc", "#fd90bb", null, null, null, "#070c17", "#565a5c", null], [null, "#5c5e64", "#0f1321", "#0b0f19", null, null, null, "#fd92ba", "#fe92bc", "#fd8cb9", "#fe89b7", null, null, null, "#0a0e18", "#0d111f", null], ["#05070c", "#36312d", "#423932", "#0c1220", null, null, null, null, "#fe7fb7", "#fe81b7", null, null, null, null, "#0a0e16", "#3b332c", "#0c0f18"], ["#0d1323", "#fce684", "#fbe57b", "#0b0f19", "#111725", "#0b0f18", null, null, null, null, null, null, "#141928", "#13192a", "#080c15", "#f4ca5a", "#0b101a"], ["#0c1221", "#feeb88", "#fee583", "#38372d", "#3c382b", "#3c332a", null, null, null, null, null, "#c1c4c5", "#3f3a2e", "#50483b", "#473e2e", "#fbce5d", "#080b11"], ["#0a0d11", "#f9e687", "#fee090", "#fee18f", "#fee189", "#fde18a", "#151821", null, null, null, null, "#11131d", "#f7de93", "#fede85", "#fee085", "#fbd168", "#0f141f"], ["#0b0e15", "#f8eeb4", null, null, "#fee18f", "#fee089", "#f5da7d", "#0e111c", "#121622", "#121621", "#0c0f17", "#fade84", "#fedf88", "#fee089", "#fee088", "#fbcf61", "#0e121d"], ["#0c1223", "#fdf4bf", null, "#fddf84", "#fedf86", "#fedf88", "#fee391", "#fbe290", "#fbde81", "#fbe18e", "#fbe192", "#fee38d", "#fee089", "#fde189", "#fee18a", "#fbce5e", "#0d111b"], ["#0c1120", "#fff096", "#fedf7f", "#fdde88", "#fedf87", "#fde18c", "#ffe28c", "#fde189", "#fee289", "#fee189", "#ffe28c", "#fee18b", "#fde088", "#fde18a", "#ffe28e", "#fbce5e", "#0b0e18"], ["#0a0b0e", "#fae57f", "#fddf84", "#fde18d", "#ffe28d", "#fee28a", "#fde189", "#fee18a", "#fee28c", "#fee28c", "#fee28d", "#fee28c", "#fee18a", "#fde18b", "#fdd978", "#facf5a", "#0a0e17"], ["#070910", "#c49e51", "#fcd974", "#fde994", "#feee98", "#fcec94", "#fceb93", "#fded97", "#fdef9a", "#ffef9c", "#fdec97", "#fded97", "#fff09d", "#fbe892", "#f9d56a", "#f6ca4e", "#03060c"], [null, "#4a4d51", "#0c111a", "#0c101b", "#0c111b", "#0d131e", "#0d141e", "#0d131d", "#0c111c", "#0b111a", "#0b1019", "#0c111b", "#0c121c", "#0d121c", "#0e131f", "#0d1018", null]], "채팅": [[null, null, null, null, "#0d111c", "#0d121d", "#101624", "#0e131f", "#0c121c", "#0e131e", "#0e1421", "#0f1523", "#0c111d", "#e2e0dc", null, null, null], [null, null, "#0c0e14", "#05080f", "#bbb1f8", "#afa2f7", "#b2a7f8", "#b7abf8", "#b5a9f8", "#b4a8f8", "#b5a9f7", "#b5a9f7", "#ae9ff6", "#02060d", "#080d19", null, null], [null, "#0d111c", "#cbc8f9", "#c1b9f9", "#b7a9fb", "#baaefc", "#b9abfc", "#baacfd", "#baacfd", "#baabfc", "#b9acfc", "#b8aafc", "#b9acfc", "#afa1f9", "#a5a2e8", "#0a0c15", null], [null, "#060712", "#beb2f8", "#b9adfa", "#b7abfd", "#baadfd", "#bbadfd", "#bbadfd", "#bbadfd", "#baadfd", "#baaefd", "#baadfc", "#b9acfe", "#ab9bfb", "#bda9f9", "#0d0a16", null], ["#0b0f19", "#ac9df2", "#b6a9fb", "#b9adfc", "#baacfd", "#baacfd", "#bbaefe", "#baacfd", "#bbaefe", "#baacfc", "#bbacfd", "#bbadfe", "#bdaefc", "#b9acfd", "#b3a7fd", "#9682f3", "#0b101c"], ["#0d1423", "#b5a7f6", "#b9abfb", "#baaefd", "#bcaffc", "#b9abfc", "#b9abfd", "#b8a8fd", "#bcaefc", "#bbaefc", "#b8aafd", "#b8aafc", "#bdaffc", "#b9abfc", "#baaefd", "#a28ff6", "#0a0e18"], ["#0b111e", "#b5a6f4", "#b6a8fc", "#b1a1fe", null, null, "#bfb2fc", null, null, null, "#bdb2fc", null, null, "#bbabfc", "#bdb4fd", "#9b87f6", "#0b111c"], ["#0a111c", "#b4a4f4", "#bbaefd", "#c1b4fd", null, null, "#b3a4fc", null, null, null, "#b7aafd", null, null, "#bcadfb", "#b8adfc", "#9f8bf7", "#0b1320"], ["#0b111c", "#afa0f4", "#b7aafe", "#b9abfe", "#beb3fc", "#bdb1fc", "#b7a9fd", "#b6a8fb", "#b9adfc", "#b4a6fc", "#b8abfc", "#beb3fc", "#bbaffb", "#b5a6fc", "#b4a9fc", "#a28ef7", "#080c14"], ["#0b0f14", "#b8abf2", "#beb2fb", "#bbaefc", "#b9acfd", "#baaefd", "#bcaffe", "#bbadfd", "#b9acfc", "#baacfb", "#baadfd", "#bbaefd", "#baadfd", "#bbaefd", "#b5abfc", "#907ef4", "#090b0d"], [null, "#131620", "#baacf6", "#b4a6fc", "#b7a9fd", "#b9abfd", "#bcaffe", "#bcaefc", "#bbadfc", "#baadfd", "#b8aafc", "#b8aafd", "#baaefd", "#a896fa", "#ae99f4", "#0a0c12", null], [null, null, "#0c0c12", "#05060b", "#bdb1fd", "#bbaefc", "#baabff", "#baaafd", "#b9abfd", "#b6a6fd", "#b4a4fd", "#b3a4fd", "#9482f5", "#030612", "#0c1120", null, null], [null, null, null, null, "#030308", "#beb2fd", "#b1a0fc", "#000100", "#060b12", "#080c19", "#040712", "#02060e", "#050a13", "#c4c1c3", null, null, null], [null, null, null, null, "#05080f", "#b1a4fb", "#02020b", "#a0a29e", null, null, null, null, null, null, null, null, null], [null, null, null, null, "#03050b", "#b7adf6", "#05080f", null, null, null, null, null, null, null, null, null, null], [null, null, null, null, "#090f19", "#0d101c", null, null, null, null, null, null, null, null, null, null, null]], "자료": [[null, null, "#141d33", "#111929", "#161f34", "#161d31", "#111726", null, null, null, null, "#141e34", "#171f34", "#172036", "#121829", "#101729", null], [null, "#0b0d15", "#24395e", null, null, null, null, "#121827", "#050710", null, "#101727", null, null, null, null, "#273b63", "#0a0d14"], ["#0f1524", "#1f396f", "#23335c", null, null, null, null, null, "#d3d2d4", "#0b0d16", null, null, null, null, null, "#1f3359", "#172c5b"], ["#0c121e", "#2e55a3", "#273a66", null, "#fede80", "#fede80", "#ffdc7a", null, null, "#050915", null, "#fedc7c", "#fddc7d", "#fddf8f", null, "#1e3257", "#244692"], ["#0e1422", "#3056a8", "#283a65", null, null, null, null, null, null, "#242d43", null, null, null, null, null, "#253a62", "#264a99"], ["#0e1524", "#3159ac", "#253459", null, "#ffdf82", "#fedd7f", "#fdde80", null, null, "#141f3c", null, "#fedf85", "#fddd82", "#fedb78", null, "#24385f", "#264898"], ["#0f1627", "#3159ab", "#27365b", null, null, null, null, null, null, "#1b2740", null, null, null, null, null, "#273b62", "#244693"], ["#0d1321", "#3055a7", "#25355b", null, null, null, null, null, null, "#1f273e", null, null, null, null, null, "#263a61", "#244793"], ["#0d1422", "#3055a4", "#24355e", null, null, null, null, null, null, "#181f32", null, null, null, null, null, "#1f3156", "#264a99"], ["#0f1627", "#335aaf", "#212f58", "#213157", "#21325c", "#1f3056", "#202e50", null, null, "#080d1f", null, "#253866", "#213359", "#203155", "#23355f", "#25365f", "#25458e"], ["#0c1118", "#3358ad", "#426bc9", "#456dcb", "#416ac8", "#426bc7", "#4870cc", "#26447f", null, "#02040e", "#18356f", "#4972c9", "#4971cd", "#4870cd", "#466fca", "#4971cc", "#284b9b"], [null, "#141b2f", "#0d1222", "#0c101d", "#10172a", "#101627", "#0c111e", "#213b67", "#284892", "#121830", "#121931", "#090e1a", "#0c1221", "#10182b", "#0e1323", "#0c101c", "#111723"], [null, null, null, null, null, null, null, null, "#0d1221", "#0e1522", null, null, null, null, null, null, null]], "나": [[null, null, null, null, "#2a1b1c", "#291c1c", "#2d1d1e", "#2d1d1d", "#281a1a", "#261919", null, null, null, null], [null, null, null, "#281c1b", "#fba477", "#fda174", "#fd9d6e", "#fd9b6a", "#fd9969", "#fa9b6d", "#312020", null, null, null], [null, null, "#0a0505", "#904b35", "#fd9465", "#fea074", "#fe9f71", "#fd9e71", "#fe9e71", "#fd9a6e", "#c77554", "#200d0e", null, null], [null, "#29191b", "#f7a57d", "#feb08b", null, "#fea175", "#fd9f71", "#fd9e70", "#fd9e70", "#fe9f72", "#f98e63", "#f6895f", "#2a1c1e", null], [null, "#2b191b", "#fbbf9b", "#fdbd99", "#fd9c6f", "#fe9a6c", "#fe9f72", "#ffa275", "#fea172", "#fe9d71", "#fb9166", "#fc936b", "#211617", null], [null, "#211315", "#faab80", "#fe9f76", "#fc996e", "#fc9a6c", "#fddac9", "#ffdac9", "#fc966b", "#fc9469", "#fb8c63", "#f79069", "#271b1c", null], [null, "#2d1b1c", "#f9a778", "#fd976c", "#582c22", "#b38a79", "#fed7c5", "#fed1bc", "#4d2e28", "#fd9f73", "#f5815d", "#ff8d65", "#2c1e21", null], [null, "#908a8b", "#885948", "#fb9d96", "#d28c92", "#f3cab7", "#fed6c3", "#fedac9", "#e4bfb0", "#fea5a9", "#cf7477", "#863f2b", "#75706c", null], [null, null, "#0d0507", "#f2aad0", "#f6bbca", "#fcd3c1", "#fed8c6", "#fed8c7", "#fad1c1", "#fa92c2", "#4c2c32", "#241816", null, null], [null, null, null, "#201416", "#281919", "#704d40", "#fdb9a0", "#fdb196", "#1c1213", "#221516", "#281b1b", null, null, null], [null, "#312425", "#9c553a", "#fa9f70", "#fb9663", "#fdd2be", "#fed7c6", "#fdcfbc", "#fba175", "#fca074", "#f2835a", "#f7855e", "#251d1e", null], [null, "#402b24", "#fcdac1", "#fae1d2", "#fd9e70", "#fd9768", "#fb9c6f", "#fc9a6f", "#fd9c6f", "#fda072", "#fc9366", "#fa9665", "#201213", null], ["#2d1d20", null, null, null, "#fd9f70", "#fd9e6f", "#fd9b6d", "#fd9e72", "#fd9e70", "#fe9f71", "#fd9e70", "#fea170", "#f78860", "#29191b"], ["#251819", null, "#fe9560", "#fda171", "#fda071", "#fd9d6f", "#fda071", "#ffa272", "#fe9f70", "#fe9d6e", "#fe9a6b", "#fd9e6e", "#f7845d", "#251618"], ["#1e1314", "#fa956b", "#fd9569", "#fc8f63", "#fc8e62", "#fd9165", "#fd9266", "#fc9064", "#fc9064", "#fc8e63", "#f5845d", "#f88760", "#e26c48", "#201415"], ["#311d20", "#fca879", "#fa8b5f", "#f88358", "#f9875a", "#fa895e", "#f98559", "#f88558", "#f98b5f", "#f98d63", "#f38059", "#f37b54", "#d86042", "#251819"], [null, "#29191b", "#241718", "#29191a", "#2b1b1c", "#291a1b", "#28191a", "#2a1a1b", "#29191a", "#28191a", "#241516", "#2a1a1b", "#2d1d1d", null]]};
   var LINE = {
     "보고": '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
     "채팅": '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/>',
     "자료": '<path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/>',
     "나": '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'
   };
-  function pixelSvg(name){
-    var g = PX[name], n = 13, out = [], cx = 6, cy = 6;
-    g.forEach(function(row, y){ for (var x = 0; x < row.length; x++){ var c = row[x]; if (c === ".") continue;
-      var d = Math.round(Math.hypot(x - cx, y - cy) * 22);
-      out.push('<rect class="' + (c === "v" ? "v" : "") + '" x="' + x + '" y="' + y + '" width="1" height="1" style="--d:' + d + '" fill="' + (c === "v" ? "var(--violet)" : "currentColor") + '"/>'); } });
-    return '<svg class="px" viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" aria-hidden="true">' + out.join("") + "</svg>";
+  function pixelSvg(name, cls){
+    var g = ICON[name], h = g.length, w = g[0].length, n = Math.max(w, h), ox = (n - w) / 2, oy = (n - h) / 2, out = [];
+    g.forEach(function(row, y){ row.forEach(function(c, x){ if (!c) return;
+      var d = Math.round(Math.hypot(x - (w - 1) / 2, y - (h - 1) / 2) * 16);
+      out.push('<rect x="' + (x + ox) + '" y="' + (y + oy) + '" width="1.04" height="1.04" fill="' + c + '" style="--d:' + d + '"/>'); }); });
+    return '<svg class="' + cls + '" viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" aria-hidden="true">' + out.join("") + "</svg>";
   }
-  function lineSvg(name){ return '<svg class="line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + LINE[name] + "</svg>"; }
-  var bar = document.querySelector(".tabbar"), ind = bar.querySelector(".ind"), names = Object.keys(PX), tabs = [];
+  function lineSvg(name){ return '<svg class="line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + LINE[name] + "</svg>"; }
+  var bar = document.querySelector(".tabbar"), ind = bar.querySelector(".ind"), names = Object.keys(ICON), tabs = [], cur = 0;
   names.forEach(function(name, i){
     var b = document.createElement("button");
-    b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab");
-    b.innerHTML = '<span class="ico">' + lineSvg(name) + pixelSvg(name) + (i === 0 ? '<span class="badge">3</span>' : "") + "</span><span>" + name + "</span>";
+    b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab"); b.setAttribute("aria-label", name + (i === 0 ? " · 새 보고 있음" : ""));
+    b.innerHTML = '<span class="ico">' + lineSvg(name) + pixelSvg(name, "px") + (i === 0 ? '<span class="dot"></span>' : "") + "</span>";
     b.addEventListener("click", function(){ select(i); });
     bar.appendChild(b); tabs.push(b);
   });
-  function select(i){
-    tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); });
-    ind.style.transform = "translateX(" + (i * 100) + "%)";
-    ind.style.width = "calc(25% - 8px)";
-  }
-  // 알약 너비 기준 이동: 탭 한 칸 = 알약 너비 + 8px
-  function place(i){ var w = bar.clientWidth / 4; ind.style.width = (w - 8) + "px"; ind.style.transform = "translateX(" + (i * w) + "px)"; }
-  var cur = 0;
-  select = (function(orig){ return function(i){ cur = i; tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); }); place(i); }; })(select);
+  function place(i){ var w = bar.clientWidth / 4; ind.style.width = (w - 12) + "px"; ind.style.transform = "translateX(" + (i * w + 6) + "px)"; }
+  function select(i){ cur = i; tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); }); place(i); }
   window.addEventListener("resize", function(){ place(cur); });
   select(0);
-  // 확대 보기
-  var zoom = document.getElementById("zoom");
-  names.forEach(function(name){ var d = document.createElement("div"); d.innerHTML = pixelSvg(name).replace('class="px"', 'class="pxz"') + name; zoom.appendChild(d); });
-  zoom.querySelectorAll("rect").forEach(function(r){ r.style.opacity = 1; r.style.transform = "none"; });
-  // 자동 돌리기
+  var zoom = document.getElementById("zoom"), LABEL = { "보고": "보고 · 젠지 색", "채팅": "채팅 · 나나 색", "자료": "자료 · 레인 색", "나": "나 · 루프 색" };
+  names.forEach(function(name){ var d = document.createElement("div"); d.innerHTML = pixelSvg(name, "z") + LABEL[name]; zoom.appendChild(d); });
   var timer = null, autoBtn = document.getElementById("auto");
   autoBtn.addEventListener("click", function(){
     if (timer){ clearInterval(timer); timer = null; autoBtn.textContent = "자동으로 돌려 보기"; return; }
