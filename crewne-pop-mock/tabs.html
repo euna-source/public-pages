@@ -25,37 +25,37 @@ h1{font-family:Galmuri11,monospace;font-weight:700;font-size:33px;margin:4px 0 8
 .line{transition:opacity .12s ease-out,transform .12s ease-out}
 .tab[aria-selected="true"] .line{opacity:0;transform:scale(.6)}
 .px{opacity:0}
-.tab[aria-selected="true"] .px{opacity:1}
+.on .px{opacity:1}
 .px g{transform-box:fill-box}
 /* 보고 — 상자가 놓이고, 편지가 상자에서 스윽 올라온 뒤 하트가 톡 */
-.tab[aria-selected="true"] .a-report .tray{animation:settle .18s ease-out both}
-.tab[aria-selected="true"] .a-report .letter,.tab[aria-selected="true"] .a-report .heart{animation:slideup .42s cubic-bezier(.2,.8,.2,1) .12s both}
-.tab[aria-selected="true"] .a-report .heart{transform-origin:center;animation:slideup .42s cubic-bezier(.2,.8,.2,1) .12s both,beat .3s ease-out .56s}
+.on .a-report .tray{animation:settle .18s ease-out both}
+.on .a-report .letter,.on .a-report .heart{animation:slideup .42s cubic-bezier(.2,.8,.2,1) .12s both}
+.on .a-report .heart{transform-origin:center;animation:slideup .42s cubic-bezier(.2,.8,.2,1) .12s both,beat .3s ease-out .56s}
 @keyframes settle{from{opacity:0;transform:translateY(2px)}to{opacity:1;transform:none}}
 @keyframes slideup{from{transform:translateY(7px)}to{transform:none}}
 @keyframes beat{50%{transform:scale(1.35)}}
 /* 채팅 — 말풍선이 꼬리 쪽에서 부풀고, 점 세 개가 차례로 타이핑 */
-.tab[aria-selected="true"] .a-chat .bubble{transform-origin:20% 100%;animation:puff .26s cubic-bezier(.2,.9,.3,1.25) both}
-.tab[aria-selected="true"] .a-chat .dot0{animation:typing .5s ease-out .26s both}
-.tab[aria-selected="true"] .a-chat .dot1{animation:typing .5s ease-out .38s both}
-.tab[aria-selected="true"] .a-chat .dot2{animation:typing .5s ease-out .5s both}
+.on .a-chat .bubble{transform-origin:20% 100%;animation:puff .26s cubic-bezier(.2,.9,.3,1.25) both}
+.on .a-chat .dot0{animation:typing .5s ease-out .26s both}
+.on .a-chat .dot1{animation:typing .5s ease-out .38s both}
+.on .a-chat .dot2{animation:typing .5s ease-out .5s both}
 @keyframes puff{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:none}}
 @keyframes typing{0%{opacity:0;transform:translateY(0)}30%{opacity:1;transform:translateY(-1px)}60%{transform:none}100%{opacity:1}}
 /* 자료 — 펼친 책이 놓이고, 오른쪽 책장 두 장이 책등을 축으로 차례로 넘어간 뒤 새 쪽 글줄이 써짐 */
 .a-book [class^="flip"]{opacity:0}
-.tab[aria-selected="true"] .a-book .base,.tab[aria-selected="true"] .a-book .left,.tab[aria-selected="true"] .a-book .right{animation:fadein .1s ease-out both}
-.tab[aria-selected="true"] .a-book .flipR1{transform-origin:0% 50%;animation:turnR .2s ease-in .1s both}
-.tab[aria-selected="true"] .a-book .flipL1{transform-origin:100% 50%;animation:turnL .22s ease-out .3s both}
-.tab[aria-selected="true"] .a-book .flipR2{transform-origin:0% 50%;animation:turnR .2s ease-in .3s both}
-.tab[aria-selected="true"] .a-book .flipL2{transform-origin:100% 50%;animation:turnL .22s ease-out .5s both}
-.tab[aria-selected="true"] .a-book .lines rect{animation:fadein .12s ease-out both;animation-delay:calc(680ms + var(--d) * 1ms)}
-@keyframes turnR{0%{opacity:1;transform:none}99%{opacity:1;transform:translateY(-1px) skewY(-18deg) scaleX(0)}100%{opacity:0;transform:scaleX(0)}}
-@keyframes turnL{0%{opacity:1;transform:translateY(-1px) skewY(18deg) scaleX(0)}85%{opacity:1;transform:none}100%{opacity:0;transform:none}}
+.on .a-book .base,.on .a-book .left,.on .a-book .right{animation:fadein .1s ease-out both}
+.on .a-book .flipR1{transform-origin:0% 50%;animation:turnR .3s ease-in .12s both}
+.on .a-book .flipL1{transform-origin:100% 50%;animation:turnL .3s ease-out .42s both}
+.on .a-book .flipR2{transform-origin:0% 50%;animation:turnR .3s ease-in .3s both}
+.on .a-book .flipL2{transform-origin:100% 50%;animation:turnL .3s ease-out .6s both}
+.on .a-book .lines rect{animation:fadein .12s ease-out both;animation-delay:calc(900ms + var(--d) * 1ms)}
+@keyframes turnR{0%{opacity:1;transform:none}99%{opacity:1;transform:translateY(-2px) skewY(-24deg) scaleX(0)}100%{opacity:0;transform:scaleX(0)}}
+@keyframes turnL{0%{opacity:1;transform:translateY(-2px) skewY(24deg) scaleX(0)}85%{opacity:1;transform:none}100%{opacity:0;transform:none}}
 @keyframes fadein{from{opacity:0}to{opacity:1}}
 /* 나 — 몸이 올라오고 얼굴이 쏙 내려앉아 끄덕, 볼이 발그레 */
-.tab[aria-selected="true"] .a-me .body{animation:rise .2s ease-out both}
-.tab[aria-selected="true"] .a-me .head{transform-origin:50% 100%;animation:drop .34s cubic-bezier(.2,.9,.3,1.3) .08s both,nod .4s ease-in-out .46s}
-.tab[aria-selected="true"] .a-me .blush{transform-origin:center;animation:blush .3s ease-out .6s both}
+.on .a-me .body{animation:rise .2s ease-out both}
+.on .a-me .head{transform-origin:50% 100%;animation:drop .34s cubic-bezier(.2,.9,.3,1.3) .08s both,nod .4s ease-in-out .46s}
+.on .a-me .blush{transform-origin:center;animation:blush .3s ease-out .6s both}
 @keyframes rise{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}
 @keyframes drop{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 @keyframes nod{30%{transform:rotate(-8deg)}70%{transform:rotate(5deg)}}
@@ -66,13 +66,14 @@ h1{font-family:Galmuri11,monospace;font-weight:700;font-size:33px;margin:4px 0 8
 .ctl button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px "Pretendard Variable",sans-serif;cursor:pointer}
 .ctl button.p{background:var(--violet);border-color:transparent;color:#fff;font-weight:600}
 .zoom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:22px}
-.zoom div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;font-size:13px;color:var(--sub)}
-.zoom svg{width:64px;height:64px;display:block;margin:0 auto 6px}
+.zoom small{display:block;font-size:11.5px;margin-top:2px;opacity:.75}
+.zoom .zc{font:inherit;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;font-size:13px;color:var(--sub)}
+.zoom svg{width:72px;height:72px;display:block;margin:0 auto 6px}
 .notes{margin-top:28px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;font-size:14.5px}
 .notes ul{margin:6px 0 0;padding-left:18px}
 .notes li{margin:4px 0}
 a{color:inherit}
-@media (prefers-reduced-motion:reduce){.ind,.line{transition:none}.tab[aria-selected="true"] .px *{animation:none!important;opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.ind,.line{transition:none}.on .px *{animation:none!important;transform:none}.on .px g:not([class^="flip"]),.on .px rect{opacity:1}}
 </style>
 </head>
 <body>
@@ -87,7 +88,7 @@ a{color:inherit}
     <b>색은 크루에게서 빌렸어요</b>
     <ul>
       <li>보고 = 젠지 색(버터 노랑 상자, 분홍 하트 편지) · 채팅 = 나나 색(라벤더 말풍선) · 자료 = 레인 색(남색 표지, 노랑 줄) · 나 = 루프 색(주황 얼굴).</li>
-      <li>한 번 움직이는 시간은 0.7초 안이에요. 탭은 자주 누르는 곳이라 이보다 길게 하지 않았어요. 「동작 줄이기」를 켠 기기에서는 바로 바뀌어요.</li>
+      <li>한 번 움직이는 시간은 1초 안이에요(책장 넘김이 가장 길어요). 아래 큰 아이콘을 누르면 움직임을 크게 다시 볼 수 있어요. 탭은 자주 누르는 곳이라 이보다 길게 하지 않았어요. 「동작 줄이기」를 켠 기기에서는 바로 바뀌어요.</li>
       <li>웹 코드(SVG+CSS)로 만든 움직임이라 앱에도 Lottie 파일 없이 그대로 넣을 수 있어요.</li>
     </ul>
   </div>
@@ -125,11 +126,15 @@ a{color:inherit}
     bar.appendChild(b); tabs.push(b);
   });
   function place(i){ var w = bar.clientWidth / 4; ind.style.width = (w - 12) + "px"; ind.style.transform = "translateX(" + (i * w + 6) + "px)"; }
-  function select(i){ cur = i; tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); }); place(i); }
+  function select(i){ cur = i; tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); t.classList.toggle("on", i === j); }); place(i); }
   window.addEventListener("resize", function(){ place(cur); });
   select(0);
   var zoom = document.getElementById("zoom"), LABEL = { "보고": "보고 · 젠지 색", "채팅": "채팅 · 나나 색", "자료": "자료 · 레인 색", "나": "나 · 루프 색" };
-  names.forEach(function(name){ var d = document.createElement("div"); d.innerHTML = pixelSvg(name, "z") + LABEL[name]; zoom.appendChild(d); });
+  names.forEach(function(name){
+    var d = document.createElement("button"); d.type = "button"; d.className = "zc on"; d.innerHTML = pixelSvg(name, "px z") + LABEL[name] + '<small>눌러서 다시 보기</small>';
+    d.addEventListener("click", function(){ d.classList.remove("on"); void d.offsetWidth; d.classList.add("on"); });
+    zoom.appendChild(d);
+  });
   var timer = null, autoBtn = document.getElementById("auto");
   autoBtn.addEventListener("click", function(){
     if (timer){ clearInterval(timer); timer = null; autoBtn.textContent = "자동으로 돌려 보기"; return; }
