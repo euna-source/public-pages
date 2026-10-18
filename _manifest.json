@@ -395,8 +395,8 @@
     "slug": "crewne-renewal-mock",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-renewal-mock/",
-    "last_kind": "new",
-    "last_sha256": "636190f2c049d857177d4dcfdf70fc443538a2d113e67665c5d5fb5fc0508ae1",
-    "timestamp": "2026-10-18T05:27:08.687242Z"
+    "last_kind": "redeploy",
+    "last_sha256": "a1421dee1edb4797c9d51205fa0751f9079da913cd6dcec2ffc78538ce139407",
+    "timestamp": "2026-10-18T06:20:06.863606Z"
   }
 }
