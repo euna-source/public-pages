@@ -1,0 +1,1754 @@
+<!doctype html>
+<html lang="ko" data-bw>
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="샐리 피드백(결·제목·이해 문턱·기능 흐름)을 받아 에피소드 시즌 1을 다시 짠 문서예요. 제목·편별 시나리오·EP1 대본·현실 공감 근거·정할 것 다섯 가지를 담았어요.">
+<meta name="generator" content="doc-template · 흑백">
+<meta property="og:title" content="다 만들면 올리려고 했는데요 — 60초 6편, 직군은 바뀌고 결은 하나예요">
+<meta property="og:description" content="샐리 피드백(결·제목·이해 문턱·기능 흐름)을 받아 에피소드 시즌 1을 다시 짠 문서예요. 제목·편별 시나리오·EP1 대본·현실 공감 근거·정할 것 다섯 가지를 담았어요.">
+
+<title>다 만들면 올리려고 했는데요 — 60초 6편, 직군은 바뀌고 결은 하나예요</title>
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   doc-template v2 · 기획·리서치 문서
+   색은 테마가 넣는다(:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+). 역할: bg panel line text muted accent mark marktext link linkline obi obitext
+   근거 번호 [L##]는 UX 리서치 장부. 시그니처: 절마다 반복되는 타공 헤어라인(하라 켄야의 타공 금속 사인).
+   ───────────────────────────────────────────── */
+:root{
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Nanum Myeongjo","Batang",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* 글자 [L30·L33·L34·L72·L73] */
+  --fs-body:1.125rem; --lh-body:1.7;
+  --fs-lead:1.25rem; --fs-deck:1.3125rem; --fs-obi:1.5rem;
+  --fs-h1:clamp(2.125rem,1.2rem + 3.4vw,3.5rem); --fs-h2:1.875rem; --fs-h3:1.375rem;
+  --fs-ui:1rem; --fs-small:.9375rem; --fs-cap:.875rem; --fs-label:.8125rem; --fs-min:.75rem;
+  /* 폭 [L31·L87·L92] */
+  --measure:36em; --wide:48rem; --gutter:40px; --header-h:60px;
+  /* 간격 */
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:96px;
+  --sec-gap:var(--s-10); --block-gap:var(--s-7);
+  /* 모서리·선 [L47·L54·L65] */
+  --r-mark:2px; --r-btn:6px; --r-box:12px; --hair:1px; --rule:2px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1rem;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss06"}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--linkline);text-underline-offset:.2em;transition:text-decoration-color 120ms var(--ease),color 120ms var(--ease)}
+a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:30;background:var(--bg);color:var(--text);padding:10px 14px;border:var(--rule) solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 도구 줄: 문서 위 한 겹만 반투명 [L28·L29] ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:var(--hair) solid var(--line)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:var(--s-4)}
+.bar-title{min-width:0;display:flex;align-items:baseline;gap:10px;font-size:var(--fs-cap)}
+.bar-kind{color:var(--accent);font-weight:700;white-space:nowrap}
+.bar-title .sep{color:var(--line)}
+.bar-title b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;border:0;border-radius:var(--r-btn);background:none;font-size:var(--fs-cap);color:var(--muted);transition:background-color 120ms var(--ease),color 120ms var(--ease)}
+.tool:hover{background:var(--panel);color:var(--text)}
+.tool[aria-pressed="true"]{color:var(--text)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.cover{padding-top:var(--s-7)}
+.issue{display:flex;justify-content:space-between;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--rule) solid var(--text);font-size:var(--fs-label);letter-spacing:.02em;color:var(--muted);font-variant-numeric:tabular-nums}
+.issue strong{color:var(--text);font-weight:600}
+.issue a,.meta dd a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.issue a:hover,.meta dd a:hover{text-decoration-thickness:2px}
+.cover-main{padding:var(--s-9) 0 var(--s-8);max-width:52rem}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:var(--fs-label);font-weight:700;letter-spacing:.04em;margin-bottom:var(--s-5)}
+.kind::before{content:"";width:20px;height:var(--rule);background:currentColor}
+.kind:empty{display:none}
+h1{font-family:var(--serif);font-weight:800;font-size:var(--fs-h1);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.deck{margin-top:var(--s-6);max-width:var(--measure);font-size:var(--fs-deck);line-height:1.55;color:var(--muted);text-wrap:pretty}
+.deck:empty{display:none}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+.meta div{padding:var(--s-4) var(--s-4) var(--s-4) 0;min-width:0}
+.meta div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.meta dt{font-size:var(--fs-min);color:var(--muted);margin-bottom:4px;letter-spacing:.02em}
+.meta dd{font-size:var(--fs-small);font-weight:600;overflow-wrap:anywhere}
+
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 본문 폭에 맞춘 결론 한 줄 + 세 칸 ── */
+.obi{margin-top:var(--s-8);max-width:none;border:var(--rule) solid var(--text)}
+.obi-head{background:var(--obi);color:var(--obitext);padding:var(--s-6) var(--s-7);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.obi-label{display:inline-block;font-size:var(--fs-min);font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:2px 8px;margin-bottom:var(--s-3)}
+.obi-head p{font-size:var(--fs-obi);font-weight:700;line-height:1.45;text-wrap:pretty}
+.obi-head a{color:inherit;text-decoration-color:currentColor}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:var(--s-5) var(--s-6) var(--s-6)}
+.obi-grid div+div{border-left:var(--hair) solid var(--line)}
+.obi-grid h2{font-size:var(--fs-label);color:var(--muted);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.obi-grid p{font-size:var(--fs-small);line-height:1.6;overflow-wrap:anywhere}
+
+/* ── 본문 배치 [L122·L126] ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,var(--wide));gap:var(--s-9);padding:var(--s-9) 0 var(--s-10)}
+.toc{position:sticky;top:calc(var(--header-h) + 24px);align-self:start;max-height:calc(100dvh - var(--header-h) - 48px);overflow:auto;font-size:var(--fs-cap);scrollbar-width:thin}
+.toc-title{font-size:var(--fs-min);color:var(--muted);letter-spacing:.04em;margin-bottom:var(--s-3)}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:36px;padding:8px 0 8px 12px;border-left:var(--rule) solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc .n,.toc-mobile .n{font-size:var(--fs-min);color:var(--accent);font-variant-numeric:tabular-nums;font-weight:700}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+/* 본문 열에서 글줄·표·제목의 오른쪽 경계를 일치시킨다. */
+.doc :is(p,ul,ol,blockquote,h2,h3,.callout,.legend,.sec-num){max-width:100%}
+.doc>section{position:relative}
+.doc>section+section{margin-top:var(--sec-gap);padding-top:var(--s-7)}
+/* 시그니처: 타공 헤어라인 — 절 시작마다 같은 간격의 작은 구멍 */
+.doc>section+section::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background-image:radial-gradient(circle,var(--line) 1.1px,transparent 1.4px);background-size:7px 3px;background-repeat:repeat-x}
+.doc p+p{margin-top:1.2em}
+.doc :is(ul,ol):not([class]){padding-left:1.25em;margin:1.2em 0}
+.doc li+li{margin-top:.4em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+.sec-num{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-label);font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:var(--s-3);text-decoration:none}
+.sec-num b{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.sec-num b::after{content:"";display:inline-block;width:14px;height:var(--rule);background:currentColor;vertical-align:middle;margin-left:10px}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:var(--fs-h2);line-height:1.3;font-weight:700;margin-bottom:var(--s-6);text-wrap:balance}
+.doc h3{font-size:var(--fs-h3);line-height:1.4;font-weight:700;margin:var(--s-8) 0 var(--s-3)}
+.doc h2+h3{margin-top:0}
+.lead{font-size:var(--fs-lead);line-height:1.65}
+sup.ref{font-size:max(.7em,.75rem);line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px;color:var(--link)}
+
+/* 형광펜 [L119·L120·L121] */
+mark{background:var(--mark);color:var(--marktext);font-weight:600;padding:.04em .12em;border-radius:var(--r-mark);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+mark a{color:inherit;text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 이름표 */
+.tag{display:inline-block;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 6px;border:1.5px solid currentColor;border-radius:var(--r-mark);margin-left:6px;vertical-align:.15em;white-space:nowrap;letter-spacing:.02em}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:var(--block-gap) 0;border-top:var(--rule) solid var(--text)}
+.stats div{padding:var(--s-4) var(--s-4) var(--s-5) 0}
+.stats div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.stats b{display:block;font-size:2.5rem;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats b small{font-size:1rem;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:var(--fs-cap);line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 색이 아니라 모양으로 [L18·L47·L117] */
+.callout{margin:var(--block-gap) 0;padding:var(--s-5) var(--s-6);font-size:var(--fs-small);line-height:1.65;border-radius:var(--r-box);border:1px solid transparent}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:var(--fs-cap);font-weight:700;margin-bottom:4px}
+.callout-label svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border:1.5px solid var(--text)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.5em}
+
+/* 접이 상자와 결정 모음: 제목 한 줄만 보이고, 누르면 배경이 펼쳐진다 */
+details.callout{padding:0}
+details.callout>summary{display:flex;align-items:flex-start;gap:10px;min-height:48px;padding:13px var(--s-6);margin:0;cursor:pointer;list-style:none;border-radius:inherit}
+details.callout>summary::-webkit-details-marker{display:none}
+details.callout>summary::after{content:"";flex:none;margin:.35em 2px 0 auto;width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform 180ms var(--ease)}
+details.callout[open]>summary::after{transform:rotate(-135deg);margin-top:.6em}
+@media (hover:hover){details.callout>summary:hover{background:var(--panel)}}
+details.callout .dq{min-width:0;line-height:1.55}
+.callout-body{padding:0 var(--s-6) var(--s-5)}
+.callout-body>*+*{margin-top:.5em}
+.callout.decide{border:var(--hair) solid var(--line);border-radius:var(--r-mark)}
+.callout.decide+.callout.decide{margin-top:calc(var(--block-gap) * -1 + var(--s-2))}
+.callout.decide[open]{border-color:var(--text)}
+.callout.decide>summary{font-size:var(--fs-ui);font-weight:700}
+.callout.decide .dn{flex:none;color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em;line-height:1.55}
+.callout.decide .callout-body{padding-left:calc(var(--s-6) + 10px + 2ch)}
+.callout.decide:target,.doc>section:target>h2{scroll-margin-top:calc(var(--header-h) + 16px)}
+.xref{font-weight:600;white-space:nowrap}
+.callout-body .rel{font-size:var(--fs-cap);color:var(--muted)}
+.doc h3+details.callout,.doc h3+.hub-toggle{margin-top:0}
+.doc h3:has(+details.decide){margin-top:var(--s-7);font-size:var(--fs-ui);color:var(--muted)}
+.xref::after{content:" ↗";font-size:.85em}
+/* 절 머리의 '정할 것 N': 결정 모음의 해당 항목으로 간다 */
+.sec-pending{display:inline-flex;align-items:center;margin-left:var(--s-3);vertical-align:top;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid var(--accent);color:var(--accent);border-radius:var(--r-mark);text-decoration:none;letter-spacing:.02em}
+.sec-pending:hover{background:var(--accent);color:var(--bg)}
+/* 표지 아래 한 줄 */
+.pending{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:var(--s-4);max-width:none;font-size:var(--fs-small);color:var(--muted)}
+.pending a{font-weight:700;color:var(--text);text-underline-offset:3px}
+.hub-toggle{margin:0 0 var(--s-3);border:0;background:none;padding:6px 0;min-height:44px;font:inherit;font-size:var(--fs-cap);font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.hub-toggle:hover{color:var(--text)}
+
+/* 인용 */
+.pull{margin:var(--s-8) 0;padding:4px 0 4px var(--s-6);border-left:var(--rule) solid var(--accent);font-family:var(--serif);font-size:1.625rem;font-weight:700;line-height:1.5;text-wrap:balance}
+.pull cite{display:block;margin-top:var(--s-3);font-family:var(--sans);font-size:var(--fs-cap);font-style:normal;font-weight:400;color:var(--muted)}
+
+/* 표 [L48·L127·L128·L129] */
+.table{margin:var(--block-gap) 0;position:relative}
+.table table{width:100%;border-collapse:collapse;font-size:var(--fs-small);line-height:1.6;font-variant-numeric:tabular-nums}
+.table :is(th,td):first-child{min-width:4.5em}
+.table caption{text-align:left;font-size:var(--fs-cap);font-weight:700;margin-bottom:var(--s-2)}
+.table th{text-align:left;font-size:var(--fs-label);font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:var(--rule) solid var(--text);white-space:nowrap;vertical-align:bottom}
+.table td{padding:13px 16px 13px 0;border-bottom:var(--hair) solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.table .num{text-align:right}
+.table tr.pick td{font-weight:600}
+.table tr.pick td:first-child{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:12px}
+.table.compare{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+.table-hint{display:none;font-size:var(--fs-min);color:var(--muted);margin-top:6px}
+.table-note{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.6;max-width:var(--measure)}
+
+/* 그림 */
+.figure{margin:var(--block-gap) 0}
+.figure figcaption{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.5;max-width:var(--measure)}
+
+/* 다음 행동 [L23] */
+.actions{list-style:none;margin:var(--block-gap) 0;padding:0;border-top:var(--rule) solid var(--text);max-width:none!important}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;column-gap:14px;align-items:start;padding:14px 0;border-bottom:var(--hair) solid var(--line);font-size:var(--fs-ui);line-height:26px;min-height:44px}
+.actions li+li{margin-top:0}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:4px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{display:grid;grid-template-columns:6em 6em;column-gap:16px;font-size:var(--fs-cap);line-height:26px;color:var(--muted);white-space:nowrap}
+
+/* 출처·이력 */
+.appendix{margin-top:var(--sec-gap)!important;padding-top:var(--s-7);border-top:var(--rule) solid var(--text)}
+.appendix::before{display:none}
+.appendix h2{font-size:1.375rem;margin-top:0}
+.appendix h2+*{margin-top:0}
+.appendix h2:not(:first-child){margin-top:var(--s-8)}
+.sources{list-style:none;margin:var(--s-5) 0;padding:0;font-size:var(--fs-small);line-height:1.6;max-width:none!important}
+.sources li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:var(--hair) solid var(--line)}
+.sources li+li{margin-top:0}
+.sources li::before{content:counter(list-item);font-size:var(--fs-label);color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:var(--fs-label);color:var(--muted)}
+.sources .state{font-size:var(--fs-label);color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--fs-label);color:var(--muted)}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+
+.foot{border-top:var(--hair) solid var(--line);padding:var(--s-6) 0 var(--s-8);display:flex;justify-content:space-between;gap:var(--s-5);font-size:var(--fs-label);color:var(--muted)}
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--text);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity 150ms var(--ease);z-index:15}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:var(--r-btn);font-size:var(--fs-cap);max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 흑백: 검정·흰색 두 색만. 반투명·회색 면 대신 선과 반전 ── */
+[data-bw] .bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+[data-bw] .tool{color:var(--text)}
+[data-bw] .tool:hover{background:var(--bg);outline:1px solid var(--text);outline-offset:-4px}
+[data-bw] .toc a{border-left-color:transparent}
+[data-bw] .toc a[aria-current="true"]{border-left-color:var(--text);font-weight:700}
+[data-bw] .toc a:not([aria-current="true"]){font-weight:400}
+[data-bw] .callout.note{border:1px solid var(--text)}
+[data-bw] .callout.decide{border-color:var(--text)}
+[data-bw] .sec-pending{border-color:var(--text);color:var(--text)}
+[data-bw] .sec-pending:hover{background:var(--text);color:var(--bg)}
+[data-bw] .meta dt,[data-bw] .stats span,[data-bw] .issue,[data-bw] .table th{font-weight:600}
+[data-bw] .actions li.done .what{text-decoration-color:var(--text)}
+[data-bw] .sources li:target{background:var(--bg);box-shadow:none;outline:1px solid var(--text)}
+[data-bw] img{filter:grayscale(1)}
+[data-bw] .to-top{border-color:var(--text)}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  :root{--gutter:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:var(--s-8)}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div+div{border-left:0;border-top:var(--hair) solid var(--line)}
+}
+/* ── 모바일 [L30·L31·L122·L123] ── */
+@media screen and (max-width:768px){
+  :root{--fs-body:1.0625rem;--lh-body:1.65;--fs-lead:1.125rem;--fs-deck:1.125rem;--fs-obi:1.25rem;--fs-h2:1.5rem;--fs-h3:1.1875rem;--gutter:20px;--header-h:56px;--sec-gap:var(--s-9);--block-gap:28px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .cover-main{padding:var(--s-8) 0 var(--s-7)}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .meta div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:var(--s-7)}
+  .obi-head{padding:var(--s-5)}
+  .obi-grid div{padding:var(--s-4) var(--s-5)}
+  .layout{display:block;padding:var(--s-7) 0 var(--s-9)}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:var(--s-8);border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:var(--fs-small);font-weight:600;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:8px;height:8px;border-right:1.6px solid var(--text);border-bottom:1.6px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform 180ms var(--ease)}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 8px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:var(--fs-small)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .stats div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .stats div{min-width:0}
+  /* 좁은 폭: 숫자는 화면 폭에 맞춰 줄이고, 그래도 넘치면 단위가 다음 줄로 내려간다(페이지 가로 넘침 없음) */
+  .stats b{font-size:clamp(1.5rem,8vw,2.125rem);white-space:normal;word-break:keep-all}
+  .callout{padding:var(--s-4) 18px}
+  details.callout{padding:0}
+  details.callout>summary{padding:12px 16px}
+  .callout-body{padding:0 16px var(--s-4)}
+  .callout.decide .callout-body{padding-left:16px}
+  .pull{font-size:1.3125rem;padding-left:18px}
+  /* 목록형 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:var(--hair) solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:var(--rule) solid var(--text)}
+  .table.stack td{border:0;padding:3px 0 3px 104px;position:relative}
+  .table.stack td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:92px;font-size:var(--fs-label);color:var(--muted);font-weight:600;line-height:1.5}
+  .table.stack td:first-child{font-weight:700;padding-left:0;margin-bottom:4px;font-size:var(--fs-ui)}
+  .table.stack td:first-child::before{display:none}
+  .table.stack td:empty{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:14px}
+  .table.stack .num{text-align:left}
+  /* 두 칸 표(항목 | 내용)는 이름표가 매 행 같은 말이라 빼고 내용을 전체 폭으로 */
+  .table.stack tr:has(> td:nth-child(2):last-child) td{padding-left:0}
+  .table.stack tr:has(> td:nth-child(2):last-child) td::before{display:none}
+  /* 비교표 → 가로 스크롤 + 첫 열 고정 */
+  .table.compare table{min-width:520px}
+  .table.compare :is(th,td):first-child{min-width:5.5em;position:sticky;left:0;background:var(--bg);z-index:1;box-shadow:1px 0 0 var(--line)}
+  .table.compare+.table-hint,.table-hint{display:block}
+  .actions li{grid-template-columns:22px minmax(0,1fr)}
+  .who{grid-column:2;display:flex;flex-wrap:wrap;column-gap:0;font-size:var(--fs-label);line-height:22px}
+  .who span+span::before{content:"·";margin:0 6px}
+  .sources li{grid-template-columns:24px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  :root{--gutter:16px}
+  .table.stack td{padding-left:88px}
+  .table.stack td::before{width:78px}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) img{filter:brightness(.9)}}
+:root[data-theme="dark"] img{filter:brightness(.9)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:1ms!important;animation:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (forced-colors:active){
+  mark{background:Mark;color:MarkText;forced-color-adjust:none}
+  .callout.note{border-color:CanvasText}
+  .obi-head{border-bottom:1px solid CanvasText}
+}
+
+/* ── 인쇄·PDF: 테마의 라이트 토큰 + 흰 바탕 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
+  .bar,.toc,.toc-mobile,.toast,.skip,.to-top{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:24px}
+  .cover-main{padding:24px 0}
+  h1{font-size:28pt}
+  .doc{font-size:11pt}
+  .doc h2{font-size:16pt}
+  .doc>section+section{margin-top:28px}
+  mark{font-weight:700}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats,.pull{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+
+/* 문맥상 문단은 유지하고 시각적 개행만 좁은 화면에서 다시 흐른다. */
+.cover-main .deck{max-width:100%}
+.doc :is(p,li,dd,blockquote){overflow-wrap:anywhere;line-break:strict}
+.doc p{text-wrap:pretty}
+@media(max-width:600px){br.prose-break{display:none}}
+
+/* ─────────────────────────────────────────────
+   부품: 머리 버튼·국면 카드·고정 2주 달력·두 열(시간표·카드)·레이어(서랍)·탭·변경 비교
+   의미는 색에만 싣지 않는다 — 오늘은 링+글자, 신호는 테두리 모양+라벨, 변경은 취소선·밑줄+기호.
+   ───────────────────────────────────────────── */
+:root{--ok:#1F7A3A;--ok-bg:#E6F2E8;--warn:#8A5A00;--warn-line:#C98A00;--bad:#B3261E;--band-h:0px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ok:#7FD39A;--ok-bg:#16301F;--warn:#F2C14E;--warn-line:#F2C14E;--bad:#FF8A80}}
+:root[data-theme="dark"]{--ok:#7FD39A;--ok-bg:#16301F;--warn:#F2C14E;--warn-line:#F2C14E;--bad:#FF8A80}
+[data-bw]{--ok:var(--text);--ok-bg:var(--bg);--warn:var(--text);--warn-line:var(--text);--bad:var(--text)}
+html{scroll-padding-top:calc(var(--header-h) + var(--band-h) + 20px)}
+
+/* 머리 버튼 */
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s-6)}
+.btn-sec{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);background:var(--bg);color:var(--text);font-size:var(--fs-cap);font-weight:600;text-decoration:none}
+.btn-sec:hover{border-color:var(--text);background:var(--panel)}
+button.btn-sec::after{content:"↗";margin-left:6px;color:var(--muted);font-weight:400}
+
+/* 국면 카드 */
+.phase-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:var(--s-6)}
+.phase-card{position:relative;display:grid;gap:2px;padding:14px 16px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);color:var(--text);text-decoration:none;background:var(--bg)}
+.phase-card:hover{border-color:var(--text)}
+.pc-no{font-size:var(--fs-label);font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.phase-card b{font-size:var(--fs-ui)}
+.pc-when{font-size:var(--fs-cap);color:var(--muted)}
+.phase-card.now{border:var(--rule) solid var(--text)}
+.pc-now{position:absolute;top:12px;right:12px;font-size:var(--fs-min);font-weight:700;padding:2px 7px;border-radius:999px;background:var(--text);color:var(--bg)}
+
+/* 고정 2주 달력 */
+.calband{position:sticky;top:var(--header-h);z-index:15;background:var(--bg);border-bottom:var(--hair) solid var(--line);margin:var(--s-7) calc(var(--gutter) * -1) 0;padding:8px var(--gutter) 6px}
+.toc{top:calc(var(--header-h) + var(--band-h) + 16px);max-height:calc(100dvh - var(--header-h) - var(--band-h) - 32px)}
+.calband-in{max-width:1200px;margin:0 auto;display:grid;gap:6px}
+.calgrid{display:grid;gap:4px;overflow-x:auto;scrollbar-width:thin;padding:3px 2px 4px}
+.pnav,.cal{display:grid;grid-template-columns:repeat(var(--ndays),minmax(58px,1fr));gap:4px}
+.pn{display:flex;align-items:center;gap:6px;min-height:28px;padding:3px 8px;border-radius:var(--r-btn);color:var(--text);text-decoration:none;font-size:var(--fs-label);background:var(--panel);overflow:hidden;white-space:nowrap}
+.pn span{color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums}
+.pn b{font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.pn.now{background:var(--text);color:var(--bg)}
+.pn.now span{color:inherit}
+.day{position:relative;display:grid;justify-items:center;align-content:start;gap:1px;min-height:62px;padding:5px 2px 6px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);color:var(--text);text-decoration:none;text-align:center;background:var(--bg)}
+.day:hover{border-color:var(--text)}
+.day .wd{font-size:var(--fs-min);color:var(--muted)}
+.day .dn{font-size:1.125rem;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums}
+.day .lb{font-size:var(--fs-min);line-height:1.3;color:var(--text);min-height:1.3em}
+.day.weekend .dn{color:var(--muted)}
+.day.in{background:var(--ok-bg);border-color:transparent}
+.day.in::after{content:"";position:absolute;left:4px;right:4px;bottom:2px;height:3px;border-radius:2px;background:var(--ok)}
+.day.next{background:var(--panel);border-color:transparent}
+.day.key{border:var(--rule) solid var(--ok)}
+.day.key .wd{color:var(--ok);font-weight:700}
+.day.deploy{border-style:dashed}
+.day.today{outline:3px solid var(--accent);outline-offset:1px}
+.day.sel,.day.reading{box-shadow:inset 0 0 0 2px var(--text)}
+.day.today::before{content:"오늘";position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;line-height:1;padding:3px 6px;border-radius:999px;background:var(--accent);color:var(--bg);white-space:nowrap}
+.cal-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin:10px 0 0;font-size:var(--fs-label);color:var(--muted)}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg i{display:inline-block;width:14px;height:10px;border-radius:2px;border:var(--hair) solid var(--line)}
+.lg.round i{background:var(--ok-bg);border-color:transparent;box-shadow:inset 0 -3px 0 var(--ok)}
+.lg.next i{background:var(--panel);border-color:transparent}
+.lg.key i{border:var(--rule) solid var(--ok)}
+.lg.deploy i{border-style:dashed}
+.lg.today.absent{display:none}
+.figure a{display:block;cursor:zoom-in}
+.lg-away{font-weight:700;color:var(--text)}
+.lg.today i{border:0;outline:3px solid var(--accent);outline-offset:-3px}
+
+/* 일정표형 국면 머리와 두 열 */
+.phase-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin:var(--s-9) 0 var(--s-4);padding-top:var(--s-5);border-top:var(--rule) solid var(--text)}
+.doc .phase-h h3{margin:0;font-size:var(--fs-h3)}
+.ph-no{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.ph-when{font-size:var(--fs-cap);color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7);margin-top:var(--s-6);max-width:none}
+.col h4{font-size:var(--fs-ui);font-weight:700;margin:0 0 var(--s-3);padding-bottom:var(--s-2);border-bottom:var(--hair) solid var(--line)}
+.timeline{display:grid;align-content:start}
+.tl-row{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:var(--hair) solid var(--line);scroll-margin-top:calc(var(--header-h) + var(--band-h) + 20px)}
+.tl-when{font-size:var(--fs-cap);font-weight:700;font-variant-numeric:tabular-nums}
+.tl-when small{display:block;font-size:var(--fs-label);font-weight:500;color:var(--muted)}
+.tl-what h5{font-size:var(--fs-ui);font-weight:700;margin:0 0 2px}
+.tl-what p{font-size:var(--fs-small);line-height:1.65;max-width:none}
+.tl-row.key{background:linear-gradient(90deg,var(--mark) 0 4px,transparent 4px);padding-left:12px;margin-left:-12px}
+.tl-row.key h5::before{content:"●";color:var(--accent);font-size:.7em;vertical-align:.15em;margin-right:6px}
+.tl-row:target{background:var(--panel)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:var(--fs-label);line-height:1.4;padding:3px 9px;border-radius:999px;border:var(--hair) solid var(--line);color:var(--text)}
+.chip.op{background:var(--panel);border-color:transparent}
+.cards{display:grid;gap:10px;align-content:start}
+.card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:14px 16px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);background:var(--bg)}
+.card .ct{font-weight:700;font-size:var(--fs-small);max-width:none}
+.card .cb{font-size:var(--fs-small);line-height:1.65;margin-top:4px;max-width:none}
+.card-side{text-align:right;font-size:var(--fs-label);color:var(--muted);white-space:nowrap}
+.card-side b{display:block;color:var(--text);font-size:var(--fs-cap)}
+.sig{display:inline-block;margin-bottom:6px;font-size:var(--fs-label);font-weight:700;line-height:1.3;padding:2px 8px;border-radius:999px}
+.card.core{border:var(--rule) solid var(--ok)}
+.sig.core{background:var(--ok);color:var(--bg)}
+.card.warn{border:var(--rule) dashed var(--warn-line)}
+.sig.warn{border:var(--hair) dashed var(--warn-line);color:var(--warn)}
+.sig.warn::before{content:"◐ "}
+.card.red{border:3px solid var(--bad)}
+.sig.red{background:var(--bad);color:var(--bg)}
+.sig.red::before{content:"▲ "}
+
+/* 레이어(서랍) */
+.drawer-bg{position:fixed;inset:0;z-index:40;background:color-mix(in srgb,var(--text) 32%,transparent)}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:41;width:min(680px,100vw);display:flex;flex-direction:column;background:var(--bg);box-shadow:-12px 0 40px color-mix(in srgb,var(--text) 22%,transparent);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:var(--header-h);padding:env(safe-area-inset-top,0px) var(--s-6) 0;border-bottom:var(--hair) solid var(--line)}
+.drawer-head .sec-num{margin:0}
+.drawer-close{width:44px;height:44px;display:grid;place-items:center;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg)}
+.drawer-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.drawer-body{overflow:auto;padding:var(--s-6) var(--s-6) var(--s-9);font-size:var(--fs-body);line-height:var(--lh-body)}
+.drawer-body h2{font-size:var(--fs-h3);margin-bottom:var(--s-5);text-wrap:balance}
+.drawer-body :is(p,ul,ol,.callout){max-width:none}
+.drawer-body p+p{margin-top:1em}
+.drawer-body .table{margin:var(--s-5) 0}
+.drawer-body .callout{margin:var(--s-3) 0}
+.toc-layer{margin-left:4px;color:var(--muted);font-size:.85em}
+body.drawer-open{overflow:hidden}
+
+/* 탭 */
+.tabs{margin:var(--block-gap) 0}
+.tablist{display:flex;gap:4px;border-bottom:var(--hair) solid var(--line);overflow-x:auto}
+.tablist button{min-height:44px;padding:0 14px;border:0;border-bottom:var(--rule) solid transparent;background:none;font-size:var(--fs-cap);color:var(--muted);white-space:nowrap}
+.tablist button[aria-selected="true"]{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
+.tabs [role="tabpanel"]{padding-top:var(--s-4)}
+
+/* 변경 비교 */
+li.chg{list-style:none;margin:10px 0 0;padding:10px 12px;border:var(--hair) solid var(--line);border-radius:var(--r-btn)}
+.chg-where{display:block;font-size:var(--fs-label);margin-bottom:6px}
+.diff{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:var(--fs-cap);line-height:1.6}
+.diff .k{font-size:var(--fs-min);font-weight:700;color:var(--muted);padding-top:2px}
+.diff p{max-width:none}
+.diff del{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.diff ins{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:2px;background:color-mix(in srgb,var(--mark) 55%,transparent)}
+.diff .none{color:var(--muted)}
+.chg-tail{margin-top:6px;font-size:var(--fs-label);color:var(--muted);max-width:none}
+.cal-hint{display:none}
+@media screen and (max-width:768px){.cal-hint{display:inline}}
+
+/* 태블릿·모바일 */
+@media screen and (max-width:1024px){
+  .cols{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
+}
+@media screen and (max-width:768px){
+  .calband{padding:4px var(--gutter) 3px}
+  .pnav{display:none}
+  .cal{grid-template-columns:repeat(var(--ndays),66px)}
+  .day{min-height:50px;padding:3px 1px 2px;gap:0}
+  .day .lb{line-height:1.2}
+  .calgrid{padding:2px 2px 3px}
+  .day .dn{font-size:1rem}
+  .phase-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl-row{grid-template-columns:5.2em minmax(0,1fr);gap:10px}
+  .card{grid-template-columns:minmax(0,1fr)}
+  .card-side{text-align:left;display:flex;gap:8px;align-items:baseline}
+  .card-side b{display:inline}
+  .drawer{width:100vw}
+  .drawer-head,.drawer-body{padding-left:var(--s-4);padding-right:var(--s-4)}
+}
+@media print{
+  .calband,.btn-row,.drawer-bg{display:none}
+  .drawer{position:static;display:block;box-shadow:none;width:auto}
+  .drawer[hidden]{display:block!important}
+  .drawer-close{display:none}
+}
+@media (forced-colors:active){
+  .day.today{outline-color:Highlight}
+  .card.core,.card.red{border-color:CanvasText}
+}
+
+/* ── 목록·필터형 ── */
+body.tpl-catalog .layout{display:block}
+body.tpl-catalog .toc{display:none}
+body.tpl-catalog .doc :is(p,ul,ol,h2,h3,.callout,.sec-num){max-width:var(--wide)}
+.catbar{position:sticky;top:var(--header-h);z-index:15;background:var(--bg);border-bottom:var(--hair) solid var(--line);margin:var(--s-5) calc(var(--gutter) * -1) 0;padding:10px var(--gutter)}
+.catbar-in{display:grid;gap:8px}
+.filters{display:flex;flex-wrap:nowrap;gap:6px 18px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.fgroup{flex:none}
+.fgroup{display:flex;flex-wrap:nowrap;align-items:center;gap:4px}
+.flabel{font-size:var(--fs-label);font-weight:700;color:var(--muted);margin-right:4px}
+.fgroup button,.ftools button{min-height:36px;padding:0 12px;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font-size:var(--fs-cap)}
+.fgroup button[aria-pressed="true"],.ftools button[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg);font-weight:700}
+.fgroup .n{margin-left:5px;font-size:var(--fs-label);opacity:.75;font-variant-numeric:tabular-nums}
+.ftools{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.fsearch input{min-height:40px;min-width:260px;padding:0 14px;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font:inherit;font-size:var(--fs-cap)}
+.fcount{margin-left:auto;font-size:var(--fs-cap);font-weight:700;font-variant-numeric:tabular-nums}
+#cat-ftoggle{display:none}
+.gchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.gchips::-webkit-scrollbar{display:none}
+.gchip{flex:none;min-height:32px;display:inline-flex;align-items:center;padding:0 11px;border-radius:999px;background:var(--panel);color:var(--text);text-decoration:none;font-size:var(--fs-label);font-weight:600;white-space:nowrap}
+.gchip:hover{background:var(--line)}
+.gchip.empty{opacity:.45}
+.cat-wrap{margin-top:var(--s-4);border:var(--hair) solid var(--line);border-radius:var(--r-btn);overflow:auto;max-height:calc(100dvh - var(--header-h) - var(--catbar-h, 120px) - 16px);overscroll-behavior:contain}
+.cat{margin:0;border-collapse:separate;border-spacing:0;font-size:var(--fs-cap);line-height:1.55;min-width:100%}
+.cat th,.cat td{padding:10px 12px;vertical-align:top;text-align:left;border-bottom:var(--hair) solid var(--line);background:var(--bg)}
+.cat tr.hg th{top:0;height:34px;text-align:left;font-size:var(--fs-min);color:var(--text);background:var(--panel);border-bottom:var(--hair) solid var(--line);border-left:var(--hair) solid var(--line)}
+.cat tr.hg th:first-child{border-left:0}
+.cat thead:has(tr.hg) tr.hc th{top:34px}
+.cat thead th{position:sticky;top:0;z-index:3;font-size:var(--fs-label);font-weight:700;color:var(--muted);white-space:nowrap;border-bottom:var(--rule) solid var(--text)}
+.cat .c-num{position:sticky;left:0;z-index:2;width:4.2em;font-weight:800;font-variant-numeric:tabular-nums;color:var(--text)}
+.cat .c-name{position:sticky;left:4.2em;z-index:2;min-width:13em;max-width:15em;border-right:var(--hair) solid var(--line)}
+.cat thead .c-num,.cat thead .c-name{z-index:4}
+.cat td{min-width:8em}
+.cat .c-문구,.cat .c-발생-조건{min-width:20em}
+.cat .c-상태{min-width:14em}
+.cat .c-읽음-기준,.cat .c-이동,.cat .c-수신자{min-width:14em}
+.cat tr.empty td{position:sticky;left:0;padding:24px 16px;background:var(--panel)}
+.cat tr.empty p{margin:0 0 10px;font-weight:600}
+.empty-fix,.gl-open{min-height:36px;padding:0 12px;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font-size:var(--fs-cap)}
+.drawer tr.hl > *{background:color-mix(in srgb,var(--mark) 45%,var(--bg))}
+body.tpl-catalog .toc-mobile{display:block;max-width:var(--wide);margin-bottom:var(--s-6)}
+.ttl{display:block;font-weight:700;font-size:var(--fs-small);line-height:1.35}
+.typ{display:block;margin-top:4px;font-size:var(--fs-min);word-break:break-all;color:var(--muted)}
+.typ code{font-size:var(--fs-min)}
+.cat tr.u-new > *{background:color-mix(in srgb,var(--ok-bg) 70%,var(--bg))}
+.cat tr.u-mod > *{background:color-mix(in srgb,var(--mark) 14%,var(--bg))}
+.cat tr.row:target > *{outline:2px solid var(--accent);outline-offset:-2px}
+.upd{display:inline-block;font-size:var(--fs-label);font-weight:700;padding:1px 8px;border-radius:999px}
+.upd.new{background:var(--ok);color:var(--bg)}
+.upd.mod{border:1.5px solid var(--text);color:var(--text)}
+.upd-sub{display:block;font-size:var(--fs-min);color:var(--muted);margin-top:2px}
+.dim{color:var(--muted)}
+.ic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);color:var(--muted);position:relative}
+.ic svg{width:15px;height:15px;fill:currentColor}
+.ic.on{background:var(--text);border-color:var(--text);color:var(--bg)}
+.ic.off{opacity:.6}
+.ic.off::after{content:"";position:absolute;left:4px;right:4px;top:50%;height:1.5px;background:currentColor;transform:rotate(-40deg)}
+.ic.tbd{border-style:dashed}
+.ic.na{border-style:dotted}
+.cat td ul{margin:0;padding-left:1.1em}
+.cat td li+li{margin-top:4px}
+.cat td > ul > li > strong:first-child{display:inline-block;font-size:var(--fs-label);margin-bottom:2px}
+.msg{margin:4px 0;padding:6px 10px;border:var(--hair) solid var(--line);border-radius:8px;background:var(--panel);color:var(--text)}
+.st{display:flex;gap:8px;align-items:flex-start}
+.st i{flex:none;width:9px;height:9px;border-radius:50%;margin-top:.5em;background:var(--muted)}
+.st.ok i{background:var(--ok)}
+.st.tbd i{background:transparent;border:1.5px dashed var(--muted)}
+.st.hold i{background:var(--warn-line)}
+.cat tr.grp td{position:sticky;left:0;background:var(--panel);padding:12px 14px;border-top:var(--hair) solid var(--line)}
+.gttl{display:flex;align-items:baseline;gap:10px;position:sticky;left:14px;width:max-content;max-width:calc(100vw - 80px)}
+.gtog{border:0;background:none;padding:0;font:inherit;font-size:var(--fs-ui);font-weight:700;color:var(--text);text-align:left}
+.gtog::before{content:"▾";display:inline-block;margin-right:6px;color:var(--muted);transition:transform 120ms var(--ease)}
+.grp.folded .gtog::before{transform:rotate(-90deg)}
+.gcount{font-size:var(--fs-label);color:var(--muted);font-variant-numeric:tabular-nums}
+.gnote{margin-top:4px;font-size:var(--fs-label);color:var(--muted);position:sticky;left:14px;max-width:min(900px,calc(100vw - 80px))}
+.grp.folded .gnote{display:none}
+.cat tr.hidden{display:none}
+body.cat-core .cat .more{display:none}
+.qh{margin-left:4px;width:20px;height:20px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--muted);font-size:12px;font-weight:700;line-height:1;vertical-align:1px}
+.qh:hover{background:var(--text);color:var(--bg)}
+/* 규칙 카드 */
+details.callout.rule{border:var(--hair) solid var(--line);border-radius:0;margin:0}
+details.callout.rule+details.callout.rule{border-top:0}
+details.callout.rule>summary{display:grid;grid-template-columns:minmax(10em,14em) auto minmax(0,1fr) auto;align-items:center;gap:4px 12px;font-size:var(--fs-small)}
+.rname{font-weight:700}
+.rtags{display:flex;flex-wrap:wrap;gap:4px}
+.rtag{font-size:var(--fs-min);font-weight:700;padding:1px 7px;border-radius:999px;background:var(--accent);color:var(--bg);white-space:nowrap}
+.rsum{min-width:0}
+details.callout.rule .callout-body{padding-left:calc(var(--s-6) + 14em + 12px)}
+@media screen and (max-width:768px){
+  .catbar{padding:8px var(--gutter)}
+  #cat-ftoggle{display:inline-flex}
+  .catbar:not(.open) .filters{display:none}
+  .catbar.open .filters{flex-wrap:wrap;max-height:40vh;overflow:auto}
+  .catbar.open .fgroup{flex-wrap:wrap}
+  .fsearch{flex:1}
+  .fsearch input{min-width:0;width:100%}
+  .cat-wrap{max-height:none;overflow:visible;border:0}
+  .cat,.cat tbody,.cat tr,.cat td,.cat th{display:block;width:auto}
+  .cat thead{display:none}
+  .cat tr.row{margin:10px 0;border:var(--hair) solid var(--line);border-radius:var(--r-btn);overflow:hidden}
+  .cat tr.row > *{border-bottom:0;padding:6px 14px}
+  .cat .c-num,.cat .c-name{position:static;border-right:0;max-width:none}
+  .cat .c-num{padding-top:12px;font-size:var(--fs-label);color:var(--accent)}
+  .cat td{min-width:0!important}
+  .cat td[data-label]::before{content:attr(data-label);display:block;font-size:var(--fs-min);font-weight:700;color:var(--muted);margin-bottom:2px}
+  .cat td:empty{display:none}
+  .cat tr.grp{margin-top:18px}
+  .cat tr.grp td{position:static;border-radius:var(--r-btn)}
+  .gttl,.gnote{position:static;max-width:none;width:auto}
+  details.callout.rule>summary{grid-template-columns:minmax(0,1fr) auto}
+  .rname{grid-column:1}
+  .rsum{grid-column:1/-1}
+  details.callout.rule .callout-body{padding-left:16px}
+}
+
+body.tpl-schedule .cover-main{padding:var(--s-7) 0 var(--s-5)}
+body.tpl-schedule .cover h1{font-size:clamp(1.875rem,1.2rem + 2vw,2.625rem)}
+body.tpl-schedule .phase-cards{margin-top:var(--s-4)}
+body.tpl-schedule .btn-row{margin-top:var(--s-4)}
+
+</style>
+</head>
+<body class="tpl-plan">
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">plan</span><span class="sep" aria-hidden="true">·</span><b>C8 홈 에피소드 시즌 1</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="강조 표시"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span></button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span></button>
+      <button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button>
+      <button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span></button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>plan</strong><span>C8 서비스 홈 · 에피소드 시즌 1 재구성</span></div>
+    <div class="cover-main">
+      <p class="kind">C8 서비스 홈 구성 재설계 · 에피소드</p>
+      <h1>다 만들면 올리려고 했는데요 — <br class="prose-break">60초 6편, 직군은 바뀌고 결은 하나예요</h1>
+      <p class="deck">샐리 피드백(결·제목·이해 문턱·기능 흐름)을 받아 에피소드 시즌 1을 다시 짠 문서예요. 제목·편별 시나리오·EP1 대본·현실 공감 근거·정할 것 다섯 가지를 담았어요.</p>
+    </div>
+    <dl class="meta"><div><dt>상태</dt><dd><span class="state"><i class="dot " aria-hidden="true"></i>초안</span></dd></div><div><dt>작성</dt><dd>성장마케팅 기획</dd></div><div><dt>논의</dt><dd>젠지(콘텐츠 마케팅)</dd></div><div><dt>상위 문서</dt><dd>C8 서비스 홈 v0.8 제안서(10/18)</dd></div><div><dt>결정할 사람</dt><dd>대표 · 샐리</dd></div><div><dt>최종 갱신</dt><dd>2026. 10. 18</dd></div></dl>
+    <section class="obi" aria-labelledby="obi-title"><div class="obi-head"><span class="obi-label" id="obi-title">제안</span><p>시즌 1을 「다 만들면 올리려고 했는데요」 60초 6편으로 다시 짰어요. 서랍 속 다 안 된 작업을 올리고, 처음 보는 사람이 리스펙트 → 팔로우 → 노크로 닿아요.</p></div><div class=obi-grid><div><h2>무엇이 바뀌나</h2><p>한 곡 연속극 6편이 &#x27;서랍 속 다 안 된 작업&#x27;을 꺼내는 직군 옴니버스 6편으로 바뀌어요. 제목은 1인칭 구어, 흐름은 발견 → 리스펙트 → &#x27;누가 만들었지?&#x27; → 팔로우 → 노크예요.</p></div><div><h2>감수할 대가</h2><p>팀 결성·Weekly Best 편이 시즌 2로 밀리고, 새 인물 셋이 늘어요. &#x27;완성작은 포트폴리오&#x27;라는 원문 정의를 넓혀야 해요.</p></div><div><h2>뒤집힐 조건</h2><p>10/22 서포터즈 제목 시험에서 비창작자 절반이 장면을 못 그리거나, EP1·EP2 완주율이 낮으면 길이·자막을 다시 봐요.</p></div></div></section><p class="pending"><span>아직 정하지 않은 것이 5가지 있습니다.</span><a href="#s10">모아 보기<span aria-hidden="true"> →</span></a></p>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>무엇을 바꿨나</a></li><li><a href="#s2"><span class="n">02</span>시즌의 결</a></li><li><a href="#s3"><span class="n">03</span>기능 흐름</a></li><li><a href="#s4"><span class="n">04</span>에피소드 목록</a></li><li><a href="#s5"><span class="n">05</span>편별 시나리오</a></li><li><a href="#s6"><span class="n">06</span>EP1 완성 대본</a></li><li><a href="#s7"><span class="n">07</span>현실 공감 근거</a></li><li><a href="#s8"><span class="n">08</span>비창작자 이해도</a></li><li><a href="#s9"><span class="n">09</span>반론과 뒤집힐 조건</a></li><li><a href="#s10"><span class="n">10</span>정할 것</a></li><li><a href="#s11"><span class="n">11</span>다음 행동</a></li><li><a href="#s12"><span class="n">12</span>참고</a></li><li><a href="#s13"><span class="n">13</span>검토 반영</a></li></ol></nav>
+    <main class="doc" id="doc">
+      <details class="toc-mobile"><summary>목차 · 13개 절</summary><ol><li><a href="#s1"><span class="n">01</span>무엇을 바꿨나</a></li><li><a href="#s2"><span class="n">02</span>시즌의 결</a></li><li><a href="#s3"><span class="n">03</span>기능 흐름</a></li><li><a href="#s4"><span class="n">04</span>에피소드 목록</a></li><li><a href="#s5"><span class="n">05</span>편별 시나리오</a></li><li><a href="#s6"><span class="n">06</span>EP1 완성 대본</a></li><li><a href="#s7"><span class="n">07</span>현실 공감 근거</a></li><li><a href="#s8"><span class="n">08</span>비창작자 이해도</a></li><li><a href="#s9"><span class="n">09</span>반론과 뒤집힐 조건</a></li><li><a href="#s10"><span class="n">10</span>정할 것</a></li><li><a href="#s11"><span class="n">11</span>다음 행동</a></li><li><a href="#s12"><span class="n">12</span>참고</a></li><li><a href="#s13"><span class="n">13</span>검토 반영</a></li></ol></details>
+
+<section id="s1" aria-labelledby="s1-t"><a class="sec-num" href="#s1"><b>01</b>무엇을 바꿨나</a><h2 id="s1-t">샐리가 짚은 결, 제목, 문턱, 흐름을 하나씩 고쳤어요</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>짚은 것</th>
+<th>v0.8에서는</th>
+<th>이번에는</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>결</td>
+<td>데모 속 '지우려던 숨'이 연락의 이유. 네 사람이 한 곡을 끝내는 연속극</td>
+<td>다 안 된 작업 여섯 개가 서랍에서 나와요. 노래 두 줄, 안 뽑힌 B안, 음악 없는 영상, 첫 문장, 흔들린 사진, 이름 없는 리듬이에요. 좋은 데는 대개 남이 짚고 부탁할 때는 대가 이야기가 먼저 나와요. 반응은 작게, 교훈은 말하지 않아요</td>
+</tr>
+<tr>
+<td>제목</td>
+<td>'올려 둔 1분 12초', '47분'처럼 영상을 봐야 아는 숫자·사물</td>
+<td>제목만 봐도 장면이 그려지는 1인칭 말투. EP1은 샐리 말 그대로 '큰맘 먹고'. 숫자만으로는 클릭이 늘지 않고 인칭대명사가 늘려요(Kuiken 등 2017)</td>
+</tr>
+<tr>
+<td>문턱</td>
+<td>음악 한 곡 세계, 업계어(데모, 시안, 동선 테스트)</td>
+<td>편마다 직군이 바뀌고 한 편씩 따로 끝나요. 업계어 대신 음성 메모, 메모장, 사진첩, 연필 그림으로 보여 주고 회사원이 주인공인 편을 넣었어요</td>
+</tr>
+<tr>
+<td>흐름</td>
+<td>노크가 먼저 오고 리스펙트·팔로우는 곁가지</td>
+<td>발견 → 리스펙트 → '이거 누가 만들었지?' → 프로필·팔로우 → 노크. 편마다 멈추는 단계를 달리하고, 실제 앱 문구와 경로에 맞췄어요</td>
+</tr>
+</tbody>
+</table></div>
+<p>세 안(한 곡 세계 연속극, 직군 옴니버스, 파일이 말하는 연작)을 네 관점으로 심사했더니 넷 다 직군 옴니버스를 골랐어요. 그래서 그 뼈대에 다른 두 안의 시즌 이름, '이거 누가 만들었지?' 속말, 다음 파일 위에서 멈추는 손을 붙였어요.</p>
+</section><section id="s2" aria-labelledby="s2-t"><a class="sec-num" href="#s2"><b>02</b>시즌의 결</a><h2 id="s2-t">&#x27;버릴 것 없다&#x27;는 한 번도 말하지 않고 다섯 규칙으로 보여 줘요</h2>
+<p>샐리 메시지를 '기준은 그대로 두고 보여 주는 때만 앞당긴다'로 읽었어요. 미루기와 이어지는 건 높은 기준이 아니라 평가 걱정이에요(Sirois 등 2017, r=.23). '아무거나 올려라'로 읽히면 실패해요. 네이버 #오늘일기는 3일 만에 조기 종료했고 Behance WIP는 2025년에 종료됐어요. 그래서 이 문장은 화면에 내지 않아요.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>규칙</th>
+<th>화면에서는</th>
+<th>근거</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 습작마다 좋은 데가 한 군데 있어요</td>
+<td>둘째 줄 멜로디, 지우지 않은 연필 선, 켜지는 가로등, 셋째 줄, 번진 불빛, 9초째 잠깐 멈추는 음악. 노크 첫 문장은 꼭 그 자리를 짚어요</td>
+<td>허술함이 호감이 되는 건 실력이 보일 때뿐이에요(Aronson 등 1966)</td>
+</tr>
+<tr>
+<td>2. 좋은 데는 대개 남이 짚어요</td>
+<td>설명 칸은 현실처럼 짧거나 비어 있어요('B안', '새 카메라 첫날. 흔들림.', '대충 만든 거라'). 사과를 썼다 지우는 건 EP1·EP4 두 번뿐이고 자기 칭찬은 EP1의 '좀 마음에 들어요' 하나예요</td>
+<td>남의 약점은 용기로 보여요(Bruk 등 2018). 좋은 데를 남이 찾아 줄 때 '버릴 게 없다'가 말 없이 전해져요. C8 톤 '겸손은 여기서 안 통합니다'</td>
+</tr>
+<tr>
+<td>3. 반응은 작게, 대가 이야기는 부탁하는 쪽이 먼저</td>
+<td>리스펙트 1~2(EP6 목록만 시즌 인물이 모여요), 팔로우 1, 노크 1. 계약·조회수 숫자는 안 보여요. 부탁하는 쪽이 대가 이야기를 한 줄로 먼저 꺼내요</td>
+<td>실제 첫 반응도 작았어요(Ocean Eyes 첫날 약 1,000회). 남의 시선은 짐작보다 적어요(Gilovich 등 2000). 이름만 적어 주겠다는 부탁은 창작자에게 열정페이로 읽혀요(현업 감각, 출처 미확인)</td>
+</tr>
+<tr>
+<td>4. 빈자리로 사람이 들어와요</td>
+<td>노크는 뒷부분, 앨범 표지, 공연 포스터 윗줄, 밤 촬영 날 사진, 요리 영상 첫 15초를 짚어요</td>
+<td>습작끼리 만나 서로의 다음이 되는 쪽이 현실에 가까워요. '미완성이라 연락이 더 온다'는 가설이에요</td>
+</tr>
+<tr>
+<td>5. 결과만 보여 주고 해석은 맡겨요</td>
+<td>'버릴 것 없다', '두려워 마세요', '지금 올리세요'는 자막·끝 카드 어디에도 없어요. 시청자에게 '당신도 올려 보세요'를 들이미는 거울 컷도 없어요</td>
+<td>결론을 뺀 광고가 관여한 관객에게 더 통하고(Sawyer &amp; Howard 1991), 스스로 찾은 교훈이 더 남아요(Walker &amp; Lombrozo 2017). 충성 고객은 명령형에 반발해요(Zemack-Rugar 등 2017)</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>기능 흐름</a><h2 id="s3-t">리스펙트 다음에 &#x27;이거 누가 만들었지?&#x27;를 두면 팔로우와 노크가 따라와요</h2>
+<p>노크하기 버튼은 프로필 아래 팔로우 옆에 있어요. 그래서 앱 순서와 이야기 순서가 같아요. 노크가 프로필보다 먼저 나오면 다짜고짜 들이미는 메시지처럼 읽혀요.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>단계</th>
+<th>화면</th>
+<th>눈에 띄는 요소</th>
+<th>보는 사람 마음</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>발견</td>
+<td>Discovery 홈 → 작업 상세(오디오 카드는 새로 그림)</td>
+<td>처음 보는 작업 카드</td>
+<td>"어? 여기서 끝이야?"</td>
+</tr>
+<tr>
+<td>리스펙트</td>
+<td>한마디 고르기(옛 녹화는 타이밍 기준, 11/2 재녹화 필요)</td>
+<td>별 → 한마디 8개</td>
+<td>부담 없이 마음만 표시</td>
+</tr>
+<tr>
+<td>누구지?</td>
+<td>작성자 줄·프로필 카드(연결 확인 필요)</td>
+<td>이름 위 회색 속말</td>
+<td>호기심</td>
+</tr>
+<tr>
+<td>프로필·팔로우</td>
+<td>다른 사람 프로필(팔로우 뒤 상태는 새로 그림)</td>
+<td>작업 목록, 팔로우</td>
+<td>다음 것도 보고 싶다</td>
+</tr>
+<tr>
+<td>노크</td>
+<td>노크하기 → 용건 → 첫 메시지(대기 화면은 새로 그림). 프로필에서 누른 노크하기가 용건 화면을 거치는지 11/2에 확인하고, 안 거치면 작업 상세 더보기 → 노크하기로 찍어요</td>
+<td>편마다 다른 용건 칩</td>
+<td>조심스러운 설렘</td>
+</tr>
+<tr>
+<td>받는 쪽</td>
+<td>푸시 → 받은 노크 1:1 → 소개 카드 → 프로필(연결 확인 필요) → 받아주기(11/2 녹화 필수)</td>
+<td>보낸 사람 소개</td>
+<td>놀람 → '이 사람 누구지?' → 안심</td>
+</tr>
+</tbody>
+</table></div>
+<p>이야기에 걸리는 제품 사실 여덟 가지는 이렇게 맞췄어요.</p>
+<ul>
+<li>받는 사람에게는 노크가 어디서 왔는지 안 보여요. 그래서 첫 메시지마다 작업과 짚은 자리를 직접 써요.</li>
+<li>알림 센터에 노크 분류가 없어요. 받는 장면은 잠금 화면 푸시로 보여 줘요.</li>
+<li>리스펙트 알림과 푸시에는 고른 한마디가 안 떠요. 문구는 '회원님의 포트폴리오에 리스펙트를 보냈어요', '새 리스펙트가 도착했어요'예요. '리스펙트를 남긴 크리에이터' 목록에도 이름·직업·아이디만 있어요. 그래서 한마디는 보내는 사람 화면(EP1·EP3·EP5)에서만 보여 줘요.</li>
+<li>새 작업 알림은 소식 탭 문구 '구독한 ○○ 님이 새 포트폴리오를 올렸어요'를 그대로 써요.</li>
+<li>리스펙트, 리스펙트 목록, 소식 알림은 모두 포트폴리오에만 붙어요. 영감 상세에는 하트와 댓글만 있어요. 그래서 습작은 모두 포트폴리오로 올려요(EP4는 메모 캡처 한 장).</li>
+<li>팔로잉 상태의 더보기 시트에서 '노크하기'가 '채팅하기'로 바뀐 화면이 있어요. 조건을 확인하기 전까지는 '프로필 → 노크 → 전송 뒤 팔로우' 순서의 대체 컷도 찍어 둬요.</li>
+<li>한마디에 '오늘 다른 작품에 써서 잠김' 상태가 있어요(조건 미확인). 한 사람이 같은 날 두 작품에 리스펙트하는 장면은 없게 날짜를 나눴어요.</li>
+<li>원문 '완성작은 포트폴리오'와 부딪혀요. 정할 것에 올렸어요.</li>
+</ul>
+<p>홈 3단 기능 카드도 이 순서로 놓고 카드마다 '이 장면이 나오는 편 ▶'을 달아요. 리스펙트 카드에는 한마디를 고르는 장면이 나오는 편만 걸어요. 4단 머리 캡션은 '다 만들면 올리려던 것들 이야기. 1분씩.'이에요.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>순서</th>
+<th>카드</th>
+<th>쉬운 풀이</th>
+<th>나오는 편</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>발견</td>
+<td>팔로우 안 한 사람의 작업도 내 화면에 떠요</td>
+<td>EP1·EP3·EP5</td>
+</tr>
+<tr>
+<td>2</td>
+<td>리스펙트</td>
+<td>좋아요로는 모자랄 때 고르는 한마디</td>
+<td>EP1·EP3·EP5</td>
+</tr>
+<tr>
+<td>3</td>
+<td>누가 만들었지 → 프로필·팔로우</td>
+<td>이름을 누르면 다른 작업이 보이고 팔로우하면 새 작업이 올라올 때 알림이 와요</td>
+<td>EP1·EP3·EP4·EP5</td>
+</tr>
+<tr>
+<td>4</td>
+<td>노크</td>
+<td>같이 하고 싶을 때 보내는 첫 연락. 상대가 받아주면 대화가 열려요</td>
+<td>EP1·EP2·EP4·EP5·EP6</td>
+</tr>
+<tr>
+<td>띠</td>
+<td>올리기 · 클럽 · Weekly Best</td>
+<td>올리기 문구는 원문 정의를 정한 뒤 고쳐요</td>
+<td>올리기는 모든 편</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="s4" aria-labelledby="s4-t"><a class="sec-num" href="#s4"><b>04</b>에피소드 목록</a><h2 id="s4-t">편마다 직군이 바뀌어 따로 끝나고 받은 사람이 다음 편에서 먼저 연락해요</h2>
+<div class="table compare"><table>
+<thead>
+<tr>
+<th>편</th>
+<th>제목</th>
+<th>대안 제목</th>
+<th>주인공·직군</th>
+<th>습작(쉬운 말)</th>
+<th>기능 흐름</th>
+<th>길이</th>
+<th>첫 3초</th>
+<th>엔딩</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EP1</td>
+<td>큰맘 먹고 노래 두 줄만 올렸어요</td>
+<td>뒷부분은 아직 없는데요 / 두 줄 올렸는데, 연락이 왔어요</td>
+<td>한겨울·싱어송라이터</td>
+<td>음성 메모 속 노래 두 줄, 20초</td>
+<td>전 과정(보내는 쪽)</td>
+<td>60초</td>
+<td>"…여기까지밖에 없어"에서 노래가 뚝 끊기고 "어? 여기서 끝이야?"</td>
+<td>다음 음성 메모 위 멈춘 엄지</td>
+</tr>
+<tr>
+<td>EP2</td>
+<td>안 뽑힌 B안, 버리기 아까워서</td>
+<td>회의에서 떨어진 쪽이 더 좋았는데 / 주말에 혼자 다시 그려 봤어요</td>
+<td>서유진·일러스트레이터 겸 디자이너</td>
+<td>회의에서 떨어진 포스터 B안을 주말에 연필로 다시 그린 것</td>
+<td>받은 노크 → 이 사람 누구지 → 받아주기</td>
+<td>60초</td>
+<td>"A안으로 가죠."</td>
+<td>'탈락' 폴더를 '나중에'로</td>
+</tr>
+<tr>
+<td>EP3</td>
+<td>음악을 못 골라서, 영상만 올렸어요</td>
+<td>배경음악만 빼고 다 했어요 / 배경음악 못 골라 묵혀 둔 영상이에요</td>
+<td>박현·영상 감독</td>
+<td>음악 없는 18초 밤길 영상</td>
+<td>발견 → 리스펙트 → 팔로우에서 멈춤</td>
+<td>60초</td>
+<td>소리를 켜도 조용한 밤길, 2초째 가로등이 켜짐</td>
+<td>새 작업 알림을 바로 여는 손</td>
+</tr>
+<tr>
+<td>EP4</td>
+<td>메모장엔 첫 문장만 잔뜩이에요</td>
+<td>끝까지 쓴 글은 하나도 없어요 / 첫 줄만 스물세 개</td>
+<td>이서담(가칭)·회사원, 글</td>
+<td>메모장 첫 문장 세 줄(캡처 한 장)</td>
+<td>리스펙트 알림 → 이 사람 누구지 → 받은 노크</td>
+<td>60초</td>
+<td>지하철, 첫 줄만 있는 메모 23개</td>
+<td>공연 포스터 맨 위 셋째 줄과 '글 이서담'</td>
+</tr>
+<tr>
+<td>EP5</td>
+<td>흔들려서 지우려던 사진이에요</td>
+<td>흔들린 사진, 보정도 안 하고 올렸어요 / 지우기 전에 한 번만</td>
+<td>나은솔(가칭)·사진</td>
+<td>새 카메라 첫날 흔들린 밤 사진 세 장</td>
+<td>전 과정(받는 쪽에서 시작)</td>
+<td>60초</td>
+<td>열다섯 장 중 남은 세 장, '삭제' 위 멈춘 엄지</td>
+<td>지웠던 열두 장을 하나씩 되살림</td>
+</tr>
+<tr>
+<td>EP6</td>
+<td>남의 노래 뒤에만 이름 올리다가, 처음 내 이름 달았어요</td>
+<td>제목 없는 파일만 마흔일곱 개예요 / 남의 노래만 돕다가, 처음 내 걸 올렸어요</td>
+<td>윤태오·작곡·편곡</td>
+<td>이름 없는 15초 리듬 '무제_47'</td>
+<td>리스펙트 목록 → 받은 노크 → 처음 보는 사람의 팔로우</td>
+<td>60초</td>
+<td>무제_01~무제_47 폴더</td>
+<td>새 파일 '무제_48'을 저장하는 손</td>
+</tr>
+</tbody>
+</table></div><p class="table-hint">옆으로 밀어 보기 →</p>
+<p>연락을 받은 사람은 다음 편에서 먼저 연락해요(겨울 EP1→EP2, 유진 EP2→EP4, 박현 EP3→EP5). 늘 보내던 쪽인 태오는 EP6에서 처음 받아요. 앞 편을 몰라도 한 편만으로 이야기가 끝나고 이어 보면 사람이 이어져요.</p>
+</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>편별 시나리오</a><h2 id="s5-t">편마다 &#x27;나도 그런 파일 있어&#x27;가 나오게 생활 물건으로 문턱을 낮췄어요</h2>
+<p>모든 편 위에 '가상 인물·대화 · 화면은 실제 앱을 재구성했어요' 배지를 띄워요. 회색 속말 '이거 누가 만들었지?'(받는 쪽은 '이 사람 누구지?')는 편마다 한 번, 늘 이름 위 같은 자리에 나와요. 생활 치환은 자막으로 풀지 않고 장면 속 물건으로만 보여 줘요. 다음 파일 위의 손은 EP1(겨울의 엄지)과 EP6(태오의 저장)에만 써요. 무언가를 부탁하는 편(EP2·EP4·EP5·EP6)에서는 부탁하는 쪽이 대가 이야기를 한 줄 먼저 꺼내요. 금액은 보여 주지 않고 말은 편마다 달리해요. 용건 칩도 편마다 달라요(EP1·EP2 '같이 작업해요', EP4 '제안할 게 있어요', EP5 '섭외하고 싶어요', EP6 '궁금한 게 있어요'). 박현의 말은 '~습니다'로 맞춰요.</p>
+<h3>EP1 큰맘 먹고 노래 두 줄만 올렸어요</h3>
+<ul>
+<li>로그라인: 2년째 '다 되면 올리려던' 한겨울이 노래 두 줄을 처음 올리고 처음 보는 작곡가 윤태오에게 "뒷부분 같이 만들어 볼래요?"라는 연락을 받아요. 비트는 다음 절에 있어요.</li>
+<li>생활 치환·비직군: 음성 메모 속 흥얼거림. '8마디·데모' 대신 '두 줄', '뒷부분'으로 읽혀요.</li>
+</ul>
+<h3>EP2 안 뽑힌 B안, 버리기 아까워서</h3>
+<ul>
+<li>로그라인: 회의에서 떨어진 포스터 B안을 서유진이 주말에 혼자 연필로 다시 그려 올려요. 처음 보는 싱어송라이터가 그걸 보고 앨범 표지를 부탁해요.</li>
+<li>비트: 0~3 "A안으로 가죠." B안이 '탈락' 폴더로 들어가요 / 3~15 주말, 고객 로고와 문구 없이 연필로 다시 그린 B안. 파일 이름은 '내 거_B안', 설명 칸에는 'B안' 두 글자뿐 / 15~28 잠금 화면에 '새 리스펙트가 도착했어요'와 노크 푸시가 이어서 떠요. 받은 노크 1:1 → 소개 카드 위 '이 사람 누구지?' → 한겨울 프로필 [연결 확인 필요] / 28~48 용건 '같이 작업해요'. "올리신 B안, 연필 선이 안 지워진 게 좋아서요. 이번 노래 앨범 표지가 이런 그림이었으면 해요. 넉넉하진 않아도 작업비는 꼭 드릴게요." 유진이 받아주기 → "좋아요. 노래 먼저 들어 봐도 될까요? 일정이랑 조건은 그다음에 얘기해요." / 48~60 '탈락' 폴더 이름을 '나중에'로 바꿔요.</li>
+<li>생활 치환·비직군: 회의에서 떨어진 기획안 2안. '시안' 대신 'B안'. 회사 파일이 아니라 주말에 혼자 다시 그린 거라 '회사 자료 유출 아냐?'라는 걱정이 안 생겨요.</li>
+</ul>
+<h3>EP3 음악을 못 골라서, 영상만 올렸어요</h3>
+<ul>
+<li>로그라인: 박현은 음악을 못 골라 주말 연습 영상을 쌓아 두고만 있었어요. 그중 18초를 음악 없이 올리자 처음 보는 작곡가가 팔로우하고, 일주일 뒤 새 영상을 가장 먼저 열어요. 연락은 없어요.</li>
+<li>비트: 0~3 태오의 피드. 밤길 영상 카드의 스피커를 눌러도 조용하고, 카드 아래에 '소리는 아직입니다.' 2초째 가로등이 켜져요 / 3~15 박현의 '주말' 폴더 영상 14개, 음악 칸이 다 비어 있어요 / 15~30 태오가 자기 음악을 틀어 놓고 다시 보니, 가로등이 켜지는 순간 음악이 딱 한 박자 멈췄다가 다시 들어가요. 리스펙트 한마디 '계속 보게 돼요' / 30~42 '이거 누가 만들었지?' → 박현 프로필 → 팔로우. 맞춰 본 음악을 '무제_31'로 저장해요. 노크하기 위에서 엄지가 멈췄다가 내려가요 / 42~60 일주일 뒤 소식 탭에 '구독한 박현 님이 새 포트폴리오를 올렸어요'. 태오가 바로 열어요.</li>
+<li>생활 치환·비직군: 배경음악을 못 골라 못 올린 여행 영상. '러프컷' 대신 '연습 삼아 찍은 것'. 태오가 노크 앞에서 멈추는 건 아직 자기 것도 보여 줄 게 없어서예요. 이 마음은 '무제_31' 저장으로 말 없이 보여 주고, EP6으로 이어져요.</li>
+</ul>
+<h3>EP4 메모장엔 첫 문장만 잔뜩이에요</h3>
+<ul>
+<li>로그라인: 끝까지 쓴 글이 하나도 없는 회사원 이서담이 메모장의 첫 문장 세 줄을 캡처해 올려요. 한마디를 남긴 사람이 누군지 눌러 봤더니 포스터 디자이너였고 다음 날 그 사람에게서 연락이 와요.</li>
+<li>비트: 0~3 지하철, 첫 줄만 있는 메모 23개 / 3~15 세 줄이 든 메모를 캡처해 포트폴리오로 올려요. 설명 칸에 '두서없지만…'을 썼다가 지우고 비워 둬요(셋째 줄: '신호를 한 번 그냥 보냈더니, 이어폰 속 노래가 끝까지 들렸다.') / 15~30 알림 '서유진 님이 회원님의 포트폴리오에 리스펙트를 보냈어요.' → 작업을 열면 별 1 → '이 사람 누구지?' → 리스펙트를 남긴 크리에이터 → 서유진 프로필 → 팔로우 / 30~48 다음 날 노크, 용건 '제안할 게 있어요'. "셋째 줄, 다음 달 작은 공연 포스터 맨 위에 써도 될까요? 쓰신 분 이름도 같이 넣고 작게나마 사용료도 드릴게요." 서담이 받아주기를 눌러요 / 48~60 포스터 맨 위에 셋째 줄과 '글 이서담', 아래에 작게 '한겨울 첫 공연'. 서담이 캡처해요.</li>
+<li>생활 치환·비직군: 카톡 임시저장, 쓰다 만 일기. 창작이 본업이 아닌 주인공이에요. 포스터가 EP2 겨울의 공연이라 이어 보면 연결돼요.</li>
+</ul>
+<h3>EP5 흔들려서 지우려던 사진이에요</h3>
+<ul>
+<li>로그라인: 나은솔이 새 카메라로 퇴근길을 찍다 흔들린 밤 사진을 지우지 않고 올려요. 번진 불빛을 본 뮤직비디오 감독 박현이 밤 촬영 날 옆에서 사진 몇 장을 찍어 달라고 부탁해요.</li>
+<li>비트: 0~3 같은 밤 사진 열다섯 장 중 열두 장은 이미 지웠고 남은 세 장 위 '삭제'에서 엄지가 멈춰요 / 3~15 세 장을 올려요. 설명 칸은 '새 카메라 첫날. 흔들림.'뿐 / 15~30 박현 시점. 한마디 여덟 개를 하나씩 고르다 '이건 좀 탐나네요'에서 멈칫해요. '이거 누가 만들었지?' → 프로필 → 팔로우 / 30~45 용건 '섭외하고 싶어요'. "뮤직비디오 찍는 박현입니다. 번진 불빛 보고 연락드립니다. 다음 주 밤 촬영 때 옆에서 사진 몇 장 찍어 주실 수 있을까요? 작은 촬영이라 많이는 못 드려도 촬영비는 맞춰 드리겠습니다." 은솔이 받아주기 → "흔들려서 지우려던 거예요." 박현 "저희 영상이 딱 그 번진 느낌이었으면 합니다." / 45~60 그날 지웠던 열두 장을 '최근 삭제된 항목'에서 하나씩 되살려요.</li>
+<li>생활 치환·비직군: 지우려던 여행 사진. '스틸' 대신 '촬영 날 옆에서 찍는 사진', '렌즈 시험' 대신 '새 카메라 첫날'.</li>
+</ul>
+<h3>EP6 남의 노래 뒤에만 이름 올리다가, 처음 내 이름 달았어요</h3>
+<ul>
+<li>로그라인: 남의 노래 뒤에 '편곡'으로만 이름을 올리던 윤태오가 이름 없는 15초 리듬을 처음 자기 이름으로 올려요. 처음 보는 요리 브이로거가 그걸 영상에 써도 되냐고 물어요.</li>
+<li>비트: 0~3 무제_01~무제_47 폴더 / 3~15 작업 목록에는 '편곡 윤태오'뿐이에요. 무제_47을 올리며 설명 칸에 '대충 만든 거라'를 쓰고 지우지 않고 그대로 올려요 / 15~27 '리스펙트를 남긴 크리에이터' 목록에 시즌 인물 다섯 명이 있고 그 아래 처음 보는 이름 '강민지(가칭) · 요리 브이로거' / 27~45 용건 '궁금한 게 있어요'. "무제_47, 제 요리 영상 첫 15초에 써도 될까요? 9초째 음악이 잠깐 멈추는 데서 칼질이 딱 맞아요. 사용료랑 이름 표기는 편하신 대로 말씀 주세요." 태오가 받아주기 → "이름만 크게 써 주세요. 다음 거 나오면 또 들려드릴게요." / 45~52 강민지 영상 끝과 포트폴리오 설명에 '음악 무제_47 · 윤태오' / 52~60 그 영상을 본 처음 보는 사람이 '윤태오'를 검색해 프로필에서 팔로우해요(손만 보여요) [검색 경로 11/2 확인]. 마지막 컷은 태오가 새 파일 '무제_48'을 저장하는 손이에요.</li>
+<li>생활 치환·비직군: 남의 일만 돕다가 처음 내 이름으로 낸 것. 보고서 맨 뒤 '작성 보조'에만 이름이 있던 사람이면 누구나 알아봐요. '프로듀서'라는 말 대신 크레딧 목록으로 보여 줘요.</li>
+</ul>
+</section><section id="s6" aria-labelledby="s6-t"><a class="sec-num" href="#s6"><b>06</b>EP1 완성 대본</a><h2 id="s6-t">20초 노래 두 줄, 반응 없는 하루, 작곡가의 &#x27;뒷부분 같이&#x27;로 다시 짰어요</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>초</th>
+<th>화면</th>
+<th>자막·대사</th>
+<th>현실 검증</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0~3</td>
+<td>밤, 태오의 폰. Discovery 카드에서 노래 두 줄이 흐르다가 겨울 목소리 "…여기까지밖에 없어"와 함께 뚝 끊겨요 [오디오 카드 새로 그림]</td>
+<td>(태오 속말) 어? 여기서 끝이야?</td>
+<td>현실: 짧은 미완성 공개</td>
+</tr>
+<tr>
+<td>3~12</td>
+<td>'하루 전'. 겨울의 방, 음성 메모 37개('후렴?', '버스에서', '두 줄'). 폴더 이름은 '다 되면 올릴 것'</td>
+<td>(겨울 속말) 2년째, 다 되면 올리려고 했어요.</td>
+<td>현실: 완벽주의로 미루기</td>
+</tr>
+<tr>
+<td>12~22</td>
+<td>업로드 화면, '두 줄' 0:20을 포트폴리오로 올려요. '연습한 거라 부족하지만'을 썼다 지우고 '새벽에 흥얼거린 두 줄. 둘째 줄은 좀 마음에 들어요. 뒷부분은 아직이에요.' [보유]</td>
+<td>(겨울 속말) 큰맘 먹고 두 줄만.</td>
+<td>규칙 1·2</td>
+</tr>
+<tr>
+<td>22~23.5</td>
+<td>올린 직후 '리스펙트 0'. 겨울이 폰을 뒤집어 엎어 놓아요</td>
+<td>(무음)</td>
+<td>현실: 첫 반응은 작고 늦어요</td>
+</tr>
+<tr>
+<td>23.5~30</td>
+<td>다시 태오. 한 번 더 듣고 별 → 한마디 '다음이 기대돼요' [옛 녹화는 타이밍 기준, 11/2 재녹화 필요]</td>
+<td>(태오 속말) 한 번만 더.</td>
+<td>—</td>
+</tr>
+<tr>
+<td>30~38</td>
+<td>작성자 줄 위 회색 속말 → 겨울 프로필. 작업은 '2024.09', '2024.11' 완성곡 두 개와 '오늘' 올린 두 줄뿐. 팔로우</td>
+<td>이거 누가 만들었지?</td>
+<td>2년 공백을 날짜로 보여 줘요</td>
+</tr>
+<tr>
+<td>38~46</td>
+<td>노크하기 → '같이 작업해요' → "올려 두신 노래 두 줄, 둘째 줄 멜로디를 몇 번이나 다시 돌려 들었어요. 뒷부분 같이 만들어 볼래요?" [작성 보유, 대기 새로 그림, 프로필 → 용건 연결 미확인]</td>
+<td>(전송음)</td>
+<td>개연: 첫 연락은 '뒷부분 같이'(실례 없음)</td>
+</tr>
+<tr>
+<td>46~54</td>
+<td>다음 날 아침 7:40, 엎어 둔 폰을 들자 잠금 화면에 노크 푸시 → 받은 노크 1:1 → 받아주기 [11/2 녹화 필수]</td>
+<td>겨울: 뒷부분은 아직 없는데요. / 태오: 그래서 연락했어요.</td>
+<td>반응은 1·1·1</td>
+</tr>
+<tr>
+<td>54~60</td>
+<td>음성 메모 '버스에서' 위에 멈춘 엄지 → '이번 화: 한겨울 · 윤태오' → 끝 카드(프로필 링크에서 앱 받기)</td>
+<td>(무음)</td>
+<td>교훈 문구 없음</td>
+</tr>
+</tbody>
+</table></div>
+<p>v0.8 대본의 1분 56초 데모는 20초 두 줄로, 박현의 '찍고 싶다'는 태오의 '뒷부분 같이'로 바꿨어요. 좋은 데는 숨에서 둘째 줄 멜로디로 옮겼어요. 멜로디는 같이 이어 쓰자고 연락할 이유가 되고 폰 스피커로도 잘 들려요. 끝 카드의 교훈 문장과 질문은 뺐어요. 음성 메모의 한국어 기본 파일명은 확인하지 못해서 겨울이 붙인 이름만 써요. 팔로우한 뒤 노크하기가 채팅하기로 바뀐다면, 30~46은 '프로필 → 노크 → 전송 뒤 팔로우'로 찍은 대체 컷을 써요. <mark>시즌 대표 컷과 홈 썸네일 문구는 "뒷부분은 아직 없는데요." / "그래서 연락했어요."로 해요.</mark></p>
+</section><section id="s7" aria-labelledby="s7-t"><a class="sec-num" href="#s7"><b>07</b>현실 공감 근거</a><h2 id="s7-t">올리는 행동은 현실이고 연락 장면은 실례가 없거나 조건이 붙어 작게 잡았어요</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>설정</th>
+<th>판정</th>
+<th>근거와 대본 처리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>완벽한 것만 올리려다 못 올림(EP1)</td>
+<td>현실</td>
+<td>남이 완벽을 요구한다고 느끼는 완벽주의가 1989~2016년 33% 올랐어요(Curran &amp; Hill). 국내에도 '완성작만 올려라' 규범이 있어요(클립스튜디오)</td>
+</tr>
+<tr>
+<td>20초 노래 두 줄을 올림(EP1)</td>
+<td>현실</td>
+<td>Katie Gregson-MacLeod는 임시저장에 넣어 둔 45초를 며칠 뒤 올렸어요. 올린 행동은 현실이에요. 다음 날 레이블들이 연락한 건 수백만 회(700만 회 넘게) 재생된 뒤의 예외라 대본에 쓰지 않았어요</td>
+</tr>
+<tr>
+<td>첫 연락이 '뒷부분 같이'(EP1)</td>
+<td>개연(실례 없음)</td>
+<td>뮤직비디오 감독보다 작곡가나 프로듀서가 먼저 연락하는 쪽이 업계 관행에 가까워요. 다만 처음 보는 프로듀서가 무명의 습작에 먼저 연락한 실례는 국내외 모두 찾지 못했어요</td>
+</tr>
+<tr>
+<td>부탁하는 쪽이 대가를 먼저 꺼냄(EP2·EP4·EP5·EP6)</td>
+<td>현업 감각(출처 미확인)</td>
+<td>대가 없이 '이름 적을게요'만 붙이면 창작자에게 '노출로 퉁치기'로 읽혀요. 금액은 보여 주지 않고 부탁하는 쪽이 한 줄로 먼저 꺼내게 했어요</td>
+</tr>
+<tr>
+<td>안 뽑힌 그림에 다른 연락(EP2)</td>
+<td>현실(해외)</td>
+<td>쓰이지 않은 그림·스케치북이 다른 의뢰로 이어진 사례가 있어요(Vincent Chong, George Bates). 회사 파일 대신 주말에 로고 없이 다시 그린 B안으로 바꿨어요. 그래도 계약에 따라 권리가 걸릴 수 있어 법무에 확인해요</td>
+</tr>
+<tr>
+<td>감독의 연락(EP3·EP5)</td>
+<td>조건부</td>
+<td>뮤직비디오 감독은 곡이 어느 정도 나온 뒤 섭외되는 게 보통이에요. 그래서 '찍고 싶다'는 버렸어요. EP3에서는 박현이 연락을 받는 쪽이고, EP5에서는 밤 촬영 때 옆에서 사진 몇 장을 부탁하는 정도로 작게 잡았어요</td>
+</tr>
+<tr>
+<td>첫 문장이 연락을 부름(EP4)</td>
+<td>현실(국내)</td>
+<td>브런치 작가 김얀은 글로 출간 제안을 여섯 번 받았어요. 이번 편은 작은 공연 포스터 한 줄로 더 작게 잡았어요</td>
+</tr>
+<tr>
+<td>브이로거가 배경음악을 물음(EP6)</td>
+<td>조건부</td>
+<td>이름 표기를 조건으로 영상 사용을 허락한 작곡가 사례가 있어요(검색 확인 수준). 거기서도 조건은 받는 쪽이 정했어요. 그래서 강민지는 사용료와 표기를 묻고 '이름만'은 태오가 골라요. 무명의 습작에 먼저 물은 실례는 못 찾았어요</td>
+</tr>
+<tr>
+<td>반응 규모와 국내 실례</td>
+<td>현실 / 미확인</td>
+<td>첫 반응은 작았어요(Kauffmann 팔로워 778명, Harmon 조회 13,000회). 국내 무명 창작자가 짧은 습작으로 협업까지 간 사례는 슬로울리·김얀 말고 못 찾았어요</td>
+</tr>
+</tbody>
+</table></div>
+<p>Billie Eilish도 댄스 선생님에게 링크를 보내려고 올렸어요. 그래서 여섯 습작 모두 처음부터 남에게 보이려던 게 아니었어요.</p>
+</section><section id="s8" aria-labelledby="s8-t"><a class="sec-num" href="#s8"><b>08</b>비창작자 이해도</a><h2 id="s8-t">가상 독자로 방향만 점검했고 막힌 말은 생활 말로 바꿨어요</h2>
+<p>직업과 나이를 정한 가상 독자 다섯 명(회계 34, 대학생 21, 육아 37, 식당 45, 공무원 29)으로 방향만 점검했어요. 사람에게 시험한 게 아니라서 점수는 근거로 쓰지 않아요. '안 뽑힌 B안'과 '메모장 첫 문장'에서 '내 얘기'가 나왔고 시즌 이름에도 '나도 그래'가 나왔어요. 실제 판정은 10/22 서포터즈 제목 시험으로 해요.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>막힌 말</th>
+<th>고친 말</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>습작·데모·8마디</td>
+<td>노래 두 줄, 20초짜리. 마디 수는 작곡 의뢰서에만 써요</td>
+</tr>
+<tr>
+<td>숨에서 멈췄어요</td>
+<td>둘째 줄 멜로디를 몇 번이나 다시 돌려 들었어요</td>
+</tr>
+<tr>
+<td>막차를 한 번 미루면…(뜻이 안 풀림)</td>
+<td>신호를 한 번 그냥 보냈더니, 이어폰 속 노래가 끝까지 들렸다</td>
+</tr>
+<tr>
+<td>시안·노래 표지</td>
+<td>B안, 회의에서 떨어진 쪽, 앨범 표지</td>
+</tr>
+<tr>
+<td>합본·반쪽</td>
+<td>팀 편을 빼면서 없앴어요</td>
+</tr>
+<tr>
+<td>노크·리스펙트·Discovery</td>
+<td>'연락이 왔어요', '한마디'. 기능 이름은 앱 화면 글씨로만. '리스펙트를 따라가'는 '한마디를 남긴 사람이 누군지 눌러 봤더니'로</td>
+</tr>
+<tr>
+<td>프로듀서</td>
+<td>로그라인은 '작곡가', 화면은 크레딧 '편곡 윤태오' 컷</td>
+</tr>
+<tr>
+<td>드럼이 빠져요</td>
+<td>음악이 딱 한 박자 멈췄다가 다시 들어가요</td>
+</tr>
+<tr>
+<td>스틸·보정·렌즈 시험</td>
+<td>촬영 날 옆에서 찍는 사진, 새 카메라 첫날. '보정'은 대안 제목에만 남겼어요</td>
+</tr>
+<tr>
+<td>이니셜 인물(ㅈ·ㅎ)</td>
+<td>'처음 보는 사람' 또는 이름</td>
+</tr>
+<tr>
+<td>'올렸다'·'겁니다' 섞인 말투</td>
+<td>해요체로 맞추고 끝말을 섞었어요. 박현만 '~습니다'</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="s9" aria-labelledby="s9-t"><a class="sec-num" href="#s9"><b>09</b>반론과 뒤집힐 조건</a><h2 id="s9-t">같은 틀 반복, &#x27;대충 올려도 된다&#x27;는 오독, 확인 안 된 앱 경로가 가장 큰 위험이에요</h2>
+<ul>
+<li>사용법 안내 영상처럼 보일 수 있어요. 그래서 EP3은 팔로우에서 멈추고, EP2·EP4는 받는 쪽에서 시작하고, 사과 지우기는 EP1·EP4 두 번만 남겼어요. 11/18 판정에서 EP1·EP2 완주율과 '조회됨' 비율이 낮으면 EP4·EP5를 30초로 줄여요.</li>
+<li>사과 지우기를 EP5 대신 EP4에 남겼어요. EP5에서는 사진 삭제가 이미 같은 역할을 하고, '두서없지만'은 회사원이 메일과 카톡에서 매일 쓰는 말이라서요. 서포터즈 시험에서 EP4의 지우기가 훈계로 읽히면 EP4도 빈칸으로 바로 올리게 바꿔요.</li>
+<li>대가 이야기 한 줄이 네 편에 나와서 또 하나의 틀로 보일 수 있어요. 그래서 말을 편마다 달리했어요(작업비, 사용료, 촬영비, 사용료와 표기). 창작자 댓글에 '노출로 퉁친다'가 계속 나오면 EP6 태오의 답에 사용료 한 줄을 더해요.</li>
+<li>좋은 데를 숨에서 멜로디로 옮겼어요. 숨소리를 살리고 파형으로 보여 주자는 의견도 있었어요. 하지만 같이 이어 쓰자고 연락할 이유가 되고 폰 스피커로도 들리는 쪽을 골랐어요. 작곡해 받은 곡에서 둘째 줄이 귀에 남지 않으면 의뢰서를 다시 내요.</li>
+<li>'대충 올려도 된다'로 읽힐 수 있어요. EP6의 '대충 만든 거라'를 그대로 둔 것도 이 위험을 키워요. 댓글에 '대충 올리라는 거냐'가 되풀이되면 좋은 데를 보여 주는 장면을 8초에서 12초로 늘리고, EP6 설명 칸을 '무제_47'로만 바꿔요.</li>
+<li>'다음 편이 궁금한' 힘은 연속극보다 약해요. 사람이 이어지는 릴레이와 EP6 리스펙트 목록으로 메우고 이어 보기 비율이 낮으면 시즌 2를 연속극으로 가요. 생활 치환 자막을 빼서 이해의 문턱이 오를 수도 있어요(가상 독자 점검은 자막이 있던 판 기준이에요). 서포터즈 시험에서 비창작자 절반 넘게 이해하지 못하면 EP2·EP4에만 자막 한 줄을 되살려요.</li>
+<li>11/2 빌드에 오디오 카드가 없으면 EP1·EP6 습작을 손과 악기가 보이는 세로 영상으로 올리고 이미 녹화된 영상 카드 리스펙트를 써요. 받은 노크 1:1이 없으면 받는 장면을 푸시와 프로필까지로 줄여요. 프로필의 노크하기가 용건 화면을 안 거치면 작업 상세 더보기 경로로 찍고 팔로우한 뒤 채팅하기로 바뀌면 '노크 → 전송 뒤 팔로우' 대체 컷을 써요.</li>
+<li>박현은 v0.7 설정대로 한마디 여덟 개를 다 골라요. 그래도 리스펙트는 하나라 '반응은 작게'와 부딪히지 않아요. 파일이 말하는 화자 안은 효과 근거가 없고 현실감을 깎아서 뺐어요. EP1 A/B 시험판으로만 남겨요.</li>
+<li>국내 실화가 들어오면 해당 편을 실화 결로 바꾸거나, EP6 뒤에 실제 회원 10초 에필로그를 붙여요.</li>
+</ul>
+</section><section id="s10" aria-labelledby="s10-t"><a class="sec-num" href="#s10"><b>10</b>정할 것</a><h2 id="s10-t">제작 전에 답이 필요한 다섯 가지예요</h2>
+<details class="callout decide" id="d1"><summary class="callout-label"><span class="dn">01</span><span class="dq">C8 원문 '완성작은 포트폴리오'를 '완성 전 작업도 포트폴리오에'로 넓힐까요?</span></summary><div class="callout-body">
+<p>시즌 전체가 다 안 된 작업을 올리는 이야기라 지금 정의와 부딪혀요. 권장: 넓히되 습작 전용 기능은 만들지 않아요(Behance WIP 종료). 뒤집힐 조건: 제품팀이 포트폴리오 품질 기준을 지키자고 해도 습작을 영감으로 돌리지는 않아요. 영감으로 올리면 리스펙트, 리스펙트 목록, 소식 알림이 빠져서 시즌 흐름이 끊겨요. 그때는 습작을 포트폴리오로 두고 설명 첫 줄로만 '다 안 된 것'임을 보여 줘요.</p>
+</div></details>
+<details class="callout decide" id="d2"><summary class="callout-label"><span class="dn">02</span><span class="dq">EP1 첫 연락을 박현(뮤직비디오 감독)에서 윤태오(작곡·편곡)로 바꿀까요?</span></summary><div class="callout-body">
+<p>짧은 습작만 듣고 감독이 '찍고 싶다'고 하는 건 현실에서 드물어요. 바꾸면 한겨울 설정도 '매달 데모를 올린다'에서 '2년 전 완성곡 두 곡을 낸 뒤로는 음성 메모만 37개'로 바뀌어요. 아이디 gyeoul.demo도 데모를 올리던 사람으로 읽히니 gyeoul.song처럼 바꾸고 대표작 '기타 데모 v01·v03'은 지워요. v0.7 인물 설정도 같이 고쳐요. 권장: 바꿔요. 박현은 EP3에서 받고 EP5에서 보내요.</p>
+</div></details>
+<details class="callout decide" id="d3"><summary class="callout-label"><span class="dn">03</span><span class="dq">새 인물 셋(이서담, 나은솔, 강민지)을 얼굴 없이 손·방 실사로 찍을까요?</span></summary><div class="callout-body">
+<p>기존 4인은 v0.8 권장대로 그림 캐릭터로 두고 새 인물은 한 편씩만 나와요. 권장: 손·방 실사와 이니셜 아바타. 뒤집힐 조건: EP4·EP5 반응이 기존 인물 편보다 확실히 높으면 시즌 2에서 그려요.</p>
+</div></details>
+<details class="callout decide" id="d4"><summary class="callout-label"><span class="dn">04</span><span class="dq">팀 결성과 Weekly Best 편을 시즌 2로 넘길까요?</span></summary><div class="callout-body">
+<p>넘기면 '두 개의 방'과 '네 사람의 이름'이 빠지고 클럽·Weekly Best 카드에 연결할 편이 없어져요. 권장: 넘겨요. 뒤집힐 조건: 11/2 배포의 핵심이 팀 기능이라 꼭 알려야 하면 EP6 자리에 팀 편을 넣어요.</p>
+</div></details>
+<details class="callout decide" id="d5"><summary class="callout-label"><span class="dn">05</span><span class="dq">EP6 끝에 질문 한 줄을 넣을까요?</span></summary><div class="callout-body">
+<p>예: '폰에 다 안 된 거, 몇 개 있어요?' 댓글은 늘 수 있지만 교훈처럼 들려요. 권장: 영상에는 넣지 않고 고정 댓글로만 시험해요.</p>
+</div></details>
+</section><section id="s11" aria-labelledby="s11-t"><a class="sec-num" href="#s11"><b>11</b>다음 행동</a><h2 id="s11-t">이번 주에 결정, 제목 시험, 빌드 확인을 함께 시작해요</h2>
+<ul class="actions"><li class=""><span aria-hidden="true" class="box"></span><span class="what">정할 것 다섯 가지에 답하기</span><span class="who"><span>대표·샐리</span><span>10/21</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">주말에 다시 그린 B안의 공개 권리와 실존 인물 일화를 어디까지 인용할 수 있는지 법무에 묻기</span><span class="who"><span>기획</span><span>10/21</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">제목 6개와 대안 12개를 서포터즈 1기 10명에게 '제목만 보고 장면 말하기'로 시험하고, 비창작자가 이해하는지도 같이 보기 마케팅</span><span class="who"><span>콘텐츠</span><span>10/22</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">작곡 의뢰서 고치기: 노래 두 줄(8마디, 약 20초, BPM 90 안팎, 둘째 줄 끝에 귀에 남는 음 하나, 끝은 말소리로 끊김), 무제_47 15초(9초째 한 박 쉼)</span><span class="who"><span>기획</span><span>10/23</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">알파 빌드에서 확인하기: 오디오 카드, 작성자 줄 → 프로필, 프로필 노크하기 → 용건 화면, 팔로우 뒤에도 노크하기가 남는지(채팅하기로 바뀌는 조건), 받은 노크 소개 카드 → 프로필, 영감에도 리스펙트가 되는지, 이름 검색 → 프로필, 노크 푸시 문구, 한마디 잠김 조건</span><span class="who"><span>QA</span><span>10/24</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">v0.7 인물 설정의 한겨울 아이디·대표작·작업 습관을 이번 설정에 맞추기</span><span class="who"><span>기획</span><span>10/24</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">가칭 세 이름(이서담, 나은솔, 강민지)이 실존 계정이나 기존 단역 이름과 겹치는지 확인하기 마케팅</span><span class="who"><span>콘텐츠</span><span>10/24</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">서포터즈에게 '짧은 걸 올렸다가 연락받은 일' 실화를 동의서와 함께 받기 마케팅</span><span class="who"><span>콘텐츠</span><span>10/31</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">11/2 빌드로 받은 노크 1:1과 리스펙트를 다시 녹화하고 EP1 콘티 확정하기</span><span class="who"><span>기획·QA</span><span>11/4</span></span></li></ul>
+</section><section id="s12" aria-labelledby="s12-t"><a class="sec-num" href="#s12"><b>12</b>참고</a><h2 id="s12-t">판단에 쓴 공개 자료예요</h2>
+<ul>
+<li>Curran &amp; Hill(APA 2018): https://www.apa.org/news/press/releases/2018/01/perfectionism-young-people</li>
+<li>Sirois 등 2017: https://eprints.whiterose.ac.uk/112533</li>
+<li>클립스튜디오 가이드: https://www.clipstudio.net/drawing/archives/154282</li>
+<li>브런치 김얀: https://brunch.co.kr/@gwibok/157</li>
+<li>Katie Gregson-MacLeod: https://www.scottishdailyexpress.co.uk/news/scottish-news/inverness-tiktok-sensation-signs-colombia-27856124</li>
+<li>Ocean Eyes: https://en.wikipedia.org/wiki/Ocean_Eyes_(song)</li>
+<li>Kauffmann: https://www.cultofmac.com/313837/shot-with-iphone-campaign/</li>
+<li>Jalaiah Harmon: https://en.wikipedia.org/wiki/Jalaiah_Harmon</li>
+<li>Vincent Chong: https://www.robertmccammon.com/2018/02/06/matthew-corbett-art-from-vincent-chong/</li>
+<li>George Bates: https://www.ai-ap.com/publications/article/21775/george-batess-sketchbooks.html</li>
+<li>작곡가 사용 허락 사례: https://itch.io/post/13331023</li>
+<li>Kuiken 등 2017: https://pure.uva.nl/ws/files/20924776/Effective_Headlines_of_Newspaper_Articles_in_a_Digital_Environment.pdf</li>
+<li>논문: Aronson 등 1966, Bruk 등 2018, Gilovich 등 2000, Sawyer &amp; Howard 1991, Walker &amp; Lombrozo 2017, Zemack-Rugar 등 2017</li>
+<li>인물·대화·습작은 모두 가상으로 각색했고 실제 발언을 인용한 게 아니에요.</li>
+</ul>
+</section><section id="s13" aria-labelledby="s13-t"><a class="sec-num" href="#s13"><b>13</b>검토 반영</a><h2 id="s13-t">반박을 어떻게 반영했나</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>반박</th>
+<th>반영</th>
+<th>따로 판단한 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대가 없는 부탁이 열정페이로 읽힘(치명)</td>
+<td>부탁하는 쪽이 대가 이야기를 한 줄 먼저 꺼내요(EP2 작업비, EP4 사용료, EP5 촬영비, EP6 사용료·표기). 규칙 3도 고쳤어요</td>
+<td>금액은 끝까지 안 보여요. EP6의 '이름만'은 받는 쪽인 태오가 골라요</td>
+</tr>
+<tr>
+<td>EP1 좋은 데 '숨'이 연락 이유도 안 되고 알아듣기도 어려움</td>
+<td>둘째 줄 멜로디로 옮겼어요. 노크는 '몇 번이나 다시 돌려 들었어요', 의뢰서에는 귀에 남는 음 하나를 넣었어요</td>
+<td>숨소리를 남기고 파형으로 보여 주자는 안은 쓰지 않았어요. 이어 쓰자는 이유가 못 되고 폰 스피커로 잘 안 들려서요</td>
+</tr>
+<tr>
+<td>사과 지우기 반복, EP6 거울 엔딩이 교훈처럼 읽힘</td>
+<td>지우기는 EP1·EP4만 남기고 좋은 데는 남이 짚게 했어요. EP6은 새 인물의 메모 앱 대신 태오가 '무제_48'을 저장하는 손으로 끝나요</td>
+<td>둘째로 남길 편은 EP5가 아니라 EP4로 골랐어요. EP5는 사진 삭제가 이미 같은 역할을 해요</td>
+</tr>
+<tr>
+<td>현실 근거를 부풀림</td>
+<td>Noah Kahan을 빼고 '첫 연락' 행을 '개연(실례 없음)'으로 바꿨어요. Katie 사례는 올린 행동만 현실로 두고 가상 독자 점수는 지웠어요</td>
+<td>—</td>
+</tr>
+<tr>
+<td>장면 논리가 끊김</td>
+<td>EP3 제목과 첫 3초(소리를 켜도 조용), EP5 열두 장 복구, EP3 '무제_31' 저장, EP1 '리스펙트 0' 1.5초, 겨울 프로필 날짜를 고쳤어요</td>
+<td>—</td>
+</tr>
+<tr>
+<td>비창작자 문턱</td>
+<td>로그라인은 '작곡가', '한마디를 남긴 사람이 누군지 눌러 봤더니', 셋째 줄은 새 문장, '한 박자 멈췄다가', 새 카메라 첫날, 앨범 표지, EP6 제목, 박현의 자기소개, EP4 '작은 공연 포스터'로 바꿨어요</td>
+<td>EP3 제목의 '소리 없이'는 '몰래'로도 읽혀서 '영상만'을 골랐어요</td>
+</tr>
+<tr>
+<td>EP2 회사 자료 공개, 그림 직군이 빠짐</td>
+<td>주말에 로고 없이 연필로 다시 그린 B안으로 바꾸고 서유진을 일러스트레이터 겸 디자이너로 했어요</td>
+<td>설명 칸은 'B안'만 둬요. 좋은 데는 겨울이 처음 짚어요</td>
+</tr>
+<tr>
+<td>제품 사실, v0.7 설정과 충돌</td>
+<td>알림·목록에서 한마디를 뺐어요. 소식 알림 문구, 용건·소개 카드·팔로우 뒤 경로에는 확인 표시와 대체 컷을 달았어요. 습작은 포트폴리오로, 받아주기 컷, 편별 용건 칩, 재녹화, 잠김 설명, 나오는 편, 이름 검색 경로를 반영했어요. 강민지로 개명하고, 겨울 아이디와 셋째 줄 겹침을 풀고 박현은 '~습니다'로 맞췄어요</td>
+<td>박현은 v0.7대로 한마디 여덟 개를 다 골라요. 리스펙트는 하나라 규칙 3과 부딪히지 않아요</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+    </main>
+  </div>
+  <footer class="foot"><span>plan · 문서 템플릿</span></footer>
+</div>
+
+<button class="to-top" id="to-top" type="button" aria-label="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 4000);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 링크 복사·공유 (기본 기능)
+  // 주소는 canonical이 있으면 그것, 없으면 지금 주소에서 # 뒤를 뗀 값. 문서 단위로 공유한다.
+  // 남이 열 수 있는 웹 주소(http·https)만 쓴다. canonical이 file:이거나 로컬 기준 상대 주소면 버리고 지금 주소로,
+  // 그것도 file:이면 공유할 주소가 없다 → null.
+  const webUrl = (u) => {
+    try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href.split('#')[0] : null; }
+    catch { return null; }
+  };
+  const docUrl = () => {
+    const c = $('link[rel="canonical"]')?.getAttribute('href');
+    return (c && webUrl(c)) || webUrl(location.href);
+  };
+  const NO_URL = '아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
+  const metaOf = (sel) => $(sel)?.content || '';
+  const legacyCopy = (v) => {
+    const ta = document.createElement('textarea');
+    ta.value = v; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  };
+  const copyText = (v) => (navigator.clipboard && window.isSecureContext)
+    ? navigator.clipboard.writeText(v).then(() => true, () => legacyCopy(v))
+    : Promise.resolve(legacyCopy(v));
+  $('#copy-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    copyText(docUrl()).then((ok) => say(ok ? '링크를 복사했습니다.' : '복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+  });
+  $('#share-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    const data = {
+      title: metaOf('meta[property="og:title"]') || document.title,
+      text: metaOf('meta[property="og:description"]') || metaOf('meta[name="description"]'),
+      url: docUrl()
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      // 공유 창을 연 뒤에는 사용자 동작이 소모돼 자동 복사가 막힐 수 있다(사파리). 실패하면 안내만 한다.
+      navigator.share(data).catch((e) => say(e && e.name === 'AbortError'
+        ? '공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.'
+        : '공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'));
+    } else {
+      copyText(data.url).then((ok) => say(ok
+        ? '링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.'
+        : '공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+    }
+  });
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const cs = getComputedStyle(root);
+    const line = parseFloat(cs.getPropertyValue('--header-h')) + (parseFloat(cs.getPropertyValue('--band-h')) || 0) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const toTop = $('#to-top');
+  toTop?.addEventListener('click', () => { window.scrollTo({ top: 0 }); $('.skip')?.focus?.(); });
+  const onScroll = () => {
+    if (toTop) toTop.classList.toggle('show', scrollY > innerHeight * 2);
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  const hashId = (h) => { try { return decodeURIComponent(h.slice(1)); } catch { return h.slice(1); } };
+  // 목차·절 링크로 이동한 뒤 도착점이 밀렸으면 제자리로 다시 맞춘다. 가장 최근 이동에만 걸고, 손으로 스크롤하면 취소한다
+  let navId = 0;
+  const cancelSettle = () => { navId++; };
+  ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, cancelSettle, { passive: true }));
+  const settle = (id) => {
+    const el = id && document.getElementById(id);
+    if (!el || el.closest('.drawer')) return;  // 서랍 안은 서랍이 따로 연다
+    const mine = ++navId;
+    let done = false;
+    const fix = () => {
+      if (done || mine !== navId) return;
+      done = true;
+      const want = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+      const off = el.getBoundingClientRect().top - want;
+      const room = root.scrollHeight - innerHeight - scrollY;
+      if (Math.abs(off) > 4 && (off < 0 || room > 4)) window.scrollBy({ top: off, behavior: 'instant' });
+      update();
+    };
+    const y0 = scrollY;
+    if ('onscrollend' in window) {
+      addEventListener('scrollend', fix, { once: true });
+      setTimeout(() => { if (scrollY === y0) fix(); }, 200); // 이미 제자리라 스크롤이 일어나지 않으면 scrollend도 오지 않는다
+    } else setTimeout(fix, 1200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) settle(hashId(a.hash));
+  });
+
+  // 결정 모음: 주소가 가리키는 항목은 펼친다(표지 줄·절 머리 '정할 것'에서 올 때)
+  const openTarget = (id) => {
+    const el = id && document.getElementById(id);
+    const d = el && (el.tagName === 'DETAILS' ? el : el.closest('details'));
+    if (d) d.open = true;
+  };
+  addEventListener('hashchange', () => openTarget(hashId(location.hash)));
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) openTarget(hashId(a.hash));
+  });
+  openTarget(hashId(location.hash));
+  // 결정 항목이 셋 이상인 절에는 '모두 펼치기'를 둔다
+  $$('.doc > section').forEach((sec) => {
+    const items = $$(':scope > details.decide', sec);
+    if (items.length < 3) return;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'hub-toggle';
+    const sync = () => { btn.textContent = items.every((d) => d.open) ? '모두 접기' : '모두 펼치기'; };
+    btn.addEventListener('click', () => { const open = !items.every((d) => d.open); items.forEach((d) => { d.open = open; }); sync(); });
+    items.forEach((d) => d.addEventListener('toggle', sync));
+    // 소제목(h3)으로 묶었으면 첫 묶음 제목 앞에 둔다
+    const prev = items[0].previousElementSibling;
+    (prev && prev.tagName === 'H3' ? prev : items[0]).before(btn); sync();
+  });
+  // 인쇄할 때는 접힌 내용도 모두 싣는다
+  let closedForPrint = [];
+  addEventListener('beforeprint', () => { closedForPrint = $$('details:not([open])'); closedForPrint.forEach((d) => { d.open = true; }); });
+  addEventListener('afterprint', () => { closedForPrint.forEach((d) => { d.open = false; }); closedForPrint = []; });
+
+  // 고정 달력 띠 높이 → 앵커 이동 여백(--band-h)
+  const band = $('#calband');
+  if (band) {
+    const setBand = () => root.style.setProperty('--band-h', band.getBoundingClientRect().height + 'px');
+    setBand();
+    if ('ResizeObserver' in window) new ResizeObserver(setBand).observe(band); else addEventListener('resize', setBand);
+  }
+
+  // 오늘: 달력 칸·국면 카드에 표시(보는 사람 기기의 날짜)
+  const pad = (n) => String(n).padStart(2, '0');
+  const now = new Date();
+  const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  const td = $(`.day[data-date="${today}"]`);
+  if (td) { td.classList.add('today'); td.setAttribute('aria-current', 'date'); td.setAttribute('aria-label', `오늘, ${td.textContent.trim()}`); }
+  $$('.phase-card[data-start], .pn[data-start]').forEach((el) => {
+    const a = el.dataset.start, b = el.dataset.end;
+    if (a && b && a <= today && today <= b) {
+      el.classList.add('now');
+      const tag = $('.pc-now', el); if (tag) tag.hidden = false;
+    }
+  });
+  // 오늘이 달력 안이면 그 칸이 보이게 가로 스크롤
+  if (td) { const cal = td.closest('.calgrid'); if (cal) cal.scrollLeft += td.getBoundingClientRect().left - cal.getBoundingClientRect().left - cal.clientWidth / 2 + td.clientWidth / 2; }
+  // 오늘이 달력 밖이면 범례에 며칠 앞·뒤인지 적는다
+  const days = $$('.day[data-date]');
+  if (days.length && !td) {
+    const first = days[0].dataset.date, last = days[days.length - 1].dataset.date;
+    const diff = (a, b) => Math.round((new Date(a) - new Date(b)) / 864e5);
+    const lg = $('.cal-legend');
+    const md = `${now.getMonth() + 1}/${now.getDate()}`;
+    const msg = today < first ? `오늘(${md})은 달력 시작 ${diff(first, today)}일 전` : today > last ? `오늘(${md})은 달력 끝 ${diff(today, last)}일 뒤` : '';
+    if (lg && msg) { const s = document.createElement('span'); s.className = 'lg-away'; s.textContent = msg; lg.prepend(s); }
+    $('.lg.today')?.classList.add('absent');
+  }
+  // 읽는 위치를 따라 날짜 칸을 표시하고 달력 줄을 그 칸으로 민다(휴대폰에서 줄이 멈춰 있지 않게)
+  const tlRows = $$('.tl-row[id^="d"]');
+  if (tlRows.length && days.length) {
+    const byId = {}; days.forEach((d) => { const h = d.getAttribute('href'); if (h) (byId[h.slice(1)] = byId[h.slice(1)] || []).push(d); });
+    let last = '';
+    const spy = () => {
+      const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + (parseFloat(getComputedStyle(root).getPropertyValue('--band-h')) || 0) + 40;
+      let curRow = null;
+      for (const r of tlRows) { if (r.getBoundingClientRect().top <= line) curRow = r; else break; }
+      const id = curRow ? curRow.id : '';
+      if (id === last) return; last = id;
+      $$('.day.reading').forEach((x) => x.classList.remove('reading'));
+      const hit = byId[id] || [];
+      hit.forEach((x) => x.classList.add('reading'));
+      if (hit[0]) {
+        const g = hit[0].closest('.calgrid');
+        if (g) { const d = hit[0].getBoundingClientRect().left - g.getBoundingClientRect().left; if (d < 0 || d > g.clientWidth - hit[0].offsetWidth) g.scrollTo({ left: g.scrollLeft + d - 8, behavior: 'smooth' }); }
+      }
+    };
+    let t2 = 0; addEventListener('scroll', () => { cancelAnimationFrame(t2); t2 = requestAnimationFrame(spy); }, { passive: true });
+  }
+  // 누른 날짜 칸 표시
+  document.addEventListener('click', (e) => {
+    const d = e.target.closest('.day');
+    if (d) { $$('.day.sel').forEach((x) => x.classList.remove('sel')); d.classList.add('sel'); }
+  });
+
+  // 레이어(서랍): 버튼·목차·절 링크로 연다. Esc·바깥·닫기로 닫고, 연 자리로 초점을 돌린다
+  const drawerBg = $('#drawer-bg');
+  let openDrawer = null, opener = null;
+  const closeLayer = () => {
+    if (!openDrawer) return;
+    openDrawer.hidden = true; if (drawerBg) drawerBg.hidden = true;
+    document.body.classList.remove('drawer-open');
+    openDrawer = null;
+    if (opener && opener.focus) opener.focus();
+  };
+  const glossHit = (d, from) => {   // 열 머리 ?로 열면 그 열의 설명 줄을 표시하고 그리로
+    const name = (from && from.getAttribute('aria-label') || '').replace(/ 설명$/, '').trim();
+    $$('tr.hl', d).forEach((x) => x.classList.remove('hl'));
+    if (!name) return;
+    const row = $$('tbody tr', d).find((tr) => { const c = tr.querySelector('td,th'); return c && c.textContent.includes(name); });
+    if (row) { row.classList.add('hl'); row.scrollIntoView({ block: 'center' }); }
+  };
+  const openLayer = (id, from) => {
+    const d = document.getElementById(id);
+    if (!d || !d.classList.contains('drawer')) return false;
+    if (openDrawer && openDrawer !== d) { openDrawer.hidden = true; }
+    opener = from || document.activeElement;
+    d.hidden = false; if (drawerBg) drawerBg.hidden = false;
+    document.body.classList.add('drawer-open');
+    openDrawer = d;
+    $('.drawer-body', d).scrollTop = 0;
+    $('.drawer-close', d).focus();
+    if (from && from.classList && from.classList.contains('qh')) glossHit(d, from);
+    return true;
+  };
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-layer]');
+    if (b) { e.preventDefault(); openLayer(b.dataset.layer, b); return; }
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) {
+      const id = hashId(a.hash);
+      const target = document.getElementById(id);
+      if (target && target.classList.contains('drawer')) { e.preventDefault(); openLayer(id, a); return; }
+      // 레이어 안에서 본문으로 가는 링크: 레이어를 닫고 이동
+      const inDrawer = target ? target.closest('.drawer') : null;
+      if (openDrawer && !inDrawer && a.closest('.drawer')) closeLayer();
+      if (inDrawer && target !== inDrawer) { e.preventDefault(); if (inDrawer !== openDrawer) openLayer(inDrawer.id, a); const dt = target.closest('details'); if (dt) dt.open = true; target.scrollIntoView({ block: 'start' }); }
+    }
+    if (e.target.closest('.drawer-close') || e.target === drawerBg) closeLayer();
+  });
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && openDrawer) { closeLayer(); return; }
+    if (e.key === 'Tab' && openDrawer) {   // 초점을 서랍 안에 가둔다
+      const f = $$('a[href],button,[tabindex]:not([tabindex="-1"]),summary', openDrawer).filter((x) => x.offsetParent !== null);
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  if (location.hash) {
+    const id = hashId(location.hash); const t0 = document.getElementById(id);
+    const d0 = t0 && (t0.classList.contains('drawer') ? t0 : t0.closest('.drawer'));
+    if (d0) { openLayer(d0.id); if (t0 !== d0) { const dt = t0.closest('details'); if (dt) dt.open = true; t0.scrollIntoView({ block: 'start' }); } }
+  }
+
+  // 탭
+  $$('.tabs').forEach((box) => {
+    const tabs = $$('[role="tab"]', box);
+    const pick = (t) => tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => pick(t));
+      t.addEventListener('keydown', (e) => {
+        const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        const n = k ? tabs[(i + k + tabs.length) % tabs.length] : e.key === 'Home' ? tabs[0] : e.key === 'End' ? tabs[tabs.length - 1] : null;
+        if (n) { e.preventDefault(); pick(n); n.focus(); }
+      });
+    });
+  });
+
+  // 목록·필터형: 필터 줄(고정)·검색·건수·핵심 열만·그룹 접기
+  const catbar = $('#catbar');
+  const catTable = $('table.cat');
+  if (catbar && catTable) {
+    const setBar = () => root.style.setProperty('--catbar-h', catbar.getBoundingClientRect().height + 'px');
+    setBar();
+    if ('ResizeObserver' in window) new ResizeObserver(setBar).observe(catbar);
+    const rows = $$('tr.row', catTable);
+    const grps = $$('tr.grp', catTable);
+    rows.forEach((r) => { r._t = r.textContent.toLowerCase(); });
+    const groups = $$('.fgroup', catbar);
+    const q = $('#cat-q');
+    const openGroups = new Set(), closedGroups = new Set();   // 처음 접힌 그룹을 편 것 / 손으로 접은 것
+    const matchOpt = (r, field, v) => {
+      const t = r.getAttribute('data-f-' + field) || '';
+      if (v === 'all') return true;
+      if (v === 'any') return t.trim() !== '' && t.trim() !== '—';
+      return v.split('|').some((p) => p && (p.startsWith('^') ? t.trim().startsWith(p.slice(1)) : t.includes(p)));  // ^는 '로 시작'
+    };
+    const cur = () => groups.map((g) => [g.dataset.field, ($('button[aria-pressed="true"]', g) || {}).dataset?.v || 'all']);
+    // 선택지마다 건수(다른 필터와 상관없이)
+    groups.forEach((g) => $$('button[data-v]', g).forEach((b) => {
+      const n = $('.n', b); if (n) n.textContent = rows.filter((r) => matchOpt(r, g.dataset.field, b.dataset.v)).length;
+    }));
+    const apply = () => {
+      const sel = cur();
+      const query = (q && q.value.trim().toLowerCase()) || '';
+      const per = {};
+      let shown = 0;
+      rows.forEach((r) => {
+        let ok = sel.every(([f, v]) => matchOpt(r, f, v)) && (!query || r._t.includes(query));
+        const g = document.getElementById(r.dataset.g);
+        const folded = g && !query && (closedGroups.has(g.id) || (g.dataset.fold === '1' && !openGroups.has(g.id) && !sel.some(([f, v]) => v !== 'all' && v !== 'any' && matchOpt(r, f, v))));
+        per[r.dataset.g] = (per[r.dataset.g] || 0) + (ok ? 1 : 0);
+        if (ok) shown++;
+        r.classList.toggle('hidden', !ok || folded);
+      });
+      grps.forEach((g) => {
+        const n = per[g.id] || 0, c = $('.gcount', g), tot = +c.dataset.total;
+        const folded = !query && (closedGroups.has(g.id) || (g.dataset.fold === '1' && !openGroups.has(g.id)));
+        c.textContent = folded ? `${tot}행 · 접힘` : n === tot ? `${tot}행` : `${n} / ${tot}행`;
+        g.classList.toggle('folded', folded);
+        $('.gtog', g).setAttribute('aria-expanded', String(!folded));
+        g.classList.toggle('hidden', n === 0 && !folded);
+        const chip = $(`.gchip[data-g="${g.id}"]`); if (chip) chip.classList.toggle('empty', n === 0);
+      });
+      const cnt = $('#cat-count'); if (cnt) cnt.textContent = `표시 ${shown} / ${rows.length}행`;
+      const on = sel.map(([, v], i) => [groups[i], v]).filter(([, v]) => v !== 'all');
+      const tg = $('#cat-ftoggle');
+      if (tg) tg.textContent = on.length ? `필터 · ${on.length}` : '필터';
+      // 빈 결과: 어떤 필터가 걸렸는지 말하고, 방금 고른 것만 남기고 풀 수 있게
+      const empty = $('tr.empty', catTable);
+      if (empty) {
+        empty.hidden = shown !== 0;
+        const names = on.map(([g, v]) => `${g.getAttribute('aria-label')} '${($(`button[data-v="${CSS.escape(v)}"]`, g) || {}).textContent?.replace(/\d+$/, '') || v}'`);
+        $('.empty-why', empty).textContent = names.length ? `지금 걸린 필터: ${names.join(', ')}${query ? `, 검색 '${query}'` : ''}.` : (query ? `검색 '${query}'에 맞는 행이 없습니다.` : '');
+      }
+    };
+    let lastGroup = null;
+    const small = matchMedia('(max-width: 768px)');
+    groups.forEach((g) => g.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-v]'); if (!b) return;
+      $$('button[data-v]', g).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      lastGroup = g;
+      apply();
+      if (small.matches) { catbar.classList.remove('open'); $('#cat-ftoggle')?.setAttribute('aria-expanded', 'false'); }  // 고르면 접어 화면을 비운다
+    }));
+    catTable.addEventListener('click', (e) => {
+      if (!e.target.closest('.empty-fix')) return;
+      groups.forEach((g) => { if (g !== lastGroup) $$('button[data-v]', g).forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.v === 'all'))); });
+      if (q) q.value = '';   // 검색어도 풀어야 빈 결과에서 벗어난다
+      apply();
+    });
+    const reset = () => {
+      groups.forEach((g) => $$('button[data-v]', g).forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.v === g.dataset.default))));
+      if (q) q.value = ''; openGroups.clear(); closedGroups.clear(); apply();
+    };
+    $('#cat-reset')?.addEventListener('click', reset);
+    q?.addEventListener('input', apply);
+    catTable.addEventListener('click', (e) => {
+      const t = e.target.closest('.gtog'); if (!t) return;
+      const g = t.closest('tr.grp');
+      if (g.classList.contains('folded')) { closedGroups.delete(g.id); if (g.dataset.fold === '1') openGroups.add(g.id); }
+      else if (g.dataset.fold === '1' && openGroups.has(g.id)) openGroups.delete(g.id);
+      else closedGroups.add(g.id);
+      apply();
+    });
+    const more = $('#cat-more');
+    more?.addEventListener('click', () => {
+      const on = document.body.classList.toggle('cat-core');
+      more.setAttribute('aria-pressed', String(on));
+      $$('tr.hg th[data-span]', catTable).forEach((th) => { th.colSpan = on ? +th.dataset.spanCore || 1 : +th.dataset.span; });
+    });
+    const ft = $('#cat-ftoggle');
+    ft?.addEventListener('click', () => { const o = catbar.classList.toggle('open'); ft.setAttribute('aria-expanded', String(o)); });
+    // 그룹 칩: 접힌 그룹이면 펼치고 그 줄로
+    $$('.gchip', catbar).forEach((c) => c.addEventListener('click', () => {
+      const g = document.getElementById(c.dataset.g);
+      if (g && g.dataset.fold === '1') { openGroups.add(g.id); apply(); }
+    }));
+    apply();
+  }
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+
+</script>
+</body>
+</html>
