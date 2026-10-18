@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>탭 픽셀 애니메이션</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri@2.40.3/dist/galmuri.css">
+<style>
+:root{--bg:#f6f4f0;--card:#fff;--ink:#1c1c1e;--sub:#8a857c;--line:#e8e4dd;--pill:#efece6;--violet:#6b5ce7;--red:#e5484d}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17150f;--card:#24211b;--ink:#f6f4f0;--sub:#a59f94;--line:#35312a;--pill:#2f2b24;--violet:#9d92ff}}
+:root[data-theme="dark"]{--bg:#17150f;--card:#24211b;--ink:#f6f4f0;--sub:#a59f94;--line:#35312a;--pill:#2f2b24;--violet:#9d92ff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Pretendard Variable",-apple-system,sans-serif;line-height:1.55}
+.wrap{max-width:720px;margin:0 auto;padding:36px 16px 72px}
+h1{font-family:Galmuri11,monospace;font-weight:700;font-size:33px;margin:4px 0 8px}
+.lead{color:var(--sub);margin:0 0 28px}
+.eb{font-family:Galmuri11,monospace;font-size:12px;color:var(--sub)}
+.stage{display:flex;justify-content:center;padding:40px 0 24px}
+.tabbar{position:relative;display:grid;grid-template-columns:repeat(4,1fr);width:min(100%,380px);height:72px;border-radius:999px;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.06)}
+.ind{position:absolute;top:8px;bottom:8px;left:0;width:calc(25% - 8px);margin-left:4px;border-radius:999px;background:var(--pill);transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.tab{position:relative;z-index:1;border:0;background:none;color:var(--sub);font:500 12px "Pretendard Variable",sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;min-height:44px;-webkit-tap-highlight-color:transparent}
+.tab[aria-selected="true"]{color:var(--ink);font-weight:600}
+.ico{position:relative;width:26px;height:26px}
+.ico svg{position:absolute;inset:0;width:26px;height:26px}
+.line{transition:opacity .14s ease-out,transform .14s ease-out}
+.tab[aria-selected="true"] .line{opacity:0;transform:scale(.6)}
+.px rect{transform-box:fill-box;transform-origin:center;opacity:0;transform:scale(0)}
+.tab[aria-selected="true"] .px rect{animation:pop .26s cubic-bezier(.2,.9,.3,1.25) forwards;animation-delay:calc(var(--d) * 1ms)}
+@keyframes pop{0%{opacity:0;transform:scale(0)}70%{opacity:1;transform:scale(1.25)}100%{opacity:1;transform:scale(1)}}
+.tab[aria-selected="true"] .px rect.v{animation:pop .26s cubic-bezier(.2,.9,.3,1.25) forwards,twinkle .9s ease-in-out .5s 2;animation-delay:calc(var(--d) * 1ms),calc(var(--d) * 1ms + 300ms)}
+@keyframes twinkle{50%{opacity:.25}}
+.badge{position:absolute;top:-6px;right:-10px;min-width:17px;height:17px;padding:0 5px;border-radius:9px;background:var(--red);color:#fff;font:700 10.5px/17px Galmuri11,monospace;text-align:center}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ctl button{min-height:44px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px "Pretendard Variable",sans-serif;cursor:pointer}
+.ctl button.p{background:var(--violet);border-color:transparent;color:#fff;font-weight:600}
+.notes{margin-top:32px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px 20px;font-size:14.5px}
+.notes ul{margin:6px 0 0;padding-left:18px}
+.notes li{margin:4px 0}
+.zoom{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:20px}
+.zoom div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;font-size:13px;color:var(--sub)}
+.zoom svg{color:var(--ink);width:64px;height:64px;display:block;margin:0 auto 6px}
+a{color:inherit}
+@media (prefers-reduced-motion:reduce){.ind,.line{transition:none}.tab[aria-selected="true"] .px rect{animation:none;opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eb">CREWNE · TAB MOTION · 2026.10.18</div>
+  <h1>탭 픽셀 애니메이션</h1>
+  <p class="lead">탭을 눌러 보세요. 꺼진 탭은 얇은 선 아이콘이에요. 누르면 같은 모양이 픽셀 조각으로 톡톡 맞춰지고, 보라 픽셀 하나가 반짝여요. 회색 알약은 눌린 탭으로 미끄러져 가요.</p>
+  <div class="stage"><nav class="tabbar" role="tablist" aria-label="탭 메뉴"><span class="ind" aria-hidden="true"></span></nav></div>
+  <div class="ctl"><button type="button" class="p" id="auto">자동으로 돌려 보기</button><button type="button" id="theme">다크로 보기</button></div>
+  <div class="zoom" id="zoom"></div>
+  <div class="notes">
+    <b>앱에 넣을 때</b>
+    <ul>
+      <li>이 데모는 웹 코드(SVG+CSS)로 만든 움직임이에요. 앱에도 이 방식 그대로 넣으면 Lottie 파일 없이 가볍게 돌아가요.</li>
+      <li>픽셀이 맞춰지는 시간은 0.3초 안이에요. 탭은 자주 누르는 곳이라 이보다 길게 하지 않았어요.</li>
+      <li>「동작 줄이기」를 켠 기기에서는 움직임 없이 바로 바뀌어요.</li>
+    </ul>
+  </div>
+  <p class="eb" style="margin-top:24px"><a href="index.html">← 시안 페이지로</a></p>
+</div>
+<script>
+(function(){
+  // 픽셀 아이콘 13칸 격자: # 잉크, v 보라, . 빈칸
+  var PX = {
+    "보고": [
+      ".............",
+      "..#########v.",
+      ".##.......##.",
+      ".#.........#.",
+      "##.........##",
+      "#...........#",
+      "####.....####",
+      "#..#######..#",
+      "#...........#",
+      "#############",
+      "#############",
+      "............."],
+    "채팅": [
+      "...#######...",
+      ".###########.",
+      "#############",
+      "#############",
+      "##.v.v.v.####",
+      "#############",
+      "#############",
+      ".###########.",
+      "..########...",
+      "..###........",
+      ".##..........",
+      "............."],
+    "자료": [
+      ".....v.......",
+      "####.....####",
+      "######.######",
+      "#..###.###..#",
+      "######.######",
+      "#..###.###..#",
+      "######.######",
+      "#..###.###..#",
+      "######.######",
+      "#############",
+      "......#......",
+      "............."],
+    "나": [
+      "....#####..v.",
+      "...#######...",
+      "...#######...",
+      "...#######...",
+      "....#####....",
+      ".............",
+      "..#########..",
+      ".###########.",
+      "#############",
+      "#############",
+      "#############",
+      "............."]
+  };
+  var LINE = {
+    "보고": '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/>',
+    "채팅": '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/><path d="M8 12h.01M12 12h.01M16 12h.01"/>',
+    "자료": '<path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/>',
+    "나": '<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'
+  };
+  function pixelSvg(name){
+    var g = PX[name], n = 13, out = [], cx = 6, cy = 6;
+    g.forEach(function(row, y){ for (var x = 0; x < row.length; x++){ var c = row[x]; if (c === ".") continue;
+      var d = Math.round(Math.hypot(x - cx, y - cy) * 22);
+      out.push('<rect class="' + (c === "v" ? "v" : "") + '" x="' + x + '" y="' + y + '" width="1" height="1" style="--d:' + d + '" fill="' + (c === "v" ? "var(--violet)" : "currentColor") + '"/>'); } });
+    return '<svg class="px" viewBox="0 0 ' + n + ' ' + n + '" shape-rendering="crispEdges" aria-hidden="true">' + out.join("") + "</svg>";
+  }
+  function lineSvg(name){ return '<svg class="line" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + LINE[name] + "</svg>"; }
+  var bar = document.querySelector(".tabbar"), ind = bar.querySelector(".ind"), names = Object.keys(PX), tabs = [];
+  names.forEach(function(name, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "tab"; b.setAttribute("role", "tab");
+    b.innerHTML = '<span class="ico">' + lineSvg(name) + pixelSvg(name) + (i === 0 ? '<span class="badge">3</span>' : "") + "</span><span>" + name + "</span>";
+    b.addEventListener("click", function(){ select(i); });
+    bar.appendChild(b); tabs.push(b);
+  });
+  function select(i){
+    tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); });
+    ind.style.transform = "translateX(" + (i * 100) + "%)";
+    ind.style.width = "calc(25% - 8px)";
+  }
+  // 알약 너비 기준 이동: 탭 한 칸 = 알약 너비 + 8px
+  function place(i){ var w = bar.clientWidth / 4; ind.style.width = (w - 8) + "px"; ind.style.transform = "translateX(" + (i * w) + "px)"; }
+  var cur = 0;
+  select = (function(orig){ return function(i){ cur = i; tabs.forEach(function(t, j){ t.setAttribute("aria-selected", String(i === j)); }); place(i); }; })(select);
+  window.addEventListener("resize", function(){ place(cur); });
+  select(0);
+  // 확대 보기
+  var zoom = document.getElementById("zoom");
+  names.forEach(function(name){ var d = document.createElement("div"); d.innerHTML = pixelSvg(name).replace('class="px"', 'class="pxz"') + name; zoom.appendChild(d); });
+  zoom.querySelectorAll("rect").forEach(function(r){ r.style.opacity = 1; r.style.transform = "none"; });
+  // 자동 돌리기
+  var timer = null, autoBtn = document.getElementById("auto");
+  autoBtn.addEventListener("click", function(){
+    if (timer){ clearInterval(timer); timer = null; autoBtn.textContent = "자동으로 돌려 보기"; return; }
+    autoBtn.textContent = "멈추기"; timer = setInterval(function(){ select((cur + 1) % 4); }, 1100);
+  });
+  var root = document.documentElement, tb = document.getElementById("theme");
+  tb.addEventListener("click", function(){ var dark = root.getAttribute("data-theme") !== "dark"; root.setAttribute("data-theme", dark ? "dark" : "light"); tb.textContent = dark ? "라이트로 보기" : "다크로 보기"; });
+})();
+</script>
+</body>
+</html>
