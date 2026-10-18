@@ -1,0 +1,1868 @@
+<!doctype html>
+<html lang="ko" data-bw>
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="카카오 서비스 페이지를 1440·390 두 폭과 소스까지 분석해 원리 다섯을 뽑고, 키키·젠지가 토론한 세 안을 네 관점으로 심사해 고른 홈 흐름과 적용 와이어프레임이에요.">
+<meta name="generator" content="doc-template · 흑백">
+<meta property="og:title" content="브랜딩 → 기능 네 장 → 마지막 장 1분 이야기 — 카카오식 흐름을 C8 규모로">
+<meta property="og:description" content="카카오 서비스 페이지를 1440·390 두 폭과 소스까지 분석해 원리 다섯을 뽑고, 키키·젠지가 토론한 세 안을 네 관점으로 심사해 고른 홈 흐름과 적용 와이어프레임이에요.">
+
+<title>브랜딩 → 기능 네 장 → 마지막 장 1분 이야기 — 카카오식 흐름을 C8 규모로</title>
+<script>try{var t=localStorage.getItem('doc-tpl-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t}catch(e){}</script>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@700;800&display=swap">
+<style>
+/* ─────────────────────────────────────────────
+   doc-template v2 · 기획·리서치 문서
+   색은 테마가 넣는다(:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+). 역할: bg panel line text muted accent mark marktext link linkline obi obitext
+   근거 번호 [L##]는 UX 리서치 장부. 시그니처: 절마다 반복되는 타공 헤어라인(하라 켄야의 타공 금속 사인).
+   ───────────────────────────────────────────── */
+:root{
+  --sans:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  --serif:"Noto Serif KR","AppleMyungjo","Nanum Myeongjo","Batang",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  /* 글자 [L30·L33·L34·L72·L73] */
+  --fs-body:1.125rem; --lh-body:1.7;
+  --fs-lead:1.25rem; --fs-deck:1.3125rem; --fs-obi:1.5rem;
+  --fs-h1:clamp(2.125rem,1.2rem + 3.4vw,3.5rem); --fs-h2:1.875rem; --fs-h3:1.375rem;
+  --fs-ui:1rem; --fs-small:.9375rem; --fs-cap:.875rem; --fs-label:.8125rem; --fs-min:.75rem;
+  /* 폭 [L31·L87·L92] */
+  --measure:36em; --wide:48rem; --gutter:40px; --header-h:60px;
+  /* 간격 */
+  --s-2:8px; --s-3:12px; --s-4:16px; --s-5:20px; --s-6:24px; --s-7:32px; --s-8:48px; --s-9:64px; --s-10:96px;
+  --sec-gap:var(--s-10); --block-gap:var(--s-7);
+  /* 모서리·선 [L47·L54·L65] */
+  --r-mark:2px; --r-btn:6px; --r-box:12px; --hair:1px; --rule:2px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+:root{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#000000;--panel:#000000;--line:#FFFFFF;--text:#FFFFFF;--muted:#FFFFFF;--accent:#FFFFFF;--mark:#FFFFFF;--marktext:#000000;--link:#FFFFFF;--linkline:#FFFFFF;--obi:#FFFFFF;--obitext:#000000;color-scheme:dark}
+
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1rem;line-height:1.6;word-break:keep-all;overflow-wrap:break-word;line-break:strict;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"ss06"}
+h1,h2,h3,h4,p,figure,blockquote,dl,dd{margin:0}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-decoration-color:var(--linkline);text-underline-offset:.2em;transition:text-decoration-color 120ms var(--ease),color 120ms var(--ease)}
+a:hover{text-decoration-color:currentColor;text-decoration-thickness:2px}
+:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:2px}
+button{font:inherit;color:inherit;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+svg{display:block}
+[hidden]{display:none!important}
+.skip{position:fixed;left:16px;top:-80px;z-index:30;background:var(--bg);color:var(--text);padding:10px 14px;border:var(--rule) solid var(--text)}
+.skip:focus{top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* ── 도구 줄: 문서 위 한 겹만 반투명 [L28·L29] ── */
+.bar{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:var(--hair) solid var(--line)}
+@supports ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  .bar{background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.2);backdrop-filter:blur(14px) saturate(1.2)}
+}
+.bar-inner{max-width:1200px;margin:0 auto;height:var(--header-h);padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;gap:var(--s-4)}
+.bar-title{min-width:0;display:flex;align-items:baseline;gap:10px;font-size:var(--fs-cap)}
+.bar-kind{color:var(--accent);font-weight:700;white-space:nowrap}
+.bar-title .sep{color:var(--line)}
+.bar-title b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-actions{display:flex;gap:4px;flex:none}
+.tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 10px;border:0;border-radius:var(--r-btn);background:none;font-size:var(--fs-cap);color:var(--muted);transition:background-color 120ms var(--ease),color 120ms var(--ease)}
+.tool:hover{background:var(--panel);color:var(--text)}
+.tool[aria-pressed="true"]{color:var(--text)}
+.tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.progress{position:absolute;left:0;bottom:-1px;height:2px;width:100%;pointer-events:none}
+.progress span{display:block;height:100%;width:0;background:var(--accent)}
+
+/* ── 표지 ── */
+.page{max-width:1200px;margin:0 auto;padding:0 var(--gutter)}
+.cover{padding-top:var(--s-7)}
+.issue{display:flex;justify-content:space-between;gap:var(--s-4);padding-bottom:var(--s-3);border-bottom:var(--rule) solid var(--text);font-size:var(--fs-label);letter-spacing:.02em;color:var(--muted);font-variant-numeric:tabular-nums}
+.issue strong{color:var(--text);font-weight:600}
+.issue a,.meta dd a{color:var(--link);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+.issue a:hover,.meta dd a:hover{text-decoration-thickness:2px}
+.cover-main{padding:var(--s-9) 0 var(--s-8);max-width:52rem}
+.kind{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:var(--fs-label);font-weight:700;letter-spacing:.04em;margin-bottom:var(--s-5)}
+.kind::before{content:"";width:20px;height:var(--rule);background:currentColor}
+.kind:empty{display:none}
+h1{font-family:var(--serif);font-weight:800;font-size:var(--fs-h1);line-height:1.18;letter-spacing:-.01em;text-wrap:balance}
+.deck{margin-top:var(--s-6);max-width:var(--measure);font-size:var(--fs-deck);line-height:1.55;color:var(--muted);text-wrap:pretty}
+.deck:empty{display:none}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+.meta div{padding:var(--s-4) var(--s-4) var(--s-4) 0;min-width:0}
+.meta div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.meta dt{font-size:var(--fs-min);color:var(--muted);margin-bottom:4px;letter-spacing:.02em}
+.meta dd{font-size:var(--fs-small);font-weight:600;overflow-wrap:anywhere}
+
+.state{display:inline-flex;align-items:center;gap:7px;white-space:nowrap}
+.dot{width:9px;height:9px;border-radius:50%;border:1.5px solid currentColor;flex:none}
+.dot.full{background:currentColor}
+.dot.half{background:linear-gradient(90deg,currentColor 50%,transparent 50%)}
+
+/* ── 띠지: 본문 폭에 맞춘 결론 한 줄 + 세 칸 ── */
+.obi{margin-top:var(--s-8);max-width:none;border:var(--rule) solid var(--text)}
+.obi-head{background:var(--obi);color:var(--obitext);padding:var(--s-6) var(--s-7);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.obi-label{display:inline-block;font-size:var(--fs-min);font-weight:700;letter-spacing:.08em;border:1.5px solid currentColor;padding:2px 8px;margin-bottom:var(--s-3)}
+.obi-head p{font-size:var(--fs-obi);font-weight:700;line-height:1.45;text-wrap:pretty}
+.obi-head a{color:inherit;text-decoration-color:currentColor}
+.obi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+.obi-grid div{padding:var(--s-5) var(--s-6) var(--s-6)}
+.obi-grid div+div{border-left:var(--hair) solid var(--line)}
+.obi-grid h2{font-size:var(--fs-label);color:var(--muted);font-weight:600;margin-bottom:6px;letter-spacing:.02em}
+.obi-grid p{font-size:var(--fs-small);line-height:1.6;overflow-wrap:anywhere}
+
+/* ── 본문 배치 [L122·L126] ── */
+.layout{display:grid;grid-template-columns:200px minmax(0,var(--wide));gap:var(--s-9);padding:var(--s-9) 0 var(--s-10)}
+.toc{position:sticky;top:calc(var(--header-h) + 24px);align-self:start;max-height:calc(100dvh - var(--header-h) - 48px);overflow:auto;font-size:var(--fs-cap);scrollbar-width:thin}
+.toc-title{font-size:var(--fs-min);color:var(--muted);letter-spacing:.04em;margin-bottom:var(--s-3)}
+.toc ol{list-style:none;margin:0;padding:0}
+.toc a{display:flex;gap:10px;align-items:baseline;min-height:36px;padding:8px 0 8px 12px;border-left:var(--rule) solid var(--line);color:var(--muted);text-decoration:none;line-height:1.45}
+.toc a:hover{color:var(--text)}
+.toc a[aria-current="true"]{color:var(--text);font-weight:600;border-left-color:var(--accent)}
+.toc .n,.toc-mobile .n{font-size:var(--fs-min);color:var(--accent);font-variant-numeric:tabular-nums;font-weight:700}
+.toc-mobile{display:none}
+
+.doc{min-width:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+/* 본문 열에서 글줄·표·제목의 오른쪽 경계를 일치시킨다. */
+.doc :is(p,ul,ol,blockquote,h2,h3,.callout,.legend,.sec-num){max-width:100%}
+.doc>section{position:relative}
+.doc>section+section{margin-top:var(--sec-gap);padding-top:var(--s-7)}
+/* 시그니처: 타공 헤어라인 — 절 시작마다 같은 간격의 작은 구멍 */
+.doc>section+section::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background-image:radial-gradient(circle,var(--line) 1.1px,transparent 1.4px);background-size:7px 3px;background-repeat:repeat-x}
+.doc p+p{margin-top:1.2em}
+.doc :is(ul,ol):not([class]){padding-left:1.25em;margin:1.2em 0}
+.doc li+li{margin-top:.4em}
+.doc li::marker{color:var(--muted)}
+.doc strong{font-weight:700}
+.sec-num{display:inline-flex;align-items:center;gap:10px;font-size:var(--fs-label);font-weight:600;color:var(--accent);letter-spacing:.02em;margin-bottom:var(--s-3);text-decoration:none}
+.sec-num b{font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.sec-num b::after{content:"";display:inline-block;width:14px;height:var(--rule);background:currentColor;vertical-align:middle;margin-left:10px}
+.sec-num:hover{text-decoration:underline}
+.doc h2{font-size:var(--fs-h2);line-height:1.3;font-weight:700;margin-bottom:var(--s-6);text-wrap:balance}
+.doc h3{font-size:var(--fs-h3);line-height:1.4;font-weight:700;margin:var(--s-8) 0 var(--s-3)}
+.doc h2+h3{margin-top:0}
+.lead{font-size:var(--fs-lead);line-height:1.65}
+sup.ref{font-size:max(.7em,.75rem);line-height:0;margin-left:1px}
+sup.ref a{text-decoration:none;font-weight:600;padding:0 2px;color:var(--link)}
+
+/* 형광펜 [L119·L120·L121] */
+mark{background:var(--mark);color:var(--marktext);font-weight:600;padding:.04em .12em;border-radius:var(--r-mark);-webkit-box-decoration-break:clone;box-decoration-break:clone;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+mark a{color:inherit;text-decoration-color:currentColor}
+.marks-off mark{background:none;color:inherit;font-weight:inherit;padding:0}
+
+/* 이름표 */
+.tag{display:inline-block;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 6px;border:1.5px solid currentColor;border-radius:var(--r-mark);margin-left:6px;vertical-align:.15em;white-space:nowrap;letter-spacing:.02em}
+
+/* 요약 수치 */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:var(--block-gap) 0;border-top:var(--rule) solid var(--text)}
+.stats div{padding:var(--s-4) var(--s-4) var(--s-5) 0}
+.stats div+div{padding-left:var(--s-4);border-left:var(--hair) solid var(--line)}
+.stats b{display:block;font-size:2.5rem;line-height:1.05;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.stats b small{font-size:1rem;font-weight:600;margin-left:3px}
+.stats span{display:block;margin-top:6px;font-size:var(--fs-cap);line-height:1.5;color:var(--muted)}
+
+/* 알림 상자: 색이 아니라 모양으로 [L18·L47·L117] */
+.callout{margin:var(--block-gap) 0;padding:var(--s-5) var(--s-6);font-size:var(--fs-small);line-height:1.65;border-radius:var(--r-box);border:1px solid transparent}
+.callout-label{display:flex;align-items:center;gap:8px;font-size:var(--fs-cap);font-weight:700;margin-bottom:4px}
+.callout-label svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.callout.note{background:var(--panel)}
+.callout.caution{border:1.5px solid var(--text)}
+.callout.unknown{border:1.5px dashed var(--muted)}
+.callout p+p{margin-top:.5em}
+
+/* 접이 상자와 결정 모음: 제목 한 줄만 보이고, 누르면 배경이 펼쳐진다 */
+details.callout{padding:0}
+details.callout>summary{display:flex;align-items:flex-start;gap:10px;min-height:48px;padding:13px var(--s-6);margin:0;cursor:pointer;list-style:none;border-radius:inherit}
+details.callout>summary::-webkit-details-marker{display:none}
+details.callout>summary::after{content:"";flex:none;margin:.35em 2px 0 auto;width:8px;height:8px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);transition:transform 180ms var(--ease)}
+details.callout[open]>summary::after{transform:rotate(-135deg);margin-top:.6em}
+@media (hover:hover){details.callout>summary:hover{background:var(--panel)}}
+details.callout .dq{min-width:0;line-height:1.55}
+.callout-body{padding:0 var(--s-6) var(--s-5)}
+.callout-body>*+*{margin-top:.5em}
+.callout.decide{border:var(--hair) solid var(--line);border-radius:var(--r-mark)}
+.callout.decide+.callout.decide{margin-top:calc(var(--block-gap) * -1 + var(--s-2))}
+.callout.decide[open]{border-color:var(--text)}
+.callout.decide>summary{font-size:var(--fs-ui);font-weight:700}
+.callout.decide .dn{flex:none;color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:.04em;line-height:1.55}
+.callout.decide .callout-body{padding-left:calc(var(--s-6) + 10px + 2ch)}
+.callout.decide:target,.doc>section:target>h2{scroll-margin-top:calc(var(--header-h) + 16px)}
+.xref{font-weight:600;white-space:nowrap}
+.callout-body .rel{font-size:var(--fs-cap);color:var(--muted)}
+.doc h3+details.callout,.doc h3+.hub-toggle{margin-top:0}
+.doc h3:has(+details.decide){margin-top:var(--s-7);font-size:var(--fs-ui);color:var(--muted)}
+.xref::after{content:" ↗";font-size:.85em}
+/* 절 머리의 '정할 것 N': 결정 모음의 해당 항목으로 간다 */
+.sec-pending{display:inline-flex;align-items:center;margin-left:var(--s-3);vertical-align:top;font-size:var(--fs-min);font-weight:700;line-height:1;padding:4px 7px;border:1.5px solid var(--accent);color:var(--accent);border-radius:var(--r-mark);text-decoration:none;letter-spacing:.02em}
+.sec-pending:hover{background:var(--accent);color:var(--bg)}
+/* 표지 아래 한 줄 */
+.pending{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px;margin-top:var(--s-4);max-width:none;font-size:var(--fs-small);color:var(--muted)}
+.pending a{font-weight:700;color:var(--text);text-underline-offset:3px}
+.hub-toggle{margin:0 0 var(--s-3);border:0;background:none;padding:6px 0;min-height:44px;font:inherit;font-size:var(--fs-cap);font-weight:600;color:var(--muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.hub-toggle:hover{color:var(--text)}
+
+/* 인용 */
+.pull{margin:var(--s-8) 0;padding:4px 0 4px var(--s-6);border-left:var(--rule) solid var(--accent);font-family:var(--serif);font-size:1.625rem;font-weight:700;line-height:1.5;text-wrap:balance}
+.pull cite{display:block;margin-top:var(--s-3);font-family:var(--sans);font-size:var(--fs-cap);font-style:normal;font-weight:400;color:var(--muted)}
+
+/* 표 [L48·L127·L128·L129] */
+.table{margin:var(--block-gap) 0;position:relative}
+.table table{width:100%;border-collapse:collapse;font-size:var(--fs-small);line-height:1.6;font-variant-numeric:tabular-nums}
+.table :is(th,td):first-child{min-width:4.5em}
+.table caption{text-align:left;font-size:var(--fs-cap);font-weight:700;margin-bottom:var(--s-2)}
+.table th{text-align:left;font-size:var(--fs-label);font-weight:600;color:var(--muted);padding:10px 16px 10px 0;border-bottom:var(--rule) solid var(--text);white-space:nowrap;vertical-align:bottom}
+.table td{padding:13px 16px 13px 0;border-bottom:var(--hair) solid var(--line);vertical-align:top;overflow-wrap:anywhere}
+.table .num{text-align:right}
+.table tr.pick td{font-weight:600}
+.table tr.pick td:first-child{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:12px}
+.table.compare{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable}
+.table-hint{display:none;font-size:var(--fs-min);color:var(--muted);margin-top:6px}
+.table-note{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.6;max-width:var(--measure)}
+
+/* 그림 */
+.figure{margin:var(--block-gap) 0}
+.figure figcaption{margin-top:10px;font-size:var(--fs-cap);color:var(--muted);line-height:1.5;max-width:var(--measure)}
+
+/* 다음 행동 [L23] */
+.actions{list-style:none;margin:var(--block-gap) 0;padding:0;border-top:var(--rule) solid var(--text);max-width:none!important}
+.actions li{display:grid;grid-template-columns:22px minmax(0,1fr) auto;column-gap:14px;align-items:start;padding:14px 0;border-bottom:var(--hair) solid var(--line);font-size:var(--fs-ui);line-height:26px;min-height:44px}
+.actions li+li{margin-top:0}
+.box{width:18px;height:18px;margin-top:4px;border:1.5px solid var(--text);border-radius:4px;display:grid;place-items:center}
+.box svg{width:12px;height:12px;fill:none;stroke:var(--bg);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.actions li.done .box{background:var(--text)}
+.actions li.doing .box{background:linear-gradient(90deg,var(--text) 50%,transparent 50%)}
+.actions li.done .what{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted)}
+.who{display:grid;grid-template-columns:6em 6em;column-gap:16px;font-size:var(--fs-cap);line-height:26px;color:var(--muted);white-space:nowrap}
+
+/* 출처·이력 */
+.appendix{margin-top:var(--sec-gap)!important;padding-top:var(--s-7);border-top:var(--rule) solid var(--text)}
+.appendix::before{display:none}
+.appendix h2{font-size:1.375rem;margin-top:0}
+.appendix h2+*{margin-top:0}
+.appendix h2:not(:first-child){margin-top:var(--s-8)}
+.sources{list-style:none;margin:var(--s-5) 0;padding:0;font-size:var(--fs-small);line-height:1.6;max-width:none!important}
+.sources li{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;padding:12px 0;border-bottom:var(--hair) solid var(--line)}
+.sources li+li{margin-top:0}
+.sources li::before{content:counter(list-item);font-size:var(--fs-label);color:var(--accent);font-weight:700;font-variant-numeric:tabular-nums;padding-top:2px}
+.sources li:target{background:var(--panel);box-shadow:-8px 0 0 var(--panel),8px 0 0 var(--panel)}
+.sources .src-meta{display:block;font-size:var(--fs-label);color:var(--muted)}
+.sources .state{font-size:var(--fs-label);color:var(--muted);padding-top:2px}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:var(--fs-label);color:var(--muted)}
+.table.log td:nth-child(-n+2){white-space:nowrap}
+
+.foot{border-top:var(--hair) solid var(--line);padding:var(--s-6) 0 var(--s-8);display:flex;justify-content:space-between;gap:var(--s-5);font-size:var(--fs-label);color:var(--muted)}
+.to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(16px,env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--text);display:grid;place-items:center;opacity:0;pointer-events:none;transition:opacity 150ms var(--ease);z-index:15}
+.to-top.show{opacity:1;pointer-events:auto}
+.to-top svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:var(--r-btn);font-size:var(--fs-cap);max-width:calc(100% - 32px);width:max-content}
+.toast:empty{display:none}
+
+/* ── 흑백: 검정·흰색 두 색만. 반투명·회색 면 대신 선과 반전 ── */
+[data-bw] .bar{background:var(--bg);-webkit-backdrop-filter:none;backdrop-filter:none}
+[data-bw] .tool{color:var(--text)}
+[data-bw] .tool:hover{background:var(--bg);outline:1px solid var(--text);outline-offset:-4px}
+[data-bw] .toc a{border-left-color:transparent}
+[data-bw] .toc a[aria-current="true"]{border-left-color:var(--text);font-weight:700}
+[data-bw] .toc a:not([aria-current="true"]){font-weight:400}
+[data-bw] .callout.note{border:1px solid var(--text)}
+[data-bw] .callout.decide{border-color:var(--text)}
+[data-bw] .sec-pending{border-color:var(--text);color:var(--text)}
+[data-bw] .sec-pending:hover{background:var(--text);color:var(--bg)}
+[data-bw] .meta dt,[data-bw] .stats span,[data-bw] .issue,[data-bw] .table th{font-weight:600}
+[data-bw] .actions li.done .what{text-decoration-color:var(--text)}
+[data-bw] .sources li:target{background:var(--bg);box-shadow:none;outline:1px solid var(--text)}
+[data-bw] img{filter:grayscale(1)}
+[data-bw] .to-top{border-color:var(--text)}
+
+/* ── 태블릿 ── */
+@media screen and (max-width:1024px){
+  :root{--gutter:28px}
+  .layout{grid-template-columns:170px minmax(0,1fr);gap:var(--s-8)}
+  .obi-grid{grid-template-columns:1fr}
+  .obi-grid div+div{border-left:0;border-top:var(--hair) solid var(--line)}
+}
+/* ── 모바일 [L30·L31·L122·L123] ── */
+@media screen and (max-width:768px){
+  :root{--fs-body:1.0625rem;--lh-body:1.65;--fs-lead:1.125rem;--fs-deck:1.125rem;--fs-obi:1.25rem;--fs-h2:1.5rem;--fs-h3:1.1875rem;--gutter:20px;--header-h:56px;--sec-gap:var(--s-9);--block-gap:28px}
+  .bar-title .sep,.bar-title .bar-kind{display:none}
+  .tool .label{display:none}
+  .cover-main{padding:var(--s-8) 0 var(--s-7)}
+  .meta{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .meta div,.meta div+div{padding:12px 12px 12px 0;border-left:0}
+  .meta div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .meta div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .meta div:last-child:nth-child(odd){grid-column:1/-1}
+  .obi{margin-top:var(--s-7)}
+  .obi-head{padding:var(--s-5)}
+  .obi-grid div{padding:var(--s-4) var(--s-5)}
+  .layout{display:block;padding:var(--s-7) 0 var(--s-9)}
+  .toc{display:none}
+  .toc-mobile{display:block;margin-bottom:var(--s-8);border-top:var(--hair) solid var(--line);border-bottom:var(--hair) solid var(--line)}
+  .toc-mobile summary{min-height:52px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-size:var(--fs-small);font-weight:600;list-style:none}
+  .toc-mobile summary::-webkit-details-marker{display:none}
+  .toc-mobile summary::after{content:"";width:8px;height:8px;border-right:1.6px solid var(--text);border-bottom:1.6px solid var(--text);transform:rotate(45deg);margin:-4px 6px 0 0;transition:transform 180ms var(--ease)}
+  .toc-mobile[open] summary::after{transform:rotate(-135deg);margin-top:4px}
+  .toc-mobile ol{list-style:none;margin:0;padding:0 0 8px}
+  .toc-mobile a{display:flex;gap:12px;min-height:44px;align-items:center;color:var(--text);text-decoration:none;font-size:var(--fs-small)}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stats div,.stats div+div{padding:14px 12px 16px 0;border-left:0}
+  .stats div:nth-child(even){padding-left:14px;border-left:var(--hair) solid var(--line)}
+  .stats div:nth-child(n+3){border-top:var(--hair) solid var(--line)}
+  .stats div{min-width:0}
+  /* 좁은 폭: 숫자는 화면 폭에 맞춰 줄이고, 그래도 넘치면 단위가 다음 줄로 내려간다(페이지 가로 넘침 없음) */
+  .stats b{font-size:clamp(1.5rem,8vw,2.125rem);white-space:normal;word-break:keep-all}
+  .callout{padding:var(--s-4) 18px}
+  details.callout{padding:0}
+  details.callout>summary{padding:12px 16px}
+  .callout-body{padding:0 16px var(--s-4)}
+  .callout.decide .callout-body{padding-left:16px}
+  .pull{font-size:1.3125rem;padding-left:18px}
+  /* 목록형 표 → 카드 */
+  .table.stack table,.table.stack tbody,.table.stack tr,.table.stack td{display:block;width:100%}
+  .table.stack caption{display:block;width:auto}
+  .table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .table.stack tr{padding:14px 0;border-bottom:var(--hair) solid var(--line)}
+  .table.stack tbody tr:first-child{border-top:var(--rule) solid var(--text)}
+  .table.stack td{border:0;padding:3px 0 3px 104px;position:relative}
+  .table.stack td::before{content:attr(data-label);position:absolute;left:0;top:4px;width:92px;font-size:var(--fs-label);color:var(--muted);font-weight:600;line-height:1.5}
+  .table.stack td:first-child{font-weight:700;padding-left:0;margin-bottom:4px;font-size:var(--fs-ui)}
+  .table.stack td:first-child::before{display:none}
+  .table.stack td:empty{display:none}
+  .table.stack tr.pick td:first-child{box-shadow:none;padding-left:0}
+  .table.stack tr.pick{box-shadow:inset var(--rule) 0 0 var(--accent);padding-left:14px}
+  .table.stack .num{text-align:left}
+  /* 두 칸 표(항목 | 내용)는 이름표가 매 행 같은 말이라 빼고 내용을 전체 폭으로 */
+  .table.stack tr:has(> td:nth-child(2):last-child) td{padding-left:0}
+  .table.stack tr:has(> td:nth-child(2):last-child) td::before{display:none}
+  /* 비교표 → 가로 스크롤 + 첫 열 고정 */
+  .table.compare table{min-width:520px}
+  .table.compare :is(th,td):first-child{min-width:5.5em;position:sticky;left:0;background:var(--bg);z-index:1;box-shadow:1px 0 0 var(--line)}
+  .table.compare+.table-hint,.table-hint{display:block}
+  .actions li{grid-template-columns:22px minmax(0,1fr)}
+  .who{grid-column:2;display:flex;flex-wrap:wrap;column-gap:0;font-size:var(--fs-label);line-height:22px}
+  .who span+span::before{content:"·";margin:0 6px}
+  .sources li{grid-template-columns:24px minmax(0,1fr)}
+  .sources .state{grid-column:2;margin-top:-4px}
+  .foot{flex-direction:column;gap:6px}
+}
+@media screen and (max-width:380px){
+  :root{--gutter:16px}
+  .table.stack td{padding-left:88px}
+  .table.stack td::before{width:78px}
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) img{filter:brightness(.9)}}
+:root[data-theme="dark"] img{filter:brightness(.9)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:1ms!important;animation:none!important}}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+@media (forced-colors:active){
+  mark{background:Mark;color:MarkText;forced-color-adjust:none}
+  .callout.note{border-color:CanvasText}
+  .obi-head{border-bottom:1px solid CanvasText}
+}
+
+/* ── 인쇄·PDF: 테마의 라이트 토큰 + 흰 바탕 ── */
+@media print{
+  :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#FFFFFF;--panel:#FFFFFF;--line:#000000;--text:#000000;--muted:#000000;--accent:#000000;--mark:#000000;--marktext:#FFFFFF;--link:#000000;--linkline:#000000;--obi:#000000;--obitext:#FFFFFF;--bg:#FFFFFF;--body-size:11pt;color-scheme:light}
+  .bar,.toc,.toc-mobile,.toast,.skip,.to-top{display:none!important}
+  .page{max-width:none;padding:0}
+  .layout{display:block;padding-top:24px}
+  .cover-main{padding:24px 0}
+  h1{font-size:28pt}
+  .doc{font-size:11pt}
+  .doc h2{font-size:16pt}
+  .doc>section+section{margin-top:28px}
+  mark{font-weight:700}
+  .obi,.callout,.table tr,.figure,.actions li,.sources li,.stats,.pull{break-inside:avoid}
+  .doc h2,.doc h3,.sec-num{break-after:avoid}
+  a{color:var(--text)}
+}
+
+/* 문맥상 문단은 유지하고 시각적 개행만 좁은 화면에서 다시 흐른다. */
+.cover-main .deck{max-width:100%}
+.doc :is(p,li,dd,blockquote){overflow-wrap:anywhere;line-break:strict}
+.doc p{text-wrap:pretty}
+@media(max-width:600px){br.prose-break{display:none}}
+
+/* ─────────────────────────────────────────────
+   부품: 머리 버튼·국면 카드·고정 2주 달력·두 열(시간표·카드)·레이어(서랍)·탭·변경 비교
+   의미는 색에만 싣지 않는다 — 오늘은 링+글자, 신호는 테두리 모양+라벨, 변경은 취소선·밑줄+기호.
+   ───────────────────────────────────────────── */
+:root{--ok:#1F7A3A;--ok-bg:#E6F2E8;--warn:#8A5A00;--warn-line:#C98A00;--bad:#B3261E;--band-h:0px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ok:#7FD39A;--ok-bg:#16301F;--warn:#F2C14E;--warn-line:#F2C14E;--bad:#FF8A80}}
+:root[data-theme="dark"]{--ok:#7FD39A;--ok-bg:#16301F;--warn:#F2C14E;--warn-line:#F2C14E;--bad:#FF8A80}
+[data-bw]{--ok:var(--text);--ok-bg:var(--bg);--warn:var(--text);--warn-line:var(--text);--bad:var(--text)}
+html{scroll-padding-top:calc(var(--header-h) + var(--band-h) + 20px)}
+
+/* 머리 버튼 */
+.btn-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s-6)}
+.btn-sec{display:inline-flex;align-items:center;min-height:44px;padding:0 16px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);background:var(--bg);color:var(--text);font-size:var(--fs-cap);font-weight:600;text-decoration:none}
+.btn-sec:hover{border-color:var(--text);background:var(--panel)}
+button.btn-sec::after{content:"↗";margin-left:6px;color:var(--muted);font-weight:400}
+
+/* 국면 카드 */
+.phase-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:var(--s-6)}
+.phase-card{position:relative;display:grid;gap:2px;padding:14px 16px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);color:var(--text);text-decoration:none;background:var(--bg)}
+.phase-card:hover{border-color:var(--text)}
+.pc-no{font-size:var(--fs-label);font-weight:700;color:var(--accent);font-variant-numeric:tabular-nums}
+.phase-card b{font-size:var(--fs-ui)}
+.pc-when{font-size:var(--fs-cap);color:var(--muted)}
+.phase-card.now{border:var(--rule) solid var(--text)}
+.pc-now{position:absolute;top:12px;right:12px;font-size:var(--fs-min);font-weight:700;padding:2px 7px;border-radius:999px;background:var(--text);color:var(--bg)}
+
+/* 고정 2주 달력 */
+.calband{position:sticky;top:var(--header-h);z-index:15;background:var(--bg);border-bottom:var(--hair) solid var(--line);margin:var(--s-7) calc(var(--gutter) * -1) 0;padding:8px var(--gutter) 6px}
+.toc{top:calc(var(--header-h) + var(--band-h) + 16px);max-height:calc(100dvh - var(--header-h) - var(--band-h) - 32px)}
+.calband-in{max-width:1200px;margin:0 auto;display:grid;gap:6px}
+.calgrid{display:grid;gap:4px;overflow-x:auto;scrollbar-width:thin;padding:3px 2px 4px}
+.pnav,.cal{display:grid;grid-template-columns:repeat(var(--ndays),minmax(58px,1fr));gap:4px}
+.pn{display:flex;align-items:center;gap:6px;min-height:28px;padding:3px 8px;border-radius:var(--r-btn);color:var(--text);text-decoration:none;font-size:var(--fs-label);background:var(--panel);overflow:hidden;white-space:nowrap}
+.pn span{color:var(--accent);font-weight:800;font-variant-numeric:tabular-nums}
+.pn b{font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.pn.now{background:var(--text);color:var(--bg)}
+.pn.now span{color:inherit}
+.day{position:relative;display:grid;justify-items:center;align-content:start;gap:1px;min-height:62px;padding:5px 2px 6px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);color:var(--text);text-decoration:none;text-align:center;background:var(--bg)}
+.day:hover{border-color:var(--text)}
+.day .wd{font-size:var(--fs-min);color:var(--muted)}
+.day .dn{font-size:1.125rem;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums}
+.day .lb{font-size:var(--fs-min);line-height:1.3;color:var(--text);min-height:1.3em}
+.day.weekend .dn{color:var(--muted)}
+.day.in{background:var(--ok-bg);border-color:transparent}
+.day.in::after{content:"";position:absolute;left:4px;right:4px;bottom:2px;height:3px;border-radius:2px;background:var(--ok)}
+.day.next{background:var(--panel);border-color:transparent}
+.day.key{border:var(--rule) solid var(--ok)}
+.day.key .wd{color:var(--ok);font-weight:700}
+.day.deploy{border-style:dashed}
+.day.today{outline:3px solid var(--accent);outline-offset:1px}
+.day.sel,.day.reading{box-shadow:inset 0 0 0 2px var(--text)}
+.day.today::before{content:"오늘";position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;line-height:1;padding:3px 6px;border-radius:999px;background:var(--accent);color:var(--bg);white-space:nowrap}
+.cal-legend{display:flex;flex-wrap:wrap;gap:4px 16px;margin:10px 0 0;font-size:var(--fs-label);color:var(--muted)}
+.lg{display:inline-flex;align-items:center;gap:6px}
+.lg i{display:inline-block;width:14px;height:10px;border-radius:2px;border:var(--hair) solid var(--line)}
+.lg.round i{background:var(--ok-bg);border-color:transparent;box-shadow:inset 0 -3px 0 var(--ok)}
+.lg.next i{background:var(--panel);border-color:transparent}
+.lg.key i{border:var(--rule) solid var(--ok)}
+.lg.deploy i{border-style:dashed}
+.lg.today.absent{display:none}
+.figure a{display:block;cursor:zoom-in}
+.lg-away{font-weight:700;color:var(--text)}
+.lg.today i{border:0;outline:3px solid var(--accent);outline-offset:-3px}
+
+/* 일정표형 국면 머리와 두 열 */
+.phase-h{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin:var(--s-9) 0 var(--s-4);padding-top:var(--s-5);border-top:var(--rule) solid var(--text)}
+.doc .phase-h h3{margin:0;font-size:var(--fs-h3)}
+.ph-no{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.ph-when{font-size:var(--fs-cap);color:var(--muted)}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7);margin-top:var(--s-6);max-width:none}
+.col h4{font-size:var(--fs-ui);font-weight:700;margin:0 0 var(--s-3);padding-bottom:var(--s-2);border-bottom:var(--hair) solid var(--line)}
+.timeline{display:grid;align-content:start}
+.tl-row{display:grid;grid-template-columns:6.5em minmax(0,1fr);gap:12px;padding:12px 0;border-bottom:var(--hair) solid var(--line);scroll-margin-top:calc(var(--header-h) + var(--band-h) + 20px)}
+.tl-when{font-size:var(--fs-cap);font-weight:700;font-variant-numeric:tabular-nums}
+.tl-when small{display:block;font-size:var(--fs-label);font-weight:500;color:var(--muted)}
+.tl-what h5{font-size:var(--fs-ui);font-weight:700;margin:0 0 2px}
+.tl-what p{font-size:var(--fs-small);line-height:1.65;max-width:none}
+.tl-row.key{background:linear-gradient(90deg,var(--mark) 0 4px,transparent 4px);padding-left:12px;margin-left:-12px}
+.tl-row.key h5::before{content:"●";color:var(--accent);font-size:.7em;vertical-align:.15em;margin-right:6px}
+.tl-row:target{background:var(--panel)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.chip{font-size:var(--fs-label);line-height:1.4;padding:3px 9px;border-radius:999px;border:var(--hair) solid var(--line);color:var(--text)}
+.chip.op{background:var(--panel);border-color:transparent}
+.cards{display:grid;gap:10px;align-content:start}
+.card{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;padding:14px 16px;border:var(--hair) solid var(--line);border-radius:var(--r-btn);background:var(--bg)}
+.card .ct{font-weight:700;font-size:var(--fs-small);max-width:none}
+.card .cb{font-size:var(--fs-small);line-height:1.65;margin-top:4px;max-width:none}
+.card-side{text-align:right;font-size:var(--fs-label);color:var(--muted);white-space:nowrap}
+.card-side b{display:block;color:var(--text);font-size:var(--fs-cap)}
+.sig{display:inline-block;margin-bottom:6px;font-size:var(--fs-label);font-weight:700;line-height:1.3;padding:2px 8px;border-radius:999px}
+.card.core{border:var(--rule) solid var(--ok)}
+.sig.core{background:var(--ok);color:var(--bg)}
+.card.warn{border:var(--rule) dashed var(--warn-line)}
+.sig.warn{border:var(--hair) dashed var(--warn-line);color:var(--warn)}
+.sig.warn::before{content:"◐ "}
+.card.red{border:3px solid var(--bad)}
+.sig.red{background:var(--bad);color:var(--bg)}
+.sig.red::before{content:"▲ "}
+
+/* 레이어(서랍) */
+.drawer-bg{position:fixed;inset:0;z-index:40;background:color-mix(in srgb,var(--text) 32%,transparent)}
+.drawer{position:fixed;top:0;right:0;bottom:0;z-index:41;width:min(680px,100vw);display:flex;flex-direction:column;background:var(--bg);box-shadow:-12px 0 40px color-mix(in srgb,var(--text) 22%,transparent);padding-bottom:env(safe-area-inset-bottom,0px)}
+.drawer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:var(--header-h);padding:env(safe-area-inset-top,0px) var(--s-6) 0;border-bottom:var(--hair) solid var(--line)}
+.drawer-head .sec-num{margin:0}
+.drawer-close{width:44px;height:44px;display:grid;place-items:center;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg)}
+.drawer-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}
+.drawer-body{overflow:auto;padding:var(--s-6) var(--s-6) var(--s-9);font-size:var(--fs-body);line-height:var(--lh-body)}
+.drawer-body h2{font-size:var(--fs-h3);margin-bottom:var(--s-5);text-wrap:balance}
+.drawer-body :is(p,ul,ol,.callout){max-width:none}
+.drawer-body p+p{margin-top:1em}
+.drawer-body .table{margin:var(--s-5) 0}
+.drawer-body .callout{margin:var(--s-3) 0}
+.toc-layer{margin-left:4px;color:var(--muted);font-size:.85em}
+body.drawer-open{overflow:hidden}
+
+/* 탭 */
+.tabs{margin:var(--block-gap) 0}
+.tablist{display:flex;gap:4px;border-bottom:var(--hair) solid var(--line);overflow-x:auto}
+.tablist button{min-height:44px;padding:0 14px;border:0;border-bottom:var(--rule) solid transparent;background:none;font-size:var(--fs-cap);color:var(--muted);white-space:nowrap}
+.tablist button[aria-selected="true"]{color:var(--text);font-weight:700;border-bottom-color:var(--accent)}
+.tabs [role="tabpanel"]{padding-top:var(--s-4)}
+
+/* 변경 비교 */
+li.chg{list-style:none;margin:10px 0 0;padding:10px 12px;border:var(--hair) solid var(--line);border-radius:var(--r-btn)}
+.chg-where{display:block;font-size:var(--fs-label);margin-bottom:6px}
+.diff{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;font-size:var(--fs-cap);line-height:1.6}
+.diff .k{font-size:var(--fs-min);font-weight:700;color:var(--muted);padding-top:2px}
+.diff p{max-width:none}
+.diff del{text-decoration:line-through;text-decoration-thickness:1.5px;color:var(--bad);background:color-mix(in srgb,var(--bad) 10%,transparent)}
+.diff ins{text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:2px;background:color-mix(in srgb,var(--mark) 55%,transparent)}
+.diff .none{color:var(--muted)}
+.chg-tail{margin-top:6px;font-size:var(--fs-label);color:var(--muted);max-width:none}
+.cal-hint{display:none}
+@media screen and (max-width:768px){.cal-hint{display:inline}}
+
+/* 태블릿·모바일 */
+@media screen and (max-width:1024px){
+  .cols{grid-template-columns:minmax(0,1fr);gap:var(--s-6)}
+}
+@media screen and (max-width:768px){
+  .calband{padding:4px var(--gutter) 3px}
+  .pnav{display:none}
+  .cal{grid-template-columns:repeat(var(--ndays),66px)}
+  .day{min-height:50px;padding:3px 1px 2px;gap:0}
+  .day .lb{line-height:1.2}
+  .calgrid{padding:2px 2px 3px}
+  .day .dn{font-size:1rem}
+  .phase-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tl-row{grid-template-columns:5.2em minmax(0,1fr);gap:10px}
+  .card{grid-template-columns:minmax(0,1fr)}
+  .card-side{text-align:left;display:flex;gap:8px;align-items:baseline}
+  .card-side b{display:inline}
+  .drawer{width:100vw}
+  .drawer-head,.drawer-body{padding-left:var(--s-4);padding-right:var(--s-4)}
+}
+@media print{
+  .calband,.btn-row,.drawer-bg{display:none}
+  .drawer{position:static;display:block;box-shadow:none;width:auto}
+  .drawer[hidden]{display:block!important}
+  .drawer-close{display:none}
+}
+@media (forced-colors:active){
+  .day.today{outline-color:Highlight}
+  .card.core,.card.red{border-color:CanvasText}
+}
+
+/* ── 목록·필터형 ── */
+body.tpl-catalog .layout{display:block}
+body.tpl-catalog .toc{display:none}
+body.tpl-catalog .doc :is(p,ul,ol,h2,h3,.callout,.sec-num){max-width:var(--wide)}
+.catbar{position:sticky;top:var(--header-h);z-index:15;background:var(--bg);border-bottom:var(--hair) solid var(--line);margin:var(--s-5) calc(var(--gutter) * -1) 0;padding:10px var(--gutter)}
+.catbar-in{display:grid;gap:8px}
+.filters{display:flex;flex-wrap:nowrap;gap:6px 18px;overflow-x:auto;scrollbar-width:thin;padding-bottom:2px}
+.fgroup{flex:none}
+.fgroup{display:flex;flex-wrap:nowrap;align-items:center;gap:4px}
+.flabel{font-size:var(--fs-label);font-weight:700;color:var(--muted);margin-right:4px}
+.fgroup button,.ftools button{min-height:36px;padding:0 12px;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font-size:var(--fs-cap)}
+.fgroup button[aria-pressed="true"],.ftools button[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg);font-weight:700}
+.fgroup .n{margin-left:5px;font-size:var(--fs-label);opacity:.75;font-variant-numeric:tabular-nums}
+.ftools{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.fsearch input{min-height:40px;min-width:260px;padding:0 14px;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font:inherit;font-size:var(--fs-cap)}
+.fcount{margin-left:auto;font-size:var(--fs-cap);font-weight:700;font-variant-numeric:tabular-nums}
+#cat-ftoggle{display:none}
+.gchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.gchips::-webkit-scrollbar{display:none}
+.gchip{flex:none;min-height:32px;display:inline-flex;align-items:center;padding:0 11px;border-radius:999px;background:var(--panel);color:var(--text);text-decoration:none;font-size:var(--fs-label);font-weight:600;white-space:nowrap}
+.gchip:hover{background:var(--line)}
+.gchip.empty{opacity:.45}
+.cat-wrap{margin-top:var(--s-4);border:var(--hair) solid var(--line);border-radius:var(--r-btn);overflow:auto;max-height:calc(100dvh - var(--header-h) - var(--catbar-h, 120px) - 16px);overscroll-behavior:contain}
+.cat{margin:0;border-collapse:separate;border-spacing:0;font-size:var(--fs-cap);line-height:1.55;min-width:100%}
+.cat th,.cat td{padding:10px 12px;vertical-align:top;text-align:left;border-bottom:var(--hair) solid var(--line);background:var(--bg)}
+.cat tr.hg th{top:0;height:34px;text-align:left;font-size:var(--fs-min);color:var(--text);background:var(--panel);border-bottom:var(--hair) solid var(--line);border-left:var(--hair) solid var(--line)}
+.cat tr.hg th:first-child{border-left:0}
+.cat thead:has(tr.hg) tr.hc th{top:34px}
+.cat thead th{position:sticky;top:0;z-index:3;font-size:var(--fs-label);font-weight:700;color:var(--muted);white-space:nowrap;border-bottom:var(--rule) solid var(--text)}
+.cat .c-num{position:sticky;left:0;z-index:2;width:4.2em;font-weight:800;font-variant-numeric:tabular-nums;color:var(--text)}
+.cat .c-name{position:sticky;left:4.2em;z-index:2;min-width:13em;max-width:15em;border-right:var(--hair) solid var(--line)}
+.cat thead .c-num,.cat thead .c-name{z-index:4}
+.cat td{min-width:8em}
+.cat .c-문구,.cat .c-발생-조건{min-width:20em}
+.cat .c-상태{min-width:14em}
+.cat .c-읽음-기준,.cat .c-이동,.cat .c-수신자{min-width:14em}
+.cat tr.empty td{position:sticky;left:0;padding:24px 16px;background:var(--panel)}
+.cat tr.empty p{margin:0 0 10px;font-weight:600}
+.empty-fix,.gl-open{min-height:36px;padding:0 12px;border:var(--hair) solid var(--line);border-radius:999px;background:var(--bg);color:var(--text);font-size:var(--fs-cap)}
+.drawer tr.hl > *{background:color-mix(in srgb,var(--mark) 45%,var(--bg))}
+body.tpl-catalog .toc-mobile{display:block;max-width:var(--wide);margin-bottom:var(--s-6)}
+.ttl{display:block;font-weight:700;font-size:var(--fs-small);line-height:1.35}
+.typ{display:block;margin-top:4px;font-size:var(--fs-min);word-break:break-all;color:var(--muted)}
+.typ code{font-size:var(--fs-min)}
+.cat tr.u-new > *{background:color-mix(in srgb,var(--ok-bg) 70%,var(--bg))}
+.cat tr.u-mod > *{background:color-mix(in srgb,var(--mark) 14%,var(--bg))}
+.cat tr.row:target > *{outline:2px solid var(--accent);outline-offset:-2px}
+.upd{display:inline-block;font-size:var(--fs-label);font-weight:700;padding:1px 8px;border-radius:999px}
+.upd.new{background:var(--ok);color:var(--bg)}
+.upd.mod{border:1.5px solid var(--text);color:var(--text)}
+.upd-sub{display:block;font-size:var(--fs-min);color:var(--muted);margin-top:2px}
+.dim{color:var(--muted)}
+.ic{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--line);color:var(--muted);position:relative}
+.ic svg{width:15px;height:15px;fill:currentColor}
+.ic.on{background:var(--text);border-color:var(--text);color:var(--bg)}
+.ic.off{opacity:.6}
+.ic.off::after{content:"";position:absolute;left:4px;right:4px;top:50%;height:1.5px;background:currentColor;transform:rotate(-40deg)}
+.ic.tbd{border-style:dashed}
+.ic.na{border-style:dotted}
+.cat td ul{margin:0;padding-left:1.1em}
+.cat td li+li{margin-top:4px}
+.cat td > ul > li > strong:first-child{display:inline-block;font-size:var(--fs-label);margin-bottom:2px}
+.msg{margin:4px 0;padding:6px 10px;border:var(--hair) solid var(--line);border-radius:8px;background:var(--panel);color:var(--text)}
+.st{display:flex;gap:8px;align-items:flex-start}
+.st i{flex:none;width:9px;height:9px;border-radius:50%;margin-top:.5em;background:var(--muted)}
+.st.ok i{background:var(--ok)}
+.st.tbd i{background:transparent;border:1.5px dashed var(--muted)}
+.st.hold i{background:var(--warn-line)}
+.cat tr.grp td{position:sticky;left:0;background:var(--panel);padding:12px 14px;border-top:var(--hair) solid var(--line)}
+.gttl{display:flex;align-items:baseline;gap:10px;position:sticky;left:14px;width:max-content;max-width:calc(100vw - 80px)}
+.gtog{border:0;background:none;padding:0;font:inherit;font-size:var(--fs-ui);font-weight:700;color:var(--text);text-align:left}
+.gtog::before{content:"▾";display:inline-block;margin-right:6px;color:var(--muted);transition:transform 120ms var(--ease)}
+.grp.folded .gtog::before{transform:rotate(-90deg)}
+.gcount{font-size:var(--fs-label);color:var(--muted);font-variant-numeric:tabular-nums}
+.gnote{margin-top:4px;font-size:var(--fs-label);color:var(--muted);position:sticky;left:14px;max-width:min(900px,calc(100vw - 80px))}
+.grp.folded .gnote{display:none}
+.cat tr.hidden{display:none}
+body.cat-core .cat .more{display:none}
+.qh{margin-left:4px;width:20px;height:20px;border-radius:50%;border:var(--hair) solid var(--line);background:var(--bg);color:var(--muted);font-size:12px;font-weight:700;line-height:1;vertical-align:1px}
+.qh:hover{background:var(--text);color:var(--bg)}
+/* 규칙 카드 */
+details.callout.rule{border:var(--hair) solid var(--line);border-radius:0;margin:0}
+details.callout.rule+details.callout.rule{border-top:0}
+details.callout.rule>summary{display:grid;grid-template-columns:minmax(10em,14em) auto minmax(0,1fr) auto;align-items:center;gap:4px 12px;font-size:var(--fs-small)}
+.rname{font-weight:700}
+.rtags{display:flex;flex-wrap:wrap;gap:4px}
+.rtag{font-size:var(--fs-min);font-weight:700;padding:1px 7px;border-radius:999px;background:var(--accent);color:var(--bg);white-space:nowrap}
+.rsum{min-width:0}
+details.callout.rule .callout-body{padding-left:calc(var(--s-6) + 14em + 12px)}
+@media screen and (max-width:768px){
+  .catbar{padding:8px var(--gutter)}
+  #cat-ftoggle{display:inline-flex}
+  .catbar:not(.open) .filters{display:none}
+  .catbar.open .filters{flex-wrap:wrap;max-height:40vh;overflow:auto}
+  .catbar.open .fgroup{flex-wrap:wrap}
+  .fsearch{flex:1}
+  .fsearch input{min-width:0;width:100%}
+  .cat-wrap{max-height:none;overflow:visible;border:0}
+  .cat,.cat tbody,.cat tr,.cat td,.cat th{display:block;width:auto}
+  .cat thead{display:none}
+  .cat tr.row{margin:10px 0;border:var(--hair) solid var(--line);border-radius:var(--r-btn);overflow:hidden}
+  .cat tr.row > *{border-bottom:0;padding:6px 14px}
+  .cat .c-num,.cat .c-name{position:static;border-right:0;max-width:none}
+  .cat .c-num{padding-top:12px;font-size:var(--fs-label);color:var(--accent)}
+  .cat td{min-width:0!important}
+  .cat td[data-label]::before{content:attr(data-label);display:block;font-size:var(--fs-min);font-weight:700;color:var(--muted);margin-bottom:2px}
+  .cat td:empty{display:none}
+  .cat tr.grp{margin-top:18px}
+  .cat tr.grp td{position:static;border-radius:var(--r-btn)}
+  .gttl,.gnote{position:static;max-width:none;width:auto}
+  details.callout.rule>summary{grid-template-columns:minmax(0,1fr) auto}
+  .rname{grid-column:1}
+  .rsum{grid-column:1/-1}
+  details.callout.rule .callout-body{padding-left:16px}
+}
+
+body.tpl-schedule .cover-main{padding:var(--s-7) 0 var(--s-5)}
+body.tpl-schedule .cover h1{font-size:clamp(1.875rem,1.2rem + 2vw,2.625rem)}
+body.tpl-schedule .phase-cards{margin-top:var(--s-4)}
+body.tpl-schedule .btn-row{margin-top:var(--s-4)}
+
+</style>
+</head>
+<body class="tpl-plan">
+<a class="skip" href="#doc">본문으로 건너뛰기</a>
+<header class="bar">
+  <div class="bar-inner">
+    <p class="bar-title"><span class="bar-kind">plan</span><span class="sep" aria-hidden="true">·</span><b>C8 홈 v0.9 카카오식 흐름</b></p>
+    <div class="bar-actions">
+      <button class="tool" id="mark-btn" type="button" aria-pressed="true" aria-label="강조 표시"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h7"/><path d="m14.5 4.5 5 5L11 18H6v-5z"/></svg><span class="label">강조</span></button>
+      <button class="tool" id="theme-btn" type="button" aria-label="다크 모드로 보기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4 8 8 0 1 0 20 14.5Z"/></svg><span class="label">다크</span></button>
+      <button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button>
+      <button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button>
+      <button class="tool" id="print-btn" type="button" aria-label="인쇄하거나 PDF로 저장"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 9V3h10v6"/><rect x="3" y="9" width="18" height="8" rx="1.5"/><path d="M7 14h10v7H7z"/></svg><span class="label">인쇄</span></button>
+    </div>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+</header>
+<div class="page">
+  <header class="cover">
+    <div class="issue"><strong>plan</strong><span>C8 서비스 홈 · v0.9 카카오식 흐름 · 홈 와이어프레임</span></div>
+    <div class="cover-main">
+      <p class="kind">C8 서비스 홈 구성 재설계 · 카카오 서비스 페이지 벤치</p>
+      <h1>브랜딩 → 기능 네 장 → 마지막 장 1분 이야기 — <br class="prose-break">카카오식 흐름을 C8 규모로</h1>
+      <p class="deck">카카오 서비스 페이지를 1440·390 두 폭과 소스까지 분석해 원리 다섯을 뽑고, 키키·젠지가 토론한 세 안을 네 관점으로 심사해 고른 홈 흐름과 적용 와이어프레임이에요.</p>
+    </div>
+    <dl class="meta"><div><dt>상태</dt><dd><span class="state"><i class="dot " aria-hidden="true"></i>초안</span></dd></div><div><dt>작성</dt><dd>성장마케팅 기획(키키)</dd></div><div><dt>토론·에피소드</dt><dd>젠지(콘텐츠 마케팅)</dd></div><div><dt>상위 문서</dt><dd>C8 서비스 홈 v0.8 제안서 · 에피소드 시즌 1 v2(10/18)</dd></div><div><dt>결정할 사람</dt><dd>대표 · 담당</dd></div><div><dt>최종 갱신</dt><dd>2026. 10. 18</dd></div></dl>
+    <section class="obi" aria-labelledby="obi-title"><div class="obi-head"><span class="obi-label" id="obi-title">제안</span><p>카카오가 보도자료를 둔 마지막 자리에 &#x27;1분 이야기&#x27;를 둬요. 정체 한 문장 → 기능 네 장 → 마지막 장 → 둘러보기 허브로 홈을 다시 짰어요.</p></div></section><p class="pending"><span>아직 정하지 않은 것이 6가지 있습니다.</span><a href="#s10">모아 보기<span aria-hidden="true"> →</span></a></p>
+  </header>
+
+  <div class="layout">
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>카카오에서 배운 것</a></li><li><a href="#s2"><span class="n">02</span>젠지와 나눈 토론</a></li><li><a href="#s3"><span class="n">03</span>홈 구조 v0.9</a></li><li><a href="#s4"><span class="n">04</span>브랜딩 메시지</a></li><li><a href="#s5"><span class="n">05</span>기능 블록</a></li><li><a href="#s6"><span class="n">06</span>에피소드와 둘러보기</a></li><li><a href="#s7"><span class="n">07</span>와이어 제작 스펙</a></li><li><a href="#s8"><span class="n">08</span>홈 와이어프레임</a></li><li><a href="#s9"><span class="n">09</span>반론과 뒤집힐 조건</a></li><li><a href="#s10"><span class="n">10</span>정할 것</a></li><li><a href="#s11"><span class="n">11</span>다음 행동</a></li><li><a href="#s12"><span class="n">12</span>참고</a></li><li><a href="#s13"><span class="n">13</span>검토 반영</a></li></ol></nav>
+    <main class="doc" id="doc">
+      <details class="toc-mobile"><summary>목차 · 13개 절</summary><ol><li><a href="#s1"><span class="n">01</span>카카오에서 배운 것</a></li><li><a href="#s2"><span class="n">02</span>젠지와 나눈 토론</a></li><li><a href="#s3"><span class="n">03</span>홈 구조 v0.9</a></li><li><a href="#s4"><span class="n">04</span>브랜딩 메시지</a></li><li><a href="#s5"><span class="n">05</span>기능 블록</a></li><li><a href="#s6"><span class="n">06</span>에피소드와 둘러보기</a></li><li><a href="#s7"><span class="n">07</span>와이어 제작 스펙</a></li><li><a href="#s8"><span class="n">08</span>홈 와이어프레임</a></li><li><a href="#s9"><span class="n">09</span>반론과 뒤집힐 조건</a></li><li><a href="#s10"><span class="n">10</span>정할 것</a></li><li><a href="#s11"><span class="n">11</span>다음 행동</a></li><li><a href="#s12"><span class="n">12</span>참고</a></li><li><a href="#s13"><span class="n">13</span>검토 반영</a></li></ol></details>
+
+<p>결론: 카카오 서비스 페이지의 흐름은 먼저 크게 말하고, 같은 틀로 기능을 펼치고, 끝에서 같은 틀의 소식 장으로 닫은 뒤 둘러보게 하는 거예요. 이 흐름을 C8 규모로 줄이고, 카카오가 보도자료를 둔 마지막 자리에 '1분 이야기'를 둬요. 홈은 정체 한 문장과 세 박자 → 기능 네 장 → 마지막 장 '1분 이야기' → 둘러보기 허브 순서로 다시 짜요. 1440 기준 약 10.4화면이라 카카오의 절반이지만, 지금 목표인 5~7화면보다 길어서 결정이 필요해요.</p>
+<ul>
+<li>무엇이 바뀌나: 43% 지점에 있던 에피소드가 기능 네 장 다음 마지막 장(74% 지점)으로 가요. 기능마다 장이 생기고, 고정 목차와 끝 허브로 둘러보는 길이 생겨요.</li>
+<li>감수할 대가: 1440 길이가 7.9화면에서 약 10.4화면으로 늘어요. '스크롤 연출은 내려놓는다'는 결정도 인트로 한 곳에서는 고쳐야 해요.</li>
+<li>뒤집힐 조건: 마지막 장 노출이 페이지뷰의 절반에 못 미치면 순서는 지킨 채 기능 장을 접은 압축판으로 바꿔요. 그래도 낮으면 순서를 바꿀지 다시 정해요.</li>
+</ul>
+<section id="s1" aria-labelledby="s1-t"><a class="sec-num" href="#s1"><b>01</b>카카오에서 배운 것</a><h2 id="s1-t">화려해 보여도 원리는 다섯 가지이고, 우리 규모로 옮길 수 있어요</h2>
+<p>10/18에 1440·390 두 폭으로 열어 높이와 고정 요소를 쟀고, 소스를 읽어 모션 구조를 확인했어요. 실제 스크롤 녹화는 아직이에요. 높이는 19,266px(1440)로 약 21화면이에요. 인트로·아코디언·목차는 스크롤 위치에 따라 클래스를 바꾸고 CSS 전환만 써요. gsap 같은 스크롤 연출 라이브러리는 이 페이지에 없고, 이미지 넘김에만 slick 캐러셀을 써요. 우리가 가져올 부분은 라이브러리 없이 만들 수 있을 것으로 보지만, 아직 구현해 재 보지는 않았어요.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>구간</th>
+<th>높이(1440)</th>
+<th>장치</th>
+<th>측정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>브랜딩 인트로</td>
+<td>7,040px(36%)</td>
+<td>한 화면 고정, 스크롤로 3단계 전환(단계 순서와 정지 길이는 코드로 계산한 값). 큰 문장 뒤에 좌우로 쪼갠 문구 3쌍, 말풍선 안 이미지 교체</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>'카카오톡은 지금' 배너</td>
+<td>약 0.9화면(인트로와 첫 블록 사이 간격 기준)</td>
+<td>음소거 반복 영상, 사용자 리뷰 말풍선</td>
+<td>자세히 보기 클릭</td>
+</tr>
+<tr>
+<td>고정 목차</td>
+<td>겹침</td>
+<td>1024px 이상은 색 판 아래쪽에 겹친 세로 목록(현재 판 색에 맞춰 글자색이 바뀜), 좁으면 47px 가로 탭. 누르면 그 섹션 제목으로 포커스</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>서비스 블록 5개</td>
+<td>블록당 1.6~2.0화면(41%)</td>
+<td>컴포넌트 하나에 데이터만 바꿈. 왼쪽 색 판 + 오른쪽 아코디언 4~5개(첫 항목만 열림), 이미지는 정지 버튼이 있는 자동 넘김</td>
+<td>섹션 노출만</td>
+</tr>
+<tr>
+<td>NEWS 3건</td>
+<td>약 9%</td>
+<td>같은 틀. 보도자료 3건(쇼핑·AI 상담·맵 소식). 위 블록과 짝이라는 건 추정</td>
+<td>섹션 노출 + 기사 클릭</td>
+</tr>
+<tr>
+<td>출구</td>
+<td>출구 띠 + 푸터 약 8%(띠만은 미측정)</td>
+<td>'궁금하다면? 전체 서비스 보러가기' + 87초 아이콘 마키</td>
+<td>하단 버튼 클릭</td>
+</tr>
+</tbody>
+</table></div>
+<p>노출은 서비스 블록과 NEWS에서만 재요. 인트로·탭·아코디언·캐러셀 조작은 재지 않아요.</p>
+<p>가져올 원리는 이래요.</p>
+<ol>
+<li>한 문장으로 크게 말한 뒤 같은 약속을 좌우로 쪼개 박자로 다시 말하고, 그림은 제품 모양 그릇에 담아요.</li>
+<li>기능 블록은 틀 하나에 데이터만 바꿔 찍어요. 11/2 배포에서 빠지는 기능은 행만 지우면 돼요.</li>
+<li>첫 항목만 열린 아코디언으로 길이를 잡아요. 카카오는 항목을 하나씩 따로 열고 닫지만, 우리 와이어는 한 장 안에서 한 번에 하나만 열려요.</li>
+<li>고정 목차가 '지금 어디고 무엇이 남았는지'를 늘 보여 줘요.</li>
+<li>마지막 장도 기능 장과 같은 틀(왼쪽 판 + 오른쪽 목록)이라 한 흐름의 끝으로 읽혀요. 카카오는 이 자리에 보도자료를 뒀고, 우리는 1분 이야기를 둬요.</li>
+</ol>
+<p>버릴 것은 이래요.</p>
+<ol>
+<li>7,040px 인트로와 약 2,700px 정지 구간(코드로 계산한 값). 무명 앱에게는 이탈 구간이에요.</li>
+<li>자동 넘김 이미지와 87초 아이콘 마키. 캐러셀은 정지 버튼이 있지만 우리 원칙(정지 화면 한 장)과 맞지 않아요. 마키는 멈출 수단도, 모션 줄이기 대응도 없어요.</li>
+<li>원색 판, 영문 대문자 라벨, 말풍선 모양, '○○은 지금' 문구 꼴, 그리고 판·본문 폭(568/872) 같은 수치. 베낀 걸로 읽혀요.</li>
+</ol>
+<p>카카오 아코디언에 없는 것은 우리가 채워요. aria-expanded 속성(카카오는 버튼 글자만 '열기/닫기'로 바꿔요), 본문 모션 줄이기 대응, 탭·아코디언 조작 측정, 주소로 특정 항목 열기예요.</p>
+</section><section id="s2" aria-labelledby="s2-t"><a class="sec-num" href="#s2"><b>02</b>젠지와 나눈 토론</a><h2 id="s2-t">순서는 브리프 그대로 가고, 쟁점은 에피소드를 언제 처음 보여 줄지였어요</h2>
+<p><strong>배운 점.</strong> 젠지가 꼽은 건 세 가지예요. 박자로 쪼갠 문장이 릴스 자막 리듬과 같다는 것, 첫 항목만 열려 있어야 나머지 제목을 훑는다는 것, NEWS가 기능 블록과 같은 틀이라 페이지 끝까지 한 흐름으로 읽힌다는 것이에요. 카카오는 그 자리에 보도자료를 뒀지만, 우리는 기능이 쓰이는 장면을 둘 수 있어요. 저는 블록이 컴포넌트 하나라는 것, 목차 하나로 둘러보기와 포커스 이동을 함께 푼다는 것, 탐색 측정이 비어 있다는 것을 봤어요.</p>
+<p><strong>다른 의견.</strong> 젠지는 "사람들은 시간의 74%를 첫 두 화면에 써요. 에피소드를 인트로 바로 뒤에서 틀어야 해요"라고 했어요. 74%는 NN/g 2018 데스크톱 시선 추적 결과로 알려진 수치인데, 원문은 아직 대조하지 않았어요. 저는 반대했어요. 브리프가 '기능 설명 마지막에 자연스럽게'이고, 앞에서도 틀면 마지막 장이 재방송이 돼요.</p>
+<p><strong>합의.</strong> 재생은 마지막 장에서만 해요. 앞쪽에는 재생 없는 문 하나와 예고만 둬요. 문은 인트로 뒤 '새로 공개 · 1분 이야기' 정지 포스터이고, 누르면 05장으로 내려가요. 예고는 기능 항목에 붙는 편 칩이에요. 검토에서 칩과 390 하단 바까지 바로 가는 문으로 열면 01장에서부터 이야기가 먼저 재생된다는 지적이 나왔어요. 그래서 칩은 누르지 않는 예고로 바꾸고, 하단 바는 04장 끝까지 '앱 받기'만 보여 주도록 좁혔어요. 인물이 가상이라 '실제로 쓴 사람들' 같은 말은 쓰지 않아요.</p>
+<p>세 안을 네 관점으로 채점했어요(관점마다 50점). 일반인 점수는 직업이 다른 가상 독자 4명의 눈으로 문구를 읽어 본 점검이라, 실제 사람 시험은 따로 해요.</p>
+<div class="table compare"><table>
+<thead>
+<tr>
+<th>안</th>
+<th>한 줄</th>
+<th>총괄</th>
+<th>브랜드 디자인</th>
+<th>마케팅</th>
+<th>일반인</th>
+<th>합계</th>
+</tr>
+</thead>
+<tbody>
+<tr class="pick">
+<td>1안 카카오식 <span class="tag">추천</span></td>
+<td>브랜딩 문구 → 같은 틀 기능 장 → 마지막 장 1분 이야기</td>
+<td>43</td>
+<td>40</td>
+<td>39</td>
+<td>40</td>
+<td>162</td>
+</tr>
+<tr>
+<td>2안 기능 끝에 한 편</td>
+<td>같은 순서, 장 약속에 원문 반어 문장, 클럽은 짧은 띠</td>
+<td>39</td>
+<td>36</td>
+<td>40</td>
+<td>37</td>
+<td>152</td>
+</tr>
+<tr>
+<td>3안 틀밖</td>
+<td>인트로에 여섯 편 첫 장면을 깔고 마지막 장에서 같은 격자로 회수</td>
+<td>37</td>
+<td>39</td>
+<td>37</td>
+<td>37</td>
+<td>150</td>
+</tr>
+</tbody>
+</table></div><p class="table-hint">옆으로 밀어 보기 →</p>
+<p>1안이 네 관점 중 셋에서 1위라 뼈대로 삼았어요. 2안에서는 '앱 안에 더 있어요' 띠, 390 하단 바 두 칸, 소리 켠 재생, 칩의 회색 한 줄, 직함 나열을 가져왔어요. 3안에서는 기능 머리 한 줄, '건너뛰기 ↓', 같은 그릇 반복, 5초 정체 시험을 가져왔어요. 3안의 첫 장면 격자는 여섯 편이 촬영 전이라 뺐어요. 2안의 반어 장 약속은 가상 독자 넷 중 셋이 장 기능을 못 맞혀서 뺐어요.</p>
+</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>홈 구조 v0.9</a><h2 id="s3-t">열세 구간과 고정 장치 셋으로 짜고, 이야기 장은 74% 지점에서 시작해 87%에서 끝나요</h2>
+<div class="table compare"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>이름</th>
+<th>목적</th>
+<th>문구</th>
+<th>높이 1440/390</th>
+<th>모션</th>
+<th>카카오에서 가져온 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>브랜딩 인트로</td>
+<td>정체를 말하고 세 박자로 새김</td>
+<td>크리에이터클럽 / 작업이 발견되고, / 사람과 연결되는 곳 + 박자 3쌍</td>
+<td>1,980 / 1,690</td>
+<td>고정 무대, 좌우 문구 등장 .4s</td>
+<td>큰 문장 → 쪼갠 박자, 제품 모양 그릇</td>
+</tr>
+<tr>
+<td>2</td>
+<td>이유 + 새로 공개</td>
+<td>왜 만들었는지 닫고 새 편 예고</td>
+<td>창작자에게 필요한 건 거래가 아니라 기회예요.</td>
+<td>560 / 640</td>
+<td>한 번 페이드</td>
+<td>'지금' 띠로 다리 놓기(영상은 뺌)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>기능 머리 한 줄</td>
+<td>기능 전체를 한 번에</td>
+<td>작업을 올리고, 좋은 작업을 찾아 리스펙트를 보내고, 같이 하고 싶은 사람에게 노크하면 돼요.</td>
+<td>200 / 220</td>
+<td>없음</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>4</td>
+<td>01 올리기</td>
+<td>설치 직후 첫 행동</td>
+<td>완성 전이어도 / 작업으로 남겨요</td>
+<td>880 / 1,050</td>
+<td>판 제목 페이드 .3s, 아코디언</td>
+<td>블록 틀, 첫 항목만 열기</td>
+</tr>
+<tr>
+<td>5</td>
+<td>02 발견·리스펙트</td>
+<td>H1의 '발견'과 C8만의 반응</td>
+<td>좋아요로는 모자랄 땐 / 리스펙트 + 풀이 한 줄</td>
+<td>1,020 / 1,160</td>
+<td>01과 같음</td>
+<td>대구 명사구 소제목</td>
+</tr>
+<tr>
+<td>6</td>
+<td>03 프로필</td>
+<td>사람이 보이는 곳</td>
+<td>명함 대신 / 링크 하나</td>
+<td>980 / 1,120</td>
+<td>01과 같음</td>
+<td>같은 틀</td>
+</tr>
+<tr>
+<td>7</td>
+<td>04 노크</td>
+<td>보내는 쪽, 받는 쪽, 받지 않을 권리</td>
+<td>첫 마디가 어렵다면 / 노크부터 + 풀이 한 줄</td>
+<td>920 / 1,090</td>
+<td>01과 같음</td>
+<td>같은 틀</td>
+</tr>
+<tr>
+<td>8</td>
+<td>앱 안에 더 있어요 + 다리</td>
+<td>미확인 기능을 짧게 닫고 이야기로 넘김</td>
+<td>설명은 여기까지예요. / 이 기능들이 쓰이는 1분을 볼게요.</td>
+<td>360 / 460</td>
+<td>다리 문장 페이드</td>
+<td>리듬을 바꾸는 짧은 판</td>
+</tr>
+</tbody>
+</table></div><p class="table-hint">옆으로 밀어 보기 →</p>
+<div class="table compare"><table>
+<thead>
+<tr>
+<th>#</th>
+<th>이름</th>
+<th>목적</th>
+<th>문구</th>
+<th>높이 1440/390</th>
+<th>모션</th>
+<th>카카오에서 가져온 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>9</td>
+<td>05 1분 이야기</td>
+<td>기능 네 장이 쓰이는 장면을 60초로 보여 줌</td>
+<td>한 편에 한 사람, 1분 이야기. / 어느 편부터 봐도 돼요.</td>
+<td>1,250 / 1,600</td>
+<td>대표 편만 무음 자동 재생</td>
+<td>NEWS 자리를 같은 틀의 마지막 장으로(보도자료 대신 이야기)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>둘러보기 허브</td>
+<td>다른 편·다른 장·실제 프로필로 둘러보기, 신뢰 한 줄</td>
+<td>실제 크리에이터 프로필 둘러보기 → · Advisor · 무료 여부</td>
+<td>320 / 440</td>
+<td>없음</td>
+<td>출구 자리(마키는 뺌). 신뢰 한 줄은 무명 브랜드라 더함</td>
+</tr>
+<tr>
+<td>11</td>
+<td>당신 차례</td>
+<td>내 한 줄 써 보기</td>
+<td>보내기 전에, 한 줄만 써 봐요</td>
+<td>260 / 360</td>
+<td>입력칸 연출 1회</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>12</td>
+<td>FAQ 3개 + 끝 문장</td>
+<td>남은 걱정을 풀고 한 번 더 권함</td>
+<td>자기검열 그만하고 / 자기소개 좀 하세요.</td>
+<td>380 / 520</td>
+<td>취소선 1회</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>13</td>
+<td>푸터</td>
+<td>회사 정보·약관</td>
+<td>기존 그대로</td>
+<td>240 / 320</td>
+<td>없음</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>고정</td>
+<td>상단 바</td>
+<td>어디서든 앱 받기</td>
+<td>로고 · 앱 받기</td>
+<td>60 / 56</td>
+<td>기능 장에서 내리면 숨음</td>
+<td>목차 구간 헤더 숨김</td>
+</tr>
+<tr>
+<td>고정</td>
+<td>장 목차</td>
+<td>지금 위치와 남은 장</td>
+<td>01 올리기 ~ 05 1분 이야기</td>
+<td>겹침 / 44</td>
+<td>현재 장 표시, 누르면 이동</td>
+<td>세로 목록 ↔ 가로 탭</td>
+</tr>
+<tr>
+<td>고정</td>
+<td>390 하단 바</td>
+<td>모바일 상시 지름길</td>
+<td>04장 끝까지 '앱 받기', 05장 뒤 '다른 편 보기 ↑ | 앱 받기'</td>
+<td>없음 / 56</td>
+<td>인트로 첫 화면·05장·당신 차례에서 숨음</td>
+<td>없음(하단 검색 알약은 버림)</td>
+</tr>
+</tbody>
+</table></div><p class="table-hint">옆으로 밀어 보기 →</p>
+<p>표의 높이는 설계 목표예요. 와이어 실측(주석 끈 화면)은 1440 9,558px(10.6화면), 390 10,850px(12.9화면)이에요. 목표보다 긴 구간은 1440 01장(958, 목표 880)과 FAQ(404, 목표 380), 390 05장(1,629, 목표 1,600)이에요. 01장 목표는 960으로 올려 잡아요. 카카오와 비교하면 1440은 49%, 390은 60~71%예요. 카카오 390 높이가 측정 브라우저 설정에 따라 17,723px 또는 15,083px로 달라서 범위로 적었어요. 1분 이야기 장은 1440 74%, 390 70% 지점에서 시작해 87%, 85%에서 끝나요. 05장 뒤는 1440 1,200px, 390 1,640px예요. 비율과 05장 위치는 와이어 실측과 맞아요(1440 74%→87%, 390 70%→85%).</p>
+</section><section id="s4" aria-labelledby="s4-t"><a class="sec-num" href="#s4"><b>04</b>브랜딩 메시지</a><h2 id="s4-t">정체 한 문장과 세 박자, 끝 문장 모두 C8.official 원문에서 어미만 해요체로 바꿨어요</h2>
+<p>권장 순서(A안)예요. 출처는 C8.official 공개 프로필(10/18 확인)이에요.</p>
+<ol>
+<li><strong>정체(H1):</strong> 작업이 발견되고, / 사람과 연결되는 곳. 프로필 한 줄 그대로예요. H1 바로 위에는 브랜드 이름 '크리에이터클럽'을 H1의 절반 크기로, 그 위에 눈썹 '크리에이터 네트워크 앱'을 둬요. 보조문은 '그림·음악·글·영상, 만든 걸 올리고 함께할 사람을 찾는 앱이에요.'예요. '작업'이 업무로 읽히지 않게 새로 썼어요. [앱 받기]가 함께 나와요.</li>
+<li><strong>박자 1:</strong> 소속이 없어도, | 명함이 없어도. 소개 선언문 '소속이 없어도, 명함이 없어도 당신의 이름으로 기회가 시작됩니다'의 앞 조각이에요. 카드 속에 직함이 한 번 흘러가요(디자이너 → 편집자 → 회사원 → 작곡가 → 개발자). 「크리에이터란?」 카드 3에 회사원을 더해, 소속이 있는 사람도 대상이라는 걸 보여 줘요.</li>
+<li><strong>박자 2:</strong> 당신의 이름으로 | 기회가 시작돼요. 같은 문장의 뒤 조각이에요. 카드에 이름표 '직업 | 이름'과 '노크 환영' 배지가 붙어요.</li>
+<li><strong>박자 3:</strong> 밖에서는 욕먹을 자랑, | 여기서는 프로필이에요. 「창작자의 면죄부」 카드 3이에요. 카드 속이 포트폴리오 격자 3칸(예시 화면)으로 바뀌어요.</li>
+</ol>
+<p>같은 카드 모양을 05장 이름표와 당신 차례 미리보기에도 써서 세 번 다시 알아보게 해요. 인물 카드 모서리에는 모두 '예시'를 달아요. 이유 두 문장은 소개 선언문 3~5번째 문장, 끝 문장은 「창작자의 면죄부」 카드 4예요. '욕먹을'은 비창작자에게 거칠게 읽힐 수 있어요. 그래서 원문이 아닌 대안 '밖에서는 눈치 보던 자랑, | 여기서는 프로필이에요.'를 사람 시험에 함께 넣어요.</p>
+<div class="table compare"><table>
+<thead>
+<tr>
+<th>안</th>
+<th>박자 1</th>
+<th>박자 2</th>
+<th>박자 3</th>
+<th>판단</th>
+</tr>
+</thead>
+<tbody>
+<tr class="pick">
+<td>A <span class="tag">추천</span></td>
+<td>소속이 없어도, | 명함이 없어도</td>
+<td>당신의 이름으로 | 기회가 시작돼요</td>
+<td>밖에서는 욕먹을 자랑, | 여기서는 프로필이에요.</td>
+<td>한 문장을 둘로 쪼갠 카카오 박자 원리와 같고, 기회에서 태도로 커져요</td>
+</tr>
+<tr>
+<td>B</td>
+<td>디자이너, 편집자, | 작곡가, 개발자.</td>
+<td>직함은 다 달라도, | 없던 걸 만들어요.</td>
+<td>자랑 문장 + 착지 문장</td>
+<td>문구가 다섯이라 무거워요. 직함은 A안 카드 그림으로 옮겼어요</td>
+</tr>
+<tr>
+<td>C</td>
+<td>직함은 다 다른데 | 하는 건 같아요.</td>
+<td>자랑 문장</td>
+<td>소속·명함 문장</td>
+<td>가상 독자 점검에서 '무엇이 같은지' 헷갈렸어요</td>
+</tr>
+</tbody>
+</table></div><p class="table-hint">옆으로 밀어 보기 →</p>
+<p>'우리는 콘텐츠 플랫폼이 아닙니다', '존재하는 이유는 단 하나입니다', '7%', '수백만 명', 리스펙트 97 같은 문구와 수치는 쓰지 않아요.</p>
+</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>기능 블록</a><h2 id="s5-t">네 장이 같은 틀이고, 장마다 대제목 하나와 소제목 2~3개, 정지 화면, 예고 칩이 붙어요</h2>
+<p>왼쪽 판에 번호·장 이름·대제목을 두고, 낯선 말이 있는 02·04장에는 풀이 한 줄을 더해요. 오른쪽에는 소제목 아코디언을 두고 첫 항목만 열어요. 열린 본문은 이 순서예요.</p>
+<ol>
+<li>해요체 두 문장(80자 안)</li>
+<li>'이 기능이 나오는 1분' 예고 칩. 포스터 + 'EP n · 1분' + 제목 + 회색 한 줄 · 가상 인물 + '맨 끝 1분 이야기에 있어요'로 이뤄져요.</li>
+<li>정지 화면 한 장</li>
+</ol>
+<p>칩은 누르는 버튼이 아니라 예고라서 ▶을 달지 않아요. 닫힌 항목에도 칩 표시를 하지 않아요. 탭 이름 눈썹은 11/2 확인 뒤에만 달아요.</p>
+<div class="table compare"><table>
+<thead>
+<tr>
+<th>장</th>
+<th>대제목</th>
+<th>소제목(① 열림)</th>
+<th>화면</th>
+<th>이 기능이 나오는 1분</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01 올리기</td>
+<td>완성 전이어도 / 작업으로 남겨요</td>
+<td>① 사진·영상부터 오디오·PDF·유튜브 링크까지, 작업 그대로 ② 떠오른 건 영감으로, 작업은 포트폴리오로, 같이 할 일은 프로젝트로</td>
+<td>upload-form → upload-file-picker → upload-6 / upload-type</td>
+<td>① EP1 큰맘 먹고, 노래 두 줄만 올렸어요 · 중간 결과물도, 버릴 게 없어요</td>
+</tr>
+<tr>
+<td>02 발견·리스펙트</td>
+<td>좋아요로는 모자랄 땐 / 리스펙트 (풀이: 좋은 작업에 한마디를 골라 보내는 응원)</td>
+<td>① 좋다는 말을 골라 보내는 리스펙트 ② 넘기다 멈추게 되는, 처음 보는 작업 ③ 뭘 찾을지 모를 땐, Shuffle!(11/2 확인 시)</td>
+<td>discovery-respect-phrase(문구는 녹화에 나온 것으로 바꾸고 잠김 상태는 뺌) + 녹화 정지 컷 / discovery-home / finder-keyword-recommend</td>
+<td>① EP3 회의에선 A안 고르신 분이었는데요 · 회의의 결정과 한 사람의 취향은 따로 있어요(법무 확인 전에는 숨기고, 막히면 다른 직군 편으로)</td>
+</tr>
+<tr>
+<td>03 프로필</td>
+<td>명함 대신 / 링크 하나</td>
+<td>① 작업과 이력을 한 장에, 링크 하나로 ② 팔로우하면 새 작업 소식까지 ③ 하는 일이 여럿이면, 직업도 여럿으로</td>
+<td>my-home-web·my-resume / chatty-alarm-news / my-basic-job → my-basic-job-select</td>
+<td>① EP2 새 글만 석 달째 기다렸어요 · 먼저 말 거는 쪽이 생각보다 반가워요 / ③ EP4 저는 그냥 회사원인데요 · 직업이 아니어도, 쓰면 쓰는 사람이에요</td>
+</tr>
+<tr>
+<td>04 노크</td>
+<td>첫 마디가 어렵다면 / 노크부터 (풀이: 같이 하고 싶은 사람에게 보내는 첫 메시지)</td>
+<td>① 용건을 고르고, 첫 메시지부터 ② 노크 환영도, 노크 받지 않음도 내가 정해요</td>
+<td>first-knock-type → chatty-knock-draft / my-collab-status</td>
+<td>① EP5 첫 줄에 금액부터 썼어요 · 부탁할 땐, 대가를 먼저 말하는 쪽이 닿아요 / ② EP6 공짜로 해 달라는 연락, 처음 거절했어요 · 받을지 말지는 내가 정해요</td>
+</tr>
+<tr>
+<td>더 있어요 띠</td>
+<td>앱 안에 더 있어요</td>
+<td>클럽: 아는 사람이 없을 땐, 모집 글부터 / 매주 뽑는 작업(Weekly Best): 신청하지 않아도, 전체공개로 올린 작업은 매주 받은 리스펙트로 순위에 올라요</td>
+<td>my-project-card-other / discovery-weekly-best(상금 가림)</td>
+<td>없음(시즌 2 후보, 화면에는 안 씀)</td>
+</tr>
+</tbody>
+</table></div><p class="table-hint">옆으로 밀어 보기 →</p>
+<p>02장에서는 앱 화면 순서(발견 → 리스펙트)와 달리 리스펙트를 ①에 뒀어요. 장 대제목이 리스펙트라서예요. 03장 ② 팔로우에는 칩을 달지 않아요. EP2 주인공은 끝까지 팔로우하지 않거든요.</p>
+<p>열린 본문 예시(02장 ①): '좋은 작업엔 별을 누르고, 준비된 한마디 중 마음에 맞는 걸 골라 보내요. 고른 말이 화면 가득 쏟아지며 전해져요.' '별'은 아이콘 모양을 확인한 뒤에만 써요. 03장 ①에는 '공유 링크는 앱이 없어도 웹에서 열려요'를 써요. C8.official 공개 프로필로 확인했어요.</p>
+<p>확인 안 된 사실과 앱 안 용어는 본문에 넣지 않았어요.</p>
+<ul>
+<li>확인 안 된 사실: 한마디 개수, 리스펙트가 남는 자리, 받기 전 메시지 수, 리스펙트 숫자</li>
+<li>앱 안 용어: GOAT, 꽃가루</li>
+<li>04장: 11/2 확인 전까지 '하나'나 '먼저 용건을 골라야' 같은 말을 쓰지 않아요.</li>
+</ul>
+<p>받은 노크 화면은 11/2 녹화 전까지 빈 상자로 둬요. 클럽과 Weekly Best 중 없는 게 있으면 '곧 열려요'를 달고, 둘 다 없으면 띠를 빼고 다리 문장만 남겨요.</p>
+</section><section id="s6" aria-labelledby="s6-t"><a class="sec-num" href="#s6"><b>06</b>에피소드와 둘러보기</a><h2 id="s6-t">재생은 마지막 장 한 곳에서 하고, 그 앞에는 재생 없는 문 하나와 예고 칩, 고정 목차를 둬요</h2>
+<p><strong>에피소드 자리.</strong> 05장은 기능 장과 같은 틀에 가장 진한 반전 판을 써요. 왼쪽 판에는 장 이름, 직군 칩 7개, 고지 '가상 인물·대화 · 화면은 예시예요'를 둬요. 오른쪽에는 대표 편과 여섯 편 선반을 둬요. 대표 편은 EP2를 권장해요(정할 것 5).</p>
+<ul>
+<li>재생: 대표 편은 절반 넘게 보일 때만 무음으로 자동 재생하고, 일시정지 버튼을 꼭 둬요. 2번 띠 포스터를 눌러 들어오면 대표 편이 소리 켠 채로 재생돼요.</li>
+<li>광고 유입: 광고로 특정 편 주소에 들어오면 대표에는 광고와 다른 편을 두고, 유입 출처를 붙여 나눠 재요.</li>
+<li>위로 돌아가기: 타일의 '이 편의 기능: 04 노크 ↑'를 누르면 그 소제목이 열린 채로 올라가요.</li>
+</ul>
+<p><strong>가상 인물 고지.</strong> 이야기 인물이 보이는 모든 자리에 고지를 둬요.</p>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>자리</th>
+<th>고지</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>05장 왼쪽 판</td>
+<td>'가상 인물·대화 · 화면은 예시예요'</td>
+</tr>
+<tr>
+<td>390 05장 머리 띠</td>
+<td>같은 고지를 고정하고, 대표 플레이어 바로 아래에 한 번 더</td>
+</tr>
+<tr>
+<td>2번 띠 포스터 아래</td>
+<td>'가상 인물·대화 · 화면은 예시예요'</td>
+</tr>
+<tr>
+<td>예고 칩</td>
+<td>회색 한 줄 끝에 '· 가상 인물'</td>
+</tr>
+<tr>
+<td>인트로 인물 카드</td>
+<td>모서리에 '예시'</td>
+</tr>
+</tbody>
+</table></div>
+<p>편마다 11/2 녹화 대조가 끝나면 고지를 '가상 인물·대화 · 앱 화면은 출시 버전을 바탕으로 다시 꾸몄어요'로 바꿔요. 'AI로 만든 가상 인물'을 붙일지는 공정위 지침 원문을 확인한 뒤 정해요.</p>
+<p><strong>고정 목차(sticky 내비).</strong> 장 목차는 다섯 칸이에요(01 올리기 · 02 발견·리스펙트 · 03 프로필 · 04 노크 · 05 1분 이야기).</p>
+<ul>
+<li>1440: 왼쪽 판 아래쪽의 세로 목록이에요. 현재 장은 굵게 쓰고 2px 막대를 붙여요. 글자색은 판 색과 상관없이 고정하고, 목록 아래에 '앱 받기'를 하나 둬요.</li>
+<li>390: 헤더 아래 44px 가로 탭이고, 누른 탭을 가운데로 옮겨요.</li>
+<li>공통: 01장부터 05장 끝까지만 보여요. 이 구간에서 아래로 내리면 상단 바가 숨어요. 05장에서는 대표 포스터가 가리지 않게 390 하단 바도 숨겨요.</li>
+</ul>
+<p><strong>다음 구간 링크.</strong> 장 끝마다 '다음 장 · 02 발견·리스펙트 ↓'를 달고, 04장 끝은 '05 1분 이야기 ↓'로 이어요. 지름길은 두 개예요. 인트로의 '건너뛰기 ↓'는 01장으로, 2번 띠의 '맨 끝에서 보기 ↓'는 05장으로 가요. 끝 허브에는 장 칩 5개, '다른 편 이어 보기 ↑', '실제 크리에이터 프로필 둘러보기 →'를 둬요. 프로필 링크는 공개에 동의받은 프로필 3개를 웹으로 열어요. 어디로 이동하든 도착한 제목으로 포커스를 옮겨요.</p>
+<p><strong>스크롤 길이 목표.</strong> 1440은 약 9,350px(상한 10,000), 390은 약 10,670px(상한 11,400)이에요. 05장 뒤는 1440 1,200px, 390 1,700px 안으로 둬요.</p>
+<p>05장 노출이 페이지뷰의 50%에 못 미치면, 순서는 지킨 채 압축판으로 바꿔요. 압축판은 기능 네 장을 카드 묶음으로 접은 판으로 약 7.2화면이고, 05장이 4.4화면 지점에서 시작해요. 그래도 낮으면 순서를 바꿀지 담당와 다시 정해요. 판정은 페이지뷰가 1,000을 넘고 공개한 지 2주가 지난 뒤에 해요.</p>
+</section><section id="s7" aria-labelledby="s7-t"><a class="sec-num" href="#s7"><b>07</b>와이어 제작 스펙</a><h2 id="s7-t">새 파일에 1440·390을 함께 그렸고, 장은 데이터 표 한 벌로 찍어요</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>1440</th>
+<th>390</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>격자</td>
+<td>상단 바 60, 장 판 480(풀블리드, 바깥 여백 0) + 본문 영역 960(본문 최대 720)</td>
+<td>상단 바 56, 여백 20, 장 머리 띠 200, 목차 탭 44, 하단 바 56 + 안전 영역</td>
+</tr>
+<tr>
+<td>글자</td>
+<td>H1 72 · 박자 44 · 장 이름 56 · 약속 28 · 소제목 24 · 본문 16/1.75</td>
+<td>H1 36 · 박자 28 · 장 이름 32 · 약속 20 · 소제목 19 · 본문 16/1.7</td>
+</tr>
+<tr>
+<td>인트로</td>
+<td>고정 무대 220vh, 카드 360×480, 박자 문구 좌우 각 최대 420, 진행 점 4개</td>
+<td>200svh, 카드 180×240, 문구는 카드 위아래</td>
+</tr>
+<tr>
+<td>기능 장</td>
+<td>닫힌 줄 72, 화면 판 720×440 + 폰 204×440, 장 높이 1,040 이하</td>
+<td>닫힌 줄 60, 화면 판 350×420 + 폰 194×420, 장 높이 1,200 이하</td>
+</tr>
+<tr>
+<td>칩</td>
+<td>높이 64(포스터 40×60 + EP·제목·회색 한 줄·가상 인물), 누르지 않는 예고</td>
+<td>높이 60, 전폭</td>
+</tr>
+<tr>
+<td>1분 이야기</td>
+<td>대표 플레이어 300×533 + 글 380, 선반 타일 160(포스터 160×240) 4장 + 다음 장 일부</td>
+<td>머리 띠 240(고지 줄 고정), 대표 포스터 폭 350(2:3), 선반 타일 220</td>
+</tr>
+<tr>
+<td>모션</td>
+<td>CSS 전환·클래스 바꾸기·화면 진입 감지만, 자동 넘김 없음</td>
+<td>같음. 모션 줄이기면 인트로를 고정 없이 쌓음(약 160vh)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>v0.8 와이어는 비교용으로 남기고 새 파일로 그려요. 실측 배지와 상단 바·에피소드 상태 다섯 판·당신 차례·FAQ·푸터 부품은 다시 써요. 신뢰 띠는 허브 안 한 줄로 줄여 써요.</li>
+<li>새 부품은 인트로 무대, 장 틀, 장 목차, 예고 칩, 고지 줄, 더 있어요 띠, 허브, 390 하단 바예요.</li>
+<li>조건부 판도 그려요. Shuffle! '곧 열려요', 칸 숨김, 모션 줄이기 인트로, 05장 공개 전, EP3 칩 숨김이에요.</li>
+<li>가로 넘침 0, 장당 높이, 05장 시작 위치, 05장 뒤 길이를 실측해요. 결과는 아래 '홈 와이어프레임' 절에 있어요.</li>
+<li>다시 쓰는 화면의 탭바는 모두 11/2 구성(Discovery·클럽·Chatty·My)으로 고쳐 그려요. my-collab-status·discovery-respect-phrase·my-home-web도 포함이고, 11/2 빌드로 다시 확인해요.</li>
+<li>소제목은 details/summary와 aria-expanded로 만들고, 장 제목은 h2, 소제목은 h3로 둬요. 쪼갠 박자 문구에는 화면 읽기용 한 문장을 따로 둬요.</li>
+<li>측정 이벤트(이름은 제안): intro_beat_reach, chapter_view, nav_click, feature_open, episode_chip_view, episode_play·complete, hub_click(프로필 링크 포함), app_cta(위치). 입력값은 보내지 않아요.</li>
+</ul>
+</section><section id="s8" aria-labelledby="s8-t"><a class="sec-num" href="#s8"><b>08</b>홈 와이어프레임</a><h2 id="s8-t">열세 구간과 고정 장치 셋을 1440·390 두 폭으로 그리고 실측했어요</h2>
+<p>위 구조를 HTML 한 파일로 그렸어요. 구간마다 번호·목표 높이·실측 배지가 붙고, 주석을 끄면 시안 검토용으로 그대로 써요. 01~04장은 장 데이터 표 한 벌을 같은 틀에 찍어 그려요. 조건부 판 스위치(Shuffle! 곧 열려요, 칸 숨김, EP3 칩 숨김, 05장 공개 전, 모션 줄이기 인트로)도 들어 있어요.</p>
+<ul>
+<li>공개 주소: https://euna-source.github.io/public-pages/c8-home-v08-plan/wire-v09.html (원본은 같은 폴더의 <code>C8_서비스홈_v0.9_홈와이어프레임_1440·390_261018.html</code>)</li>
+<li>비교용 v0.8 와이어: https://euna-source.github.io/public-pages/c8-home-v08-plan/wire.html</li>
+</ul>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>항목</th>
+<th>1440×900</th>
+<th>390×844</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>가로 넘침 · 콘솔 오류</td>
+<td>0 · 0</td>
+<td>0 · 0</td>
+</tr>
+<tr>
+<td>전체 높이(주석 끔)</td>
+<td>9,558px(10.6화면)</td>
+<td>10,850px(12.9화면)</td>
+</tr>
+<tr>
+<td>05장 1분 이야기 위치</td>
+<td>74%→87%</td>
+<td>70%→85%</td>
+</tr>
+<tr>
+<td>05장 뒤 길이</td>
+<td>1,224px</td>
+<td>1,680px</td>
+</tr>
+<tr>
+<td>장 목차</td>
+<td>왼쪽 판 아래 세로 목록, sticky</td>
+<td>44px 가로 탭, 상단 바 숨으면 top 0</td>
+</tr>
+<tr>
+<td>하단 바</td>
+<td>없음</td>
+<td>01~04장 '앱 받기', 05장 숨김, FAQ에서 두 칸</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li>QA에서 고친 것: 1440 노트북 높이에서 목차 카드가 판 문구와 가상 인물 고지를 가리던 것(높이별 압축형·한 줄형 목차), 390 첫 화면에서 주석 배지가 브랜드 이름과 박자 문구를 덮던 것(배지를 흐름 안으로), 페이지를 열 때 feature_open이 4건 거짓 기록되던 것(사용자 조작만 기록). 수리 뒤 1440 높이 다섯 가지 × 주석 켬·끔에서 겹침 0이에요.</li>
+<li>남은 것: 1440×640에서 주석을 켜면 05장 직군 칩이 한 줄형 목차와 겹쳐요. 주석을 끈 화면은 괜찮아요. 390 여백은 와이어 16px, 위 스펙 표 20px으로 서로 달라서 시안 단계에서 하나로 맞춰요.</li>
+</ul>
+<figure class="figure"><a aria-label="홈 와이어프레임 v0.9 1440 크게 보기" href="img/wire-v09-1440.png" rel="noopener" target="_blank"><img alt="홈 와이어프레임 v0.9 1440" decoding="async" src="img/wire-v09-1440.png"/></a></figure>
+<figure class="figure"><a aria-label="홈 와이어프레임 v0.9 390 크게 보기" href="img/wire-v09-390.png" rel="noopener" target="_blank"><img alt="홈 와이어프레임 v0.9 390" decoding="async" src="img/wire-v09-390.png"/></a></figure>
+</section><section id="s9" aria-labelledby="s9-t"><a class="sec-num" href="#s9"><b>09</b>반론과 뒤집힐 조건</a><h2 id="s9-t">가장 큰 위험은 길이라서, 판정 기준을 숫자로 걸어 뒀어요</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>반론</th>
+<th>지금 대응</th>
+<th>뒤집힐 조건</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10화면이 넘어서 끝까지 안 내려와요(마케팅 관점 1위는 2안)</td>
+<td>기능 장 넷, 05장 뒤를 1,200px로 줄임, 앞쪽엔 재생 없는 문 하나와 예고 칩</td>
+<td>05장 노출이 50% 미만이면 순서를 지킨 채 압축판(약 7.2화면)으로. 그래도 낮으면 순서 변경을 담당와 다시 정함</td>
+</tr>
+<tr>
+<td>첫 화면이 '여긴 뭐 하는 데지?'에 답하지 못해요</td>
+<td>H1 위 브랜드 이름, 정체를 말하는 보조문, 직함 크레딧</td>
+<td>5초 정체 시험에서 지금 첫 화면보다 낮으면 고정 무대를 접고 정적 첫 화면으로</td>
+</tr>
+<tr>
+<td>카카오를 베낀 것 같아요</td>
+<td>판 색·라벨·말풍선·문구 꼴을 버리고, 판·본문 비율과 수치도 카카오와 다르게 잡음(480/960 풀블리드, 탭 44, 목차 글자색 고정)</td>
+<td>디자인 리뷰에서 '카카오 같다'가 나오면 1440 판 고정을 풀고 장 머리를 390식 띠로 통일</td>
+</tr>
+<tr>
+<td>낯선 말이 많아요(리스펙트, 노크, 1분 이야기가 영상인지)</td>
+<td>기능 머리 한 줄, 02·04장 풀이 한 줄, 칩의 '1분' 표시</td>
+<td>5명 중 셋 이상이 못 읽은 말엔 풀이를 붙임</td>
+</tr>
+<tr>
+<td>아코디언·목차가 전환에 낫다는 근거가 없어요(카카오도 이 조작은 재지 않아요)</td>
+<td>조작을 모두 잼</td>
+<td>공개 2주 뒤 앱 받기 클릭이 지금보다 낮으면 펼친 카드형으로</td>
+</tr>
+<tr>
+<td>가상 인물 이야기를 실제 후기로 읽을 수 있어요</td>
+<td>인물이 보이는 모든 자리에 고지, '증명' 대신 '보여 줘요'</td>
+<td>공정위 지침 원문이 AI 생성 표시를 요구하면 고지에 'AI로 만든 가상 인물'을 더함</td>
+</tr>
+</tbody>
+</table></div>
+</section><section id="s10" aria-labelledby="s10-t"><a class="sec-num" href="#s10"><b>10</b>정할 것</a><h2 id="s10-t">와이어를 확정하기 전에 여섯 가지를 정해 주세요</h2>
+<details class="callout decide" id="d1"><summary class="callout-label"><span class="dn">01</span><span class="dq">길이 목표를 5~7화면에서 1440 약 10.4화면, 390 약 12.6화면으로 바꿀까요?</span></summary><div class="callout-body">
+<p>권장: 바꿔요. 노출이 낮아도 순서(기능 → 이야기)는 지키고, 압축판으로 먼저 대응해요. 뒤집힐 조건: 7화면을 꼭 지켜야 하면 기능 네 장을 카드 묶음으로 접은 압축판(약 7.2화면)으로 그려요. 노출이 낮을 때 순서까지 바꿔도 되는지도 함께 답해 주세요.</p>
+</div></details>
+<details class="callout decide" id="d2"><summary class="callout-label"><span class="dn">02</span><span class="dq">인트로를 고정 무대(220vh, 건너뛰기 있음)로 할까요, 고정 없는 판(약 160vh)으로 할까요?</span></summary><div class="callout-body">
+<p>'스크롤 연출은 내려놓는다'는 결정을 인트로에서만 고치는 일이에요.
+권장: 고정 무대. 뒤집힐 조건: 5초 정체 시험에서 지금 첫 화면보다 낮으면 고정 없는 판으로 가요.</p>
+</div></details>
+<details class="callout decide" id="d3"><summary class="callout-label"><span class="dn">03</span><span class="dq">01장 대제목을 '완성 전이어도 작업으로 남겨요'로 할까요, '두 줄짜리 습작도 작업이에요'로 할까요?</span></summary><div class="callout-body">
+<p>권장: 앞쪽이에요. 미완성 작업도 올린다는 기능이 바로 읽히고, EP1(습작 두 줄)과도 맞아요. '완성작은 포트폴리오'는 EP1의 두 줄 음원이 포트폴리오로 올라가는 것과 부딪혀서 대제목과 소제목 모두에서 뺐어요. 뒤집힐 조건: 문구 시험에서 앞쪽이 기능을 못 전하면 뒤쪽으로 가요.</p>
+</div></details>
+<details class="callout decide" id="d4"><summary class="callout-label"><span class="dn">04</span><span class="dq">끝 문장을 '자기검열 그만하고 / 자기소개 좀 하세요.'로 할까요, H1을 다시 놓을까요?</span></summary><div class="callout-body">
+<p>권장: 자기검열 문장이에요. 태도 한 줄로 끝나고 인트로와 겹치지 않아요. 뒤집힐 조건: 사람 시험에서 '자기검열'이 맥락 없이 안 읽히면 H1으로 바꿔요. 박자 3의 '욕먹을'까지 더하면 도발하는 말투가 두 번 나와요. 그래서 대안 '밖에서는 눈치 보던 자랑, | 여기서는 프로필이에요.'도 같은 시험에 넣어요.</p>
+</div></details>
+<details class="callout decide" id="d5"><summary class="callout-label"><span class="dn">05</span><span class="dq">기능 항목에 예고 칩을 붙이면서 바뀐 에피소드 규칙과 홈 대표 편 EP2를 받을까요?</span></summary><div class="callout-body">
+<p>바뀐 규칙은 세 가지예요. EP4·EP6도 기능과 연결하고, 한 장에 칩은 최대 2개이고, 칩은 누르지 않는 예고예요.
+권장: 받아요. 여섯 편이 모두 기능 하나에 닿아요. 대표는 EP2가 H1의 '연결'과 맞아요. EP6은 거절 이야기라 처음 보는 사람에게 '무리한 부탁을 받는 곳'으로 읽힐 수 있고, 버튼 이름 확인(10/23)에도 걸려 있어요. 뒤집힐 조건: 거절 장면을 클라이맥스로 쓰기로 정하고(10/21), 버튼 이름이 확인되고, 사람 시험에서 EP6이 '거절해도 되는 곳'으로 읽히면 EP6을 대표로 둬요.</p>
+</div></details>
+<details class="callout decide" id="d6"><summary class="callout-label"><span class="dn">06</span><span class="dq">'둘러보기'는 에피소드 선반을 다시 보는 건가요, 실제 크리에이터 프로필을 구경하는 건가요?</span></summary><div class="callout-body">
+<p>권장: 둘 다 두되, 끝 허브의 중심은 실제 프로필이에요. 카카오 출구처럼 페이지 밖으로 이어져야 둘러보는 의미가 생겨요. 공개에 동의받은 프로필 3개를 웹 링크로 걸어요. 뒤집힐 조건: 동의를 3명에게 받지 못하면 C8.official 프로필 하나와 에피소드 선반으로 시작해요.</p>
+</div></details>
+</section><section id="s11" aria-labelledby="s11-t"><a class="sec-num" href="#s11"><b>11</b>다음 행동</a><h2 id="s11-t">답을 받으면 와이어를 확정하고 시안으로 넘겨요</h2>
+<ul class="actions"><li class=""><span aria-hidden="true" class="box"></span><span class="what">정할 것 여섯 가지에 답하기</span><span class="who"><span>담당</span><span>10/20</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">정할 것 답을 v0.9 와이어에 반영하고(길이·인트로·01장 대제목·끝 문장·대표 편·둘러보기) 다시 실측하기</span><span class="who"><span>키키</span><span>10/22</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">2번 띠와 05장 대표에 쓸 EP2·EP6 정지 포스터 두 장 고르기(정할 것 5와 10/23 화면 점검 결과로 확정)</span><span class="who"><span>젠지</span><span>10/22</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">공정위 가상 인물 표시 지침 원문을 찾아 고지 문구와 'AI로 만든' 표기가 필요한지 확인하고, 74% 수치도 원문과 대조하기</span><span class="who"><span>레인</span><span>10/24</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">Advisor 이름 사용 범위, 회원 작업 공개, 공개 프로필 3개 링크 동의 확인하기</span><span class="who"><span>담당</span><span>10/24</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">사람 5명에게 5초 정체 시험과 문구 시험 하기(01장 대제목, 박자 3 대안, 리스펙트·노크 풀이 포함)</span><span class="who"><span>키키·젠지</span><span>10/27</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">11/2 빌드와 대조해 확인하기 탭 이름, Shuffle!, 클럽, Weekly Best, 직업 칸, 받은 노크 화면, 리스펙트 표시 위치, 오디오 업로드·재생, 별 아이콘</span><span class="who"><span>나나</span><span>11/4:</span></span></li><li class=""><span aria-hidden="true" class="box"></span><span class="what">여섯 편 포스터가 나오면 3안 인트로를 비교 시험할지 정하기</span><span class="who"><span>키키</span><span>11/18</span></span></li></ul>
+</section><section id="s12" aria-labelledby="s12-t"><a class="sec-num" href="#s12"><b>12</b>참고</a><h2 id="s12-t">직접 열어 잰 페이지와 원문 출처예요</h2>
+<ul>
+<li><a href="https://www.kakaocorp.com/page/service/service">카카오 서비스 페이지</a> — 10/18 1440·390 높이 측정, 소스로 모션 구조 확인(스크롤 녹화 전)</li>
+<li><a href="https://toss.im/">토스</a> — 브랜드 한 문장 → 기능 9장 → '토스가 바꾼 일상' 순서 비교</li>
+<li><a href="https://view.cre8orclub.com/share/profile?des=LPJTh3qkII0y8CJs">C8.official 공개 프로필</a> — 브랜딩 문구 원문과 웹 공유 링크 동작, 10/18 확인</li>
+<li><a href="https://euna-source.github.io/public-pages/c8-home-v08-plan/wire.html">지금 홈 와이어 v0.8</a> — 길이와 에피소드 위치 비교 기준</li>
+<li>같은 날 당근·네이버·배민·무신사·Discord·Notion 등 9곳도 같은 방식으로 쟀어요.</li>
+</ul>
+</section><section id="s13" aria-labelledby="s13-t"><a class="sec-num" href="#s13"><b>13</b>검토 반영</a><h2 id="s13-t">반박을 어떻게 반영했나</h2>
+<div class="table stack"><table>
+<thead>
+<tr>
+<th>지적</th>
+<th>반영한 곳</th>
+<th>다르게 받은 것</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>카카오 해석이 사실보다 앞섬(NEWS는 보도자료, 노출 측정 범위, slick 사용, 캐러셀 정지 버튼, 주소로 열기는 우리 몫, 모션은 코드로 읽음)</td>
+<td>결론, 카카오 표·원리·버릴 것, 토론 '배운 점'을 사실대로 고치고 측정 범위 한 줄을 더함</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>카카오 수치를 그대로 옮김(568/872/728/62)</td>
+<td>격자를 480/960 풀블리드로, 390 탭을 44로 바꾸고 반론 표에 대응을 적음</td>
+<td>글자 크기 비율은 이미 달라 그대로 둠</td>
+</tr>
+<tr>
+<td>수치 정밀도(390 비율, 블록·배너·출구 높이, 74% 출처)</td>
+<td>범위·기준·미측정·원문 미대조를 표시하고 74% 대조를 다음 행동에 넣음</td>
+<td>없음</td>
+</tr>
+<tr>
+<td>에피소드가 '마지막'이 아님(앞쪽 문 최대 9개, 05장 뒤 2.1화면)</td>
+<td>칩을 누르지 않는 예고로, 하단 바는 04장까지 앱 받기만, 05장 뒤는 1,920px에서 1,200px로, 다리 문장 교체</td>
+<td>신뢰 띠는 허브에 합치고 '당신 차례'는 따로 뗌</td>
+</tr>
+<tr>
+<td>뒤집힐 조건이 브리프 순서를 깸</td>
+<td>압축판을 먼저 쓰고, 순서 변경은 다시 정하게 함(정할 것 1)</td>
+<td>'50% 지점 안'은 계산상 닿지 않아 05장 시작 4.4화면으로 적음</td>
+</tr>
+<tr>
+<td>문구가 제품 사실보다 앞섬(용건 하나, 여덟 개, 작업 카드, Weekly Best, 완성작 정의, 링크, 직업 칸, 셔플, 녹화 문구)</td>
+<td>원본 화면 문구에 맞추고 11/2 대조 목록과 탭바 스펙을 더함</td>
+<td>웹 공유 링크는 확인돼 본문에 넣음</td>
+</tr>
+<tr>
+<td>가상 인물 고지 누락, '증명' 표현, EP2 칩 위치</td>
+<td>인물이 보이는 모든 자리에 고지와 전환 규칙, '보여 줘요'로 바꿈, EP2를 03장 ①로 옮김</td>
+<td>'AI로 만든' 표기는 지침 확인 뒤 정함</td>
+</tr>
+<tr>
+<td>와이어 QA: 1440 목차 카드 겹침, 390 배지 겹침, feature_open 거짓 기록, 실측이 추정보다 김</td>
+<td>목차를 높이별 압축형으로, 배지를 흐름 안으로, 사용자 조작만 기록, 합계 줄에 실측 반영</td>
+<td>1440×640 주석 켬 겹침은 둠</td>
+</tr>
+<tr>
+<td>비창작자 가독성, 톤, 대표 편, 둘러보기 뜻, '이번 주 공개'</td>
+<td>정체를 말하는 보조문과 브랜드 이름, 풀이 한 줄, 01장 대제목 교체, '새로 공개', 대표 EP2 권장, 둘러보기 결정 추가</td>
+<td>박자 1·3 원문은 두고 대안만 시험, 보조문은 '찾아와요' 같은 약속 없이 씀</td>
+</tr>
+</tbody>
+</table></div>
+</section>
+    </main>
+  </div>
+  <footer class="foot"><span>plan · 문서 템플릿</span></footer>
+</div>
+
+<button class="to-top" id="to-top" type="button" aria-label="맨 위로"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg></button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const root = document.documentElement;
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const store = {
+    get(k) { try { return localStorage.getItem('doc-tpl-' + k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem('doc-tpl-' + k, v); } catch { /* 저장 불가: 화면 상태만 유지 */ } }
+  };
+
+  // 알림
+  const toast = $('#toast');
+  let toastTimer;
+  const say = (msg) => {
+    if (!toast) return;
+    toast.textContent = msg;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { toast.textContent = ''; }, 4000);
+  };
+
+  // 테마: 저장값 > 시스템 설정
+  const themeBtn = $('#theme-btn');
+  const themeMeta = $('meta[name="theme-color"]');
+  const systemDark = matchMedia('(prefers-color-scheme: dark)');
+  const applyTheme = (theme) => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    if (themeBtn) {
+      $('.label', themeBtn).textContent = dark ? '라이트' : '다크';
+      themeBtn.setAttribute('aria-label', dark ? '라이트 모드로 보기' : '다크 모드로 보기');
+    }
+    if (themeMeta) themeMeta.content = dark ? '#20231F' : '#F6F3EB';
+  };
+  const saved = store.get('theme');
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (systemDark.matches ? 'dark' : 'light'));
+  systemDark.addEventListener('change', (e) => { if (!store.get('theme')) applyTheme(e.matches ? 'dark' : 'light'); });
+  themeBtn?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    store.set('theme', next);
+  });
+
+  // 강조 켜기/끄기
+  const markBtn = $('#mark-btn');
+  markBtn?.addEventListener('click', () => {
+    const off = document.body.classList.toggle('marks-off');
+    markBtn.setAttribute('aria-pressed', String(!off));
+    say(off ? '노란 강조를 껐습니다.' : '노란 강조를 켰습니다.');
+  });
+
+  // 인쇄·PDF
+  $('#print-btn')?.addEventListener('click', () => window.print());
+
+  // 링크 복사·공유 (기본 기능)
+  // 주소는 canonical이 있으면 그것, 없으면 지금 주소에서 # 뒤를 뗀 값. 문서 단위로 공유한다.
+  // 남이 열 수 있는 웹 주소(http·https)만 쓴다. canonical이 file:이거나 로컬 기준 상대 주소면 버리고 지금 주소로,
+  // 그것도 file:이면 공유할 주소가 없다 → null.
+  const webUrl = (u) => {
+    try { const x = new URL(u, location.href); return /^https?:$/.test(x.protocol) ? x.href.split('#')[0] : null; }
+    catch { return null; }
+  };
+  const docUrl = () => {
+    const c = $('link[rel="canonical"]')?.getAttribute('href');
+    return (c && webUrl(c)) || webUrl(location.href);
+  };
+  const NO_URL = '아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
+  const metaOf = (sel) => $(sel)?.content || '';
+  const legacyCopy = (v) => {
+    const ta = document.createElement('textarea');
+    ta.value = v; ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+    document.body.appendChild(ta); ta.select();
+    let ok = false;
+    try { ok = document.execCommand('copy'); } catch { ok = false; }
+    ta.remove();
+    return ok;
+  };
+  const copyText = (v) => (navigator.clipboard && window.isSecureContext)
+    ? navigator.clipboard.writeText(v).then(() => true, () => legacyCopy(v))
+    : Promise.resolve(legacyCopy(v));
+  $('#copy-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    copyText(docUrl()).then((ok) => say(ok ? '링크를 복사했습니다.' : '복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+  });
+  $('#share-btn')?.addEventListener('click', () => {
+    if (!docUrl()) { say(NO_URL); return; }
+    const data = {
+      title: metaOf('meta[property="og:title"]') || document.title,
+      text: metaOf('meta[property="og:description"]') || metaOf('meta[name="description"]'),
+      url: docUrl()
+    };
+    if (navigator.share && (!navigator.canShare || navigator.canShare(data))) {
+      // 공유 창을 연 뒤에는 사용자 동작이 소모돼 자동 복사가 막힐 수 있다(사파리). 실패하면 안내만 한다.
+      navigator.share(data).catch((e) => say(e && e.name === 'AbortError'
+        ? '공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.'
+        : '공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'));
+    } else {
+      copyText(data.url).then((ok) => say(ok
+        ? '링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.'
+        : '공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'));
+    }
+  });
+
+  // 표 → 모바일 카드: 머리글을 칸마다 이름표로 붙인다
+  $$('.table.stack table').forEach((table) => {
+    const heads = $$('thead th', table).map((th) => th.textContent.trim());
+    $$('tbody tr', table).forEach((tr) => {
+      $$('td', tr).forEach((td, i) => { if (!td.dataset.label && heads[i]) td.dataset.label = heads[i]; });
+    });
+  });
+
+  // 읽기 진행 + 목차 현재 위치
+  const bar = $('#progress');
+  const sections = $$('.doc > section[id]');
+  const tocLinks = $$('.toc a');
+  let ticking = false;
+  const update = () => {
+    ticking = false;
+    const max = root.scrollHeight - innerHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(1, Math.max(0, scrollY / max)) * 100 : 0) + '%';
+    if (!sections.length) return;
+    const cs = getComputedStyle(root);
+    const line = parseFloat(cs.getPropertyValue('--header-h')) + (parseFloat(cs.getPropertyValue('--band-h')) || 0) + 80;
+    let current = sections[0];
+    for (const s of sections) if (s.getBoundingClientRect().top <= line) current = s;
+    if (innerHeight + scrollY >= root.scrollHeight - 4) current = sections[sections.length - 1];
+    tocLinks.forEach((a) => {
+      if (a.hash === '#' + current.id) a.setAttribute('aria-current', 'true');
+      else a.removeAttribute('aria-current');
+    });
+  };
+  const toTop = $('#to-top');
+  toTop?.addEventListener('click', () => { window.scrollTo({ top: 0 }); $('.skip')?.focus?.(); });
+  const onScroll = () => {
+    if (toTop) toTop.classList.toggle('show', scrollY > innerHeight * 2);
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  };
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll);
+  update();
+
+  const hashId = (h) => { try { return decodeURIComponent(h.slice(1)); } catch { return h.slice(1); } };
+  // 목차·절 링크로 이동한 뒤 도착점이 밀렸으면 제자리로 다시 맞춘다. 가장 최근 이동에만 걸고, 손으로 스크롤하면 취소한다
+  let navId = 0;
+  const cancelSettle = () => { navId++; };
+  ['wheel', 'touchstart', 'keydown'].forEach((ev) => addEventListener(ev, cancelSettle, { passive: true }));
+  const settle = (id) => {
+    const el = id && document.getElementById(id);
+    if (!el || el.closest('.drawer')) return;  // 서랍 안은 서랍이 따로 연다
+    const mine = ++navId;
+    let done = false;
+    const fix = () => {
+      if (done || mine !== navId) return;
+      done = true;
+      const want = parseFloat(getComputedStyle(root).scrollPaddingTop) || 0;
+      const off = el.getBoundingClientRect().top - want;
+      const room = root.scrollHeight - innerHeight - scrollY;
+      if (Math.abs(off) > 4 && (off < 0 || room > 4)) window.scrollBy({ top: off, behavior: 'instant' });
+      update();
+    };
+    const y0 = scrollY;
+    if ('onscrollend' in window) {
+      addEventListener('scrollend', fix, { once: true });
+      setTimeout(() => { if (scrollY === y0) fix(); }, 200); // 이미 제자리라 스크롤이 일어나지 않으면 scrollend도 오지 않는다
+    } else setTimeout(fix, 1200);
+  };
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) settle(hashId(a.hash));
+  });
+
+  // 결정 모음: 주소가 가리키는 항목은 펼친다(표지 줄·절 머리 '정할 것'에서 올 때)
+  const openTarget = (id) => {
+    const el = id && document.getElementById(id);
+    const d = el && (el.tagName === 'DETAILS' ? el : el.closest('details'));
+    if (d) d.open = true;
+  };
+  addEventListener('hashchange', () => openTarget(hashId(location.hash)));
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (a) openTarget(hashId(a.hash));
+  });
+  openTarget(hashId(location.hash));
+  // 결정 항목이 셋 이상인 절에는 '모두 펼치기'를 둔다
+  $$('.doc > section').forEach((sec) => {
+    const items = $$(':scope > details.decide', sec);
+    if (items.length < 3) return;
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'hub-toggle';
+    const sync = () => { btn.textContent = items.every((d) => d.open) ? '모두 접기' : '모두 펼치기'; };
+    btn.addEventListener('click', () => { const open = !items.every((d) => d.open); items.forEach((d) => { d.open = open; }); sync(); });
+    items.forEach((d) => d.addEventListener('toggle', sync));
+    // 소제목(h3)으로 묶었으면 첫 묶음 제목 앞에 둔다
+    const prev = items[0].previousElementSibling;
+    (prev && prev.tagName === 'H3' ? prev : items[0]).before(btn); sync();
+  });
+  // 인쇄할 때는 접힌 내용도 모두 싣는다
+  let closedForPrint = [];
+  addEventListener('beforeprint', () => { closedForPrint = $$('details:not([open])'); closedForPrint.forEach((d) => { d.open = true; }); });
+  addEventListener('afterprint', () => { closedForPrint.forEach((d) => { d.open = false; }); closedForPrint = []; });
+
+  // 고정 달력 띠 높이 → 앵커 이동 여백(--band-h)
+  const band = $('#calband');
+  if (band) {
+    const setBand = () => root.style.setProperty('--band-h', band.getBoundingClientRect().height + 'px');
+    setBand();
+    if ('ResizeObserver' in window) new ResizeObserver(setBand).observe(band); else addEventListener('resize', setBand);
+  }
+
+  // 오늘: 달력 칸·국면 카드에 표시(보는 사람 기기의 날짜)
+  const pad = (n) => String(n).padStart(2, '0');
+  const now = new Date();
+  const today = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+  const td = $(`.day[data-date="${today}"]`);
+  if (td) { td.classList.add('today'); td.setAttribute('aria-current', 'date'); td.setAttribute('aria-label', `오늘, ${td.textContent.trim()}`); }
+  $$('.phase-card[data-start], .pn[data-start]').forEach((el) => {
+    const a = el.dataset.start, b = el.dataset.end;
+    if (a && b && a <= today && today <= b) {
+      el.classList.add('now');
+      const tag = $('.pc-now', el); if (tag) tag.hidden = false;
+    }
+  });
+  // 오늘이 달력 안이면 그 칸이 보이게 가로 스크롤
+  if (td) { const cal = td.closest('.calgrid'); if (cal) cal.scrollLeft += td.getBoundingClientRect().left - cal.getBoundingClientRect().left - cal.clientWidth / 2 + td.clientWidth / 2; }
+  // 오늘이 달력 밖이면 범례에 며칠 앞·뒤인지 적는다
+  const days = $$('.day[data-date]');
+  if (days.length && !td) {
+    const first = days[0].dataset.date, last = days[days.length - 1].dataset.date;
+    const diff = (a, b) => Math.round((new Date(a) - new Date(b)) / 864e5);
+    const lg = $('.cal-legend');
+    const md = `${now.getMonth() + 1}/${now.getDate()}`;
+    const msg = today < first ? `오늘(${md})은 달력 시작 ${diff(first, today)}일 전` : today > last ? `오늘(${md})은 달력 끝 ${diff(today, last)}일 뒤` : '';
+    if (lg && msg) { const s = document.createElement('span'); s.className = 'lg-away'; s.textContent = msg; lg.prepend(s); }
+    $('.lg.today')?.classList.add('absent');
+  }
+  // 읽는 위치를 따라 날짜 칸을 표시하고 달력 줄을 그 칸으로 민다(휴대폰에서 줄이 멈춰 있지 않게)
+  const tlRows = $$('.tl-row[id^="d"]');
+  if (tlRows.length && days.length) {
+    const byId = {}; days.forEach((d) => { const h = d.getAttribute('href'); if (h) (byId[h.slice(1)] = byId[h.slice(1)] || []).push(d); });
+    let last = '';
+    const spy = () => {
+      const line = parseFloat(getComputedStyle(root).getPropertyValue('--header-h')) + (parseFloat(getComputedStyle(root).getPropertyValue('--band-h')) || 0) + 40;
+      let curRow = null;
+      for (const r of tlRows) { if (r.getBoundingClientRect().top <= line) curRow = r; else break; }
+      const id = curRow ? curRow.id : '';
+      if (id === last) return; last = id;
+      $$('.day.reading').forEach((x) => x.classList.remove('reading'));
+      const hit = byId[id] || [];
+      hit.forEach((x) => x.classList.add('reading'));
+      if (hit[0]) {
+        const g = hit[0].closest('.calgrid');
+        if (g) { const d = hit[0].getBoundingClientRect().left - g.getBoundingClientRect().left; if (d < 0 || d > g.clientWidth - hit[0].offsetWidth) g.scrollTo({ left: g.scrollLeft + d - 8, behavior: 'smooth' }); }
+      }
+    };
+    let t2 = 0; addEventListener('scroll', () => { cancelAnimationFrame(t2); t2 = requestAnimationFrame(spy); }, { passive: true });
+  }
+  // 누른 날짜 칸 표시
+  document.addEventListener('click', (e) => {
+    const d = e.target.closest('.day');
+    if (d) { $$('.day.sel').forEach((x) => x.classList.remove('sel')); d.classList.add('sel'); }
+  });
+
+  // 레이어(서랍): 버튼·목차·절 링크로 연다. Esc·바깥·닫기로 닫고, 연 자리로 초점을 돌린다
+  const drawerBg = $('#drawer-bg');
+  let openDrawer = null, opener = null;
+  const closeLayer = () => {
+    if (!openDrawer) return;
+    openDrawer.hidden = true; if (drawerBg) drawerBg.hidden = true;
+    document.body.classList.remove('drawer-open');
+    openDrawer = null;
+    if (opener && opener.focus) opener.focus();
+  };
+  const glossHit = (d, from) => {   // 열 머리 ?로 열면 그 열의 설명 줄을 표시하고 그리로
+    const name = (from && from.getAttribute('aria-label') || '').replace(/ 설명$/, '').trim();
+    $$('tr.hl', d).forEach((x) => x.classList.remove('hl'));
+    if (!name) return;
+    const row = $$('tbody tr', d).find((tr) => { const c = tr.querySelector('td,th'); return c && c.textContent.includes(name); });
+    if (row) { row.classList.add('hl'); row.scrollIntoView({ block: 'center' }); }
+  };
+  const openLayer = (id, from) => {
+    const d = document.getElementById(id);
+    if (!d || !d.classList.contains('drawer')) return false;
+    if (openDrawer && openDrawer !== d) { openDrawer.hidden = true; }
+    opener = from || document.activeElement;
+    d.hidden = false; if (drawerBg) drawerBg.hidden = false;
+    document.body.classList.add('drawer-open');
+    openDrawer = d;
+    $('.drawer-body', d).scrollTop = 0;
+    $('.drawer-close', d).focus();
+    if (from && from.classList && from.classList.contains('qh')) glossHit(d, from);
+    return true;
+  };
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-layer]');
+    if (b) { e.preventDefault(); openLayer(b.dataset.layer, b); return; }
+    const a = e.target.closest('a[href^="#"]');
+    if (a && a.hash.length > 1) {
+      const id = hashId(a.hash);
+      const target = document.getElementById(id);
+      if (target && target.classList.contains('drawer')) { e.preventDefault(); openLayer(id, a); return; }
+      // 레이어 안에서 본문으로 가는 링크: 레이어를 닫고 이동
+      const inDrawer = target ? target.closest('.drawer') : null;
+      if (openDrawer && !inDrawer && a.closest('.drawer')) closeLayer();
+      if (inDrawer && target !== inDrawer) { e.preventDefault(); if (inDrawer !== openDrawer) openLayer(inDrawer.id, a); const dt = target.closest('details'); if (dt) dt.open = true; target.scrollIntoView({ block: 'start' }); }
+    }
+    if (e.target.closest('.drawer-close') || e.target === drawerBg) closeLayer();
+  });
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && openDrawer) { closeLayer(); return; }
+    if (e.key === 'Tab' && openDrawer) {   // 초점을 서랍 안에 가둔다
+      const f = $$('a[href],button,[tabindex]:not([tabindex="-1"]),summary', openDrawer).filter((x) => x.offsetParent !== null);
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    }
+  });
+  if (location.hash) {
+    const id = hashId(location.hash); const t0 = document.getElementById(id);
+    const d0 = t0 && (t0.classList.contains('drawer') ? t0 : t0.closest('.drawer'));
+    if (d0) { openLayer(d0.id); if (t0 !== d0) { const dt = t0.closest('details'); if (dt) dt.open = true; t0.scrollIntoView({ block: 'start' }); } }
+  }
+
+  // 탭
+  $$('.tabs').forEach((box) => {
+    const tabs = $$('[role="tab"]', box);
+    const pick = (t) => tabs.forEach((x) => {
+      const on = x === t;
+      x.setAttribute('aria-selected', String(on)); x.tabIndex = on ? 0 : -1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on;
+    });
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => pick(t));
+      t.addEventListener('keydown', (e) => {
+        const k = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+        const n = k ? tabs[(i + k + tabs.length) % tabs.length] : e.key === 'Home' ? tabs[0] : e.key === 'End' ? tabs[tabs.length - 1] : null;
+        if (n) { e.preventDefault(); pick(n); n.focus(); }
+      });
+    });
+  });
+
+  // 목록·필터형: 필터 줄(고정)·검색·건수·핵심 열만·그룹 접기
+  const catbar = $('#catbar');
+  const catTable = $('table.cat');
+  if (catbar && catTable) {
+    const setBar = () => root.style.setProperty('--catbar-h', catbar.getBoundingClientRect().height + 'px');
+    setBar();
+    if ('ResizeObserver' in window) new ResizeObserver(setBar).observe(catbar);
+    const rows = $$('tr.row', catTable);
+    const grps = $$('tr.grp', catTable);
+    rows.forEach((r) => { r._t = r.textContent.toLowerCase(); });
+    const groups = $$('.fgroup', catbar);
+    const q = $('#cat-q');
+    const openGroups = new Set(), closedGroups = new Set();   // 처음 접힌 그룹을 편 것 / 손으로 접은 것
+    const matchOpt = (r, field, v) => {
+      const t = r.getAttribute('data-f-' + field) || '';
+      if (v === 'all') return true;
+      if (v === 'any') return t.trim() !== '' && t.trim() !== '—';
+      return v.split('|').some((p) => p && (p.startsWith('^') ? t.trim().startsWith(p.slice(1)) : t.includes(p)));  // ^는 '로 시작'
+    };
+    const cur = () => groups.map((g) => [g.dataset.field, ($('button[aria-pressed="true"]', g) || {}).dataset?.v || 'all']);
+    // 선택지마다 건수(다른 필터와 상관없이)
+    groups.forEach((g) => $$('button[data-v]', g).forEach((b) => {
+      const n = $('.n', b); if (n) n.textContent = rows.filter((r) => matchOpt(r, g.dataset.field, b.dataset.v)).length;
+    }));
+    const apply = () => {
+      const sel = cur();
+      const query = (q && q.value.trim().toLowerCase()) || '';
+      const per = {};
+      let shown = 0;
+      rows.forEach((r) => {
+        let ok = sel.every(([f, v]) => matchOpt(r, f, v)) && (!query || r._t.includes(query));
+        const g = document.getElementById(r.dataset.g);
+        const folded = g && !query && (closedGroups.has(g.id) || (g.dataset.fold === '1' && !openGroups.has(g.id) && !sel.some(([f, v]) => v !== 'all' && v !== 'any' && matchOpt(r, f, v))));
+        per[r.dataset.g] = (per[r.dataset.g] || 0) + (ok ? 1 : 0);
+        if (ok) shown++;
+        r.classList.toggle('hidden', !ok || folded);
+      });
+      grps.forEach((g) => {
+        const n = per[g.id] || 0, c = $('.gcount', g), tot = +c.dataset.total;
+        const folded = !query && (closedGroups.has(g.id) || (g.dataset.fold === '1' && !openGroups.has(g.id)));
+        c.textContent = folded ? `${tot}행 · 접힘` : n === tot ? `${tot}행` : `${n} / ${tot}행`;
+        g.classList.toggle('folded', folded);
+        $('.gtog', g).setAttribute('aria-expanded', String(!folded));
+        g.classList.toggle('hidden', n === 0 && !folded);
+        const chip = $(`.gchip[data-g="${g.id}"]`); if (chip) chip.classList.toggle('empty', n === 0);
+      });
+      const cnt = $('#cat-count'); if (cnt) cnt.textContent = `표시 ${shown} / ${rows.length}행`;
+      const on = sel.map(([, v], i) => [groups[i], v]).filter(([, v]) => v !== 'all');
+      const tg = $('#cat-ftoggle');
+      if (tg) tg.textContent = on.length ? `필터 · ${on.length}` : '필터';
+      // 빈 결과: 어떤 필터가 걸렸는지 말하고, 방금 고른 것만 남기고 풀 수 있게
+      const empty = $('tr.empty', catTable);
+      if (empty) {
+        empty.hidden = shown !== 0;
+        const names = on.map(([g, v]) => `${g.getAttribute('aria-label')} '${($(`button[data-v="${CSS.escape(v)}"]`, g) || {}).textContent?.replace(/\d+$/, '') || v}'`);
+        $('.empty-why', empty).textContent = names.length ? `지금 걸린 필터: ${names.join(', ')}${query ? `, 검색 '${query}'` : ''}.` : (query ? `검색 '${query}'에 맞는 행이 없습니다.` : '');
+      }
+    };
+    let lastGroup = null;
+    const small = matchMedia('(max-width: 768px)');
+    groups.forEach((g) => g.addEventListener('click', (e) => {
+      const b = e.target.closest('button[data-v]'); if (!b) return;
+      $$('button[data-v]', g).forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      lastGroup = g;
+      apply();
+      if (small.matches) { catbar.classList.remove('open'); $('#cat-ftoggle')?.setAttribute('aria-expanded', 'false'); }  // 고르면 접어 화면을 비운다
+    }));
+    catTable.addEventListener('click', (e) => {
+      if (!e.target.closest('.empty-fix')) return;
+      groups.forEach((g) => { if (g !== lastGroup) $$('button[data-v]', g).forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.v === 'all'))); });
+      if (q) q.value = '';   // 검색어도 풀어야 빈 결과에서 벗어난다
+      apply();
+    });
+    const reset = () => {
+      groups.forEach((g) => $$('button[data-v]', g).forEach((x) => x.setAttribute('aria-pressed', String(x.dataset.v === g.dataset.default))));
+      if (q) q.value = ''; openGroups.clear(); closedGroups.clear(); apply();
+    };
+    $('#cat-reset')?.addEventListener('click', reset);
+    q?.addEventListener('input', apply);
+    catTable.addEventListener('click', (e) => {
+      const t = e.target.closest('.gtog'); if (!t) return;
+      const g = t.closest('tr.grp');
+      if (g.classList.contains('folded')) { closedGroups.delete(g.id); if (g.dataset.fold === '1') openGroups.add(g.id); }
+      else if (g.dataset.fold === '1' && openGroups.has(g.id)) openGroups.delete(g.id);
+      else closedGroups.add(g.id);
+      apply();
+    });
+    const more = $('#cat-more');
+    more?.addEventListener('click', () => {
+      const on = document.body.classList.toggle('cat-core');
+      more.setAttribute('aria-pressed', String(on));
+      $$('tr.hg th[data-span]', catTable).forEach((th) => { th.colSpan = on ? +th.dataset.spanCore || 1 : +th.dataset.span; });
+    });
+    const ft = $('#cat-ftoggle');
+    ft?.addEventListener('click', () => { const o = catbar.classList.toggle('open'); ft.setAttribute('aria-expanded', String(o)); });
+    // 그룹 칩: 접힌 그룹이면 펼치고 그 줄로
+    $$('.gchip', catbar).forEach((c) => c.addEventListener('click', () => {
+      const g = document.getElementById(c.dataset.g);
+      if (g && g.dataset.fold === '1') { openGroups.add(g.id); apply(); }
+    }));
+    apply();
+  }
+
+  // 모바일 목차: 항목을 누르면 접는다
+  const tocMobile = $('.toc-mobile');
+  tocMobile?.addEventListener('click', (e) => { if (e.target.closest('a')) tocMobile.open = false; });
+})();
+
+</script>
+</body>
+</html>
