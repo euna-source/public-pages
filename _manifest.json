@@ -374,5 +374,13 @@
     "last_kind": "new",
     "last_sha256": "9b7b0781147aeb28cddab68aa0150b0f50dbeea320319c6df1d2654af1bc102e",
     "timestamp": "2026-10-19T07:08:55.233007Z"
+  },
+  "crewne-final-applied": {
+    "slug": "crewne-final-applied",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-final-applied/",
+    "last_kind": "new",
+    "last_sha256": "9b879c42ddb056849f8faecbccc141ac6bd9a1806651a5b4fae2ac9a292e57be",
+    "timestamp": "2026-10-19T07:40:55.964739Z"
   }
 }
