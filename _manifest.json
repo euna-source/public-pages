@@ -382,5 +382,13 @@
     "last_kind": "new",
     "last_sha256": "9b879c42ddb056849f8faecbccc141ac6bd9a1806651a5b4fae2ac9a292e57be",
     "timestamp": "2026-10-19T07:40:55.964739Z"
+  },
+  "crewne-icon-sian": {
+    "slug": "crewne-icon-sian",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-icon-sian/",
+    "last_kind": "new",
+    "last_sha256": "bf8820606d21c9e6e1302f9fea152df5947c1da09d5e1ac2da15800cd1693dd2",
+    "timestamp": "2026-10-19T14:08:15.601192Z"
   }
 }
