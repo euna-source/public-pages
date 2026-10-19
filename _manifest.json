@@ -358,5 +358,13 @@
     "last_kind": "new",
     "last_sha256": "f6bc004aa5b29cf1d905e7e8e6f039cb64779a43e054ca17ad57881507c1938a",
     "timestamp": "2026-10-19T05:42:58.493140Z"
+  },
+  "crewne-crewimg-shots": {
+    "slug": "crewne-crewimg-shots",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-crewimg-shots/",
+    "last_kind": "new",
+    "last_sha256": "66e00ef5c08ef08999ef1e0c0d246bebf86810c7b7d3b3589b2bf7f886345f52",
+    "timestamp": "2026-10-19T06:39:37.536869Z"
   }
 }
