@@ -366,5 +366,13 @@
     "last_kind": "new",
     "last_sha256": "66e00ef5c08ef08999ef1e0c0d246bebf86810c7b7d3b3589b2bf7f886345f52",
     "timestamp": "2026-10-19T06:39:37.536869Z"
+  },
+  "crewne-final-mock": {
+    "slug": "crewne-final-mock",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-final-mock/",
+    "last_kind": "new",
+    "last_sha256": "9b7b0781147aeb28cddab68aa0150b0f50dbeea320319c6df1d2654af1bc102e",
+    "timestamp": "2026-10-19T07:08:55.233007Z"
   }
 }
