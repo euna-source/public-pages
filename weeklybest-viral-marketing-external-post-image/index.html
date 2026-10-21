@@ -15,8 +15,8 @@
 html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Pretendard","Apple SD Gothic Neo",sans-serif}
 .bar{position:sticky;top:0;z-index:20;background:rgba(18,18,18,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .bar-inner{max-width:402px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 8px 0 16px;min-height:52px}
-.bar-title{margin:0;font-size:14px;font-weight:700}
-.bar-actions{display:flex;gap:2px}
+.bar-title{margin:0;font-size:14px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.bar-actions{display:flex;gap:2px;flex:none}.tool .label{white-space:nowrap}
 .tool{min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:0 12px;border:1px solid transparent;border-radius:6px;background:none;color:inherit;font-size:14px;cursor:pointer}
 .tool:hover{border-color:var(--line);background:var(--panel)}
 .tool svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
@@ -28,7 +28,7 @@ img.page{display:block;width:100%;max-width:402px;margin:0 auto}
 <body>
 <header class="bar">
   <div class="bar-inner">
-    <p class="bar-title">위클리베스트 바이럴 마케팅 · 외부 게시물 이미지</p>
+    <p class="bar-title">위클리베스트 · 바이럴 마케팅용</p>
     <div class="bar-actions">
       <button class="tool" id="copy-btn" type="button" aria-label="이 페이지 링크 복사">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span>
