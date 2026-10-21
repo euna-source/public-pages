@@ -423,14 +423,6 @@
     "last_sha256": "d07c2fca0a68b9d01d13b6cb43cc5abfa80fb4d73fa3aa6a7f7ee08542865cf8",
     "timestamp": "2026-10-21T12:15:30.030588Z"
   },
-  "바이럴마케팅_인스타": {
-    "slug": "바이럴마케팅_인스타",
-    "mode": "main",
-    "url": "https://euna-source.github.io/public-pages/바이럴마케팅_인스타/",
-    "last_kind": "redeploy",
-    "last_sha256": "9de2d0c46201086e85764136241293422a5ad9a148cd70d25f38b30daf52e671",
-    "timestamp": "2026-10-21T12:25:42.038218Z"
-  },
   "viral-marketing-external-post-image": {
     "slug": "viral-marketing-external-post-image",
     "mode": "main",
@@ -454,14 +446,6 @@
     "last_kind": "redeploy",
     "last_sha256": "1016d566f5efa0632d49bb39a54ca5e3da09e01edde010918e7897c15bb90f9c",
     "timestamp": "2026-10-21T12:32:06.568519Z"
-  },
-  "바이럴마케팅_인스타_위클리베스트": {
-    "slug": "바이럴마케팅_인스타_위클리베스트",
-    "mode": "main",
-    "url": "https://euna-source.github.io/public-pages/바이럴마케팅_인스타_위클리베스트/",
-    "last_kind": "new",
-    "last_sha256": "149a567e7ddf5ebb92fb3a5927d3c3319d414b2cffc3944a017776978960156b",
-    "timestamp": "2026-10-21T12:27:03.117521Z"
   },
   "weeklybest-viral-marketing-instagram": {
     "slug": "weeklybest-viral-marketing-instagram",
