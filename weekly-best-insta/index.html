@@ -37,7 +37,8 @@ p{font-size:12px;color:var(--mut);margin:14px 0 0;line-height:1.5}
 const t=document.getElementById('t'),n=4,c=document.getElementById('c'),ds=[...document.querySelectorAll('#d i')],p=document.getElementById('p'),x=document.getElementById('n');
 const idx=()=>Math.round(t.scrollLeft/t.clientWidth);
 function up(){const i=idx();c.textContent=(i+1)+' / '+n;ds.forEach((d,k)=>d.classList.toggle('on',k===i));p.disabled=i===0;x.disabled=i===n-1}
-const go=d=>t.scrollTo({left:(idx()+d)*t.clientWidth,behavior:'smooth'});
+let tg=0,tm;t.addEventListener('scroll',()=>{clearTimeout(tm);tm=setTimeout(()=>{tg=idx()},120)});
+const go=d=>{tg=Math.max(0,Math.min(n-1,tg+d));t.scrollTo({left:tg*t.clientWidth,behavior:'smooth'})};
 p.onclick=()=>go(-1);x.onclick=()=>go(1);t.addEventListener('scroll',()=>requestAnimationFrame(up));
 document.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(-1);if(e.key==='ArrowRight')go(1)});up();
 </script></body></html>

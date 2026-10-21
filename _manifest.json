@@ -419,8 +419,8 @@
     "slug": "weekly-best-insta",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/weekly-best-insta/",
-    "last_kind": "new",
-    "last_sha256": "67fd078217426bd3ece52a2c8a1d98ef74fe6f739f58ee2350f35aff03da905f",
-    "timestamp": "2026-10-21T12:02:02.727247Z"
+    "last_kind": "redeploy",
+    "last_sha256": "06ad90ce157c86980aae8905a1f1704f9c656ca7b46108200db89424f23f9f9c",
+    "timestamp": "2026-10-21T12:03:37.394466Z"
   }
 }
