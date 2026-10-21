@@ -398,5 +398,13 @@
     "last_kind": "redeploy",
     "last_sha256": "f168a7578b5691b46a60d4cfda9233aef19c9cd703b58383869b51c1ab985fde",
     "timestamp": "2026-10-20T05:06:28.911184Z"
+  },
+  "weekly-best-copy-preview": {
+    "slug": "weekly-best-copy-preview",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/weekly-best-copy-preview/",
+    "last_kind": "new",
+    "last_sha256": "4433f13103a2a310dc9835c9915028cccef1ca851c84003c35ddd62fb4e0e305",
+    "timestamp": "2026-10-21T03:46:10.605595Z"
   }
 }

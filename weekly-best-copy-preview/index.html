@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>위클리 베스트 일정 문구 시안</title>
+<style>
+:root{--bg:#0d0d0d;--fg:#f2f2f2;--sub:#9a9a9a;--acc:#1CF03C;--line:#2a2a2a}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font-family:Pretendard,-apple-system,"Apple SD Gothic Neo",sans-serif}
+header{position:sticky;top:0;z-index:2;background:rgba(13,13,13,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 16px 10px}
+h1{margin:0 0 8px;font-size:16px;font-weight:700;letter-spacing:-.3px}
+nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:transparent;color:var(--fg);font:inherit;font-size:13px;padding:6px 12px;border-radius:999px;cursor:pointer}
+nav button.on{background:var(--acc);border-color:var(--acc);color:#111;font-weight:700}
+main{max-width:430px;margin:0 auto;padding:14px 16px 40px}
+.desc{font-size:14px;line-height:1.55;color:var(--fg);margin:0 0 4px}
+.note{font-size:12.5px;line-height:1.5;color:var(--sub);margin:0 0 12px}
+.frame{border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+.frame img{display:block;width:100%;height:auto}
+.hint{text-align:center;font-size:12px;color:var(--sub);margin-top:12px}
+</style>
+</head>
+<body>
+<header>
+<h1>위클리 베스트 · 일정 문구 시안</h1>
+<nav id="nav"></nav>
+</header>
+<main>
+<p class="desc" id="desc"></p>
+<p class="note" id="note"></p>
+<div class="frame"><img id="img" alt=""></div>
+<p class="hint">위 버튼이나 화면 좌우 밀기로 시안을 넘겨요</p>
+</main>
+<script>
+const S=[
+ {k:'지금',f:'now.jpg',d:'현재 화면이에요.',n:'띠 문구 「매주 즐거운 혜택」, 일정 표기 없음.'},
+ {k:'A 추천',f:'a.jpg',d:'띠 「매주 월요일 시작!」 + 띠 아래 「일요일 밤 12시 마감」',n:'첫 화면에서 한 번에 읽혀요. 바뀌는 곳은 히어로 한 군데예요.'},
+ {k:'B',f:'b.jpg',d:'히어로 그대로, 헤드라인 위 「매주 월요일 시작 · 일요일 밤 12시 마감」',n:'가장 차분하지만 히어로에서는 일정이 안 보여요.'},
+ {k:'C',f:'c.jpg',d:'띠 「매주 월요일 시작!」 + 헤드라인 위 「일요일 밤 12시 마감」',n:'상금과 마감이 한 묶음으로 읽혀요. 바뀌는 곳이 두 군데예요.'},
+ {k:'D 주차',f:'d.jpg',d:'A + 헤드라인 위 「10월 4주차 | 2026.10.19 - 10.25」',n:'달력 주차 기준(10/1이 목요일)이에요. 매주 날짜를 바꿔야 해요.'},
+ {k:'D2 회차',f:'d2.jpg',d:'A + 헤드라인 위 「10월 2회차 | 2026.10.19 - 10.25」',n:'명예의 전당 회차 번호(10/12 주 = 1회차)와 맞춘 버전이에요.'}
+];
+let i=0;const nav=document.getElementById('nav');
+S.forEach((s,j)=>{const b=document.createElement('button');b.textContent=s.k;b.onclick=()=>show(j);nav.appendChild(b)});
+S.forEach(s=>{const im=new Image();im.src=s.f});
+function show(j){i=(j+S.length)%S.length;const s=S[i];
+ document.getElementById('img').src=s.f;document.getElementById('img').alt=s.k+' 시안';
+ document.getElementById('desc').textContent=s.d;document.getElementById('note').textContent=s.n;
+ [...nav.children].forEach((b,x)=>b.classList.toggle('on',x===i));nav.children[i].scrollIntoView({inline:'center',block:'nearest'});
+ window.scrollTo({top:0});}
+let x0=null,y0=null;
+document.addEventListener('touchstart',e=>{x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+document.addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;
+ if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)show(i+(dx<0?1:-1));x0=null},{passive:true});
+show(1);
+</script>
+</body>
+</html>
