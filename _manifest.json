@@ -431,6 +431,14 @@
     "last_sha256": "9de2d0c46201086e85764136241293422a5ad9a148cd70d25f38b30daf52e671",
     "timestamp": "2026-10-21T12:25:42.038218Z"
   },
+  "viral-marketing-external-post-image": {
+    "slug": "viral-marketing-external-post-image",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/viral-marketing-external-post-image/",
+    "last_kind": "redeploy",
+    "last_sha256": "48bc5689f9c68ae95d878d09959b9cc23a4a7527911e609a7acee06bc53c46d3",
+    "timestamp": "2026-10-21T12:25:29.763312Z"
+  },
   "cre8orclub-weekly-best": {
     "slug": "cre8orclub-weekly-best",
     "mode": "main",
@@ -454,5 +462,13 @@
     "last_kind": "new",
     "last_sha256": "149a567e7ddf5ebb92fb3a5927d3c3319d414b2cffc3944a017776978960156b",
     "timestamp": "2026-10-21T12:27:03.117521Z"
+  },
+  "weeklybest-viral-marketing-instagram": {
+    "slug": "weeklybest-viral-marketing-instagram",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/weeklybest-viral-marketing-instagram/",
+    "last_kind": "new",
+    "last_sha256": "a4a0f231b3d90efeb7c16dc3a35eab0ec8ea6aaa878ec26823a2df4571af0477",
+    "timestamp": "2026-10-21T12:31:59.072277Z"
   }
 }
