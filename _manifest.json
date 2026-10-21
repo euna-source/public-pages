@@ -438,5 +438,13 @@
     "last_kind": "new",
     "last_sha256": "39d1c52ec5f2996e101d9da87f6ef7368ccf4524dcbcfecf9ea4c619e21c347e",
     "timestamp": "2026-10-21T12:23:22.109944Z"
+  },
+  "cre8orclub-weekly-best": {
+    "slug": "cre8orclub-weekly-best",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/cre8orclub-weekly-best/",
+    "last_kind": "new",
+    "last_sha256": "c9ea32fc3fabcbe471945bb9da1373f75d279cb584b61e0e42a54af6a4330408",
+    "timestamp": "2026-10-21T12:24:25.085509Z"
   }
 }
