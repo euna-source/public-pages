@@ -130,8 +130,8 @@ const docUrl=()=>{const c=$('link[rel="canonical"]')?.getAttribute('href');retur
 const NO_URL='아직 배포 전 파일이라 공유할 주소가 없습니다. 배포한 페이지에서 눌러 주세요.';
 const legacyCopy=(v)=>{const ta=document.createElement('textarea');ta.value=v;ta.setAttribute('readonly','');ta.style.cssText='position:fixed;top:-9999px;opacity:0';document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch{ok=false}ta.remove();return ok};
 const copyText=(v)=>(navigator.clipboard&&window.isSecureContext)?navigator.clipboard.writeText(v).then(()=>true,()=>legacyCopy(v)):Promise.resolve(legacyCopy(v));
-const copy=()=>{if(!docUrl()){say(NO_URL);return}copyText(docUrl()).then((ok)=>say(ok?'링크를 복사했습니다.':'복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'))};
+const copy=()=>{if(!docUrl()){say(NO_URL);return}copyText('크리에이터클럽 위클리 베스트\n'+docUrl()).then((ok)=>say(ok?'위클리 베스트 링크를 복사했습니다.':'복사하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'))};
 $('#copy-btn').addEventListener('click',copy);
 $('#share-btn').addEventListener('click',()=>{const u=docUrl();if(!u){say(NO_URL);return}
-if(navigator.share){navigator.share({title:document.title,text:$('meta[name="description"]')?.content||'',url:u}).catch((e)=>{if(e&&e.name!=='AbortError')copy()})}else copy()});
-})();</script><script>document.body.dataset.h=document.getElementById("w").offsetHeight</script></body></html>
+if(navigator.share){navigator.share({title:document.title,text:'크리에이터클럽 위클리 베스트',url:u}).catch((e)=>{if(e&&e.name!=='AbortError')copy()})}else copy()});
+})();</script><script>(()=>{const w=document.getElementById('w');const f=()=>{w.style.zoom=Math.min(1,innerWidth/402)};f();addEventListener('resize',f)})();</script><script>document.body.dataset.h=document.getElementById("w").offsetHeight</script></body></html>
