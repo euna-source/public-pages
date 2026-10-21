@@ -446,5 +446,13 @@
     "last_kind": "redeploy",
     "last_sha256": "43a04e1a26f2b27605fe8e8297828d954728aeda6256931deff470a020eab3a7",
     "timestamp": "2026-10-21T12:25:52.120520Z"
+  },
+  "weeklybest-viral-marketing-external-post-image": {
+    "slug": "weeklybest-viral-marketing-external-post-image",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/weeklybest-viral-marketing-external-post-image/",
+    "last_kind": "new",
+    "last_sha256": "10d467326cfb4a09aa87ebfc12f5de34f944b839490b697935fda258203755c0",
+    "timestamp": "2026-10-21T12:26:55.573577Z"
   }
 }
