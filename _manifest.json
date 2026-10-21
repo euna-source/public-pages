@@ -422,5 +422,13 @@
     "last_kind": "redeploy",
     "last_sha256": "d07c2fca0a68b9d01d13b6cb43cc5abfa80fb4d73fa3aa6a7f7ee08542865cf8",
     "timestamp": "2026-10-21T12:15:30.030588Z"
+  },
+  "바이럴마케팅_인스타": {
+    "slug": "바이럴마케팅_인스타",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/바이럴마케팅_인스타/",
+    "last_kind": "new",
+    "last_sha256": "6af0bb2ed486105812b5820680963469b87fb411ff4d20e044fb618d1ce02598",
+    "timestamp": "2026-10-21T12:22:29.917518Z"
   }
 }
