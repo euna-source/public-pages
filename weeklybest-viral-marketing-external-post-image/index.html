@@ -23,13 +23,19 @@ html,body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-sys
 img.page{display:block;width:100%;max-width:402px;margin:0 auto}
 .toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:var(--text);color:var(--bg);padding:11px 18px;border-radius:6px;font-size:14px;max-width:calc(100% - 32px);width:max-content}
 .toast:empty{display:none}
+.dl-wrap{position:relative}.bar-inner{gap:8px}.bar-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar-actions{flex:none}@media (max-width:520px){.bar .tool .label{display:none}.bar .tool{padding:0 10px}}
+.dl-menu{position:absolute;right:0;top:calc(100% + 6px);min-width:220px;background:#1E1E1E;border:1px solid #2b2b2b;border-radius:10px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:40}
+.dl-menu[hidden]{display:none}
+.dl-menu a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 12px;border-radius:6px;color:#F5F5F5;text-decoration:none;font-size:14px;font-weight:600;min-height:44px}
+.dl-menu a:hover,.dl-menu a:focus-visible{background:#2a2a2a;outline:none}
+.dl-menu small{color:#8a8a8a;font-weight:500;font-size:12px}
 </style>
 </head>
 <body>
 <header class="bar">
   <div class="bar-inner">
     <p class="bar-title">위클리베스트 · 바이럴 마케팅용</p>
-    <div class="bar-actions">
+    <div class="bar-actions"><div class="dl-wrap"><button class="tool" id="dl-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="이미지 파일 다운로드"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 19h14"/></svg><span class="label">다운로드</span></button><div class="dl-menu" id="dl-menu" role="menu" hidden><a role="menuitem" href="weeklybest-poster.png" download="위클리베스트_포스터.png">포스터 <small>PNG</small></a><a role="menuitem" href="weeklybest-detail.png" download="위클리베스트_상세이미지.png">상세 이미지 <small>PNG</small></a></div></div>
       <button class="tool" id="copy-btn" type="button" aria-label="이 페이지 링크 복사">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span>
       </button>
@@ -69,5 +75,10 @@ img.page{display:block;width:100%;max-width:402px;margin:0 auto}
   });
 })();
 </script>
-</body>
+<script>(()=>{const b=document.getElementById('dl-btn'),m=document.getElementById('dl-menu');
+const close=()=>{m.hidden=true;b.setAttribute('aria-expanded','false')};
+b.addEventListener('click',e=>{e.stopPropagation();const o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',String(o));if(o)m.querySelector('a').focus()});
+document.addEventListener('click',e=>{if(!m.contains(e.target))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();b.focus()}});
+m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setTimeout(close,150)));})();</script></body>
 </html>
