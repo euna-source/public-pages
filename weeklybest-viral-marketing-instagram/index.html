@@ -42,8 +42,14 @@
 .tabs button{background:#1E1E1E;color:#ccc;border-color:#2b2b2b}.tabs button.on{background:#F5F5F5;color:#121212;border-color:#F5F5F5}
 .post{border-color:#2b2b2b}
 .toast{background:#F5F5F5;color:#121212}
+.dl-wrap{position:relative}.bar-inner{gap:8px}.bar-title{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.bar-actions{flex:none}@media (max-width:520px){.bar .tool .label{display:none}.bar .tool{padding:0 10px}}
+.dl-menu{position:absolute;right:0;top:calc(100% + 6px);min-width:220px;background:#1E1E1E;border:1px solid #2b2b2b;border-radius:10px;padding:6px;box-shadow:0 8px 24px rgba(0,0,0,.4);z-index:40}
+.dl-menu[hidden]{display:none}
+.dl-menu a{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 12px;border-radius:6px;color:#F5F5F5;text-decoration:none;font-size:14px;font-weight:600;min-height:44px}
+.dl-menu a:hover,.dl-menu a:focus-visible{background:#2a2a2a;outline:none}
+.dl-menu small{color:#8a8a8a;font-weight:500;font-size:12px}
 </style></head><body>
-<header class="bar"><div class="bar-inner"><p class="bar-title">Weekly Best · 크리에이터클럽</p><div class="bar-actions"><button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button><button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button></div></div></header><div class="tabs"><button data-s="4" class="on">4장 버전</button><button data-s="3">3장 버전</button></div>
+<header class="bar"><div class="bar-inner"><p class="bar-title">Weekly Best · 크리에이터클럽</p><div class="bar-actions"><div class="dl-wrap"><button class="tool" id="dl-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-label="이미지 파일 다운로드"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 19h14"/></svg><span class="label">다운로드</span></button><div class="dl-menu" id="dl-menu" role="menu" hidden><a role="menuitem" href="weeklybest-insta-4slides.zip" download="위클리베스트_인스타_4장.zip">4장 버전 전체 <small>ZIP · PNG 4장</small></a><a role="menuitem" href="weeklybest-insta-3slides.zip" download="위클리베스트_인스타_3장.zip">3장 버전 전체 <small>ZIP · PNG 3장</small></a></div></div><button class="tool" id="copy-btn" type="button" aria-label="이 문서 링크 복사"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span class="label">링크</span></button><button class="tool" id="share-btn" type="button" aria-label="공유하기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span class="label">공유</span></button></div></div></header><div class="tabs"><button data-s="4" class="on">4장 버전</button><button data-s="3">3장 버전</button></div>
 <div class="post">
  <div class="hd"><div class="av">C8</div><b>c8.official</b><span>···</span></div>
  <div class="wrap"><div class="track" id="t"></div>
@@ -83,4 +89,9 @@ $('#copy-btn').addEventListener('click',()=>{if(!docUrl()){say(NO_URL);return}co
 $('#share-btn').addEventListener('click',()=>{if(!docUrl()){say(NO_URL);return}const data={title:metaOf('meta[property="og:title"]')||document.title,text:metaOf('meta[property="og:description"]')||metaOf('meta[name="description"]'),url:docUrl()};
 if(navigator.share&&(!navigator.canShare||navigator.canShare(data))){navigator.share(data).catch((e)=>say(e&&e.name==='AbortError'?'공유 창이 닫혔습니다. 링크가 필요하면 링크 버튼을 눌러 주세요.':'공유하지 못했습니다. 링크 버튼을 눌러 링크를 가져가 주세요.'))}
 else{copyText(data.url).then((ok)=>say(ok?'링크를 복사했습니다. 원하는 곳에 붙여 넣어 공유하세요.':'공유하지 못했습니다. 주소창의 링크를 직접 복사해 주세요.'))}});})();
-</script></body></html>
+</script><script>(()=>{const b=document.getElementById('dl-btn'),m=document.getElementById('dl-menu');
+const close=()=>{m.hidden=true;b.setAttribute('aria-expanded','false')};
+b.addEventListener('click',e=>{e.stopPropagation();const o=m.hidden;m.hidden=!o;b.setAttribute('aria-expanded',String(o));if(o)m.querySelector('a').focus()});
+document.addEventListener('click',e=>{if(!m.contains(e.target))close()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){close();b.focus()}});
+m.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setTimeout(close,150)));})();</script></body></html>
