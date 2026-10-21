@@ -414,5 +414,13 @@
     "last_kind": "new",
     "last_sha256": "7cebf7262792ca6f82e41b1970bf1a2fb4c996365224469b0128d2466aba4274",
     "timestamp": "2026-10-21T11:54:05.808796Z"
+  },
+  "weekly-best-insta": {
+    "slug": "weekly-best-insta",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/weekly-best-insta/",
+    "last_kind": "new",
+    "last_sha256": "67fd078217426bd3ece52a2c8a1d98ef74fe6f739f58ee2350f35aff03da905f",
+    "timestamp": "2026-10-21T12:02:02.727247Z"
   }
 }
