@@ -454,5 +454,13 @@
     "last_kind": "redeploy",
     "last_sha256": "350800363c31811b7326eb0c7fe8075e7545c0bd2dd8b8d118527f8510d17b09",
     "timestamp": "2026-10-21T12:38:49.159797Z"
+  },
+  "c8-content-marketer-jd-wanted": {
+    "slug": "c8-content-marketer-jd-wanted",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-content-marketer-jd-wanted/",
+    "last_kind": "new",
+    "last_sha256": "0c83327cb8652df2a67b960f4d18fed0e731d5c737b9eee4ad3dabc24455b629",
+    "timestamp": "2026-10-22T03:53:41.967670Z"
   }
 }
