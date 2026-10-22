@@ -22,6 +22,17 @@ button{font:inherit;cursor:pointer}
 .tabs{display:flex;gap:4px;margin-left:auto}
 .tab{border:0;background:none;padding:8px 12px;border-radius:8px;font-size:14px;font-weight:600;color:var(--sub)}
 .tab[aria-selected=true]{color:var(--fg);background:var(--chip)}
+.acts{display:flex;gap:6px;margin-left:8px}
+.act{border:1px solid var(--line);background:#fff;border-radius:8px;padding:6px 10px;font-size:13px;font-weight:600;color:var(--fg);white-space:nowrap}
+.act.done,.scp.done{color:var(--primary);border-color:var(--primary)}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.sh h2{margin:0}
+.sh.th{margin:8px 0 0;align-items:flex-start}.sh.th h1{margin:0;flex:1}
+.scp{margin-left:auto;flex:none;border:1px solid var(--line);background:#fff;border-radius:8px;padding:5px 10px;font-size:12px;font-weight:600;color:var(--sub)}
+.sh.th .scp{margin-top:4px}
+.toast{position:fixed;left:50%;bottom:84px;transform:translateX(-50%);background:rgba(23,23,25,.88);color:#fff;font-size:14px;padding:10px 16px;border-radius:999px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+@media (max-width:600px){.acts .act{padding:6px 8px;font-size:12px}.badge{display:none}.acts{margin-left:0}}
 /* 공고 화면 */
 .wrap{max-width:1060px;margin:0 auto;padding:20px 16px 120px;display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:40px}
 .carousel{position:relative;border-radius:12px;overflow:hidden;aspect-ratio:1080/790;background:var(--soft)}
@@ -89,12 +100,14 @@ aside .card{position:sticky;top:76px;border:1px solid var(--line);border-radius:
 <body>
 <div class="top"><div class="top-in">
   <span class="badge">게시 전 미리보기</span>
+  <div class="acts"><button class="act" type="button" id="cp-link">링크 복사</button><button class="act" type="button" id="cp-all">전체 복사</button></div>
   <div class="tabs" role="tablist">
     <button class="tab" role="tab" aria-selected="true" data-v="preview">공고 화면</button>
     <button class="tab" role="tab" aria-selected="false" data-v="form">입력칸별 원문</button>
   </div>
 </div></div>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div id="v-preview">
 <div class="wrap">
   <main>
@@ -107,16 +120,16 @@ aside .card{position:sticky;top:76px;border:1px solid var(--line);border-radius:
       <span class="cnt" id="cnt">1 / 3</span>
     </div>
     <div class="meta"><b>라텔앤드파트너즈</b><span>∙</span><span>서울 중구</span><span>∙</span><span>경력 2-4년</span></div>
-    <h1 id="p-title"></h1>
+    <div class="sh th"><h1 id="p-title"></h1><button class="scp" type="button" data-k="title" aria-label="공고명 복사">복사</button></div>
 
-    <section class="sec"><h2>포지션 상세</h2><div class="txt" id="p-intro"></div></section>
-    <section class="sec"><h2>주요업무</h2><div class="txt" id="p-tasks"></div></section>
-    <section class="sec"><h2>자격요건</h2><div class="txt" id="p-req"></div></section>
+    <section class="sec"><div class="sh"><h2>포지션 상세</h2><button class="scp" type="button" data-k="intro" aria-label="포지션 상세 복사">복사</button></div><div class="txt" id="p-intro"></div></section>
+    <section class="sec"><div class="sh"><h2>주요업무</h2><button class="scp" type="button" data-k="tasks" aria-label="주요업무 복사">복사</button></div><div class="txt" id="p-tasks"></div></section>
+    <section class="sec"><div class="sh"><h2>자격요건</h2><button class="scp" type="button" data-k="req" aria-label="자격요건 복사">복사</button></div><div class="txt" id="p-req"></div></section>
     <button class="more" id="more">상세 정보 더 보기</button>
     <div id="rest" class="hidden">
-      <section class="sec"><h2>우대사항</h2><div class="txt" id="p-pref"></div></section>
-      <section class="sec"><h2>혜택 및 복지</h2><div class="txt" id="p-ben"></div></section>
-      <section class="sec"><h2>채용 전형</h2><div class="txt" id="p-hire"></div></section>
+      <section class="sec"><div class="sh"><h2>우대사항</h2><button class="scp" type="button" data-k="pref" aria-label="우대사항 복사">복사</button></div><div class="txt" id="p-pref"></div></section>
+      <section class="sec"><div class="sh"><h2>혜택 및 복지</h2><button class="scp" type="button" data-k="ben" aria-label="혜택 및 복지 복사">복사</button></div><div class="txt" id="p-ben"></div></section>
+      <section class="sec"><div class="sh"><h2>채용 전형</h2><button class="scp" type="button" data-k="hire" aria-label="채용 전형 복사">복사</button></div><div class="txt" id="p-hire"></div></section>
     </div>
 
     <div class="rows">
@@ -172,10 +185,7 @@ tasks: `마케팅을 중심으로 서비스 운영과 기획까지 함께 맡는
 
 ＜서비스 기획·개발 협업＞
 • 마케팅과 운영에서 얻은 크리에이터의 반응과 데이터로 개선 과제를 찾고, 필요한 기능과 이용 흐름을 기획합니다.
-• 개발·디자인 동료와 소통하며 반영과 검수까지 챙기고, 출시 후에는 반응을 보며 개선 방향이 맞았는지 판단하고 다음 단계를 준비합니다.
-
-＜입사 후 3개월＞
-• 팀장과 함께 공식 채널의 콘텐츠 방향과 발행 리듬을 정해 직접 운영하고, 첫 크리에이터 캠페인을 기획부터 결과 정리까지 맡습니다.`,
+• 개발·디자인 동료와 소통하며 반영과 검수까지 챙기고, 출시 후에는 반응을 보며 개선 방향이 맞았는지 판단하고 다음 단계를 준비합니다.`,
 req: `• 생성형 AI로 만든 이미지나 영상(숏폼·카드뉴스·썸네일 등)을 최근 1년 안에 업무나 개인 채널에 여러 번 발행해 본 분
   - 포트폴리오에서 AI로 만든 부분과 직접 고친 부분을 나눠 보여 주실 수 있어야 합니다.
 • 제품이나 서비스의 기능을 사용자가 반응하는 첫 문장이나 첫 장면으로 바꿔 본 분
@@ -274,10 +284,21 @@ $("fields").innerHTML=FORM.map(([no,lb,req,key,fixed,help,todo])=>{
   const esc=s=>s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
   return `<div class="field"><div class="fh"><span class="no">${no}</span><span class="lb">${lb}</span>${req?'<span class="req">*</span>':''}${key?`<button class="cp" type="button" data-k="${key}">복사</button>`:''}</div>${help?`<div class="help">· ${help}</div>`:''}<div class="val${todo?' todo':''}">${esc(v)}</div>${key?`<div class="len">${v.length.toLocaleString()}자</div>`:''}</div>`;
 }).join("");
-document.querySelectorAll(".cp").forEach(b=>b.onclick=async()=>{
-  try{await navigator.clipboard.writeText(F[b.dataset.k]);}catch(e){const t=document.createElement("textarea");t.value=F[b.dataset.k];document.body.appendChild(t);t.select();document.execCommand("copy");t.remove();}
-  b.textContent="복사됨";b.classList.add("done");setTimeout(()=>{b.textContent="복사";b.classList.remove("done")},1500);
+async function copyText(t){
+  try{await navigator.clipboard.writeText(t);return true}catch(e){
+    const a=document.createElement("textarea");a.value=t;a.style.position="fixed";a.style.opacity="0";document.body.appendChild(a);a.select();
+    let ok=false;try{ok=document.execCommand("copy")}catch(_){}a.remove();return ok}
+}
+let tt;function toast(m){const el=$("toast");el.textContent=m;el.classList.add("on");clearTimeout(tt);tt=setTimeout(()=>el.classList.remove("on"),1600)}
+function flash(b,label){const o=b.textContent;b.textContent=label;b.classList.add("done");setTimeout(()=>{b.textContent=o;b.classList.remove("done")},1500)}
+const LABEL={title:"공고명",intro:"회사/직무 소개",tasks:"주요업무",req:"자격요건",pref:"우대사항",ben:"혜택 및 복지",hire:"채용 전형"};
+document.querySelectorAll(".cp,.scp").forEach(b=>b.onclick=async()=>{
+  const ok=await copyText(F[b.dataset.k]);flash(b,ok?"복사됨":"실패");toast(ok?`${LABEL[b.dataset.k]} 복사 완료`:"복사하지 못했어요");
 });
+$("cp-link").onclick=async e=>{const btn=e.currentTarget;const ok=await copyText(location.href.split("#")[0].split("?")[0]);flash(btn,ok?"복사됨":"실패");toast(ok?"링크를 복사했어요":"복사하지 못했어요")};
+$("cp-all").onclick=async e=>{const btn=e.currentTarget;
+  const t=Object.keys(LABEL).map(k=>`[${LABEL[k]}]\n${F[k]}`).join("\n\n");
+  const ok=await copyText(t);flash(btn,ok?"복사됨":"실패");toast(ok?"공고 전체를 칸별로 복사했어요":"복사하지 못했어요")};
 // 탭
 document.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{
   document.querySelectorAll(".tab").forEach(x=>x.setAttribute("aria-selected",x===t));
