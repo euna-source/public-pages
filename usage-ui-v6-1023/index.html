@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>사용량 위젯·화면 시안 4차</title>
+<style>
+:root{--bg:#F6F4F0;--card:#fff;--ink:#1C1C1E;--muted:#6B6B70;--line:#E3E3E7}
+@media (prefers-color-scheme:dark){:root{--bg:#1C1A18;--card:#282624;--ink:#F3F1EE;--muted:#B5AFA8;--line:#44403C}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,"Apple SD Gothic Neo","Pretendard",system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:32px 16px 72px}
+h1{font-size:24px;line-height:1.3;margin:0 0 8px}
+h2{font-size:19px;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 24px}
+section{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin:0 0 20px}
+p{margin:0 0 12px}.note{color:var(--muted);font-size:14px}
+ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:6px 0 0}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-top:1px solid var(--line)}
+th{font-size:12.5px;color:var(--muted);font-weight:600;border-top:0}
+td:first-child{font-weight:600;white-space:nowrap}
+img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+.pick{display:inline-block;font-size:12px;font-weight:700;background:#FFD966;color:#1C1C1E;border-radius:99px;padding:1px 9px;margin-left:6px;vertical-align:2px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:0}
+@media(max-width:640px){td:first-child{white-space:normal}}
+</style>
+</head>
+<body>
+<main>
+<h1>사용량 위젯·화면 시안 4차</h1>
+<p class="lead">10월 23일 12시 실제 수치입니다. 엔진은 캐릭터 없이 색이 다른 동그라미로만 구분했고, 애플 최신 공식 가이드와 UI-Craft 규칙을 적용했고, 크루네 화면은 크루네 보고 탭의 타일과 칩 문법으로 다시 설계했습니다.</p>
+
+<section>
+<h2>엔진 구분은 색 동그라미 두 개</h2>
+<p><span class="dot" style="background:#D97757"></span>Claude는 주황 &nbsp;&nbsp; <span class="dot" style="background:#8A97FF"></span>Codex는 연보라 파랑. 막대는 모두 중립 잉크색이라 엔진 색과 상태 표시가 섞이지 않습니다. 상태는 작은 모양과 글자입니다.</p>
+</section>
+
+<section>
+<h2>위젯<span class="pick">구조 확정안</span></h2>
+<p class="note">작은 위젯은 판정과 가장 급한 한도 하나, 중간은 거기에 대체 연결과 다른 계정, 큰 것은 한도 상세를 더합니다. 값을 못 읽은 줄에는 「연결 바꾸기 ›」 링크가 붙습니다. 루프 얼굴 한 점과 큰 숫자의 픽셀 글꼴이 크루 느낌의 전부입니다. 막대의 짧은 눈금은 30% 선입니다.</p>
+<a href="widget.png"><img src="widget.png" alt="위젯 시안: 큰 것, 중간, 작은 것, 작은 것의 확인 못함 상태" width="1536" height="1024"></a>
+</section>
+
+<section>
+<h2>크루네 사용량 화면 A. 타일<span class="pick">추천</span></h2>
+<p class="note">보고 탭과 같은 타일 문법입니다. 노란 큰 타일이 기본 연결, 흰 타일 둘이 대체 연결과 확인이 필요한 계정입니다. 아래는 상세 한도와 모든 계정이 각각 한 덩어리 목록입니다. 카드를 쌓지 않고 강약을 면의 크기와 색으로 만들었습니다.</p>
+<a href="crewne-tiles.png"><img src="crewne-tiles.png" alt="크루네 사용량 화면 A안: 타일 구성, 계정 펼침, 연결 바꾸기" width="1536" height="1024"></a>
+</section>
+
+<section>
+<h2>크루네 사용량 화면 B. 칩</h2>
+<p class="note">크루 칩처럼 계정 네 개를 칩으로 올리고, 고른 계정 하나만 큰 카드로 보여 줍니다. 더 조용하고 요소가 적습니다. 대신 대체 연결과 다른 계정은 칩을 눌러야 보입니다.</p>
+<a href="crewne-chips.png"><img src="crewne-chips.png" alt="크루네 사용량 화면 B안: 칩 구성, 칩 선택, 연결 바꾸기" width="1536" height="1024"></a>
+</section>
+
+<section>
+<h2>적용한 규칙</h2>
+<table>
+<tr><th>출처</th><th>규칙</th><th>적용</th></tr>
+<tr><td>애플 위젯</td><td>여백 16pt, 글자 11pt 이상, 갱신 시각 표기, 작은 위젯은 정보 하나</td><td>모든 크기에 12:05 표기, 작은 위젯은 판정과 숫자 하나</td></tr>
+<tr><td>애플 색·접근성</td><td>색만으로 상태를 전달하지 않음, 대비 4.5 대 1</td><td>▲ ● ○ 모양과 글자, 엔진은 동그라미</td></tr>
+<tr><td>애플 게이지</td><td>왼쪽에서 오른쪽으로 값까지 채움, 두께 얇게</td><td>얇은 캡슐 막대와 30% 눈금</td></tr>
+<tr><td>애플 버튼·시트</td><td>강조 버튼은 화면당 하나, 시트는 왼쪽 닫기와 오른쪽 완료, 손잡이</td><td>보라 단추 하나, 시트 머리에 「닫기」와 「적용」</td></tr>
+<tr><td>애플 재질</td><td>Liquid Glass는 조작과 내비게이션 층에만</td><td>카드·목록·위젯 내용에는 쓰지 않음</td></tr>
+<tr><td>UI-Craft</td><td>카드 쌓기 금지, 강조색 하나, 큰 숫자는 꾸미지 않음</td><td>타일과 한 덩어리 목록, 보라는 결정 단추에만</td></tr>
+<tr><td>크루네 규격 v1</td><td>회색 보조 단추, 잉크 선택 표시, 하위 화면은 뒤로와 제목</td><td>그대로 반영</td></tr>
+</table>
+</section>
+
+<section>
+<h2>확인하지 못한 것</h2>
+<ul>
+<li>애플 OS 27 계열에서 확인된 변화는 Liquid Glass 재조정과 macOS 27의 버튼 테두리 표시 설정입니다. 위젯 규칙 자체의 27 전용 변경은 확인되지 않았습니다.</li>
+<li>맥 데스크톱 위젯의 정확한 크기와, 맥에서 색을 뺀 틴트 모드가 실제로 적용되는지는 애플 문서끼리 달라 실제 위젯으로 확인해야 합니다.</li>
+<li>시안의 기본 연결 lucete217 Claude, 대체 연결 sally Codex, 자동 전환 켬은 가정입니다. 이 값은 크루네 설정에 있고 위젯으로 넘어오는 경로를 먼저 확인해야 합니다.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>
