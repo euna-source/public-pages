@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>사용량 위젯·화면 시안 3차</title>
+<style>
+:root{--bg:#F6F4F0;--card:#fff;--ink:#1C1C1E;--muted:#6B6B70;--line:#E3E3E7}
+@media (prefers-color-scheme:dark){:root{--bg:#1C1A18;--card:#282624;--ink:#F3F1EE;--muted:#B5AFA8;--line:#44403C}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,"Apple SD Gothic Neo","Pretendard",system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:32px 16px 72px}
+h1{font-size:24px;line-height:1.3;margin:0 0 8px}
+h2{font-size:19px;margin:0 0 6px}
+.lead{color:var(--muted);margin:0 0 24px}
+section{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:22px;margin:0 0 20px}
+p{margin:0 0 12px}.note{color:var(--muted);font-size:14px}
+ul{margin:6px 0 0;padding-left:20px}li{margin:4px 0}
+img{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line)}
+.pick{display:inline-block;font-size:12px;font-weight:700;background:#FFD966;color:#1C1C1E;border-radius:99px;padding:1px 9px;margin-left:6px;vertical-align:2px}
+.row{display:flex;gap:10px;align-items:center;margin:6px 0}
+.row i{display:inline-block;width:14px;height:14px;border-radius:4px}
+</style>
+</head>
+<body>
+<main>
+<h1>사용량 위젯·화면 시안 3차</h1>
+<p class="lead">10월 23일 12시 실제 수치입니다. 이번 판은 세 가지를 바꿨습니다. 값을 못 읽은 계정에 연결을 바꾸는 링크를 달았고, Claude와 Codex를 글자 대신 아이콘과 대표 색으로 구분했고, 크루네 화면은 크루네 공통 규격 부품으로 맞췄습니다.</p>
+
+<section>
+<h2>이번에 바뀐 것</h2>
+<ul>
+<li><b>확인 못함 줄에 「연결 바꾸기 ›」 링크.</b> 작은 위젯에서 기본 연결을 못 읽으면 숫자를 지우고 이 링크를 앞에 둡니다. 누르면 크루네의 연결 바꾸기로 갑니다. 링크는 단추가 아니라 잉크색 글자와 화살표입니다.</li>
+<li><b>엔진은 글자 없이 아이콘과 색으로.</b> 키키 알림 말풍선과 같은 픽셀 캐릭터를 씁니다.
+<div class="row"><i style="background:#D97757"></i>Claude: 주황 픽셀 캐릭터, 막대도 주황</div>
+<div class="row"><i style="background:#8A97FF"></i>Codex: 연보라 구름 아이콘, 막대도 연보라</div></li>
+<li><b>상태는 모양과 글자.</b> ▲ 빠듯, ● 여유, ○ 확인 못함. 색이 빠져도 읽힙니다.</li>
+<li><b>크루네 화면은 규격 v1 부품.</b> 보라 단추는 화면당 하나, 나머지 단추는 연한 회색 면, 선택 표시와 스위치는 잉크색, 하위 화면 제목은 일반 글꼴, 큰 숫자만 픽셀 글꼴입니다. 얼굴 그림은 위젯과 화면에서 뺐습니다. 엔진 아이콘이 그 역할을 합니다.</li>
+</ul>
+</section>
+
+<section>
+<h2>위젯 A. 시스템 글꼴 숫자</h2>
+<p class="note">큰 숫자도 시스템 글꼴입니다. 가장 애플 기본에 가깝고 빠진 글자 없이 깔끔하게 나왔습니다.</p>
+<a href="widget-system.png"><img src="widget-system.png" alt="위젯 A안: 시스템 글꼴 숫자, 엔진 아이콘" width="1536" height="1024"></a>
+</section>
+
+<section>
+<h2>위젯 B. 픽셀 숫자<span class="pick">추천</span></h2>
+<p class="note">큰 숫자 12%만 크루네 픽셀 글꼴입니다. 글꼴 느낌이 살짝 들어가고 숫자가 덜 무거워 보입니다. 그림에는 오타가 두 곳 있습니다. 중간 크기의 「5시간 80% · 2시간화」는 「2시간 뒤」가 맞고, 같은 위젯 대체 연결 줄에 이름 sally가 빠졌습니다. 구현할 때 바로잡습니다.</p>
+<a href="widget-pixel.png"><img src="widget-pixel.png" alt="위젯 B안: 픽셀 숫자, 엔진 아이콘" width="1536" height="1024"></a>
+</section>
+
+<section>
+<h2>크루네 사용량 화면</h2>
+<p class="note">왼쪽부터 기본 목록, 계정 펼침, 연결 바꾸기입니다. 첫 화면의 작은 링크 「연결 바꾸기 ›」 색이 보라에 가깝게 그려졌는데, 규격대로 잉크색으로 맞춥니다.</p>
+<a href="crewne.png"><img src="crewne.png" alt="크루네 사용량 화면: 기본 목록, 계정 펼침, 연결 바꾸기" width="1536" height="1024"></a>
+</section>
+
+<section>
+<h2>확인이 필요한 가정</h2>
+<ul>
+<li>기본 연결은 lucete217의 Claude, 대체 연결은 sally의 Codex, 자동 전환은 켬으로 그렸습니다. 이 값은 크루네 설정에 있고 위젯으로는 아직 넘어오지 않습니다.</li>
+<li>링크를 누르면 해당 계정의 연결 바꾸기로 바로 가려면, 위젯이 크루네에 계정을 알려 주는 주소 연결이 새로 필요합니다.</li>
+</ul>
+</section>
+</main>
+</body>
+</html>
