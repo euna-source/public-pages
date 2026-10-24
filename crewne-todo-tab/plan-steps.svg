@@ -19,12 +19,12 @@
   <!-- 1단계 -->
   <rect x="40" y="384" width="680" height="150" rx="16" fill="#FFFFFF" stroke="#6B5CE7" stroke-width="2.5"/>
   <rect x="604" y="404" width="96" height="28" rx="14" fill="#6B5CE7"/>
-  <text x="652" y="423" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">다음 할 일</text>
+  <text x="652" y="423" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">진행 중</text>
   <text x="64" y="420" font-size="13" font-weight="700" fill="#6B5CE7">1단계</text>
   <text x="64" y="448" font-size="18" font-weight="700" fill="#1C1C1E">옛 저장소에만 생기던 일을 새 저장소로</text>
-  <text x="64" y="476" font-size="14" fill="#3a3a3d">순서: 정기 업무(아침·저녁 브리프) → 귀 편지·회의록 → 폰·음성 요청</text>
-  <text x="64" y="498" font-size="14" fill="#3a3a3d">끝나면 크루가 한 일이 전부 채팅 목록에 떠요.</text>
-  <text x="64" y="520" font-size="13" fill="#6b6b70">나나 · 승인해 주시면 시작</text>
+  <text x="64" y="476" font-size="14" fill="#3a3a3d">✓ 정기 업무(아침·저녁 브리프) — 코드·시험 끝, 배포 승인 대기</text>
+  <text x="64" y="498" font-size="14" fill="#3a3a3d">남은 것: 귀 편지·회의록 → 폰·음성 요청 → 넘기기·논의</text>
+  <text x="64" y="520" font-size="13" fill="#6b6b70">나나 · 10/25 업데이트</text>
   <path d="M380 540 v22" stroke="#9a978f" stroke-width="2"/><path d="M372 556 l8 10 l8 -10" fill="none" stroke="#9a978f" stroke-width="2"/>
 
   <!-- 2단계 -->
