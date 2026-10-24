@@ -427,8 +427,8 @@
     "slug": "c8-home-v010",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-home-v010/",
-    "last_kind": "new",
-    "last_sha256": "7f53dbcccd47687b30d103d788b2f4c41cd58f11f1718033e04de2fc36639713",
-    "timestamp": "2026-10-24T18:47:49.386277Z"
+    "last_kind": "redeploy",
+    "last_sha256": "b5821e642404848e0811364732f1d067ba21d48c999f6b21027cde4ef2eabc25",
+    "timestamp": "2026-10-24T18:54:39.026913Z"
   }
 }
