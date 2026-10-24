@@ -507,8 +507,8 @@
     "slug": "crewne-todo-tab",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-todo-tab/",
-    "last_kind": "new",
-    "last_sha256": "150f83ae81b5983419c7a2ead947788a0159f0e687d2f30374010edc0359def0",
-    "timestamp": "2026-10-24T11:29:08.179609Z"
+    "last_kind": "redeploy",
+    "last_sha256": "f6a8a223a5a571921300ce9eb71c1ffc65e7a096ff24859162bf8b07454dbd9a",
+    "timestamp": "2026-10-24T15:22:04.019208Z"
   }
 }

@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 1130" width="760" height="1130" font-family="-apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif">
+  <rect width="760" height="1130" fill="#F6F4F0"/>
+  <text x="40" y="58" font-size="26" font-weight="700" fill="#1C1C1E">할 일 탭으로 가는 순서</text>
+  <text x="40" y="88" font-size="15" fill="#6b6b70">옛 저장소에만 생기던 일을 먼저 옮기고, 숫자를 하나로 모은 다음 첫 탭을 바꿔요</text>
+
+  <!-- 정한 것 -->
+  <rect x="40" y="110" width="680" height="84" rx="16" fill="#FFFFFF" stroke="#E4E1DA"/>
+  <text x="64" y="142" font-size="15" font-weight="700" fill="#1C1C1E">10/24에 정한 것</text>
+  <text x="64" y="170" font-size="14" fill="#1C1C1E">할 일 정본은 크루네 · 음성 회의록 Things 등록 멈춤(반영함) · 크루가 묻는 건 채팅에만 · 탭 이름 「할 일」</text>
+
+  <!-- 지금 -->
+  <rect x="40" y="218" width="680" height="128" rx="16" fill="#ECE9E2"/>
+  <text x="64" y="252" font-size="13" font-weight="700" fill="#6b6b70">지금</text>
+  <text x="64" y="280" font-size="18" font-weight="700" fill="#1C1C1E">받은함과 채팅이 따로 세고 있어요</text>
+  <text x="64" y="306" font-size="14" fill="#3a3a3d">받은함은 옛 저장소, 채팅은 새 저장소를 읽어요.</text>
+  <text x="64" y="328" font-size="14" fill="#3a3a3d">브리프·귀 편지·회의록·폰 요청은 옛 저장소에만 생겨서 채팅에 안 떠요.</text>
+  <path d="M380 352 v22" stroke="#9a978f" stroke-width="2"/><path d="M372 368 l8 10 l8 -10" fill="none" stroke="#9a978f" stroke-width="2"/>
+
+  <!-- 1단계 -->
+  <rect x="40" y="384" width="680" height="150" rx="16" fill="#FFFFFF" stroke="#6B5CE7" stroke-width="2.5"/>
+  <rect x="604" y="404" width="96" height="28" rx="14" fill="#6B5CE7"/>
+  <text x="652" y="423" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">다음 할 일</text>
+  <text x="64" y="420" font-size="13" font-weight="700" fill="#6B5CE7">1단계</text>
+  <text x="64" y="448" font-size="18" font-weight="700" fill="#1C1C1E">옛 저장소에만 생기던 일을 새 저장소로</text>
+  <text x="64" y="476" font-size="14" fill="#3a3a3d">순서: 정기 업무(아침·저녁 브리프) → 귀 편지·회의록 → 폰·음성 요청</text>
+  <text x="64" y="498" font-size="14" fill="#3a3a3d">끝나면 크루가 한 일이 전부 채팅 목록에 떠요.</text>
+  <text x="64" y="520" font-size="13" fill="#6b6b70">나나 · 승인해 주시면 시작</text>
+  <path d="M380 540 v22" stroke="#9a978f" stroke-width="2"/><path d="M372 556 l8 10 l8 -10" fill="none" stroke="#9a978f" stroke-width="2"/>
+
+  <!-- 2단계 -->
+  <rect x="40" y="572" width="680" height="140" rx="16" fill="#FFFFFF" stroke="#E4E1DA"/>
+  <rect x="604" y="592" width="96" height="28" rx="14" fill="#1C1C1E"/>
+  <text x="652" y="611" font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">코드 준비됨</text>
+  <text x="64" y="608" font-size="13" font-weight="700" fill="#6b6b70">2단계</text>
+  <text x="64" y="636" font-size="18" font-weight="700" fill="#1C1C1E">확인 숫자를 하나로</text>
+  <text x="64" y="664" font-size="14" fill="#3a3a3d">채팅 「확인 n」의 합 → 앱 아이콘 숫자 · 채팅 탭 점 · 폰 알림 숫자</text>
+  <text x="64" y="686" font-size="14" fill="#3a3a3d">옛 받은함 숫자와 사흘 동안 나란히 적어 맞는지 봐요.</text>
+  <path d="M380 718 v22" stroke="#9a978f" stroke-width="2"/><path d="M372 734 l8 10 l8 -10" fill="none" stroke="#9a978f" stroke-width="2"/>
+
+  <!-- 3단계 -->
+  <rect x="40" y="750" width="680" height="150" rx="16" fill="#FFFFFF" stroke="#E4E1DA"/>
+  <rect x="604" y="770" width="96" height="28" rx="14" fill="#FFFFFF" stroke="#9a978f"/>
+  <text x="652" y="789" font-size="13" font-weight="700" fill="#6b6b70" text-anchor="middle">그다음</text>
+  <text x="64" y="786" font-size="13" font-weight="700" fill="#6b6b70">3단계</text>
+  <text x="64" y="814" font-size="18" font-weight="700" fill="#1C1C1E">첫 탭을 「할 일」로</text>
+  <text x="64" y="842" font-size="14" fill="#3a3a3d">회의 · 청취 · 캘린더 · 팀플레이닝 → 키키가 「오늘 꼭 셋」 · 「이번 주」로 정리</text>
+  <text x="64" y="864" font-size="14" fill="#3a3a3d">할 일은 회의가 끝날 때 한 번만 만들고, 아침·저녁 브리프는 순서만 매겨요.</text>
+  <text x="64" y="886" font-size="14" fill="#3a3a3d">체크는 할 일에서, 크루가 묻는 건 채팅에서.</text>
+  <path d="M380 906 v22" stroke="#9a978f" stroke-width="2"/><path d="M372 922 l8 10 l8 -10" fill="none" stroke="#9a978f" stroke-width="2"/>
+
+  <!-- 4단계 -->
+  <rect x="40" y="938" width="680" height="128" rx="16" fill="#FFFFFF" stroke="#E4E1DA"/>
+  <rect x="604" y="958" width="96" height="28" rx="14" fill="#FFFFFF" stroke="#9a978f"/>
+  <text x="652" y="977" font-size="13" font-weight="700" fill="#6b6b70" text-anchor="middle">마지막</text>
+  <text x="64" y="974" font-size="13" font-weight="700" fill="#6b6b70">4단계</text>
+  <text x="64" y="1002" font-size="18" font-weight="700" fill="#1C1C1E">받은함 걷기 · 위젯 잇기</text>
+  <text x="64" y="1030" font-size="14" fill="#3a3a3d">두 숫자 차이가 사흘 동안 0이면 받은함을 걷어요.</text>
+  <text x="64" y="1052" font-size="14" fill="#3a3a3d">바탕화면 「오늘 한눈에」 위젯도 같은 목록을 읽게 해요.</text>
+  <text x="40" y="1104" font-size="13" fill="#6b6b70">단계마다 배포 전에 여쭤볼게요.</text>
+</svg>
