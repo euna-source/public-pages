@@ -515,8 +515,8 @@
     "slug": "crewne-redesign-v2",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-redesign-v2/",
-    "last_kind": "new",
-    "last_sha256": "1e632c621109aa0eb5ab9099dc6f2dd6efd43308d0d4afc1d751e5137449ac19",
-    "timestamp": "2026-10-25T08:50:20.557931Z"
+    "last_kind": "redeploy",
+    "last_sha256": "4b108f456b5ffd79d5ecdf91f3674b2d06f631f750e55fd657023710305b9fac",
+    "timestamp": "2026-10-25T09:02:58.692902Z"
   }
 }

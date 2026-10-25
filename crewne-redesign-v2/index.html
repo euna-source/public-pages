@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>크루네 리디자인 시안 · 위젯 기준</title>
 <meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;600;700&family=IBM+Plex+Mono:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap">
+<style>
+  @font-face { font-family: "BarunK"; font-weight: 400; src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumBarunGothic/NanumBarunGothicWeb.woff) format("woff"); font-display: swap; }
+  @font-face { font-family: "BarunK"; font-weight: 600 700; src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumBarunGothic/NanumBarunGothicWebBold.woff) format("woff"); font-display: swap; }
+  @font-face { font-family: "SquareNeoK"; font-weight: 400; src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-bRg.woff) format("woff"); font-display: swap; }
+  @font-face { font-family: "SquareNeoK"; font-weight: 600; src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-cBd.woff) format("woff"); font-display: swap; }
+  @font-face { font-family: "SquareNeoK"; font-weight: 700; src: url(https://hangeul.pstatic.net/hangeul_static/webfont/NanumSquareNeo/NanumSquareNeoTTF-dEb.woff) format("woff"); font-display: swap; }
+</style>
 <style>
   :root {
     --bg: #F2F2F7; --block: #fff; --ink: #1C1C1E; --ink2: rgba(28,28,30,.7); --ink3: rgba(28,28,30,.5);
@@ -46,6 +55,34 @@
   th, td { text-align: left; padding: 8px 6px; vertical-align: top; }
   th { font-size: 13px; font-weight: 500; color: var(--ink3); }
   tr + tr td { border-top: 1px solid var(--gray); }
+  .small { font-size: 13px; }
+  .sfb { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sbd { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 8px; border-radius: 7px; font-size: 13px; font-weight: 600; background: var(--gray); color: var(--ink2); }
+  .sbd img { height: 15px; width: auto; } .sbd.a { background: var(--tint); color: var(--accent); } .sbd.w { background: rgba(255,149,0,.12); color: #B85F00; }
+  .sftab { display: flex; justify-content: space-around; max-width: 360px; padding: 6px; border-radius: 30px; background: rgba(255,255,255,.75); border: 1px solid var(--gray); box-shadow: 0 6px 18px rgba(0,0,0,.07); }
+  .sftab div { display: flex; flex-direction: column; align-items: center; gap: 2px; font-size: 11px; color: var(--ink2); padding: 5px 14px; border-radius: 22px; }
+  .sftab img { height: 22px; } .sftab .on { background: #fff; color: #1C1C1E; font-weight: 600; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .sfgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .sfgrid div { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 13px; padding: 10px 4px; border-radius: 14px; background: var(--gray); }
+  .sfgrid img { height: 22px; } .sfgrid small { font-size: 11px; color: var(--ink3); }
+  @media (prefers-color-scheme: dark) { .sfgrid img, .sftab img, .sfb img, .fdemo img:not(.av) { filter: invert(1) hue-rotate(180deg); } .sftab .on { background: #2c2c2e; color: #fff; } }
+  .fonts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 10px; }
+  .fcard { border-radius: 18px; background: var(--bg); padding: 14px; }
+  .ftag { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink2); }
+  .fname { font-size: 13px; color: var(--ink3); margin: 4px 0 10px; }
+  .fdemo { background: var(--block); border-radius: 18px; padding: 14px; }
+  .fdemo .dh { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--ink2); margin-bottom: 10px; }
+  .fdemo .av { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; object-position: 50% 22%; }
+  .fdemo .num { margin-left: auto; font-size: 12px; color: var(--ink3); }
+  .fdemo .dt { font-size: 22px; font-weight: 700; line-height: 1.3; margin: 8px 0 10px; letter-spacing: -.01em; }
+  .fdemo .dr { display: flex; align-items: center; gap: 8px; font-size: 15px; height: 40px; }
+  .fdemo .dr b { font-weight: 600; }
+  .fdemo .dbig { font-size: 15px; color: var(--ink2); margin-top: 6px; } .fdemo .dbig .num { margin: 0; font-size: 34px; font-weight: 700; color: #FF9500; }
+  .fwhy { font-size: 13px; color: var(--ink2); margin: 10px 2px 0; }
+  .fa .fdemo { font-family: "BarunK", sans-serif; } .fa .num, .fa .dr b { font-family: "JetBrains Mono", monospace; }
+  .fb .fdemo { font-family: "SquareNeoK", sans-serif; } .fb .num, .fb .dr b { font-family: "JetBrains Mono", monospace; }
+  .fc .fdemo { font-family: "IBM Plex Sans KR", sans-serif; } .fc .num, .fc .dr b { font-family: "IBM Plex Mono", monospace; }
+  @media (max-width: 760px) { .fonts { grid-template-columns: 1fr; } }
   @media (max-width: 640px) { .refs { grid-template-columns: 1fr; } table { font-size: 13px; } }
 </style>
 </head>
@@ -57,7 +94,7 @@
   <section class="block">
     <div class="head">결론<span class="meta">초안 · 샐리 확인 전</span></div>
     <span class="badge accent">방향</span>
-    <div class="hero">흰 블록, 시스템 글꼴 다섯 단계, 강조색 인디고 하나</div>
+    <div class="hero">흰 블록, 글자 다섯 단계, 강조색 인디고 하나</div>
     <p class="muted">위젯에 있는 머리줄·히어로·배지·행을 앱 부품으로 그대로 쓰고, 갈무리 픽셀 글꼴·버터 노랑·보라 단추·크림 바탕은 걷어요. 탭마다 짝이 되는 위젯이 있어서, 할 일 탭은 「오늘 한눈에」, 자료 탭은 「새 결과물」, 사용량은 「사용량」 위젯을 폰 폭으로 편 모양이에요.</p>
   </section>
 
@@ -86,9 +123,89 @@
   </section>
 
   <section class="block">
-    <div class="head">디자인 가이드 보드</div>
-    <figure><img src="board-guide.jpg" alt="디자인 가이드 v2 보드: 글자, 색, 배지, 머리줄, 행, 단추와 탭바"></figure>
-    <div class="label">토큰</div>
+    <div class="head">아이콘 · iOS 26 SF Symbols 7<span class="meta">고침 · 그림 대신 실제 기호</span></div>
+    <p class="muted">배지·탭바·목록의 아이콘을 애플 공식 SF Symbols 7에서 그대로 가져왔어요. 이 Mac(macOS 26)에서 기호를 직접 뽑은 그림이라 모양이 실제와 같아요.</p>
+    <div class="label">배지</div>
+    <div class="sfb">
+      <span class="sbd a"><img src="sf/i-checkmark.seal.png" alt="">승인</span>
+      <span class="sbd"><img src="sf/g-eye.png" alt="">확인</span>
+      <span class="sbd"><img src="sf/g-questionmark.bubble.png" alt="">질문</span>
+      <span class="sbd"><img src="sf/g-doc.text.png" alt="">문서</span>
+      <span class="sbd"><img src="sf/g-globe.png" alt="">웹</span>
+      <span class="sbd"><img src="sf/g-photo.png" alt="">이미지</span>
+      <span class="sbd w"><img src="sf/o-clock.png" alt="">빠듯</span>
+    </div>
+    <div class="label">탭바</div>
+    <div class="sftab">
+      <div class="on"><img src="sf/k-checklist.png" alt="">할 일</div>
+      <div><img src="sf/g-bubble.left.and.bubble.right.png" alt="">채팅</div>
+      <div><img src="sf/g-folder.png" alt="">자료</div>
+      <div><img src="sf/g-person.crop.circle.png" alt="">나</div>
+    </div>
+    <div class="label">목록·머리줄</div>
+    <div class="sfgrid">
+      <div><img src="sf/k-calendar.png" alt="">오늘 일정<small>calendar</small></div>
+      <div><img src="sf/k-bell.png" alt="">알림<small>bell</small></div>
+      <div><img src="sf/k-person.3.png" alt="">크루<small>person.3</small></div>
+      <div><img src="sf/k-textformat.size.png" alt="">화면<small>textformat.size</small></div>
+      <div><img src="sf/k-link.png" alt="">계정 연결<small>link</small></div>
+      <div><img src="sf/g-arrow.clockwise.png" alt="">새로 고침<small>arrow.clockwise</small></div>
+      <div><img src="sf/k-magnifyingglass.png" alt="">검색<small>magnifyingglass</small></div>
+      <div><img src="sf/k-square.and.pencil.png" alt="">새 업무<small>square.and.pencil</small></div>
+      <div><img src="sf/k-arrow.up.png" alt="">보내기<small>arrow.up</small></div>
+    </div>
+    <p class="muted small">구현 메모: SF Symbols는 애플 플랫폼 앱용 라이선스예요. 크루네는 웹앱이라 실제 코드에 넣어도 되는지는 아직 확인 전이에요. 안 되면 같은 모양의 공개 아이콘으로 바꿔 넣어요.</p>
+  </section>
+
+  <section class="block">
+    <div class="head">글꼴 후보 3 · cmux 느낌으로<span class="meta">하나 골라 주세요</span></div>
+    <p class="muted">cmux 터미널은 영문·숫자를 JetBrains Mono, 한글을 나눔바른고딕으로 써요. 곧고 각진 느낌이에요. 그 느낌을 앱에 옮기는 후보 셋을 실제 글꼴로 그렸어요.</p>
+    <div class="fonts">
+      <div class="fcard fa">
+        <div class="ftag"><span class="sbd a">추천</span>A · cmux 그대로</div>
+        <div class="fname">나눔바른고딕 + JetBrains Mono</div>
+        <div class="fdemo">
+          <div class="dh"><img class="av" src="sf/kiki.png" alt="">오늘 한눈에<span class="num">● 회 ● 집 · 15:58</span></div>
+          <span class="sbd a"><img src="sf/i-checkmark.seal.png" alt="">승인</span>
+          <div class="dt">크루네 리디자인 시안 승인</div>
+          <div class="dr"><span class="sbd"><img src="sf/g-eye.png" alt="">확인</span>CCQ-212 재검증<span class="num">12분</span></div>
+          <div class="dr"><b>13:30</b> C8 정기미팅<span class="num">회사</span></div>
+          <div class="dbig"><span class="num">12%</span> 주간 남음</div>
+        </div>
+        <p class="fwhy">터미널과 똑같아서 크루네와 cmux가 한 제품처럼 보여요. 한글이 둥글지 않고 곧아요. 굵기가 두 단계뿐이라 큰 제목에 힘이 덜 실려요.</p>
+      </div>
+      <div class="fcard fb">
+        <div class="ftag">B · 더 각지게</div>
+        <div class="fname">나눔스퀘어 네오 + JetBrains Mono</div>
+        <div class="fdemo">
+          <div class="dh"><img class="av" src="sf/kiki.png" alt="">오늘 한눈에<span class="num">● 회 ● 집 · 15:58</span></div>
+          <span class="sbd a"><img src="sf/i-checkmark.seal.png" alt="">승인</span>
+          <div class="dt">크루네 리디자인 시안 승인</div>
+          <div class="dr"><span class="sbd"><img src="sf/g-eye.png" alt="">확인</span>CCQ-212 재검증<span class="num">12분</span></div>
+          <div class="dr"><b>13:30</b> C8 정기미팅<span class="num">회사</span></div>
+          <div class="dbig"><span class="num">12%</span> 주간 남음</div>
+        </div>
+        <p class="fwhy">같은 네이버 글꼴이라 결은 같은데 네모반듯해서 더 또렷해요. 굵기가 다섯 단계라 제목과 본문 차이를 크게 낼 수 있어요. 긴 본문은 조금 딱딱하게 읽혀요.</p>
+      </div>
+      <div class="fcard fc">
+        <div class="ftag">C · 한 가족으로</div>
+        <div class="fname">IBM Plex Sans KR + IBM Plex Mono</div>
+        <div class="fdemo">
+          <div class="dh"><img class="av" src="sf/kiki.png" alt="">오늘 한눈에<span class="num">● 회 ● 집 · 15:58</span></div>
+          <span class="sbd a"><img src="sf/i-checkmark.seal.png" alt="">승인</span>
+          <div class="dt">크루네 리디자인 시안 승인</div>
+          <div class="dr"><span class="sbd"><img src="sf/g-eye.png" alt="">확인</span>CCQ-212 재검증<span class="num">12분</span></div>
+          <div class="dr"><b>13:30</b> C8 정기미팅<span class="num">회사</span></div>
+          <div class="dbig"><span class="num">12%</span> 주간 남음</div>
+        </div>
+        <p class="fwhy">한글과 고정폭이 같은 가족이라 섞어도 어긋남이 없어요. 기술 문서 느낌이 나고 굵기도 넉넉해요. 터미널 글꼴과는 조금 다른 얼굴이에요.</p>
+      </div>
+    </div>
+    <p class="muted small">세 후보 모두 무료 공개 글꼴이라 앱에 넣을 수 있어요. 숫자·시각·퍼센트는 고정폭(Mono)으로 써서 터미널 느낌을 살려요.</p>
+  </section>
+
+  <section class="block">
+    <div class="head">토큰</div>
     <ul class="rows">
       <li><span class="dot"></span><b>글자</b><span>큰 제목 28 · 히어로 22 · 제목 17 · 본문 15 · 라벨 13 · 메타 12 (위젯 값을 한 단계씩 키움)</span></li>
       <li><span class="dot"></span><b>색</b><span>강조 인디고 #3A46E0 하나 · 빠듯 주황 · 소진 빨강 · 글자는 잉크 100/70/50</span></li>
@@ -102,9 +219,9 @@
     <table>
       <tr><th>항목</th><th>지금</th><th>위젯 기준</th></tr>
       <tr><td>바탕</td><td>크림 계열</td><td>#F2F2F7 + 흰 블록</td></tr>
-      <tr><td>글꼴</td><td>Pretendard + 갈무리 픽셀</td><td>시스템 글꼴 하나</td></tr>
+      <tr><td>글꼴</td><td>Pretendard + 갈무리 픽셀</td><td>cmux 계열 한글 + 고정폭 숫자</td></tr>
       <tr><td>강조</td><td>버터 노랑 + 보라 단추</td><td>인디고 하나</td></tr>
-      <tr><td>상태</td><td>점 + 단어, 사용량은 이모지</td><td>기호 배지</td></tr>
+      <tr><td>상태</td><td>점 + 단어, 사용량은 이모지</td><td>SF Symbols 배지</td></tr>
       <tr><td>카드</td><td>1px 선 카드</td><td>선 없는 흰 블록</td></tr>
       <tr><td>시트</td><td>오른쪽 × + 아래 확인</td><td>왼쪽 닫기 · 오른쪽 완료</td></tr>
     </table>
@@ -114,7 +231,7 @@
     <div class="head">정하실 것</div>
     <ul class="rows">
       <li><span class="dot"></span><span>이 방향으로 갈지. 가면 나나가 토큰 → 탭바 → 할 일 → 나머지 탭 순서로 구현해요.</span></li>
-      <li><span class="dot"></span><span>갈무리 픽셀 글꼴을 완전히 뺄지, 날짜 한 곳에만 남길지.</span></li>
+      <li><span class="dot"></span><span>글꼴 후보 A·B·C 중 하나. 고르시면 시안 보드 세 장을 그 글꼴과 SF Symbols로 다시 그려요.</span></li>
       <li><span class="dot"></span><span>사용량 이모지(🌿⏳🪫🫥)를 위젯처럼 기호 배지로 바꿀지.</span></li>
     </ul>
     <p class="muted" style="margin-top:8px">시안 그림은 이미지 생성이라 글자 몇 개가 실제와 다를 수 있어요. 구현은 가이드 문서 값을 따라요.</p>
