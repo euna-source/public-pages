@@ -410,28 +410,42 @@ i.ic.t { width: 28px; height: 28px; } i.ic.k { width: 18px; height: 18px; }
 .gauge i.cl { background: var(--cl); }
 .uv h2 { font-size: 21px; font-weight: 700; margin: 0 0 2px; letter-spacing: -.01em; } .uv .sub { font-size: 13px; }
 .blk.ua { padding: 4px 16px; }
-.ub { padding: 12px 0; } .ub + .ub { border-top: 1px solid var(--gray); }
-.uh { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; } .uh > b { font-size: 15px; font-weight: 600; } .uh small { font-size: 12px; color: var(--ink3); }
-.pcs { margin-left: auto; display: flex; gap: 4px; }
-.pc { display: inline-flex; align-items: center; gap: 3px; height: 20px; padding: 0 6px; border-radius: 6px; background: var(--gray); color: var(--ink2); font-size: 11px; font-weight: 500; } .pc i.ic svg { width: 12px; height: 12px; }
-.lm { display: grid; grid-template-columns: 44px 1fr auto; grid-template-areas: "l r p" "g g g"; align-items: baseline; column-gap: 8px; margin-top: 7px; }
-.lm .ll { grid-area: l; font-size: 12.5px; color: var(--ink2); } .lm .lr { grid-area: r; font-size: 11.5px; color: var(--ink3); text-align: right; } .lm .lp { grid-area: p; font-size: 13.5px; font-weight: 600; min-width: 36px; text-align: right; }
-.lm .lg { grid-area: g; height: 4px; border-radius: 2px; background: rgba(18,18,18,.08); margin-top: 4px; overflow: hidden; } .lm .lg i { display: block; height: 100%; border-radius: 2px; } .lm .lg i.cl { background: var(--cl); } .lm .lg i.cx { background: var(--cx); }
-.lm.dz .lg i { background: #FF3B30; } .lm.dz .lp { color: #D70015; }
-.lm.none { grid-template-areas: "l r p"; } .lm.none .lr { text-align: left; grid-column: 2 / 4; }
-.phone.dark .lm .lg { background: rgba(255,255,255,.12); } .phone.dark .lm.dz .lp { color: #FF6961; }
-.wt { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; margin: -2px 0 6px; }
-.dx { position: relative; height: 18px; margin: 10px 0 2px; font-size: 10.5px; color: var(--ink3); }
-.dx span { position: absolute; top: 0; transform: translateX(-50%); } .dx .l { left: 0; transform: none; } .dx .r { right: 0; transform: none; }
-.tl { position: relative; height: 34px; }
-.tl .ax { position: absolute; left: 0; right: 0; top: 8px; height: 2px; border-radius: 1px; background: var(--gray); }
-.tl > b { position: absolute; top: 6px; width: 2px; height: 6px; margin-left: -1px; border-radius: 1px; background: rgba(18,18,18,.18); }
-.phone.dark .tl > b { background: rgba(255,255,255,.22); }
-.rg { position: absolute; top: 0; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: conic-gradient(var(--c) var(--u), var(--blk) 0); box-shadow: 0 0 0 2px var(--c) inset, 0 0 0 2px var(--blk); }
-.rg.cl { --c: var(--cl); } .rg.cx { --c: var(--cx); }
-.tl em { position: absolute; top: 20px; transform: translateX(-50%); font-style: normal; font-size: 11px; color: var(--ink2); white-space: nowrap; font-variant-numeric: tabular-nums; }
-.tl em.e { transform: translateX(-85%); } .tl em.s { transform: translateX(-15%); }
-.cap { font-size: 11.5px; color: var(--ink3); text-align: center; margin: 2px 0 10px; }
+.u-ub { padding: 12px 0; } .u-ub + .u-ub { border-top: 1px solid var(--gray); }
+.u-uh { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; } .u-uh > b { font-size: 15px; font-weight: 600; } .u-uh small { font-size: 12px; color: var(--ink3); }
+.u-pcs { margin-left: auto; display: flex; gap: 4px; }
+.u-pc { display: inline-flex; align-items: center; gap: 3px; height: 20px; padding: 0 6px; border-radius: 6px; background: var(--gray); color: var(--ink2); font-size: 11px; font-weight: 500; } .u-pc i.ic svg { width: 12px; height: 12px; }
+.u-lm { display: grid; grid-template-columns: 44px 1fr auto; grid-template-areas: "l r p" "g g g"; align-items: baseline; column-gap: 8px; margin-top: 7px; }
+.u-lm .u-ll { grid-area: l; font-size: 12.5px; color: var(--ink2); } .u-lm .u-lr { grid-area: r; font-size: 11.5px; color: var(--ink3); text-align: right; } .u-lm .u-lp { grid-area: p; font-size: 13.5px; font-weight: 600; min-width: 36px; text-align: right; }
+.u-lm .u-lg { grid-area: g; height: 4px; border-radius: 2px; background: rgba(18,18,18,.08); margin-top: 4px; overflow: hidden; } .u-lm .u-lg i { display: block; height: 100%; border-radius: 2px; } .u-lm .u-lg i.cl { background: var(--cl); } .u-lm .u-lg i.cx { background: var(--cx); }
+.u-lm.u-dz .u-lg i { background: #FF3B30; } .u-lm.u-dz .u-lp { color: #D70015; }
+.u-lm.u-none { grid-template-areas: "l r p"; } .u-lm.u-none .u-lp { color: var(--ink3); font-weight: 500; }
+.phone.dark .u-lm .u-lg { background: rgba(255,255,255,.12); } .phone.dark .u-lm.u-dz .u-lp { color: #FF6961; }
+.u-wt { font-size: 13px; font-weight: 500; font-variant-numeric: tabular-nums; margin: -2px 0 6px; }
+.u-dx { position: relative; height: 18px; margin: 10px 0 2px; font-size: 10.5px; color: var(--ink3); }
+.u-dx span { position: absolute; top: 0; transform: translateX(-50%); } .u-dx .u-l { left: 0; transform: none; } .u-dx .u-r { right: 0; transform: none; }
+.u-tl { position: relative; height: 34px; }
+.u-tl .u-ax { position: absolute; left: 0; right: 0; top: 8px; height: 2px; border-radius: 1px; background: var(--gray); }
+.u-tl > b { position: absolute; top: 6px; width: 2px; height: 6px; margin-left: -1px; border-radius: 1px; background: rgba(18,18,18,.18); }
+.phone.dark .u-tl > b { background: rgba(255,255,255,.22); }
+.u-rg { position: absolute; top: 0; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: conic-gradient(var(--c) var(--u), var(--blk) 0); box-shadow: 0 0 0 2px var(--c) inset, 0 0 0 2px var(--blk); }
+.u-rg.cl { --c: var(--cl); } .u-rg.cx { --c: var(--cx); }
+.u-tl em { position: absolute; top: 20px; transform: translateX(-50%); font-style: normal; font-size: 11px; color: var(--ink2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.u-tl em.u-e { transform: translateX(-85%); } .u-tl em.u-s { transform: translateX(-15%); }
+.u-cap { font-size: 11.5px; color: var(--ink3); text-align: center; margin: 2px 0 10px; }
+/* QA 10/26 — 줄 맞춤·글자 넘침 다듬기 */
+body { word-break: keep-all; overflow-wrap: anywhere; }
+.src { display: inline-flex; align-items: center; height: 18px; padding: 0 6px; vertical-align: 1px; }
+.eb { line-height: 1; }
+.sel { border-radius: 50%; }
+.eff { padding: 3px; gap: 2px; border-radius: 10px; } .eff i { padding: 6px 0; }
+.dt-src { align-items: flex-start; } .dt-src > i.ic:first-child { margin-top: 1px; } .dt-src > i.ic:last-child { align-self: center; }
+.inp { display: block; line-height: 40px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .inp.sm { line-height: 36px; }
+.sheet .grp + .sub.c { margin-top: 12px; }
+.sh .tb { display: inline-flex; align-items: center; } .sh > :last-child { justify-content: flex-end; }
+.quick { padding-top: 48px; margin-top: -48px; background: linear-gradient(to bottom, transparent, var(--bg) 44px); }
+.lab + .big.ac { margin-top: 2px; }
+.s2 .opt { min-height: 60px; }
+.q1 { margin-left: -.42em; } .q2 { margin-right: -.42em; }
 </style></head><body><header class="top"><h1>채팅 ②</h1><p>메뉴 · 첨부 · 회의실 · 다크</p></header><nav class="pnav"><a class="" href="screens-todo-1.html">할 일 ①</a><a class="" href="screens-todo-2.html">할 일 ②</a><a class="" href="screens-records.html">기록</a><a class="" href="screens-chat-1.html">채팅 ①</a><a class="on" href="screens-chat-2.html">채팅 ②</a><a class="" href="screens-me.html">나 · 사용량</a><a class="" href="screens-rules.html">흐름 · 상태 규칙</a><a class="" href="screens-cases.html">채팅 케이스</a></nav>
 <main class="grid"><figure class="ph-wrap"><figcaption>9 길게 누른 메뉴</figcaption><div class="phone light"><div class="sb"><b>9:41</b></div><div class="scr">
 <div class="behind dim">
@@ -519,7 +533,7 @@ i.ic.t { width: 28px; height: 28px; } i.ic.k { width: 18px; height: 18px; }
 <div class="gm"><img class="gmf" src="crew/rain-face.png" alt=""><div><b>레인<small>09:32</small></b><p>디자인 선반 54건 담았어요.<br>막힌 건 없어요.</p></div></div>
 <div class="gm"><img class="gmf" src="crew/genz-face.png" alt=""><div><b>젠지<small>09:33</small></b><p>Weekly Best 세 개 준비했어요.<br>오늘 하나 올려요.</p></div></div>
 <div class="gm"><img class="gmf" src="crew/nana-face.png" alt=""><div><b>나나<small>09:34</small></b><p>유리 모드 대비 보강 마무리해요.<br>검토 받을게요.</p></div></div>
-<div class="dock"><div class="dk"><span class="ib g"><i class="ic m "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg></i></span><div class="inp">다 같이 · 이름을 부르면 그 크루가 답해요</div><span class="send"><i class="ic m "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20V5m-5.657 5L12 4.343L17.657 10"/></svg></i></span></div></div></div></div></figure><figure class="ph-wrap"><figcaption>16 업무 대화 · 다크</figcaption><div class="phone dark"><div class="sb"><b>9:41</b></div><div class="scr">
+<div class="dock"><div class="dk"><span class="ib g"><i class="ic m "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg></i></span><div class="inp">다 같이 · 이름을 부르면 답해요</div><span class="send"><i class="ic m "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 20V5m-5.657 5L12 4.343L17.657 10"/></svg></i></span></div></div></div></div></figure><figure class="ph-wrap"><figcaption>16 업무 대화 · 다크</figcaption><div class="phone dark"><div class="sb"><b>9:41</b></div><div class="scr">
 <div class="nav"><i class="ic l "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.657 17.657L9 12l5.657-5.657"/></svg></i><div class="nt"><img class="av" src="crew/kiki-face.png" alt=""><div><b>키키</b><small><b class="d"></b>일하는 중 · 3단계</small></div></div><span class="ib" aria-label="방 메뉴"><i class="ic l "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M12.5 12a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0m6 0a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0m-12 0a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0"/><path fill="none" stroke="currentColor" stroke-width="2" d="M12.5 12a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0Zm6 0a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0Zm-12 0a.5.5 0 1 1-1 0a.5.5 0 0 1 1 0Z"/></svg></i></span></div>
 <div class="taskbar"><span class="tk">크루네 리디자인 시안 <i class="ic s "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 11L12 13.828L9.172 11"/></svg></i></span><span class="tacts"><span><i class="ic s "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="currentColor" d="M8.464 11.21a1 1 0 0 0-1.414 1.414l.707-.707zm2.122 3.535l-.707.707a1 1 0 0 0 1.414 0zm6.364-4.95a1 1 0 0 0-1.415-1.414l.707.707zM21 12h-1a8 8 0 0 1-8 8v2c5.523 0 10-4.477 10-10zm-9 9v-1a8 8 0 0 1-8-8H2c0 5.523 4.477 10 10 10zm-9-9h1a8 8 0 0 1 8-8V2C6.477 2 2 6.477 2 12zm9-9v1a8 8 0 0 1 8 8h2c0-5.523-4.477-10-10-10zm-4.243 8.917l-.707.707l2.829 2.828l.707-.707l.707-.707l-2.829-2.828zm2.829 2.828l.707.707l5.657-5.657l-.707-.707l-.708-.707l-5.656 5.657z"/></svg></i>확인했어</span><span><i class="ic s "><svg aria-hidden="true" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" d="M21 12a9 9 0 1 1-18 0a9 9 0 0 1 18 0Z"/><path fill="none" stroke="currentColor" stroke-width="2" d="M9 10a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1z"/></svg></i>멈추기</span></span></div>
 <div class="scroll">
