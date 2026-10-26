@@ -1,0 +1,1715 @@
+{
+  "screens": [
+    {
+      "screen": "todo",
+      "width": 320,
+      "theme": "light",
+      "image": "todo-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo-add",
+      "width": 320,
+      "theme": "light",
+      "image": "todo-add-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "chats",
+      "width": 320,
+      "theme": "light",
+      "image": "chats-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "new-room",
+      "width": 320,
+      "theme": "light",
+      "image": "new-room-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room",
+      "width": 320,
+      "theme": "light",
+      "image": "room-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room-attachment",
+      "width": 320,
+      "theme": "light",
+      "image": "room-attachment-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "room-model",
+      "width": 320,
+      "theme": "light",
+      "image": "room-model-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "group",
+      "width": 320,
+      "theme": "light",
+      "image": "group-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "me",
+      "width": 320,
+      "theme": "light",
+      "image": "me-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-now",
+      "width": 320,
+      "theme": "light",
+      "image": "usage-now-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-week",
+      "width": 320,
+      "theme": "light",
+      "image": "usage-week-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "connection",
+      "width": 320,
+      "theme": "light",
+      "image": "connection-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "records",
+      "width": 320,
+      "theme": "light",
+      "image": "records-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "results",
+      "width": 320,
+      "theme": "light",
+      "image": "results-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "docs",
+      "width": 320,
+      "theme": "light",
+      "image": "docs-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "library",
+      "width": 320,
+      "theme": "light",
+      "image": "library-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "minutes",
+      "width": 320,
+      "theme": "light",
+      "image": "minutes-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "transcript",
+      "width": 320,
+      "theme": "light",
+      "image": "transcript-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-permit",
+      "width": 320,
+      "theme": "light",
+      "image": "case-permit-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-queued",
+      "width": 320,
+      "theme": "light",
+      "image": "case-queued-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-progress",
+      "width": 320,
+      "theme": "light",
+      "image": "case-progress-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-success",
+      "width": 320,
+      "theme": "light",
+      "image": "case-success-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-check",
+      "width": 320,
+      "theme": "light",
+      "image": "case-check-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-fail",
+      "width": 320,
+      "theme": "light",
+      "image": "case-fail-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-ask",
+      "width": 320,
+      "theme": "light",
+      "image": "case-ask-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-quota",
+      "width": 320,
+      "theme": "light",
+      "image": "case-quota-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-resume",
+      "width": 320,
+      "theme": "light",
+      "image": "case-resume-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-scheduled",
+      "width": 320,
+      "theme": "light",
+      "image": "case-scheduled-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "message-menu",
+      "width": 320,
+      "theme": "light",
+      "image": "message-menu-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-handoff",
+      "width": 320,
+      "theme": "light",
+      "image": "case-handoff-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "case-offline",
+      "width": 320,
+      "theme": "light",
+      "image": "case-offline-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo",
+      "width": 320,
+      "theme": "dark",
+      "image": "todo-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo-add",
+      "width": 320,
+      "theme": "dark",
+      "image": "todo-add-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "chats",
+      "width": 320,
+      "theme": "dark",
+      "image": "chats-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "new-room",
+      "width": 320,
+      "theme": "dark",
+      "image": "new-room-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room",
+      "width": 320,
+      "theme": "dark",
+      "image": "room-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room-attachment",
+      "width": 320,
+      "theme": "dark",
+      "image": "room-attachment-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "room-model",
+      "width": 320,
+      "theme": "dark",
+      "image": "room-model-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "group",
+      "width": 320,
+      "theme": "dark",
+      "image": "group-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "me",
+      "width": 320,
+      "theme": "dark",
+      "image": "me-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-now",
+      "width": 320,
+      "theme": "dark",
+      "image": "usage-now-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-week",
+      "width": 320,
+      "theme": "dark",
+      "image": "usage-week-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "connection",
+      "width": 320,
+      "theme": "dark",
+      "image": "connection-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "records",
+      "width": 320,
+      "theme": "dark",
+      "image": "records-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "results",
+      "width": 320,
+      "theme": "dark",
+      "image": "results-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "docs",
+      "width": 320,
+      "theme": "dark",
+      "image": "docs-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "library",
+      "width": 320,
+      "theme": "dark",
+      "image": "library-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "minutes",
+      "width": 320,
+      "theme": "dark",
+      "image": "minutes-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "transcript",
+      "width": 320,
+      "theme": "dark",
+      "image": "transcript-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-permit",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-permit-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-queued",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-queued-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-progress",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-progress-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-success",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-success-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-check",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-check-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-fail",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-fail-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-ask",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-ask-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-quota",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-quota-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-resume",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-resume-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-scheduled",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-scheduled-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "message-menu",
+      "width": 320,
+      "theme": "dark",
+      "image": "message-menu-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-handoff",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-handoff-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "case-offline",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-offline-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo",
+      "width": 390,
+      "theme": "light",
+      "image": "todo-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo-add",
+      "width": 390,
+      "theme": "light",
+      "image": "todo-add-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "chats",
+      "width": 390,
+      "theme": "light",
+      "image": "chats-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "new-room",
+      "width": 390,
+      "theme": "light",
+      "image": "new-room-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room",
+      "width": 390,
+      "theme": "light",
+      "image": "room-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room-attachment",
+      "width": 390,
+      "theme": "light",
+      "image": "room-attachment-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "room-model",
+      "width": 390,
+      "theme": "light",
+      "image": "room-model-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "group",
+      "width": 390,
+      "theme": "light",
+      "image": "group-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "me",
+      "width": 390,
+      "theme": "light",
+      "image": "me-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-now",
+      "width": 390,
+      "theme": "light",
+      "image": "usage-now-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-week",
+      "width": 390,
+      "theme": "light",
+      "image": "usage-week-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "connection",
+      "width": 390,
+      "theme": "light",
+      "image": "connection-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "records",
+      "width": 390,
+      "theme": "light",
+      "image": "records-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "results",
+      "width": 390,
+      "theme": "light",
+      "image": "results-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "docs",
+      "width": 390,
+      "theme": "light",
+      "image": "docs-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "library",
+      "width": 390,
+      "theme": "light",
+      "image": "library-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "minutes",
+      "width": 390,
+      "theme": "light",
+      "image": "minutes-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "transcript",
+      "width": 390,
+      "theme": "light",
+      "image": "transcript-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-permit",
+      "width": 390,
+      "theme": "light",
+      "image": "case-permit-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-queued",
+      "width": 390,
+      "theme": "light",
+      "image": "case-queued-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-progress",
+      "width": 390,
+      "theme": "light",
+      "image": "case-progress-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-success",
+      "width": 390,
+      "theme": "light",
+      "image": "case-success-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-check",
+      "width": 390,
+      "theme": "light",
+      "image": "case-check-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-fail",
+      "width": 390,
+      "theme": "light",
+      "image": "case-fail-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-ask",
+      "width": 390,
+      "theme": "light",
+      "image": "case-ask-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-quota",
+      "width": 390,
+      "theme": "light",
+      "image": "case-quota-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-resume",
+      "width": 390,
+      "theme": "light",
+      "image": "case-resume-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-scheduled",
+      "width": 390,
+      "theme": "light",
+      "image": "case-scheduled-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "message-menu",
+      "width": 390,
+      "theme": "light",
+      "image": "message-menu-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-handoff",
+      "width": 390,
+      "theme": "light",
+      "image": "case-handoff-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "case-offline",
+      "width": 390,
+      "theme": "light",
+      "image": "case-offline-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo",
+      "width": 390,
+      "theme": "dark",
+      "image": "todo-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "todo-add",
+      "width": 390,
+      "theme": "dark",
+      "image": "todo-add-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "chats",
+      "width": 390,
+      "theme": "dark",
+      "image": "chats-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "new-room",
+      "width": 390,
+      "theme": "dark",
+      "image": "new-room-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room",
+      "width": 390,
+      "theme": "dark",
+      "image": "room-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "room-attachment",
+      "width": 390,
+      "theme": "dark",
+      "image": "room-attachment-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "room-model",
+      "width": 390,
+      "theme": "dark",
+      "image": "room-model-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "group",
+      "width": 390,
+      "theme": "dark",
+      "image": "group-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "me",
+      "width": 390,
+      "theme": "dark",
+      "image": "me-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-now",
+      "width": 390,
+      "theme": "dark",
+      "image": "usage-now-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "usage-week",
+      "width": 390,
+      "theme": "dark",
+      "image": "usage-week-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "connection",
+      "width": 390,
+      "theme": "dark",
+      "image": "connection-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "records",
+      "width": 390,
+      "theme": "dark",
+      "image": "records-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "results",
+      "width": 390,
+      "theme": "dark",
+      "image": "results-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "docs",
+      "width": 390,
+      "theme": "dark",
+      "image": "docs-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "library",
+      "width": 390,
+      "theme": "dark",
+      "image": "library-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "minutes",
+      "width": 390,
+      "theme": "dark",
+      "image": "minutes-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "transcript",
+      "width": 390,
+      "theme": "dark",
+      "image": "transcript-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-permit",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-permit-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-queued",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-queued-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-progress",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-progress-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-success",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-success-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-check",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-check-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-fail",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-fail-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-ask",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-ask-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-quota",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-quota-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-resume",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-resume-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-scheduled",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-scheduled-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "message-menu",
+      "width": 390,
+      "theme": "dark",
+      "image": "message-menu-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-handoff",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-handoff-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterDraftFix": true
+    },
+    {
+      "screen": "case-offline",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-offline-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      }
+    },
+    {
+      "screen": "case-sent",
+      "width": 320,
+      "theme": "light",
+      "image": "case-sent-320-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-sent",
+      "width": 320,
+      "theme": "dark",
+      "image": "case-sent-320-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-sent",
+      "width": 390,
+      "theme": "light",
+      "image": "case-sent-390-light.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    },
+    {
+      "screen": "case-sent",
+      "width": 390,
+      "theme": "dark",
+      "image": "case-sent-390-dark.png",
+      "metrics": {
+        "horizontal": [],
+        "text": [],
+        "overlaps": [],
+        "broken": [],
+        "icons": []
+      },
+      "recheckedAfterGateFix": true
+    }
+  ],
+  "failures": [],
+  "incrementalValidation": "초안 중복 수리 후 영향을 받는 경로를 다시 촬영. 배경막은 의도된 덮개라 내용 조작 영역 겹침에서 제외.",
+  "emulatorVersion": {
+    "id": "8842d8eca1153c49",
+    "build": "26.10.27 03:41"
+  },
+  "sentStateProof": "여섯 전송 상태를 함께 보이도록 세로 1400으로 촬영. 각 상태 표시가 실제 스크롤 영역 안에 있음을 단언."
+}

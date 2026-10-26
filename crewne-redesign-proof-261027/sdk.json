@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-26T17:47:38.395Z",
+  "packages": [
+    {
+      "name": "@fontsource/ibm-plex-mono",
+      "before": null,
+      "current": "5.3.0",
+      "latest": "5.3.0",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "@fontsource/ibm-plex-sans-kr",
+      "before": "^5.3.0",
+      "current": "^5.3.0",
+      "latest": "5.3.0",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "@simplewebauthn/browser",
+      "before": "^14.0.0",
+      "current": "^14.0.0",
+      "latest": "14.0.0",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "dompurify",
+      "before": "3.4.17",
+      "current": "3.4.17",
+      "latest": "3.4.17",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "firebase",
+      "before": "13.1.0",
+      "current": "13.1.0",
+      "latest": "13.1.0",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "marked",
+      "before": "^16.0.0",
+      "current": "^16.0.0",
+      "latest": "18.1.2",
+      "reason": "메이저 변경의 파서·출력 호환을 별도 검증해야 해 현재 보안 검사 통과 버전을 유지"
+    },
+    {
+      "name": "react",
+      "before": "19.3.1",
+      "current": "19.3.1",
+      "latest": "19.3.1",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "react-dom",
+      "before": "19.3.1",
+      "current": "19.3.1",
+      "latest": "19.3.1",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "@iconify-json/mingcute",
+      "before": null,
+      "current": "1.2.8",
+      "latest": "1.2.8",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "@vitejs/plugin-react",
+      "before": "^5.0.0",
+      "current": "6.1.2",
+      "latest": "6.1.2",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "playwright",
+      "before": null,
+      "current": "1.64.1",
+      "latest": "1.64.1",
+      "reason": "조회 시점 최신 버전"
+    },
+    {
+      "name": "vite",
+      "before": "^7.0.0",
+      "current": "8.3.5",
+      "latest": "8.3.5",
+      "reason": "조회 시점 최신 버전"
+    }
+  ],
+  "grpcOverride": {
+    "@grpc/grpc-js": "1.14.6"
+  },
+  "removed": [
+    "@fontsource-variable/noto-sans-kr",
+    "@fontsource/black-han-sans",
+    "@fontsource/do-hyeon",
+    "@fontsource/gothic-a1",
+    "@sun-typeface/suit",
+    "pretendard",
+    "wanted-sans"
+  ]
+}

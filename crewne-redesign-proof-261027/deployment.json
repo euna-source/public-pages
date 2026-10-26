@@ -1,0 +1,15 @@
+{
+  "version": {
+    "id": "5af5692e273b4a4e",
+    "build": "26.10.27 03:45"
+  },
+  "loadedAssets": {
+    "assets/index-DbOPZhWU.css": "f0eef66466db189be18b6596445757fa990318fc979fb866f15db664d488571b",
+    "assets/index-C_g0r_bZ.js": "b3ac58405ec8f9ce5ed43f765686ac2b8f9bff725b0e85710f1a6febe44cde49",
+    "assets/library-B-n2D2Rj.css": "8ef2ebbf5351945e93ce6656767775775a02187bd1e951eda2e8bb5d38df66f3",
+    "assets/library-BSPmd6ug.js": "92a8d678735707704020237d61d82fee92ac189b2af4f775270c44b5f7e2fc71"
+  },
+  "blockedWrites": 0,
+  "screensChecked": 20,
+  "publicImagesRedacted": true
+}
