@@ -523,8 +523,8 @@
     "slug": "crewne-redesign-proof-261027",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-redesign-proof-261027/",
-    "last_kind": "new",
-    "last_sha256": "23ea5fb613f5292b200e5900b1bbd5881ce9fd9bb8ea9116120e6b61b4cb80a2",
-    "timestamp": "2026-10-26T19:05:19.290751Z"
+    "last_kind": "redeploy",
+    "last_sha256": "02bf0b91b6e3349fc649e61d745f858c87763d81bd4ec4fb4cb0464e0c273d5f",
+    "timestamp": "2026-10-26T19:21:52.242255Z"
   }
 }
