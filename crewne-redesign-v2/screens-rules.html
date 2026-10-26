@@ -446,6 +446,12 @@ body { word-break: keep-all; overflow-wrap: anywhere; }
 .lab + .big.ac { margin-top: 2px; }
 .s2 .opt { min-height: 60px; }
 .q1 { margin-left: -.42em; } .q2 { margin-right: -.42em; }
+/* QA 10/26 2차 — 목록 한 줄은 제목·설명이 붙어 보이게, 빠른 답과 입력칸 사이 */
+.opt { padding: 10px 0; min-height: 52px; } .opt > div { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.opt b, .opt small { line-height: 1.3; margin: 0; }
+.grp .opt + .opt { border-top: 1px solid var(--gray); }
+.opt > .eb, .opt > i.ic, .opt > .ck { align-self: center; }
+.qk + .inp, .qk + .inp.sm { margin-top: 8px; }
 </style></head><body><header class="top"><h1>흐름 · 상태 규칙</h1><p>듣기 → 할 일 흐름과 아이콘 상태</p></header><nav class="pnav"><a class="" href="screens-todo-1.html">할 일 ①</a><a class="" href="screens-todo-2.html">할 일 ②</a><a class="" href="screens-records.html">기록</a><a class="" href="screens-chat-1.html">채팅 ①</a><a class="" href="screens-chat-2.html">채팅 ②</a><a class="" href="screens-me.html">나 · 사용량</a><a class="on" href="screens-rules.html">흐름 · 상태 규칙</a><a class="" href="screens-cases.html">채팅 케이스</a></nav>
 <section class="flow"><h2>들은 것에서 할 일까지</h2>
 <p class="sub">키키 듣기·Tiro·앱 녹음은 모두 <span class="q1">「</span>자료 › 기록<span class="q2">」</span>에 쌓이고, 키키가 뽑은 할 일 후보만 할 일 탭 맨 위 <span class="q1">「</span>새로 들은 것<span class="q2">」</span>으로 올라와요. 샐리가 고른 것만 할 일이 되고, 맡기면 채팅 업무가 돼요.</p>
