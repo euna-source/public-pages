@@ -587,8 +587,8 @@
     "slug": "crewne-crew-list-261027",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-crew-list-261027/",
-    "last_kind": "new",
-    "last_sha256": "aa0c0c1ba5f7420dd617122819b841c4462f6715e0d58d041cac2b38f8169594",
-    "timestamp": "2026-10-27T09:43:35.764648Z"
+    "last_kind": "redeploy",
+    "last_sha256": "f817f947b09efd1ded8ed6f8d2e2fad57fbf48fa591cac4c31c8beec1d4f386e",
+    "timestamp": "2026-10-27T13:56:53.480323Z"
   }
 }
