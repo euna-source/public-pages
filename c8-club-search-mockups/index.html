@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>클럽 검색 시안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f4f2;--ink:#171717;--sub:#6b6b6b;--line:#e2e2de;--card:#fff;--accent:#0a8f2c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161616;--ink:#f1f1f1;--sub:#a3a3a3;--line:#2c2c2c;--card:#1f1f1f;--accent:#2ee35a}}
+:root[data-theme="dark"]{--bg:#161616;--ink:#f1f1f1;--sub:#a3a3a3;--line:#2c2c2c;--card:#1f1f1f;--accent:#2ee35a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,"Noto Sans KR",-apple-system,sans-serif;line-height:1.55}
+main{max-width:1240px;margin:0 auto;padding:40px 16px 80px}
+h1{font-size:28px;letter-spacing:-.02em;margin:0 0 8px}
+.lead{color:var(--sub);margin:0 0 32px;max-width:640px}
+h2{font-size:20px;letter-spacing:-.01em;margin:48px 0 4px}
+.h2sub{color:var(--sub);margin:0 0 20px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+@media (max-width:980px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px}
+figure img{width:100%;display:block;border-radius:10px;background:#111}
+figcaption{padding:12px 4px 2px}
+figcaption b{display:block;font-size:16px;letter-spacing:-.01em}
+figcaption span{display:block;color:var(--sub);font-size:14px;margin-top:4px}
+.pick{display:inline-block;margin-top:8px;font-size:13px;font-weight:600;color:var(--accent)}
+.tog{font-size:13px;color:var(--sub);background:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;margin-top:10px;cursor:pointer}
+.note{margin-top:40px;padding:16px 18px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--sub);font-size:14px}
+.note b{color:var(--ink)}
+</style>
+</head>
+<body>
+<main>
+<h1>클럽 검색 시안</h1>
+<p class="lead">클럽 돋보기로 「뮤비」를 검색했을 때의 결과 화면 4안과, 검색 전후 상황 4장면입니다. 모두 크리에이터클럽 정본 앱의 실제 부품(검색바·칩·오픈채팅 줄·클럽 소개 줄·크리에이터 카드)으로 조립했습니다.</p>
+
+<h2>결과 화면 4안</h2>
+<p class="h2sub">첫 화면 그대로 보이고, 「아래까지 보기」를 누르면 스크롤 끝까지 보입니다.</p>
+<div class="grid">
+  <figure><img src="img/xs-a1.jpg" data-long="img/xs-a1-long.jpg" alt="A1 섹션형 시안"><figcaption><b>A1 · 종류별 칸</b><span>크리에이터 → 오픈채팅 → 프로젝트 → 포트폴리오. 크리에이터는 한 줄씩이라 한 화면에 종류가 가장 많이 보여요.</span><span class="pick">기본 추천</span><button class="tog">아래까지 보기</button></figcaption></figure>
+  <figure><img src="img/xs-g.jpg" data-long="img/xs-g-long.jpg" alt="G 함께할 곳 먼저 시안"><figcaption><b>G · 함께할 곳 먼저</b><span>오픈채팅·프로젝트·팀을 「함께할 곳」으로 묶어 위로, 사람과 작업물은 아래로. 클럽에서 들어온 사람 기준.</span><span class="pick">클럽 성격이 가장 강함</span><button class="tog">아래까지 보기</button></figcaption></figure>
+  <figure><img src="img/xs-f.jpg" data-long="img/xs-f-long.jpg" alt="F 사람 카드 크게 시안"><figcaption><b>F · 사람은 사진 카드로</b><span>지금 파인더의 크리에이터 카드를 그대로 두 장. 사람이 눈에 띄지만 첫 화면을 거의 다 차지해요.</span><button class="tog">아래까지 보기</button></figcaption></figure>
+  <figure><img src="img/xs-h.jpg" data-long="img/xs-h-long.jpg" alt="H 줄마다 가로 넘김 시안"><figcaption><b>H · 줄마다 옆으로 넘김</b><span>종류마다 한 줄씩 옆으로 넘겨요. 짧게 많이 훑기 좋지만, 결과가 1~2개면 줄이 비어 보여요.</span><button class="tog">아래까지 보기</button></figcaption></figure>
+</div>
+
+<h2>상황별 4장면</h2>
+<p class="h2sub">결과 화면 안과 상관없이 같이 쓰는 화면입니다.</p>
+<div class="grid">
+  <figure><img src="img/xs-1-before.jpg" alt="검색 전 화면"><figcaption><b>① 검색 전</b><span>「최근 본 크리에이터」를 「최근 본」으로 바꿔 팀·오픈채팅도 다시 찾아가게 했어요.</span></figcaption></figure>
+  <figure><img src="img/xs-2-typing.jpg" alt="입력 중 화면"><figcaption><b>② 입력 중</b><span>이름이 맞는 팀·오픈채팅·크리에이터가 종류 표시와 함께 바로 나와요. 누르면 바로 그 화면으로.</span></figcaption></figure>
+  <figure><img src="img/xs-3-exact.jpg" alt="이름이 딱 맞을 때 화면"><figcaption><b>③ 이름이 딱 맞을 때</b><span>팀 이름을 정확히 치면 그 팀을 맨 위에 크게. 멤버는 「팀 스튜디오 파랑 멤버」라는 이유와 함께.</span></figcaption></figure>
+  <figure><img src="img/xs-4-empty.jpg" alt="결과 없음 화면"><figcaption><b>④ 결과 없음</b><span>지금 문구 그대로 두고, 아래에 비슷한 카테고리와 인기 검색어로 다음 길을 줘요.</span></figcaption></figure>
+</div>
+
+<div class="note"><b>시안에서 새로 알게 된 것</b> — 칩 6개(전체·크리에이터·오픈채팅·프로젝트·팀·포트폴리오)는 한 화면 폭에 다 들어가지 않아 옆으로 넘겨야 합니다. 「포트폴리오」가 늘 화면 밖에 있게 되므로, 칩을 5개로 줄일지(포트폴리오는 크리에이터 안으로) 함께 정해야 합니다.</div>
+</main>
+<script>
+document.querySelectorAll('.tog').forEach(function(b){
+  b.addEventListener('click',function(){
+    var img=b.closest('figure').querySelector('img');
+    var s=img.getAttribute('src'),l=img.getAttribute('data-long');
+    img.setAttribute('src',l);img.setAttribute('data-long',s);
+    b.textContent=b.textContent==='아래까지 보기'?'첫 화면만 보기':'아래까지 보기';
+  });
+});
+</script>
+</body>
+</html>
