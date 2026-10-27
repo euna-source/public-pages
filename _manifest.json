@@ -590,5 +590,13 @@
     "last_kind": "redeploy",
     "last_sha256": "f817f947b09efd1ded8ed6f8d2e2fad57fbf48fa591cac4c31c8beec1d4f386e",
     "timestamp": "2026-10-27T13:56:53.480323Z"
+  },
+  "c8-insta-draft-261027": {
+    "slug": "c8-insta-draft-261027",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-draft-261027/",
+    "last_kind": "new",
+    "last_sha256": "e2cf65e017e8c92fff0414831cb7c218adc153a0779d44f99a6ed7c3664a9028",
+    "timestamp": "2026-10-27T14:05:47.379953Z"
   }
 }
