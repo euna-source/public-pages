@@ -1,0 +1,224 @@
+{
+  "version": {
+    "id": "e184d62d25cdb2fc",
+    "build": "26.10.27 11:49"
+  },
+  "commit": "cd2c2579246802a2f91b5b578e0962d2998b801e",
+  "loadedAssets": {
+    "assets/index-C5eBMD9c.css": "f1fed86ac44dfcc3526234921bfb6ab98760a2dec9a80e808c7a33020756b8a6",
+    "assets/index-BHTa8Oxb.js": "06276bd719966a77cf0a7428f0586885a9cf2d434ae4122a5b24066fae58e66b"
+  },
+  "blockedWrites": 0,
+  "pageErrors": [],
+  "screens": [
+    {
+      "width": 320,
+      "theme": "light",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 268,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 304,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 175.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 264,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 288,
+          "height": 76,
+          "right": 304,
+          "cy": 108
+        },
+        "gap": 4,
+        "contrast": 6.648815463714549,
+        "touchWidth": 44,
+        "touchHeight": 44,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      },
+      "gestureFocus": {
+        "focused": "\ud55c \uc904",
+        "trusted": true,
+        "active": true
+      },
+      "image": "production-header-320-light.png",
+      "formImage": "production-add-320-light.png"
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 268,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 304,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 175.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 264,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 288,
+          "height": 76,
+          "right": 304,
+          "cy": 108
+        },
+        "gap": 4,
+        "contrast": 8.73641381905689,
+        "touchWidth": 44,
+        "touchHeight": 44,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      },
+      "gestureFocus": {
+        "focused": "\ud55c \uc904",
+        "trusted": true,
+        "active": true
+      },
+      "image": "production-header-320-dark.png",
+      "formImage": "production-add-320-dark.png"
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 338,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 374,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 245.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 334,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 358,
+          "height": 76,
+          "right": 374,
+          "cy": 108
+        },
+        "gap": 4,
+        "contrast": 6.648815463714549,
+        "touchWidth": 44,
+        "touchHeight": 44,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      },
+      "gestureFocus": {
+        "focused": "\ud55c \uc904",
+        "trusted": true,
+        "active": true
+      },
+      "image": "production-header-390-light.png",
+      "formImage": "production-add-390-light.png"
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 338,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 374,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 245.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 334,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 358,
+          "height": 76,
+          "right": 374,
+          "cy": 108
+        },
+        "gap": 4,
+        "contrast": 8.73641381905689,
+        "touchWidth": 44,
+        "touchHeight": 44,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      },
+      "gestureFocus": {
+        "focused": "\ud55c \uc904",
+        "trusted": true,
+        "active": true
+      },
+      "image": "production-header-390-dark.png",
+      "formImage": "production-add-390-dark.png"
+    }
+  ],
+  "publicImagesRedacted": true
+}

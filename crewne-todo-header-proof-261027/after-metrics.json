@@ -1,0 +1,898 @@
+[
+  {
+    "engine": "chromium",
+    "width": 320,
+    "theme": "light",
+    "calendar": "empty",
+    "image": "after-chromium-320-light-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 175.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 320,
+    "theme": "light",
+    "calendar": "long",
+    "image": "after-chromium-320-light-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 134,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 320,
+    "theme": "dark",
+    "calendar": "empty",
+    "image": "after-chromium-320-dark-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 175.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 320,
+    "theme": "dark",
+    "calendar": "long",
+    "image": "after-chromium-320-dark-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 134,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "theme": "light",
+    "calendar": "empty",
+    "image": "after-chromium-390-light-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 245.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "theme": "light",
+    "calendar": "long",
+    "image": "after-chromium-390-light-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 204,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "theme": "dark",
+    "calendar": "empty",
+    "image": "after-chromium-390-dark-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 245.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "chromium",
+    "width": 390,
+    "theme": "dark",
+    "calendar": "long",
+    "image": "after-chromium-390-dark-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 204,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "theme": "light",
+    "calendar": "empty",
+    "image": "after-webkit-320-light-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 175.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "theme": "light",
+    "calendar": "long",
+    "image": "after-webkit-320-light-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 134,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "theme": "dark",
+    "calendar": "empty",
+    "image": "after-webkit-320-dark-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 175.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 320,
+    "theme": "dark",
+    "calendar": "long",
+    "image": "after-webkit-320-dark-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 268,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 304,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 134,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 264,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 288,
+        "height": 76,
+        "right": 304,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "light",
+    "calendar": "empty",
+    "image": "after-webkit-390-light-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 245.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "light",
+    "calendar": "long",
+    "image": "after-webkit-390-light-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 204,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 6.648815463714549,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "dark",
+    "calendar": "empty",
+    "image": "after-webkit-390-dark-empty.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 245.546875,
+        "y": 18,
+        "width": 88.453125,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": false,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    }
+  },
+  {
+    "engine": "webkit",
+    "width": 390,
+    "theme": "dark",
+    "calendar": "long",
+    "image": "after-webkit-390-dark-long.png",
+    "metrics": {
+      "title": {
+        "x": 16,
+        "y": 16.5,
+        "width": 59.703125,
+        "height": 39,
+        "right": 75.703125,
+        "cy": 36
+      },
+      "add": {
+        "x": 338,
+        "y": 16,
+        "width": 36,
+        "height": 40,
+        "right": 374,
+        "cy": 36
+      },
+      "schedule": {
+        "x": 204,
+        "y": 18,
+        "width": 130,
+        "height": 36,
+        "right": 334,
+        "cy": 36
+      },
+      "cards": {
+        "x": 16,
+        "y": 70,
+        "width": 358,
+        "height": 76,
+        "right": 374,
+        "cy": 108
+      },
+      "gap": 4,
+      "contrast": 8.73641381905689,
+      "touchWidth": 44,
+      "touchHeight": 44,
+      "scheduleClipped": true,
+      "horizontal": false,
+      "icon": true
+    },
+    "gestureFocus": {
+      "focused": "한 줄",
+      "trusted": true,
+      "active": true
+    },
+    "keyboardCssSimulation": {
+      "closed": 44,
+      "open": 8,
+      "restored": 44,
+      "reopened": 8
+    }
+  }
+]

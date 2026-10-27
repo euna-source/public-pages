@@ -1,0 +1,194 @@
+{
+  "version": {
+    "id": "4ed799cc3e77753e",
+    "build": "26.10.27 11:28"
+  },
+  "screens": [
+    {
+      "width": 320,
+      "theme": "light",
+      "image": "operating-before-320-light.png",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 127.625,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 163.625,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 215.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 304,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 288,
+          "height": 76,
+          "right": 304,
+          "cy": 108
+        },
+        "gap": -176.375,
+        "contrast": 6.648815463714549,
+        "touchWidth": 36,
+        "touchHeight": 40,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      }
+    },
+    {
+      "width": 320,
+      "theme": "dark",
+      "image": "operating-before-320-dark.png",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 127.625,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 163.625,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 215.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 304,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 288,
+          "height": 76,
+          "right": 304,
+          "cy": 108
+        },
+        "gap": -176.375,
+        "contrast": 8.73641381905689,
+        "touchWidth": 36,
+        "touchHeight": 40,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      }
+    },
+    {
+      "width": 390,
+      "theme": "light",
+      "image": "operating-before-390-light.png",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 162.625,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 198.625,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 285.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 374,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 358,
+          "height": 76,
+          "right": 374,
+          "cy": 108
+        },
+        "gap": -211.375,
+        "contrast": 6.648815463714549,
+        "touchWidth": 36,
+        "touchHeight": 40,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      }
+    },
+    {
+      "width": 390,
+      "theme": "dark",
+      "image": "operating-before-390-dark.png",
+      "metrics": {
+        "title": {
+          "x": 16,
+          "y": 16.5,
+          "width": 59.703125,
+          "height": 39,
+          "right": 75.703125,
+          "cy": 36
+        },
+        "add": {
+          "x": 162.625,
+          "y": 16,
+          "width": 36,
+          "height": 40,
+          "right": 198.625,
+          "cy": 36
+        },
+        "schedule": {
+          "x": 285.546875,
+          "y": 18,
+          "width": 88.453125,
+          "height": 36,
+          "right": 374,
+          "cy": 36
+        },
+        "cards": {
+          "x": 16,
+          "y": 70,
+          "width": 358,
+          "height": 76,
+          "right": 374,
+          "cy": 108
+        },
+        "gap": -211.375,
+        "contrast": 8.73641381905689,
+        "touchWidth": 36,
+        "touchHeight": 40,
+        "scheduleClipped": false,
+        "horizontal": false,
+        "icon": true
+      }
+    }
+  ],
+  "blockedWrites": 0,
+  "publicImagesRedacted": true
+}
