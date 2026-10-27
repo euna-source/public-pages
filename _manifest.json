@@ -542,5 +542,13 @@
     "last_kind": "new",
     "last_sha256": "65921ca6fb2271b9d490fe951c95e2c1cc4ff7e5226bafb5f89eaa698a995acf",
     "timestamp": "2026-10-26T23:59:05.367637Z"
+  },
+  "c8-club-search-direction": {
+    "slug": "c8-club-search-direction",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-club-search-direction/",
+    "last_kind": "new",
+    "last_sha256": "3a25001015eabd283844a69293ba9200a2c5ba299ced262165e243e242442c3f",
+    "timestamp": "2026-10-27T01:43:08.345501Z"
   }
 }
