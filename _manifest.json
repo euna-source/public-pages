@@ -438,5 +438,13 @@
     "last_kind": "new",
     "last_sha256": "698ee7d739b2bd2637519bf72c20c057cb8ae456c2c5db6a909661a0abd19f1e",
     "timestamp": "2026-10-27T16:15:37.316630Z"
+  },
+  "crewne-crew-profile-notes": {
+    "slug": "crewne-crew-profile-notes",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-crew-profile-notes/",
+    "last_kind": "new",
+    "last_sha256": "2bdbe3c9f86fdc15d1e21195a85148c2650f1fe93cdce11344f5cab8038b3b08",
+    "timestamp": "2026-10-27T16:44:03.668154Z"
   }
 }
