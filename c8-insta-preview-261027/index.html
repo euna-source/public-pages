@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>C8 인스타 미리보기 — 지금까지 만든 시안이 올라가면</title>
+<style>
+  :root { --ink:#111; --sub:#737373; --line:#dbdbdb; --blue:#0095f6; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:-apple-system, "Pretendard", "Apple SD Gothic Neo", sans-serif; background:#f2f2f0; color:var(--ink); padding:40px 32px 48px; }
+  header { max-width:1240px; margin:0 auto 28px; }
+  header h1 { font-size:26px; font-weight:800; letter-spacing:-0.4px; }
+  header p { margin-top:8px; font-size:15px; color:#555; line-height:1.55; }
+  .row { display:flex; gap:36px; justify-content:center; flex-wrap:wrap; max-width:1240px; margin:0 auto; }
+  .col { width:375px; }
+  .tag { font-size:14px; font-weight:700; margin-bottom:10px; }
+  .tag span { display:inline-block; background:#111; color:#fff; border-radius:999px; padding:3px 10px; margin-right:6px; font-size:12px; }
+  .phone { width:375px; height:760px; background:#fff; border-radius:44px; border:10px solid #1a1a1a; overflow:hidden; position:relative; box-shadow:0 18px 40px rgba(0,0,0,.14); }
+  .status { height:44px; display:flex; justify-content:space-between; align-items:center; padding:0 26px; font-size:14px; font-weight:600; }
+  .note { margin-top:12px; font-size:13.5px; color:#444; line-height:1.55; }
+  .note b { color:#111; }
+  /* 프로필 */
+  .topbar { display:flex; align-items:center; justify-content:space-between; padding:6px 16px 10px; font-weight:700; font-size:20px; }
+  .topbar small { font-size:20px; }
+  .prof { display:flex; align-items:center; gap:22px; padding:4px 16px 0; }
+  .avatar { width:82px; height:82px; border-radius:50%; background:#1fd65f; display:flex; align-items:center; justify-content:center; color:#111; font-weight:900; font-size:26px; flex:none; border:3px solid #fff; outline:2px solid var(--line); }
+  .stats { display:flex; gap:22px; text-align:center; font-size:13px; }
+  .stats b { display:block; font-size:16px; }
+  .bio { padding:10px 16px 0; font-size:13.5px; line-height:1.45; }
+  .bio .name { font-weight:700; }
+  .bio a { color:#00376b; font-weight:600; text-decoration:none; }
+  .btns { display:flex; gap:6px; padding:12px 16px; }
+  .btns div { flex:1; background:#efefef; border-radius:8px; text-align:center; font-size:13.5px; font-weight:600; padding:7px 0; }
+  .tabs { display:flex; border-top:1px solid var(--line); }
+  .tabs div { flex:1; text-align:center; padding:10px 0; font-size:12px; color:var(--sub); }
+  .tabs .on { color:#111; border-top:1.5px solid #111; margin-top:-1px; font-weight:700; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .grid div { aspect-ratio:3/4; background-size:cover; background-position:center; position:relative; }
+  .grid div.multi::after { content:"❐"; position:absolute; top:5px; right:7px; color:#fff; font-size:15px; text-shadow:0 0 3px rgba(0,0,0,.5); }
+  /* 게시물 */
+  .phead { display:flex; align-items:center; gap:10px; padding:8px 12px; }
+  .phead .av { width:32px; height:32px; border-radius:50%; background:#1fd65f; font-weight:900; font-size:11px; display:flex; align-items:center; justify-content:center; }
+  .phead b { font-size:14px; }
+  .phead .more { margin-left:auto; font-weight:700; }
+  .media { width:100%; aspect-ratio:4/5; background-size:cover; background-position:center; position:relative; }
+  .media .count { position:absolute; top:12px; right:12px; background:rgba(0,0,0,.6); color:#fff; font-size:12px; border-radius:999px; padding:3px 9px; }
+  .acts { display:flex; gap:16px; padding:10px 14px 4px; font-size:22px; }
+  .acts .save { margin-left:auto; }
+  .dots { display:flex; justify-content:center; gap:4px; margin-top:-22px; padding-bottom:12px; }
+  .dots i { width:6px; height:6px; border-radius:50%; background:#c7c7c7; }
+  .dots i.on { background:var(--blue); }
+  .cap { padding:2px 14px; font-size:13.5px; line-height:1.5; }
+  .cap b { margin-right:4px; }
+  .cap .moreText { color:var(--sub); }
+  .when { padding:6px 14px; font-size:11px; color:var(--sub); }
+  /* 플래너 */
+  .mbs { background:#f6f7f9; height:100%; }
+  .mbs .bar { background:#fff; padding:10px 16px 12px; border-bottom:1px solid #e3e5e8; }
+  .mbs .bar b { font-size:17px; }
+  .mbs .bar p { font-size:12px; color:var(--sub); margin-top:2px; }
+  .hold { margin:12px 14px 4px; background:#fff4d6; border:1px solid #f0d27a; border-radius:10px; padding:9px 12px; font-size:12.5px; line-height:1.45; }
+  .day { padding:12px 16px 4px; font-size:12px; font-weight:700; color:#555; }
+  .item { display:flex; gap:12px; background:#fff; margin:6px 14px; border-radius:12px; padding:10px; border:1px solid #e3e5e8; align-items:center; }
+  .item .th { width:58px; height:72px; border-radius:6px; background-size:cover; background-position:center; flex:none; }
+  .item .tx { font-size:12.5px; line-height:1.45; flex:1; min-width:0; }
+  .item .tx b { font-size:13.5px; display:block; }
+  .item .st { font-size:11px; border-radius:999px; padding:3px 8px; background:#e7f0ff; color:#1659c7; font-weight:700; white-space:nowrap; }
+  .item .st.wait { background:#f1f1f1; color:#555; }
+  .ok { margin:14px; display:flex; gap:8px; }
+  .ok div { flex:1; text-align:center; border-radius:10px; padding:11px 0; font-size:14px; font-weight:700; }
+  .ok .go { background:#111; color:#fff; }
+  .ok .no { background:#fff; border:1px solid #d0d0d0; }
+  footer { max-width:1240px; margin:30px auto 0; font-size:12.5px; color:#666; line-height:1.6; }
+</style>
+</head>
+<body>
+<header>
+  <h1>C8 인스타에 올라가면 이렇게 보여요</h1>
+  <p>지금까지 만든 시안 네 편(정체성 컬러칩 안 · 아침 7시 라운지 1·2화 · 위클리 베스트 소개)을 실제 인스타 화면 크기에 얹었어요. 그림은 모두 아직 시안이고, 게시 자동화는 보류 중이라 세 번째 화면은 “다시 열면 샐리가 받게 될 확인 화면” 예시예요.</p>
+</header>
+
+<div class="row">
+  <!-- 1. 프로필 -->
+  <div class="col">
+    <div class="tag"><span>1</span>프로필에 들어오면</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="topbar"><span>cre8orclub ⌄</span><small>＋ ☰</small></div>
+      <div class="prof">
+        <div class="avatar">C8</div>
+        <div class="stats"><div><b>4</b>게시물</div><div><b>—</b>팔로워</div><div><b>—</b>팔로잉</div></div>
+      </div>
+      <div class="bio">
+        <div class="name">크리에이터클럽 Creator Club</div>
+        작업이 발견되고, 사람과 연결되는 곳<br>
+        매주 월요일 Weekly Best 순위가 새로 시작돼요<br>
+        <a>link.cre8orclub.com</a>
+      </div>
+      <div class="btns"><div>프로필 편집</div><div>프로필 공유</div></div>
+      <div class="tabs"><div class="on">▦ 게시물</div><div>▷ 릴스</div><div>◫ 태그됨</div></div>
+      <div class="grid">
+        <div class="multi" style="background-image:url(img/wb1.jpg)"></div>
+        <div class="multi" style="background-image:url(img/ep02.jpg)"></div>
+        <div class="multi" style="background-image:url(img/ep01.jpg)"></div>
+        <div class="multi" style="background-image:url(img/id_n2.jpg)"></div>
+      </div>
+    </div>
+    <p class="note"><b>최신이 왼쪽 위예요.</b> 위클리 베스트 초록 표지가 흑백 라운지 그림 옆에 오면 톤 차이가 크게 보여요. 첫 줄 세 칸이 계정 첫인상이라, 올리는 순서를 정할 때 같이 봐야 해요. 라운지 1화는 정사각형이라 칸에서 양옆이 잘려요.</p>
+  </div>
+
+  <!-- 2. 피드 게시물 -->
+  <div class="col">
+    <div class="tag"><span>2</span>팔로워 피드에서는</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="phead"><div class="av">C8</div><b>cre8orclub</b><span class="more">···</span></div>
+      <div class="media" style="background-image:url(img/wb1.jpg)"><span class="count">1/4</span></div>
+      <div class="acts"><span>♡</span><span>💬</span><span>↗</span><span class="save">⌑</span></div>
+      <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="cap"><b>cre8orclub</b>매주 월요일, 순위가 새로 시작돼요.<br>크리에이터클럽 앱에서는 매주 Weekly Best를 해요. 작품 순위는 그 주에 받은 리스펙트로… <span class="moreText">더 보기</span></div>
+      <div class="when">10월 27일</div>
+    </div>
+    <p class="note"><b>4:5 세로라 피드 화면을 꽉 채워요.</b> 캡션은 두 줄 반에서 「더 보기」로 접혀서, 첫 줄 「매주 월요일, 순위가 새로 시작돼요」가 사실상 제목이에요. 좋아요 숫자는 없는 값이라 비워 뒀어요.</p>
+  </div>
+
+  <!-- 3. 플래너 -->
+  <div class="col">
+    <div class="tag"><span>3</span>자동화를 다시 열면 샐리가 보는 화면</div>
+    <div class="phone">
+      <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+      <div class="mbs">
+        <div class="bar"><b>플래너 · 예약 4편</b><p>Meta Business Suite · cre8orclub</p></div>
+        <div class="hold">⏸ 지금은 보류 중이에요. 이 화면은 연결 뒤의 예시라 실제로 예약된 건 없어요.</div>
+        <div class="day">월요일</div>
+        <div class="item"><div class="th" style="background-image:url(img/id_n2.jpg)"></div><div class="tx"><b>정체성 · 컬러칩 안</b>캐러셀 6장 · 오후 6:00</div><span class="st">예약됨</span></div>
+        <div class="day">수요일 · 금요일</div>
+        <div class="item"><div class="th" style="background-image:url(img/ep01.jpg)"></div><div class="tx"><b>아침 7시 라운지 1화</b>캐러셀 5장 · 수 오전 7:12</div><span class="st wait">확인 대기</span></div>
+        <div class="item"><div class="th" style="background-image:url(img/ep02.jpg)"></div><div class="tx"><b>아침 7시 라운지 2화</b>캐러셀 · 금 오전 7:12</div><span class="st wait">확인 대기</span></div>
+        <div class="day">다음 주 월요일</div>
+        <div class="item"><div class="th" style="background-image:url(img/wb1.jpg)"></div><div class="tx"><b>위클리 베스트 소개</b>캐러셀 4장 · 오전 9:00</div><span class="st wait">확인 대기</span></div>
+        <div class="ok"><div class="no">고칠래요</div><div class="go">진행해</div></div>
+      </div>
+    </div>
+    <p class="note"><b>젠지가 예약까지 걸어 두면 샐리는 「진행해」만 눌러요.</b> 왼쪽 그리드는 이 네 편이 순서대로 올라간 뒤 모습이에요. 확인 전엔 「확인 대기」로 남고 올라가지 않아요. 요일·시각은 예시예요.</p>
+  </div>
+</div>
+
+<footer>
+  계정 이름 cre8orclub, 소개 둘째·셋째 줄, 요일·시각은 가정이에요. 소개 첫 줄은 C8 앱 공식 프로필에 실제로 있는 문장을 그대로 썼어요. 실제 인스타 앱과 아이콘·여백이 조금 다를 수 있어요.
+</footer>
+</body>
+</html>
