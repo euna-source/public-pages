@@ -606,5 +606,13 @@
     "last_kind": "new",
     "last_sha256": "1a5e9e5d7207baa30271b14024853cd8833d1bb8c01c980d2b2aff24e0283e50",
     "timestamp": "2026-10-28T12:12:44.523799Z"
+  },
+  "c8-motion-render-research-261028": {
+    "slug": "c8-motion-render-research-261028",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-motion-render-research-261028/",
+    "last_kind": "new",
+    "last_sha256": "5a963ba7027e268f8d0ea671049b59d4b91aa73564fbb360a19941ac885617c6",
+    "timestamp": "2026-10-28T12:13:05.396507Z"
   }
 }
