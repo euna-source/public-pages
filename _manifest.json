@@ -598,5 +598,13 @@
     "last_kind": "redeploy",
     "last_sha256": "526907b79c71c9c3f5f31fb8d8b3a3fd5180107c13a7efcbb4209c745b29ed8d",
     "timestamp": "2026-10-28T09:37:37.850787Z"
+  },
+  "c8-motion-render-evidence-261028": {
+    "slug": "c8-motion-render-evidence-261028",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-motion-render-evidence-261028/",
+    "last_kind": "new",
+    "last_sha256": "1a5e9e5d7207baa30271b14024853cd8833d1bb8c01c980d2b2aff24e0283e50",
+    "timestamp": "2026-10-28T12:12:44.523799Z"
   }
 }
