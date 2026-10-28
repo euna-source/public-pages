@@ -603,8 +603,8 @@
     "slug": "crewne-crew-motion-261028",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crewne-crew-motion-261028/",
-    "last_kind": "new",
-    "last_sha256": "77a8382b38924873ec570b895de8f98c3f08294281f724aefd61ffea7085f119",
-    "timestamp": "2026-10-28T09:34:52.649626Z"
+    "last_kind": "redeploy",
+    "last_sha256": "526907b79c71c9c3f5f31fb8d8b3a3fd5180107c13a7efcbb4209c745b29ed8d",
+    "timestamp": "2026-10-28T09:37:37.850787Z"
   }
 }
