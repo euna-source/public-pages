@@ -614,5 +614,13 @@
     "last_kind": "new",
     "last_sha256": "5a963ba7027e268f8d0ea671049b59d4b91aa73564fbb360a19941ac885617c6",
     "timestamp": "2026-10-28T12:13:05.396507Z"
+  },
+  "c8-home-motion-261028": {
+    "slug": "c8-home-motion-261028",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-home-motion-261028/",
+    "last_kind": "new",
+    "last_sha256": "27e34892525b4351b67e2464e35e9912e7ec0488537976be77fd69b1b309d175",
+    "timestamp": "2026-10-28T12:25:01.704657Z"
   }
 }

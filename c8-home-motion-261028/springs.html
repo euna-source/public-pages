@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C8 홈 스프링 후보 셋 나란히 보기</title>
+<style>
+:root{--ink:#111;--sub:#666;--line:#e5e5e5;--bg:#fafafa;--accent:#1f6f4a}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+main{max-width:960px;margin:0 auto;padding:20px 14px 48px}
+h1{font-size:20px;margin:0 0 6px}
+p.lead{margin:0 0 14px;color:var(--sub);font-size:14px}
+.ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 14px}
+.ctl button{font:inherit;font-size:15px;font-weight:600;border:0;border-radius:12px;padding:12px 18px;background:var(--ink);color:#fff;min-height:48px}
+.ctl label{font-size:14px;display:flex;gap:6px;align-items:center;min-height:48px}
+.ctl input{width:20px;height:20px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.col{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px 8px 12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.col h2{font-size:15px;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.col .tag{font-size:12px;color:var(--sub);margin:0;min-height:36px}
+.col.rec{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent)}
+.col.rec h2::after{content:" 권장";color:var(--accent);font-size:12px}
+.stage{position:relative;height:250px;border-radius:10px;background:#f1f1f1;overflow:hidden}
+.card{position:absolute;left:10%;right:10%;top:18px;background:#fff;border-radius:10px;padding:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);will-change:auto}
+.card .face{width:34px;height:34px;border-radius:50%;background:#d9d2c5}
+.card .nm{height:9px;width:70%;background:#ddd;border-radius:4px;margin:8px 0 5px}
+.card .jb{height:7px;width:50%;background:#eee;border-radius:4px}
+.logo{position:absolute;left:50%;top:126px;width:44px;height:44px;margin-left:-22px;border-radius:12px;background:var(--ink);color:#fff;font-weight:800;font-size:15px;display:grid;place-items:center}
+.cta{position:absolute;left:12%;right:12%;top:180px;height:36px;border:0;border-radius:10px;background:var(--accent);color:#fff;font:inherit;font-size:13px;font-weight:700}
+.bar{position:absolute;left:0;right:0;bottom:0;height:22px;background:#222}
+.vals{font-size:11px;color:var(--sub);margin:0;font-variant-numeric:tabular-nums}
+.note{font-size:13px;color:var(--sub);margin:16px 0 0}
+@media (max-width:360px){.col h2{font-size:12.5px}.col{padding:10px 6px 12px}}
+@media (max-width:420px){.col .tag{min-height:54px}.stage{height:240px}}
+</style>
+</head>
+<body>
+<main>
+<h1>스프링 후보 셋 나란히 보기</h1>
+<p class="lead">같은 카드·로고·버튼·하단 바를 세 후보 값으로 동시에 움직여요. 카드는 spatial.slow, 하단 바는 spatial.default, 로고와 버튼은 spatial.fast예요. 각 칸의 초록 버튼을 누르면 누름 반응만 따로 볼 수 있어요.</p>
+<div class="ctl">
+  <button id="play" type="button">셋 같이 재생</button>
+  <label><input id="slow" type="checkbox"> 4배 느리게</label>
+</div>
+<div class="grid" id="grid"></div>
+<p class="note" id="rm" hidden>이 기기는 '움직임 줄이기'가 켜져 있어요. 비교용 화면이라 누를 때만 움직여요.</p>
+<p class="note">값은 레인 근거 부록의 Material 3 Expressive·Standard 원문 값이고, 화면은 질량 1 스프링을 그대로 계산해 그려요. 실제 홈의 motion 라이브러리와 멈춤 판정이 조금 달라 끝맺음 길이는 출발값이에요.</p>
+</main>
+<script>
+const C={
+  A:{name:"A · M3 그대로",tag:"버튼이 통통, 카드는 느긋하게",fast:[800,.6],def:[380,.8],slow:[200,.8]},
+  B:{name:"B · Standard",tag:"모두 단정하고 빨라요. 튕김 없음",fast:[1400,.9],def:[700,.9],slow:[300,.9]},
+  C:{name:"C · C8 안",tag:"버튼·로고만 통통, 카드·바는 빨리 멈춤",fast:[800,.6],def:[700,.9],slow:[300,.9],rec:true}
+};
+const EFF=[1600,1];
+const grid=document.getElementById('grid');
+const cols={};
+for(const id of Object.keys(C)){
+  const c=C[id];const el=document.createElement('section');el.className='col'+(c.rec?' rec':'');
+  el.innerHTML=`<h2>${c.name}</h2><p class="tag">${c.tag}</p><div class="stage"><div class="card"><div class="face"></div><div class="nm"></div><div class="jb"></div></div><div class="logo">C8</div><button class="cta" type="button">앱 받기</button><div class="bar"></div></div><p class="vals">fast ${c.fast.join('/')} · default ${c.def.join('/')} · slow ${c.slow.join('/')}</p>`;
+  grid.appendChild(el);
+  cols[id]={el,card:el.querySelector('.card'),logo:el.querySelector('.logo'),cta:el.querySelector('.cta'),bar:el.querySelector('.bar'),c};
+  el.querySelector('.cta').addEventListener('click',()=>press(cols[id]));
+}
+const slowBox=document.getElementById('slow');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.getElementById('rm').hidden=false;
+// 질량 1 스프링: x'' = -k(x-1) - c x', c = 2ζ√k. 진행값 0→1을 돌려준다.
+function spring([k,z],onUpdate,delay=0){
+  const c=2*z*Math.sqrt(k);let x=0,v=0,last=null,acc=0,waited=0;
+  return new Promise(res=>{
+    function step(t){
+      if(last===null)last=t;let dt=(t-last)/1000;last=t;
+      if(slowBox.checked)dt/=4;
+      if(waited<delay/1000){waited+=dt;onUpdate(0);requestAnimationFrame(step);return}
+      acc+=Math.min(dt,.05);const h=1/480;
+      while(acc>=h){const a=-k*(x-1)-c*v;v+=a*h;x+=v*h;acc-=h}
+      onUpdate(x);
+      if(Math.abs(x-1)<.0005&&Math.abs(v)<.01){onUpdate(1);res();return}
+      requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+}
+function press(o){
+  spring(o.c.fast,p=>{o.cta.style.transform=`scale(${.92+.08*p})`});
+}
+function playAll(){
+  for(const o of Object.values(cols)){
+    spring(o.c.slow,p=>{o.card.style.transform=`translateY(${40*(1-p)}px)`});
+    spring(EFF,p=>{o.logo.style.opacity=p});
+    spring(o.c.fast,p=>{o.logo.style.transform=`scale(${.5+.5*p})`},150);
+    spring(o.c.fast,p=>{o.cta.style.transform=`scale(${.92+.08*p})`},450);
+    spring(o.c.def,p=>{o.bar.style.transform=`translateY(${22*(1-p)}px)`},300);
+  }
+}
+document.getElementById('play').addEventListener('click',playAll);
+</script>
+</body>
+</html>
