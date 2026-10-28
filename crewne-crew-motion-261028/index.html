@@ -1,0 +1,34 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>크루가 모였을 때 움직임</title>
+<style>
+body{margin:0;background:#F5F5F7;font-family:-apple-system,"Apple SD Gothic Neo",sans-serif;color:#1C1C1E}
+main{max-width:440px;margin:0 auto;padding:20px 16px 48px}h1{font-size:22px;margin:8px 0 4px}h2{font-size:16px;margin:28px 0 4px}p.d{color:#6B6B70;font-size:14px;line-height:1.5;margin:0 0 14px}
+.band{position:relative;display:flex;align-items:center;height:112px;border-radius:24px;margin:0 0 10px;padding:0 0 0 18px;overflow:visible}
+.band .t{flex:1;z-index:1}.band b{font-size:22px;display:block}.band small{font-size:13px;color:#555}
+.pill{display:inline-flex;align-items:center;gap:6px;background:#fff;border-radius:999px;padding:3px 10px;font-size:12px;margin-top:6px}
+.dot{width:6px;height:6px;border-radius:50%}
+.sp{position:absolute;right:8px;bottom:0;width:120px;height:124px;background-repeat:no-repeat}
+.kiki{background:#F6DDE3}.loop{background:#F8E1CF}.rain{background:#DCE7F3}.genz{background:#FBEFC4}.nana{background:#E7DEF6}
+.all{display:flex;flex-wrap:wrap;gap:8px}.all div{width:calc(33.3% - 6px);background:#fff;border-radius:14px;text-align:center;font-size:11px;color:#6B6B70;padding-bottom:6px}.all .sp2{width:100%;aspect-ratio:240/248;background-repeat:no-repeat}
+</style></head><body><main>
+<h1>크루가 모였을 때 움직임</h1>
+<p class="d">그림은 지금 앱에 들어 있는 진짜 움직임이에요. 크루마다 같은 이름의 동작이라도 소품이 달라요(젠지는 그림 그리기, 키키는 수첩 쓰기).</p>
+<h2>지금 앱</h2><p class="d">상태 셋만 써요. 일하는 중이면 무슨 일이든 같은 '만드는 중' 동작이에요.</p>
+<div id="now"></div>
+<h2>바꾸면 이렇게</h2><p class="d">하는 일에 맞는 동작을 골라 각자 다르게 움직여요.</p>
+<div id="own"></div>
+<h2>크루마다 있는 동작 열넷</h2><p class="d">키키 기준이에요. 다섯 명 모두 같은 열네 가지가 있어요.</p>
+<div class="all" id="all"></div>
+</main><script>
+const C={kiki:"키키",loop:"루프",rain:"레인",genz:"젠지",nana:"나나"};
+const DOT={ask:"#4B4FD8",busy:"#34C759",idle:"#C7C7CC"};
+const NOW=[["kiki","B02-question","확인 필요","ask"],["loop","B02-question","확인 필요","ask"],["genz","B02-question","확인 필요","ask"],["nana","A07-building","일하는 중","busy"],["rain","D01-idle","쉬는 중","idle"]];
+const OWN=[["kiki","A06-meeting-notes","회의록 쓰는 중","busy"],["loop","A12-parallel-running","점검 도는 중","busy"],["genz","A07-building","카드뉴스 그리는 중","busy"],["nana","B05-failed-review","QA 다시 보는 중","busy"],["rain","A01-thinking","자료 찾는 중","busy"]];
+const SHOW=[["A01-thinking","생각 중"],["A02-deliberating","고민 중"],["A06-meeting-notes","회의록"],["A07-building","만드는 중"],["M01-busy","바쁨"],["A11-fan-out","나눠 맡기"],["A12-parallel-running","같이 달리기"],["A13-merge","합치기"],["B01-approval","승인 기다림"],["B02-question","물어볼 게 있어요"],["B03-ready","준비 끝"],["B05-failed-review","다시 볼게요"],["T04-done","다 했어요"],["D01-idle","쉬는 중"]];
+fetch("m/motion.json").then(r=>r.json()).then(T=>{
+ const play=(el,c,s,k)=>{const m=T[c][s];el.style.backgroundImage=`url(m/${c}/${s}.webp)`;el.style.backgroundSize=`${m.n*100}% 100%`;let f=0;const step=()=>{el.style.backgroundPosition=`${m.n>1?(f/(m.n-1))*100:0}% 0`;const w=m.ms[f]||200;f=(f+1)%m.n;if(m.once&&f===0){setTimeout(()=>{f=0;step()},1600);return}setTimeout(step,w)};setTimeout(step,k*90)};
+ const band=(id,rows)=>{const box=document.getElementById(id);rows.forEach(([c,s,t,d],k)=>{const b=document.createElement("div");b.className="band "+c;b.innerHTML=`<div class="t"><b>${C[c]}</b><span class="pill"><span class="dot" style="background:${DOT[d]}"></span>${t}</span></div><span class="sp"></span>`;box.appendChild(b);play(b.querySelector(".sp"),c,s,k)})};
+ band("now",NOW);band("own",OWN);
+ const all=document.getElementById("all");SHOW.forEach(([s,t],k)=>{const d=document.createElement("div");d.innerHTML=`<span class="sp2" style="display:block"></span>${t}`;all.appendChild(d);play(d.querySelector(".sp2"),"kiki",s,k)});
+});
+</script></body></html>
