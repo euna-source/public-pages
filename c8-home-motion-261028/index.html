@@ -714,7 +714,7 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <section id="s1" aria-labelledby="s1-t"><a class="sec-num" href="#s1"><b>01</b>결론</a><h2 id="s1-t">아홉 구간에 주인공 하나씩, 영상은 둘이에요</h2>
 <blockquote class="pull">홈 v0.10 열세 구간 중 아홉에 주인공 모션을 하나씩 두고, 넷은 움직이지 않아요. 영상은 리스펙트 녹화와 1분 이야기 미리보기 둘이고, 나머지는 코드예요.</blockquote>
 <ul>
-<li><strong>토큰.</strong> M3 Expressive 여섯 값 중 눈에 보이게 튕기는 건 spatial.fast(9%) 하나예요. 그래서 effects 셋과 spatial.fast는 M3 그대로 두고, spatial.default·slow만 튕김 없이 빨리 멈추는 값으로 바꾸는 C안을 권해요. 세 후보는 <a href="https://euna-source.github.io/public-pages/c8-home-motion-261028/springs.html">비교 화면</a>에서 폰으로 눌러 볼 수 있어요.</li>
+<li><strong>토큰.</strong> M3 Expressive 여섯 값 중 눈에 보이게 튕기는 건 spatial.fast(9.5%) 하나예요. 그래서 effects 셋과 spatial.fast는 M3 그대로 두고, spatial.default·slow만 튕김 없이 빨리 멈추는 값으로 바꾸는 C안을 권해요. 세 후보는 <a href="https://euna-source.github.io/public-pages/c8-home-motion-261028/springs.html">비교 화면</a>에서 폰으로 눌러 볼 수 있어요.</li>
 <li><strong>원칙.</strong> 리서치 권장 그대로 가요. 구간마다 주인공은 하나, 작품 위에는 effects만, 튕김은 C8 버튼·로고만이에요.</li>
 <li><strong>배분.</strong> 실제 화면 녹화와 영상 콘텐츠만 영상으로 두고, 둘 다 포스터를 먼저 깔고 멈춤 버튼을 달아요. 실사 촬영 장면은 지금 홈에 없어요.</li>
 </ul>
@@ -748,7 +748,7 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 </table></div>
 <p>토스에서는 둘만 가져와요. 영상은 보일 때만 돌리고, 앞 장면 물건이 뒷장면 입구가 돼요(1번 예시 카드와 11번 미리보기 카드가 같은 모양·같은 토큰). 토스가 안 하는 '움직임 줄이기' 존중은 우리가 해요.</p>
 </section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>모션 토큰</a><h2 id="s3-t">여섯 값 중 튕기는 건 하나뿐이에요</h2>
-<p>레인이 원문으로 확인한 M3 Expressive 값을 계산해 봤어요. 튕김은 목표를 넘는 정도, 멈춤은 목표의 0.5% 안에 들 때까지의 시간이에요(질량 1).</p>
+<p>레인이 원문으로 확인한 M3 Expressive 값을 계산해 봤어요. 튕김은 목표를 넘는 정도, 멈춤은 목표의 0.5% 안에 들 때까지의 시간이에요(질량 1, 스프링 해석해로 계산).</p>
 <div class="table compare"><table>
 <thead>
 <tr>
@@ -764,47 +764,47 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <td>spatial.fast</td>
 <td>800 / 0.6</td>
 <td class="num">33.9</td>
-<td class="num">9.3%</td>
-<td class="num">0.37초</td>
+<td class="num">9.5%</td>
+<td class="num">0.32초</td>
 </tr>
 <tr>
 <td>spatial.default</td>
 <td>380 / 0.8</td>
 <td class="num">31.2</td>
-<td class="num">1.4%</td>
-<td class="num">0.41초</td>
+<td class="num">1.5%</td>
+<td class="num">0.37초</td>
 </tr>
 <tr>
 <td>spatial.slow</td>
 <td>200 / 0.8</td>
 <td class="num">22.6</td>
 <td class="num">1.5%</td>
-<td class="num">0.54초</td>
+<td class="num">0.51초</td>
 </tr>
 <tr>
 <td>effects.fast</td>
 <td>3800 / 1.0</td>
 <td class="num">123.3</td>
 <td class="num">0</td>
-<td class="num">0.16초</td>
+<td class="num">0.12초</td>
 </tr>
 <tr>
 <td>effects.default</td>
 <td>1600 / 1.0</td>
 <td class="num">80.0</td>
 <td class="num">0</td>
-<td class="num">0.23초</td>
+<td class="num">0.19초</td>
 </tr>
 <tr>
 <td>effects.slow</td>
 <td>800 / 1.0</td>
 <td class="num">56.6</td>
 <td class="num">0</td>
-<td class="num">0.30초</td>
+<td class="num">0.26초</td>
 </tr>
 </tbody>
 </table></div><p class="table-hint">옆으로 밀어 보기 →</p>
-<p>default·slow의 1.5%는 40px 움직일 때 0.6px라 눈에 거의 안 보여요. '안드로이드 느낌'은 튕김보다 0.4~0.54초의 느긋한 길이에서 와요. 튕김 없는 effects 셋은 그대로 두고 spatial 셋만 견줘요.</p>
+<p>default·slow의 1.5%는 40px 움직일 때 0.6px라 눈에 거의 안 보여요. '안드로이드 느낌'은 튕김보다 0.37~0.51초의 느긋한 길이에서 와요. 튕김 없는 effects 셋은 그대로 두고 spatial 셋만 견줘요.</p>
 <div class="table compare"><table>
 <thead>
 <tr>
@@ -818,23 +818,23 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <tbody>
 <tr>
 <td>A · M3 Expressive 그대로</td>
-<td>800/0.6 · 튕김 9% · 0.37초</td>
-<td>380/0.8 · 0.41초</td>
-<td>200/0.8 · 0.54초</td>
+<td>800/0.6 · 튕김 9.5% · 0.32초</td>
+<td>380/0.8 · 0.37초</td>
+<td>200/0.8 · 0.51초</td>
 <td>버튼이 통통, 카드는 느긋하게</td>
 </tr>
 <tr>
 <td>B · M3 Standard</td>
-<td>1400/0.9 · 튕김 없음 · 0.18초</td>
-<td>700/0.9 · 0.25초</td>
-<td>300/0.9 · 0.37초</td>
-<td>모두 단정하고 빨라요. 튕김이 아예 없어요</td>
+<td>1400/0.9 · 튕김 0.2% · 0.15초</td>
+<td>700/0.9 · 0.21초</td>
+<td>300/0.9 · 0.32초</td>
+<td>모두 단정하고 빨라요. 튕김이 눈에 안 보여요</td>
 </tr>
 <tr>
 <td><strong>C · C8 안(권장)</strong></td>
-<td><strong>800/0.6 · 튕김 9% · 0.37초</strong></td>
-<td><strong>700/0.9 · 0.25초</strong></td>
-<td><strong>300/0.9 · 0.37초</strong></td>
+<td><strong>800/0.6 · 튕김 9.5% · 0.32초</strong></td>
+<td><strong>700/0.9 · 0.21초</strong></td>
+<td><strong>300/0.9 · 0.32초</strong></td>
 <td><strong>버튼·로고만 통통, 카드·바는 빨리 멈춰요</strong></td>
 </tr>
 </tbody>
@@ -1012,7 +1012,7 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <tr>
 <td>v0.1</td>
 <td>2026. 10. 28</td>
-<td>첫 판 — 장면별 표, 스프링 후보 셋, 영상·코드 배분, 비교 화면</td>
+<td>첫 판 — 장면별 표, 스프링 후보 셋, 영상·코드 배분, 비교 화면. 같은 날 튕김·멈춤 값을 해석해로 다시 계산해 고침</td>
 </tr>
 </tbody>
 </table></div>
