@@ -1,0 +1,1915 @@
+{
+  "tokenTests": {
+    "passed": true,
+    "deterministic": true,
+    "physicsUnits": true,
+    "gsapCssAnalyticParity": true,
+    "noDurationBounce": true
+  },
+  "videoController": {
+    "passed": true,
+    "checks": [
+      {
+        "name": "far video not loaded",
+        "pass": true
+      },
+      {
+        "name": "outside preload margin not loaded",
+        "pass": true
+      },
+      {
+        "name": "within 1200px margin loaded and paused",
+        "pass": true
+      },
+      {
+        "name": "visible real media plays",
+        "pass": true
+      },
+      {
+        "name": "user pause",
+        "pass": true
+      },
+      {
+        "name": "pause survives viewport exit",
+        "pass": true
+      },
+      {
+        "name": "dynamic reduce cancels auto playback",
+        "pass": true
+      },
+      {
+        "name": "reduced-motion explicit play survives unrelated class",
+        "pass": true
+      },
+      {
+        "name": "pagehide pause",
+        "pass": true
+      },
+      {
+        "name": "bfcache recovery",
+        "pass": true
+      },
+      {
+        "name": "full film starts only on explicit request",
+        "pass": true
+      },
+      {
+        "name": "sound film stays paused after viewport return",
+        "pass": true
+      },
+      {
+        "name": "dynamic reduce pauses full film",
+        "pass": true
+      },
+      {
+        "name": "full film does not resume sound after reduce is disabled",
+        "pass": true
+      },
+      {
+        "name": "autoplay rejected exposes play button",
+        "pass": true
+      },
+      {
+        "name": "blocked playback recovers manually",
+        "pass": true
+      },
+      {
+        "name": "stale play promise cannot resume offscreen",
+        "pass": true
+      }
+    ]
+  },
+  "regression": {
+    "passed": true,
+    "results": [
+      {
+        "name": "static scenes have no entrance animation",
+        "pass": true,
+        "history": []
+      },
+      {
+        "name": "missing film never claims playback",
+        "pass": true,
+        "state": "이 편의 전체 영상 원본 확인 전",
+        "sound": "소리 켜고 전체 보기"
+      },
+      {
+        "name": "legacy film selection cannot fake sound state",
+        "pass": true,
+        "legacySound": "소리 켜고 전체 보기",
+        "legacyState": "이 편의 영상 원본 확인 전"
+      },
+      {
+        "name": "nonvideo screen retains static label",
+        "pass": true
+      },
+      {
+        "name": "upload reaches completed state",
+        "pass": true
+      },
+      {
+        "name": "manual reduced-motion disables bar transition",
+        "pass": true
+      },
+      {
+        "name": "comparison visible displacement matches",
+        "pass": true,
+        "deltaPx": 3.444444444422601e-05
+      },
+      {
+        "name": "delayed manifest cannot expose fake playback and recovers",
+        "pass": true,
+        "early": "영상 원본 확인 전",
+        "after": "대표 편 원본 확인 전"
+      },
+      {
+        "name": "failed manifest cannot expose fake playback and recovers",
+        "pass": true,
+        "early": "영상 원본 확인 전",
+        "after": "대표 편 원본 확인 전"
+      }
+    ],
+    "performance": [
+      {
+        "mode": "baseline",
+        "cpuSlowdown": 4,
+        "rangeStart": 5259.700000047684,
+        "rangeEnd": 20233.200000047684,
+        "all": [
+          {
+            "startTime": 34.10000002384186,
+            "duration": 5008.5,
+            "blockingDuration": 4943.1
+          },
+          {
+            "startTime": 5055.200000047684,
+            "duration": 105.29999995231628,
+            "blockingDuration": 51.3
+          },
+          {
+            "startTime": 5255.600000023842,
+            "duration": 50.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 5349.899999976158,
+            "duration": 68.90000009536743,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 5433.899999976158,
+            "duration": 127.90000009536743,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 5647.399999976158,
+            "duration": 71.20000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 6440,
+            "duration": 89.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 6586.100000023842,
+            "duration": 108.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 6937.700000047684,
+            "duration": 117.5,
+            "blockingDuration": 25.5
+          },
+          {
+            "startTime": 7346.800000071526,
+            "duration": 54.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7401.700000047684,
+            "duration": 58.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7486.200000047684,
+            "duration": 89.60000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 8366.700000047684,
+            "duration": 144.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9098.899999976158,
+            "duration": 301.7000000476837,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 8783.800000071526,
+            "duration": 170.29999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9808.200000047684,
+            "duration": 66.69999992847443,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9733.600000023842,
+            "duration": 60.799999952316284,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9886.899999976158,
+            "duration": 63.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9961.600000023842,
+            "duration": 76.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10042.899999976158,
+            "duration": 68.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10111.399999976158,
+            "duration": 63.700000047683716,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10452.899999976158,
+            "duration": 57.60000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10385.700000047684,
+            "duration": 54.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10518.399999976158,
+            "duration": 68.20000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10590.300000071526,
+            "duration": 58.699999928474426,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10657.100000023842,
+            "duration": 69.79999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10885.399999976158,
+            "duration": 73.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10803.300000071526,
+            "duration": 77.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11232.300000071526,
+            "duration": 60.199999928474426,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11147.700000047684,
+            "duration": 68.79999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11429.800000071526,
+            "duration": 70.19999992847443,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11590.899999976158,
+            "duration": 82.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11674,
+            "duration": 118.89999997615814,
+            "blockingDuration": 16.6
+          },
+          {
+            "startTime": 11864.300000071526,
+            "duration": 77.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 13437.600000023842,
+            "duration": 156.39999997615814,
+            "blockingDuration": 106.5
+          },
+          {
+            "startTime": 12249,
+            "duration": 787.2000000476837,
+            "blockingDuration": 245.4
+          },
+          {
+            "startTime": 13192,
+            "duration": 103.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 13972.899999976158,
+            "duration": 119.20000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14187.5,
+            "duration": 63.300000071525574,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14251.5,
+            "duration": 376.10000002384186,
+            "blockingDuration": 185.5
+          },
+          {
+            "startTime": 14889.700000047684,
+            "duration": 52.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14990.200000047684,
+            "duration": 52.199999928474426,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15068.200000047684,
+            "duration": 56.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14695.899999976158,
+            "duration": 62.10000002384186,
+            "blockingDuration": 0.4
+          },
+          {
+            "startTime": 14794.200000047684,
+            "duration": 88.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15182.100000023842,
+            "duration": 51.200000047683716,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15397.899999976158,
+            "duration": 189.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15712.300000071526,
+            "duration": 193.69999992847443,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 17980.200000047684,
+            "duration": 321.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 18624.899999976158,
+            "duration": 79.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19753.200000047684,
+            "duration": 55.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19991,
+            "duration": 78.20000004768372,
+            "blockingDuration": 0
+          }
+        ],
+        "motionRange": [
+          {
+            "startTime": 5349.899999976158,
+            "duration": 68.90000009536743,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 5433.899999976158,
+            "duration": 127.90000009536743,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 5647.399999976158,
+            "duration": 71.20000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 6440,
+            "duration": 89.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 6586.100000023842,
+            "duration": 108.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 6937.700000047684,
+            "duration": 117.5,
+            "blockingDuration": 25.5
+          },
+          {
+            "startTime": 7346.800000071526,
+            "duration": 54.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7401.700000047684,
+            "duration": 58.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7486.200000047684,
+            "duration": 89.60000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 8366.700000047684,
+            "duration": 144.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9098.899999976158,
+            "duration": 301.7000000476837,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 8783.800000071526,
+            "duration": 170.29999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9808.200000047684,
+            "duration": 66.69999992847443,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9733.600000023842,
+            "duration": 60.799999952316284,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9886.899999976158,
+            "duration": 63.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9961.600000023842,
+            "duration": 76.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10042.899999976158,
+            "duration": 68.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10111.399999976158,
+            "duration": 63.700000047683716,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10452.899999976158,
+            "duration": 57.60000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10385.700000047684,
+            "duration": 54.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10518.399999976158,
+            "duration": 68.20000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10590.300000071526,
+            "duration": 58.699999928474426,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10657.100000023842,
+            "duration": 69.79999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10885.399999976158,
+            "duration": 73.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10803.300000071526,
+            "duration": 77.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11232.300000071526,
+            "duration": 60.199999928474426,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11147.700000047684,
+            "duration": 68.79999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11429.800000071526,
+            "duration": 70.19999992847443,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11590.899999976158,
+            "duration": 82.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11674,
+            "duration": 118.89999997615814,
+            "blockingDuration": 16.6
+          },
+          {
+            "startTime": 11864.300000071526,
+            "duration": 77.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 13437.600000023842,
+            "duration": 156.39999997615814,
+            "blockingDuration": 106.5
+          },
+          {
+            "startTime": 12249,
+            "duration": 787.2000000476837,
+            "blockingDuration": 245.4
+          },
+          {
+            "startTime": 13192,
+            "duration": 103.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 13972.899999976158,
+            "duration": 119.20000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14187.5,
+            "duration": 63.300000071525574,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14251.5,
+            "duration": 376.10000002384186,
+            "blockingDuration": 185.5
+          },
+          {
+            "startTime": 14889.700000047684,
+            "duration": 52.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14990.200000047684,
+            "duration": 52.199999928474426,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15068.200000047684,
+            "duration": 56.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14695.899999976158,
+            "duration": 62.10000002384186,
+            "blockingDuration": 0.4
+          },
+          {
+            "startTime": 14794.200000047684,
+            "duration": 88.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15182.100000023842,
+            "duration": 51.200000047683716,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15397.899999976158,
+            "duration": 189.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 15712.300000071526,
+            "duration": 193.69999992847443,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 17980.200000047684,
+            "duration": 321.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 18624.899999976158,
+            "duration": 79.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19753.200000047684,
+            "duration": 55.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19991,
+            "duration": 78.20000004768372,
+            "blockingDuration": 0
+          }
+        ]
+      },
+      {
+        "mode": "implementation",
+        "cpuSlowdown": 4,
+        "rangeStart": 7595,
+        "rangeEnd": 27663,
+        "all": [
+          {
+            "startTime": 390.09999990463257,
+            "duration": 2684.4000000953674,
+            "blockingDuration": 586.8
+          },
+          {
+            "startTime": 3093.5999999046326,
+            "duration": 1985.7000000476837,
+            "blockingDuration": 1932.8
+          },
+          {
+            "startTime": 5223,
+            "duration": 174.5,
+            "blockingDuration": 73
+          },
+          {
+            "startTime": 5431,
+            "duration": 67.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 5499.199999928474,
+            "duration": 1926.3999999761581,
+            "blockingDuration": 1876.3
+          },
+          {
+            "startTime": 7452.299999952316,
+            "duration": 96.29999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7555.5,
+            "duration": 66,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7667.599999904633,
+            "duration": 63.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7731.299999952316,
+            "duration": 50.200000047683716,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10470.899999976158,
+            "duration": 161,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9025.699999928474,
+            "duration": 955,
+            "blockingDuration": 857.7
+          },
+          {
+            "startTime": 10049.699999928474,
+            "duration": 62.300000071525574,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10207.599999904633,
+            "duration": 262.40000009536743,
+            "blockingDuration": 163.4
+          },
+          {
+            "startTime": 10998,
+            "duration": 72.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10632,
+            "duration": 264.7999999523163,
+            "blockingDuration": 212.7
+          },
+          {
+            "startTime": 11316.199999928474,
+            "duration": 133.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11487,
+            "duration": 61.39999997615814,
+            "blockingDuration": 10.7
+          },
+          {
+            "startTime": 11609.699999928474,
+            "duration": 72.89999997615814,
+            "blockingDuration": 22
+          },
+          {
+            "startTime": 12746.099999904633,
+            "duration": 71.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 13145.5,
+            "duration": 68.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14975.599999904633,
+            "duration": 82.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 17159,
+            "duration": 399,
+            "blockingDuration": 102
+          },
+          {
+            "startTime": 17791.299999952316,
+            "duration": 108.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 17956.199999928474,
+            "duration": 80.80000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 18048.299999952316,
+            "duration": 68.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 18861.699999928474,
+            "duration": 81.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19029.199999928474,
+            "duration": 68.5,
+            "blockingDuration": 6
+          },
+          {
+            "startTime": 19211.299999952316,
+            "duration": 173.29999995231628,
+            "blockingDuration": 11.2
+          },
+          {
+            "startTime": 19707.699999928474,
+            "duration": 54.800000071525574,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19472.599999904633,
+            "duration": 116.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19589.699999928474,
+            "duration": 91.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19896,
+            "duration": 83.29999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 21060.899999976158,
+            "duration": 612.7999999523163,
+            "blockingDuration": 197.3
+          },
+          {
+            "startTime": 21907.399999976158,
+            "duration": 78.89999997615814,
+            "blockingDuration": 27.2
+          },
+          {
+            "startTime": 22269,
+            "duration": 594.0999999046326,
+            "blockingDuration": 437.7
+          },
+          {
+            "startTime": 22877.799999952316,
+            "duration": 181.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 23060.699999928474,
+            "duration": 62.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 23923.399999976158,
+            "duration": 513.3999999761581,
+            "blockingDuration": 4.5
+          },
+          {
+            "startTime": 24437.399999976158,
+            "duration": 879.1999999284744,
+            "blockingDuration": 554.5
+          },
+          {
+            "startTime": 26101,
+            "duration": 168.3,
+            "blockingDuration": 118.3
+          },
+          {
+            "startTime": 25317.5,
+            "duration": 472.1999999284744,
+            "blockingDuration": 363.3
+          },
+          {
+            "startTime": 26508.699999928474,
+            "duration": 412.3000000715256,
+            "blockingDuration": 222.7
+          },
+          {
+            "startTime": 27472.399999976158,
+            "duration": 69.79999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 27271.799999952316,
+            "duration": 101.79999995231628,
+            "blockingDuration": 51.6
+          }
+        ],
+        "motionRange": [
+          {
+            "startTime": 7667.599999904633,
+            "duration": 63.5,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 7731.299999952316,
+            "duration": 50.200000047683716,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10470.899999976158,
+            "duration": 161,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 9025.699999928474,
+            "duration": 955,
+            "blockingDuration": 857.7
+          },
+          {
+            "startTime": 10049.699999928474,
+            "duration": 62.300000071525574,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10207.599999904633,
+            "duration": 262.40000009536743,
+            "blockingDuration": 163.4
+          },
+          {
+            "startTime": 10998,
+            "duration": 72.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 10632,
+            "duration": 264.7999999523163,
+            "blockingDuration": 212.7
+          },
+          {
+            "startTime": 11316.199999928474,
+            "duration": 133.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 11487,
+            "duration": 61.39999997615814,
+            "blockingDuration": 10.7
+          },
+          {
+            "startTime": 11609.699999928474,
+            "duration": 72.89999997615814,
+            "blockingDuration": 22
+          },
+          {
+            "startTime": 12746.099999904633,
+            "duration": 71.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 13145.5,
+            "duration": 68.89999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 14975.599999904633,
+            "duration": 82.30000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 17159,
+            "duration": 399,
+            "blockingDuration": 102
+          },
+          {
+            "startTime": 17791.299999952316,
+            "duration": 108.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 17956.199999928474,
+            "duration": 80.80000007152557,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 18048.299999952316,
+            "duration": 68.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 18861.699999928474,
+            "duration": 81.10000002384186,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19029.199999928474,
+            "duration": 68.5,
+            "blockingDuration": 6
+          },
+          {
+            "startTime": 19211.299999952316,
+            "duration": 173.29999995231628,
+            "blockingDuration": 11.2
+          },
+          {
+            "startTime": 19707.699999928474,
+            "duration": 54.800000071525574,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19472.599999904633,
+            "duration": 116.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19589.699999928474,
+            "duration": 91.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 19896,
+            "duration": 83.29999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 21060.899999976158,
+            "duration": 612.7999999523163,
+            "blockingDuration": 197.3
+          },
+          {
+            "startTime": 21907.399999976158,
+            "duration": 78.89999997615814,
+            "blockingDuration": 27.2
+          },
+          {
+            "startTime": 22269,
+            "duration": 594.0999999046326,
+            "blockingDuration": 437.7
+          },
+          {
+            "startTime": 22877.799999952316,
+            "duration": 181.70000004768372,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 23060.699999928474,
+            "duration": 62.39999997615814,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 23923.399999976158,
+            "duration": 513.3999999761581,
+            "blockingDuration": 4.5
+          },
+          {
+            "startTime": 24437.399999976158,
+            "duration": 879.1999999284744,
+            "blockingDuration": 554.5
+          },
+          {
+            "startTime": 26101,
+            "duration": 168.3,
+            "blockingDuration": 118.3
+          },
+          {
+            "startTime": 25317.5,
+            "duration": 472.1999999284744,
+            "blockingDuration": 363.3
+          },
+          {
+            "startTime": 26508.699999928474,
+            "duration": 412.3000000715256,
+            "blockingDuration": 222.7
+          },
+          {
+            "startTime": 27472.399999976158,
+            "duration": 69.79999995231628,
+            "blockingDuration": 0
+          },
+          {
+            "startTime": 27271.799999952316,
+            "duration": 101.79999995231628,
+            "blockingDuration": 51.6
+          }
+        ]
+      }
+    ]
+  },
+  "browser": [
+    {
+      "width": 390,
+      "reducedMotion": "no-preference",
+      "view": {
+        "overflow": 0,
+        "heroVisible": "1",
+        "rm": false,
+        "active": 0
+      },
+      "history": [
+        {
+          "token": "spatial.slow",
+          "properties": [
+            "transform"
+          ],
+          "target": "hcard main",
+          "section": "s1"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-profile-frame",
+          "section": "ch03"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-work",
+          "section": "ch03"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-bubble",
+          "section": "ch04"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "spatial.fast",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-logo",
+          "section": "s12"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch02"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch02"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "spatial.fast",
+          "properties": [
+            "transform"
+          ],
+          "target": "chip",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvName",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvJob",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvName",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvJob",
+          "section": "s11"
+        },
+        {
+          "token": "spatial.fast",
+          "properties": [
+            "transform"
+          ],
+          "target": "expOpen",
+          "section": "s11"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "expOut",
+          "section": "s11"
+        }
+      ],
+      "videoCount": 2,
+      "overflow": 0,
+      "video": [
+        {
+          "visible": true,
+          "near": false,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        },
+        {
+          "visible": false,
+          "near": true,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        }
+      ],
+      "staticMotion": [],
+      "errors": []
+    },
+    {
+      "width": 390,
+      "reducedMotion": "reduce",
+      "view": {
+        "overflow": 0,
+        "heroVisible": "1",
+        "rm": true,
+        "active": 0
+      },
+      "history": [],
+      "videoCount": 2,
+      "overflow": 0,
+      "video": [
+        {
+          "visible": false,
+          "near": false,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        },
+        {
+          "visible": false,
+          "near": true,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        }
+      ],
+      "staticMotion": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "reducedMotion": "no-preference",
+      "view": {
+        "overflow": 0,
+        "heroVisible": "1",
+        "rm": false,
+        "active": 0
+      },
+      "history": [
+        {
+          "token": "spatial.slow",
+          "properties": [
+            "transform"
+          ],
+          "target": "hcard main",
+          "section": "s1"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-profile-frame",
+          "section": "ch03"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-work",
+          "section": "ch03"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-bubble",
+          "section": "ch04"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "spatial.default",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-word",
+          "section": "s8"
+        },
+        {
+          "token": "spatial.fast",
+          "properties": [
+            "transform"
+          ],
+          "target": "motion-logo",
+          "section": "s12"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch02"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch02"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "ibody",
+          "section": "ch01"
+        },
+        {
+          "token": "effects.default",
+          "properties": [
+            "opacity"
+          ],
+          "target": "motion-demo",
+          "section": "ch01"
+        },
+        {
+          "token": "spatial.fast",
+          "properties": [
+            "transform"
+          ],
+          "target": "chip",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvName",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvJob",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvName",
+          "section": "s11"
+        },
+        {
+          "token": "effects.fast",
+          "properties": [
+            "opacity"
+          ],
+          "target": "pvJob",
+          "section": "s11"
+        }
+      ],
+      "videoCount": 2,
+      "overflow": 0,
+      "video": [
+        {
+          "visible": false,
+          "near": false,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        },
+        {
+          "visible": true,
+          "near": true,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        }
+      ],
+      "staticMotion": [],
+      "errors": []
+    },
+    {
+      "width": 1440,
+      "reducedMotion": "reduce",
+      "view": {
+        "overflow": 0,
+        "heroVisible": "1",
+        "rm": true,
+        "active": 0
+      },
+      "history": [],
+      "videoCount": 2,
+      "overflow": 0,
+      "video": [
+        {
+          "visible": false,
+          "near": false,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        },
+        {
+          "visible": true,
+          "near": true,
+          "paused": false,
+          "manual": false,
+          "fullMode": false,
+          "loaded": false
+        }
+      ],
+      "staticMotion": [],
+      "errors": []
+    },
+    {
+      "comparison": true,
+      "parity": [
+        {
+          "t": 0.033,
+          "web": [
+            {
+              "y": 18.4073,
+              "scale": 1,
+              "opacity": 0.603171
+            },
+            {
+              "y": 23.8222,
+              "scale": 1,
+              "opacity": 0
+            },
+            {
+              "y": 23.8222,
+              "scale": 1,
+              "opacity": 0
+            }
+          ],
+          "reel": [
+            {
+              "y": 37.0896,
+              "scale": 1,
+              "opacity": 0.6032
+            },
+            {
+              "y": 48,
+              "scale": 1,
+              "opacity": 0
+            },
+            {
+              "y": 48,
+              "scale": 1,
+              "opacity": 0
+            }
+          ],
+          "maxError": 2.8999999999945736e-05
+        },
+        {
+          "t": 0.067,
+          "web": [
+            {
+              "y": 10.4242,
+              "scale": 1,
+              "opacity": 0.917503
+            },
+            {
+              "y": 21.9791,
+              "scale": 1,
+              "opacity": 0.281873
+            },
+            {
+              "y": 23.8222,
+              "scale": 1,
+              "opacity": 0
+            }
+          ],
+          "reel": [
+            {
+              "y": 21.0036,
+              "scale": 1,
+              "opacity": 0.9175
+            },
+            {
+              "y": 44.2872,
+              "scale": 1,
+              "opacity": 0.2819
+            },
+            {
+              "y": 48,
+              "scale": 1,
+              "opacity": 0
+            }
+          ],
+          "maxError": 2.6999999999999247e-05
+        },
+        {
+          "t": 0.1,
+          "web": [
+            {
+              "y": 5.04934,
+              "scale": 1,
+              "opacity": 0.984932
+            },
+            {
+              "y": 14.2252,
+              "scale": 1,
+              "opacity": 0.812792
+            },
+            {
+              "y": 23.8222,
+              "scale": 1,
+              "opacity": 0
+            }
+          ],
+          "reel": [
+            {
+              "y": 10.1739,
+              "scale": 1,
+              "opacity": 0.9849
+            },
+            {
+              "y": 28.6627,
+              "scale": 1,
+              "opacity": 0.8128
+            },
+            {
+              "y": 48,
+              "scale": 1,
+              "opacity": 0
+            }
+          ],
+          "maxError": 3.2000000000032e-05
+        },
+        {
+          "t": 0.15,
+          "web": [
+            {
+              "y": 1.25896,
+              "scale": 1,
+              "opacity": 1
+            },
+            {
+              "y": 5.04934,
+              "scale": 1,
+              "opacity": 0.984932
+            },
+            {
+              "y": 14.2252,
+              "scale": 1,
+              "opacity": 0.812792
+            }
+          ],
+          "reel": [
+            {
+              "y": 2.5366,
+              "scale": 1,
+              "opacity": 1
+            },
+            {
+              "y": 10.1739,
+              "scale": 1,
+              "opacity": 0.9849
+            },
+            {
+              "y": 28.6627,
+              "scale": 1,
+              "opacity": 0.8128
+            }
+          ],
+          "maxError": 3.2000000000032e-05
+        },
+        {
+          "t": 0.2,
+          "web": [
+            {
+              "y": 0.174998,
+              "scale": 1,
+              "opacity": 1
+            },
+            {
+              "y": 1.25896,
+              "scale": 1,
+              "opacity": 1
+            },
+            {
+              "y": 5.04934,
+              "scale": 1,
+              "opacity": 0.984932
+            }
+          ],
+          "reel": [
+            {
+              "y": 0.3526,
+              "scale": 1,
+              "opacity": 1
+            },
+            {
+              "y": 2.5366,
+              "scale": 1,
+              "opacity": 1
+            },
+            {
+              "y": 10.1739,
+              "scale": 1,
+              "opacity": 0.9849
+            }
+          ],
+          "maxError": 3.2000000000032e-05
+        },
+        {
+          "t": 3.033,
+          "web": [
+            {
+              "y": 0,
+              "scale": 0.857966,
+              "opacity": 1
+            }
+          ],
+          "reel": [
+            {
+              "y": 0,
+              "scale": 0.858,
+              "opacity": 1
+            }
+          ],
+          "maxError": 3.399999999997849e-05
+        },
+        {
+          "t": 3.067,
+          "web": [
+            {
+              "y": 0,
+              "scale": 0.948443,
+              "opacity": 1
+            }
+          ],
+          "reel": [
+            {
+              "y": 0,
+              "scale": 0.9484,
+              "opacity": 1
+            }
+          ],
+          "maxError": 4.300000000001525e-05
+        },
+        {
+          "t": 3.1,
+          "web": [
+            {
+              "y": 0,
+              "scale": 1.00221,
+              "opacity": 1
+            }
+          ],
+          "reel": [
+            {
+              "y": 0,
+              "scale": 1.0022,
+              "opacity": 1
+            }
+          ],
+          "maxError": 1.0000000000065512e-05
+        },
+        {
+          "t": 3.2,
+          "web": [
+            {
+              "y": 0,
+              "scale": 1.0062,
+              "opacity": 1
+            }
+          ],
+          "reel": [
+            {
+              "y": 0,
+              "scale": 1.0062,
+              "opacity": 1
+            }
+          ],
+          "maxError": 0
+        }
+      ],
+      "errors": []
+    }
+  ],
+  "media": {
+    "respectOriginalBytes": 5211765,
+    "respectOptimizedBytes": 708763,
+    "respectOriginalDuration": 12.4,
+    "respectOptimizedDuration": 12.416667,
+    "episode": null
+  },
+  "limitations": [
+    "대표 편 영상·완성 포스터 원본 없음",
+    "리스펙트 계정·작업 공개 권한 미확인: 영상·포스터 비공개",
+    "저사양 Android·iOS 저전력 실기기 미검증",
+    "성능은 고부하 기계 단회 측정, 영상 디코딩 제외",
+    "홈 운영 반영 없음"
+  ]
+}

@@ -1,0 +1,12 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C8 자막·엔딩 모션 대조</title><link rel="icon" href="data:,"><script src="assets/gsap.min.js"></script><style>
+@font-face{font-family:C8Caption;src:url('assets/caption.woff2') format('woff2');font-weight:700;font-display:block}
+*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:#fff;color:#1f1f1f;font-family:C8Caption,sans-serif;font-weight:700}#main{position:relative;width:1080px;height:1920px}.word{display:inline-block;white-space:pre}.copy{position:absolute;left:108px;top:760px;width:864px;text-align:center;font-size:76px;line-height:1.5}.end{position:absolute;left:108px;top:760px;width:864px;text-align:center;font-size:200px}.end p{font-size:44px;margin:40px 0 0}
+</style></head><body><main id="main" data-composition-id="main" data-start="0" data-duration="6" data-width="1080" data-height="1920" data-fps="30"><div id="caption" class="clip" data-start="0" data-duration="3" data-track-index="1" data-track-kind="captions"><h1 class="copy" aria-label="300자, 다 채웠을까요?"><span class="word" aria-hidden="true">300자,</span><span class="word" aria-hidden="true"> 다</span><span class="word" aria-hidden="true"> 채웠을까요?</span></h1></div><div id="ending" class="clip" data-start="3" data-duration="3" data-track-index="2" data-track-kind="graphics"><div class="end"><div id="endLogo">C8</div><p>크리에이터클럽</p></div></div></main><script type="module">
+import {gsapTransition,stagger} from './generated/motion.mjs';
+const tl=gsap.timeline({paused:true});
+document.querySelectorAll('.word').forEach((w,i)=>{tl.fromTo(w,{y:48},{y:0,...gsapTransition('spatial.default')},i*stagger);tl.fromTo(w,{opacity:0},{opacity:1,...gsapTransition('effects.fast')},i*stagger);});
+tl.fromTo('#endLogo',{scale:.8},{scale:1,...gsapTransition('spatial.fast')},3);
+window.__timelines={main:tl};window.__reelReady=true;
+// Studio controls clip visibility; this deterministic seek is for the standalone comparison.
+window.seekReel=t=>{tl.seek(t);document.querySelector('#caption').hidden=t>=3;document.querySelector('#ending').hidden=t<3;};
+</script></body></html>

@@ -1,0 +1,17 @@
+{
+  "respect": {
+    "src": null,
+    "poster": null,
+    "posterText": "리스펙트 · GOAT와 초록 별이 남은 끝 장면",
+    "label": "리스펙트 녹화",
+    "missing": "공개 가능 여부 확인 전 · 영상과 완성 포스터는 비공개 검증에만 사용"
+  },
+  "episode": {
+    "src": null,
+    "fullSrc": null,
+    "poster": null,
+    "posterText": "드럼 7년 쳤는데, '그냥 회사원'이라 썼어요",
+    "label": "대표 편 미리보기",
+    "missing": "대표 편 영상·완성 포스터 원본 확인 전"
+  }
+}

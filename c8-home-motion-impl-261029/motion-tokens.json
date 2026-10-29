@@ -1,0 +1,123 @@
+{
+  "$description": "C8 C안. DTCG 2025.10; duration is derived at 0.5% rest displacement, mass=1. Spring metadata uses reverse-domain extension. Spatial fast is for C8 buttons/logos only.",
+  "spatial": {
+    "fast": {
+      "$extensions": {
+        "club.cre8or.motion.spring": {
+          "stiffness": 800,
+          "dampingRatio": 0.6,
+          "mass": 1
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "$value": {
+          "value": 0.322,
+          "unit": "s"
+        }
+      }
+    },
+    "default": {
+      "$extensions": {
+        "club.cre8or.motion.spring": {
+          "stiffness": 700,
+          "dampingRatio": 0.9,
+          "mass": 1
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "$value": {
+          "value": 0.207,
+          "unit": "s"
+        }
+      }
+    },
+    "slow": {
+      "$extensions": {
+        "club.cre8or.motion.spring": {
+          "stiffness": 300,
+          "dampingRatio": 0.9,
+          "mass": 1
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "$value": {
+          "value": 0.316,
+          "unit": "s"
+        }
+      }
+    }
+  },
+  "effects": {
+    "fast": {
+      "$extensions": {
+        "club.cre8or.motion.spring": {
+          "stiffness": 3800,
+          "dampingRatio": 1,
+          "mass": 1
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "$value": {
+          "value": 0.121,
+          "unit": "s"
+        }
+      }
+    },
+    "default": {
+      "$extensions": {
+        "club.cre8or.motion.spring": {
+          "stiffness": 1600,
+          "dampingRatio": 1,
+          "mass": 1
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "$value": {
+          "value": 0.186,
+          "unit": "s"
+        }
+      }
+    },
+    "slow": {
+      "$extensions": {
+        "club.cre8or.motion.spring": {
+          "stiffness": 800,
+          "dampingRatio": 1,
+          "mass": 1
+        }
+      },
+      "duration": {
+        "$type": "duration",
+        "$value": {
+          "value": 0.263,
+          "unit": "s"
+        }
+      }
+    }
+  },
+  "caption": {
+    "stagger": {
+      "$type": "duration",
+      "$value": {
+        "value": 50,
+        "unit": "ms"
+      }
+    }
+  },
+  "fallback": {
+    "ease": {
+      "$type": "cubicBezier",
+      "$value": [
+        0.2,
+        0.7,
+        0.2,
+        1
+      ]
+    }
+  }
+}

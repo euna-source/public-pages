@@ -662,5 +662,13 @@
     "last_kind": "redeploy",
     "last_sha256": "11a604060ee7ad1e26cd19f5194360f362b929a7c4cd1144b92b6362ff481af4",
     "timestamp": "2026-10-29T03:08:42.423166Z"
+  },
+  "c8-home-motion-impl-261029": {
+    "slug": "c8-home-motion-impl-261029",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-home-motion-impl-261029/",
+    "last_kind": "new",
+    "last_sha256": "1fb8da14f8a29af31680f87b4d05ff76d38b67ca0cb65bac977afc35c2f49725",
+    "timestamp": "2026-10-29T07:44:12.796135Z"
   }
 }
