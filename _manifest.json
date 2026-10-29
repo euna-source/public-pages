@@ -638,5 +638,13 @@
     "last_kind": "new",
     "last_sha256": "0809dd3ce6fd93d726caa41de80fb19758d0a0e5386a12e87f0cf0a5227dd01b",
     "timestamp": "2026-10-29T02:08:34.719928Z"
+  },
+  "c8-motion-check-261029": {
+    "slug": "c8-motion-check-261029",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-motion-check-261029/",
+    "last_kind": "new",
+    "last_sha256": "68bbe1183b5a95311e50e4a34a0861b4d5408d1c07f00f44c2401d55d4862659",
+    "timestamp": "2026-10-29T02:11:56.058321Z"
   }
 }
