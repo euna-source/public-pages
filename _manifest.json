@@ -635,9 +635,9 @@
     "slug": "c8-app-post-261029",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-app-post-261029/",
-    "last_kind": "new",
-    "last_sha256": "0809dd3ce6fd93d726caa41de80fb19758d0a0e5386a12e87f0cf0a5227dd01b",
-    "timestamp": "2026-10-29T02:08:34.719928Z"
+    "last_kind": "redeploy",
+    "last_sha256": "43db1f6f7f54d68cf9b36b8db4fa783ecbff065f6cc74691d60bcd91416ad690",
+    "timestamp": "2026-10-29T07:11:47.816876Z"
   },
   "c8-motion-check-261029": {
     "slug": "c8-motion-check-261029",
