@@ -654,5 +654,13 @@
     "last_kind": "redeploy",
     "last_sha256": "5cf7cb9faff44bacb11db877c5c711e4c2a9be2cffd5220d84e060b89d0537e6",
     "timestamp": "2026-10-29T02:24:17.018481Z"
+  },
+  "c8-content-campaign-jd-v3": {
+    "slug": "c8-content-campaign-jd-v3",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-content-campaign-jd-v3/",
+    "last_kind": "new",
+    "last_sha256": "c51330d702a35986d7f066b8c49f630a377b1e86c141f2006d40f02bba62a02b",
+    "timestamp": "2026-10-29T02:40:44.300172Z"
   }
 }
