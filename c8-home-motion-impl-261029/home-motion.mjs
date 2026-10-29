@@ -34,6 +34,7 @@ export function mountVideo(host,asset){
   const video=document.createElement('video');video.muted=true;video.loop=true;video.playsInline=true;video.preload='none';
   if(asset.poster)video.poster=asset.poster;
   const poster=document.createElement('div');poster.className='media-poster';poster.textContent=asset.posterText;
+  poster.hidden=!!asset.poster;
   const state=document.createElement('span');state.className='media-state';
   const button=document.createElement('button');button.type='button';button.textContent=asset.src?'재생':'영상 원본 확인 전';button.disabled=!asset.src;
   shell.append(video,poster,state,button);host.replaceChildren(shell);

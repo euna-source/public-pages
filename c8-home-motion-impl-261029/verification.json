@@ -1903,13 +1903,137 @@
     "respectOptimizedBytes": 708763,
     "respectOriginalDuration": 12.4,
     "respectOptimizedDuration": 12.416667,
-    "episode": null
+    "episode": null,
+    "respectPublicUseApproved": true,
+    "respectSrc": "media/respect-optimized.mp4",
+    "respectPoster": "media/respect-poster.jpg",
+    "respectPosterBytes": 23414,
+    "respectSha256": "3b5b8f744afc3f8dde9891f71442e25f44d34e15a9a88ecd91b3f0de4b810821",
+    "respectPosterSha256": "6cb133d3c7a227f25a29e6da7536442a16195584f5e687d749cc24fa5d33ec46"
   },
   "limitations": [
     "대표 편 영상·완성 포스터 원본 없음",
-    "리스펙트 계정·작업 공개 권한 미확인: 영상·포스터 비공개",
     "저사양 Android·iOS 저전력 실기기 미검증",
     "성능은 고부하 기계 단회 측정, 영상 디코딩 제외",
     "홈 운영 반영 없음"
-  ]
+  ],
+  "respectIntegration": {
+    "passed": true,
+    "base": "http://127.0.0.1:8771",
+    "results": [
+      {
+        "width": 390,
+        "reducedMotion": "no-preference",
+        "passed": true,
+        "state": {
+          "paused": false,
+          "muted": true,
+          "loop": true,
+          "playsInline": true,
+          "poster": "http://127.0.0.1:8771/media/respect-poster.jpg",
+          "posterSize": [
+            360,
+            780
+          ],
+          "placeholderVisible": false,
+          "overflow": 0,
+          "noindex": true,
+          "episode": {
+            "src": null,
+            "poster": ""
+          },
+          "videoCount": 1
+        },
+        "actualPlaybackAdvanced": true,
+        "pauseSurvivedViewport": true,
+        "errors": []
+      },
+      {
+        "width": 390,
+        "reducedMotion": "reduce",
+        "passed": true,
+        "state": {
+          "paused": true,
+          "muted": true,
+          "loop": true,
+          "playsInline": true,
+          "poster": "http://127.0.0.1:8771/media/respect-poster.jpg",
+          "posterSize": [
+            360,
+            780
+          ],
+          "placeholderVisible": false,
+          "overflow": 0,
+          "noindex": true,
+          "episode": {
+            "src": null,
+            "poster": ""
+          },
+          "videoCount": 1
+        },
+        "actualPlaybackAdvanced": true,
+        "pauseSurvivedViewport": true,
+        "errors": []
+      },
+      {
+        "width": 1440,
+        "reducedMotion": "no-preference",
+        "passed": true,
+        "state": {
+          "paused": false,
+          "muted": true,
+          "loop": true,
+          "playsInline": true,
+          "poster": "http://127.0.0.1:8771/media/respect-poster.jpg",
+          "posterSize": [
+            360,
+            780
+          ],
+          "placeholderVisible": false,
+          "overflow": 0,
+          "noindex": true,
+          "episode": {
+            "src": null,
+            "poster": ""
+          },
+          "videoCount": 1
+        },
+        "actualPlaybackAdvanced": true,
+        "pauseSurvivedViewport": true,
+        "errors": []
+      },
+      {
+        "width": 1440,
+        "reducedMotion": "reduce",
+        "passed": true,
+        "state": {
+          "paused": true,
+          "muted": true,
+          "loop": true,
+          "playsInline": true,
+          "poster": "http://127.0.0.1:8771/media/respect-poster.jpg",
+          "posterSize": [
+            360,
+            780
+          ],
+          "placeholderVisible": false,
+          "overflow": 0,
+          "noindex": true,
+          "episode": {
+            "src": null,
+            "poster": ""
+          },
+          "videoCount": 1
+        },
+        "actualPlaybackAdvanced": true,
+        "pauseSurvivedViewport": true,
+        "errors": []
+      },
+      {
+        "autoplayDenied": true,
+        "manualRecovery": true,
+        "passed": true
+      }
+    ]
+  }
 }
