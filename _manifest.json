@@ -742,5 +742,13 @@
     "last_kind": "new",
     "last_sha256": "3cdcdec56304fe65c8844d1513c5f36007092d3acb16af7ae9e61e1f11f73f21",
     "timestamp": "2026-10-30T09:52:58.409619Z"
+  },
+  "kiki-coverage-261030": {
+    "slug": "kiki-coverage-261030",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/kiki-coverage-261030/",
+    "last_kind": "new",
+    "last_sha256": "2c5b5254daf582d93fcf27badda1e85461246f1fd2448536722b8897c708ed75",
+    "timestamp": "2026-10-30T14:09:12.691521Z"
   }
 }
