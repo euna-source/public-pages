@@ -726,5 +726,13 @@
     "last_kind": "new",
     "last_sha256": "bf5a14a508ec2cbcc41ebefab06dc1ee731395ff814f51b046a10c593362584f",
     "timestamp": "2026-10-30T08:11:03.980280Z"
+  },
+  "c8-insta-gap-261030": {
+    "slug": "c8-insta-gap-261030",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-gap-261030/",
+    "last_kind": "new",
+    "last_sha256": "bfff3f1f3a8278fcb980731bf9f9ea8b1a9556437708a6fc9bd10069c2d15199",
+    "timestamp": "2026-10-30T08:45:47.575609Z"
   }
 }
