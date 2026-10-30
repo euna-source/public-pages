@@ -707,8 +707,8 @@
     "slug": "crew-memory-tower",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/crew-memory-tower/",
-    "last_kind": "new",
-    "last_sha256": "e60f54e01d5902fe1b765981a092a4b334ae7959598af97b7b65df87dbd7ed65",
-    "timestamp": "2026-10-30T06:26:14.118734Z"
+    "last_kind": "redeploy",
+    "last_sha256": "3fa9b3e6fce9016933221ac67da18a09f3a60b7b3ba2227e54f4bc6e0ccd3af5",
+    "timestamp": "2026-10-30T06:52:03.745746Z"
   }
 }
