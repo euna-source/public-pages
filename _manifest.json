@@ -686,5 +686,13 @@
     "last_kind": "redeploy",
     "last_sha256": "4445e2404ce954df8190bcb954d678e375094034cb3a0718f84727d2ff0b1a59",
     "timestamp": "2026-10-30T02:18:16.706530Z"
+  },
+  "c8-app-post-adoption": {
+    "slug": "c8-app-post-adoption",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-app-post-adoption/",
+    "last_kind": "new",
+    "last_sha256": "dea3daa907e61d23c0d9c39280b455f12d5163f28fb891214f4cabb0b04e5235",
+    "timestamp": "2026-10-30T03:09:02.460633Z"
   }
 }
