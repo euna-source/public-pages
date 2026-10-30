@@ -763,8 +763,8 @@
     "slug": "c8-insta-translate01-261030",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-insta-translate01-261030/",
-    "last_kind": "new",
-    "last_sha256": "28dbb82eb5c80f93d1f9bd4d31ffb19d23780dbd5e07c2f2830d62ef65ee0d4f",
-    "timestamp": "2026-10-30T14:12:41.851175Z"
+    "last_kind": "redeploy",
+    "last_sha256": "e8604c68ac13aa6b3fbb5cd0c9f379eb31b82764538842318da593920aed7f96",
+    "timestamp": "2026-10-30T14:15:13.249394Z"
   }
 }
