@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>크루 기억 관제탑</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f5f2; --panel:#ffffff; --ink:#16181a; --sub:#5b6168; --line:#dfe2dc; --soft:#eef0eb;
+  --ok:#1f7a4d; --ok-bg:#e3f2e9; --warn:#a15c00; --warn-bg:#fbefd9; --bad:#b3261e; --bad-bg:#fbe4e1; --mute:#6b7178; --mute-bg:#eceeea;
+  --kiki:#d6457a; --nana:#2f7d5b; --rain:#3b62c4; --genz:#c27a12; --loop:#6b4fc4;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#111315; --panel:#1a1d20; --ink:#eceeea; --sub:#a3a9b0; --line:#2c3035; --soft:#22262a;
+  --ok:#5fcf93; --ok-bg:#16301f; --warn:#f0b35a; --warn-bg:#33270f; --bad:#ff8a80; --bad-bg:#3a1a18; --mute:#9aa0a6; --mute-bg:#24282c;
+  --kiki:#f07aa6; --nana:#5fc495; --rain:#7f9ef0; --genz:#f0b04a; --loop:#a48cf0;
+}}
+:root[data-theme="dark"]{
+  --bg:#111315; --panel:#1a1d20; --ink:#eceeea; --sub:#a3a9b0; --line:#2c3035; --soft:#22262a;
+  --ok:#5fcf93; --ok-bg:#16301f; --warn:#f0b35a; --warn-bg:#33270f; --bad:#ff8a80; --bad-bg:#3a1a18; --mute:#9aa0a6; --mute-bg:#24282c;
+  --kiki:#f07aa6; --nana:#5fc495; --rain:#7f9ef0; --genz:#f0b04a; --loop:#a48cf0;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.6 "IBM Plex Sans KR",system-ui,sans-serif;word-break:keep-all;overflow-wrap:anywhere}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 16px 64px}
+header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap}
+.eyebrow{font:500 12px/1 "IBM Plex Mono",monospace;letter-spacing:.08em;color:var(--sub);text-transform:uppercase}
+h1{font-size:28px;line-height:1.25;margin:8px 0 6px;font-weight:700}
+h2{font-size:18px;margin:44px 0 14px;font-weight:700}
+h3{font-size:15px;margin:0 0 8px;font-weight:600}
+p{margin:0 0 8px}
+.sub{color:var(--sub)}
+.theme{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:8px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.verdict{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--bad);border-radius:10px;padding:16px 18px}
+.verdict strong{font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi b{display:block;font:600 26px/1.1 "IBM Plex Mono",monospace;margin-bottom:6px}
+.kpi span{color:var(--sub);font-size:13px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:1px 8px;border-radius:999px;white-space:nowrap;vertical-align:1px}
+.t-ok{color:var(--ok);background:var(--ok-bg)} .t-warn{color:var(--warn);background:var(--warn-bg)}
+.t-bad{color:var(--bad);background:var(--bad-bg)} .t-mute{color:var(--mute);background:var(--mute-bg)}
+/* flow */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;position:relative}
+.stage{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.stage .no{font:500 12px "IBM Plex Mono",monospace;color:var(--sub)}
+.stage ul{margin:8px 0 0;padding:0;list-style:none}
+.stage li{padding:7px 0;border-top:1px dashed var(--line);font-size:14px}
+.stage li:first-child{border-top:0}
+.stage small{display:block;color:var(--sub);font-size:12.5px;line-height:1.45}
+.arrow{color:var(--sub);text-align:center;font-size:13px;margin:6px 0 0}
+/* crew */
+.crew{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.card .who{display:flex;align-items:baseline;gap:8px}
+.card .who b{font-size:17px}
+.card .who span{color:var(--sub);font-size:13px}
+.card .lbl{font:500 11.5px "IBM Plex Mono",monospace;color:var(--sub);letter-spacing:.04em;margin-bottom:4px}
+.card ul{margin:0;padding-left:16px;font-size:13.5px}
+.card li{margin:3px 0}
+.card .note{font-size:13px;background:var(--soft);border-radius:8px;padding:8px 10px}
+/* tables */
+.tbl{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:14px}
+.tbl th,.tbl td{padding:10px 12px;border-top:1px solid var(--line);text-align:left;vertical-align:top}
+.tbl thead th{border-top:0;background:var(--soft);font-size:12.5px;color:var(--sub);font-weight:600}
+.tbl td:first-child{font-weight:600;white-space:nowrap}
+.share{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px}
+.box ul{margin:6px 0 0;padding-left:16px;font-size:14px}
+.box li{margin:5px 0}
+.decide{counter-reset:d;display:grid;gap:10px}
+.decide .box{border-left:4px solid var(--warn)}
+.foot{margin-top:40px;color:var(--sub);font-size:12.5px}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:-4px 0 12px}
+@media (max-width:980px){ .crew{grid-template-columns:repeat(2,minmax(0,1fr))} .flow{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:640px){
+  h1{font-size:23px} .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .crew,.flow,.share{grid-template-columns:1fr}
+  .tbl thead{display:none} .tbl,.tbl tbody,.tbl tr,.tbl td{display:block;width:100%}
+  .tbl tr{border-top:1px solid var(--line);padding:8px 0} .tbl tr:first-child{border-top:0}
+  .tbl td{border:0;padding:3px 12px} .tbl td:first-child{white-space:normal}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div>
+    <div class="eyebrow">관제탑 · 2026-10-30 15:30 기준 · 루프 점검</div>
+    <h1>크루 기억체계 전체 지도</h1>
+    <p class="sub">다섯 크루가 무엇을 기억하고, 어디에 쓰고, 누구와 나누는지 한 화면에 모았어요.</p>
+  </div>
+  <button class="theme" id="theme" type="button">밝게 · 어둡게</button>
+</header>
+
+<div class="verdict">
+  <p><strong>공용 기억은 매일 돌고, 크루 전용 수첩은 멈춰 있어요.</strong> 수첩 16권이 10/27 밤 처음 채워진 뒤 사흘 동안 한 줄도 늘지 않았어요.</p>
+  <p class="sub">원인은 둘이에요. 크루네 일꾼이 수첩 기능이 들어가기 8시간 전 판(10/27 15:58)으로 계속 돌고 있고, 터미널에서 크루를 부를 때는 수첩을 읽거나 쓰라는 지시가 아예 없어요.</p>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><b>0줄</b><span>10/28 이후 수첩에 새로 쌓인 기록 (같은 기간 크루 커밋 수십 건)</span></div>
+  <div class="kpi"><b>03:31</b><span>오늘 야간 정제 완료 — 공용 기억은 매일 갱신 중</span></div>
+  <div class="kpi"><b>1개</b><span>크루끼리 기억을 자동으로 나누는 길 (기록 → 정제 → 공용 허브)</span></div>
+  <div class="kpi"><b>13곳</b><span>쓰기만 하거나 버려진 기억 (반박 점검을 통과한 것만)</span></div>
+</div>
+
+<h2>1. 기억이 흐르는 길</h2>
+<div class="legend"><span class="tag t-ok">돌아감</span><span class="tag t-warn">낡음·쓰기만</span><span class="tag t-bad">막힘</span><span class="tag t-mute">버려짐</span></div>
+<div class="flow">
+  <div class="stage"><div class="no">01 들어오는 곳</div><h3>크루가 일하는 자리</h3>
+    <ul>
+      <li>터미널 세션 (Claude·Codex) <span class="tag t-ok">주 통로</span><small>대부분의 일이 여기서 끝나요</small></li>
+      <li>크루네 카드 <span class="tag t-ok">돌아감</span><small>회차마다 대화 기록을 남겨요</small></li>
+      <li>Slack 크루 방 <span class="tag t-warn">10/20 이후 조용</span><small>회의록 배송만 쓰는 중</small></li>
+      <li>회의 음성 <span class="tag t-ok">돌아감</span><small>화자 기억까지 쌓여요</small></li>
+    </ul></div>
+  <div class="stage"><div class="no">02 적는 곳</div><h3>일이 끝나면 남는 기록</h3>
+    <ul>
+      <li>세션 기록(history) <span class="tag t-ok">매일</span><small>모든 크루 공용, 엔진·기기별 월 장부</small></li>
+      <li>크루 회고 장부 <span class="tag t-ok">매일</span><small>크루네 회차 회고 한 줄씩 (10/28~30 젠지 21·키키 4)</small></li>
+      <li>루프 원장 <span class="tag t-ok">매 회차</span><small>수리·결재 안건, 루프가 매번 다시 읽어요</small></li>
+      <li>크루 수첩 16권 <span class="tag t-bad">막힘</span><small>10/27 23:45 시드 뒤 기록 0</small></li>
+    </ul></div>
+  <div class="stage"><div class="no">03 다듬는 곳</div><h3>밤낮 정제</h3>
+    <ul>
+      <li>낮 정제 10:00·22:00 <span class="tag t-ok">오늘 10:07</span><small>교훈 후보를 수신함에 모아요</small></li>
+      <li>야간 정제 03:00 <span class="tag t-ok">오늘 03:31</span><small>결정·프로젝트·일하는 법·사실로 올려요</small></li>
+      <li>기억 브리프 03:45 <span class="tag t-ok">오늘</span><small>최근 결정·교훈·미결을 한 장으로</small></li>
+      <li>주간 크루 점검 <span class="tag t-bad">한 번도 안 돎</span><small>아카데미·게이트 장부를 읽을 유일한 자리</small></li>
+    </ul></div>
+  <div class="stage"><div class="no">04 꺼내 쓰는 곳</div><h3>크루가 불릴 때 받는 기억</h3>
+    <ul>
+      <li>세션 시작 브리프 <span class="tag t-ok">Claude·Codex</span><small>결정 5·교훈 5·미결 큐가 자동으로 들어가요</small></li>
+      <li>대화 회상 자동 주입 <span class="tag t-warn">Claude만</span><small>Codex는 지시만 있고 자동 주입은 없어요</small></li>
+      <li>크루네 일꾼의 수첩 브리프 <span class="tag t-bad">미배포</span><small>코드는 있는데 돌고 있는 판에 없어요</small></li>
+      <li>옵시디언 미러 <span class="tag t-ok">돌아감</span><small>사람이 읽는 사본 (읽기 전용)</small></li>
+    </ul></div>
+</div>
+<p class="arrow">들어온 일 → 기록 → 정제 → 다음 세션의 브리프. 이 고리에 수첩만 빠져 있어요.</p>
+
+<h2>2. 크루별 — 지금 하는 일과 쓰는 기억</h2>
+<div class="crew">
+  <div class="card" style="--c:var(--kiki)">
+    <div class="who"><b>키키</b><span>비서·기획</span></div>
+    <div><div class="lbl">지금 하는 일</div><ul>
+      <li>팀 정책 정리 (69장 중 41장 반영)</li><li>아침·저녁 브리프 보완</li><li>채용 공고 — 마케터로 제목 재정정</li><li>개인경비 PDF 날짜순 정렬</li><li>서비스홈 모션 기획 → 나나 인계</li></ul></div>
+    <div><div class="lbl">쓰는 기억</div><ul>
+      <li>공용 허브 전체 <span class="tag t-ok">가장 많이</span></li><li>내장 페르소나 <span class="tag t-ok">쓰임</span></li><li>수첩 6권 <span class="tag t-bad">10/27 멈춤</span></li><li>Slack 대화 장부 <span class="tag t-warn">10/20 멈춤</span></li></ul></div>
+    <div class="note">오늘 카드 2장이 「쓸 수 있는 AI 계정 없음」으로 막혔어요. 맡은 영역 중 프로모션·이벤트 기획은 수첩이 없어요.</div>
+  </div>
+  <div class="card" style="--c:var(--nana)">
+    <div class="who"><b>나나</b><span>QA·개발</span></div>
+    <div><div class="lbl">지금 하는 일</div><ul>
+      <li>에어브릿지 실기 QA (iOS 설치 귀속 원인 미확정)</li><li>알파 QA 티켓 (CCQ-973~978)</li><li>GA 재검증 3건 보류</li><li>크루네 완료 버튼 배포</li><li>모션 시험 — 인계 카드는 「멈췄어요」</li></ul></div>
+    <div><div class="lbl">쓰는 기억</div><ul>
+      <li>QA 판정 기록 <span class="tag t-ok">쓰임</span></li><li>페르소나 <span class="tag t-warn">CS 역할 미반영</span></li><li>수첩 2권 <span class="tag t-bad">10/27 멈춤</span></li><li>세션 기록 <span class="tag t-ok">쓰임</span></li></ul></div>
+    <div class="note">10/30 귀속 판정·URL 입력 위치 교훈이 수첩엔 없고 세션 기록에만 있어요.</div>
+  </div>
+  <div class="card" style="--c:var(--rain)">
+    <div class="who"><b>레인</b><span>지식</span></div>
+    <div><div class="lbl">지금 하는 일</div><ul>
+      <li>지식창고 운영 (보관 74건)</li><li>모션·렌더 조사 → 나나·키키 인계</li><li>채용 후보 15명 (상세 미열람)</li><li>스킬 10선 질문 — 5일째 답 대기</li></ul></div>
+    <div><div class="lbl">쓰는 기억</div><ul>
+      <li>판단 경향 파일 <span class="tag t-ok">검토 눈에 주입</span></li><li>지식창고 색인 <span class="tag t-ok">매일</span></li><li>수첩 1권 <span class="tag t-bad">남의 과거 일 3줄</span></li></ul></div>
+    <div class="note">실제 담당과 수첩이 가장 많이 어긋나요. 레인의 본업인 「지식창고·기억 회수」 수첩이 없어요.</div>
+  </div>
+  <div class="card" style="--c:var(--genz)">
+    <div class="who"><b>젠지</b><span>콘텐츠</span></div>
+    <div><div class="lbl">지금 하는 일</div><ul>
+      <li>다음 주 인스타 세 편 (재탕 반려 뒤 재작업)</li><li>앱 게시 제안 (채택률 목표)</li><li>마케팅 데일리 (가입·탈퇴·DAU)</li><li>포스터 섭외 실행안 v3</li></ul></div>
+    <div><div class="lbl">쓰는 기억</div><ul>
+      <li>옵시디언 인스타 학습노트 <span class="tag t-ok">오늘 14:33</span></li><li>제안 로그·회고 <span class="tag t-ok">매 회차</span></li><li>수첩 3권 <span class="tag t-bad">10/22 멈춤</span></li></ul></div>
+    <div class="note">배우긴 하는데 수첩 대신 학습노트에 쌓여요. 학습노트는 회상 검색에 안 잡혀요. 수첩 판정이 동점이면 늘 키키에게 넘어가요.</div>
+  </div>
+  <div class="card" style="--c:var(--loop)">
+    <div class="who"><b>루프</b><span>점검</span></div>
+    <div><div class="lbl">지금 하는 일</div><ul>
+      <li>두 Mac 동기화·미발행 정리</li><li>옛 일꾼 반복 수리 (다섯 번째)</li><li>cmux 요청 보드 0.3.6</li><li>iCloud 충돌 사본 1,068개 이동 제안</li><li>결재 대기 안건 7건</li></ul></div>
+    <div><div class="lbl">쓰는 기억</div><ul>
+      <li>루프 원장 <span class="tag t-ok">매 회차 읽음</span></li><li>점검 상태 기록 <span class="tag t-ok">10분마다</span></li><li>수첩 4권 <span class="tag t-bad">10/27 멈춤</span></li></ul></div>
+    <div class="note">원장이 수첩 역할을 대신하고 있어요. 오늘 카드도 「AI 계정 없음」으로 막혔어요.</div>
+  </div>
+</div>
+
+<h2>3. 크루끼리 기억을 나누나</h2>
+<div class="share">
+  <div class="box"><h3><span class="tag t-ok">나눠짐</span></h3><ul>
+    <li>공용 허브 — 결정·일하는 법·사실은 다섯 크루와 두 엔진이 같이 받아요</li>
+    <li>넘기기 카드 — 받는 크루 새 카드에 맥락이 따라가요</li>
+    <li>논의 카드 — 다음 차례 크루가 앞 발언을 받아요</li>
+    <li>두 Mac — git이 정본을 나르고, 대화 수집본은 SSH로 오가요</li></ul></div>
+  <div class="box"><h3><span class="tag t-bad">안 나눠짐</span></h3><ul>
+    <li>수첩은 자기 것만 보여 줘요. 다른 크루의 교훈은 직접 열어야만 읽혀요</li>
+    <li>수첩 교훈이 공용 허브로 올라가는 길이 없어요</li>
+    <li>젠지 학습노트는 회상 검색 밖이라 다른 크루가 못 찾아요</li>
+    <li>Claude와 Codex는 서로의 세션을 이어받지 못해요</li></ul></div>
+  <div class="box"><h3><span class="tag t-warn">갈라짐</span></h3><ul>
+    <li>회맥 세션 기록이 두 이름으로 나뉘어 쌓여요 (60건 · 372건)</li>
+    <li>회맥 자동 동기화가 오늘 13:27 실패해 일꾼 적용을 건너뛰었어요</li>
+    <li>기기 간 편지 26통이 열린 채예요 (14일 넘은 것 25통)</li>
+    <li>미결 큐에 기한 지난 재심 18건</li></ul></div>
+</div>
+
+<h2>4. 쓰지 않고 버려지는 기억</h2>
+<p class="sub">각 항목마다 읽는 곳이 정말 없는지 따로 반박 점검을 돌렸어요. 반박에 성공한 세 개는 맨 아래 따로 적었어요.</p>
+<table class="tbl">
+  <thead><tr><th>기억</th><th>상태</th><th>무슨 일인가</th></tr></thead>
+  <tbody>
+    <tr><td>크루 수첩 16권</td><td><span class="tag t-bad">막힘</span></td><td>읽고 쓰는 코드는 있는데 돌고 있는 일꾼 판에 없어요. 터미널 세션엔 지시가 없어요.</td></tr>
+    <tr><td>Slack 대화 색인 통로</td><td><span class="tag t-bad">막힘</span></td><td>회상 검색이 Slack 원료 폴더를 찾는데 폴더가 없어요. 색인된 Slack 대화 0건.</td></tr>
+    <tr><td>옵시디언 두뇌 수신함</td><td><span class="tag t-bad">막힘</span></td><td>제안 8건이 9/16 이후 정본으로 올라가지 않았어요.</td></tr>
+    <tr><td>아카데미 증거표 (159KB)</td><td><span class="tag t-warn">쓰기만</span></td><td>낮 정제가 하루 두 번 적지만, 읽을 주간 크루 점검이 한 번도 안 돌았어요.</td></tr>
+    <tr><td>게이트 장부</td><td><span class="tag t-warn">쓰기만</span></td><td>10/4 이후 0행. 읽을 곳도 같은 주간 점검뿐이에요.</td></tr>
+    <tr><td>선호 기록 (108KB)</td><td><span class="tag t-warn">쓰기만</span></td><td>야간 정제가 241행을 더 쌓았는데, 이걸 받는 키키 모범 답안은 10/4에서 멈췄어요.</td></tr>
+    <tr><td>Codex 자체 메모리</td><td><span class="tag t-warn">쓰기만</span></td><td>설정상 꺼져 있는데 파일은 오늘도 생겨요. 읽는 곳은 없어요.</td></tr>
+    <tr><td>스킬 제안 2건 · 보류 결정 1건</td><td><span class="tag t-warn">낡음</span></td><td>수신함에 들어간 뒤 아무도 열지 않아요. 보류 결정은 크루네 리뉴얼 톤이에요.</td></tr>
+    <tr><td>Claude 자동 메모리 (137개)</td><td><span class="tag t-mute">버려짐</span></td><td>자동 불러오기를 일부러 꺼 둬서 아무 데서도 읽지 않아요. 9/7 이후 그대로예요.</td></tr>
+    <tr><td>키티 성장노트 1편</td><td><span class="tag t-mute">버려짐</span></td><td>10/2 크루 출범 때 한 편 쓴 뒤 끝. 성장노트 고리는 코드로 생긴 적이 없어요.</td></tr>
+    <tr><td>초기 이관 교훈 17개</td><td><span class="tag t-mute">버려짐</span></td><td>9/5 옵시디언 재정리 때 옮겨 온 것. 개수만 세고 내용은 안 읽어요.</td></tr>
+    <tr><td>9/16 Slack QA 증거 묶음</td><td><span class="tag t-mute">버려짐</span></td><td>당시 실행 기록이 각주로 가리킬 뿐이에요.</td></tr>
+    <tr><td>작업 사본 속 크루 정의·기억 사본</td><td><span class="tag t-mute">중복</span></td><td>임시 작업 폴더에 크루 정의 20개·기억 사본 22벌(약 200MB). 정본과 같은 건 하나도 없어요.</td></tr>
+  </tbody>
+</table>
+<p class="sub" style="margin-top:10px">반박으로 살아남은 것 — 푸시 실패 기록 15건(야간 정제가 열어서 닫아요), 레인 판단 경향 파일(모든 검토 눈에 주입돼요), 루프 원장(274KB지만 세 곳이 실제로 읽어요).</p>
+
+<h2>5. 샐리가 정할 것</h2>
+<div class="decide">
+  <div class="box"><h3>① 크루네 일꾼을 지금 판으로 올릴까요</h3><p>올리면 크루네에서 수첩 읽기·쓰기가 바로 살아나요. 다만 그 뒤 쌓인 크루네 커밋 4건(수첩 도입, 젠지 정기 회차, 키키 회의록 연결, 마케팅 데일리 정기 업무)이 함께 나가요. 루프 제안: 커밋된 판에서만 유휴 시간에 올리고, 문제가 생기면 지금 판으로 되돌려요.</p></div>
+  <div class="box"><h3>② 터미널 세션에서도 수첩을 쓰게 할까요</h3><p>대부분의 일이 터미널에서 끝나서, 크루네만 고치면 수첩은 계속 비어요. 공통 지침에 「불린 크루는 끝날 때 자기 수첩에 한 줄」을 넣는 일이라 승인이 필요해요.</p></div>
+  <div class="box"><h3>③ 버려진 기억을 보관함으로 옮길까요</h3><p>위 표의 「버려짐」 넷과 작업 사본 중복분이 대상이에요. 지우지 않고 옮기기만 해요. 주간 크루 점검은 살릴지 없앨지 함께 정해 주세요.</p></div>
+</div>
+
+<p class="foot">오늘 루프가 크루 다섯의 수첩에 「기억체계」 한 권씩을 새로 만들어 각자의 기억 운영법을 적었어요. 조사: 다섯 축 분석과 「버려짐」 판정별 반박 점검 21건. 이 Mac의 볼트와 로컬 카드 기준이고, 회맥 쪽 카드와 원격 대화는 보지 않았어요.</p>
+</div>
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  try{var s=localStorage.getItem('theme'); if(s) root.setAttribute('data-theme',s);}catch(e){}
+  btn.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+    var next=cur==='dark'?'light':'dark'; root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next);}catch(e){}
+  });
+})();
+</script>
+</body>
+</html>
