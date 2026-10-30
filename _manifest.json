@@ -747,9 +747,9 @@
     "slug": "kiki-coverage-261030",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/kiki-coverage-261030/",
-    "last_kind": "new",
-    "last_sha256": "2c5b5254daf582d93fcf27badda1e85461246f1fd2448536722b8897c708ed75",
-    "timestamp": "2026-10-30T14:09:12.691521Z"
+    "last_kind": "redeploy",
+    "last_sha256": "cc30c7477c9f2d9c47c4ada8bd172c10a58e736199f411b24d026293ef7a14f2",
+    "timestamp": "2026-10-30T14:59:24.887730Z"
   },
   "public-pages": {
     "slug": "public-pages",
