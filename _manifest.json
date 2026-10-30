@@ -710,5 +710,13 @@
     "last_kind": "redeploy",
     "last_sha256": "5ccb7870839a3b43e0d9f9be6409a4008fe9ca5864358935fa58d1dad57ebca5",
     "timestamp": "2026-10-30T07:47:39.300446Z"
+  },
+  "c8-insta-ref-2ez-261030": {
+    "slug": "c8-insta-ref-2ez-261030",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-ref-2ez-261030/",
+    "last_kind": "new",
+    "last_sha256": "9639d056902bce0c7a7cfee0e3aa291a5737d0f12ab81ffc7993f60adf9e09dc",
+    "timestamp": "2026-10-30T07:54:41.563473Z"
   }
 }
