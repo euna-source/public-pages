@@ -675,9 +675,9 @@
     "slug": "c8-app-post-261030",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-app-post-261030/",
-    "last_kind": "new",
-    "last_sha256": "03121d43acc6d5ea1c3dbbdb3330b48d69123d1c899e47c3e1310a2280a25c95",
-    "timestamp": "2026-10-30T01:21:55.517939Z"
+    "last_kind": "redeploy",
+    "last_sha256": "1dbd3dea7d01ecdee7d3a06e5f41c57bff59252c0abbd1a2cdb2bc94c94dcf3c",
+    "timestamp": "2026-10-30T02:28:17.446223Z"
   },
   "c8-insta-draft-261030": {
     "slug": "c8-insta-draft-261030",
