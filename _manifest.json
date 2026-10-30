@@ -766,5 +766,13 @@
     "last_kind": "redeploy",
     "last_sha256": "e8604c68ac13aa6b3fbb5cd0c9f379eb31b82764538842318da593920aed7f96",
     "timestamp": "2026-10-30T14:15:13.249394Z"
+  },
+  "c8-insta-stamp-reel-261031": {
+    "slug": "c8-insta-stamp-reel-261031",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-stamp-reel-261031/",
+    "last_kind": "new",
+    "last_sha256": "ad55f43ef51fcc5b44ed7a4b3f0af75efef58fe806ee5b36df08db002489f7a7",
+    "timestamp": "2026-10-30T17:47:35.635332Z"
   }
 }
