@@ -739,9 +739,9 @@
     "slug": "c8-insta-picks01-261030",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-insta-picks01-261030/",
-    "last_kind": "new",
-    "last_sha256": "3cdcdec56304fe65c8844d1513c5f36007092d3acb16af7ae9e61e1f11f73f21",
-    "timestamp": "2026-10-30T09:52:58.409619Z"
+    "last_kind": "redeploy",
+    "last_sha256": "e4a8e7900f34b9c8c8467746231b230ef46db46afe914d84c90f8d20e0f87898",
+    "timestamp": "2026-10-31T13:33:21.774668Z"
   },
   "kiki-coverage-261030": {
     "slug": "kiki-coverage-261030",
