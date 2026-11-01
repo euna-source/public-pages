@@ -4,14 +4,15 @@
 body{margin:0;background:var(--bg);color:CanvasText;font:15px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif}main{max-width:1100px;margin:0 auto;padding:36px 18px 80px}
 h1{font-size:25px;margin:0 0 6px}h2{font-size:19px;margin:0 0 6px}.sub{color:var(--t2);margin:0 0 22px}section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:22px}
 .band{border-left:3px solid var(--acc);padding:4px 0 4px 12px;margin:0 0 24px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;align-items:start}
-figure{margin:0}img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}figcaption{color:var(--t2);font-size:13px;margin-top:6px}ul{margin:6px 0 0;padding-left:20px}li{margin:3px 0}</style>
+figure{margin:0}img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}figcaption{color:var(--t2);font-size:13px;margin-top:6px}ul{margin:6px 0 0;padding-left:20px}li{margin:3px 0}.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}.shots img{width:100%;border-radius:14px}</style>
 <main>
 <h1>할 일·맡기기 위젯과 크루 페이지</h1>
 <p class="sub">11월 1일 · 위젯은 집맥에 설치 완료, 크루 페이지는 배포 전 확인용</p>
 <p class="band">위젯 두 개는 지금 바로 쓸 수 있습니다. 크루네 크루 페이지는 아래 시안과 실제 화면을 보고 「배포해」라고 하시면 올립니다.</p>
-<section><h2>새 시안 · 채팅방 책갈피가 그 방의 할 일 (카카오톡 채팅방 책갈피 분석)</h2><p class="sub">카카오톡 책갈피는 채팅방 안에서 끝나는 기능입니다. 말풍선 옆 표시, 방 오른쪽 아래 책갈피 단추, 그 방 책갈피 목록, 누르면 그 말풍선으로 이동. 이 구조를 크루 채팅방에 그대로 옮기고, 책갈피 목록을 그 방의 할 일로 씁니다.</p>
-<figure><img src="img/bookmark-room.png" alt="채팅방 책갈피 시안"><figcaption>① 말풍선 길게 눌러 「책갈피」, 말풍선 옆에 표시 ② 오른쪽 아래 단추 → 이 방 책갈피 목록(남은 일 · 끝남, 상태) ③ 누르면 그 말풍선으로 가서 강조, 이전·다음 책갈피와 「끝냄」</figcaption></figure>
-<ul><li>카카오톡 그대로: 길게 눌러 걸기 · 말풍선 옆 표시 · 단추 하나 · 1개면 바로 이동, 여러 개면 목록 · 편집에서 이름 바꾸기(50자)·해제</li><li>크루네에 더한 것: 목록에 상태(하는 중 · 답 필요 · 맡기기 전 · 끝남), 「끝냄」, 이전·다음 이동</li><li>크루 얼굴은 자리표시예요(실제로는 나나 얼굴).</li></ul></section>
+<section><h2>새로 만든 화면 · 채팅방 「방 업무」 (책갈피 모양)</h2><p class="sub">카카오톡 책갈피의 보기 편한 모양(방 오른쪽 아래 단추 → 이 방 목록 → 누르면 그 자리로)만 빌리고, 안에는 이 방 업무를 상태별로 담았습니다. 목록에서 바로 처리할 수 있어요.</p>
+<figure><img src="img/room-work.png" alt="방 업무 시안"><figcaption>시안: ① 방 오른쪽 아래 업무 단추 ② 진행 중 · 중단하거나 완료 ③ 대기 · 바로 요청</figcaption></figure>
+<div class="shots"><figure><img src="img/rw-button.png" alt="방 업무 단추"><figcaption>실제 화면 · 단추(남은 업무 수)</figcaption></figure><figure><img src="img/rw-doing.png" alt="진행"><figcaption>진행 · 중단 / 완료</figcaption></figure><figure><img src="img/rw-wait.png" alt="대기"><figcaption>대기 · 요청 누른 뒤</figcaption></figure><figure><img src="img/rw-review.png" alt="확인"><figcaption>확인 · 완료</figcaption></figure></div>
+<ul><li>진행: 하는 중 · 차례 기다림. 「중단」은 바로 멈춤, 「완료」는 멈춘 것을 확인한 뒤 끝남으로 옮겨요</li><li>대기: 아직 안 맡긴 이 크루의 할 일. 「요청」을 누르면 바로 새 업무로 보내요(실패하면 대기에 다시 보여요)</li><li>확인: 답·보고·멈춤이 온 업무. 「완료」로 끝남으로 옮겨요</li><li>줄을 누르면 그 업무 말풍선으로 가서 잠깐 강조돼요</li><li>아직 배포 전입니다. 시험 자료로 띄운 화면이에요.</li></ul></section>
 <section><h2>0. 업무 대화에 「진행 상황」 붙이기 (새 시안)</h2><p class="sub">지금은 대화만 쌓여서 무엇을 끝냈고 무엇이 남았는지 보기 어렵습니다. 대화 위에 진행 상황 카드를 두는 두 가지 안입니다.</p>
 <figure><img src="img/progress.png" alt="진행 상황 시안"><figcaption>A 회차로 보기 · B 단계 체크리스트 · 크루 페이지 채팅 줄 진행 막대</figcaption></figure>
 <ul><li>A안: 지금 있는 기록(요청 회차·보고 한 줄·정할 것·다음)으로 바로 만들 수 있어요. 대신 한 회차 안의 세부 단계는 안 보여요.</li>
