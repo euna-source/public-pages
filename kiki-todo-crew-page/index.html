@@ -1,0 +1,20 @@
+<!doctype html><html lang="ko"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>할 일·맡기기 위젯과 크루 페이지</title>
+<style>:root{--bg:#f5f5f7;--card:#fff;--line:#e3e3e8;--t2:#6e6e73;--acc:#3a46e0}@media(prefers-color-scheme:dark){:root{--bg:#111113;--card:#1c1c1e;--line:#2c2c30;--t2:#a1a1a6;--acc:#a3abff}}
+body{margin:0;background:var(--bg);color:CanvasText;font:15px/1.6 -apple-system,"Apple SD Gothic Neo",sans-serif}main{max-width:1100px;margin:0 auto;padding:36px 18px 80px}
+h1{font-size:25px;margin:0 0 6px}h2{font-size:19px;margin:0 0 6px}.sub{color:var(--t2);margin:0 0 22px}section{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:22px}
+.band{border-left:3px solid var(--acc);padding:4px 0 4px 12px;margin:0 0 24px}.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;align-items:start}
+figure{margin:0}img{width:100%;border-radius:12px;border:1px solid var(--line);display:block}figcaption{color:var(--t2);font-size:13px;margin-top:6px}ul{margin:6px 0 0;padding-left:20px}li{margin:3px 0}</style>
+<main>
+<h1>할 일·맡기기 위젯과 크루 페이지</h1>
+<p class="sub">11월 1일 · 위젯은 집맥에 설치 완료, 크루 페이지는 배포 전 확인용</p>
+<p class="band">위젯 두 개는 지금 바로 쓸 수 있습니다. 크루네 크루 페이지는 아래 시안과 실제 화면을 보고 「배포해」라고 하시면 올립니다.</p>
+<section><h2>1. 크루네 크루 페이지 시안</h2><p class="sub">크루마다 할 일과 채팅을 한 화면에 모았습니다. 할 일 탭에서 크루 줄을 누르면 이 페이지가 열립니다.</p>
+<figure><img src="img/mockup.png" alt="크루 페이지 시안"><figcaption>시안: 크루 페이지 할 일 · 채팅, 할 일 탭에 더한 「크루 할 일」</figcaption></figure></section>
+<section><h2>2. 실제로 만든 화면</h2><p class="sub">운영 중인 크루네 코드 위에 만든 실제 화면입니다. 시험 자료로 띄웠습니다.</p>
+<div class="g"><figure><img src="img/crew-light.png" alt=""><figcaption>나나 페이지 · 할 일</figcaption></figure><figure><img src="img/chats-light.png" alt=""><figcaption>나나 페이지 · 채팅</figcaption></figure><figure><img src="img/todo-light.png" alt=""><figcaption>할 일 탭 「크루 할 일」</figcaption></figure><figure><img src="img/crew-dark.png" alt=""><figcaption>다크 모드</figcaption></figure></div>
+<ul><li>할 일 칸: 하는 중 · 샐리 답 기다림 · 확인 기다림(멈춘 일 포함) · 나중에 맡길 일</li><li>「맡기기」를 누르면 그 크루 방 입력칸에 내용이 채워져 열립니다(할 일 탭과 같은 방식)</li><li>채팅 칸: 그 크루와 나눈 대화 최신순, 누르면 그 대화로</li><li>프로필(성격·말투)은 아래 「프로필」 단추로 기존 화면을 엽니다</li></ul></section>
+<section><h2>3. 위젯(설치 완료)</h2><p class="sub">바탕화면 우클릭 → 위젯 편집 → 키키에서 「할 일」「맡기기」를 추가하세요.</p>
+<div class="g"><figure><img src="img/todo-large2.png" alt=""><figcaption>할 일(큰) — 내 할 일 + 크루 할 일</figcaption></figure><figure><img src="img/ask-medium2.png" alt=""><figcaption>맡기기(중간) — 말로·글로 + 최근 맡긴 일</figcaption></figure></div>
+<ul><li>말로 맡기기: 누르면 「띵」 소리 뒤 12초 안에 말하면 키키가 맡을 일로 듣습니다(귀가 켜져 있을 때)</li><li>글로 맡기기: 입력 창에 쓰면 크루네 키키 방에 새 업무로 들어갑니다</li><li>할 일의 동그라미는 아직 표시만 합니다. 끝냄 처리는 크루네 할 일 탭에서 해 주세요</li></ul></section>
+</main></html>
