@@ -803,8 +803,8 @@
     "slug": "c8-insta-identity-261031",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-insta-identity-261031/",
-    "last_kind": "new",
-    "last_sha256": "0006a9e6cac1958c5231ed618834cea4993d25e153bb10f5db7fd9bc4c28260f",
-    "timestamp": "2026-11-01T04:38:16.613164Z"
+    "last_kind": "redeploy",
+    "last_sha256": "dd4a9cba86c3257d60ccdc4c1abaa337a736deb1fbb7940b4aa8c63dcf25f08d",
+    "timestamp": "2026-11-01T04:39:28.831819Z"
   }
 }
