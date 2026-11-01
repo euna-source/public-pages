@@ -467,8 +467,8 @@
     "slug": "kiki-todo-crew-page",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/kiki-todo-crew-page/",
-    "last_kind": "new",
-    "last_sha256": "9ea0b450bfba6b0bc94a6892d31b8afb266abb75efe9da1fdf5ca9eb67a2dd19",
-    "timestamp": "2026-11-01T07:56:55.225799Z"
+    "last_kind": "redeploy",
+    "last_sha256": "578ee756dfcba4cd2211fa3dc2dc5abd1a4695e4af952a13dc10f486110cfde6",
+    "timestamp": "2026-11-01T08:12:13.740005Z"
   }
 }
