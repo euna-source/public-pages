@@ -891,8 +891,8 @@
     "slug": "c8-insta-plan-thenvsnow-261103",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-insta-plan-thenvsnow-261103/",
-    "last_kind": "new",
-    "last_sha256": "4616489d18657ec70757fd2c9201c293b39d141801617d2811bd4e5ea675e3b2",
-    "timestamp": "2026-11-02T15:32:41.957842Z"
+    "last_kind": "redeploy",
+    "last_sha256": "76b350f589d26459aa762f4dec2fd7878f3fcbccb58d666a3b012911ee6d91e5",
+    "timestamp": "2026-11-02T15:34:27.456457Z"
   }
 }
