@@ -862,5 +862,13 @@
     "last_kind": "new",
     "last_sha256": "674741c98e24485e8cb74e16d2de5c6a0cc13c7b4d6112ad093a03691474bc0d",
     "timestamp": "2026-11-02T07:10:32.872007Z"
+  },
+  "c8-kakaomap-storage-261102": {
+    "slug": "c8-kakaomap-storage-261102",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-kakaomap-storage-261102/",
+    "last_kind": "new",
+    "last_sha256": "0be112b14996a89ceebde4bcb0c992e50f7697079df28a6ed1ba3948188698e7",
+    "timestamp": "2026-11-02T07:15:31.915184Z"
   }
 }
