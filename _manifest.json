@@ -795,9 +795,9 @@
     "slug": "c8-app-direction-261101",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-app-direction-261101/",
-    "last_kind": "new",
-    "last_sha256": "2d74e5adab9218f332a68820644b47b1149576667c37f2b4e0b4e4ce1d0d0596",
-    "timestamp": "2026-11-01T04:34:51.996779Z"
+    "last_kind": "redeploy",
+    "last_sha256": "6311e893b5b4340e5ab8090ee1cca3b5a3ae9bb68751f2dfe9597303b6394bf8",
+    "timestamp": "2026-11-02T01:29:44.804112Z"
   },
   "c8-insta-identity-261031": {
     "slug": "c8-insta-identity-261031",
