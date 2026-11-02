@@ -526,5 +526,13 @@
     "last_kind": "new",
     "last_sha256": "f6e917b98b6214645ae98ffdcaddbb0f04c47e7eb2c8d6e35dca41b355f82fb0",
     "timestamp": "2026-11-02T16:41:50.054363Z"
+  },
+  "c8-seeding-rules-v1-261103": {
+    "slug": "c8-seeding-rules-v1-261103",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-seeding-rules-v1-261103/",
+    "last_kind": "new",
+    "last_sha256": "bf15b469fd89d4f5db9485486db77b1a91abc0145e85a5ce2e558043d957719d",
+    "timestamp": "2026-11-02T16:41:58.377957Z"
   }
 }
