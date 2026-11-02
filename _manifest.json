@@ -846,5 +846,13 @@
     "last_kind": "new",
     "last_sha256": "386c193fc0687d321101fbaba6a11ddb6f784d1ed9dee2d77bd61d650ea2623a",
     "timestamp": "2026-11-02T06:33:24.848057Z"
+  },
+  "c8-insta-cover-v3-evidence-261102": {
+    "slug": "c8-insta-cover-v3-evidence-261102",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-cover-v3-evidence-261102/",
+    "last_kind": "new",
+    "last_sha256": "4d7a3ba3831454bc4ad65a8fee404fc5b0e5bc3cf07c697acb315d189fa1b5cc",
+    "timestamp": "2026-11-02T07:03:32.170904Z"
   }
 }
