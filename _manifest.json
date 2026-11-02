@@ -894,5 +894,13 @@
     "last_kind": "redeploy",
     "last_sha256": "76b350f589d26459aa762f4dec2fd7878f3fcbccb58d666a3b012911ee6d91e5",
     "timestamp": "2026-11-02T15:34:27.456457Z"
+  },
+  "c8-weeklybest-prep-card-v2-261102": {
+    "slug": "c8-weeklybest-prep-card-v2-261102",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-weeklybest-prep-card-v2-261102/",
+    "last_kind": "new",
+    "last_sha256": "5dec6b675094eff268d71ee028d69fdfc1e1a849c7fc0ca89392f81142f1545b",
+    "timestamp": "2026-11-02T15:39:22.933988Z"
   }
 }
