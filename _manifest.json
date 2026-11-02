@@ -854,5 +854,13 @@
     "last_kind": "new",
     "last_sha256": "4d7a3ba3831454bc4ad65a8fee404fc5b0e5bc3cf07c697acb315d189fa1b5cc",
     "timestamp": "2026-11-02T07:03:32.170904Z"
+  },
+  "c8-insta-identity-cover-261102": {
+    "slug": "c8-insta-identity-cover-261102",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-identity-cover-261102/",
+    "last_kind": "new",
+    "last_sha256": "674741c98e24485e8cb74e16d2de5c6a0cc13c7b4d6112ad093a03691474bc0d",
+    "timestamp": "2026-11-02T07:10:32.872007Z"
   }
 }
