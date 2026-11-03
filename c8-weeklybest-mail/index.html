@@ -81,7 +81,7 @@ iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:
       </fieldset>
       <fieldset>
         <legend>선정 내역</legend>
-        <label for="awards">수상 내역 <span class="hint">한 줄에 하나씩</span></label>
+        <label for="awards">수상 내역 <span class="hint">한 줄에 하나씩 · [10월 3주차]처럼 대괄호로 쓰면 소제목</span></label>
         <textarea id="awards"></textarea>
         <label for="total">총 경품</label>
         <input id="total">
@@ -153,7 +153,7 @@ const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'
 const br=s=>esc(s).replace(/\n/g,'<br>\n                  ');
 
 function build(v){
-  const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map(a=>'                  • '+esc(a)+'<br>').join('\n');
+  const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map((a,i)=>/^\[.+\]$/.test(a)?'                  <div style="'+(i?'margin-top:10px; ':'')+'font-weight:700;">'+esc(a.slice(1,-1))+'</div>':'                  • '+esc(a)+'<br>').join('\n');
   const closing=esc(v.closing).replace(/\n/g,'<br>\n            ');
   return `<!doctype html>
 <html lang="ko">
