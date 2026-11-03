@@ -942,5 +942,13 @@
     "last_kind": "redeploy",
     "last_sha256": "30560adfcfe767031460fb3c4af4e5dd42a6ca243f0edb92a047e0f2d5953399",
     "timestamp": "2026-11-03T03:07:45.842854Z"
+  },
+  "c8-weeklybest-mail": {
+    "slug": "c8-weeklybest-mail",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-weeklybest-mail/",
+    "last_kind": "new",
+    "last_sha256": "525cf190edb0f1f22e17b189a475619ca448edaecf4937c2ad164bd4ab60f906",
+    "timestamp": "2026-11-03T03:24:30.377361Z"
   }
 }
