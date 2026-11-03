@@ -128,7 +128,7 @@ iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:
 const LOGO='https://euna-source.github.io/public-pages/c8-weeklybest-mail/c8-logo-mark.png';
 const EVENT='https://view.cre8orclub.com/share/event/weekly-best?utm_source=email&amp;utm_medium=email&amp;utm_campaign=weekly_best_2026_10&amp;utm_content=winner_notice';
 const DEFAULTS={
-  subject:'[크리에이터클럽] 10월 4주차 위클리 베스트 선정을 축하드려요 🎉 경품 지급 안내',
+  subject:'[크리에이터클럽] 위클리 베스트 수상 및 경품 지급 안내',
   preheader:'10월 4주차 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
   name:'OOO',
   week:'10월 4주차',
@@ -145,7 +145,8 @@ const DEFAULTS={
 };
 const KEYS=Object.keys(DEFAULTS);
 const STORE='c8-weeklybest-mail-v1';
-const TPL='261103-4';
+const TPL='261103-5';
+const OLD_SUBJECTS=['[크리에이터클럽] 10월 4주차 위클리 베스트 선정을 축하드려요 🎉 경품 지급 안내'];
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const br=s=>esc(s).replace(/\n/g,'<br>\n                  ');
@@ -279,6 +280,7 @@ function load(){
   let saved=null;
   try{saved=JSON.parse(localStorage.getItem(STORE)||'null')}catch(e){}
   KEYS.forEach(k=>$(k).value=(saved&&saved.v&&saved.v[k]!=null)?saved.v[k]:DEFAULTS[k]);
+  if(OLD_SUBJECTS.includes($('subject').value))$('subject').value=DEFAULTS.subject;
   if(saved&&saved.tpl!==TPL&&saved.raw){saved.raw=null;saved.rawMode=false;setTimeout(()=>toast('양식이 바뀌어 직접 고친 HTML은 새 양식으로 다시 만들었어요.'),300)}
   if(saved&&saved.rawMode&&saved.raw){$('raw').value=saved.raw;setMode(true,false)}else render();
 }
