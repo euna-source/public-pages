@@ -926,5 +926,13 @@
     "last_kind": "redeploy",
     "last_sha256": "a35eaa269e51f9a35b9ab58b30eead0315c84a228017fedc3d8ad1626436313c",
     "timestamp": "2026-11-03T02:25:26.797016Z"
+  },
+  "cre8orclub-weekly-best-email-app": {
+    "slug": "cre8orclub-weekly-best-email-app",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/cre8orclub-weekly-best-email-app/",
+    "last_kind": "new",
+    "last_sha256": "a2f3c9b51c6a616abc062e111ddb9edea725b6315b49a5e08c37bf8882e2c0a0",
+    "timestamp": "2026-11-03T02:36:29.166800Z"
   }
 }
