@@ -918,5 +918,13 @@
     "last_kind": "redeploy",
     "last_sha256": "fe431b6377ae906f4f2f1d849609a9d320306430b4384ef3b1e2ab6ac62f0691",
     "timestamp": "2026-11-03T02:13:09.383581Z"
+  },
+  "cre8orclub-weekly-best-email-v3": {
+    "slug": "cre8orclub-weekly-best-email-v3",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/cre8orclub-weekly-best-email-v3/",
+    "last_kind": "new",
+    "last_sha256": "558e3b7ae52c0d345aa83bda87bdf3965d029bc9ff438a98ba74ff4f10a0bf69",
+    "timestamp": "2026-11-03T02:22:50.418792Z"
   }
 }
