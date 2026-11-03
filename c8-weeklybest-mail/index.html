@@ -4,38 +4,185 @@
 <meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>수상 안내 메일 편집기</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#f4f4f2;--panel:#ffffff;--ink:#141414;--muted:#6b6b6b;--line:#e3e3df;--field:#fafaf8;--accent:#07ED21;--accent-ink:#111111;--dark:#141414;--ok:#0a7a1c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121212;--panel:#1c1c1c;--ink:#f0f0f0;--muted:#a0a0a0;--line:#2e2e2e;--field:#232323;--dark:#f0f0f0;--ok:#4ade80}}
+:root[data-theme="dark"]{--bg:#121212;--panel:#1c1c1c;--ink:#f0f0f0;--muted:#a0a0a0;--line:#2e2e2e;--field:#232323;--dark:#f0f0f0;--ok:#4ade80}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo',sans-serif;word-break:keep-all}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+h1{font-size:17px;margin:0;font-weight:700}
+.sub{font-size:12px;color:var(--muted);margin-top:2px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:13px;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--field);color:var(--ink);padding:8px 12px;cursor:pointer}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+main{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:0;min-height:calc(100vh - 70px)}
+.form{background:var(--panel);border-right:1px solid var(--line);padding:16px 20px 40px;overflow:auto}
+.tabs{display:flex;gap:6px;margin-bottom:14px}
+.tabs button[aria-selected="true"]{background:var(--dark);color:var(--panel);border-color:var(--dark)}
+fieldset{border:0;padding:0;margin:0 0 18px}
+legend{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.2px}
+label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
+.hint{font-weight:400;color:var(--muted);font-size:12px}
+input,textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+textarea{resize:vertical;min-height:64px;line-height:1.55}
+#raw{min-height:60vh;font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:pre}
+.row{display:flex;gap:8px}.row>*{flex:1}
+.copyline{display:flex;gap:6px}.copyline input{flex:1}
+.preview{padding:16px 20px 40px;display:flex;flex-direction:column;align-items:center;gap:10px}
+.ptools{display:flex;gap:6px;align-items:center;font-size:12px;color:var(--muted)}
+.ptools button[aria-pressed="true"]{background:var(--dark);color:var(--panel);border-color:var(--dark)}
+iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:640px;max-width:100%;height:1500px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--dark);color:var(--panel);padding:10px 16px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.show{opacity:1}
+.warn{font-size:12px;color:var(--muted);background:var(--field);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin-bottom:10px}
+@media (max-width:860px){main{grid-template-columns:1fr}.form{border-right:0;border-bottom:1px solid var(--line)}header{position:static;padding:14px 16px}.form,.preview{padding-left:16px;padding-right:16px}iframe{height:1700px}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>위클리 베스트 수상 안내 메일</h1>
+    <div class="sub">내용을 고치면 오른쪽 미리보기가 바로 바뀌어요. 고친 내용은 이 브라우저에만 저장돼요.</div>
+  </div>
+  <div class="actions">
+    <button class="primary" id="copyHtml">HTML 소스 복사</button>
+    <button id="copyRich">메일 본문으로 복사</button>
+    <button id="download">HTML 파일 받기</button>
+    <button id="reset">처음 양식으로</button>
+  </div>
+</header>
+<main>
+  <section class="form">
+    <div class="tabs" role="tablist">
+      <button role="tab" id="tabForm" aria-selected="true">양식으로 고치기</button>
+      <button role="tab" id="tabRaw" aria-selected="false">HTML 직접 고치기</button>
+    </div>
+
+    <div id="paneForm">
+      <fieldset>
+        <legend>메일 정보</legend>
+        <label for="subject">메일 제목</label>
+        <div class="copyline"><input id="subject"><button id="copySubject">복사</button></div>
+        <label for="preheader">받은편지함 미리보기 문장 <span class="hint">제목 옆에 보이는 한 줄</span></label>
+        <input id="preheader">
+      </fieldset>
+      <fieldset>
+        <legend>인사</legend>
+        <div class="row">
+          <div><label for="name">받는 분 이름</label><input id="name"></div>
+          <div><label for="week">주차</label><input id="week"></div>
+        </div>
+        <label for="intro">위클리 베스트 소개</label>
+        <textarea id="intro"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>선정 내역</legend>
+        <label for="awards">수상 내역 <span class="hint">한 줄에 하나씩</span></label>
+        <textarea id="awards"></textarea>
+        <label for="total">총 경품</label>
+        <input id="total">
+      </fieldset>
+      <fieldset>
+        <legend>경품 지급 안내</legend>
+        <label for="prize">경품</label><input id="prize">
+        <label for="schedule">발송 일정</label><input id="schedule">
+        <label for="method">발송 방법</label><input id="method">
+        <label for="option">변경 안내</label><textarea id="option"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>경품 수령 안내</legend>
+        <label for="receipt">안내 문구 <span class="hint">줄바꿈 그대로 들어가요</span></label>
+        <textarea id="receipt"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>맺음말</legend>
+        <textarea id="closing" style="min-height:110px"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>하단 고지</legend>
+        <label for="bizno">사업자등록번호</label><input id="bizno">
+      </fieldset>
+    </div>
+
+    <div id="paneRaw" hidden>
+      <div class="warn">여기서 고친 내용은 미리보기와 복사에 그대로 쓰여요. '양식으로 고치기'로 돌아가면 양식 내용으로 다시 만들어지니, 직접 고친 내용은 먼저 복사해 두세요.</div>
+      <textarea id="raw" spellcheck="false"></textarea>
+    </div>
+  </section>
+
+  <section class="preview">
+    <div class="ptools">미리보기
+      <button id="wDesk" aria-pressed="true">PC</button>
+      <button id="wMobile" aria-pressed="false">휴대폰</button>
+    </div>
+    <iframe id="frame" title="메일 미리보기"></iframe>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+const LOGO='https://euna-source.github.io/public-pages/c8-weeklybest-mail/c8-logo-mark.png';
+const EVENT='https://view.cre8orclub.com/share/event/weekly-best?utm_source=email&amp;utm_medium=email&amp;utm_campaign=weekly_best_2026_10&amp;utm_content=winner_notice';
+const DEFAULTS={
+  subject:'[크리에이터클럽] 10월 4주차 위클리 베스트 선정을 축하드려요 🎉 경품 지급 안내',
+  preheader:'10월 4주차 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
+  name:'OOO',
+  week:'10월 4주차',
+  intro:'위클리 베스트는 한 주 동안 리스펙트를 가장 많이 받은 작품과 가장 활발하게 활동한 크리에이터를 부문별로 뽑는 크리에이터클럽의 주간 이벤트예요.',
+  awards:'작품 부문 2위 (3만 원)\n크리에이터 부문 5위 (1만 원)',
+  total:'모바일 상품권 4만 원',
+  prize:'신세계 상품권 3만 원 + CU 상품권 1만 원',
+  schedule:'휴대폰 번호 확인 후 1영업일 이내',
+  method:'My 프로필에 등록된 전화번호로 모바일 상품권 발송',
+  option:'원하시면 CU 상품권을 자주 이용하시는 다른 편의점 상품권으로 변경하거나, 전체 금액을 신세계 상품권으로 받으실 수도 있어요.',
+  receipt:'경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\n문자를 확인하신 후 안내에 따라 회신 부탁드립니다.',
+  closing:'다시 한번 수상을 축하드립니다! 😊\n위클리 베스트는 매주 새로운 작품과 창작자를 기다리고 있어요.\n주변에 멋진 작품을 만드는 분이 있다면 크리에이터클럽을 알려주세요.\n\n감사합니다.',
+  bizno:'000-00-00000'
+};
+const KEYS=Object.keys(DEFAULTS);
+const STORE='c8-weeklybest-mail-v1';
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const br=s=>esc(s).replace(/\n/g,'<br>\n                  ');
+
+function build(v){
+  const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map(a=>'                  • '+esc(a)+'<br>').join('\n');
+  const closing=esc(v.closing).replace(/\n/g,'<br>\n            ');
+  return `<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="x-apple-disable-message-reformatting">
-<title>[크리에이터클럽] 위클리 베스트 선정 안내</title>
+<title>${esc(v.subject)}</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 </head>
 <body style="margin:0; padding:0; background-color:#f2f2f2;">
-<!-- 받은편지함 미리보기 문장 -->
-<div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">10월 4주차 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.</div>
-
+<div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">${esc(v.preheader)}</div>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f2;">
   <tr>
     <td align="center" style="padding:24px 12px;">
       <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; word-break:keep-all; font-family:'Pretendard','Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',sans-serif; color:#111111;">
-
-        <!-- 머리 -->
         <tr>
           <td style="background-color:#111111; padding:24px 32px 28px;">
             <table role="presentation" cellpadding="0" cellspacing="0" border="0">
               <tr>
-                <td valign="middle" style="vertical-align:middle; line-height:0; font-size:0;"><img src="https://euna-source.github.io/public-pages/c8-weeklybest-mail/c8-logo-mark.png" width="18" height="30" alt="Cre8orClub" style="display:block; width:18px; height:30px; border:0;"></td>
-                <td valign="middle" style="vertical-align:middle; padding-left:10px;  font-size:24px; line-height:30px; font-weight:700; color:#ffffff; padding-top:4px;">Cre8orClub</td>
+                <td valign="middle" style="vertical-align:middle; line-height:0; font-size:0;"><img src="${LOGO}" width="18" height="30" alt="Cre8orClub" style="display:block; width:18px; height:30px; border:0;"></td>
+                <td valign="middle" style="vertical-align:middle; padding-left:10px; font-size:24px; line-height:30px; font-weight:700; color:#ffffff; padding-top:4px;">Cre8orClub</td>
               </tr>
             </table>
-            <div style="margin-top:22px;  font-size:25px; line-height:1.45; font-weight:700; color:#ffffff;">위클리 베스트 선정을<br>진심으로 축하드립니다! 🎉</div>
+            <div style="margin-top:22px; font-size:25px; line-height:1.45; font-weight:700; color:#ffffff;">위클리 베스트 선정을<br>진심으로 축하드립니다! 🎉</div>
           </td>
         </tr>
-
-        <!-- 인사 -->
         <tr>
           <td style="padding:28px 32px 8px; font-size:15px; line-height:1.7;">
-            안녕하세요, <strong>OOO 님!</strong><br>
+            안녕하세요, <strong>${esc(v.name)} 님!</strong><br>
             크리에이터클럽 운영팀입니다.<br><br>
-            <strong>10월 4주차 위클리 베스트</strong>에 선정되어 명예의 전당에 이름을 올리셨어요. 🏆
+            <strong>${esc(v.week)} 위클리 베스트</strong>에 선정되어 명예의 전당에 이름을 올리셨어요. 🏆
           </td>
         </tr>
         <tr>
@@ -43,79 +190,64 @@
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #07ED21;">
               <tr>
                 <td style="padding:2px 0 2px 14px; font-size:14px; line-height:1.7; color:#444444;">
-                  위클리 베스트는 한 주 동안 리스펙트를 가장 많이 받은 작품과 가장 활발하게 활동한 크리에이터를 부문별로 뽑는 크리에이터클럽의 주간 이벤트예요.<br>
-                  <a href="https://view.cre8orclub.com/share/event/weekly-best?utm_source=email&amp;utm_medium=email&amp;utm_campaign=weekly_best_2026_10&amp;utm_content=winner_notice" target="_blank" style="font-weight:700; color:#111111; text-decoration:underline;">이벤트 자세히 보기 →</a>
+                  ${br(v.intro)}<br>
+                  <a href="${EVENT}" target="_blank" style="font-weight:700; color:#111111; text-decoration:underline;">이벤트 자세히 보기 →</a>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
-
-        <!-- 선정 내역 -->
         <tr>
           <td style="padding:16px 32px 0;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f7f7; border-radius:10px;">
               <tr>
                 <td style="padding:20px 22px; font-size:15px; line-height:1.8;">
                   <div style="font-size:16px; font-weight:700; margin-bottom:8px;">🏆 선정 내역</div>
-                  • 작품 부문 2위 (3만 원)<br>
-                  • 크리에이터 부문 5위 (1만 원)<br>
-                  <div style="margin-top:10px; padding-top:10px; border-top:1px solid #e2e2e2; font-weight:700;">총 경품: 모바일 상품권 4만 원</div>
+${awards}
+                  <div style="margin-top:10px; padding-top:10px; border-top:1px solid #e2e2e2; font-weight:700;">총 경품: ${esc(v.total)}</div>
                 </td>
               </tr>
             </table>
           </td>
         </tr>
-
-        <!-- 경품 지급 안내 -->
         <tr>
           <td style="padding:16px 32px 0;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f7f7; border-radius:10px;">
               <tr>
                 <td style="padding:20px 22px; font-size:15px; line-height:1.8;">
                   <div style="font-size:16px; font-weight:700; margin-bottom:8px;">🎁 경품 지급 안내</div>
-                  • 경품: 신세계 상품권 3만 원 + CU 상품권 1만 원<br>
-                  • 발송 일정: 휴대폰 번호 확인 후 1영업일 이내<br>
-                  • 발송 방법: My 프로필에 등록된 전화번호로 모바일 상품권 발송
-                  <div style="margin-top:12px; font-size:14px; line-height:1.7; color:#444444;">원하시면 CU 상품권을 자주 이용하시는 다른 편의점 상품권으로 변경하거나, 전체 금액을 신세계 상품권으로 받으실 수도 있어요.</div>
+                  • 경품: ${esc(v.prize)}<br>
+                  • 발송 일정: ${esc(v.schedule)}<br>
+                  • 발송 방법: ${esc(v.method)}${v.option.trim()?`
+                  <div style="margin-top:12px; font-size:14px; line-height:1.7; color:#444444;">${br(v.option)}</div>`:''}
                 </td>
               </tr>
             </table>
           </td>
         </tr>
-
-        <!-- 경품 수령 안내 -->
         <tr>
           <td style="padding:16px 32px 0;">
             <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:2px solid #07ED21; border-radius:10px;">
               <tr>
                 <td style="padding:20px 22px; font-size:15px; line-height:1.8;">
                   <div style="font-size:16px; font-weight:700; margin-bottom:8px;">📩 경품 수령 안내</div>
-                  경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.<br>
-                  문자를 확인하신 후 안내에 따라 회신 부탁드립니다.
+                  ${br(v.receipt)}
                 </td>
               </tr>
             </table>
           </td>
         </tr>
-
-        <!-- 맺음 -->
         <tr>
           <td style="padding:28px 32px 32px; font-size:15px; line-height:1.7;">
-            다시 한번 수상을 축하드립니다! 😊<br>
-            위클리 베스트는 매주 새로운 작품과 창작자를 기다리고 있어요.<br>
-            주변에 멋진 작품을 만드는 분이 있다면 크리에이터클럽을 알려주세요.<br><br>
-            감사합니다.<br>
+            ${closing}<br>
             <strong>크리에이터클럽 드림</strong>
           </td>
         </tr>
-
-        <!-- 슬로건 -->
         <tr>
           <td style="padding:0 32px;"><div style="border-top:1px solid #e5e5e5; font-size:0; line-height:0;">&nbsp;</div></td>
         </tr>
         <tr>
-          <td align="center" style="padding:36px 32px 12px;  font-size:20px; line-height:1.55; font-weight:700; color:#111111;">
+          <td align="center" style="padding:36px 32px 12px; font-size:20px; line-height:1.55; font-weight:700; color:#111111;">
             크리에이터와 기업 · 브랜드가 만나<br>새로운 기회를 만들어가는 플랫폼, 크리에이터클럽
           </td>
         </tr>
@@ -130,19 +262,70 @@
             </table>
           </td>
         </tr>
-
-        <!-- 법적 고지 -->
         <tr>
           <td style="background-color:#f3f3f3; padding:20px 32px 22px; font-size:11px; line-height:1.6; color:#777777;">
             <p style="margin:0 0 6px;">본 메일은 위클리 베스트 수상자에게 경품 지급을 안내하기 위해 보내는 메일로, 광고성 정보 수신 동의 여부와 관계없이 발송됩니다. 크리에이터클럽은 송금·계좌번호·신분증을 요구하지 않습니다.</p>
-            <p style="margin:0 0 6px;">㈜라텔앤드파트너즈 | 대표 최남희 | 사업자등록번호 000-00-00000 | 서울특별시 중구 필동로 16 참그루빌딩 2층 | <a href="mailto:support@cre8orclub.com" style="color:#777777; text-decoration:underline;">support@cre8orclub.com</a></p>
+            <p style="margin:0 0 6px;">㈜라텔앤드파트너즈 | 대표 최남희${v.bizno.trim()?' | 사업자등록번호 '+esc(v.bizno.trim()):''} | 서울특별시 중구 필동로 16 참그루빌딩 2층 | <a href="mailto:support@cre8orclub.com" style="color:#777777; text-decoration:underline;">support@cre8orclub.com</a></p>
             <p style="margin:0;"><a href="https://static.dev.cre8orclub.com/policy/privacy-policy-general.html" target="_blank" style="color:#444444; font-weight:700; text-decoration:none;">개인정보처리방침</a> · <a href="https://static.dev.cre8orclub.com/policy/terms-of-service.html" target="_blank" style="color:#777777; text-decoration:none;">이용약관</a> · © Ratel And Partners Co., Ltd.</p>
           </td>
         </tr>
-
       </table>
     </td>
   </tr>
 </table>
+</body>
+</html>
+`;
+}
+
+let rawMode=false;
+function values(){const v={};KEYS.forEach(k=>v[k]=$(k).value);return v}
+function current(){return rawMode?$('raw').value:build(values())}
+function render(){
+  $('frame').srcdoc=current();
+  try{localStorage.setItem(STORE,JSON.stringify({v:values(),raw:rawMode?$('raw').value:null,rawMode}))}catch(e){}
+}
+function load(){
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem(STORE)||'null')}catch(e){}
+  KEYS.forEach(k=>$(k).value=(saved&&saved.v&&saved.v[k]!=null)?saved.v[k]:DEFAULTS[k]);
+  if(saved&&saved.rawMode&&saved.raw){$('raw').value=saved.raw;setMode(true,false)}else render();
+}
+function setMode(raw,regen=true){
+  rawMode=raw;
+  $('tabForm').setAttribute('aria-selected',String(!raw));
+  $('tabRaw').setAttribute('aria-selected',String(raw));
+  $('paneForm').hidden=raw;$('paneRaw').hidden=!raw;
+  if(raw&&regen)$('raw').value=build(values());
+  render();
+}
+let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),1800)}
+async function copyText(s,msg){
+  try{await navigator.clipboard.writeText(s)}catch(e){const ta=document.createElement('textarea');ta.value=s;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove()}
+  toast(msg);
+}
+async function copyRich(){
+  const html=current();
+  try{
+    await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([html],{type:'text/html'}),'text/plain':new Blob([$('frame').contentDocument.body.innerText],{type:'text/plain'})})]);
+    toast('메일 본문으로 복사했어요. 메일 쓰기 창에 붙여 넣으세요.');
+  }catch(e){
+    const d=$('frame').contentDocument;const r=d.createRange();r.selectNodeContents(d.body);const s=d.getSelection();s.removeAllRanges();s.addRange(r);d.execCommand('copy');s.removeAllRanges();
+    toast('메일 본문으로 복사했어요.');
+  }
+}
+KEYS.forEach(k=>$(k).addEventListener('input',render));
+$('raw').addEventListener('input',render);
+$('tabForm').onclick=()=>{if(rawMode&&!confirm('직접 고친 HTML 대신 양식 내용으로 다시 만들어요. 계속할까요?'))return;setMode(false)};
+$('tabRaw').onclick=()=>{if(!rawMode)setMode(true)};
+$('copyHtml').onclick=()=>copyText(current(),'HTML 소스를 복사했어요.');
+$('copyRich').onclick=copyRich;
+$('copySubject').onclick=()=>copyText($('subject').value,'제목을 복사했어요.');
+$('download').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([current()],{type:'text/html'}));a.download='위클리베스트_수상안내메일.html';a.click();URL.revokeObjectURL(a.href)};
+$('reset').onclick=()=>{if(!confirm('고친 내용을 모두 지우고 처음 양식으로 돌아갈까요?'))return;try{localStorage.removeItem(STORE)}catch(e){}KEYS.forEach(k=>$(k).value=DEFAULTS[k]);setMode(false)};
+$('wDesk').onclick=()=>{$('frame').style.width='640px';$('wDesk').setAttribute('aria-pressed','true');$('wMobile').setAttribute('aria-pressed','false')};
+$('wMobile').onclick=()=>{$('frame').style.width='390px';$('wMobile').setAttribute('aria-pressed','true');$('wDesk').setAttribute('aria-pressed','false')};
+load();
+</script>
 </body>
 </html>
