@@ -958,5 +958,13 @@
     "last_kind": "new",
     "last_sha256": "a5c6fd1c3f2823b1b101cc54134672addd4e454279a79ffce712158f07eee4ab",
     "timestamp": "2026-11-04T01:06:32.149097Z"
+  },
+  "finder-recent-viewed-mock": {
+    "slug": "finder-recent-viewed-mock",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/finder-recent-viewed-mock/",
+    "last_kind": "new",
+    "last_sha256": "d7002f00846a55401b251999514c02fbb1c7970e1d667f90d1e5f5ce7a16f542",
+    "timestamp": "2026-11-04T04:26:50.834133Z"
   }
 }
