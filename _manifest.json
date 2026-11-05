@@ -1011,8 +1011,8 @@
     "slug": "c8-insta-banryeo-plan-261105",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-insta-banryeo-plan-261105/",
-    "last_kind": "new",
-    "last_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "timestamp": "2026-11-05T02:55:05.540424Z"
+    "last_kind": "redeploy",
+    "last_sha256": "e9e1f7e8bcdaecd2a84eb21c22d8bf8b91be359a601090820b37dafbc8983a59",
+    "timestamp": "2026-11-05T02:55:27.209982Z"
   }
 }
