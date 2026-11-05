@@ -1006,5 +1006,13 @@
     "last_kind": "new",
     "last_sha256": "6cde8e25ba86b7da49d977a3def754fd10351be5586f50e062ebf38bd0ea11e3",
     "timestamp": "2026-11-05T02:41:32.768858Z"
+  },
+  "c8-insta-banryeo-plan-261105": {
+    "slug": "c8-insta-banryeo-plan-261105",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-banryeo-plan-261105/",
+    "last_kind": "new",
+    "last_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "timestamp": "2026-11-05T02:55:05.540424Z"
   }
 }
