@@ -1014,5 +1014,13 @@
     "last_kind": "redeploy",
     "last_sha256": "e9e1f7e8bcdaecd2a84eb21c22d8bf8b91be359a601090820b37dafbc8983a59",
     "timestamp": "2026-11-05T02:55:27.209982Z"
+  },
+  "c8-insta-taste-261105": {
+    "slug": "c8-insta-taste-261105",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-insta-taste-261105/",
+    "last_kind": "new",
+    "last_sha256": "df042aa5b5c9b6ae50f8f9aa0449c11c78b8ca6970d05888710e46e0629ffe68",
+    "timestamp": "2026-11-05T14:14:53.108913Z"
   }
 }
