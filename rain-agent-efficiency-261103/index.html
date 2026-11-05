@@ -707,9 +707,9 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
   </header>
 
   <div class="layout">
-    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>코덱스 자리</a></li><li><a href="#s6"><span class="n">06</span>규칙</a></li><li><a href="#s7"><span class="n">07</span>반론</a></li><li><a href="#s8"><span class="n">08</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></nav>
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>코덱스 자리</a></li><li><a href="#s6"><span class="n">06</span>규칙</a></li><li><a href="#s7"><span class="n">07</span>반론</a></li><li><a href="#s8"><span class="n">08</span>medium 비교</a></li><li><a href="#s9"><span class="n">09</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></nav>
     <main class="doc" id="doc">
-      <details class="toc-mobile"><summary>목차 · 8개 절</summary><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>코덱스 자리</a></li><li><a href="#s6"><span class="n">06</span>규칙</a></li><li><a href="#s7"><span class="n">07</span>반론</a></li><li><a href="#s8"><span class="n">08</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></details>
+      <details class="toc-mobile"><summary>목차 · 9개 절</summary><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>코덱스 자리</a></li><li><a href="#s6"><span class="n">06</span>규칙</a></li><li><a href="#s7"><span class="n">07</span>반론</a></li><li><a href="#s8"><span class="n">08</span>medium 비교</a></li><li><a href="#s9"><span class="n">09</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></details>
 
 <h1>레인 리서치 에이전트 효율 운영 — 근거와 작업계획</h1>
 <blockquote class="pull">결론: 친구를 늘리기보다, 질문 크기에 맞춰 부르고 모델을 역할에 맞게 고르는 게 토큰을 아끼는 길이에요.</blockquote>
@@ -801,7 +801,14 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <li>워크플로에서 Sol 6.1을 쓰려면 agent 안에서 codex로 넘겨야 해요. 그만큼 한 단계가 늘어요.</li>
 <li>반증을 코덱스로 옮기면 Claude 쪽 브리프를 코덱스에 다시 넘기는 비용이 생겨요. 엔진이 달라서 생기는 이득이 그보다 큰지는 첫 적용에서 봐야 해요.</li>
 </ul>
-</section><section id="s8" aria-labelledby="s8-t"><a class="sec-num" href="#s8"><b>08</b>다음 행동</a><h2 id="s8-t">승인되면 레인이 반영하고 첫 리서치에서 잰다</h2>
+</section><section id="s8" aria-labelledby="s8-t"><a class="sec-num" href="#s8"><b>08</b>medium 비교</a><h2 id="s8-t">같은 입력에서 medium도 결과가 같았고 토큰은 14~29% 적었다</h2>
+<p>high로 둔 근거는 측정이 아니었어요. 기존 결정(코덱스 두뇌 기본 high, 선택지 분해 Sol high)을 그대로 따랐을 뿐이에요. 11/5에 같은 입력으로 한 번씩 비교했어요.</p>
+<ul>
+<li>반증(Astra): 주장 6개(참 2·거짓 4)에서 medium·high 모두 6개 다 맞혔어요. 토큰 46,415 대 54,193, 시간 54초 대 79초였어요.</li>
+<li>축 나누기(Sol): 둘 다 같은 5축 구조였고 출처 수도 같았어요. 토큰 55,891 대 78,357이었어요.</li>
+<li>한계: 한 번씩만 돌렸고, 반증 주장이 원문만 보면 판가름 나는 쉬운 문제였어요. 미묘한 주장에서는 차이가 날 수 있어요.</li>
+</ul>
+</section><section id="s9" aria-labelledby="s9-t"><a class="sec-num" href="#s9"><b>09</b>다음 행동</a><h2 id="s9-t">승인되면 레인이 반영하고 첫 리서치에서 잰다</h2>
 <ul>
 <li>11/5 반영했어요(샐리 승인). 다축 조사 워크플로와 리서치 규칙에 표대로 모델·effort를 넣었어요. 코덱스가 실패하면 같은 자리를 Claude가 대신 채워요.</li>
 <li>레인: 다음 다축 리서치 한 건에서 잴 것 — 친구 수·모델별 토큰(코덱스 로그의 tokens used, 하위 에이전트 사용량), 수집 주장 표본 10개의 원문 일치율, 반증 판정 누락 수, 코덱스 대체 횟수, 걸린 시간. 결과를 이 문서와 수첩에 남겨요.</li>
