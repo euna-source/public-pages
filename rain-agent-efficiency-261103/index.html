@@ -707,9 +707,9 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
   </header>
 
   <div class="layout">
-    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>규칙</a></li><li><a href="#s6"><span class="n">06</span>반론</a></li><li><a href="#s7"><span class="n">07</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></nav>
+    <nav class="toc" aria-label="목차"><p class="toc-title">목차</p><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>코덱스 자리</a></li><li><a href="#s6"><span class="n">06</span>규칙</a></li><li><a href="#s7"><span class="n">07</span>반론</a></li><li><a href="#s8"><span class="n">08</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></nav>
     <main class="doc" id="doc">
-      <details class="toc-mobile"><summary>목차 · 7개 절</summary><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>규칙</a></li><li><a href="#s6"><span class="n">06</span>반론</a></li><li><a href="#s7"><span class="n">07</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></details>
+      <details class="toc-mobile"><summary>목차 · 8개 절</summary><ol><li><a href="#s1"><span class="n">01</span>원칙</a></li><li><a href="#s2"><span class="n">02</span>아끼는 법</a></li><li><a href="#s3"><span class="n">03</span>지금 낭비</a></li><li><a href="#s4"><span class="n">04</span>작업계획</a></li><li><a href="#s5"><span class="n">05</span>코덱스 자리</a></li><li><a href="#s6"><span class="n">06</span>규칙</a></li><li><a href="#s7"><span class="n">07</span>반론</a></li><li><a href="#s8"><span class="n">08</span>다음 행동</a></li><li><a href="#refs"><span class="n">··</span>출처</a></li></ol></details>
 
 <h1>레인 리서치 에이전트 효율 운영 — 근거와 작업계획</h1>
 <blockquote class="pull">결론: 친구를 늘리기보다, 질문 크기에 맞춰 부르고 모델을 역할에 맞게 고르는 게 토큰을 아끼는 길이에요.</blockquote>
@@ -723,11 +723,12 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <li>병렬: 3~5명을 동시에 띄우고 각자 도구도 동시에 써서 복잡한 조사 시간을 최대 90% 줄였대요.</li>
 <li>역할별 모델: 리드는 큰 모델, 수집은 작은 모델(Anthropic은 Opus 리드 + Sonnet 하위). Claude Code는 하위 에이전트마다 모델과 effort를 따로 정할 수 있어요.</li>
 </ul>
-</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>지금 낭비</a><h2 id="s3-t">모델 미지정·지난 재작업·반증 역할 부재 세 곳이다</h2>
+</section><section id="s3" aria-labelledby="s3-t"><a class="sec-num" href="#s3"><b>03</b>지금 낭비</a><h2 id="s3-t">모델 미지정·지난 재작업·반증 역할 부재·코덱스 기본값 네 곳이다</h2>
 <ul>
 <li>다축 조사 워크플로는 조사원·보충·반증 누구에게도 모델을 지정하지 않아요. 전부 메인 모델을 물려받고, effort도 처음 두 단계만 low로 정해져 있어요. 「워크플로 분석 에이전트는 Sol 6.1 medium」 결정도 이 스크립트에는 반영돼 있지 않아요.</li>
 <li>10/20 지식창고 작업에서는 56명이 모델 지정 없이 기본 모델로 돌았어요. 화면 카드 정확도가 44%에 그쳐 Opus로 다시 썼고, 약 860만 토큰이 일부 버려졌어요.</li>
 <li>반대편 시선은 「검증자 둘 이상」이라는 교훈으로만 남아 있고, 정해진 역할은 없어요.</li>
+<li>코덱스 설정은 하위 에이전트 기본값이 GPT-6 Astra high예요(11/5 설정 파일 확인). 코덱스 쪽에서 친구를 띄우면 수집 같은 가벼운 일에도 가장 비싼 두뇌가 붙어요.</li>
 </ul>
 </section><section id="s4" aria-labelledby="s4-t"><a class="sec-num" href="#s4"><b>04</b>작업계획</a><h2 id="s4-t">질문 크기별로 부를 친구와 모델·effort를 정한다</h2>
 <div class="table compare"><table>
@@ -753,21 +754,21 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <td>Opus 5.5 · high</td>
 <td>Sonnet 5.5 · medium, 2~4명</td>
 <td>없음</td>
-<td>Opus 5.5 · high, 1명</td>
+<td>코덱스 Astra · high, 1명</td>
 </tr>
 <tr>
 <td>다축 4축 이상</td>
-<td>Opus 5.5 · high</td>
-<td>워크플로: Sol 6.1 · medium, 3~5명</td>
+<td>Opus 5.5 · high, 축 나누기는 코덱스 Sol 6.1 · high</td>
+<td>워크플로: 코덱스 Sol 6.1 · medium, 3~5명</td>
 <td>Sonnet 5.5 · medium, 1명</td>
-<td>Opus 5.5 · high, 1명</td>
+<td>코덱스 Astra · high, 1명</td>
 </tr>
 <tr>
 <td>전수 읽기</td>
 <td>Opus 5.5 · high</td>
 <td>묶음당 1명 Sonnet 5.5 · medium</td>
 <td>표본 감사 Opus 5.5 · high, 2~3명</td>
-<td>Opus 5.5 · high, 1명</td>
+<td>코덱스 Astra · high, 1명</td>
 </tr>
 </tbody>
 </table></div><p class="table-hint">옆으로 밀어 보기 →</p>
@@ -775,10 +776,17 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <li>레인: 가설 채택·합성·최종 판정을 맡아요. ultrathink 요청이면 결정대로 Opus 5.5로 해요.</li>
 <li>수집 친구: 웹·문서를 읽고 출처가 붙은 사실만 돌려줘요. 판단은 하지 않아요.</li>
 <li>원문 대조 친구: 인용이 원문에 그대로 있는지만 봐요. 어긋나면 레인이 원문을 직접 열어요.</li>
-<li>반증 친구: ACH 방식으로 결론을 뒤집을 증거를 찾아요. 결정이 걸린 조사에만 불러요.</li>
+<li>반증 친구: ACH 방식으로 결론을 뒤집을 증거를 찾아요. 결정이 걸린 조사에만 불러요. 레인과 다른 엔진이어야 같은 사각지대를 공유하지 않아서 코덱스(Astra high, 이미 있는 교차검증 도구의 검토관 자리)로 둬요. 코덱스가 막히면 Opus 5.5 high로 대신해요.</li>
 <li>기억 회수는 레인이 직접 해요. 친구를 부르는 것보다 명령 한 번이 싸요.</li>
 </ul>
-</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>규칙</a><h2 id="s5-t">띄우기 전 크기 판정과 모델 확인이 핵심이다</h2>
+</section><section id="s5" aria-labelledby="s5-t"><a class="sec-num" href="#s5"><b>05</b>코덱스 자리</a><h2 id="s5-t">반증·축 나누기·워크플로 수집을 코덱스에 둔다</h2>
+<ul>
+<li>왜 코덱스인가: 크루 규칙은 이미 반대 엔진으로 교차검증하게 돼 있어요. 반증과 축 나누기를 코덱스에 두면 Claude 혼자 볼 때 생기는 같은 사각지대를 줄일 수 있어요. 사용량도 Claude와 ChatGPT 계정으로 나뉘어서 한쪽 한도가 덜 차요(이 효과는 재 보지 않았어요).</li>
+<li>모델은 기존 결정 그대로예요. 판단 두뇌는 Astra(기본 high), 워크플로 분석은 Sol 6.1 medium, 선택지 분해는 Sol 6.1 high예요.</li>
+<li>고칠 것: 코덱스 하위 에이전트 기본값 Astra high를 수집용으로 쓸 때는 Sol 6.1 medium으로 내려서 불러요. 기본값 자체를 바꿀지는 따로 정해요.</li>
+<li>코덱스 지침도 OpenAI 모범 사례대로 짧게 둬요. AGENTS.md는 짧고 정확하게, 규칙은 반복 실수를 본 뒤에만 더해요.</li>
+</ul>
+</section><section id="s6" aria-labelledby="s6-t"><a class="sec-num" href="#s6"><b>06</b>규칙</a><h2 id="s6-t">띄우기 전 크기 판정과 모델 확인이 핵심이다</h2>
 <ol>
 <li>친구를 띄우기 전에 크기를 먼저 정하고, 사실 하나짜리 질문엔 부르지 않아요.</li>
 <li>브리프는 넷(목표·형식·도구와 출처·경계)으로 쓰고 회신은 2,000자 안 + 파일 경로로 받아요.</li>
@@ -786,18 +794,19 @@ body.tpl-schedule .btn-row{margin-top:var(--s-4)}
 <li>작은 모델로 바꾼 자리는 첫 판에서 표본을 감사하고, 떨어지면 되돌려요(OpenAI 기준선 방식).</li>
 <li>끝난 보고에 친구 수·모델을 한 줄로 남겨 다음 계획의 기준으로 써요.</li>
 </ol>
-</section><section id="s6" aria-labelledby="s6-t"><a class="sec-num" href="#s6"><b>06</b>반론</a><h2 id="s6-t">절감 폭과 Sonnet 충분성은 아직 재지 않았다</h2>
+</section><section id="s7" aria-labelledby="s7-t"><a class="sec-num" href="#s7"><b>07</b>반론</a><h2 id="s7-t">절감 폭과 Sonnet 충분성은 아직 재지 않았다</h2>
 <ul>
 <li>Anthropic의 15배·80% 수치는 그쪽 리서치 평가 기준이에요. 우리 작업에서 토큰을 얼마나 아낄지는 재 보지 않았어요.</li>
 <li>Sonnet 5.5가 수집에 충분한지는 첫 적용 한 건에서 표본으로 확인해야 해요. 떨어지면 수집도 Opus로 되돌려요.</li>
 <li>워크플로에서 Sol 6.1을 쓰려면 agent 안에서 codex로 넘겨야 해요. 그만큼 한 단계가 늘어요.</li>
+<li>반증을 코덱스로 옮기면 Claude 쪽 브리프를 코덱스에 다시 넘기는 비용이 생겨요. 엔진이 달라서 생기는 이득이 그보다 큰지는 첫 적용에서 봐야 해요.</li>
 </ul>
-</section><section id="s7" aria-labelledby="s7-t"><a class="sec-num" href="#s7"><b>07</b>다음 행동</a><h2 id="s7-t">승인되면 레인이 반영하고 첫 리서치에서 잰다</h2>
+</section><section id="s8" aria-labelledby="s8-t"><a class="sec-num" href="#s8"><b>08</b>다음 행동</a><h2 id="s8-t">승인되면 레인이 반영하고 첫 리서치에서 잰다</h2>
 <ul>
 <li>레인: 샐리 승인 뒤 다축 조사 워크플로와 친구 정의에 모델·effort를 넣고, 다음 리서치 한 건에서 토큰과 표본 정확도를 기록해요.</li>
 </ul>
 </section><section class="appendix" id="refs" aria-labelledby="refs-t"><h2>공식 글 4건과 지난 작업 기록</h2>
-<p>Anthropic 「How we built our multi-agent research system」(지식창고 rain_eccbf532f0862b9f) · Anthropic 「Effective context engineering for AI agents」(rain_14d46eaeb694ee8f) · OpenAI 「A practical guide to building agents」 15쪽 전후(rain_964c9b9a75cc7a5b) · Claude Code 하위 에이전트 문서 · ACH 8단계(Kgp6IgoWZB7OsuIlgXaG_aFRUvYRdPFyj15L22iSK_6) · 결정 「다이나믹워크플로우는 Sol61 medium·ultrathink는 Opus55」 · 10/20 지식창고 작업 기록</p>
+<p>Anthropic 「How we built our multi-agent research system」(지식창고 rain_eccbf532f0862b9f) · Anthropic 「Effective context engineering for AI agents」(rain_14d46eaeb694ee8f) · OpenAI 「A practical guide to building agents」 15쪽 전후(rain_964c9b9a75cc7a5b) · Claude Code 하위 에이전트 문서 · ACH 8단계(Kgp6IgoWZB7OsuIlgXaG_aFRUvYRdPFyj15L22iSK_6) · OpenAI 「Codex best practices」(rain_a22327cab9f7b741) · 결정 「Codex 두뇌 GPT-6 Astra」 · 크루 교차검증 길잡이 · 결정 「다이나믹워크플로우는 Sol61 medium·ultrathink는 Opus55」 · 10/20 지식창고 작업 기록</p>
 </section>
     </main>
   </div>
