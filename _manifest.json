@@ -982,5 +982,13 @@
     "last_kind": "new",
     "last_sha256": "cf7b9d2c55a1ab5cbf758f366cf826ef5de0a00b5a1094ea3dde0f8d7f9e6154",
     "timestamp": "2026-11-05T01:04:59.959106Z"
+  },
+  "c8-app-map": {
+    "slug": "c8-app-map",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-app-map/",
+    "last_kind": "new",
+    "last_sha256": "25264d2dadc5c8bee72c9cac092b974902f4b70c994f602f5b3a449b0623be4b",
+    "timestamp": "2026-11-05T02:33:05.773837Z"
   }
 }
