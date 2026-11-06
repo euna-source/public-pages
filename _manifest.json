@@ -1030,5 +1030,13 @@
     "last_kind": "new",
     "last_sha256": "d4ccf2ca840be930d03bb6dc9278a6b730fb97c2edbd73d58dfaecc8688caa65",
     "timestamp": "2026-11-06T01:08:15.967089Z"
+  },
+  "c8-app-push-canon-v26-42-0": {
+    "slug": "c8-app-push-canon-v26-42-0",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-app-push-canon-v26-42-0/",
+    "last_kind": "new",
+    "last_sha256": "d3894fe7c95e71cce677c936468dcb353829eb8123020962bd70e9dbed32702a",
+    "timestamp": "2026-11-06T06:01:27.676414Z"
   }
 }
