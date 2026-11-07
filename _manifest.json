@@ -1043,8 +1043,8 @@
     "slug": "c8-app-post-261107",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-app-post-261107/",
-    "last_kind": "new",
-    "last_sha256": "9e8c2803f8c9c30d9474de57d2b3795278257167db228f38bf4f6f032995d367",
-    "timestamp": "2026-11-07T01:06:27.569369Z"
+    "last_kind": "redeploy",
+    "last_sha256": "71cc91d38ca82438c43516ffb349770e64d9059fc78ab7a2e515a66990b5b175",
+    "timestamp": "2026-11-07T06:27:26.401274Z"
   }
 }
