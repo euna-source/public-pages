@@ -1051,8 +1051,8 @@
     "slug": "c8-openchat-prep-v1-261106",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-openchat-prep-v1-261106/",
-    "last_kind": "new",
-    "last_sha256": "744af00a482c26b027c2727c6072c64a8ae8cd604449f1ce58cf6ee597dc7a4f",
-    "timestamp": "2026-11-07T06:29:40.385130Z"
+    "last_kind": "redeploy",
+    "last_sha256": "8330a8ce99d315cc24c4005a13237ded2731745f66c06528a0f5598cd9df89ee",
+    "timestamp": "2026-11-07T08:51:50.566135Z"
   }
 }
