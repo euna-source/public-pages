@@ -547,9 +547,9 @@
     "slug": "ear-measure-6-0-261108",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/ear-measure-6-0-261108/",
-    "last_kind": "new",
-    "last_sha256": "a03f7a68d244552d7b1f28468405e2dd687bb6d84c677531435c6551007a83fc",
-    "timestamp": "2026-11-08T12:20:21.467593Z"
+    "last_kind": "redeploy",
+    "last_sha256": "9ced5a30031d08b2929f42f352ed84cde763f2b4572b3ddbeab0d568df6502da",
+    "timestamp": "2026-11-08T13:47:37.464951Z"
   },
   "ear-voiceprint-261108": {
     "slug": "ear-voiceprint-261108",
