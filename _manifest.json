@@ -1062,5 +1062,13 @@
     "last_kind": "new",
     "last_sha256": "d05557d72cf54a0da0715f87a5e7320ceb3fd8b970066a313531be1f246a41a8",
     "timestamp": "2026-11-08T01:05:59.527788Z"
+  },
+  "c8-openchat-invite-v2-261108": {
+    "slug": "c8-openchat-invite-v2-261108",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-openchat-invite-v2-261108/",
+    "last_kind": "new",
+    "last_sha256": "1da10ad25188ae1da3ff69528c5586496a658825563c14a0dd967e0ae188bbc4",
+    "timestamp": "2026-11-08T01:16:07.392785Z"
   }
 }
