@@ -555,8 +555,8 @@
     "slug": "ear-voiceprint-261108",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/ear-voiceprint-261108/",
-    "last_kind": "new",
-    "last_sha256": "0e465b759ed11d1fa004ae1759fa889a20e1df600269c90afcd523c0eab0ef11",
-    "timestamp": "2026-11-08T12:30:36.857448Z"
+    "last_kind": "redeploy",
+    "last_sha256": "780c12e34c3f56a36c8ffd57afae90c9b5b45dd376c448eae9759b59de18ef78",
+    "timestamp": "2026-11-08T13:47:41.160151Z"
   }
 }
