@@ -2,9 +2,10 @@
 const SHEET_STORE='c8-weeklybest-private-weeks-v1';
 const SHEET_ID='1sp429sp0G-xega9RBvcPw0phOd9Ju5bkuzgo5r4gE1Y';
 const RECEIPTS={
-  basic:'경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\n문자를 확인하신 후 안내에 따라 회신 부탁드립니다.',
+  basic:'크리에이터클럽 운영팀 담당자 번호로 경품 지급 안내 문자를 보내드립니다. 문자를 확인하신 후 안내에 따라 회신 부탁드립니다.',
   knock:'운영팀 담당자 번호로 경품 지급 관련 안내 문자를 보내드립니다. My 프로필에 휴대폰 번호가 등록되어 있지 않으면 앱 내 1:1 채팅으로 안내드릴 수 있습니다. 문자나 채팅 메시지를 받으시면 안내에 따라 답장해 주세요.'
 };
+const PREVIOUS_BASIC='경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\n문자를 확인하신 후 안내에 따라 회신 부탁드립니다.';
 const PREVIOUS_KNOCK='경품 지급은 크리에이터클럽 운영팀 담당자 번호로 문자 안내합니다. My 프로필에 휴대폰 번호가 없으면 앱 내 노크로 안내할 수 있습니다. 문자나 노크를 확인한 뒤 안내에 따라 회신해 주세요.';
 let weeks={};
 try{const data=JSON.parse(sessionStorage.getItem(SHEET_STORE)||'{}');if(data&&typeof data==='object'&&!Array.isArray(data))weeks=data;}catch(e){}
@@ -134,6 +135,7 @@ window.addEventListener('message',e=>{
   try{importSheet(csv,String(e.data.gid||''));}
   catch(error){sheetMessage(error.message,true);}
 });
+if($('receipt').value===PREVIOUS_BASIC){$('receipt').value=RECEIPTS.basic;render();}
 if($('receipt').value===PREVIOUS_KNOCK){$('receipt').value=RECEIPTS.knock;render();}
 updateWeeks();syncReceiptVersion();
 if(location.hash==='#sheet-import'){
