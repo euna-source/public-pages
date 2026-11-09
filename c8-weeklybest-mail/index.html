@@ -166,7 +166,7 @@ const DEFAULTS={
   intro:'위클리 베스트는 한 주 동안 리스펙트를 가장 많이 받은 작품과 가장 활발하게 활동한 크리에이터를 부문별로 뽑는 크리에이터클럽의 주간 이벤트예요.',
   awards:'작품 부문 : 2위 · 나비효과 (Butterfly Effect) (3만 원)\n크리에이터 부문 : 5위 (1만 원)',
   total:'모바일 상품권 4만 원',
-  prize:'신세계 상품권 3만 원 + CU 상품권 1만 원',
+  prize:'신세계 모바일 상품권 3만원(1장)\nCU 모바일 상품권 1만원(1장)',
   schedule:'휴대폰 번호 확인 후 1영업일 이내',
   method:'My 프로필에 등록된 전화번호로 모바일 상품권 발송',
   option:'원하시면 CU 상품권을 자주 이용하시는 다른 편의점 상품권으로 변경하거나, 전체 금액을 신세계 상품권으로 받으실 수도 있어요.',
@@ -185,7 +185,7 @@ const br=s=>esc(s).replace(/\n/g,'<br>\n                  ');
 
 function build(v){
   const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map((a,i)=>/^\[.+\]$/.test(a)?'                  <div style="'+(i?'margin-top:10px; ':'')+'font-weight:700;">'+esc(a.slice(1,-1))+'</div>':'                  • '+esc(a)+'<br>').join('\n');
-  const pz=v.prize.split('\n').map(s=>s.replace(/\s*[(（]\s*1\s*장\s*[)）]|\s+1\s*장(?=$|[\s,+·])/g,'').trim()).filter(Boolean);
+  const pz=v.prize.split('\n').map(s=>s.trim()).filter(Boolean);
   const prize=pz.length>1?'                  • 경품<br>\n'+pz.map(p=>'                  <div style="padding-left:14px;">- '+esc(p)+'</div>').join('\n'):'                  • 경품: '+esc(pz[0]||'')+'<br>';
   const closing=esc(v.closing).replace(/\n/g,'<br>\n            ');
   return `<!doctype html>

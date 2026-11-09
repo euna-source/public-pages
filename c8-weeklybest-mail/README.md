@@ -22,3 +22,5 @@ xlsx 읽기는 같은 폴더의 `xlsx.mini.min.js`(SheetJS 0.20.3, cdn.sheetjs.c
 검증: `node --test sheet.test.cjs`
 
 근거: [위클리 베스트 당첨자 관리](https://docs.google.com/spreadsheets/d/1sp429sp0G-xega9RBvcPw0phOd9Ju5bkuzgo5r4gE1Y/edit?gid=1109202601#gid=1109202601)의 주차별 순위표·사람별 관리표와 기존 메일 양식을 사용했습니다.
+
+경품은 `신세계 모바일 상품권 5만원(1장), 3만원(1장)`처럼 금액 뒤 괄호에 수량을 적습니다. 1장도 표시합니다. 근거: 2026-11-09 사용자 지정 형식.

@@ -21,7 +21,7 @@ test('TSV from Sheets preserves multiline cells',()=>{
 });
 test('only explicit eligible people, includes previously notified and ignores footer',()=>{
  const d=convert(fixture());assert.equal(d.people.length,1);assert.equal(d.total,8);
- assert.equal(d.people[0].notice,'안내완료');assert.equal(d.people[0].prize,'신세계 모바일 상품권 5만 원, 3만 원 (총 8만 원)');
+ assert.equal(d.people[0].notice,'안내완료');assert.equal(d.people[0].prize,'신세계 모바일 상품권 5만원(1장), 3만원(1장)');
  assert.equal(d.people[0].awards.split('\n').length,2);assert.match(d.people[0].awards,/첫 줄 둘째 줄/);
 });
 test('amount mismatch blocks generation even when grand total matches',()=>{
@@ -66,15 +66,15 @@ test('a weekly tab that fails reports its week even when another week still impo
 test('prize lists each voucher card by brand and count',()=>{
  const r=fixture();r[2]=['4','예시 수령인','100','CU','1만 원'];r[5]=['2','예시 수령인','첫 줄','100','신세계','3만 원'];
  r[8]=['예시 수령인','1','3','3','1','4','지급대상','미안내'];
- assert.equal(convert(r).people[0].prize,'신세계 모바일 상품권 3만 원\nCU 모바일 상품권 1만 원');
+ assert.equal(convert(r).people[0].prize,'신세계 모바일 상품권 3만원(1장)\nCU 모바일 상품권 1만원(1장)');
  const same=fixture();same[2]=['5','예시 수령인','100','CU','1만 원'];same[5]=['6','예시 수령인','x','1','CU','1만 원'];
  same[8]=['예시 수령인','1','1','0','2','2','지급대상','미안내'];
- assert.equal(convert(same).people[0].prize,'CU 모바일 상품권 1만 원 2장 (총 2만 원)');
+ assert.equal(convert(same).people[0].prize,'CU 모바일 상품권 1만원(2장)');
 });
 test('voucher brand mismatch between rank and person tables blocks generation',()=>{
  const r=fixture();r[2][3]='CU';assert.throws(()=>convert(r),/상품권 합계가 맞지/);
 });
 test('a zero-amount rank row never becomes a 0-won voucher',()=>{
  const r=fixture();r.splice(3,0,['9','예시 수령인','1','CU','0만 원']);
- assert.equal(convert(r).people[0].prize,'신세계 모바일 상품권 5만 원, 3만 원 (총 8만 원)');
+ assert.equal(convert(r).people[0].prize,'신세계 모바일 상품권 5만원(1장), 3만원(1장)');
 });
