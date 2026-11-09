@@ -3,7 +3,7 @@ const SHEET_STORE='c8-weeklybest-private-weeks-v1';
 const SHEET_ID='1sp429sp0G-xega9RBvcPw0phOd9Ju5bkuzgo5r4gE1Y';
 const RECEIPTS={
   basic:'경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\n문자를 확인하신 후 안내에 따라 회신 부탁드립니다.',
-  knock:'경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\nMy 프로필에 휴대폰 번호가 등록되어 있지 않은 경우, 크리에이터클럽 앱 내 노크로 안내드릴 수 있습니다.\n문자 또는 노크를 확인하신 후 안내에 따라 회신 부탁드립니다.'
+  knock:'경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\nMy 프로필에 휴대폰 번호가 등록되어 있지 않은 경우, 크리에이터클럽 앱 내 1:1 채팅으로 안내드릴 수 있습니다.\n문자 또는 1:1 채팅을 확인하신 후 안내에 따라 회신 부탁드립니다.'
 };
 let weeks={};
 try{const data=JSON.parse(sessionStorage.getItem(SHEET_STORE)||'{}');if(data&&typeof data==='object'&&!Array.isArray(data))weeks=data;}catch(e){}
