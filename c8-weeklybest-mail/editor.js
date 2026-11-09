@@ -134,7 +134,7 @@ window.addEventListener('message',e=>{
   try{importSheet(csv,String(e.data.gid||''));}
   catch(error){sheetMessage(error.message,true);}
 });
-if(!rawMode&&$('receipt').value===PREVIOUS_KNOCK){$('receipt').value=RECEIPTS.knock;render();}
+if($('receipt').value===PREVIOUS_KNOCK){$('receipt').value=RECEIPTS.knock;render();}
 updateWeeks();syncReceiptVersion();
 if(location.hash==='#sheet-import'){
   history.replaceState(null,'',location.pathname+location.search);
