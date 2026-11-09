@@ -231,7 +231,7 @@ function goField(id){
 }
 
 /* ---------- Render ---------- */
-function setChannel(c){ui.channel=c==='dm'?'dm':'email';saveDraft();renderAll();}
+function setChannel(c){const n=c==='dm'?'dm':'email';if(n!==ui.channel)staleCopy();ui.channel=n;saveDraft();renderAll();}
 function renderAll(){renderRecipients();render();}
 function render(){
   const v=values(),t=activeTpl(),opts=renderOpts();
@@ -326,7 +326,7 @@ function renderSubjects(v){
     g.dataset.built='1';
     [0,1,2].forEach(i=>{
       const l=document.createElement('label');l.className='radio';l.innerHTML='<input type="radio" name="subject" value="'+i+'"><span class="txt"></span>'+(i===0?'<span class="tag">추천</span>':'');
-      l.querySelector('input').onchange=()=>{ui.subject=i;saveDraft();render();if(i===1&&!$('v-work').value.trim())setTimeout(()=>$('v-work').focus(),0);};
+      l.querySelector('input').onchange=()=>{staleCopy();ui.subject=i;saveDraft();render();if(i===1&&!$('v-work').value.trim())setTimeout(()=>$('v-work').focus(),0);};
       g.appendChild(l);
       if(i===1){const x=document.createElement('div');x.className='radio-extra';x.id='workRow';x.innerHTML='<label for="v-work">작품명</label><input class="field" id="v-work" data-var="작품명" autocomplete="off" aria-describedby="err-v-work"><p class="err" id="err-v-work" hidden></p>';g.appendChild(x);
         x.querySelector('input').addEventListener('input',()=>{touched.add('v-work');saveDraft();render();});}
@@ -350,6 +350,8 @@ function renderAlert(flow,nm,p){
     box('block','ban',esc(nm)+'님에게는 '+esc(fmtDate(rec.at))+'에 이미 보냈어요. 답이 없으면 다시 보내지 않아요.',[btn('답장이 왔을 때',openReplies)]);
   }else if(sheetBlock){
     box('block','ban',esc(sheetBlock.msg),[btn('답장이 왔을 때',openReplies)]);
+  }else if(flow==='copied'&&draft().popupBlocked&&draft().openUrl){
+    box('info','send','복사는 됐는데 새 창이 막혔어요. 직접 열어 붙여 넣고 보낸 뒤 기록해 주세요.',[btn(draft().copiedChannel==='dm'?'인스타 DM 직접 열기':'Gmail 직접 열기',null,'',draft().openUrl)]);
   }else if(flow==='opened'||flow==='copied'){
     box('info','send',(flow==='opened'?(ui.channel==='dm'?'인스타 DM 창에':'Gmail 쓰기 창에')+' 붙여 넣고 보낸 뒤 기록해 주세요.':'붙여 넣고 보낸 뒤 기록해 주세요.'));
   }
@@ -438,32 +440,38 @@ function shakeTo(btn){
   if(first)setTimeout(()=>goField(first.field),240);
 }
 async function copyAndOpen(btn){
-  const isEmail=ui.channel==='email';
-  // Start the clipboard write while this page still has focus, then open the tab inside the same click so the popup
-  // is allowed; the tab is pointed at Gmail or Instagram only after the write really succeeded.
-  const writing=isEmail?writeRich(last.emailPaste,last.emailText):writeText(last.dm);
+  // Freeze who, what and where at the click: the person or channel may change while the clipboard write is pending.
+  const snap={key:ui.current,channel:ui.channel,html:last.emailPaste,text:ui.channel==='email'?last.emailText:last.dm,url:ui.channel==='email'?gmailUrl():dmUrl()};
+  const writing=snap.channel==='email'?writeRich(snap.html,snap.text):writeText(snap.text);
   const w=window.open('about:blank','_blank');
   const ok=await writing;
-  const url=isEmail?gmailUrl():dmUrl();
+  const d=drafts[snap.key]||(drafts[snap.key]={vars:{},to:'',handle:'',flow:''});
   if(ok){
-    if(w){try{w.opener=null;w.location.href=url;}catch(e){}}
-    draft().flow='opened';saveDraft();flash(btn,'복사했어요');renderAll();
+    let opened=false;
+    if(w){try{w.opener=null;w.location.href=snap.url;opened=true;}catch(e){}}
+    d.flow=opened?'opened':'copied';d.copiedChannel=snap.channel;d.popupBlocked=!opened;d.openUrl=snap.url;
+    store.set(S,KEY.drafts,drafts);
+    if(!opened)toast('복사는 됐는데 브라우저가 새 창을 막았어요. 아래 「직접 열기」로 열어 주세요.');
+    if(snap.key===ui.current)flash(btn,'복사했어요');
+    renderAll();
   }else{
     if(w)w.close();
-    manualCopy(isEmail?last.emailText:last.dm,()=>{const x=window.open(url,'_blank','noopener');draft().flow='opened';saveDraft();renderAll();return x;});
+    manualCopy(snap.text,()=>{const x=window.open(snap.url,'_blank','noopener');d.flow=x?'opened':'copied';d.copiedChannel=snap.channel;store.set(S,KEY.drafts,drafts);renderAll();return x;});
   }
 }
 async function copyOnly(btn){
-  const isEmail=ui.channel==='email';
-  const ok=isEmail?await writeRich(last.emailPaste,last.emailText):await writeText(last.dm);
-  if(ok){draft().flow=draft().flow||'copied';saveDraft();flash(btn,'복사했어요');renderAll();}
-  else manualCopy(isEmail?last.emailText:last.dm);
+  const snap={key:ui.current,channel:ui.channel,html:last.emailPaste,text:ui.channel==='email'?last.emailText:last.dm};
+  const ok=snap.channel==='email'?await writeRich(snap.html,snap.text):await writeText(snap.text);
+  const d=drafts[snap.key]||(drafts[snap.key]={vars:{},to:'',handle:'',flow:''});
+  if(ok){d.flow=d.flow||'copied';d.copiedChannel=snap.channel;store.set(S,KEY.drafts,drafts);if(snap.key===ui.current)flash(btn,'복사했어요');renderAll();}
+  else manualCopy(snap.text);
 }
 const tsvRow=r=>[r.name,r.contact,r.channel==='dm'?'인스타 DM':'메일','발송 '+new Date(r.at).toLocaleDateString('ko-KR'),r.sender||'',r.seen||''].join('\t');
 async function record(opts){
   const nm=plainName($('v-name').value);if(!nm)return;
   const p=findPerson(ui.current)||matchesOf(idsOfCurrent(),nm)[0];
-  const r={ids:idsOfCurrent(),name:nm,channel:ui.channel,contact:ui.channel==='email'?$('to').value.trim():'@'+handleOf($('handle').value),row:p?p.row:'',seen:$('v-seen').value.trim(),sender:$('v-sender').value.trim(),at:new Date().toISOString()};
+  const ch=draft().copiedChannel||ui.channel;
+  const r={ids:idsOfCurrent(),name:nm,channel:ch,contact:ch==='email'?$('to').value.trim():'@'+handleOf($('handle').value),row:p?p.row:'',seen:$('v-seen').value.trim(),sender:$('v-sender').value.trim(),at:new Date().toISOString()};
   log.push(r);store.set(S,KEY.log,log);
   const d=draft();d.flow='recorded';d.recordedAt=r.at;saveDraft();
   // Recording never writes the clipboard: the mail body may still be waiting to be pasted.
@@ -600,7 +608,7 @@ function autoGrow(){const t=$('v-seen');t.style.height='auto';t.style.height=Mat
 /* ---------- Events ---------- */
 function staleCopy(){
   // What sits in the clipboard no longer matches the screen once the text changes.
-  const d=draft();if(d.flow==='copied'||d.flow==='opened'){d.flow='';saveDraft();toast('글을 고쳐서 다시 복사해야 해요.');}
+  const d=draft();if(d.flow==='copied'||d.flow==='opened'){d.flow='';delete d.copiedChannel;store.set(S,KEY.drafts,drafts);toast('글이 바뀌어서 다시 복사해야 해요.');}
 }
 document.addEventListener('input',e=>{
   const el=e.target;
@@ -618,8 +626,8 @@ radioKeys('channelSeg',['chEmail','chDm'],id=>setChannel(id==='chDm'?'dm':'email
 $('wDesk').onclick=()=>{ui.width='desk';render();};$('wMobile').onclick=()=>{ui.width='mobile';render();};
 radioKeys('wDesk'.length&&$('wDesk').parentElement.id||'channelSeg',['wDesk','wMobile'],id=>{ui.width=id==='wDesk'?'desk':'mobile';render();});
 $('markOn').onclick=()=>{ui.mark=!ui.mark;render();};
-$('adOn').onclick=()=>{ui.ad=!ui.ad;saveDraft();render();if(ui.ad&&!$('adPhone').value.trim())$('adPhone').focus();};
-$('footerOn').onclick=()=>{if(ui.ad)return;ui.footer=!ui.footer;saveDraft();render();};
+$('adOn').onclick=()=>{staleCopy();ui.ad=!ui.ad;saveDraft();render();if(ui.ad&&!$('adPhone').value.trim())$('adPhone').focus();};
+$('footerOn').onclick=()=>{if(ui.ad)return;staleCopy();ui.footer=!ui.footer;saveDraft();render();};
 $('fBoth').onclick=()=>{ui.fBoth=!ui.fBoth;renderAll();};
 $('fOpen').onclick=()=>{ui.fOpen=!ui.fOpen;renderAll();};
 $('filterReset').onclick=$('allDoneReset').onclick=()=>{ui.fBoth=false;ui.fOpen=false;renderAll();};
