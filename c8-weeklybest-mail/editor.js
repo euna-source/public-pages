@@ -38,6 +38,45 @@ function importSheet(csv,gid=''){
   toast(data.week+' 지급대상 '+data.people.length+'명을 가져왔어요.');
   return data;
 }
+/* Whole workbook (.xlsx) from the sheet's own download. The parser is bundled and loaded only when needed. */
+let xlsxLib;
+function loadXlsx(){
+  return xlsxLib||(xlsxLib=new Promise((ok,fail)=>{
+    if(window.XLSX)return ok(window.XLSX);
+    const s=document.createElement('script');s.src='xlsx.mini.min.js';
+    s.onload=()=>window.XLSX?ok(window.XLSX):fail(Error('파일 읽기 도구를 불러오지 못했어요. 새로고침 후 다시 시도해 주세요.'));
+    s.onerror=()=>{xlsxLib=null;fail(Error('파일 읽기 도구를 불러오지 못했어요. 인터넷 연결을 확인해 주세요.'));};
+    document.head.appendChild(s);
+  }));
+}
+async function importWorkbook(buffer){
+  const X=await loadXlsx();
+  const wb=X.read(new Uint8Array(buffer),{type:'array'});
+  const {weeks:found,errors}=WeeklySheet.convertBook(wb.SheetNames.map(name=>({name,rows:X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})})));
+  const importedAt=new Date().toISOString();
+  found.forEach(d=>{d.gid='';d.importedAt=importedAt;weeks[d.week]=d;});
+  const saved=saveWeeks();
+  // Newest week first: tab order in the sheet puts the latest week at the front.
+  updateWeeks(found[0]?.week);
+  const lines=[];
+  if(found.length)lines.push(found.map(d=>d.week+' '+d.people.length+'명').join(' · ')+'을 가져왔어요.');
+  if(errors.length)lines.push('가져오지 못한 주차가 있어요. 시트를 확인한 뒤 다시 받아 주세요.\n'+errors.join('\n'));
+  if(!saved)lines.push('브라우저 저장 공간이 부족해요. 새로 열면 다시 가져와 주세요.');
+  if(errors.length||!saved||!found.length)sheetMessage((found.length?$('sheetStatus').textContent+'\n':'')+lines.join('\n'),true);
+  if(found.length)toast(lines[0]);
+}
+async function importFile(f){
+  if(!f)return;
+  try{
+    if(/\.xlsx$/i.test(f.name)){
+      if(f.size>5000000)throw Error('당첨자 관리 시트에서 받은 파일을 선택해 주세요. xlsx 파일은 5MB까지 가져올 수 있어요.');
+      await importWorkbook(await f.arrayBuffer());
+    }else{
+      if(f.size>1000000)throw Error('주차별 CSV 파일을 선택해 주세요. 파일은 1MB까지 가져올 수 있어요.');
+      importSheet(await f.text());
+    }
+  }catch(e){sheetMessage(e.message,true);}
+}
 function syncReceiptVersion(){
   $('receiptVersion').value=Object.keys(RECEIPTS).find(k=>RECEIPTS[k]===$('receipt').value)||'custom';
 }
@@ -71,11 +110,16 @@ $('receiptVersion').onchange=()=>{
 $('receipt').addEventListener('input',syncReceiptVersion);
 $('reset').addEventListener('click',syncReceiptVersion);
 $('importPaste').onclick=()=>{try{importSheet($('sheetPaste').value);}catch(e){sheetMessage(e.message,true);}};
-$('sheetFile').onchange=async()=>{
-  const f=$('sheetFile').files[0];if(!f)return;
-  try{if(f.size>1000000)throw Error('주차별 CSV 파일을 선택해 주세요. 파일은 1MB까지 가져올 수 있어요.');importSheet(await f.text());}
-  catch(e){sheetMessage(e.message,true);}finally{$('sheetFile').value='';}
+$('sheetFile').onchange=async()=>{const f=$('sheetFile').files[0];$('sheetFile').value='';await importFile(f);};
+$('sheetDownload').onclick=()=>{
+  // Google serves the private workbook only to the signed-in browser, so the browser downloads it and the editor reads the file.
+  window.open('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/export?format=xlsx','_blank','noopener');
+  sheetMessage('시트 파일을 내려받고 있어요. 받은 ‘[WIP] 위클리베스트 당첨자 관리.xlsx’를 이 칸에 끌어 놓거나 ‘받은 파일 선택’을 눌러 주세요.\n새 탭에 Google 로그인 화면이 뜨면 회사 계정으로 로그인한 뒤 다시 눌러 주세요.');
 };
+const importer=document.querySelector('.importer');
+importer.addEventListener('dragover',e=>{if(![...e.dataTransfer.types].includes('Files'))return;e.preventDefault();importer.classList.add('dragging');});
+importer.addEventListener('dragleave',e=>{if(!importer.contains(e.relatedTarget))importer.classList.remove('dragging');});
+importer.addEventListener('drop',e=>{if(!e.dataTransfer.files.length)return;e.preventDefault();importer.classList.remove('dragging');importFile(e.dataTransfer.files[0]);});
 $('sheetBookmark').href='javascript:('+weeklyBestBridge.toString()+')()';
 $('sheetBookmark').onclick=e=>{e.preventDefault();toast('이 링크를 북마크 막대로 끌어 놓은 뒤, 당첨자 시트에서 눌러 주세요.');};
 window.addEventListener('message',e=>{
@@ -85,7 +129,7 @@ window.addEventListener('message',e=>{
   // ACK both success and parse errors so the sheet sender never retries a bad tab.
   e.source.postMessage({type:'c8-weekly-import-ack'},e.origin);
   try{importSheet(csv,String(e.data.gid||''));}
-  catch(error){sheetMessage(error.message,true);$('connectHelp').open=true;}
+  catch(error){sheetMessage(error.message,true);}
 });
 updateWeeks();syncReceiptVersion();
 if(location.hash==='#sheet-import'){

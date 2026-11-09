@@ -71,6 +71,16 @@
     }
     return {week,people,total:people.reduce((n,p)=>n+p.total,0),rowCount:rows.length};
   }
-  root.WeeklySheet={parseDelimited,convert,money};
+  // Whole-workbook import: keep every weekly tab, skip helper tabs, surface broken weekly tabs.
+  function convertBook(sheets){
+    const weeks=[],errors=[];
+    for(const {name,rows} of sheets){
+      try{weeks.push(convert(rows,name));}
+      catch(e){if(/^\s*\d+월\s*\d+주차\s*$/.test(name))errors.push(name.trim()+': '+e.message);}
+    }
+    if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
+    return {weeks,errors};
+  }
+  root.WeeklySheet={parseDelimited,convert,convertBook,money};
   if(typeof module==='object')module.exports=root.WeeklySheet;
 })(typeof globalThis==='object'?globalThis:this);
