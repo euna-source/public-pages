@@ -137,7 +137,7 @@ window.addEventListener('message',e=>{
 });
 if($('receipt').value===PREVIOUS_BASIC){$('receipt').value=RECEIPTS.basic;render();}
 if($('receipt').value===PREVIOUS_KNOCK){$('receipt').value=RECEIPTS.knock;render();}
-for(const data of Object.values(weeks)){if(Array.isArray(data?.people))for(const p of data.people){if(typeof p?.prize==='string'){const old=p.prize;p.prize=WeeklySheet.personPrize(p);if($('week').value===data.week&&$('name').value===p.name&&$('prize').value===old)$('prize').value=p.prize;}}}
+for(const data of Object.values(weeks)){if(Array.isArray(data?.people))for(const p of data.people){if(typeof p?.prize==='string'){const old=p.prize;p.prize=WeeklySheet.personPrize(p);if($('week').value===data.week&&$('name').value===p.name&&WeeklySheet.formatPrize($('prize').value)===WeeklySheet.formatPrize(old))$('prize').value=p.prize;}}}
 render();
 $('prize').addEventListener('change',()=>{$('prize').value=WeeklySheet.formatPrize($('prize').value);render();});
 updateWeeks();syncReceiptVersion();
