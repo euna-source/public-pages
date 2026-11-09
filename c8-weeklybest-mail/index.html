@@ -185,7 +185,7 @@ const br=s=>esc(s).replace(/\n/g,'<br>\n                  ');
 
 function build(v){
   const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map((a,i)=>/^\[.+\]$/.test(a)?'                  <div style="'+(i?'margin-top:10px; ':'')+'font-weight:700;">'+esc(a.slice(1,-1))+'</div>':'                  • '+esc(a)+'<br>').join('\n');
-  const pz=v.prize.split('\n').map(s=>s.trim()).filter(Boolean);
+  const pz=v.prize.split('\n').map(s=>s.replace(/\s*[(（]\s*1\s*장\s*[)）]|\s+1\s*장(?=$|[\s,+·])/g,'').trim()).filter(Boolean);
   const prize=pz.length>1?'                  • 경품<br>\n'+pz.map(p=>'                  <div style="padding-left:14px;">- '+esc(p)+'</div>').join('\n'):'                  • 경품: '+esc(pz[0]||'')+'<br>';
   const closing=esc(v.closing).replace(/\n/g,'<br>\n            ');
   return `<!doctype html>

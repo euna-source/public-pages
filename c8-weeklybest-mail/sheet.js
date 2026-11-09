@@ -70,7 +70,7 @@
       for(const brand of ['신세계','CU']){
         const cards=awards.filter(a=>a.brand===brand&&a.amount>0).map(a=>a.amount).sort((x,y)=>y-x);
         if(Math.abs(cards.reduce((n,x)=>n+x,0)-(brand==='CU'?cu:ssg))>0.0001)throw Error(name+' 님의 순위별 상품권과 사람별 상품권 합계가 맞지 않아요. 시트를 확인해 주세요.');
-        const counts=[...new Set(cards)].map(x=>money(x)+' '+cards.filter(y=>y===x).length+'장');
+        const counts=[...new Set(cards)].map(x=>{const count=cards.filter(y=>y===x).length;return money(x)+(count>1?' '+count+'장':'');});
         if(counts.length)prizes.push(brand+' 모바일 상품권 '+counts.join(', '));
       }
       people.push({name,total,ssg,cu,notice:notice<0?'':r[notice],sourceRow:i+1,
