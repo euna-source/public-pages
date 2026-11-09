@@ -15,28 +15,37 @@
     {key:'작품명',required:false,field:'v-work'}
   ];
   const DEFAULTS={
+    // Same sections as the Weekly Best award mail so both mails read as one family.
     email:{
       subject:'{활동명}님, 크리에이터클럽에서 인사드려요',
-      body:[
-        '안녕하세요, {활동명}님. 크리에이터클럽을 만들고 있는 {담당자명}이에요.',
+      preheader:'{활동명}님의 작업을 크리에이터클럽에 소개하고 싶어요. 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'을 드려요.',
+      headline:'{활동명}님의 작업을\n크리에이터클럽에서도 소개하고 싶어요',
+      greeting:[
+        '안녕하세요, **{활동명}님.**',
+        '크리에이터클럽을 만들고 있는 {담당자명}이에요.',
+        '',
         '{플랫폼}에 올려 주신 작업들을 봤어요. {본 것 한 줄}',
-        '보다가 문득, 이 작업들이 크리에이터클럽에서도 소개되면 좋겠다 싶어서 연락드려요.',
-        '',
-        '크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이에요. 올려 둔 작업을 알리고, 그 작업에 공감하는 창작자를 만나고, 함께 일할 사람도 여기서 찾아요. 전문가에게 작업의 가치를 인정받고, 새로운 협업으로 이어지는 자리를 만들어 가고 있어요.',
-        '',
-        '그 시작을 {활동명}님과 함께하고 싶어요. 기존 작업을 포트폴리오로 올려 주시면, 감사의 뜻으로 **작업 1개당 신세계 모바일 상품권 '+REWARD.per+'**을 드려요. 최대 '+REWARD.max+'개, 총 '+REWARD.total+'까지요.',
+        '보다가 문득, 이 작업들이 크리에이터클럽에서도 소개되면 좋겠다 싶어서 연락드려요.'
+      ].join('\n'),
+      intro:'크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이에요. 올려 둔 작업을 알리고, 그 작업에 공감하는 창작자를 만나고, 함께 일할 사람도 여기서 찾아요. 전문가에게 작업의 가치를 인정받고, 새로운 협업으로 이어지는 자리를 만들어 가고 있어요.',
+      gift:[
+        '그 시작을 {활동명}님과 함께하고 싶어요. 기존 작업을 포트폴리오로 올려 주시면 감사의 뜻으로 드려요.',
+        '• 선물: **작업 1개당 신세계 모바일 상품권 '+REWARD.per+'**',
+        '• 최대: '+REWARD.max+'개, 총 '+REWARD.total,
+        '• 보내는 날: 매주 화요일'
+      ].join('\n'),
+      steps:[
         '새로 만드실 건 없어요. 아래 두 가지만 해 주시면 돼요.',
         '',
         '1. [크리에이터클럽 앱]('+LINKS.app+')을 받아 기존 작업을 포트폴리오로 올려 주세요.',
         '2. [참여 신청서]('+LINKS.form+')에 포트폴리오 링크를 남겨 주세요.',
         '',
-        '확인하고 **매주 화요일에 상품권을 보내 드려요.**',
-        '궁금한 게 있으면 이 메일에 답장 주셔도 되고, [오픈채팅방]('+LINKS.chat+')에서 물어보셔도 돼요. 바쁘시면 답 안 주셔도 괜찮아요.',
-        '',
-        '긴 글 읽어 주셔서 고마워요. 앞으로의 작업도 계속 보고 있을게요.'
+        '확인하고 **매주 화요일에 상품권을 보내 드려요.**'
       ].join('\n'),
-      signature:'{담당자명} · 크리에이터클럽\n당신의 작업이 무대가 되는 곳, Cre8orClub',
-      footer:'답이 없으시면 다시 연락드리지 않을게요. '+TRUST+'\n'+COMPANY.name+' | '+COMPANY.address+' | ['+COMPANY.email+'](mailto:'+COMPANY.email+')'
+      ask:'궁금한 게 있으면 이 메일에 답장 주셔도 되고, [오픈채팅방]('+LINKS.chat+')에서 물어보셔도 돼요. 바쁘시면 답 안 주셔도 괜찮아요.',
+      closing:'긴 글 읽어 주셔서 고마워요. 앞으로의 작업도 계속 보고 있을게요.',
+      signature:'{담당자명} · 크리에이터클럽',
+      footer:'본 메일은 {활동명}님이 공개해 두신 연락처로 작품 소개를 제안드리기 위해 한 번 보내는 메일이에요. 답이 없으시면 다시 연락드리지 않을게요. '+TRUST
     },
     dm:{
       // A message request reaches someone who doesn't follow us as one text-only message, so the offer and links travel together.
@@ -94,7 +103,8 @@
       k=k.trim();
       if(!known.has(k))return m;
       const v=clean((values||{})[k]);
-      return v?(mark?MARK_ON+v+MARK_OFF:v):'\u0000';
+      const on=mark&&(mark===true||(mark.has&&mark.has(k)));
+      return v?(on?MARK_ON+v+MARK_OFF:v):'\u0000';
     });
     out=out.replace(/[ \t]*\u0000[ \t]*/g,' ').replace(/ +\n/g,'\n').replace(/\n +/g,'\n').replace(/ {2,}/g,' ').replace(/ ([.,)」])/g,'$1');
     return out.split('\n').map(l=>l.trim()===''?'':l.replace(/\s+$/,'')).join('\n').replace(/\n{3,}/g,'\n\n').trim();
@@ -114,43 +124,81 @@
     return unmark(String(s).replace(/\[([^\]]+)\]\(mailto:([^)\s]+)\)/g,'$2').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,'$1($2)').replace(/\*\*([^*]+)\*\*/g,'$1'));
   }
   function blocks(text){return String(text).split(/\n{2,}/).map(p=>p.split('\n').filter(l=>l.trim()!=='')).filter(p=>p.length);}
-  const P='margin:0 0 16px; font-size:15px; line-height:1.7; color:#111111;';
-  function bodyHtml(text){
-    return blocks(text).map(lines=>{
-      if(lines.every(l=>/^\d+\.\s/.test(l)))return '<ol style="margin:0 0 16px; padding-left:22px; font-size:15px; line-height:1.7; color:#111111;">'+lines.map(l=>'<li style="margin:0 0 4px;">'+inlineHtml(l.replace(/^\d+\.\s/,''))+'</li>').join('')+'</ol>';
-      return '<p style="'+P+'">'+lines.map(inlineHtml).join('<br>')+'</p>';
-    }).join('\n');
+  const SECTION_TITLES={gift:'🎁 감사 선물',steps:'📝 참여 방법',ask:'💬 궁금한 점'};
+  const EMAIL_SECTIONS=['subject','preheader','headline','greeting','intro','gift','steps','ask','closing','signature','footer'];
+  const LOGO='https://euna-source.github.io/public-pages/c8-contact-mail/c8-logo-mark.png';
+  const POLICY={privacy:'https://static.cre8orclub.com/policy/privacy-policy-general.html',terms:'https://static.cre8orclub.com/policy/terms-of-service.html'};
+  const FONT="'Pretendard','Apple SD Gothic Neo','Malgun Gothic','맑은 고딕',sans-serif";
+  /* Lines → html: blank line = paragraph gap, 「1. 」 runs = ordered list, everything else joins with <br>. */
+  function richHtml(text,size){
+    return blocks(text).map((lines,bi)=>{
+      const gap=bi?'margin-top:12px; ':'';
+      if(lines.every(l=>/^\d+\.\s/.test(l)))return '<ol style="'+gap+'margin-bottom:0; padding-left:20px;">'+lines.map(l=>'<li style="margin:0 0 4px;">'+inlineHtml(l.replace(/^\d+\.\s/,''))+'</li>').join('')+'</ol>';
+      return '<div style="'+gap+'">'+lines.map(inlineHtml).join('<br>')+'</div>';
+    }).join('');
   }
-  function signatureHtml(signature,footer){
-    const [who,...rest]=String(signature).split('\n').filter(l=>l.trim());
-    return '<p style="margin:24px 0 4px; font-size:15px; line-height:1.6; color:#111111; font-weight:600;">'+inlineHtml(who||'')+'</p>'+
-      (rest.length?'<p style="margin:0 0 20px; font-size:13px; line-height:1.6; color:#6b6b6b;">'+rest.map(inlineHtml).join('<br>')+'</p>':'')+
-      (footer?'<p style="margin:0; padding-top:12px; border-top:1px solid #e5e5e5; font-size:12px; line-height:1.6; color:#8a8a8a;">'+footer.split('\n').filter(l=>l.trim()).map(inlineHtml).join('<br>')+'</p>':'');
+  const row=(inner,pad)=>'        <tr>\n          <td style="padding:'+(pad||'16px 32px 0')+';">\n'+inner+'\n          </td>\n        </tr>\n';
+  // Preview only: frame the section being edited so the editor can show where a field lands.
+  const OUTLINE='outline:2px solid #111111; outline-offset:2px; border-radius:6px;';
+  const framed=(html,on)=>on?html.replace(/<td style="/,'<td style="'+OUTLINE+' '):html;
+  const box=(title,body,style)=>'            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="'+style+'">\n              <tr>\n                <td style="padding:20px 22px; font-size:15px; line-height:1.8; color:#111111;">\n                  <div style="font-size:16px; font-weight:700; margin-bottom:8px;">'+esc(title)+'</div>\n                  '+body+'\n                </td>\n              </tr>\n            </table>';
+  /* The Weekly Best award mail layout: black band with logo and headline, intro rule, grey boxes, green-outlined box, slogan, grey footer. */
+  function designedHtml(p,o){
+    const f=k=>o.outline===k;
+    const pre=o.withPreheader&&p.preheader?'<div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">'+esc(unmark(p.preheader))+'</div>\n':'';
+    const head='        <tr>\n          <td style="background-color:#111111; padding:24px 32px 28px;">\n            <table role="presentation" cellpadding="0" cellspacing="0" border="0">\n              <tr>\n                <td valign="middle" style="vertical-align:middle; line-height:0; font-size:0;"><img src="'+(o.logo||LOGO)+'" width="18" height="30" alt="Cre8orClub" style="display:block; width:18px; height:30px; border:0;"></td>\n                <td valign="middle" style="vertical-align:middle; padding-left:10px; font-size:24px; line-height:30px; font-weight:700; color:#ffffff; padding-top:4px;">Cre8orClub</td>\n              </tr>\n            </table>\n            <div style="margin-top:22px; font-size:25px; line-height:1.45; font-weight:700; color:#ffffff;'+(f('headline')?' outline:2px solid #07ED21; outline-offset:4px;':'')+'">'+String(p.headline).split('\n').map(inlineHtml).join('<br>')+'</div>\n          </td>\n        </tr>\n';
+    const greet=framed('        <tr>\n          <td style="padding:28px 32px 8px; font-size:15px; line-height:1.7; color:#111111;">\n            '+richHtml(p.greeting)+'\n          </td>\n        </tr>\n',f('greeting'));
+    const intro=p.intro.trim()?framed(row('            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #07ED21;">\n              <tr>\n                <td style="padding:2px 0 2px 14px; font-size:14px; line-height:1.7; color:#444444;">\n                  '+richHtml(p.intro)+'\n                </td>\n              </tr>\n            </table>'),f('intro')):'';
+    const grey='background-color:#f7f7f7; border-radius:10px;';
+    const gift=p.gift.trim()?framed(row(box(SECTION_TITLES.gift,richHtml(p.gift),grey)),f('gift')):'';
+    const steps=p.steps.trim()?framed(row(box(SECTION_TITLES.steps,richHtml(p.steps),grey)),f('steps')):'';
+    const ask=p.ask.trim()?framed(row(box(SECTION_TITLES.ask,richHtml(p.ask),'border:2px solid #07ED21; border-radius:10px;')),f('ask')):'';
+    const close=framed('        <tr>\n          <td style="padding:28px 32px 32px; font-size:15px; line-height:1.7; color:#111111;">\n            '+richHtml(p.closing)+'<br>\n            <strong>'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</strong>\n          </td>\n        </tr>\n',f('closing')||f('signature'));
+    const slogan='        <tr>\n          <td style="padding:0 32px;"><div style="border-top:1px solid #e5e5e5; font-size:0; line-height:0;">&nbsp;</div></td>\n        </tr>\n        <tr>\n          <td align="center" style="padding:36px 32px 36px; font-size:20px; line-height:1.55; font-weight:700; color:#111111;">\n            당신의 작업이 무대가 되는 곳, Cre8orClub\n          </td>\n        </tr>\n';
+    const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'            <p style="margin:0 0 6px;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'</p>').join('\n');
+    const foot=framed('        <tr>\n          <td style="background-color:#f3f3f3; padding:20px 32px 22px; font-size:11px; line-height:1.6; color:#777777;">\n'+(notes?notes+'\n':'')+
+      '            <p style="margin:0 0 6px;">'+COMPANY.name+' | 대표 최남희 | 사업자등록번호 736-86-01932 | '+COMPANY.address+' | <a href="mailto:'+COMPANY.email+'" style="color:#777777; text-decoration:underline;">'+COMPANY.email+'</a></p>\n'+
+      '            <p style="margin:0;"><a href="'+POLICY.privacy+'" target="_blank" style="color:#444444; font-weight:700; text-decoration:none;">개인정보처리방침</a> · <a href="'+POLICY.terms+'" target="_blank" style="color:#777777; text-decoration:none;">이용약관</a> · © Ratel And Partners Co., Ltd.</p>\n          </td>\n        </tr>\n',f('footer'));
+    const card='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f2;">\n  <tr>\n    <td align="center" style="padding:24px 12px;">\n      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; word-break:keep-all; font-family:'+FONT+'; color:#111111;">\n'+
+      head+greet+intro+gift+steps+ask+close+slogan+foot+'      </table>\n    </td>\n  </tr>\n</table>';
+    if(o.fragment)return card;
+    return '<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="x-apple-disable-message-reformatting">\n<title>'+esc(unmark(p.subject))+'</title>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">\n</head>\n<body style="margin:0; padding:0; background-color:#f2f2f2;">\n'+pre+card+'\n</body>\n</html>\n';
   }
-  /* A plain personal-looking email: no banner, no images, no hidden preheader (Safari drops display:none on copy). */
-  function emailHtml(subject,body,signature,footer){
-    return '<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>'+esc(unmark(subject))+'</title>\n</head>\n'+
-      '<body style="margin:0; padding:0; background:#ffffff;">\n<div style="max-width:600px; padding:8px 4px; font-family:-apple-system,\'Apple SD Gothic Neo\',\'Malgun Gothic\',\'맑은 고딕\',sans-serif; color:#111111; word-break:keep-all;">\n'+
-      bodyHtml(body)+'\n'+signatureHtml(signature,footer)+'\n</div>\n</body>\n</html>\n';
+  /* 「글만」: the same sections as a personal note, no band, no boxes, no images. */
+  function plainHtml(p,o){
+    const P='margin:0 0 16px; font-size:15px; line-height:1.7; color:#111111;';
+    const para=t=>t&&t.trim()?'<div style="'+P+'">'+richHtml(t)+'</div>':'';
+    const body=[para(p.greeting),para(p.intro),para(p.gift),para(p.steps),para(p.ask),para(p.closing),
+      '<p style="margin:24px 0 4px; font-size:15px; font-weight:600; color:#111111;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</p>',
+      '<p style="margin:0 0 20px; font-size:13px; color:#6b6b6b;">당신의 작업이 무대가 되는 곳, Cre8orClub</p>',
+      [p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'<p style="margin:0; padding-top:12px; border-top:1px solid #e5e5e5; font-size:12px; line-height:1.6; color:#8a8a8a;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'<br>'+COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email+'</p>').join('')].join('\n');
+    const div='<div style="max-width:600px; padding:8px 4px; font-family:'+FONT+'; color:#111111; word-break:keep-all;">\n'+body+'\n</div>';
+    if(o.fragment)return div;
+    return '<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>'+esc(unmark(p.subject))+'</title>\n</head>\n<body style="margin:0; padding:0; background:#ffffff;">\n'+div+'\n</body>\n</html>\n';
   }
   function plain(text){return blocks(text).map(lines=>lines.map(inlinePlain).join('\n')).join('\n\n');}
 
-  /* opts: footer (default true), ad {phone}, mark (preview only). */
+  /* opts: style 'card' (위클리 양식, default) | 'plain', footer (default true), ad {on,phone},
+     preview-only: mark (true or a Set of 칸 names to highlight), outline (section key to frame), logo. */
   function render(tpl,values,opts){
-    const v=values||{},o=opts||{},mark=!!o.mark,ad=o.ad&&o.ad.on;
+    const v=values||{},o=opts||{},mark=o.mark||false,ad=o.ad&&o.ad.on;
     const phone=clean(o.ad&&o.ad.phone)||'(전화번호)';
-    const subject=(ad?AD.subjectPrefix:'')+fill(tpl.email.subject,v,mark);
-    const body=fill(tpl.email.body,v,mark);
-    const signature=fill(tpl.email.signature,v,mark);
-    const footerOn=ad||o.footer!==false;
-    const footer=[footerOn?fill(tpl.email.footer||'',v,mark):'',ad?AD.emailBlock(phone):''].filter(Boolean).join('\n');
+    const p={};EMAIL_SECTIONS.forEach(k=>p[k]=fill(tpl.email[k]||'',v,mark));
+    p.subject=(ad?AD.subjectPrefix:'')+p.subject;
+    if(!(ad||o.footer!==false))p.footer='';
+    p.ad=ad?AD.emailBlock(phone):'';
+    const style=o.style==='plain'?'plain':'card';
+    const build=style==='plain'?plainHtml:designedHtml;
+    // Section titles travel with the plain text so a plain-text paste keeps the same order.
+    const titled=[plain(p.greeting),plain(p.intro),p.gift.trim()?SECTION_TITLES.gift+'\n'+plain(p.gift):'',p.steps.trim()?SECTION_TITLES.steps+'\n'+plain(p.steps):'',p.ask.trim()?SECTION_TITLES.ask+'\n'+plain(p.ask):'',plain(p.closing)+'\n'+plain(p.signature),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
     const dmCore=fill(tpl.dm.message,v,mark);
     const dm=[ad?AD.dmHead(phone):'',dmCore,ad?AD.dmTail:''].filter(Boolean).join('\n\n');
-    const emailText=plain(body)+'\n\n'+plain(signature)+(footer?'\n\n'+plain(footer):'');
     return {
-      subject:unmark(subject),subjectMarked:subject,
-      emailHtml:emailHtml(subject,body,signature,footer),
-      emailText,dm:plain(dm),dmMarked:dm.replace(/\*\*([^*]+)\*\*/g,'$1')
+      style,subject:unmark(p.subject),subjectMarked:p.subject,preheader:unmark(p.preheader),
+      emailHtml:build(p,{withPreheader:true,logo:o.logo,outline:o.outline}),
+      emailPaste:build(p,{fragment:true,logo:o.logo,outline:o.outline}),
+      emailText:titled.join('\n\n'),
+      dm:plain(dm),dmMarked:dm.replace(/\*\*([^*]+)\*\*/g,'$1')
     };
   }
   function reply(kind,values){return fill(REPLIES[kind],values||{});}
@@ -179,7 +227,7 @@
     const o=opts||{},v=values||{},out=[];
     const channel=o.channel==='dm'?'dm':'email';
     const add=(level,code,msg,field)=>out.push({level,code,msg,field:field||''});
-    const used=channel==='email'?[tpl.email.subject,tpl.email.body,tpl.email.signature,o.footer===false?'':tpl.email.footer||'']:[tpl.dm.message];
+    const used=channel==='email'?EMAIL_SECTIONS.filter(k=>k!=='footer'||o.footer!==false||(o.ad&&o.ad.on)).map(k=>tpl.email[k]||''):[tpl.dm.message];
     const usedKeys=new Set(used.flatMap(tokens));
     const known=new Set(VARS.map(x=>x.key));
     usedKeys.forEach(k=>{if(!known.has(k))add('block','unknown','모르는 칸 {'+k+'}이 문구에 있어요. 칸 이름을 고치거나 지워 주세요.');});
@@ -205,7 +253,9 @@
     AVOID.forEach(a=>{const m=typed.match(a.re);if(m)add('warn','avoid','손으로 쓴 칸의 「'+[...new Set(m)].join('·')+'」 — '+a.why+'.');});
     if(/\{[^{}\n]+\}/.test(text))add('block','leftover','채워지지 않은 {칸}이 남아 있어요.');
     // Links: the three canonical ones must survive any one-off edit, over https, never shortened.
-    const all=channel==='email'?[...r.emailHtml.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).filter(u=>!/^mailto:/.test(u)).concat(links(r.subject)):links(r.dm);
+    // Only anchors the sender controls: the fixed layout's policy links, logo and font are not part of the check.
+    const fixed=new Set(Object.values(POLICY));
+    const all=channel==='email'?[...r.emailHtml.matchAll(/<a href="([^"]+)"/g)].map(m=>m[1]).filter(u=>!/^mailto:/.test(u)&&!fixed.has(u)).concat(links(r.subject)):links(r.dm);
     const missing=[['app','앱'],['form','신청서'],['chat','오픈채팅']].filter(([k])=>!all.includes(LINKS[k]));
     missing.forEach(([k,label])=>add('block','link-missing:'+k,label+' 링크('+LINKS[k]+')가 문구에서 빠졌어요.'));
     all.filter(u=>/^http:\/\//i.test(u)).forEach(u=>add('block','link-http','https가 아닌 링크가 있어요: '+u));
@@ -235,6 +285,6 @@
     return out;
   }
 
-  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,emailHtml,similarity,check,chars,seoulMinutes,clean};
+  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);
