@@ -574,5 +574,13 @@
     "last_kind": "new",
     "last_sha256": "924e142c7bcb383b49d4384626b80ce93c5be733e689f78b406619a8c426b057",
     "timestamp": "2026-11-09T14:31:44.398789Z"
+  },
+  "c8-qa-format": {
+    "slug": "c8-qa-format",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-qa-format/",
+    "last_kind": "new",
+    "last_sha256": "b60fa71368f81bb681a6fa8b33463132dab03d0667d8a359ee96a181d8a02ffc",
+    "timestamp": "2026-11-09T16:45:42.731188Z"
   }
 }
