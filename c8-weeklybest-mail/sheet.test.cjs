@@ -81,7 +81,7 @@ test('a zero-amount rank row never becomes a 0-won voucher',()=>{
 
 test('legacy prize formatting preserves denomination and quantity',()=>{
  assert.equal(formatPrize('CU 상품권 1만원 1장'), 'CU 모바일 상품권 1만 원(1장)');
- assert.equal(formatPrize('CU상품권1만원1장'), 'CU 모바일 상품권1만 원(1장)');
+ assert.equal(formatPrize('CU상품권1만원1장'), 'CU 모바일 상품권 1만 원(1장)');
  assert.equal(formatPrize('신세계 모바일 상품권 5만원(1장), 3만원(2장)'), '신세계 모바일 상품권 5만 원(1장), 3만 원(2장)');
  assert.equal(formatPrize('CU 모바일 상품권 1만 원(11장)'), 'CU 모바일 상품권 1만 원(11장)');
 });

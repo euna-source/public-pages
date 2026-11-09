@@ -32,7 +32,7 @@
   const money=n=>Number(n.toFixed(4))+'만 원';
   function formatPrize(text){
     return String(text??'')
-      .replace(/(신세계|CU)\s*(?:모바일\s*)?상품권/g,'$1 모바일 상품권')
+      .replace(/(신세계|CU)\s*(?:모바일\s*)?상품권\s*/g,'$1 모바일 상품권 ')
       .replace(/(\d+(?:\.\d+)?)\s*만\s*원/g,'$1만 원')
       .replace(/(만 원)\s*(?:[（(]\s*(\d+)\s*장\s*[)）]|(\d+)\s*장)/g,(_,unit,a,b)=>unit+'('+(a||b)+'장)');
   }
