@@ -46,10 +46,10 @@
     for(let i=0;i<summaryIndex;i++){
       const h=rows[i];
       if(!h.includes('순위')||!h.includes('수령인')||!h.includes('금액(만원)')||!h.includes('상품권'))continue;
-      const isWork=h.includes('작품'),ni=h.indexOf('수령인'),ri=h.indexOf('순위'),ai=h.indexOf('금액(만원)'),ti=h.indexOf('작품');
+      const isWork=h.includes('작품'),ni=h.indexOf('수령인'),ri=h.indexOf('순위'),ai=h.indexOf('금액(만원)'),ti=h.indexOf('작품'),gi=h.indexOf('상품권');
       for(let j=i+1;j<summaryIndex;j++){
         const r=rows[j];if(!/^\d+$/.test(r[ri]||''))break;
-        ranks.push({name:r[ni],rank:Number(r[ri]),category:isWork?'작품':'크리에이터',title:isWork?(r[ti]||'').replace(/\s+/g,' '):'',amount:amount(r[ai])});
+        ranks.push({name:r[ni],rank:Number(r[ri]),category:isWork?'작품':'크리에이터',title:isWork?(r[ti]||'').replace(/\s+/g,' '):'',amount:amount(r[ai]),brand:norm(r[gi])});
       }
     }
     const people=[],names=new Set();
@@ -65,9 +65,16 @@
       const creatorSum=awards.filter(a=>a.category==='크리에이터').reduce((n,a)=>n+a.amount,0);
       const workSum=awards.filter(a=>a.category==='작품').reduce((n,a)=>n+a.amount,0);
       if(total<=0||Math.abs(ssg+cu-total)>0.0001||Math.abs(creator+work-total)>0.0001||!awards.length||Math.abs(creatorSum-creator)>0.0001||Math.abs(workSum-work)>0.0001)throw Error(name+' 님의 순위별 금액과 사람별 경품 합계가 맞지 않아요. 시트를 확인해 주세요.');
-      const prizes=[];if(ssg)prizes.push('신세계 상품권 '+money(ssg));if(cu)prizes.push('CU 상품권 '+money(cu));
+      // One voucher per award, so the mail lists each card and its count instead of a merged amount.
+      const prizes=[];
+      for(const brand of ['신세계','CU']){
+        const cards=awards.filter(a=>a.brand===brand&&a.amount>0).map(a=>a.amount).sort((x,y)=>y-x);
+        if(Math.abs(cards.reduce((n,x)=>n+x,0)-(brand==='CU'?cu:ssg))>0.0001)throw Error(name+' 님의 순위별 상품권과 사람별 상품권 합계가 맞지 않아요. 시트를 확인해 주세요.');
+        const counts=[...new Set(cards)].map(x=>money(x)+' '+cards.filter(y=>y===x).length+'장');
+        if(counts.length)prizes.push(brand+' 모바일 상품권 '+counts.join(', '));
+      }
       people.push({name,total,ssg,cu,notice:notice<0?'':r[notice],sourceRow:i+1,
-        awards:awards.sort((a,b)=>a.category.localeCompare(b.category)||a.rank-b.rank).map(a=>a.category+' 부문 : '+a.rank+'위'+(a.title?' · '+a.title:'')+' ('+money(a.amount)+')').join('\n'),prize:prizes.join(' + ')});
+        awards:awards.sort((a,b)=>a.category.localeCompare(b.category)||a.rank-b.rank).map(a=>a.category+' 부문 : '+a.rank+'위'+(a.title?' · '+a.title:'')+' ('+money(a.amount)+')').join('\n'),prize:prizes.length===1&&awards.length>1?prizes[0]+' (총 '+money(total)+')':prizes.join('\n')});
     }
     return {week,people,total:people.reduce((n,p)=>n+p.total,0),rowCount:rows.length};
   }
