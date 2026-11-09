@@ -1,6 +1,6 @@
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
-const {parseDelimited,convert,convertBook,formatPrize}=require('./sheet.js');
+const {parseDelimited,convert,convertBook,formatPrize,personPrize}=require('./sheet.js');
 function fixture(){return [
  ['11월 1주차'],
  ['순위','수령인','활동 점수','상품권','금액(만원)'],
@@ -83,4 +83,10 @@ test('legacy prize formatting preserves denomination and quantity',()=>{
  assert.equal(formatPrize('CU 상품권 1만원 1장'), 'CU 모바일 상품권 1만 원(1장)');
  assert.equal(formatPrize('신세계 모바일 상품권 5만원(1장), 3만원(2장)'), '신세계 모바일 상품권 5만 원(1장), 3만 원(2장)');
  assert.equal(formatPrize('CU 모바일 상품권 1만 원(11장)'), 'CU 모바일 상품권 1만 원(11장)');
+});
+
+test('cached single-brand totals recover card quantities from verified award amounts',()=>{
+ assert.equal(personPrize({prize:'CU 상품권 1만 원',ssg:0,cu:1,total:1,awards:'작품 부문 : 6위 (1만 원)'}),'CU 모바일 상품권 1만 원(1장)');
+ assert.equal(personPrize({prize:'신세계 상품권 8만 원',ssg:8,cu:0,total:8,awards:'작품 부문 : 1위 (5만 원)\n크리에이터 부문 : 2위 (3만 원)'}),'신세계 모바일 상품권 5만 원(1장), 3만 원(1장)');
+ assert.equal(personPrize({prize:'CU 상품권 2만 원',ssg:0,cu:2,total:2,awards:'불명'}),'CU 모바일 상품권 2만 원');
 });

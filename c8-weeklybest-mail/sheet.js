@@ -36,6 +36,14 @@
       .replace(/(\d+(?:\.\d+)?)\s*만\s*원/g,'$1만 원')
       .replace(/(만 원)\s*(?:[（(]\s*(\d+)\s*장\s*[)）]|(\d+)\s*장)/g,(_,unit,a,b)=>unit+'('+(a||b)+'장)');
   }
+  function personPrize(p){
+    const formatted=formatPrize(p.prize);
+    if(/\d+\s*장/.test(formatted))return formatted;
+    const brand=Number(p.ssg)>0&&Number(p.cu)===0?'신세계':Number(p.cu)>0&&Number(p.ssg)===0?'CU':'';
+    const cards=String(p.awards||'').split('\n').map(line=>line.match(/\((\d+(?:\.\d+)?)\s*만\s*원\)\s*$/)).filter(Boolean).map(m=>Number(m[1])).filter(n=>n>0).sort((a,b)=>b-a);
+    if(!brand||!cards.length||Math.abs(cards.reduce((n,x)=>n+x,0)-Number(p.total))>0.0001)return formatted;
+    return brand+' 모바일 상품권 '+[...new Set(cards)].map(x=>money(x)+'('+cards.filter(y=>y===x).length+'장)').join(', ');
+  }
   function convert(rows,weekHint=''){
     if(!Array.isArray(rows)||rows.length>2000||rows.some(r=>!Array.isArray(r)))throw Error('주차별 시트 전체 표를 가져와 주세요.');
     rows=rows.map(r=>r.map(clean));
@@ -100,6 +108,6 @@
     if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
     return {weeks,errors};
   }
-  root.WeeklySheet={parseDelimited,convert,convertBook,money,formatPrize};
+  root.WeeklySheet={parseDelimited,convert,convertBook,money,formatPrize,personPrize};
   if(typeof module==='object')module.exports=root.WeeklySheet;
 })(typeof globalThis==='object'?globalThis:this);
