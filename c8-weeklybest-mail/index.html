@@ -315,7 +315,7 @@ function load(){
   KEYS.forEach(k=>$(k).value=(saved&&saved.v&&saved.v[k]!=null)?saved.v[k]:DEFAULTS[k]);
   if(OLD_SUBJECTS.includes($('subject').value))$('subject').value=DEFAULTS.subject;
   if(OLD_AWARDS.includes($('awards').value))$('awards').value=DEFAULTS.awards;
-  
+
   if(saved&&saved.rawMode&&saved.raw){$('raw').value=saved.raw;setMode(true,false)}else render();
 }
 function setMode(raw,regen=true){
