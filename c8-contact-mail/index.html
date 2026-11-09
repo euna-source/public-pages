@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>직접 컨택 편집기</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#f4f4f2;--panel:#ffffff;--ink:#141414;--muted:#6b6b6b;--line:#e3e3df;--field:#fafaf8;--accent:#07ED21;--accent-ink:#111111;--dark:#141414;--warn:#8a5a00;--warn-bg:#fff6e0;--block:#a3101a;--block-bg:#fdecee;--ok:#0a7a1c;--bubble:#efefef}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121212;--panel:#1c1c1c;--ink:#f0f0f0;--muted:#a0a0a0;--line:#2e2e2e;--field:#232323;--dark:#f0f0f0;--warn:#f5c264;--warn-bg:#2d2412;--block:#ff8a92;--block-bg:#331417;--ok:#4ade80;--bubble:#2a2a2a}}
+:root[data-theme="dark"]{--bg:#121212;--panel:#1c1c1c;--ink:#f0f0f0;--muted:#a0a0a0;--line:#2e2e2e;--field:#232323;--dark:#f0f0f0;--warn:#f5c264;--warn-bg:#2d2412;--block:#ff8a92;--block-bg:#331417;--ok:#4ade80;--bubble:#2a2a2a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Pretendard',-apple-system,'Apple SD Gothic Neo',sans-serif;word-break:keep-all}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);position:sticky;top:0;z-index:5}
+h1{font-size:17px;margin:0;font-weight:700}
+h2{font-size:15px;margin:0 0 8px}
+.sub{font-size:12px;color:var(--muted);margin-top:2px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,.btn{font:inherit;font-size:13px;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--field);color:var(--ink);padding:8px 12px;cursor:pointer;min-height:40px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+button.primary,.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button:disabled,select:disabled{opacity:.5;cursor:not-allowed}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+main{display:grid;grid-template-columns:minmax(340px,460px) minmax(0,1fr);min-height:calc(100vh - 70px)}
+.form{background:var(--panel);border-right:1px solid var(--line);padding:16px 20px 48px;overflow:auto}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;padding:3px;gap:3px;background:var(--field)}
+.seg button{border:0;min-height:34px;background:transparent}
+.seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--dark);color:var(--panel)}
+.block{border-bottom:1px solid var(--line);padding:16px 0}
+.block:first-of-type{padding-top:4px}
+.block p{font-size:12px;line-height:1.6;color:var(--muted);margin:6px 0}
+fieldset{border:0;padding:0;margin:0}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 4px}
+.hint{font-weight:400;color:var(--muted);font-size:12px}
+input,textarea,select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+textarea{resize:vertical;min-height:64px;line-height:1.55}
+.row{display:flex;gap:8px}.row>*{flex:1;min-width:0}
+.count{float:right;font-weight:400;font-size:12px;color:var(--muted)}
+.ref{margin-top:10px;font-size:12px;line-height:1.6;color:var(--muted);background:var(--field);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;white-space:pre-line}
+.ref:empty{display:none}
+.ref a{color:var(--ink)}
+.importer.dragging{outline:2px dashed var(--accent);outline-offset:6px}
+.sr{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.filepick{display:inline-flex;align-items:center;min-height:40px;margin:0;border:1px solid var(--line);border-radius:8px;padding:0 14px;font-size:13px;font-weight:600;background:var(--field);cursor:pointer}
+.filepick:has(+.sr:focus-visible){outline:2px solid var(--accent)}
+#sheetStatus{white-space:pre-line}
+.check{display:flex;flex-direction:column;gap:6px;margin:0;padding:0;list-style:none}
+.check li{font-size:13px;line-height:1.5;border-radius:8px;padding:8px 10px;display:flex;gap:8px}
+.check li::before{font-weight:700;flex:none}
+.check .block-l{background:var(--block-bg);color:var(--block)}.check .block-l::before{content:'막힘'}
+.check .warn-l{background:var(--warn-bg);color:var(--warn)}.check .warn-l::before{content:'확인'}
+.check .ok-l{color:var(--ok);padding-left:0}.check .ok-l::before{content:'✓'}
+.check li[data-field]{cursor:pointer}.check li[data-field]:hover{text-decoration:underline}
+.invalid{border-color:var(--block)!important}
+mark{background:#fff3a3;color:inherit;border-radius:3px}
+.log summary{font-size:15px;font-weight:700}
+details summary{cursor:pointer;font-size:13px;font-weight:600;padding:8px 0}
+.tpl textarea{font-size:13px;min-height:120px}
+.tpl .tags{font-size:12px;color:var(--muted);line-height:1.8}
+.tpl code{background:var(--field);border:1px solid var(--line);border-radius:4px;padding:0 4px}
+.preview{padding:16px 20px 48px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.ptools{display:flex;gap:8px;align-items:center;font-size:12px;color:var(--muted);flex-wrap:wrap;justify-content:center}
+.inbox{width:640px;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 14px;font-size:13px;display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline}
+.inbox .from{font-weight:700}.inbox .subj{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.inbox .snip{grid-column:2;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.inbox .to{grid-column:1/-1;color:var(--muted);font-size:12px;margin-top:4px}
+iframe{border:1px solid var(--line);border-radius:10px;background:#ffffff;width:640px;max-width:100%;height:900px}
+.phone{width:375px;max-width:100%;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:18px 14px 22px;display:flex;flex-direction:column;gap:10px}
+.phone .who{text-align:center;font-size:12px;color:var(--muted)}
+.bubble{align-self:flex-end;max-width:86%;background:#3797f0;color:#fff;border-radius:18px 18px 4px 18px;padding:10px 13px;font-size:14px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.bmeta{align-self:flex-end;font-size:11px;color:var(--muted);margin-top:-4px}
+.bmeta.over{color:var(--block);font-weight:700}
+.sendbar{position:sticky;bottom:0;width:100%;max-width:680px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,.06)}
+.log{width:100%;max-width:680px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.log table{width:100%;border-collapse:collapse;font-size:12px}
+.log th,.log td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.log td.seen{color:var(--muted)}
+.log .empty{font-size:12px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--dark);color:var(--panel);padding:10px 16px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none;z-index:9;max-width:90vw}
+.toast.show{opacity:1}
+[hidden]{display:none!important}
+@media (max-width:900px){main{grid-template-columns:minmax(0,1fr)}.form{border-right:0;border-bottom:1px solid var(--line)}header{position:static;padding:14px 16px}.form,.preview{padding-left:16px;padding-right:16px}iframe{height:1100px}}
+@media(max-width:600px){input,textarea,select{font-size:16px}.row{flex-wrap:wrap}.row>*{min-width:140px}}
+@media(prefers-reduced-motion:reduce){.toast{transition:none}}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>직접 컨택 편집기</h1>
+    <div class="sub">후보를 고르고 「본 것 한 줄」만 쓰면 메일·DM이 완성돼요. 보내기는 Gmail·인스타 앱에서 직접 해요. 가져온 명단은 이 창에만 있어요.</div>
+  </div>
+  <div class="seg" role="tablist" aria-label="보낼 곳">
+    <button role="tab" id="chEmail" aria-selected="true">이메일</button>
+    <button role="tab" id="chDm" aria-selected="false">인스타 DM</button>
+  </div>
+</header>
+<main>
+  <section class="form">
+    <div class="block admode">
+      <label class="hint" style="font-weight:600;margin:0;color:var(--ink)"><input type="checkbox" id="adOn" style="width:auto;margin:0 6px 0 0;vertical-align:-2px">광고성 정보로 보내기 <span class="hint">(법무 판단 전이라 기본은 꺼짐)</span></label>
+      <div id="adBox" hidden>
+        <p>켜면 메일 제목 앞에 「(광고)」, 맨 아래에 전송자 정보와 한·영 수신거부 안내가, DM 처음과 끝에 표기 줄이 붙어요. 이 줄들은 고칠 수 없어요.</p>
+        <label for="adPhone">회사 전화번호 <span class="hint">광고 표기에 꼭 들어가요</span></label><input id="adPhone" inputmode="tel" autocomplete="off" placeholder="02-0000-0000">
+      </div>
+    </div>
+    <div class="block importer" id="importer" aria-labelledby="sheetHeading">
+      <h2 id="sheetHeading">후보 불러오기</h2>
+      <p>후보 탭을 내려받아 이 칸에 끌어 놓으면, 「직접 확인」과 「직접 컨택 후보」가 둘 다 O인 분을 골라 칸을 채워요. 원본 시트는 읽기만 해요.</p>
+      <div class="actions">
+        <button id="sheetDownload" class="primary">후보 탭 내려받기</button>
+        <label class="filepick" for="sheetFile">받은 파일 선택</label><input type="file" id="sheetFile" class="sr" accept=".csv,.tsv,.xlsx,text/csv,text/tab-separated-values,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+      </div>
+      <div class="row" id="tabRow" hidden><div><label for="sheetTab">탭</label><select id="sheetTab"></select></div></div>
+      <label for="person">보낼 분 <span class="hint" id="personCount"></span></label>
+      <div class="row" style="align-items:center"><button id="prevPerson" aria-label="이전 분" style="flex:none">◀</button><select id="person" disabled><option value="">명단을 먼저 가져와 주세요</option></select><button id="nextPerson" aria-label="다음 분" style="flex:none">▶</button></div>
+      <label class="hint" style="font-weight:400"><input type="checkbox" id="onlyReady" checked style="width:auto;margin:0 6px 0 0;vertical-align:-2px">직접 확인·직접 컨택 후보가 둘 다 O인 분만 보기</label>
+      <label class="hint" style="font-weight:400"><input type="checkbox" id="hideSent" checked style="width:auto;margin:0 6px 0 0;vertical-align:-2px">아직 연락 안 한 분만 보기 <span class="hint">(시트 상태 열이 비었거나 「미연락」)</span></label>
+      <p id="sheetStatus" role="status" aria-live="polite">‘후보 탭 내려받기’를 누르면 회사 계정으로 로그인한 브라우저가 후보 탭을 CSV로 내려받아요.</p>
+      <details><summary>다른 방법으로 가져오기</summary>
+        <p>시트에서 머리글 줄부터 필요한 줄까지 복사해 붙여 넣어도 돼요. 가져온 명단은 이 창을 닫으면 지워져요.</p>
+        <textarea id="sheetPaste" placeholder="시트에서 머리글 줄을 포함해 복사한 뒤 붙여 넣으세요."></textarea>
+        <div class="actions" style="margin-top:8px"><button id="importPaste">붙여 넣은 표 가져오기</button><button id="forgetSheet">가져온 명단 지우기</button></div>
+      </details>
+    </div>
+
+    <div class="block">
+      <h2>받는 분</h2>
+      <div class="row">
+        <div><label for="v-name">활동명</label><input id="v-name" data-var="활동명" autocomplete="off"></div>
+        <div data-only="email"><label for="to">받는 메일 주소</label><input id="to" type="email" autocomplete="off" inputmode="email"></div>
+        <div data-only="dm" hidden><label for="handle">인스타 계정</label><input id="handle" autocomplete="off" placeholder="@없이"></div>
+      </div>
+      <div class="row">
+        <div data-only="email"><label for="v-platform">본 곳(플랫폼)</label><input id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off"></div>
+        <div data-only="dm" hidden><label for="v-post">게시물 주소</label><input id="v-post" data-var="게시물 주소" type="url" autocomplete="off"></div>
+        <div><label for="v-work">작품명 <span class="hint">제목 다른 안에만</span></label><input id="v-work" data-var="작품명" autocomplete="off"></div>
+      </div>
+      <datalist id="platforms"><option value="인스타그램"><option value="비핸스"><option value="노트폴리오"><option value="유튜브"><option value="사운드클라우드"><option value="브런치"><option value="포스타입"><option value="네이버 블로그"></datalist>
+      <div class="ref" id="sheetRef"></div>
+    </div>
+
+    <div class="block">
+      <label for="v-seen" style="margin-top:0">본 것 한 줄 <span class="count" id="seenCount"></span></label>
+      <textarea id="v-seen" data-var="본 것 한 줄" style="min-height:72px" placeholder="예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요."></textarea>
+      <p>작품을 직접 보고 이 분에게만 맞는 한 문장을 써요. 다른 분 이름을 넣어도 말이 되면 다시 써요. 비우면 그 문장만 빠져요.</p>
+    </div>
+
+    <div class="block">
+      <h2>보내는 사람</h2>
+      <label for="v-sender">담당자명 <span class="hint">이 브라우저에 기억해요</span></label>
+      <input id="v-sender" data-var="담당자명" autocomplete="name">
+      <div data-only="email">
+        <label for="subject">메일 제목</label>
+        <select id="subjectPick" aria-label="제목 안 고르기"></select>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>보내기 전 점검</h2>
+      <ul class="check" id="checks" aria-live="polite"></ul>
+    </div>
+
+    <div class="block" data-only="email">
+      <label class="hint" style="font-weight:400;margin:0"><input type="checkbox" id="footerOn" checked style="width:auto;margin:0 6px 0 0;vertical-align:-2px">맨 아래 고지 줄 넣기 <span class="hint">(다시 연락하지 않음 · 회사 정보)</span></label>
+    </div>
+
+    <details class="block tpl" id="tplBox">
+      <summary>이번 메일만 문구 고치기</summary>
+      <p>여기서 고친 문구는 지금 쓰는 메일에만 들어가고, 창을 닫거나 다른 분을 고르면 확정 문안으로 돌아가요. 확정 문안을 바꾸려면 기획 문서를 먼저 고쳐 주세요.</p>
+      <div class="tags">칸: <code>{활동명}</code> <code>{담당자명}</code> <code>{플랫폼}</code> <code>{게시물 주소}</code> <code>{본 것 한 줄}</code> <code>{작품명}</code> · 굵게 <code>**글자**</code> · 링크 <code>[글자](주소)</code> · 번호 목록 <code>1. </code></div>
+      <div data-only="email">
+        <label for="t-email-subject">메일 제목</label><input id="t-email-subject" data-tpl="email.subject">
+        <label for="t-email-body">메일 본문</label><textarea id="t-email-body" data-tpl="email.body" style="min-height:320px"></textarea>
+        <label for="t-email-signature">서명</label><textarea id="t-email-signature" data-tpl="email.signature" style="min-height:64px"></textarea>
+        <label for="t-email-footer">맨 아래 고지 줄</label><textarea id="t-email-footer" data-tpl="email.footer" style="min-height:64px"></textarea>
+      </div>
+      <div data-only="dm" hidden>
+        <label for="t-dm-message">DM <span class="hint">팔로하지 않는 분에게는 수락 전 한 통·글만 가요</span></label><textarea id="t-dm-message" data-tpl="dm.message" style="min-height:360px"></textarea>
+      </div>
+      <div class="actions" style="margin-top:10px"><button id="tplReset">확정 문안으로 되돌리기</button></div>
+    </details>
+  </section>
+
+  <section class="preview">
+    <div class="ptools">미리보기
+      <span class="seg" data-only="email"><button id="wDesk" aria-pressed="true">PC</button><button id="wMobile" aria-pressed="false">휴대폰</button></span>
+      <label style="font-size:12px;margin:0;font-weight:600"><input type="checkbox" id="markOn" style="width:auto;margin:0 4px 0 0;vertical-align:-2px">바뀌는 부분 보기</label>
+      <button id="openLinks" style="min-height:32px;padding:4px 10px">링크 모두 열기</button>
+    </div>
+    <div class="inbox" data-only="email" aria-label="받은편지함에서 보이는 모습">
+      <span class="from" id="ibFrom"></span><span class="subj" id="ibSubj"></span><span class="snip" id="ibSnip"></span>
+      <span class="to" id="ibTo"></span>
+    </div>
+    <iframe id="frame" data-only="email" title="메일 본문 미리보기" sandbox="allow-same-origin"></iframe>
+    <div class="phone" data-only="dm" hidden aria-label="인스타 DM 미리보기">
+      <div class="who" id="dmWho"></div>
+      <div class="bubble" id="dmText"></div><div class="bmeta" id="dmMeta"></div>
+    </div>
+
+    <div class="sendbar" role="group" aria-label="복사하고 보내기">
+      <span data-only="email" class="actions">
+        <button id="copyTo">받는 주소</button>
+        <button id="copySubject">제목</button>
+        <button id="copyBody" class="primary">본문 복사</button>
+        <a class="btn" id="openGmail" href="#" target="_blank" rel="noopener">Gmail 쓰기 창</a>
+      </span>
+      <span data-only="dm" hidden class="actions">
+        <button id="copyDm" class="primary">DM 복사</button>
+        <a class="btn" id="openDm" href="#" target="_blank" rel="noopener">인스타 DM 열기</a>
+      </span>
+      <button id="markSent">보냄으로 기록</button>
+    </div>
+
+    <details class="log" id="replyBox">
+      <summary>답장이 왔을 때</summary>
+      <p class="hint" style="margin:4px 0 8px">지금 고른 분 이름으로 채워져요. 수신거부는 받은 날부터 14일 안에 처리 결과를 알려 주세요. 처리한 뒤 시트 상태 열에 「수신거부」를 적어요.</p>
+      <div class="actions"><button id="copyOptout">수신거부 확인 답장</button><button id="copySource">연락처 출처 안내 답장</button><button id="copyOptoutRow">시트 줄(수신거부)</button></div>
+      <pre id="replyPreview" class="ref" style="white-space:pre-wrap;font:inherit;font-size:12px"></pre>
+    </details>
+
+    <section class="log" aria-labelledby="logHeading">
+      <div class="actions" style="justify-content:space-between"><h2 id="logHeading" style="margin:0">이 창에서 보낸 분 <span class="hint" id="logCount"></span></h2>
+        <span class="actions"><button id="copyLog">시트에 붙일 줄 복사</button><button id="clearLog">목록 비우기</button></span></div>
+      <p class="hint" style="margin:6px 0 8px">보낸 뒤에는 꼭 후보 시트 상태 열에 적어 주세요. 그게 정본이에요. 이 목록은 창을 닫으면 지워지고, 시트에 옮겨 적을 줄을 만드는 데만 써요.</p>
+      <div id="logBody"></div>
+    </section>
+  </section>
+</main>
+<dialog id="manual" aria-labelledby="manualTitle" style="border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);width:min(560px,92vw);padding:16px">
+  <h2 id="manualTitle">직접 복사해 주세요</h2>
+  <p class="hint">브라우저가 자동 복사를 막았어요. 아래 글이 선택돼 있으니 ⌘C(윈도우는 Ctrl+C)로 복사한 뒤 닫아 주세요.</p>
+  <textarea id="manualText" readonly style="min-height:240px"></textarea>
+  <div class="actions" style="margin-top:10px;justify-content:flex-end"><button id="manualClose">닫기</button></div>
+</dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="contact.js"></script>
+<script src="candidates.js"></script>
+<script src="editor.js"></script>
+</body>
+</html>
