@@ -563,8 +563,8 @@
     "slug": "c8-qa-2646",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-qa-2646/",
-    "last_kind": "new",
-    "last_sha256": "7f6d9b33fd5a7e6465cc16b1f8fd5bf49a89b5545821bf2f581699f8e2355a58",
-    "timestamp": "2026-11-09T13:23:59.612051Z"
+    "last_kind": "redeploy",
+    "last_sha256": "9ec8bebad11c619366a4b0798fb94065f679ca2116e94137bc9e109cdbe66a99",
+    "timestamp": "2026-11-09T13:28:07.647584Z"
   }
 }
