@@ -71,12 +71,18 @@
     }
     return {week,people,total:people.reduce((n,p)=>n+p.total,0),rowCount:rows.length};
   }
-  // Whole-workbook import: keep every weekly tab, skip helper tabs, surface broken weekly tabs.
+  // Whole-workbook import: keep every weekly tab, skip helper tabs, and refuse weeks that are broken or appear twice.
   function convertBook(sheets){
-    const weeks=[],errors=[];
+    const found=new Map(),errors=[];
+    const weekName=name=>(name.match(/^\s*(\d+월\s*\d+주차)\s*$/)||[])[1]?.replace(/월\s*/,'월 ');
     for(const {name,rows} of sheets){
-      try{weeks.push(convert(rows,name));}
-      catch(e){if(/^\s*\d+월\s*\d+주차\s*$/.test(name))errors.push(name.trim()+': '+e.message);}
+      try{const d=convert(rows,name);found.set(d.week,[...(found.get(d.week)||[]),{name,d}]);}
+      catch(e){const week=weekName(name);if(week)errors.push({week,message:name.trim()+': '+e.message});}
+    }
+    const weeks=[];
+    for(const [week,list] of found){
+      if(list.length>1)errors.push({week,message:week+': 같은 주차 탭이 여러 개예요 ('+list.map(x=>x.name).join(', ')+'). 하나만 남긴 뒤 다시 받아 주세요.'});
+      else if(!errors.some(e=>e.week===week))weeks.push(list[0].d);
     }
     if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
     return {weeks,errors};

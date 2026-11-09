@@ -55,12 +55,14 @@ async function importWorkbook(buffer){
   const {weeks:found,errors}=WeeklySheet.convertBook(wb.SheetNames.map(name=>({name,rows:X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})})));
   const importedAt=new Date().toISOString();
   found.forEach(d=>{d.gid='';d.importedAt=importedAt;weeks[d.week]=d;});
+  // A week that failed this time must not keep serving last time's list.
+  errors.forEach(e=>delete weeks[e.week]);
   const saved=saveWeeks();
   // Newest week first: tab order in the sheet puts the latest week at the front.
   updateWeeks(found[0]?.week);
   const lines=[];
   if(found.length)lines.push(found.map(d=>d.week+' '+d.people.length+'명').join(' · ')+'을 가져왔어요.');
-  if(errors.length)lines.push('가져오지 못한 주차가 있어요. 시트를 확인한 뒤 다시 받아 주세요.\n'+errors.join('\n'));
+  if(errors.length)lines.push('가져오지 못한 주차가 있어요. 이전에 가져온 명단도 지웠으니 시트를 확인한 뒤 다시 받아 주세요.\n'+errors.map(e=>e.message).join('\n'));
   if(!saved)lines.push('브라우저 저장 공간이 부족해요. 새로 열면 다시 가져와 주세요.');
   if(errors.length||!saved||!found.length)sheetMessage((found.length?$('sheetStatus').textContent+'\n':'')+lines.join('\n'),true);
   if(found.length)toast(lines[0]);
