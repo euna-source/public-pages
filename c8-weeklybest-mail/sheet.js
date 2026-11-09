@@ -32,7 +32,7 @@
   const money=n=>Number(n.toFixed(4))+'만 원';
   function formatPrize(text){
     return String(text??'')
-      .replace(/(신세계|CU)\s+(?:모바일\s+)?상품권/g,'$1 모바일 상품권')
+      .replace(/(신세계|CU)\s*(?:모바일\s*)?상품권/g,'$1 모바일 상품권')
       .replace(/(\d+(?:\.\d+)?)\s*만\s*원/g,'$1만 원')
       .replace(/(만 원)\s*(?:[（(]\s*(\d+)\s*장\s*[)）]|(\d+)\s*장)/g,(_,unit,a,b)=>unit+'('+(a||b)+'장)');
   }
@@ -41,7 +41,8 @@
     if(/\d+\s*장/.test(formatted))return formatted;
     const brand=Number(p.ssg)>0&&Number(p.cu)===0?'신세계':Number(p.cu)>0&&Number(p.ssg)===0?'CU':'';
     const cards=String(p.awards||'').split('\n').map(line=>line.match(/\((\d+(?:\.\d+)?)\s*만\s*원\)\s*$/)).filter(Boolean).map(m=>Number(m[1])).filter(n=>n>0).sort((a,b)=>b-a);
-    if(!brand||!cards.length||Math.abs(cards.reduce((n,x)=>n+x,0)-Number(p.total))>0.0001)return formatted;
+    const total=Number(p.total),brandTotal=brand==='CU'?Number(p.cu):Number(p.ssg);
+    if(!brand||!Number.isFinite(total)||total<=0||Math.abs(brandTotal-total)>0.0001||!cards.length||Math.abs(cards.reduce((n,x)=>n+x,0)-total)>0.0001)return formatted;
     return brand+' 모바일 상품권 '+[...new Set(cards)].map(x=>money(x)+'('+cards.filter(y=>y===x).length+'장)').join(', ');
   }
   function convert(rows,weekHint=''){
