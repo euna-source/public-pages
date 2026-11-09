@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>수상 안내 메일 편집기</title>
+<link rel="icon" href="data:,">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 :root{--bg:#f4f4f2;--panel:#ffffff;--ink:#141414;--muted:#6b6b6b;--line:#e3e3df;--field:#fafaf8;--accent:#07ED21;--accent-ink:#111111;--dark:#141414;--ok:#0a7a1c}
@@ -18,7 +19,7 @@ h1{font-size:17px;margin:0;font-weight:700}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
 button{font:inherit;font-size:13px;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--field);color:var(--ink);padding:8px 12px;cursor:pointer}
 button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 main{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:0;min-height:calc(100vh - 70px)}
 .form{background:var(--panel);border-right:1px solid var(--line);padding:16px 20px 40px;overflow:auto}
 .tabs{display:flex;gap:6px;margin-bottom:14px}
@@ -27,7 +28,7 @@ fieldset{border:0;padding:0;margin:0 0 18px}
 legend{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.2px}
 label{display:block;font-size:13px;font-weight:600;margin:10px 0 4px}
 .hint{font-weight:400;color:var(--muted);font-size:12px}
-input,textarea{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+input,textarea,select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
 textarea{resize:vertical;min-height:64px;line-height:1.55}
 #raw{min-height:60vh;font-family:ui-monospace,Menlo,monospace;font-size:12px;white-space:pre}
 .row{display:flex;gap:8px}.row>*{flex:1}
@@ -40,13 +41,19 @@ iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:
 .toast.show{opacity:1}
 .warn{font-size:12px;color:var(--muted);background:var(--field);border:1px dashed var(--line);border-radius:8px;padding:8px 10px;margin-bottom:10px}
 @media (max-width:860px){main{grid-template-columns:1fr}.form{border-right:0;border-bottom:1px solid var(--line)}header{position:static;padding:14px 16px}.form,.preview{padding-left:16px;padding-right:16px}iframe{height:1700px}}
+select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--field);border:1px solid var(--line);border-radius:8px;padding:9px 10px}
+.importer{border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:18px}.importer h2{font-size:15px;margin:0 0 8px}.importer p{font-size:12px;line-height:1.6;color:var(--muted)}
+.importer a{color:var(--ink)}.importer details{margin-top:12px;font-size:13px}.importer summary{cursor:pointer;padding:8px 0}.importer .actions{margin-top:10px}
+#sheetStatus{white-space:pre-line}#sheetPaste{min-height:90px}button:disabled,select:disabled{opacity:.55;cursor:default}button,a.bookmark{min-height:40px}.bookmark{display:inline-block;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-weight:600;font-size:13px;background:var(--field)}
+@media(max-width:600px){input,textarea,select{font-size:16px}.row{flex-wrap:wrap}.row>div{min-width:140px}}
+@media(prefers-reduced-motion:reduce){.toast{transition:none}}
 </style>
 </head>
 <body>
 <header>
   <div>
     <h1>위클리 베스트 수상 안내 메일</h1>
-    <div class="sub">내용을 고치면 오른쪽 미리보기가 바로 바뀌어요. 고친 내용은 이 브라우저에만 저장돼요.</div>
+    <div class="sub">내용을 고치면 오른쪽 미리보기가 바로 바뀌어요. 고친 내용과 가져온 명단은 이 창에만 저장돼요. 창을 닫기 전에 필요한 메일을 복사해 주세요.</div>
   </div>
   <div class="actions">
     <button class="primary" id="copyHtml">HTML 소스 복사</button>
@@ -62,6 +69,24 @@ iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:
       <button role="tab" id="tabRaw" aria-selected="false">HTML 직접 고치기</button>
     </div>
 
+    <div class="importer" aria-labelledby="sheetHeading">
+      <h2 id="sheetHeading">주차별 메일 만들기</h2>
+      <p>주차별 탭을 가져오면 ‘지급대상’인 분들의 수상 내역과 경품이 자동으로 채워져요.</p>
+      <div class="row">
+        <div><label for="sheetWeek">주차 선택</label><select id="sheetWeek"><option value="">시트를 먼저 가져와 주세요</option></select></div>
+        <div><label for="sheetPerson">지급 대상자</label><select id="sheetPerson" disabled><option value="">대상자 없음</option></select></div>
+      </div>
+      <p id="sheetStatus" role="status" aria-live="polite">아직 가져온 주차가 없어요. 아래 ‘시트 연결 방법’을 열어 주세요.</p>
+      <div class="actions"><button id="makeMail" class="primary" disabled>선택한 분의 메일 만들기</button><button id="forgetSheet">가져온 명단 지우기</button></div>
+      <details id="connectHelp"><summary>시트 연결 방법</summary>
+        <p>처음 한 번, 아래 ‘주차 메일 가져오기’를 브라우저 북마크 막대로 끌어 놓으세요. <a href="https://docs.google.com/spreadsheets/d/1sp429sp0G-xega9RBvcPw0phOd9Ju5bkuzgo5r4gE1Y/edit?gid=1109202601#gid=1109202601" target="_blank" rel="noopener">당첨자 관리 시트 열기</a>에서 원하는 주차 탭을 고른 다음, 저장한 북마크를 누르면 편집기로 가져와요.</p>
+        <a id="sheetBookmark" class="bookmark" href="#">주차 메일 가져오기</a>
+        <p>원본 시트와 공유 권한은 바꾸지 않아요. 명단은 이 창에만 저장되며, 창을 닫으면 사라져요. 시트를 고친 뒤에는 해당 주차에서 북마크를 다시 눌러 최신 내용을 가져와 주세요.</p>
+        <label for="sheetFile">또는 주차별 시트 CSV 파일 가져오기</label><input type="file" id="sheetFile" accept=".csv,.tsv,text/csv,text/tab-separated-values">
+        <label for="sheetPaste">또는 주차별 탭 전체 복사해서 붙여 넣기</label><textarea id="sheetPaste" placeholder="시트에서 전체 표를 복사한 뒤 여기에 붙여 넣으세요."></textarea>
+        <button id="importPaste">붙여 넣은 표 가져오기</button>
+      </details>
+    </div>
     <div id="paneForm">
       <fieldset>
         <legend>메일 정보</legend>
@@ -95,6 +120,8 @@ iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:
       </fieldset>
       <fieldset>
         <legend>경품 수령 안내</legend>
+        <label for="receiptVersion">공통 안내 버전</label>
+        <select id="receiptVersion"><option value="basic">기본 안내 · 문자로 안내</option><option value="knock">노크 안내 포함 · 연락처가 없을 때</option><option value="custom">직접 고친 문구</option></select>
         <label for="receipt">안내 문구 <span class="hint">줄바꿈 그대로 들어가요</span></label>
         <textarea id="receipt" style="min-height:84px"></textarea>
       </fieldset>
@@ -119,15 +146,17 @@ iframe{border:1px solid var(--line);border-radius:10px;background:#f2f2f2;width:
       <button id="wDesk" aria-pressed="true">PC</button>
       <button id="wMobile" aria-pressed="false">휴대폰</button>
     </div>
-    <iframe id="frame" title="메일 미리보기"></iframe>
+    <iframe id="frame" title="메일 미리보기" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
   </section>
 </main>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<script src="sheet.js"></script>
+<script src="bridge.js"></script>
 <script>
 const LOGO='https://euna-source.github.io/public-pages/c8-weeklybest-mail/c8-logo-mark.png';
 const LOGO_PREVIEW='data:image/png;base64,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';
-const EVENT='https://view.cre8orclub.com/share/event/weekly-best?utm_source=email&amp;utm_medium=email&amp;utm_campaign=weekly_best_2026_10&amp;utm_content=winner_notice';
+const EVENT='https://view.cre8orclub.com/share/event/weekly-best?utm_source=email&amp;utm_medium=email&amp;utm_campaign=weekly_best_winner_notice&amp;utm_content=winner_notice';
 const DEFAULTS={
   subject:'[크리에이터클럽] 위클리 베스트 수상 및 경품 지급 안내',
   preheader:'10월 4주차 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
@@ -142,11 +171,11 @@ const DEFAULTS={
   option:'원하시면 CU 상품권을 자주 이용하시는 다른 편의점 상품권으로 변경하거나, 전체 금액을 신세계 상품권으로 받으실 수도 있어요.',
   receipt:'경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\n문자를 확인하신 후 안내에 따라 회신 부탁드립니다.',
   closing:'다시 한번 수상을 축하드립니다! 😊\n위클리 베스트는 매주 새로운 작품과 창작자를 기다리고 있어요.\n주변에 멋진 작품을 만드는 분이 있다면 크리에이터클럽을 알려주세요.\n\n감사합니다.',
-  bizno:'000-00-00000'
+  bizno:'736-86-01932'
 };
 const KEYS=Object.keys(DEFAULTS);
 const STORE='c8-weeklybest-mail-v1';
-const TPL='261103-7';
+const TPL='261109-1';
 const OLD_AWARDS=['작품 부문 2위 (3만 원)\n크리에이터 부문 5위 (1만 원)','작품 부문 2위 「나비효과 (Butterfly Effect)」 (3만 원)\n크리에이터 부문 5위 (1만 원)'];
 const OLD_SUBJECTS=['[크리에이터클럽] 10월 4주차 위클리 베스트 선정을 축하드려요 🎉 경품 지급 안내'];
 const $=id=>document.getElementById(id);
@@ -278,15 +307,15 @@ function values(){const v={};KEYS.forEach(k=>v[k]=$(k).value);return v}
 function current(){return rawMode?$('raw').value:build(values())}
 function render(){
   $('frame').srcdoc=current().split(LOGO).join(LOGO_PREVIEW);
-  try{localStorage.setItem(STORE,JSON.stringify({tpl:TPL,v:values(),raw:rawMode?$('raw').value:null,rawMode}))}catch(e){}
+  try{sessionStorage.setItem(STORE,JSON.stringify({tpl:TPL,v:values(),raw:rawMode?$('raw').value:null,rawMode}))}catch(e){}
 }
 function load(){
   let saved=null;
-  try{saved=JSON.parse(localStorage.getItem(STORE)||'null')}catch(e){}
+  try{saved=JSON.parse(sessionStorage.getItem(STORE)||localStorage.getItem(STORE)||'null')}catch(e){}
   KEYS.forEach(k=>$(k).value=(saved&&saved.v&&saved.v[k]!=null)?saved.v[k]:DEFAULTS[k]);
   if(OLD_SUBJECTS.includes($('subject').value))$('subject').value=DEFAULTS.subject;
   if(OLD_AWARDS.includes($('awards').value))$('awards').value=DEFAULTS.awards;
-  if(saved&&saved.tpl!==TPL&&saved.raw){saved.raw=null;saved.rawMode=false;setTimeout(()=>toast('양식이 바뀌어 직접 고친 HTML은 새 양식으로 다시 만들었어요.'),300)}
+  
   if(saved&&saved.rawMode&&saved.raw){$('raw').value=saved.raw;setMode(true,false)}else render();
 }
 function setMode(raw,regen=true){
@@ -320,10 +349,11 @@ $('copyHtml').onclick=()=>copyText(current(),'HTML 소스를 복사했어요.');
 $('copyRich').onclick=copyRich;
 $('copySubject').onclick=()=>copyText($('subject').value,'제목을 복사했어요.');
 $('download').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([current()],{type:'text/html'}));a.download='위클리베스트_수상안내메일.html';a.click();URL.revokeObjectURL(a.href)};
-$('reset').onclick=()=>{if(!confirm('고친 내용을 모두 지우고 처음 양식으로 돌아갈까요?'))return;try{localStorage.removeItem(STORE)}catch(e){}KEYS.forEach(k=>$(k).value=DEFAULTS[k]);setMode(false)};
+$('reset').onclick=()=>{if(!confirm('고친 내용을 모두 지우고 처음 양식으로 돌아갈까요?'))return;try{sessionStorage.removeItem(STORE);localStorage.removeItem(STORE)}catch(e){}KEYS.forEach(k=>$(k).value=DEFAULTS[k]);setMode(false)};
 $('wDesk').onclick=()=>{$('frame').style.width='640px';$('wDesk').setAttribute('aria-pressed','true');$('wMobile').setAttribute('aria-pressed','false')};
 $('wMobile').onclick=()=>{$('frame').style.width='390px';$('wMobile').setAttribute('aria-pressed','true');$('wDesk').setAttribute('aria-pressed','false')};
 load();
 </script>
+<script src="editor.js"></script>
 </body>
 </html>

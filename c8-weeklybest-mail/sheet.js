@@ -1,0 +1,76 @@
+/* Weekly Best sheet conversion. No network or recipient data is bundled here. */
+(function(root){
+  'use strict';
+  const clean=v=>String(v??'').trim();
+  const norm=v=>clean(v).replace(/\s/g,'');
+  function parseDelimited(text,delimiter){
+    text=String(text).replace(/^\uFEFF/,'');
+    delimiter=delimiter||(text.split(/\r?\n/)[0].includes('\t')?'\t':',');
+    const rows=[];let row=[],cell='',quoted=false;
+    for(let i=0;i<text.length;i++){
+      const c=text[i];
+      if(c==='"'){
+        if(quoted&&text[i+1]==='"'){cell+='"';i++;}
+        else if(quoted||!cell)quoted=!quoted;
+        else cell+=c;
+      }else if(c===delimiter&&!quoted){row.push(cell);cell='';}
+      else if((c==='\n'||c==='\r')&&!quoted){
+        if(c==='\r'&&text[i+1]==='\n')i++;
+        row.push(cell);rows.push(row);row=[];cell='';
+      }else cell+=c;
+    }
+    if(quoted)throw Error('따옴표가 닫히지 않았어요. 시트 전체를 다시 복사해 주세요.');
+    if(cell||row.length){row.push(cell);rows.push(row);}
+    return rows;
+  }
+  function amount(v,blankZero=false){
+    const s=clean(v).replace(/[\s,]/g,'').replace(/만원/g,'');
+    if(!s&&blankZero)return 0;
+    if(!/^\d+(\.\d+)?$/.test(s))throw Error('금액을 확인해 주세요: '+clean(v));
+    return Number(s);
+  }
+  const money=n=>Number(n.toFixed(4))+'만 원';
+  function convert(rows,weekHint=''){
+    if(!Array.isArray(rows)||rows.length>2000||rows.some(r=>!Array.isArray(r)))throw Error('주차별 시트 전체 표를 가져와 주세요.');
+    rows=rows.map(r=>r.map(clean));
+    const weekMatch=(weekHint+' '+rows.slice(0,4).flat().join(' ')).match(/\d+월\s*\d+주차/);
+    if(!weekMatch)throw Error('주차를 찾지 못했어요. 주차별 탭 전체를 가져와 주세요.');
+    const week=weekMatch[0].replace(/월\s*/,'월 ');
+    const summaryIndex=rows.findIndex(r=>r.some(c=>norm(c)==='지급대상')&&r.some(c=>norm(c)==='총합(만원)'));
+    if(summaryIndex<0)throw Error('사람별 관리표의 수령인·총합(만원)·지급 대상 열이 필요해요. 접속기록 탭 대신 주차별 탭을 선택해 주세요.');
+    const header=rows[summaryIndex];
+    const col=name=>{const n=header.findIndex(c=>norm(c)===name);if(n<0)throw Error('필요한 열이 없어요: '+name);return n;};
+    const ix={name:col('수령인'),status:col('지급대상'),total:col('총합(만원)'),ssg:col('신세계(만원)'),cu:col('CU(만원)'),creator:col('크리에이터(만원)'),work:col('작품(만원)')};
+    const notice=header.findIndex(c=>norm(c)==='당첨안내');
+    const ranks=[];
+    for(let i=0;i<summaryIndex;i++){
+      const h=rows[i];
+      if(!h.includes('순위')||!h.includes('수령인')||!h.includes('금액(만원)')||!h.includes('상품권'))continue;
+      const isWork=h.includes('작품'),ni=h.indexOf('수령인'),ri=h.indexOf('순위'),ai=h.indexOf('금액(만원)'),ti=h.indexOf('작품');
+      for(let j=i+1;j<summaryIndex;j++){
+        const r=rows[j];if(!/^\d+$/.test(r[ri]||''))break;
+        ranks.push({name:r[ni],rank:Number(r[ri]),category:isWork?'작품':'크리에이터',title:isWork?(r[ti]||'').replace(/\s+/g,' '):'',amount:amount(r[ai])});
+      }
+    }
+    const people=[],names=new Set();
+    for(let i=summaryIndex+1;i<rows.length;i++){
+      const r=rows[i];
+      if(/합계/.test(r[ix.name]||''))break;
+      if(norm(r[ix.status])!=='지급대상')continue;
+      const name=r[ix.name];if(!name||names.has(name))throw Error('수령인 이름이 비어 있거나 중복되어 있어요. 사람별 관리표를 확인해 주세요.');
+      names.add(name);
+      const total=amount(r[ix.total]),ssg=amount(r[ix.ssg],true),cu=amount(r[ix.cu],true);
+      const awards=ranks.filter(a=>a.name===name);
+      const creator=amount(r[ix.creator],true),work=amount(r[ix.work],true);
+      const creatorSum=awards.filter(a=>a.category==='크리에이터').reduce((n,a)=>n+a.amount,0);
+      const workSum=awards.filter(a=>a.category==='작품').reduce((n,a)=>n+a.amount,0);
+      if(total<=0||Math.abs(ssg+cu-total)>0.0001||Math.abs(creator+work-total)>0.0001||!awards.length||Math.abs(creatorSum-creator)>0.0001||Math.abs(workSum-work)>0.0001)throw Error(name+' 님의 순위별 금액과 사람별 경품 합계가 맞지 않아요. 시트를 확인해 주세요.');
+      const prizes=[];if(ssg)prizes.push('신세계 상품권 '+money(ssg));if(cu)prizes.push('CU 상품권 '+money(cu));
+      people.push({name,total,ssg,cu,notice:notice<0?'':r[notice],sourceRow:i+1,
+        awards:awards.sort((a,b)=>a.category.localeCompare(b.category)||a.rank-b.rank).map(a=>a.category+' 부문 : '+a.rank+'위'+(a.title?' · '+a.title:'')+' ('+money(a.amount)+')').join('\n'),prize:prizes.join(' + ')});
+    }
+    return {week,people,total:people.reduce((n,p)=>n+p.total,0),rowCount:rows.length};
+  }
+  root.WeeklySheet={parseDelimited,convert,money};
+  if(typeof module==='object')module.exports=root.WeeklySheet;
+})(typeof globalThis==='object'?globalThis:this);
