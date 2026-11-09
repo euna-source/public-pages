@@ -30,6 +30,12 @@
     return Number(s);
   }
   const money=n=>Number(n.toFixed(4))+'만 원';
+  function formatPrize(text){
+    return String(text??'')
+      .replace(/(신세계|CU)\s+(?:모바일\s+)?상품권/g,'$1 모바일 상품권')
+      .replace(/(\d+(?:\.\d+)?)\s*만\s*원/g,'$1만 원')
+      .replace(/(만 원)\s*(?:[（(]\s*(\d+)\s*장\s*[)）]|(\d+)\s*장)/g,(_,unit,a,b)=>unit+'('+(a||b)+'장)');
+  }
   function convert(rows,weekHint=''){
     if(!Array.isArray(rows)||rows.length>2000||rows.some(r=>!Array.isArray(r)))throw Error('주차별 시트 전체 표를 가져와 주세요.');
     rows=rows.map(r=>r.map(clean));
@@ -70,7 +76,7 @@
       for(const brand of ['신세계','CU']){
         const cards=awards.filter(a=>a.brand===brand&&a.amount>0).map(a=>a.amount).sort((x,y)=>y-x);
         if(Math.abs(cards.reduce((n,x)=>n+x,0)-(brand==='CU'?cu:ssg))>0.0001)throw Error(name+' 님의 순위별 상품권과 사람별 상품권 합계가 맞지 않아요. 시트를 확인해 주세요.');
-        const counts=[...new Set(cards)].map(x=>Number(x.toFixed(4))+'만원('+cards.filter(y=>y===x).length+'장)');
+        const counts=[...new Set(cards)].map(x=>money(x)+'('+cards.filter(y=>y===x).length+'장)');
         if(counts.length)prizes.push(brand+' 모바일 상품권 '+counts.join(', '));
       }
       people.push({name,total,ssg,cu,notice:notice<0?'':r[notice],sourceRow:i+1,
@@ -94,6 +100,6 @@
     if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
     return {weeks,errors};
   }
-  root.WeeklySheet={parseDelimited,convert,convertBook,money};
+  root.WeeklySheet={parseDelimited,convert,convertBook,money,formatPrize};
   if(typeof module==='object')module.exports=root.WeeklySheet;
 })(typeof globalThis==='object'?globalThis:this);

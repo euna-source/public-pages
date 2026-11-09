@@ -92,7 +92,7 @@ function makeSelectedMail(){
   const v={...DEFAULTS,
     subject:'[Cre8orClub] '+data.week+' 위클리 베스트 수상 및 경품 지급 안내',
     preheader:data.week+' 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
-    week:data.week,name:p.name,awards:p.awards,total:'모바일 상품권 '+WeeklySheet.money(p.total),prize:p.prize,
+    week:data.week,name:p.name,awards:p.awards,total:'모바일 상품권 '+WeeklySheet.money(p.total),prize:WeeklySheet.formatPrize(p.prize),
     receipt:$('receiptVersion').value==='custom'?$('receipt').value:RECEIPTS[receiptVersion],bizno:$('bizno').value||DEFAULTS.bizno};
   KEYS.forEach(k=>$(k).value=v[k]);setMode(false);syncReceiptVersion();
   sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인한 뒤 복사해 주세요. 이메일 주소는 시트에 없어 자동 입력하지 않아요.');
@@ -137,6 +137,8 @@ window.addEventListener('message',e=>{
 });
 if($('receipt').value===PREVIOUS_BASIC){$('receipt').value=RECEIPTS.basic;render();}
 if($('receipt').value===PREVIOUS_KNOCK){$('receipt').value=RECEIPTS.knock;render();}
+for(const data of Object.values(weeks)){if(Array.isArray(data?.people))for(const p of data.people){if(typeof p?.prize==='string')p.prize=WeeklySheet.formatPrize(p.prize);}}
+$('prize').addEventListener('change',()=>{$('prize').value=WeeklySheet.formatPrize($('prize').value);render();});
 updateWeeks();syncReceiptVersion();
 if(location.hash==='#sheet-import'){
   history.replaceState(null,'',location.pathname+location.search);
