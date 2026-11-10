@@ -1099,9 +1099,9 @@
     "slug": "c8-qa-2646",
     "mode": "main",
     "url": "https://euna-source.github.io/public-pages/c8-qa-2646/",
-    "last_kind": "new",
-    "last_sha256": "a6a5400b2e7747d150a33935e4bd36fb08f29e2f390756ce230e15d3eedb4a5c",
-    "timestamp": "2026-11-10T02:10:09.141396Z"
+    "last_kind": "redeploy",
+    "last_sha256": "8bf6780568d86e244a827e1139744dcb6a270e5c5dba96744f2dd137c1b957dd",
+    "timestamp": "2026-11-10T03:37:03.079442Z"
   },
   "c8-contact-mail": {
     "slug": "c8-contact-mail",
