@@ -248,7 +248,7 @@ function render(){
   [['wDesk',ui.width==='desk'],['wMobile',ui.width!=='desk']].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
   $('mail').classList.toggle('mobile',ui.width!=='desk');
   // Header
-  const nm=plainName(v['활동명']);$('who').textContent=nm?nm+' 님':'받는 분을 골라 주세요';
+  const nm=plainName(v['활동명']);$('who').textContent=nm?nm+' 님':'받는 분을 골라 주세요';$('who').classList.toggle('is-empty',!nm);
   // Person summary and sheet note
   const p=findPerson(ui.current);
   $('personSummary').hidden=!p;$('sheetNote').hidden=!(p&&p.note);
@@ -635,7 +635,7 @@ $('prevPerson').onclick=()=>step(-1);$('nextPerson').onclick=()=>step(1);
 $('recipientList').addEventListener('keydown',e=>{
   const items=[...$('recipientList').children];if(!items.length)return;
   let i=items.findIndex(li=>li.id===$('recipientList').getAttribute('aria-activedescendant'));
-  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();i=e.key==='ArrowDown'?Math.min(items.length-1,i+1):Math.max(0,i-1);items.forEach(li=>li.classList.remove('active'));$('recipientList').setAttribute('aria-activedescendant',items[i].id);items[i].scrollIntoView({block:'nearest'});items.forEach((li,j)=>li.style.outline=j===i?'2px solid var(--focus-in)':'');}
+  if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();i=e.key==='ArrowDown'?Math.min(items.length-1,i+1):Math.max(0,i-1);items.forEach(li=>li.classList.remove('active'));$('recipientList').setAttribute('aria-activedescendant',items[i].id);items[i].scrollIntoView({block:'nearest'});items.forEach((li,j)=>li.classList.toggle('active',j===i));}
   if(e.key==='Enter'&&i>=0){e.preventDefault();choose(items[i].dataset.key);}
 });
 $('primary').onclick=()=>primary($('primary'));$('primaryM').onclick=()=>primary($('primaryM'));
