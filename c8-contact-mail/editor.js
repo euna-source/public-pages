@@ -317,7 +317,7 @@ function render(){
   // Seen count
   // DM: the line stands as its own paragraph after 「인스타그램에서 …보고 연락드렸어요」, so it reads as what struck us.
   $('seenLabel').textContent=isEmail?(nm?nm+'님 작품에서 본 것':'본 것 한 줄'):(nm?nm+'님 작업에서 인상 깊었던 점':'인상 깊었던 점');
-  $('seenHelp').textContent=isEmail?'이 분 작품에서 본 것을 한 문장으로 써요.':'「인스타그램에서 …작업을 보고 연락드렸어요」 다음 문단에 그대로 들어가요.';
+  $('seenHelp').textContent=isEmail?'「…작업이 인상 깊어 연락드렸어요」 다음 문단에 그대로 들어가요.':'「인스타그램에서 …작업을 보고 연락드렸어요」 다음 문단에 그대로 들어가요.';
   $('v-seen').placeholder=isEmail?'예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.':'예: 손으로 접은 종이가 펼쳐지며 끝나는 장면이 특히 인상 깊었어요.';
   $('editTitle').textContent=isEmail?'이번 메일만 문구 고치기':'이번 DM만 문구 고치기';
   renderWorkLink(p,isEmail);
@@ -334,7 +334,7 @@ function render(){
   $('editSummary').textContent=edited.length?'고친 곳 '+edited.length:'';$('editBadge').hidden=!edited.length;
   document.querySelectorAll('[data-tpl]').forEach(i=>{const c=i.dataset.tpl.split('.')[0];i.closest('.tpl-field').hidden=(c==='email')!==isEmail;const m=i.closest('.tpl-field').querySelector('.changed');if(m)m.hidden=!edited.includes(i.dataset.tpl);});
   // Preview: inbox card + canvas
-  $('ibFrom').textContent=($('v-sender').value.trim()||'담당자')+' (크리에이터클럽)';
+  $('ibFrom').textContent='크리에이터클럽';
   $('ibSubj').innerHTML=esc(shown.subjectMarked).replace(/\u0001/g,'<mark class="mailmark">').replace(/\u0002/g,'</mark>');
   $('ibSnip').textContent=r.emailText.replace(/\s+/g,' ').slice(0,90);
   $('ibTo').textContent='받는 사람 '+($('to').value.trim()||'(비어 있음)');
@@ -780,7 +780,7 @@ $('copyBody').onclick=()=>{const b=$('copyBody');if(b.dataset.mode==='reopen')re
 $('alreadySent').onclick=async()=>{if(await ask(plainName($('v-name').value)+'님에게 이미 보냈나요?','이 창 목록에 올리고 시트에 붙일 줄을 복사해요.',[['닫기','close'],['보냈어요 · 기록하기','go',true]])==='go')record();};
 $('copySubject').onclick=()=>copyWithFeedback($('copySubject'),last.subject);
 $('copyTo').onclick=()=>{const t=$('to').value.trim();if(!t)return goField('to');copyWithFeedback($('copyTo'),t);};
-$('openLinks').onclick=()=>{[C.LINKS.app,C.LINKS.form,C.LINKS.chat].forEach(u=>window.open(u,'_blank','noopener'));};
+$('openLinks').onclick=()=>{window.open(C.LINKS.hub,'_blank','noopener');};
 $('checkSummary').onclick=$('checkSummaryM').onclick=()=>{if(!lastChecks.length)return;checklistOpen=$('checklist').hidden;render();if(matchMedia('(max-width:1023px)').matches)openPreviewSheet();};
 $('checkCollapse').onclick=()=>{checklistOpen=false;render();$('checkSummary').focus();};
 $('exFile').onclick=download;

@@ -658,7 +658,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
           </div>
           <div class="seen-head"><label for="v-seen" id="seenLabel">본 것 한 줄</label><span class="count num" id="seenCount">0/120자</span></div>
           <textarea class="field" id="v-seen" data-var="본 것 한 줄" rows="3" aria-describedby="seenHelp seenErr" placeholder="예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요."></textarea>
-          <p class="help" id="seenHelp">이 분 작품에서 본 것을 한 문장으로 써요.</p>
+          <p class="help" id="seenHelp">「…작업이 인상 깊어 연락드렸어요」 다음 문단에 그대로 들어가요.</p>
           <p class="err" id="seenErr" hidden></p>
           <details class="examples"><summary><svg class="i"><use href="#i-down"/></svg>예시 보기</summary>
             <ul><li>「밤의 정류장」에서 가로등 빛만 따뜻하게 남긴 색이 오래 남았어요.</li><li>릴스 마지막에 손으로 접은 종이가 펼쳐지는 장면이 계속 생각났어요.</li><li>같은 인물을 세 계절로 그린 연작에서 옷 주름이 계절마다 달라지는 게 좋았어요.</li></ul>
@@ -671,7 +671,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
             <div class="rowf"><label for="v-name">활동명</label><div><input class="field" id="v-name" data-var="활동명" autocomplete="off" aria-describedby="err-v-name"><p class="err" id="err-v-name" hidden></p></div></div>
             <div class="rowf" data-only="email"><label for="to">받는 메일 주소</label><div><input class="field" id="to" type="email" autocomplete="off" spellcheck="false" inputmode="email" placeholder="name@example.com" aria-describedby="err-to"><p class="err" id="err-to" hidden></p></div></div>
             <div class="rowf" data-only="dm" hidden><label for="handle">인스타 계정</label><div><input class="field" id="handle" autocomplete="off" spellcheck="false" placeholder="parang.art" aria-describedby="err-handle"><p class="err" id="err-handle" hidden></p></div></div>
-            <div class="rowf" data-only="email"><label for="v-platform">본 곳</label><div><input class="field" id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off" aria-describedby="err-v-platform"><p class="err" id="err-v-platform" hidden></p></div></div>
+            <div class="rowf" data-only="email"><label for="v-platform">본 곳</label><div><input class="field" id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off" aria-describedby="help-v-platform err-v-platform" placeholder="예: 홈페이지와 「밤의 정류장」"><p class="help" id="help-v-platform">「○○님의 (본 곳) 작업이 인상 깊어 연락드렸어요」에 들어가요.</p><p class="err" id="err-v-platform" hidden></p></div></div>
             <div class="rowf" id="workRowInfo" hidden><label for="v-work-info">작품명</label><div><input class="field" id="v-work-info" autocomplete="off"></div></div>
           </div>
           <datalist id="platforms"><option value="인스타그램"><option value="비핸스"><option value="노트폴리오"><option value="유튜브"><option value="사운드클라우드"><option value="브런치"><option value="포스타입"><option value="네이버 블로그"></datalist>
@@ -687,7 +687,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
         <details class="fold" id="settingsFold">
           <summary><span class="t">보내기 설정</span><span class="s" id="settingsSummary"></span><svg class="i chev"><use href="#i-down"/></svg></summary>
           <div class="inner">
-            <div data-only="email"><label for="v-sender">담당자명</label><input class="field" id="v-sender" data-var="담당자명" autocomplete="name" aria-describedby="err-v-sender"><p class="help">이 브라우저에 기억해요.</p><p class="err" id="err-v-sender" hidden></p></div>
+            <div data-only="email"><label for="v-sender">담당자명</label><input class="field" id="v-sender" data-var="담당자명" autocomplete="name" aria-describedby="err-v-sender"><p class="help">메일에는 안 들어가요. 시트 기록과 답장 문안에 쓰고, 이 브라우저에 기억해요.</p><p class="err" id="err-v-sender" hidden></p></div>
             <div>
               <div class="switch-row"><span id="adLabel">광고성 정보로 보내기</span><button class="switch" role="switch" id="adOn" aria-checked="false" aria-labelledby="adLabel"></button></div>
               <div class="indent" id="adBox" hidden>
@@ -738,7 +738,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
             <button role="radio" id="wMobile" aria-checked="false" tabindex="-1">휴대폰</button>
           </div>
           <div class="switch-row"><span id="markLabel">바뀌는 부분 보기</span><button class="switch" role="switch" id="markOn" aria-checked="false" aria-labelledby="markLabel"></button></div>
-          <button class="btn sm" id="openLinks">링크 3개 열기<svg class="i"><use href="#i-ext"/></svg></button>
+          <button class="btn sm" id="openLinks">참여 링크 열기<svg class="i"><use href="#i-ext"/></svg></button>
           <span class="num" id="sizeNote" data-only="email"></span>
           <span class="badge" id="adBadge" hidden>광고 표기 켜짐</span>
           <span class="badge" id="editBadge" hidden>이번 메일만 고친 문구예요</span>

@@ -1,7 +1,9 @@
 /* Contact message templates, filling and checks. Pure functions only: no network, no storage, no candidate data. */
 (function(root){
   'use strict';
-  const LINKS={app:'https://app.cre8orclub.com',form:'https://forms.gle/t22LtA8dTVBrUc2X8',chat:'https://open.kakao.com/o/pPlfzgWi'};
+  const LINKS={app:'https://app.cre8orclub.com',form:'https://forms.gle/t22LtA8dTVBrUc2X8',chat:'https://open.kakao.com/o/pPlfzgWi',
+    // One page that carries the app, the form and the chat; the mail points here instead of listing all three.
+    hub:'https://litt.ly/cre8orclub'};
   // Reward terms live in one place so a grade-based amount decision changes only this line.
   const REWARD={per:'1만 원',max:5,total:'5만 원'};
   const COMPANY={name:'㈜라텔앤드파트너즈',address:'서울특별시 중구 필동로 16 참그루빌딩 2층',email:'support@cre8orclub.com'};
@@ -16,35 +18,34 @@
   ];
   const DEFAULTS={
     // Same sections as the Weekly Best award mail so both mails read as one family.
+    // The applied mail (2026-11-10): sent as the team, one link to the hub page.
     email:{
       subject:'{활동명}님, 크리에이터클럽에서 인사드려요',
       preheader:'{활동명}님의 작업을 크리에이터클럽에 소개하고 싶어요. 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'을 드려요.',
       headline:'{활동명}님의 작업을\n크리에이터클럽에서도 소개하고 싶어요',
       greeting:[
-        '안녕하세요, **{활동명}님.**',
-        '크리에이터클럽을 만들고 있는 {담당자명}이에요.',
+        '안녕하세요, **{활동명}님!**',
+        '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
         '',
-        '{플랫폼}에 올려 주신 작업들을 봤어요. {본 것 한 줄}',
-        '보다가 문득, 이 작업들이 크리에이터클럽에서도 소개되면 좋겠다 싶어서 연락드려요.'
+        '{활동명}님의 {플랫폼} 작업이 인상 깊어 연락드렸어요.',
+        '',
+        '{본 것 한 줄}',
+        '',
+        '이렇게 자신만의 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요.'
       ].join('\n'),
-      intro:'크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이에요. 올려 둔 작업을 알리고, 그 작업에 공감하는 창작자를 만나고, 함께 일할 사람도 여기서 찾아요. 전문가에게 작업의 가치를 인정받고, 새로운 협업으로 이어지는 자리를 만들어 가고 있어요.',
-      gift:[
-        '그 시작을 {활동명}님과 함께하고 싶어요. 기존 작업을 포트폴리오로 올려 주시면 감사의 뜻으로 드려요.',
-        '• 선물: **작업 1개당 신세계 모바일 상품권 '+REWARD.per+'**',
-        '• 최대: '+REWARD.max+'개, 총 '+REWARD.total,
-        '• 보내는 날: 매주 화요일'
+      intro:[
+        '크리에이터클럽은 자신의 작업을 알리고, 그 가치를 알아보는 동료를 만나 새로운 협업을 시작하는 공간이에요.',
+        '',
+        '{활동명}님의 개성 있는 작업이 크리에이터클럽에서도 소개되고, 다양한 분야의 창작자들과 새로운 기회로 이어지면 좋겠어요.'
       ].join('\n'),
+      gift:'지금은 기존 작업을 포트폴리오로 올려 주시면 **1개당 신세계 모바일 상품권 '+REWARD.per+', 최대 '+REWARD.total+'**을 드리고 있어요.',
       steps:[
-        '새로 만드실 건 없어요. 아래 두 가지만 해 주시면 돼요.',
-        '',
-        '1. [크리에이터클럽 앱]('+LINKS.app+')을 받아 기존 작업을 포트폴리오로 올려 주세요.',
-        '2. [참여 신청서]('+LINKS.form+')에 포트폴리오 링크를 남겨 주세요.',
-        '',
-        '확인하고 **매주 화요일에 상품권을 보내 드려요.**'
+        '참여 방법은 아래 링크에서 확인해 주세요.',
+        '['+LINKS.hub+']('+LINKS.hub+')'
       ].join('\n'),
-      ask:'궁금한 게 있으면 이 메일에 답장 주셔도 되고, [오픈채팅방]('+LINKS.chat+')에서 물어보셔도 돼요. 바쁘시면 답 안 주셔도 괜찮아요.',
-      closing:'긴 글 읽어 주셔서 고마워요. 앞으로의 작업도 계속 보고 있을게요.',
-      signature:'{담당자명} · 크리에이터클럽',
+      ask:'궁금한 점은 언제든 편하게 회신해 주세요.',
+      closing:'{활동명}님의 다음 작업도 기대하며, 크리에이터클럽에서도 멋진 작품들을 만나볼 수 있으면 좋겠습니다!',
+      signature:'크리에이터클럽 드림',
       footer:'본 메일은 {활동명}님이 공개해 두신 연락처로 작품 소개를 제안드리기 위해 한 번 보내는 메일이에요. 답이 없으시면 다시 연락드리지 않을게요. '+TRUST
     },
     dm:{
@@ -124,7 +125,7 @@
     return markHtml(h);
   }
   function inlinePlain(s){
-    return unmark(String(s).replace(/\[([^\]]+)\]\(mailto:([^)\s]+)\)/g,'$2').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,'$1($2)').replace(/\*\*([^*]+)\*\*/g,'$1'));
+    return unmark(String(s).replace(/\[([^\]]+)\]\(mailto:([^)\s]+)\)/g,'$2').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,t,u)=>t===u?u:t+'('+u+')').replace(/\*\*([^*]+)\*\*/g,'$1'));
   }
   function blocks(text){return String(text).split(/\n{2,}/).map(p=>p.split('\n').filter(l=>l.trim()!=='')).filter(p=>p.length);}
   const SECTION_TITLES={gift:'🎁 감사 선물',steps:'📝 참여 방법',ask:'💬 궁금한 점'};
@@ -255,12 +256,12 @@
     const typed=[v['본 것 한 줄'],v['활동명'],v['작품명']].map(clean).join('\n');
     AVOID.forEach(a=>{const m=typed.match(a.re);if(m)add('warn','avoid','손으로 쓴 칸의 「'+[...new Set(m)].join('·')+'」 — '+a.why+'.');});
     if(/\{[^{}\n]+\}/.test(text))add('block','leftover','채워지지 않은 {칸}이 남아 있어요.');
-    // Links: the three canonical ones must survive any one-off edit, over https, never shortened.
+    // Links: the hub link must survive any one-off edit, over https, never shortened.
     // Only anchors the sender controls: the fixed layout's policy links, logo and font are not part of the check.
     const fixed=new Set(Object.values(POLICY));
     const all=channel==='email'?[...r.emailHtml.matchAll(/<a href="([^"]+)"/g)].map(m=>m[1]).filter(u=>!/^mailto:/.test(u)&&!fixed.has(u)).concat(links(r.subject)):links(r.dm);
-    // The DM points to our profile link instead, so only the mail must carry all three.
-    const missing=channel==='email'?[['app','앱'],['form','신청서'],['chat','오픈채팅']].filter(([k])=>!all.includes(LINKS[k])):[];
+    // The DM points to our profile link instead, so only the mail must carry the hub link.
+    const missing=channel==='email'?[['hub','참여 방법']].filter(([k])=>!all.includes(LINKS[k])):[];
     missing.forEach(([k,label])=>add('block','link-missing:'+k,label+' 링크('+LINKS[k]+')가 문구에서 빠졌어요.'));
     all.filter(u=>/^http:\/\//i.test(u)).forEach(u=>add('block','link-http','https가 아닌 링크가 있어요: '+u));
     all.filter(u=>SHORTENERS.test(u)).forEach(u=>add('block','link-short','단축 주소는 사기 링크처럼 보여요: '+u));
