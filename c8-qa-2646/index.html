@@ -213,7 +213,7 @@ const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>(
 const SRC='<!doctype html>\n'+document.documentElement.outerHTML;
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 const SNAP=window.__SNAP||null;
-const RKEY=SNAP?'qa2646-snap-'+SNAP.at:'qa2646-res';
+const RKEY=SNAP?'qa2646-snap-'+(SNAP.id||SNAP.at):'qa2646-res';
 let RES=LS.get(RKEY,null)||(SNAP?JSON.parse(JSON.stringify(SNAP.res)):{});
 let LASTOS=LS.get('qa2646-lastos','ios'),OPEN=new Set(),LIMIT=150;
 const OSK={ios:'iOS',aos:'AOS'},OSN={ios:'iOS',aos:'Android'};
@@ -318,13 +318,14 @@ function vItems(k,cat,q){const o=OSK[k],isDev=cat==='DEV';
  ${seg?`<div class="seg" id="seg">${seg}</div>`:''}
  <div class="filters"><label class="sch">${ic('search')}<input type="search" id="f-q" placeholder="ID·제목·문구 검색" aria-label="검색"></label><select id="f-pr" aria-label="우선순위"><option value="">모든 우선순위</option><option>P0</option><option>P1</option><option>P2</option></select><select id="f-rs" aria-label="결과"><option value="">모든 결과</option><option value="todo">아직 안 함</option><option value="fail">실패</option><option value="block">막힘</option><option value="pass">통과</option><option value="na">해당 없음</option></select><select id="f-or" aria-label="출처"><option value="">모든 출처</option><option value="add">보완만</option><option value="prep">개발 준비 필요</option></select><button class="btn ghost" id="openall" type="button">모두 펼치기</button></div>
  <p class="hint"><span id="cnt"></span> · 결과 버튼을 누를 때마다 통과 → 실패 → 막힘 → 해당 없음 → 비움 순서로 바뀌어요.</p><div id="list" class="list"></div>`}
-function fillList(k,cat,q){const o=OSK[k],isDev=cat==='DEV',tab=q.tab||'all';
+function fillCount(k,cat,q){fillList(k,cat,q,true)}
+function fillList(k,cat,q,countOnly){const o=OSK[k],isDev=cat==='DEV',tab=q.tab||'all';
  const fp=$('#f-pr').value,fr=$('#f-rs').value,fo=$('#f-or').value,fq=$('#f-q').value.trim().toLowerCase();
  let rows=by(r=>(isDev?r.st==='DEV':(r.st!=='DEV'&&(cat==='ALL'||r.cat===cat)))&&oses(r).includes(o)&&(isDev||tab==='all'||r.st===tab)&&(!fp||r.pri===fp)&&(!fo||(fo==='add'?r.add:r.tier==='QA·개발 준비')));
  if(fr)rows=rows.filter(r=>fr==='todo'?!res(r,o):res(r,o)===fr);
  if(fq)rows=rows.filter(r=>(r.id+' '+r.t+' '+r.act+' '+(r.exp||[]).join(' ')+' '+r.flow).toLowerCase().includes(fq));
  const order={L0:0,L1:1,L2:2,L3:3,DEV:4};rows.sort((a,b)=>order[a.st]-order[b.st]);
- const s=stat(rows,o);let h='',last='';
+ const s=stat(rows,o);$('#cnt').textContent=`${rows.length.toLocaleString()}개 · 통과 ${s.p} · 실패 ${s.f} · 막힘 ${s.b}`;if(countOnly)return;let h='',last='';
  for(const r of rows.slice(0,LIMIT)){const g=(!isDev&&tab==='all'?STS[r.st]+' · ':'')+r.flow;if(g!==last){h+=`<div class="flow">${esc(g)}</div>`;last=g}h+=item(r,o)}
  if(rows.length>LIMIT)h+=`<button class="btn more" id="more" type="button">${rows.length-LIMIT}개 더 보기</button>`;
  $('#list').innerHTML=h||'<p class="empty">조건에 맞는 항목이 없어요.</p>';
@@ -357,18 +358,18 @@ function markNav(){const p=(location.hash||'#/status').slice(2).split('?')[0];do
 // 라우터
 function route(){let h=location.hash||'#/status';
  const legacy=h.match(/^#\/(items|dev|rules)(.*)$/);if(legacy){const m=legacy[1];location.replace(m==='rules'?'#/ref'+legacy[2]:m==='dev'?`#/os/${LASTOS}/dev`:`#/os/${LASTOS}/items${legacy[2]}`);return}
- const [path,qs]=h.slice(2).split('?');const q=Object.fromEntries(new URLSearchParams(qs||''));const p=path.split('/');LIMIT=150;
+ const [path,qs]=h.slice(2).split('?');const q=Object.fromEntries(new URLSearchParams(qs||''));if(!['all','L0','L1','L2','L3'].includes(q.tab))delete q.tab;const p=path.split('/');LIMIT=150;
  let html;
  if(p[0]==='os'&&OSK[p[1]]){const k=p[1];if(LASTOS!==k){LASTOS=k;LS.set('qa2646-lastos',k)}
-  if(p[2]==='items'||p[2]==='dev'){const cat=p[2]==='dev'?'DEV':(p[3]||'ALL');$('#view').innerHTML=vItems(k,cat,q);wireList(k,cat,q);done();return}
+  if(p[2]==='items'||p[2]==='dev'){const cat=p[2]==='dev'?'DEV':(CATS.some(c=>c.id===p[3])?p[3]:'ALL');$('#view').innerHTML=vItems(k,cat,q);wireList(k,cat,q);done();return}
   html=vOS(k)}
- else if(p[0]==='criteria')html=vCriteria();else if(p[0]==='ref')html=vRef(p[1]);else html=vStatus();
+ else if(p[0]==='criteria')html=vCriteria();else if(p[0]==='ref')html=vRef(['bug','words','decide','excl','setup','explore','basis'].includes(p[1])?p[1]:'basis');else html=vStatus();
  $('#view').innerHTML=html;wireStatus();done()}
 function done(){markNav();document.body.classList.remove('nav');window.scrollTo(0,0);const h1=$('#view h1');if(h1)document.title=h1.textContent+' · 26.46.0 출시 QA'}
 function wireList(k,cat,q){const go=()=>fillList(k,cat,q);['#f-pr','#f-rs','#f-or'].forEach(s=>$(s).onchange=()=>{LIMIT=150;go()});let t;$('#f-q').oninput=()=>{clearTimeout(t);t=setTimeout(()=>{LIMIT=150;go()},200)};
  const seg=$('#seg');if(seg)seg.onclick=e=>{const b=e.target.closest('button');if(!b)return;q.tab=b.dataset.tab;history.replaceState(null,'',location.hash.split('?')[0]+(q.tab==='all'?'':'?tab='+q.tab));seg.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));document.querySelectorAll('.chips a').forEach(a=>{a.href=a.href.split('?')[0]+(q.tab==='all'?'':'?tab='+q.tab)});LIMIT=150;go()};
  $('#openall').onclick=()=>{const it=[...document.querySelectorAll('.it')];const all=it.every(x=>x.classList.contains('open'));it.forEach(x=>{x.classList.toggle('open',!all);const id=x.id.slice(2);all?OPEN.delete(id):OPEN.add(id);x.querySelector('.tog').setAttribute('aria-expanded',!all)});$('#openall').textContent=all?'모두 펼치기':'모두 접기'};
- $('#list').onclick=e=>{const rb=e.target.closest('.rb');if(rb){const cyc=['','pass','fail','block','na'];const id=rb.dataset.id,o=rb.dataset.o;const cur=(RES[id]||{})[o]||'';const nx=cyc[(cyc.indexOf(cur)+1)%cyc.length];RES[id]=RES[id]||{};if(nx)RES[id][o]=nx;else delete RES[id][o];LS.set(RKEY,RES);rb.className='rb '+nx;rb.textContent=RL[nx]||'결과';rb.setAttribute('aria-label',`${id} 결과: ${RL[nx]||'아직 안 함'}. 눌러서 바꾸기`);nav();return}
+ $('#list').onclick=e=>{const rb=e.target.closest('.rb');if(rb){const cyc=['','pass','fail','block','na'];const id=rb.dataset.id,o=rb.dataset.o;const cur=(RES[id]||{})[o]||'';const nx=cyc[(cyc.indexOf(cur)+1)%cyc.length];RES[id]=RES[id]||{};if(nx)RES[id][o]=nx;else delete RES[id][o];LS.set(RKEY,RES);rb.className='rb '+nx;rb.textContent=RL[nx]||'결과';rb.setAttribute('aria-label',`${id} 결과: ${RL[nx]||'아직 안 함'}. 눌러서 바꾸기`);nav();$('#f-rs').value?go():fillCount(k,cat,q);return}
   if(e.target.id==='more'){LIMIT+=150;go();return}
   const tg=e.target.closest('[data-tog]');if(tg){const it=tg.closest('.it');it.classList.toggle('open');const id=tg.dataset.tog,on=it.classList.contains('open');on?OPEN.add(id):OPEN.delete(id);tg.setAttribute('aria-expanded',on)}};
  go()}
@@ -379,8 +380,8 @@ function save(blob,name){const a=document.createElement('a');a.href=URL.createOb
 function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove('on'),2400)}
 // HTML 저장: 지금 결과를 담은 사본 한 파일
 function saveHTML(){const d=new Date(),z=n=>String(n).padStart(2,'0');const at=`${d.getFullYear()}-${z(d.getMonth()+1)}-${z(d.getDate())} ${z(d.getHours())}:${z(d.getMinutes())}`;
- const OT='<scr'+'ipt id="snap">',CT='</scr'+'ipt>';const snap=OT+'window.__SNAP='+JSON.stringify({at,res:RES}).replace(/</g,'\\u003c')+CT;
- const si=SRC.indexOf(OT);let html=si<0?SRC:SRC.slice(0,si)+SRC.slice(SRC.indexOf(CT,si)+CT.length);html=html.replace('<body>','<body>'+snap);
+ const id=at.replace(/\D/g,'')+'-'+Math.random().toString(36).slice(2,8);const OT='<scr'+'ipt id="snap">',CT='</scr'+'ipt>';const snap=OT+'window.__SNAP='+JSON.stringify({at,id,res:RES}).replace(/</g,'\\u003c')+CT;
+ const si=SRC.indexOf(OT);let html=si<0?SRC:SRC.slice(0,si)+SRC.slice(SRC.indexOf(CT,si)+CT.length);const bi=html.indexOf('<body'),be=html.indexOf('>',bi)+1;html=html.slice(0,be)+snap+html.slice(be);
  save(new Blob([html],{type:'text/html'}),`26.46.0-출시-QA-현황-${at.replace(/[-: ]/g,'').slice(2,12)}.html`);toast('HTML 파일을 저장했어요. 지금 결과가 담겨 있어요.')}
 // 화면 밝기: 시스템 → 밝게 → 어둡게
 const TH=['auto','light','dark'],THN={auto:'시스템 설정',light:'밝게',dark:'어둡게'};
