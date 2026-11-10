@@ -1095,14 +1095,6 @@
     "last_sha256": "bcc93a5b5e6f4f1329de175fa23d687ef4f4e7f91e9b525e860c899e7f172395",
     "timestamp": "2026-11-09T01:07:40.412493Z"
   },
-  "c8-qa-2646": {
-    "slug": "c8-qa-2646",
-    "mode": "main",
-    "url": "https://euna-source.github.io/public-pages/c8-qa-2646/",
-    "last_kind": "redeploy",
-    "last_sha256": "a6a5400b2e7747d150a33935e4bd36fb08f29e2f390756ce230e15d3eedb4a5c",
-    "timestamp": "2026-11-10T01:02:37.624451Z"
-  },
   "c8-contact-mail": {
     "slug": "c8-contact-mail",
     "mode": "main",
