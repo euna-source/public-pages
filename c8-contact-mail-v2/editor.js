@@ -265,7 +265,7 @@ function placePlatform(){
 }
 function resetPersonUi(){
   clearFoldFocus();foldDismissed=false;copyStale=false;
-  $('personFold').open=ui.current==='manual';   // someone typed in by hand: the fields are the task
+  $('personFold').open=true;   // 샐리 11/11: the person's details are shown open as soon as someone is chosen
   toggleCoach(false);
   delete $('primary').dataset.flash;
   $('writeScroll').scrollTop=0;$('previewScroll').scrollTop=0;if(mqNarrow.matches)window.scrollTo(0,0);
