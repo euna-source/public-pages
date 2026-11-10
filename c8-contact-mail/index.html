@@ -62,6 +62,8 @@
   /* 층 */
   --z-sticky:5;--z-bar:20;--z-scrim:25;--z-drawer:30;--z-toast:40;
   --seg-on:#FFFFFF;
+  /* 거르기 select의 chevron(#i-down과 같은 모양, 글 2단 색) */
+  --chev-select:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235F5F5B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 /* 다크 — 틀만 어두워지고 주 버튼은 브랜드 초록으로 뒤집힘. 두 블록은 같은 값 */
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
@@ -80,6 +82,7 @@
   --sh-dialog:0 0 0 1px rgba(255,255,255,.10),0 16px 48px rgba(0,0,0,.6);--sh-toast:0 0 0 1px rgba(255,255,255,.10),0 6px 20px rgba(0,0,0,.5);
   --sh-bar:0 -1px 0 var(--line),0 -8px 24px rgba(0,0,0,.4);
   --seg-on:#3A3A3A;
+  --chev-select:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8A8A8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }}
 :root[data-theme="dark"]{
   --bg:#121212;--surface:#1C1C1C;--surface-2:#262626;--surface-3:#303030;--surface-4:#3A3A3A;
@@ -97,6 +100,7 @@
   --sh-dialog:0 0 0 1px rgba(255,255,255,.10),0 16px 48px rgba(0,0,0,.6);--sh-toast:0 0 0 1px rgba(255,255,255,.10),0 6px 20px rgba(0,0,0,.5);
   --sh-bar:0 -1px 0 var(--line),0 -8px 24px rgba(0,0,0,.4);
   --seg-on:#3A3A3A;
+  --chev-select:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23A8A8A8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
 }
 /* 기본 */
 *{box-sizing:border-box}
@@ -180,13 +184,16 @@ label.btn{margin:0}   /* label 기본 margin(6px) 상쇄 — 「받은 파일 �
 |---|---|---|---|
 | #primary (1440 행동 줄) | primary | md 44, r12 | 화면 유일의 검정 채움(다크: 초록). 글만 바뀜 |
 | #primaryM (아래 고정 줄) | primary + lg | 52, r16 | HTML에 class="btn primary lg" |
-| #sheetDownload 「후보 탭 내려받기」 | primary ↔ tinted | md, 열 폭 100% | editor.js 318행 classList.toggle('primary') 그대로 |
+| #sheetDownload 「시트 내려받기」 | primary ↔ tinted | md, 열 폭 100% | editor.js 318행 classList.toggle('primary') 그대로 |
 | label[for=sheetFile] 「받은 파일 선택」 | tinted | md, 열 폭 100% | 인라인 style 제거 |
 | #importPaste, #tplReset, #replyClose, #manualClose, #copyOptout, #copyOptoutRow, #copySource, #copyBody, #exportBtn(▾ 오른쪽), #previewOpen(eye 왼쪽), #drawerToggle(users 왼쪽), 확인 창 [닫기] | tinted(기본 .btn) | md 44 | 테두리 없음 |
 | #copySubject, #copyTo (.inbox 카드) | tinted sm | 36 | 카드가 늘 흰색이라 색 고정: .inbox .btn{background:#ECECE8;color:#111} |
-| #openLinks, #seenWork(ext 오른쪽), summaryLinks a.btn, #copyLog, 「이 문장 넣기」, 점검 목록 [고치기]·[인스타 DM으로 바꾸기], .err 안 fix, 「빼기」 | tinted sm | 36 | 틴트 행(.checklist li) 위에서는 흰 면 |
+| #postOpen 「열기」(ext 오른쪽, 작품 링크 칸 옆) | tinted | md, 칸 높이 48 | aria-disabled면 흐리게 + 누르면 칸으로 |
+| #listSearchClear (검색 칸 안 ×) | icon(플레인) | 36(터치 44) | 값이 있을 때만 |
+| #openLinks, #copyLog, 「이 문장 넣기」, 점검 목록 [고치기]·[인스타 DM으로 바꾸기], .err 안 fix, 「빼기」 | tinted sm | 36 | 틴트 행(.checklist li) 위에서는 흰 면 |
 | #alreadySent | plain(.text) | 행동 줄 44 | 밑줄 없음 |
-| #checkCollapse, #filterReset, #allDoneReset, 「자세히」, 「다시 내려받기」 | plain | 36 | |
+| #checkCollapse, #filterReset, #allDoneReset, 「자세히」, 「다시 내려받기」, #scopeLine 「모두 보기」·「보낼 분만 보기」, 「시트 주소로 되돌리기」 | plain | 28·24(터치 44) | |
+| #rowLink 「시트에서 보기」 | 글 링크(a.link, 밑줄) | 24 | 요약 줄 끝, gid를 아는 출처만 |
 | #clearLog 「목록 비우기」 | plain danger | 36 | |
 | 확인 창 [지우기] [비우기] [되돌리기] | danger 채움 | md 44 | dialog 안에서만 채움 |
 | #manualOpen 「복사했어요 · Gmail 열기」, 확인 창 [보냈어요 · 기록하기] | primary | md 44 | 모달 아래 화면은 스크림 아래라 「1개」 셈에서 뺌 |
@@ -282,6 +289,22 @@ textarea.field{resize:vertical;line-height:24px}
 .toggle[aria-pressed="true"]{background:var(--surface-3);border-color:transparent;color:var(--text)}
 .toggle svg{display:none;width:16px;height:16px}.toggle[aria-pressed="true"] svg{display:block}
 
+/* --- 찾기 묶음: 검색 칸만 sticky(#recScroll 기준), 거르기 select 하나, 기준 한 줄 --- */
+.find{display:block;position:sticky;top:0;z-index:var(--z-sticky);background:var(--surface);margin:0 calc(var(--col-pad) * -1);padding:12px var(--col-pad) 8px}
+.rec-body:has(>#listArea:not([hidden])){padding-top:0}   /* 검색 칸이 진행 막대 바로 아래에서 시작 */
+.search{position:relative}
+.search .field{min-height:var(--h-md);padding:0 44px 0 40px}
+.search>svg.i{position:absolute;left:14px;top:50%;margin-top:-8px;width:16px;height:16px;color:var(--text-3);pointer-events:none}
+.search .btn.icon{position:absolute;right:4px;top:50%;margin-top:-18px;width:36px;min-height:36px;background:transparent}
+.search:has(#listSearchClear[hidden]) .field{padding-right:12px}   /* 지우기 버튼이 없을 때는 placeholder가 끝까지 보이게 */
+input[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+.chip-select{appearance:none;-webkit-appearance:none;max-width:100%;min-height:var(--h-chip);padding:0 30px 0 12px;border:1px solid var(--line-strong);border-radius:var(--r-pill);background:transparent var(--chev-select) no-repeat right 10px center/14px;color:var(--text-2);font:600 var(--fs-cap)/var(--lh-cap) var(--font);text-overflow:ellipsis;white-space:nowrap;overflow:hidden;cursor:pointer;margin-top:4px;align-self:flex-start}
+.chip-select.on{background-color:var(--surface-3);border-color:transparent;color:var(--text)}   /* .toggle[aria-pressed=true]와 같은 모양 */
+@media (hover:hover) and (pointer:fine){.chip-select:hover{background-color:var(--surface-2)}.chip-select.on:hover{background-color:var(--surface-4)}}
+.scope-line{margin:8px 0 0;font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
+.scope-line .btn.text{min-height:28px;padding:0 6px;margin-left:2px;vertical-align:baseline;font-weight:600;font-size:var(--fs-cap);line-height:var(--lh-cap)}
+@media (pointer:coarse){.chip-select{min-height:var(--h-md)}.scope-line .btn.text,#postHelp .btn.text{min-height:var(--h-md)}.search .btn.icon{width:44px;min-height:44px;margin-top:-22px;right:0}}
+
 /* --- 받는 분 열: 머리줄·진행 막대·목록 --- */
 .col-title{font:600 var(--fs-head)/var(--lh-head) var(--font);flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .progress{padding:12px var(--col-pad) 0;display:flex;align-items:center;gap:10px;font:600 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
@@ -289,10 +312,8 @@ textarea.field{resize:vertical;line-height:24px}
 .bar>i{display:block;height:100%;background:var(--accent);border-radius:var(--r-pill);transition:width var(--t-panel) var(--ease)}   /* 초록 ① 검정 트랙 위 */
 .rec-body{padding:12px var(--col-pad) 24px;display:flex;flex-direction:column;gap:12px}
 .meta-line{font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
-.meta-line select{font:inherit;border:0;border-radius:var(--r-sm);background:var(--surface-2);color:var(--text);padding:4px 8px;min-height:28px}
-.filters{display:flex;flex-wrap:wrap;gap:8px}
 .list{list-style:none;margin:0 calc(var(--col-pad) * -1);padding:0}
-.list li{position:relative;display:grid;grid-template-columns:1fr auto;gap:2px 8px;align-items:center;min-height:var(--h-row);padding:8px var(--col-pad) 8px 24px;border:0;cursor:pointer;transition:background-color var(--t-fast) ease-out}
+.list li{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 8px;align-items:center;min-height:var(--h-row);padding:8px var(--col-pad) 8px 24px;border:0;cursor:pointer;transition:background-color var(--t-fast) ease-out}
 .list li+li::after{content:'';position:absolute;left:24px;right:var(--col-pad);top:0;height:1px;background:var(--line)}
 @media (hover:hover) and (pointer:fine){.list li:hover{background:var(--surface-2)}}
 .list li[aria-selected="true"]{background:var(--surface-2)}
@@ -301,8 +322,10 @@ textarea.field{resize:vertical;line-height:24px}
 .list li::before{content:'';position:absolute;left:10px;top:50%;width:4px;height:24px;margin-top:-12px;border-radius:var(--r-pill);background:var(--accent);transform:scaleY(0);transform-origin:center;transition:transform var(--t-panel) var(--ease)}
 .list li[aria-selected="true"]::before{transform:scaleY(1)}
 .list .nm{font:400 var(--fs-body)/var(--lh-body) var(--font);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.list .sub{grid-column:1;font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
-.list .st{grid-row:1/3;grid-column:2;display:flex;align-items:center;gap:4px;font:600 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
+.list .sub{grid-column:1/-1;font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.list .sub .src{font-weight:600;color:var(--text)}   /* 출처 낱말(후보·수집). 배지 컴포넌트 아님 */
+.list li.dim .sub .src{color:var(--text-3)}
+.list .st{grid-row:1;grid-column:2;display:flex;align-items:center;gap:4px;font:600 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
 .list li.dim .nm,.list li.dim .sub{color:var(--text-3)}
 .list li:focus-visible,.list li.active{outline:0;box-shadow:inset 0 0 0 2px var(--focus-in),inset 0 0 0 4px var(--focus-out)}   /* editor.js 638행 인라인 outline 대신 */
 .empty-list{padding:16px 0;color:var(--text-2);font-size:var(--fs-cap);display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}
@@ -344,8 +367,17 @@ textarea.field{resize:vertical;line-height:24px}
 .alert .row{display:flex;gap:var(--btn-gap);flex-wrap:wrap}
 .alert.block .btn{background:var(--surface);color:var(--block)}
 .summary{display:flex;flex-direction:column;gap:8px}
-.summary .line{font-size:var(--fs-cap);color:var(--text-2)}
-.summary .row{display:flex;gap:var(--btn-gap);flex-wrap:wrap}
+.summary .line{font-size:var(--fs-cap);line-height:var(--lh-cap);color:var(--text-2);margin:0}
+.summary .line .link,a.link{color:var(--text-2);text-decoration:underline;text-underline-offset:2px;display:inline-flex;align-items:center;gap:2px;min-height:24px}
+a.link .i{width:14px;height:14px}
+@media (hover:hover) and (pointer:fine){a.link:hover{color:var(--text)}}
+/* 작품 링크: 칸 + 「열기」(틴트 md, 칸 높이 48에 맞춤) */
+.work-link{margin-bottom:20px}
+.url-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start}
+.url-row .btn{min-height:var(--h-input)}
+#postOpen[aria-disabled="true"]{opacity:.45;cursor:not-allowed}
+#postHelp .btn.text{min-height:24px;padding:0 4px;font:600 var(--fs-cap)/var(--lh-cap) var(--font);vertical-align:baseline}
+@media (pointer:coarse){#postHelp .btn.text{min-height:var(--h-md)}}   /* 위 24px 규칙이 306행 터치 44를 덮지 않게 */
 
 /* --- 미리보기 열: 행동 줄·상태 칩·점검 목록·도구 줄 --- */
 /* 1360~1500 폭이나 긴 이름에서는 한 줄에 다 안 들어가므로 열 밖으로 밀지 않고 두 줄로 접는다(들어가면 한 줄 그대로) */
@@ -480,6 +512,9 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
   .write-scroll{padding:16px 16px 144px}   /* 아래 고정 줄 최대 128 + 16 */
   /* 입력 17 — id 특이도(147행)를 이김. 원인 ③ */
   .field,textarea.field,textarea#v-seen{font-size:var(--fs-input-m);line-height:var(--lh-input-m);min-height:52px;padding:14px}
+  .search .field{font-size:var(--fs-input-m);line-height:var(--lh-input-m);min-height:var(--h-md);padding:0 44px 0 40px}
+  .search:has(#listSearchClear[hidden]) .field{padding-right:12px}   /* iOS 확대 방지 17px, 높이는 44 그대로 */
+  .url-row .btn{min-height:52px}   /* 좁은 폭 칸 높이 52에 맞춤 */
   .group{padding:16px}
   .preview-scroll{padding:12px 8px 48px}
   /* 미리보기 시트 행동 줄: 2행 grid, 기능 그대로 */
@@ -529,6 +564,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
   <symbol id="i-dot" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></symbol>
   <symbol id="i-pen" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 1 1 3 3L7 19l-4 1 1-4Z"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
 </svg>
 <h1 class="sr">직접 컨택 편집기</h1>
@@ -550,9 +586,9 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
         <div class="drop" id="dropEmpty">
           <div class="glyph" aria-hidden="true"><svg class="i xl"><use href="#i-users"/></svg></div>
           <h2>아직 명단이 없어요</h2>
-          <p>후보 탭을 내려받아 여기에 끌어 놓으면 둘 다 O인 분만 보여요.</p>
+          <p>시트를 내려받아 여기에 끌어 놓으면 지금 보낼 수 있는 분부터 보여요.</p>
           <div class="row">
-            <button class="btn" id="sheetDownload"><svg class="i"><use href="#i-down-file"/></svg>후보 탭 내려받기</button>
+            <button class="btn" id="sheetDownload"><svg class="i"><use href="#i-down-file"/></svg>시트 내려받기</button>
             <label class="btn" for="sheetFile">받은 파일 선택</label>
           </div>
           <details id="pasteBox"><summary><svg class="i"><use href="#i-down"/></svg>시트에서 붙여 넣기</summary>
@@ -564,15 +600,21 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
         </div>
         <input type="file" id="sheetFile" class="sr" accept=".csv,.tsv,.xlsx,text/csv,text/tab-separated-values,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
         <div id="listArea" hidden>
+          <search class="find">
+            <div class="search">
+              <svg class="i" aria-hidden="true"><use href="#i-search"/></svg>
+              <input class="field" id="listSearch" type="search" role="searchbox" aria-label="받는 분 찾기" aria-controls="recipientList" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="이름·계정·메일·분야로 찾기">
+              <button class="btn icon" id="listSearchClear" type="button" aria-label="검색어 지우기" hidden><svg class="i" aria-hidden="true"><use href="#i-x"/></svg></button>
+            </div>
+          </search>
           <div class="meta-line" id="listMeta"></div>
           <div class="meta-line" id="listStale" hidden></div>
-          <div class="filters" style="margin-top:12px">
-            <button class="toggle" id="fBoth" aria-pressed="true"><svg class="i"><use href="#i-check"/></svg>둘 다 O인 분만</button>
-            <button class="toggle" id="fOpen" aria-pressed="true"><svg class="i"><use href="#i-check"/></svg>아직 연락 안 한 분만</button>
-          </div>
+          <select class="chip-select" id="listFilter" aria-label="출처·분야로 거르기"></select>
+          <p class="scope-line" id="scopeLine"></p>
+          <div class="sr" id="listLive" aria-live="polite"></div>
           <ul class="list" id="recipientList" role="listbox" aria-label="받는 분 목록" tabindex="0" style="margin-top:8px"></ul>
-          <div class="empty-list" id="filterEmpty" hidden>조건에 맞는 분이 없어요. <button class="btn text" id="filterReset">거르기 풀기</button></div>
-          <div class="empty-list" id="allDone" hidden>이 명단의 연락 전 분에게 모두 보냈어요. <button class="btn text" id="allDoneReset">거르기 풀고 전체 보기</button></div>
+          <div class="empty-list" id="filterEmpty" hidden><span id="filterEmptyText">조건에 맞는 분이 없어요.</span> <button class="btn text" id="filterReset">거르기 풀기</button></div>
+          <div class="empty-list" id="allDone" hidden>이 명단의 연락 전 분에게 모두 보냈어요. <button class="btn text" id="allDoneReset">모두 보기</button></div>
         </div>
       </div>
       <section class="sent" id="sentGroup" hidden aria-labelledby="sentHeading">
@@ -601,12 +643,20 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
       <div class="write-scroll">
         <div id="alertSlot"></div>
         <div class="summary" id="personSummary" hidden>
-          <span class="line num" id="summaryLine"></span>
-          <div class="row" id="summaryLinks"></div>
+          <p class="line num" id="summaryLine"></p>
         </div>
         <div>
           <div class="note" id="sheetNote" hidden style="margin-bottom:12px"></div>
-          <div class="seen-head"><label for="v-seen" id="seenLabel">본 것 한 줄</label><span style="display:flex;gap:12px;align-items:center"><a class="btn sm" id="seenWork" target="_blank" rel="noopener" hidden>작품 열기<svg class="i"><use href="#i-ext"/></svg></a><span class="count num" id="seenCount">0/120자</span></span></div>
+          <div class="work-link">
+            <label for="v-post">작품 링크</label>
+            <div class="url-row">
+              <input class="field" id="v-post" data-var="게시물 주소" type="url" inputmode="url" spellcheck="false" autocomplete="off" placeholder="https://" aria-describedby="postHelp err-v-post">
+              <a class="btn" id="postOpen" target="_blank" rel="noopener noreferrer">열기<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
+            </div>
+            <p class="help" id="postHelp"></p>
+            <p class="err" id="err-v-post" hidden></p>
+          </div>
+          <div class="seen-head"><label for="v-seen" id="seenLabel">본 것 한 줄</label><span class="count num" id="seenCount">0/120자</span></div>
           <textarea class="field" id="v-seen" data-var="본 것 한 줄" rows="3" aria-describedby="seenHelp seenErr" placeholder="예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요."></textarea>
           <p class="help" id="seenHelp">이 분 작품에서 본 것을 한 문장으로 써요.</p>
           <p class="err" id="seenErr" hidden></p>
@@ -622,7 +672,6 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
             <div class="rowf" data-only="email"><label for="to">받는 메일 주소</label><div><input class="field" id="to" type="email" autocomplete="off" spellcheck="false" inputmode="email" placeholder="name@example.com" aria-describedby="err-to"><p class="err" id="err-to" hidden></p></div></div>
             <div class="rowf" data-only="dm" hidden><label for="handle">인스타 계정</label><div><input class="field" id="handle" autocomplete="off" spellcheck="false" placeholder="parang.art" aria-describedby="err-handle"><p class="err" id="err-handle" hidden></p></div></div>
             <div class="rowf" data-only="email"><label for="v-platform">본 곳</label><div><input class="field" id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off" aria-describedby="err-v-platform"><p class="err" id="err-v-platform" hidden></p></div></div>
-            <div class="rowf" data-only="dm" hidden><label for="v-post">본 게시물 주소</label><div><input class="field" id="v-post" data-var="게시물 주소" type="url" spellcheck="false" autocomplete="off" placeholder="https://www.instagram.com/reel/…" aria-describedby="err-v-post"><p class="err" id="err-v-post" hidden></p></div></div>
             <div class="rowf" id="workRowInfo" hidden><label for="v-work-info">작품명</label><div><input class="field" id="v-work-info" autocomplete="off"></div></div>
           </div>
           <datalist id="platforms"><option value="인스타그램"><option value="비핸스"><option value="노트폴리오"><option value="유튜브"><option value="사운드클라우드"><option value="브런치"><option value="포스타입"><option value="네이버 블로그"></datalist>
@@ -728,10 +777,9 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
 </div>
 
 <div popover id="listMenu" class="menu" role="menu" aria-label="명단 메뉴">
-  <button role="menuitem" id="mRedownload">후보 탭 다시 내려받기</button>
+  <button role="menuitem" id="mRedownload">다시 내려받기</button>
   <button role="menuitem" id="mOtherFile">다른 파일 가져오기</button>
   <button role="menuitem" id="mPaste">시트에서 붙여 넣기</button>
-  <button role="menuitem" id="mTab" hidden>탭 바꾸기</button>
   <div class="sep"></div>
   <button role="menuitem" class="danger" id="mClear">가져온 명단 지우기</button>
 </div>

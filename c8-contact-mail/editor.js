@@ -1,7 +1,8 @@
 /* Wiring only. The candidate sheet's status column is the send record of truth; drafts, the list and this window's
    sends live in sessionStorage and end with the window. Only the sender name and company phone are remembered. */
 const SHEET_ID='1BBRYmwNxBEnUpDuLTSg6KLmVgzaxVpdfjT-aU92ZTo4';
-const CANDIDATE_GID='862905173';
+// Tab gids for 「시트에서 보기」. 수집 gid is filled in when 샐리 shares it (결정 3); until then 수집 rows get no sheet link.
+const TAB_GID={후보:'862905173',수집:'619389779'};
 const KEY={people:'c8-contact-people-v1',ui:'c8-contact-ui-v2',drafts:'c8-contact-drafts-v2',tpl:'c8-contact-tpl-once-v2',sender:'c8-contact-sender-v1',phone:'c8-contact-phone-v1',log:'c8-contact-sent-v1'};
 const $=id=>document.getElementById(id);
 const C=ContactMail,K=Candidates;
@@ -23,7 +24,11 @@ const yymmdd=d=>String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart
 let sheet=store.get(S,KEY.people,null);
 let log=store.get(S,KEY.log,[]);if(!Array.isArray(log))log=[];
 let drafts=store.get(S,KEY.drafts,{});if(!drafts||typeof drafts!=='object')drafts={};
-let ui=Object.assign({channel:'email',current:'manual',subject:0,footer:true,ad:false,mark:false,width:'desk',fBoth:true,fOpen:true,tab:''},store.get(S,KEY.ui,{}));
+let ui=Object.assign({channel:'email',current:'manual',subject:0,footer:true,ad:false,mark:false,width:'desk',scope:'ready',filter:''},store.get(S,KEY.ui,{}));
+// Two toggles became one scope: a window that had either one off keeps seeing everyone.
+if('fBoth' in ui||'fOpen' in ui){ui.scope=(ui.fBoth===false||ui.fOpen===false)?'all':'ready';delete ui.fBoth;delete ui.fOpen;}
+delete ui.tab;
+if(ui.scope!=='all')ui.scope='ready';if(typeof ui.filter!=='string')ui.filter='';
 let tpl=mergeTpl(store.get(S,KEY.tpl,null));
 let attempted=false,touched=new Set(),logoBroken=false,focusSeen=false,outline='',last=null,lastChecks=[],checklistOpen=null;
 
@@ -71,34 +76,67 @@ function flash(btn,okText){
 async function copyWithFeedback(btn,text,okText){const ok=await writeText(text);if(ok)flash(btn,okText);else manualCopy(text);return ok;}
 
 /* ---------- People ---------- */
-const tabs=()=>sheet&&sheet.tabs?Object.keys(sheet.tabs):[];
-const currentTab=()=>tabs().includes(ui.tab)?ui.tab:(sheet&&sheet.tab&&tabs().includes(sheet.tab)?sheet.tab:tabs()[0]);
-const tabPeople=()=>{const t=sheet&&sheet.tabs&&sheet.tabs[currentTab()];return t?t.people:[];};
-const everyone=()=>sheet&&sheet.tabs?Object.entries(sheet.tabs).flatMap(([tab,t])=>t.people.map(p=>({...p,tab}))):[];
-// Drafts follow the person (email or Instagram handle), not the row: re-imports and tab changes keep each line with its owner.
-const keyOf=p=>{const id=K.ids(p)[0];return id?'id:'+id:'row:'+(p.tab||currentTab())+':'+plainName(p.name);};
+// [후보] and [플랫폼 수집] are one list (K.merge). Every imported tab, listed or not, is indexed for blocking.
+const EMPTY_POOL={people:[],byKey:new Map(),byId:new Map(),byName:new Map(),compIds:new Map(),history:[],readyOut:0};
+let pool=EMPTY_POOL,fieldTop=null;
+let query='';   // never stored: a search ends with the window
+const hasSheet=()=>!!(sheet&&sheet.tabs&&Object.keys(sheet.tabs).length);
+function listedOf(tabs){
+  const names=Object.keys(tabs||{}),out={};
+  names.forEach(n=>{const s=K.sourceOf(n);if(s)out[n]=s;});
+  if(!Object.keys(out).length)names.forEach(n=>{const t=tabs[n];out[n]=t&&t.columns&&t.columns.purpose?'수집':'후보';});
+  return out;
+}
+function rebuild(){
+  pool=hasSheet()?K.merge(sheet.tabs,sheet.listed||listedOf(sheet.tabs)):EMPTY_POOL;
+  // More than 15 fields: the 12 largest keep their own option, the rest share 「그 밖」.
+  const counts=new Map();pool.people.forEach(p=>{const f=K.clean(p.field);if(f)counts.set(f,(counts.get(f)||0)+1);});
+  fieldTop=counts.size>15?new Set([...counts].sort((a,b)=>b[1]-a[1]||collator.compare(a[0],b[0])).slice(0,12).map(x=>x[0])):null;
+}
+const collator=new Intl.Collator('ko',{numeric:true,sensitivity:'base'});
+const uniq=a=>[...new Set(a)];
+// Drafts follow the person (email or Instagram handle), not the row: re-imports keep each line with its owner.
+const keyOf=p=>p.key||(K.ids(p)[0]?'id:'+K.ids(p)[0]:'row:'+(p.source||'')+':'+(p.row||'')+':'+plainName(p.name));
 const sameIds=(a,b)=>a.some(x=>b.includes(x));
-function findPerson(key){if(!key||key==='manual')return null;const inTab=tabPeople().map(p=>({...p,tab:currentTab()}));return inTab.find(p=>keyOf(p)===key)||everyone().find(p=>keyOf(p)===key)||null;}
+function findPerson(key){if(!key||key==='manual')return null;return pool.byKey.get(key)||null;}
 function idsOfCurrent(){const ids=[];const m=$('to').value.trim().toLowerCase(),h=handleOf($('handle').value).toLowerCase();if(m)ids.push('m:'+m);if(h)ids.push('i:'+h);return ids;}
-function matchesOf(ids,name){return everyone().filter(p=>ids.length?sameIds(K.ids(p),ids):(name&&plainName(p.name)===name));}
-function blockedAnywhere(p){const hit=matchesOf(K.ids(p),plainName(p.name)).find(q=>K.blockedWhy(q));return hit?{why:K.blockedWhy(hit),row:hit.row,tab:hit.tab,name:plainName(hit.name),contacted:!K.uncontacted(hit)}:null;}
-function sentFor(ids,name){return log.find(r=>(ids.length&&sameIds(r.ids||[],ids))||(!ids.length&&r.name===name));}
-function sendable(p){return K.ready(p)&&!blockedAnywhere(p);}
+// One id stands for its whole group across every tab (mail A, handle B, a log row linking them).
+const expandIds=ids=>uniq(ids.flatMap(id=>(pool.compIds&&pool.compIds.get(id))||[id]));
+function matchesOf(ids,name){return ids.length?uniq(expandIds(ids).flatMap(id=>pool.byId.get(id)||[])):(name&&pool.byName.get(name))||[];}
+// Pooled people carry the answer from merge (whole group, every tab); only hand-typed people are looked up here.
+function blockedAnywhere(p){
+  if(p.blocked!==undefined)return p.blocked;
+  const hit=matchesOf(K.ids(p),plainName(p.name)).find(q=>K.blockedWhy(q));
+  return hit?{why:K.blockedWhy(hit),row:hit.row,tab:hit.tab,name:plainName(hit.name),contacted:!K.uncontacted(hit)}:null;
+}
+function sentFor(ids,name){const x=expandIds(ids);return log.find(r=>(x.length&&sameIds(expandIds(r.ids||[]),x))||(!x.length&&r.name===name));}
+const isSent=p=>!!sentFor(p.allIds||K.ids(p),plainName(p.name));
+function sendable(p){return K.ready(p)&&!blockedAnywhere(p)&&!K.purposeWhy(p);}
+const inScope=p=>ui.scope==='all'||(sendable(p)&&!isSent(p));
+function fieldKey(p){const f=K.clean(p.field);return f&&fieldTop&&!fieldTop.has(f)?'*그밖':f;}
+const inFilter=p=>!ui.filter||(ui.filter.startsWith('src:')?(p.source===ui.filter.slice(4)||p.also===ui.filter.slice(4)):fieldKey(p)===ui.filter.slice(6));
+const queryTokens=()=>query.split(/\s+/).map(s=>K.nk(s).replace(/^@/,'')).filter(Boolean);
+const matchesQuery=(p,t)=>(t||queryTokens()).every(x=>p.hay.includes(x));
+function visible(){const t=queryTokens();return pool.people.filter(p=>inScope(p)&&inFilter(p)&&matchesQuery(p,t));}
 function rowStatus(p){
   const key=keyOf(p),d=drafts[key],b=blockedAnywhere(p);
-  if(sentFor(K.ids(p),plainName(p.name)))return {t:'보냈어요',ic:'check'};
+  if(isSent(p))return {t:'보냈어요',ic:'check'};
   if(b)return b.contacted?{t:'시트에 연락함',ic:'ban',dim:1}:{t:'보내지 않아요',ic:'ban',dim:1};
+  if(K.purposeWhy(p))return {t:'목적 다름',ic:'ban',dim:1};
+  if(!K.ready(p))return {t:'확인 전',ic:'',dim:1};
   if(!K.channelOf(p))return {t:'창구 없음',ic:'alert',dim:1};
   if(d&&d.flow==='opened')return {t:K.channelOf(p)==='dm'?'인스타 열었어요':'Gmail 열었어요',ic:'send'};
   if(d&&(d.vars&&d.vars['본 것 한 줄']||'').trim())return {t:'쓰는 중',ic:'pen'};
   return {t:'연락 전',ic:''};
 }
-function visible(){return tabPeople().filter(p=>(!ui.fBoth||K.ready(p))&&(!ui.fOpen||(!blockedAnywhere(p)&&!sentFor(K.ids(p),plainName(p.name)))));}
-function progress(){const pool=tabPeople().filter(sendable);const done=pool.filter(p=>sentFor(K.ids(p),plainName(p.name))).length;return {m:pool.length,n:done};}
+// The progress and 「n명 남음」 count the merged list, whatever the search or filter shows.
+function progress(){const all=pool.people.filter(sendable);return {m:all.length,n:all.filter(isSent).length};}
+// 「다음 분 쓰기」 ignores search and filter: the next sendable, unsent person after the current one.
 function nextPerson(){
-  const list=visible().filter(p=>!sentFor(K.ids(p),plainName(p.name))&&!blockedAnywhere(p));
-  const at=list.findIndex(p=>keyOf(p)===ui.current);
-  return list.length?list[(at+1)%list.length]:null;
+  const all=pool.people;if(!all.length)return null;
+  const at=all.findIndex(p=>keyOf(p)===ui.current);
+  for(let k=1;k<=all.length;k++){const p=all[(Math.max(at,-1)+k+all.length)%all.length];if(keyOf(p)!==ui.current&&sendable(p)&&!isSent(p))return p;}
+  return null;
 }
 
 /* ---------- Form values and drafts ---------- */
@@ -118,11 +156,12 @@ function loadDraftInto(key,p){
   const d=drafts[key];
   const set=(id,val)=>{$(id).value=val||'';};
   if(d){
-    set('v-name',d.vars['활동명']);set('v-platform',d.vars['플랫폼']);set('v-post',d.vars['게시물 주소']);set('v-seen',d.vars['본 것 한 줄']);set('v-work',d.vars['작품명']);
+    // Older drafts kept the post address only for DM people: fall back to the sheet's work address.
+    set('v-name',d.vars['활동명']);set('v-platform',d.vars['플랫폼']);set('v-post',d.vars['게시물 주소']||(p&&p.url)||'');set('v-seen',d.vars['본 것 한 줄']);set('v-work',d.vars['작품명']);
     set('to',d.to);set('handle',d.handle);if(d.channel)ui.channel=d.channel;ui.subject=d.subject||0;
   }else if(p){
     set('v-name',plainName(p.name));set('to',p.email);set('handle',p.handle);set('v-platform',p.platform);
-    set('v-post',/instagram\.com\/(p|reel|reels)\//i.test(p.url)?p.url:'');set('v-seen','');set('v-work','');
+    set('v-post',p.url||'');set('v-seen','');set('v-work','');
     ui.subject=0;const ch=K.channelOf(p);if(ch)ui.channel=ch;
   }else{['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
   touched=new Set();attempted=false;
@@ -141,6 +180,8 @@ async function choose(key,opts){
   const switching=key!==ui.current;
   ui.current=key;
   const p=findPerson(key);
+  // 「다음 분 쓰기」 can land outside the search or filter: release them so the row is on screen. Scope stays.
+  if(p&&!visible().some(q=>q.key===key)&&(query||ui.filter)){query='';$('listSearch').value='';$('listSearchClear').hidden=true;ui.filter='';}
   loadDraftInto(key,p);
   if(switching&&editedKeys().length){store.del(S,KEY.tpl);tpl=mergeTpl(null);fillTplFields();toast('문구를 확정 문안으로 되돌렸어요.');}
   saveDraft();closeDrawer();renderAll();
@@ -169,9 +210,15 @@ const FIELD_OF={'v-name':'v-name','v-sender':'v-sender','v-platform':'v-platform
 function allChecks(r,v){
   const t=activeTpl(),opts=renderOpts();
   const ids=idsOfCurrent(),rec=sentFor(ids,plainName(v['활동명']));
-  const hist=everyone().filter(p=>p.seen).map(p=>({name:plainName(p.name),seen:p.seen})).concat(log.map(x=>({name:x.name,seen:x.seen})));
+  const hist=pool.history.concat(log.map(x=>({name:x.name,seen:x.seen})));
+  const cur=findPerson(ui.current),pw=cur?K.purposeWhy(cur):'';
   const list=C.check(t,v,{...opts,channel:ui.channel,to:$('to').value,now:new Date(),history:hist,sentBefore:rec?fmtDate(rec.at):''});
-  matchesOf(ids,plainName(v['활동명'])).forEach(p=>{const why=K.blockedWhy(p);if(why&&!rec)list.unshift({level:'block',code:'sheet',msg:(p.tab!==currentTab()?p.tab+' 탭 ':'')+p.row+'행 '+plainName(p.name)+'님 — '+why+'. 이 분에게는 보내지 않아요.',field:''});});
+  const sheetMsg=(tab,row,name,why)=>(cur&&tab!==cur.tab?tab+' 탭 ':'')+row+'행 '+name+'님 — '+why+'. 이 분에게는 보내지 않아요.';
+  matchesOf(ids,plainName(v['활동명'])).forEach(p=>{const why=K.blockedWhy(p);if(why&&!rec)list.unshift({level:'block',code:'sheet',msg:sheetMsg(p.tab,p.row,plainName(p.name),why),field:''});});
+  // The merged group may be blocked through an id the form does not show (e.g. the 수집 row's mail).
+  if(cur&&cur.blocked&&!rec&&!list.some(c=>c.code==='sheet'))list.unshift({level:'block',code:'sheet',msg:sheetMsg(cur.blocked.tab,cur.blocked.row,cur.blocked.name,cur.blocked.why),field:''});
+  if(pw&&!rec)list.unshift({level:'block',code:'purpose',msg:(cur.source==='수집'?'플랫폼 수집 탭 ':'후보 탭 ')+cur.row+'행 '+plainName(cur.name)+'님 — '+pw+'. 지금 문안은 기존 작품을 올려 달라는 제안이라 이 분에게는 보내지 않아요.',field:''});
+  if(cur&&!K.ready(cur)&&!pw&&!rec)list.push({level:'warn',code:'not-ready',msg:'시트에서 아직 「직접 확인」이나 「직접 컨택 후보」가 O가 아닌 분이에요. 확인한 뒤 보내 주세요.',field:''});
   if(ui.channel==='email'&&!$('to').value.trim())list.unshift({level:'block',code:'to-empty',msg:'받는 메일 주소가 비어 있어요.',field:'to',fix:handleOf($('handle').value)?['인스타 DM으로 바꾸기',()=>setChannel('dm')]:null});
   if(ui.channel==='dm'&&!handleOf($('handle').value))list.unshift({level:'block',code:'handle-empty',msg:'인스타 계정을 쓰면 DM 창을 바로 열 수 있어요.',field:'handle',fix:$('to').value.trim()?['이메일로 바꾸기',()=>setChannel('email')]:null});
   if(ui.subject===1&&ui.channel==='email'&&!$('v-work').value.trim())list.forEach(c=>{if(c.code==='leftover'||c.code==='empty:작품명'){c.field='v-work';c.fix=['1안으로 바꾸기',()=>{ui.subject=0;renderAll();}];}});
@@ -253,11 +300,9 @@ function render(){
   const p=findPerson(ui.current);
   $('personSummary').hidden=!p;$('sheetNote').hidden=!(p&&p.note);
   if(p){
-    $('summaryLine').textContent=[p.row+'행',p.grade?p.grade+'등급':'',p.platform,p.status||'미연락'].filter(Boolean).join(' · ');
-    const links=$('summaryLinks');links.replaceChildren();
-    const mk=(href,txt)=>{const a=document.createElement('a');a.className='btn sm';a.href=href;a.target='_blank';a.rel='noopener';a.innerHTML=esc(txt)+icon('ext');links.appendChild(a);};
-    if(p.url)mk(p.url,'작품 열기');
-    if(/후보/.test(p.tab||currentTab()))mk('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/edit#gid='+CANDIDATE_GID+'&range=A'+p.row,'시트 '+p.row+'행 열기');
+    const line=$('summaryLine'),href=rowHref(p);
+    line.textContent=[(p.source==='수집'?'플랫폼 수집':'후보')+' 탭 '+p.row+'행',p.grade?p.grade+'등급':'',p.platform,p.status||'미연락'].filter(Boolean).join(' · ');
+    if(href){const a=document.createElement('a');a.className='link';a.id='rowLink';a.href=href;a.target='_blank';a.rel='noopener';a.innerHTML='시트에서 보기'+icon('ext');line.append(' · ',a);}
     $('sheetNote').textContent='시트 비고 · '+(p.note||'');
     const kv=$('sheetKv');kv.innerHTML='';
     const add=(k,val,btn)=>{const dt=document.createElement('dt');dt.textContent=k;const dd=document.createElement('dd');dd.textContent=val||'비어 있음';kv.append(dt,dd);const cell=document.createElement('dd');if(btn)cell.appendChild(btn);kv.appendChild(cell);};
@@ -265,10 +310,10 @@ function render(){
     if(p.seen){const b=document.createElement('button');b.className='btn sm';b.textContent='이 문장 넣기';b.onclick=()=>{$('v-seen').value=p.seen;touched.add('v-seen');autoGrow();saveDraft();render();};add('적힌 본 것',p.seen,b);}
   }
   $('sheetFold').hidden=!p;
-  $('noListHint').hidden=!!(sheet&&tabs().length);
+  $('noListHint').hidden=hasSheet();
   // Seen count
   $('seenLabel').textContent=nm?nm+'님 작품에서 본 것':'본 것 한 줄';
-  const wl=$('seenWork');wl.hidden=!(p&&p.url);if(p&&p.url)wl.href=p.url;
+  renderWorkLink(p,isEmail);
   const n=C.chars(v['본 것 한 줄'].trim());$('seenCount').textContent=n+'/'+C.LIMITS.seenMax+'자';$('seenCount').classList.toggle('over',n>C.LIMITS.seenMax);
   // Subject group
   renderSubjects(v);
@@ -312,10 +357,10 @@ function render(){
   copyBtn.dataset.mode=mode==='record'?'reopen':'copy';
   copyBtn.setAttribute('aria-disabled',String(!!blocks.length&&mode!=='record'));copyBtn.title=blocks.length?blocks.map(x=>x.msg).join('\n'):'';
   copyBtn.hidden=mode==='next';
-  $('alreadySent').hidden=mode!=='open'||!!blocks.find(b=>b.code==='sheet'||b.code==='sent');
+  $('alreadySent').hidden=mode!=='open'||!!blocks.find(b=>b.code==='sheet'||b.code==='sent'||b.code==='purpose');
   ['exFile','exSource','exText'].forEach(id=>$(id).setAttribute('aria-disabled',String(!!blocks.length)));
   // The empty-state download is the one green button only while nothing else can be sent.
-  $('sheetDownload').classList.toggle('primary',!(sheet&&tabs().length)&&!!lockPrimary);
+  $('sheetDownload').classList.toggle('primary',!hasSheet()&&!!lockPrimary);
   renderAlert(flow,nm,p);
   renderReplies();renderSent();
   store.set(S,KEY.ui,ui);
@@ -336,16 +381,31 @@ function renderSubjects(v){
   g.querySelectorAll('label.radio').forEach((l,i)=>{const t=(ui.ad?'(광고) ':'')+(C.fill(opts[i],v)||opts[i]);l.querySelector('.txt').textContent=t;l.querySelector('input').checked=ui.subject===i;});
   $('workRow').hidden=ui.subject!==1;
 }
+// Sheet row link per tab gid (플랫폼 수집 gid read from the live sheet 2026-11-10).
+function rowHref(p){const g=p&&TAB_GID[p.source];return g?'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/edit#gid='+g+'&range=A'+p.row:'';}
+/* ---------- Work link: the sheet address, editable to the exact post ---------- */
+function safeUrl(s){try{const u=new URL(String(s||'').trim());return /^https?:$/.test(u.protocol)?u.href:'';}catch(e){return '';}}
+let postHelpSig='';
+function renderWorkLink(p,isEmail){
+  const v=$('v-post').value.trim(),u=safeUrl(v),sheetUrl=(p&&p.url)||'',edited=!!(sheetUrl&&v&&safeUrl(sheetUrl)!==u);
+  const a=$('postOpen');
+  if(u){a.href=u;a.removeAttribute('aria-disabled');}else{a.removeAttribute('href');a.setAttribute('aria-disabled','true');}
+  const msg=!p&&!v?'본 게시물 주소를 넣으면 바로 열 수 있어요.':p&&!sheetUrl&&!v?'시트에 작품 주소가 없어요. 본 게시물 주소를 넣어 주세요.':isEmail?'메일에는 안 들어가요. 본 게시물 주소로 바꿔도 돼요.':'DM에 이 주소가 들어가요. 게시물 하나의 주소가 좋아요.';
+  const sig=msg+'|'+edited;if(sig===postHelpSig)return;postHelpSig=sig;
+  const h=$('postHelp');h.replaceChildren(msg);
+  if(edited){const b=document.createElement('button');b.type='button';b.className='btn text';b.textContent='시트 주소로 되돌리기';
+    b.onclick=()=>{const f=$('v-post'),q=findPerson(ui.current);f.value=(q&&q.url)||'';f.dispatchEvent(new Event('input',{bubbles:true}));f.focus();};h.append(' · ',b);}
+}
 function renderAlert(flow,nm,p){
   const slot=$('alertSlot');slot.replaceChildren();
   const box=(kind,ic,html,actions)=>{const d=document.createElement('div');d.className='alert '+kind;d.innerHTML='<div class="head">'+icon(ic)+'<div>'+html+'</div></div>';if(actions&&actions.length){const r=document.createElement('div');r.className='row';actions.forEach(a=>r.appendChild(a));d.appendChild(r);}slot.appendChild(d);};
   const btn=(txt,fn,cls,href)=>{const b=document.createElement(href?'a':'button');b.className='btn sm'+(cls?' '+cls:'');if(href){b.href=href;b.target='_blank';b.rel='noopener';b.innerHTML=esc(txt)+icon('ext');}else{b.textContent=txt;b.onclick=fn;}return b;};
-  const rowHref=p&&/후보/.test(p.tab||'')?'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/edit#gid='+CANDIDATE_GID+'&range=A'+p.row:'';
+  const rowUrl=rowHref(p);
   const rec=sentFor(idsOfCurrent(),nm);
-  const sheetBlock=lastChecks.find(c=>c.code==='sheet');
+  const sheetBlock=lastChecks.find(c=>c.code==='purpose'||c.code==='sheet');
   if(rec&&flow==='recorded'){
     const copyRow=btn('시트 줄 복사',null,'primary-ish');copyRow.onclick=()=>copyWithFeedback(copyRow,tsvRow(rec));
-    box('result','check','<strong>'+esc(nm)+'님을 보냄으로 기록했어요.</strong> 메일을 보낸 뒤 시트 줄을 복사해'+(p?' 시트 '+p.row+'행':' 후보 시트')+' 상태 열 옆에 붙여 넣으면 끝나요.',[copyRow,rowHref?btn('시트 '+p.row+'행 열기',null,'',rowHref):null,btn('되돌리기',undo)].filter(Boolean));
+    box('result','check','<strong>'+esc(nm)+'님을 보냄으로 기록했어요.</strong> 메일을 보낸 뒤 시트 줄을 복사해'+(p?' 시트 '+p.row+'행':' 후보 시트')+' 상태 열 옆에 붙여 넣으면 끝나요.',[copyRow,rowUrl?btn('시트 '+p.row+'행 열기',null,'',rowUrl):null,btn('되돌리기',undo)].filter(Boolean));
   }else if(rec){
     box('block','ban',esc(nm)+'님에게는 '+esc(fmtDate(rec.at))+'에 이미 보냈어요. 답이 없으면 다시 보내지 않아요.',[btn('답장이 왔을 때',openReplies)]);
   }else if(sheetBlock){
@@ -358,60 +418,104 @@ function renderAlert(flow,nm,p){
 }
 
 /* ---------- Recipients column ---------- */
+const srcLabel=p=>(p.source==='수집'?'수집 ':'후보 ')+p.row+'행';
 function renderRecipients(){
-  const has=!!(sheet&&tabs().length);
+  const has=hasSheet();
   $('dropEmpty').hidden=has;$('listArea').hidden=!has;$('progress').hidden=!has;
   ['mRedownload','mOtherFile','mPaste','mClear'].forEach(id=>$(id).hidden=!has&&id==='mClear');
-  $('mTab').hidden=tabs().length<2;
   const {m,n}=progress(),left=Math.max(0,m-n);
   $('recHeading').textContent=has?'받는 분 · '+left+'명 남음':'받는 분';
   $('drawerLabel').textContent=has?'받는 분 '+left+'명 남음':'받는 분';
   $('progressText').textContent=n+'/'+m+' 보냄';
   const bar=$('progressBar');bar.setAttribute('aria-valuemax',String(m));bar.setAttribute('aria-valuenow',String(n));bar.firstElementChild.style.width=(m?Math.round(n/m*100):0)+'%';
-  $('fBoth').setAttribute('aria-pressed',String(ui.fBoth));$('fOpen').setAttribute('aria-pressed',String(ui.fOpen));
-  if(has){
-    const t=sheet.tabs[currentTab()];
-    const meta=$('listMeta');meta.replaceChildren();
-    const when=new Date(sheet.importedAt);
-    meta.append(document.createTextNode((sheet.file||'가져온 표')+' · '));
-    if(tabs().length>1){const sel=document.createElement('select');sel.setAttribute('aria-label','탭');tabs().forEach(x=>sel.add(new Option(x+' 탭',x)));sel.value=currentTab();sel.onchange=()=>{ui.tab=sel.value;renderAll();};meta.appendChild(sel);}
-    else meta.append(document.createTextNode(currentTab()+' 탭'));
-    meta.append(document.createTextNode(' · '+(when.toDateString()===new Date().toDateString()?'오늘 ':fmtDate(sheet.importedAt)+' ')+fmtTime(sheet.importedAt)));
-    const issues=importIssues(t);
-    const info=document.createElement('button');info.className='btn text';info.setAttribute('popovertarget','importInfo');info.textContent=issues.length?'확인할 행 '+issues.length+' · 자세히':'자세히';meta.appendChild(info);
-    $('importInfo').innerHTML='<h3>머리글 '+t.header+'행에서 찾은 열</h3><p style="margin:0 0 10px">'+esc(Object.values(t.columns).join(', '))+'</p>'+(issues.length?'<h3>확인할 행</h3><ul>'+issues.slice(0,12).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<p style="margin:0">확인할 행이 없어요.</p>');
-    const stale=Date.now()-when.getTime()>20*3600*1000&&when.toDateString()!==new Date().toDateString();
-    $('listStale').hidden=!stale;
-    if(stale){$('listStale').innerHTML=icon('alert')+'<span>어제 가져온 명단이에요. 그 사이 보낸 분이 있을 수 있어요.</span>';const b=document.createElement('button');b.className='btn text';b.textContent='다시 내려받기';b.onclick=downloadSheet;$('listStale').appendChild(b);}
-    const ul=$('recipientList');ul.replaceChildren();
-    const list=visible();
-    list.forEach(p=>{
-      const st=rowStatus(p),key=keyOf(p);
-      const li=document.createElement('li');li.id='opt-'+key.replace(/[^a-z0-9]/gi,'_');li.setAttribute('role','option');li.dataset.key=key;
-      li.setAttribute('aria-selected',String(key===ui.current));if(st.dim)li.classList.add('dim');
-      const ch=K.channelOf(p);
-      li.innerHTML='<span class="nm">'+esc(p.name)+'</span><span class="st">'+(st.ic?icon(st.ic):'')+esc(st.t)+'</span><span class="sub num">'+esc([p.row+'행',p.grade?p.grade+'등급':'',ch==='email'?'메일':ch==='dm'?'인스타':'창구 없음'].filter(Boolean).join(' · '))+(p.dupOf?' · 중복':'')+'</span>';
-      li.onclick=()=>choose(key);
-      ul.appendChild(li);
-    });
-    const sel=list.find(p=>keyOf(p)===ui.current);ul.setAttribute('aria-activedescendant',sel?'opt-'+keyOf(sel).replace(/[^a-z0-9]/gi,'_'):'');
-    const allSent=m>0&&left===0;
-    $('allDone').hidden=!(allSent&&ui.fOpen);
-    $('filterEmpty').hidden=!!list.length||(allSent&&ui.fOpen);
-    ['prevPerson','nextPerson'].forEach(id=>$(id).disabled=list.length<2);
-  }else ['prevPerson','nextPerson'].forEach(id=>$(id).disabled=true);
+  if(!has){['prevPerson','nextPerson'].forEach(id=>$(id).disabled=true);return;}
+  const meta=$('listMeta');meta.replaceChildren();
+  const when=new Date(sheet.importedAt);
+  meta.append((sheet.file||'가져온 표')+' · '+(when.toDateString()===new Date().toDateString()?'오늘 ':fmtDate(sheet.importedAt)+' ')+fmtTime(sheet.importedAt));
+  const issues=importIssues();
+  const info=document.createElement('button');info.className='btn text';info.setAttribute('popovertarget','importInfo');info.textContent=issues.length?'확인할 행 '+issues.length+' · 자세히':'자세히';meta.appendChild(info);
+  const listed=sheet.listed||listedOf(sheet.tabs);
+  $('importInfo').innerHTML=Object.entries(sheet.tabs).map(([name,t])=>'<h3>'+esc(name)+' 탭'+(listed[name]?'':' · 목록에 올리지 않고 막힘만 확인해요')+'</h3><p style="margin:0 0 10px">머리글 '+t.header+'행 · '+esc(Object.values(t.columns).join(', '))+'</p>').join('')
+    +(issues.length?'<h3>확인할 행</h3><ul>'+issues.slice(0,12).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':'<p style="margin:0">확인할 행이 없어요.</p>');
+  const stale=Date.now()-when.getTime()>20*3600*1000&&when.toDateString()!==new Date().toDateString();
+  $('listStale').hidden=!stale;
+  if(stale){$('listStale').innerHTML=icon('alert')+'<span>어제 가져온 명단이에요. 그 사이 보낸 분이 있을 수 있어요.</span>';const b=document.createElement('button');b.className='btn text';b.textContent='다시 내려받기';b.onclick=downloadSheet;$('listStale').appendChild(b);}
+  renderFilter();renderScope();renderList(m,left);
+}
+function setScope(v){ui.scope=v;store.set(S,KEY.ui,ui);renderRecipients();}
+function setFilter(v){ui.filter=v;store.set(S,KEY.ui,ui);renderRecipients();}
+function renderScope(){
+  const el=$('scopeLine'),b=document.createElement('button');b.type='button';b.className='btn text';
+  if(ui.scope==='ready'){el.replaceChildren('직접 확인·컨택 후보 O, 연락 전인 분만 보여요'+(pool.readyOut?' · 확인 전 '+pool.readyOut.toLocaleString()+'분은 빠져 있어요':''));b.textContent='모두 보기';b.onclick=()=>setScope('all');}
+  else{el.replaceChildren('전체 '+pool.people.length.toLocaleString()+'분이에요. 보낼 수 없는 분은 흐리게 보여요');b.textContent='보낼 분만 보기';b.onclick=()=>setScope('ready');}
+  el.append(' ',b);
+}
+// One select: 출처 and 분야 groups with counts in the current scope (search is not counted). Zero stays as 0.
+function renderFilter(){
+  const sel=$('listFilter'),base=pool.people.filter(inScope);
+  const count=f=>base.reduce((a,p)=>a+(f(p)?1:0),0);
+  const opts=[new Option('출처·분야 전체 '+base.length,'')];
+  const listed=Object.values(sheet&&sheet.listed||{});
+  if(listed.includes('수집')||pool.people.some(p=>p.source==='수집'||p.also==='수집')){
+    const g=document.createElement('optgroup');g.label='출처';
+    g.append(new Option('후보 탭 '+count(p=>p.source==='후보'||p.also==='후보'),'src:후보'),new Option('플랫폼 수집 '+count(p=>p.source==='수집'||p.also==='수집'),'src:수집'));
+    opts.push(g);
+  }
+  const all=new Map();pool.people.forEach(p=>{const k=fieldKey(p);all.set(k,(all.get(k)||0)+1);});
+  const named=[...all].filter(([k])=>k&&k!=='*그밖').sort((a,b)=>b[1]-a[1]||collator.compare(a[0],b[0]));
+  if(all.size){
+    const g=document.createElement('optgroup');g.label='분야';
+    named.forEach(([k])=>g.append(new Option(k+' '+count(p=>fieldKey(p)===k),'field:'+k)));
+    if(all.has('*그밖'))g.append(new Option('그 밖 '+count(p=>fieldKey(p)==='*그밖'),'field:*그밖'));
+    if(all.has(''))g.append(new Option('분야 없음 '+count(p=>!fieldKey(p)),'field:'));
+    opts.push(g);
+  }
+  sel.replaceChildren(...opts);
+  const values=[...sel.options].map(o=>o.value);
+  if(!values.includes(ui.filter)){ui.filter='';store.set(S,KEY.ui,ui);}
+  sel.value=ui.filter;sel.classList.toggle('on',!!ui.filter);
+}
+let liveSig='';
+function renderList(m,left){
+  const ul=$('recipientList'),t=queryTokens();
+  const list=pool.people.filter(p=>inScope(p)&&inFilter(p)&&matchesQuery(p,t));
+  const frag=document.createDocumentFragment();let selId='';
+  list.forEach((p,i)=>{
+    const st=rowStatus(p),key=keyOf(p),ch=K.channelOf(p);
+    const li=document.createElement('li');li.id='opt-'+i;li.setAttribute('role','option');li.dataset.key=key;
+    const on=key===ui.current;li.setAttribute('aria-selected',String(on));if(on)selId=li.id;if(st.dim)li.classList.add('dim');
+    li.innerHTML='<span class="nm">'+esc(p.name)+'</span><span class="st">'+(st.ic?icon(st.ic):'')+esc(st.t)+'</span><span class="sub num"><span class="src">'+(p.source==='수집'?'수집':'후보')+'</span> · '
+      +esc([p.field,p.grade?p.grade+'등급':'',ch==='email'?'메일':ch==='dm'?'인스타':'창구 없음'].filter(Boolean).join(' · '))+(p.dupOf?' · 중복':'')+'</span>';
+    frag.appendChild(li);
+  });
+  ul.replaceChildren(frag);ul.setAttribute('aria-activedescendant',selId);
+  const allDone=m>0&&left===0&&ui.scope==='ready'&&!ui.filter&&!query;
+  $('allDone').hidden=!allDone;
+  const fe=$('filterEmpty');fe.hidden=!!list.length||allDone;
+  if(!fe.hidden){
+    const wider=ui.scope==='ready'?pool.people.filter(p=>inFilter(p)&&matchesQuery(p,t)).length:0;
+    const b=$('filterReset');
+    if(wider){$('filterEmptyText').textContent='지금 보낼 수 있는 분 중에는 없어요. 확인 전이거나 연락한 분까지 보면 '+wider+'명 있어요.';b.textContent='모두 보기';b.onclick=()=>setScope('all');}
+    else if(query&&!pool.people.some(p=>matchesQuery(p,t))){$('filterEmptyText').textContent='‘'+query.trim()+'’에 맞는 분이 없어요.';b.textContent='검색 지우기';b.onclick=()=>clearSearch(true);}
+    else{$('filterEmptyText').textContent='조건에 맞는 분이 없어요.';b.textContent='거르기 풀기';b.onclick=()=>setFilter('');}
+  }
+  const sig=query+'|'+ui.filter+'|'+ui.scope;
+  if(sig!==liveSig){if(liveSig)$('listLive').textContent=list.length+'명';liveSig=sig;}
+  ['prevPerson','nextPerson'].forEach(id=>$(id).disabled=list.length<2);
 }
 function refreshRowStatus(){
   const li=[...$('recipientList').children].find(x=>x.dataset.key===ui.current);const p=findPerson(ui.current);
   if(!li||!p)return;const st=rowStatus(p);li.querySelector('.st').innerHTML=(st.ic?icon(st.ic):'')+esc(st.t);
 }
-function importIssues(t){
+function importIssues(){
   const out=[];
-  t.people.forEach(p=>{
-    if(p.email&&!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(p.email))out.push(p.row+'행 메일 형식을 확인해 주세요');
-    if(p.dupOf)out.push(p.row+'행 같은 메일·계정이 '+p.dupOf.join('·')+'행에도 있어요');
-    if(K.ready(p)&&!p.url)out.push(p.row+'행 작품 주소(출처)가 비어 있어요');
-    if(K.ready(p)&&!K.channelOf(p))out.push(p.row+'행 연락 창구가 없어요');
+  pool.people.forEach(p=>{
+    const at=srcLabel(p);
+    if(p.email&&!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(p.email))out.push(at+' 메일 형식을 확인해 주세요');
+    if(p.dupOf)out.push(at+' 같은 메일·계정이 '+p.dupOf.join('·')+'행에도 있어요');
+    if(p.also)out.push(at+' 두 탭에 모두 있어요('+p.rows.filter(r=>r.source!==p.source).map(srcLabel).join('·')+')');
+    if(K.ready(p)&&!p.url)out.push(at+' 작품 주소(출처)가 비어 있어요');
+    if(K.ready(p)&&!K.channelOf(p))out.push(at+' 연락 창구가 없어요');
   });
   return [...new Set(out)];
 }
@@ -466,12 +570,12 @@ async function copyOnly(btn){
   if(ok){d.flow=d.flow||'copied';d.copiedChannel=snap.channel;store.set(S,KEY.drafts,drafts);if(snap.key===ui.current)flash(btn,'복사했어요');renderAll();}
   else manualCopy(snap.text);
 }
-const tsvRow=r=>[r.name,r.contact,r.channel==='dm'?'인스타 DM':'메일','발송 '+new Date(r.at).toLocaleDateString('ko-KR'),r.sender||'',r.seen||''].join('\t');
+const tsvRow=r=>[r.name,r.contact,r.channel==='dm'?'인스타 DM':'메일','발송 '+new Date(r.at).toLocaleDateString('ko-KR'),r.sender||'',r.seen||'',r.post||''].join('\t');
 async function record(opts){
   const nm=plainName($('v-name').value);if(!nm)return;
   const p=findPerson(ui.current)||matchesOf(idsOfCurrent(),nm)[0];
   const ch=draft().copiedChannel||ui.channel;
-  const r={ids:idsOfCurrent(),name:nm,channel:ch,contact:ch==='email'?$('to').value.trim():'@'+handleOf($('handle').value),row:p?p.row:'',seen:$('v-seen').value.trim(),sender:$('v-sender').value.trim(),at:new Date().toISOString()};
+  const r={ids:uniq(expandIds(idsOfCurrent()).concat(p&&p.allIds||[])),name:nm,channel:ch,contact:ch==='email'?$('to').value.trim():'@'+handleOf($('handle').value),row:p?p.row:'',seen:$('v-seen').value.trim(),post:safeUrl($('v-post').value),sender:$('v-sender').value.trim(),at:new Date().toISOString()};
   log.push(r);store.set(S,KEY.log,log);
   const d=draft();d.flow='recorded';d.recordedAt=r.at;saveDraft();
   // Recording never writes the clipboard: the mail body may still be waiting to be pasted.
@@ -488,7 +592,7 @@ async function primary(btn){
   if(mode==='record')return record();
   if(mode==='next'){const nx=nextPerson();if(nx)return choose(keyOf(nx));if(log.length)return copyAllRows(btn);}
 }
-function copyAllRows(btn){return copyWithFeedback(btn||$('copyLog'),['활동명\t계정·주소\t보낸 곳\t상태\t담당\t본 것 한 줄'].concat(log.map(tsvRow)).join('\n'));}
+function copyAllRows(btn){return copyWithFeedback(btn||$('copyLog'),['활동명\t계정·주소\t보낸 곳\t상태\t담당\t본 것 한 줄\t작품 링크'].concat(log.map(tsvRow)).join('\n'));}
 function download(){
   if($('exFile').getAttribute('aria-disabled')==='true')return shakeTo($('exportBtn'));
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([last.emailHtml],{type:'text/html'}));
@@ -500,7 +604,7 @@ function download(){
 /* ---------- Replies ---------- */
 function replyValues(){
   const p=findPerson(ui.current)||matchesOf(idsOfCurrent(),plainName($('v-name').value))[0];
-  return {'활동명':plainName($('v-name').value)||'작가','담당자명':$('v-sender').value.trim()||'담당자','날짜':new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric'}),'출처':(p&&p.url)||$('v-post').value.trim()||($('v-platform').value.trim()?$('v-platform').value.trim()+' 프로필':'공개 프로필')};
+  return {'활동명':plainName($('v-name').value)||'작가','담당자명':$('v-sender').value.trim()||'담당자','날짜':new Date().toLocaleDateString('ko-KR',{month:'long',day:'numeric'}),'출처':safeUrl($('v-post').value)||(p&&p.url)||($('v-platform').value.trim()?$('v-platform').value.trim()+' 프로필':'공개 프로필')};
 }
 function renderReplies(){if($('replyPanel').hidden)return;$('replyOptout').textContent=C.reply('optout',replyValues());$('replySource').textContent=C.reply('source',replyValues());}
 function openReplies(){$('replyPanel').hidden=false;$('previewArea').hidden=true;openPreviewSheet();renderReplies();$('replyClose').focus();}
@@ -514,17 +618,22 @@ function openPreviewSheet(){if(matchMedia('(max-width:1023px)').matches){$('prev
 function closeSheets(){$('previewCol').classList.remove('open');closeDrawer();}
 
 /* ---------- Import ---------- */
-const sheetError=(msg)=>{const e=$('importError');e.hidden=!msg;e.innerHTML=msg?icon('x')+'<span>'+esc(msg)+'</span>':'';if(msg&&sheet&&tabs().length)toast(msg);};
+const sheetError=(msg)=>{const e=$('importError');e.hidden=!msg;e.innerHTML=msg?icon('x')+'<span>'+esc(msg)+'</span>':'';if(msg&&hasSheet())toast(msg);};
+/* found: [{name, data, source}] where source is '후보'|'수집'|'' (index only). Tabs add to what is already here. */
 function addTabs(found,file){
-  sheet={tabs:{...(sheet&&sheet.tabs?sheet.tabs:{})},tab:'',file,importedAt:new Date().toISOString()};
-  found.forEach(f=>{sheet.tabs[f.name]=f.data;});
-  sheet.tab=(found.find(f=>/후보/.test(f.name))||found[0]).name;ui.tab=sheet.tab;
+  const old=hasSheet()?sheet:{tabs:{},listed:{}};
+  sheet={tabs:{...old.tabs},listed:{...(old.listed||listedOf(old.tabs))},file,importedAt:new Date().toISOString()};
+  found.forEach(f=>{sheet.tabs[f.name]=f.data;if(f.source)sheet.listed[f.name]=f.source;else delete sheet.listed[f.name];});
   store.set(S,KEY.people,sheet);sheetError('');
-  const first=visible().find(p=>sendable(p)&&!sentFor(K.ids(p),plainName(p.name)));
+  rebuild();
+  const nH=pool.people.filter(p=>p.source==='후보').length,nS=pool.people.filter(p=>p.source==='수집').length;
   const pending=log.filter(r=>matchesOf(r.ids||[],r.name).some(p=>K.uncontacted(p)));
-  toast('명단을 가져왔어요 · '+sheet.tabs[sheet.tab].people.length+'명'+(pending.length?' · 이 창에서 보낸 '+pending.length+'명이 시트에 아직 미연락이에요':''));
+  toast('명단을 가져왔어요 · 후보 '+nH+'명'+(nS?' · 수집 '+nS+'명':'')+(pending.length?' · 이 창에서 보낸 '+pending.length+'명이 시트에 아직 미연락이에요':''));
+  const first=pool.people.find(p=>sendable(p)&&!isSent(p));
   if(first)choose(keyOf(first),{force:true});else renderAll();
 }
+// CSV and paste carry one tab: its name says 후보·수집, or a 연락 목적 column means 수집.
+const oneTab=(name,data)=>({name,data,source:K.sourceOf(name)||(data.columns.purpose?'수집':'후보')});
 let xlsxLib;
 function loadXlsx(){
   return xlsxLib||(xlsxLib=new Promise((ok,fail)=>{
@@ -536,25 +645,34 @@ function loadXlsx(){
   }));
 }
 const okFile=f=>/\.(csv|tsv|xlsx)$/i.test(f.name);
+function busy(on){
+  const n=$('dragNote');
+  if(on){n.classList.remove('bad');n.textContent='명단을 읽는 중이에요';n.hidden=false;$('recipients').setAttribute('aria-busy','true');}
+  else{n.hidden=true;$('recipients').removeAttribute('aria-busy');}
+}
 async function importFile(f){
   if(!f)return;
   if(!okFile(f))return sheetError('CSV나 XLSX만 가져올 수 있어요.');
+  busy(true);
   try{
     if(/\.xlsx$/i.test(f.name)){
-      if(f.size>8000000)throw Error('XLSX는 8MB까지 가져올 수 있어요. 후보 탭만 CSV로 내려받아 주세요.');
+      if(f.size>8000000)throw Error('XLSX는 8MB까지 가져올 수 있어요. 시트에서 후보 탭과 플랫폼 수집 탭을 CSV로 하나씩 내려받아 끌어 놓아 주세요.');
       const X=await loadXlsx(),wb=X.read(new Uint8Array(await f.arrayBuffer()),{type:'array'});
-      const found=[];wb.SheetNames.forEach(name=>{try{found.push({name,data:K.convert(X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true}))});}catch(e){}});
+      const found=[];wb.SheetNames.forEach(name=>{try{found.push({name,data:K.convert(X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})),source:K.sourceOf(name)});}catch(e){}});
       if(!found.length)throw Error('후보 명단 열이 있는 탭을 찾지 못했어요. 「이름」과 「직접 확인」 열이 있는 탭을 가져와 주세요.');
+      // No 후보·수집 tab name: the first readable tab is the list, the rest only block.
+      if(!found.some(t=>t.source))found[0].source='후보';
       addTabs(found,f.name);
     }else{
       if(f.size>3000000)throw Error('CSV는 3MB까지 가져올 수 있어요.');
-      addTabs([{name:/후보/.test(f.name)?'후보':f.name.replace(/\.(csv|tsv)$/i,''),data:K.convert(K.parseDelimited(await f.text()))}],f.name);
+      addTabs([oneTab(f.name.replace(/\.(csv|tsv)$/i,''),K.convert(K.parseDelimited(await f.text())))],f.name);
     }
   }catch(e){sheetError(e.message);}
+  finally{busy(false);}
 }
 function downloadSheet(){
-  window.open('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/export?format=csv&gid='+CANDIDATE_GID,'_blank','noopener');
-  toast('후보 탭을 내려받고 있어요. 받은 파일을 받는 분 칸에 끌어 놓아 주세요.');
+  window.open('https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/export?format=xlsx','_blank','noopener');
+  toast('시트를 내려받고 있어요. 받은 파일을 여기에 끌어 놓아 주세요.');
 }
 
 /* ---------- Wording fields (this mail only) ---------- */
@@ -612,6 +730,7 @@ function staleCopy(){
 }
 document.addEventListener('input',e=>{
   const el=e.target;
+  if(el.id==='listSearch')return;   // search never touches drafts, the preview or the copied state
   if(el.dataset&&(el.dataset.var!=null||el.dataset.tpl!=null)&&el.id!=='v-sender'||['to','handle','adPhone','v-sender'].includes(el.id))staleCopy();
   if(el.dataset&&el.dataset.var!=null||['to','handle','adPhone'].includes(el.id)){touched.add(el.id);if(el.id==='v-seen')autoGrow();saveDraft();render();if(el.id==='v-seen')refreshRowStatus();}
 });
@@ -628,9 +747,20 @@ radioKeys('wDesk'.length&&$('wDesk').parentElement.id||'channelSeg',['wDesk','wM
 $('markOn').onclick=()=>{ui.mark=!ui.mark;render();};
 $('adOn').onclick=()=>{staleCopy();ui.ad=!ui.ad;saveDraft();render();if(ui.ad&&!$('adPhone').value.trim())$('adPhone').focus();};
 $('footerOn').onclick=()=>{if(ui.ad)return;staleCopy();ui.footer=!ui.footer;saveDraft();render();};
-$('fBoth').onclick=()=>{ui.fBoth=!ui.fBoth;renderAll();};
-$('fOpen').onclick=()=>{ui.fOpen=!ui.fOpen;renderAll();};
-$('filterReset').onclick=$('allDoneReset').onclick=()=>{ui.fBoth=false;ui.fOpen=false;renderAll();};
+$('allDoneReset').onclick=()=>setScope('all');
+$('listFilter').addEventListener('change',e=>setFilter(e.target.value));
+function clearSearch(focus){const f=$('listSearch');f.value='';query='';$('listSearchClear').hidden=true;renderRecipients();if(focus)f.focus();}
+$('listSearch').addEventListener('input',()=>{query=$('listSearch').value;$('listSearchClear').hidden=!query;renderRecipients();});
+$('listSearch').addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  if(e.isComposing||e.keyCode===229){e.stopPropagation();return;}   // Esc that ends Korean composition is not a command
+  if(!$('listSearch').value)return;   // empty: the global Esc closes the drawer as before
+  e.preventDefault();e.stopPropagation();clearSearch(false);
+});
+$('listSearchClear').onclick=()=>clearSearch(true);
+$('recipientList').addEventListener('click',e=>{const li=e.target.closest('li[data-key]');if(li)choose(li.dataset.key);});
+$('postOpen').addEventListener('click',e=>{if($('postOpen').getAttribute('aria-disabled')==='true'){e.preventDefault();goField('v-post');}});
+$('v-post').addEventListener('blur',()=>{const f=$('v-post'),v=f.value.trim();if(v&&!/^[a-z][a-z0-9+.-]*:/i.test(v)&&/^[\w-]+(\.[\w-]+)+\//i.test(v)){f.value='https://'+v;f.dispatchEvent(new Event('input',{bubbles:true}));}});
 $('prevPerson').onclick=()=>step(-1);$('nextPerson').onclick=()=>step(1);
 $('recipientList').addEventListener('keydown',e=>{
   const items=[...$('recipientList').children];if(!items.length)return;
@@ -661,11 +791,10 @@ $('manualClose').onclick=()=>$('manual').close();
 $('manualOpen').onclick=()=>{$('manual').close();if(manualThen)manualThen();};
 $('sheetDownload').onclick=downloadSheet;$('mRedownload').onclick=()=>{$('listMenu').hidePopover();downloadSheet();};
 $('mOtherFile').onclick=()=>{$('listMenu').hidePopover();$('sheetFile').click();};
-$('mPaste').onclick=()=>{$('listMenu').hidePopover();if(sheet&&tabs().length){sheet=null;}$('dropEmpty').hidden=false;$('listArea').hidden=true;$('pasteBox').open=true;$('sheetPaste').focus();};
-$('mTab').onclick=()=>{$('listMenu').hidePopover();const sel=$('listMeta').querySelector('select');sel&&sel.focus();};
-$('mClear').onclick=async()=>{$('listMenu').hidePopover();if(await ask('가져온 명단을 지울까요?','원본 시트와 보낸 분 목록은 그대로예요.',[['닫기','close'],['지우기','go',true,true]])!=='go')return;sheet=null;store.del(S,KEY.people);ui.current='manual';renderAll();};
+$('mPaste').onclick=()=>{$('listMenu').hidePopover();if(hasSheet()){sheet=null;rebuild();}$('dropEmpty').hidden=false;$('listArea').hidden=true;$('pasteBox').open=true;$('sheetPaste').focus();};
+$('mClear').onclick=async()=>{$('listMenu').hidePopover();if(await ask('가져온 명단을 지울까요?','원본 시트와 보낸 분 목록은 그대로예요.',[['닫기','close'],['지우기','go',true,true]])!=='go')return;sheet=null;store.del(S,KEY.people);rebuild();ui.current='manual';renderAll();};
 $('sheetFile').onchange=async()=>{const f=$('sheetFile').files[0];$('sheetFile').value='';await importFile(f);};
-$('importPaste').onclick=()=>{try{addTabs([{name:'붙여 넣은 표',data:K.convert(K.parseDelimited($('sheetPaste').value))}],'붙여 넣은 표');$('sheetPaste').value='';}catch(e){sheetError(e.message);}};
+$('importPaste').onclick=()=>{try{addTabs([oneTab('붙여 넣은 표',K.convert(K.parseDelimited($('sheetPaste').value)))],'붙여 넣은 표');$('sheetPaste').value='';}catch(e){sheetError(e.message);}};
 $('drawerToggle').onclick=openDrawer;$('scrim').onclick=closeSheets;
 $('previewOpen').onclick=()=>{$('previewCol').classList.add('open');$('previewClose').focus();};
 $('previewClose').onclick=()=>{$('previewCol').classList.remove('open');$('previewOpen').focus();};
@@ -673,7 +802,7 @@ document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!$('replyP
 menuKeys($('listMenu'));menuKeys($('exportMenu'));
 // Drag and drop: the whole recipients column receives files.
 const rec=$('recipients');let dragDepth=0;
-rec.addEventListener('dragenter',e=>{if(![...e.dataTransfer.types].includes('Files'))return;e.preventDefault();dragDepth++;rec.classList.add('dragging');const item=e.dataTransfer.items&&e.dataTransfer.items[0];const bad=item&&item.type&&!/csv|tab-separated|spreadsheetml|vnd\.ms-excel/.test(item.type);$('dragNote').hidden=false;$('dragNote').classList.toggle('bad',!!bad);$('dragNote').textContent=bad?'CSV나 XLSX만 가져올 수 있어요':(sheet&&tabs().length?'놓으면 명단을 바꿔요':'놓으면 명단을 가져와요');});
+rec.addEventListener('dragenter',e=>{if(![...e.dataTransfer.types].includes('Files'))return;e.preventDefault();dragDepth++;rec.classList.add('dragging');const item=e.dataTransfer.items&&e.dataTransfer.items[0];const bad=item&&item.type&&!/csv|tab-separated|spreadsheetml|vnd\.ms-excel/.test(item.type);$('dragNote').hidden=false;$('dragNote').classList.toggle('bad',!!bad);$('dragNote').textContent=bad?'CSV나 XLSX만 가져올 수 있어요':(hasSheet()?'놓으면 명단에 더해요':'놓으면 명단을 가져와요');});
 rec.addEventListener('dragover',e=>{if([...e.dataTransfer.types].includes('Files'))e.preventDefault();});
 rec.addEventListener('dragleave',()=>{if(--dragDepth<=0){dragDepth=0;rec.classList.remove('dragging');$('dragNote').hidden=true;}});
 rec.addEventListener('drop',e=>{if(!e.dataTransfer.files.length)return;e.preventDefault();dragDepth=0;rec.classList.remove('dragging');$('dragNote').hidden=true;importFile(e.dataTransfer.files[0]);});
@@ -683,6 +812,8 @@ window.addEventListener('beforeunload',e=>{if(Object.values(drafts).some(d=>d.fl
 setInterval(render,60000);
 
 /* ---------- Start ---------- */
+if(hasSheet()&&!sheet.listed)sheet.listed=listedOf(sheet.tabs);   // lists saved before the merge
+rebuild();
 fillTplFields();
 renderSubjects(values()); // builds the 작품명 field before drafts are loaded into it
 loadDraftInto(ui.current,findPerson(ui.current));

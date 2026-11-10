@@ -16,7 +16,7 @@
     pick:['직접컨택후보','컨택후보','직접컨택'],
     note:['비고','메모','작품에서본점','샐리가볼점','코멘트'],
     seen:['본것한줄','본것','개인화문장','개인화첫줄','첫줄'],
-    field:['분야','직군','카테고리','장르'],
+    field:['분야','분야직무','직무','직군','카테고리','장르'],
     purpose:['연락목적','목적'],
     status:['연락상태','컨택상태','진행상태','상태','발송'],
     donot:['연락금지','수신거부','재연락금지','연락하지않음'],
@@ -106,7 +106,7 @@
         grade:gradeLetter(get(r,'grade')),gradeRaw:get(r,'grade'),
         checked:col.checked==null?null:yes(get(r,'checked')),
         pick:col.pick==null?null:yes(get(r,'pick')),
-        donot:get(r,'donot'),minor:yes(get(r,'minor')),note:get(r,'note'),seen:get(r,'seen'),field:get(r,'field'),purpose:get(r,'purpose'),status:get(r,'status')
+        donot:get(r,'donot'),minor:yes(get(r,'minor')),note:get(r,'note'),seen:get(r,'seen'),field:get(r,'field'),purpose:col.purpose==null?null:get(r,'purpose'),status:get(r,'status')
       });
     }
     // Same address or handle on two rows is one person: a send on either row covers both.
@@ -138,6 +138,71 @@
     if(p.handle)return 'dm';
     return '';
   }
-  const api={ALIASES,parseDelimited,platformName,findHeader,convert,ready,uncontacted,blockedWhy,ids,channelOf,yes};
+  /* Contact purpose. null = the tab has no purpose column (후보), so the check does not apply.
+     Live values (2026-11-10): 작품 구매 499 · 새 작업 의뢰 423 · 미정 93 · 빈칸 15 — only 작품 구매 passes. */
+  const FITS=/작품\s*구매|구매|기존\s*작(품|업)|작(품|업)\s*(올리|업로드|등록)|포트폴리오\s*(올리|등록)|시딩/;
+  function purposeWhy(p){
+    if(!p||p.purpose==null)return '';
+    const s=clean(p.purpose);
+    if(!s)return '연락 목적이 비어 있어요';
+    // 「작품 구매 불가」「시딩 제외」처럼 부정이 붙으면 맞는 목적이 아니다.
+    if(/불가|제외|아님|아니|말고|금지|보류|x\b/i.test(s))return '연락 목적이 「'+s+'」예요';
+    return FITS.test(s)?'':'연락 목적이 「'+s+'」예요';
+  }
+  /* Which list a tab feeds: '후보', '수집' or '' (index only, e.g. a contact log tab). */
+  function sourceOf(name){const n=String(name||'');return /후보/.test(n)?'후보':/수집/.test(n)?'수집':'';}
+  /* Search key: width-folded, lower-cased, no spaces. */
+  const nk=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/\s+/g,'');
+  const plainName=s=>String(s||'').trim().replace(/\s*님$/,'');
+  /* tabs: {tabName: {people,…}}; listed: {tabName: '후보'|'수집'} for tabs shown in the list.
+     Every tab is indexed for blocking; only listed tabs become people. Rows that share any id are one person,
+     based on the 후보 row (smallest row number) or else the first 수집 row. Blocking looks at the whole group
+     and at every tab, so a 재연락 금지 on the 수집 row or a 발송 in a log tab stops the person. */
+  function merge(tabs,listed){
+    listed=listed||{};
+    const rows=[];
+    Object.entries(tabs||{}).forEach(([tab,t])=>((t&&t.people)||[]).forEach(p=>rows.push({...p,tab,source:listed[tab]||''})));
+    const byId=new Map(),byName=new Map();
+    const push=(m,k,v)=>{const a=m.get(k);if(a)a.push(v);else m.set(k,[v]);};
+    rows.forEach(r=>{const I=ids(r);if(I.length)I.forEach(id=>push(byId,id,r));else{const n=plainName(r.name);if(n)push(byName,n,r);}});
+    // Union over every tab, not just listed ones: an id-bearing row in a log tab can bridge mail A to handle B.
+    const parent=rows.map((_,i)=>i);
+    const find=i=>{while(parent[i]!==i){parent[i]=parent[parent[i]];i=parent[i];}return i;};
+    const owner=new Map();
+    rows.forEach((r,i)=>ids(r).forEach(id=>{if(owner.has(id)){const a=find(owner.get(id)),b=find(i);if(a!==b)parent[b]=a;}else owner.set(id,i);}));
+    const comps=new Map();
+    rows.forEach((r,i)=>push(comps,find(i),r));
+    // Every id → all ids of its component, so a send or block on one id covers the others.
+    const compIds=new Map();
+    comps.forEach(members=>{const all=[...new Set(members.flatMap(ids))];all.forEach(id=>compIds.set(id,all));});
+    const groups=new Map();
+    comps.forEach((members,k)=>{const listedM=members.filter(r=>r.source);if(listedM.length)groups.set(k,{listedM,members});});
+    const rank=r=>r.source==='후보'?0:1;
+    const people=[];
+    groups.forEach(({listedM,members})=>{
+      const sorted=listedM.slice().sort((a,b)=>rank(a)-rank(b)||a.row-b.row);
+      const base=sorted[0];
+      const other=sorted.find(m=>m.source!==base.source);
+      const seenRows=new Set(),hits=[];
+      const add=r=>{if(!seenRows.has(r)){seenRows.add(r);hits.push(r);}};
+      members.forEach(add);
+      members.forEach(m=>{const I=ids(m);if(I.length)I.forEach(id=>(byId.get(id)||[]).forEach(add));else(byName.get(plainName(m.name))||[]).forEach(add);});
+      const hit=hits.find(r=>blockedWhy(r));
+      const hayParts=[];sorted.forEach(m=>[m.name,m.handle,m.email,m.field,m.note].forEach(x=>{const k=nk(x);if(k&&!hayParts.includes(k))hayParts.push(k);}));
+      const id0=ids(base)[0];
+      people.push({...base,source:base.source,tab:base.tab,
+        rows:sorted.map(m=>({source:m.source,tab:m.tab,row:m.row})),
+        also:other?other.source:'',
+        blocked:hit?{why:blockedWhy(hit),row:hit.row,tab:hit.tab,name:plainName(hit.name),contacted:!uncontacted(hit)}:null,
+        hay:hayParts.join('|'),
+        allIds:[...new Set(members.flatMap(ids))],
+        key:id0?'id:'+id0:'row:'+base.source+':'+base.row+':'+plainName(base.name)});
+    });
+    people.sort((a,b)=>rank(a)-rank(b)||a.row-b.row);
+    const byKey=new Map();people.forEach(p=>{if(!byKey.has(p.key))byKey.set(p.key,p);});
+    const history=rows.filter(r=>r.seen).map(r=>({name:plainName(r.name),seen:r.seen}));
+    return {people,byKey,byId,byName,compIds,history,readyOut:people.filter(p=>!ready(p)).length};
+  }
+  const api={ALIASES,parseDelimited,platformName,findHeader,convert,ready,uncontacted,blockedWhy,ids,channelOf,yes,clean,purposeWhy,sourceOf,merge,nk};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.Candidates=api;
 })(typeof self!=='undefined'?self:this);

@@ -221,3 +221,127 @@ test('an existing 「인스타」 contact column still wins over 「인스타 DM
   const [p]=K.convert([['이름','이메일','인스타 DM','인스타'],['가','ga@x.com','@ga.art','@ga.art 메일 없음']]).people;
   assert.equal(K.channelOf(p),'dm');
 });
+
+/* ---------- 찾기·작품 링크 v1 (2026-11-10) ---------- */
+const HOOBO_HEADER=['분야','이름','포폴 링크','인스타 DM','문의 채널','이메일','조사 등급','직접 확인 (O/△/X)','평가 등급','비고','직접 컨택 후보','무리','플랫폼','연락 구분','조사 연락 경로(원문)','최근 활동','조사 메모','컨택 상태','조사 키','연락 날짜','연락 경로','응답','재연락 금지','지급일','지급액','조사 원 링크','링크 확인','유형','비고','가입 아이디','시딩 계정','앱에 올린 작품 수','개인화 첫 줄'];
+// 수집 탭 머리글: 실제 시트 [플랫폼 수집] 1행(2026-11-10 aside로 읽음) 30칸 그대로.
+const SUJIP_HEADER=['분야·직무','이름','플랫폼','유형','포트폴리오 링크','활동 지표','소개','이메일','대표 전화','인스타 DM','문의 채널','조사 등급','앱 맞음','최근 활동','연락 구분','직접 컨택 후보','연락 목적','직접 확인 (O/△/X)','평가 등급','비고','컨택 상태','연락 날짜','연락 경로','응답','재연락 금지','비고','가입 아이디','시딩 계정','앱에 올린 작품 수','개인화 첫 줄'];
+const rowOf=(header,o)=>header.map(h=>o[h]??'');
+const pick=(r,keys)=>Object.fromEntries(keys.map(k=>[k,r.columns[k]]));
+const KEYS=['name','url','email','contact','grade','checked','pick','field','purpose','status','donot','seen'];
+
+test('columns(): live 후보 33 and 플랫폼 수집 30 headers map to the expected columns',()=>{
+  assert.equal(HOOBO_HEADER.length,33);assert.equal(SUJIP_HEADER.length,30);
+  const h=K.convert([HOOBO_HEADER,rowOf(HOOBO_HEADER,{'이름':'가상1','직접 확인 (O/△/X)':'O','직접 컨택 후보':'O'})]);
+  assert.deepEqual(pick(h,KEYS),{name:'이름',url:'포폴 링크',email:'이메일',contact:'인스타 DM',grade:'평가 등급',checked:'직접 확인 (O/△/X)',pick:'직접 컨택 후보',field:'분야',purpose:undefined,status:'컨택 상태',donot:'재연락 금지',seen:'개인화 첫 줄'});
+  const s=K.convert([SUJIP_HEADER,rowOf(SUJIP_HEADER,{'이름':'가상2'})]);
+  assert.deepEqual(pick(s,KEYS),{name:'이름',url:'포트폴리오 링크',email:'이메일',contact:'인스타 DM',grade:'평가 등급',checked:'직접 확인 (O/△/X)',pick:'직접 컨택 후보',field:'분야·직무',purpose:'연락 목적',status:'컨택 상태',donot:'재연락 금지',seen:'개인화 첫 줄'});
+  for(const r of [h,s])assert.ok(!Object.values(r.columns).some(c=>c==='연락 구분'||c==='대표 전화'),'연락 구분·대표 전화 are not read');
+});
+
+test('convert: purpose is null without the column, empty string for a blank cell',()=>{
+  const [a]=K.convert([HOOBO_HEADER,rowOf(HOOBO_HEADER,{'이름':'가상1'})]).people;
+  const [b]=K.convert([SUJIP_HEADER,rowOf(SUJIP_HEADER,{'이름':'가상2','분야·직무':'2D 애니'})]).people;
+  assert.equal(a.purpose,null);assert.equal(b.purpose,'');assert.equal(b.field,'2D 애니');
+});
+
+test('purposeWhy: no column passes, blank and other purposes block, 작품 구매 passes',()=>{
+  assert.equal(K.purposeWhy({purpose:null}),'');
+  assert.equal(K.purposeWhy({purpose:''}),'연락 목적이 비어 있어요');
+  assert.equal(K.purposeWhy({purpose:'새 작업 의뢰'}),'연락 목적이 「새 작업 의뢰」예요');
+  assert.equal(K.purposeWhy({purpose:'작품 구매'}),'');
+  assert.equal(K.purposeWhy(null),'');
+});
+
+test('sourceOf: tab names decide the list',()=>{
+  assert.deepEqual(['후보','플랫폼 수집','연락 로그','시딩_후보.csv'].map(n=>K.sourceOf(n)),['후보','수집','','후보']);
+});
+
+const H=['이름','이메일','인스타 DM','분야','비고','직접 확인','직접 컨택 후보','컨택 상태','재연락 금지'];
+const HP=H.concat(['연락 목적']);
+const tab=(header,rows)=>K.convert([header,...rows]);
+test('merge: two tabs are one list; any shared id joins, 후보 row is the base',()=>{
+  const tabs={
+    '후보':tab(H,[['파랑','','@Parang','일러스트','물빛 번짐','O','O','',''],['보라','bora@example.com','','사진','','','O','',''],['초록','','@chorok','','','O','O','','']]),
+    '플랫폼 수집':tab(HP,[['파랑 스튜디오','parang@example.com','@parang','2D','','O','O','','','작품 구매'],['노랑','norang@example.com','','2D','','O','O','','','새 작업 의뢰']])
+  };
+  const m=K.merge(tabs,{'후보':'후보','플랫폼 수집':'수집'});
+  assert.equal(m.people.length,4);
+  const parang=m.people[0];
+  assert.deepEqual([parang.name,parang.source,parang.also,parang.key,parang.row],['파랑','후보','수집','id:i:parang',2]);
+  assert.deepEqual(parang.rows.map(r=>r.source),['후보','수집']);
+  assert.deepEqual(m.people.map(p=>p.source),['후보','후보','후보','수집']);
+  assert.equal(m.byKey.get('id:i:parang'),parang);
+  // (4) readyOut: 보라 is not checked
+  assert.equal(m.readyOut,1);
+  // (5) hay
+  const t=q=>q.split(/\s+/).map(s=>K.nk(s).replace(/^@/,'')).filter(Boolean).every(x=>parang.hay.includes(x));
+  assert.ok(t('@Parang')&&t('파랑 일러스트')&&t('parang@example.com')&&t('물빛'));
+  assert.ok(!t('보라'));
+  // purpose is the base row's: 후보 has no column
+  assert.equal(K.purposeWhy(parang),'');
+  assert.equal(K.purposeWhy(m.people[3]),'연락 목적이 「새 작업 의뢰」예요');
+});
+
+test('merge: a 재연락 금지 on the 수집 row blocks the joined person',()=>{
+  const m=K.merge({
+    '후보':tab(H,[['파랑','','@parang','','','O','O','','']]),
+    '플랫폼 수집':tab(HP,[['파랑','p@example.com','@parang','','','','','','O','작품 구매']])
+  },{'후보':'후보','플랫폼 수집':'수집'});
+  assert.equal(m.people.length,1);
+  assert.ok(m.people[0].blocked&&/연락 금지/.test(m.people[0].blocked.why));
+  assert.equal(m.people[0].blocked.tab,'플랫폼 수집');
+});
+
+test('merge: an unlisted log tab is indexed for blocking but never listed',()=>{
+  const m=K.merge({
+    '후보':tab(H,[['보라','bora@example.com','','','','O','O','','']]),
+    '연락 로그':tab(['이름','이메일','컨택 상태'],[['보라','BORA@example.com','발송 11/3'],['기타','x@example.com','발송']])
+  },{'후보':'후보'});
+  assert.equal(m.people.length,1);
+  assert.ok(m.people.every(p=>p.tab!=='연락 로그'));
+  assert.deepEqual([m.people[0].blocked.tab,m.people[0].blocked.contacted],['연락 로그',true]);
+  assert.equal(m.byId.get('m:x@example.com').length,1);
+});
+
+test('merge: people without ids key by source, row and name; history keeps every seen line',()=>{
+  const m=K.merge({'후보':tab(['이름','평가 등급','직접 확인','직접 컨택 후보','개인화 첫 줄'],[['하늘님','B','O','O','하늘 사진의 색이 좋았어요.']])},{'후보':'후보'});
+  assert.equal(m.people[0].key,'row:후보:2:하늘');
+  assert.deepEqual(m.history,[{name:'하늘',seen:'하늘 사진의 색이 좋았어요.'}]);
+  assert.equal(m.byName.get('하늘').length,1);
+});
+
+test('contact.js wording is unchanged (DEFAULTS hash)',()=>{
+  const hash=require('node:crypto').createHash('sha256').update(JSON.stringify(C.DEFAULTS)).digest('hex');
+  assert.equal(hash,'a825c6965de4d8f5ea81862558bfe4a253989b399a21059ef6d378a847660199');
+});
+
+test('merge: a non-listed row bridges mail A to handle B, so a 재연락 금지 on B blocks the 후보 person with A',()=>{
+  const H=['이름','이메일','인스타 DM','직접 확인','직접 컨택 후보','재연락 금지'];
+  const tabs={
+    '후보':K.convert([H,['연두','a@x.com','','O','O','']]),
+    '연락 로그':K.convert([['이름','이메일','인스타 DM'],['연두','a@x.com','@bee']]),
+    '플랫폼 수집':K.convert([H,['연두 스튜디오','','@bee','O','O','예']]),
+  };
+  const r=K.merge(tabs,{'후보':'후보','플랫폼 수집':'수집'});
+  const p=r.people.find(x=>x.email==='a@x.com');
+  assert.ok(p&&p.blocked,'blocked through the log-tab bridge');
+  assert.deepEqual(r.compIds.get('m:a@x.com').sort(),['i:bee','m:a@x.com']);
+});
+
+test('merge: allIds carries every id in the group so a send on mail A also covers handle B',()=>{
+  const H=['이름','이메일','인스타 DM','직접 확인','직접 컨택 후보'];
+  const r=K.merge({'후보':K.convert([H,['파랑','a@x.com','','O','O']]),'플랫폼 수집':K.convert([H,['파랑','a@x.com','@bee','O','O']])},{'후보':'후보','플랫폼 수집':'수집'});
+  assert.equal(r.people.length,1);
+  assert.deepEqual(r.people[0].allIds.slice().sort(),['i:bee','m:a@x.com']);
+});
+
+test('purposeWhy: negated purposes do not pass',()=>{
+  for(const v of ['작품 구매 불가','시딩 제외','작품 구매 아님','구매 보류'])assert.ok(K.purposeWhy({purpose:v}),v);
+  assert.equal(K.purposeWhy({purpose:'작품 구매'}),'');
+});
+
+test('purposeWhy: the live 플랫폼 수집 values — only 작품 구매 passes',()=>{
+  assert.equal(K.purposeWhy({purpose:'작품 구매'}),'');
+  for(const v of ['새 작업 의뢰','미정',''])assert.ok(K.purposeWhy({purpose:v}),v||'(빈칸)');
+});
