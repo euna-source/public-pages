@@ -2,18 +2,19 @@
 (function(root){
   'use strict';
   const clean=v=>String(v??'').replace(/\s+/g,' ').trim();
-  const norm=v=>clean(v).replace(/[\s()·\-_/]/g,'').toLowerCase();
+  // Header cells carry value hints like 「직접 확인 (O/△/X)」: drop a trailing parenthetical before matching.
+  const norm=v=>clean(v).replace(/\s*\([^)]*\)\s*$/,'').replace(/[\s()·\-_/]/g,'').toLowerCase();
   // Header names seen in the seeding sheet and its predecessors. First match wins per field.
   const ALIASES={
     name:['활동명','이름','작가명','작가','닉네임','크리에이터','크리에이터명','계정명'],
-    url:['주플랫폼url','주플랫폼','플랫폼url','포트폴리오','포트폴리오링크','대표링크','링크','url','주소','작품링크'],
-    contact:['연락창구','창구','연락처','인스타','인스타그램','dm'],
+    url:['주플랫폼url','주플랫폼','플랫폼url','포트폴리오','포트폴리오링크','포폴링크','포폴','대표링크','링크','url','주소','작품링크'],
+    contact:['연락창구','창구','연락처','인스타dm','인스타','인스타그램','dm','문의채널'],
     email:['이메일','메일','email','e-mail','메일주소','이메일주소'],
     grade:['평가등급','등급','최종등급'],
     checked:['직접확인'],
     pick:['직접컨택후보','컨택후보','직접컨택'],
     note:['비고','메모','작품에서본점','샐리가볼점','코멘트'],
-    seen:['본것한줄','본것','개인화문장','첫줄'],
+    seen:['본것한줄','본것','개인화문장','개인화첫줄','첫줄'],
     field:['분야','직군','카테고리','장르'],
     purpose:['연락목적','목적'],
     status:['연락상태','컨택상태','진행상태','상태','발송'],
