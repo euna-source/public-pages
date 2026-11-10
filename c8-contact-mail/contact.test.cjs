@@ -210,3 +210,14 @@ test('reads the live 후보 tab headers: 「직접 확인 (O/△/X)」, 「인�
   assert.equal(K.ready(q),false);
   assert.equal(q.purpose,'새 작업 의뢰');
 });
+
+test('a parenthetical that is not an answer hint keeps the header distinct: 「컨택 상태 (이전)」 is not the status column',()=>{
+  const r=K.convert([['이름','연락 창구','컨택 상태 (이전)','컨택 상태'],['연두','y@example.com','미연락','발송 완료']]);
+  assert.equal(r.columns.status,'컨택 상태');
+  assert.match(K.blockedWhy(r.people[0]),/발송 완료/);
+});
+
+test('an existing 「인스타」 contact column still wins over 「인스타 DM」, keeping the 메일 없음 note',()=>{
+  const [p]=K.convert([['이름','이메일','인스타 DM','인스타'],['가','ga@x.com','@ga.art','@ga.art 메일 없음']]).people;
+  assert.equal(K.channelOf(p),'dm');
+});

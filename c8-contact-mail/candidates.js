@@ -2,13 +2,14 @@
 (function(root){
   'use strict';
   const clean=v=>String(v??'').replace(/\s+/g,' ').trim();
-  // Header cells carry value hints like 「직접 확인 (O/△/X)」: drop a trailing parenthetical before matching.
-  const norm=v=>clean(v).replace(/\s*\([^)]*\)\s*$/,'').replace(/[\s()·\-_/]/g,'').toLowerCase();
+  // Header cells carry value hints like 「직접 확인 (O/△/X)」: drop a trailing parenthetical only when it lists answer marks,
+  // so 「컨택 상태 (이전)」 stays a different header from 「컨택 상태」.
+  const norm=v=>clean(v).replace(/\s*\([oxOX○◯△●✓✔yYnN예아니오\s\/,·]+\)\s*$/,'').replace(/[\s()·\-_/]/g,'').toLowerCase();
   // Header names seen in the seeding sheet and its predecessors. First match wins per field.
   const ALIASES={
     name:['활동명','이름','작가명','작가','닉네임','크리에이터','크리에이터명','계정명'],
     url:['주플랫폼url','주플랫폼','플랫폼url','포트폴리오','포트폴리오링크','포폴링크','포폴','대표링크','링크','url','주소','작품링크'],
-    contact:['연락창구','창구','연락처','인스타dm','인스타','인스타그램','dm','문의채널'],
+    contact:['연락창구','창구','연락처','인스타','인스타그램','dm','인스타dm','문의채널'],
     email:['이메일','메일','email','e-mail','메일주소','이메일주소'],
     grade:['평가등급','등급','최종등급'],
     checked:['직접확인'],
