@@ -17,7 +17,7 @@
     {key:'작품명',required:false,field:'v-work'}
   ];
   const DEFAULTS={
-    // Same sections as the Weekly Best award mail so both mails read as one family.
+    // Editable letter sections; brand and confirmed invitation wording remain shared.
     // The applied mail (2026-11-10): sent as the team, one link to the hub page.
     email:{
       subject:'{활동명}님, 크리에이터클럽에서 인사드려요',
@@ -186,32 +186,35 @@
       return '<div style="'+gap+'">'+lines.map(inlineHtml).join('<br>')+'</div>';
     }).join('');
   }
-  const row=(inner,pad)=>'        <tr>\n          <td style="padding:'+(pad||'16px 32px 0')+';">\n'+inner+'\n          </td>\n        </tr>\n';
-  // Preview only: frame the section being edited so the editor can show where a field lands.
-  const OUTLINE='outline:2px solid #111111; outline-offset:2px; border-radius:6px;';
+  // A letter: one reading column, no nested cards. Inline styles survive Gmail paste.
+  const OUTLINE='outline:2px solid #111111; outline-offset:2px; border-radius:4px;';
   const framed=(html,on)=>on?html.replace(/<td style="/,'<td style="'+OUTLINE+' '):html;
-  const box=(title,body,style)=>'            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="'+style+'">\n              <tr>\n                <td style="padding:20px 22px; font-size:15px; line-height:1.8; color:#111111;">\n                  <div style="font-size:16px; font-weight:700; margin-bottom:8px;">'+esc(title)+'</div>\n                  '+body+'\n                </td>\n              </tr>\n            </table>';
-  /* The Weekly Best award mail layout: black band with logo and headline, intro rule, grey boxes, green-outlined box, slogan, grey footer. */
   function designedHtml(p,o){
     const f=k=>o.outline===k;
     const pre=o.withPreheader&&p.preheader?'<div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">'+esc(unmark(p.preheader))+'</div>\n':'';
-    const head='        <tr>\n          <td style="background-color:#111111; padding:24px 32px 28px;">\n            <table role="presentation" cellpadding="0" cellspacing="0" border="0">\n              <tr>\n                <td valign="middle" style="vertical-align:middle; line-height:0; font-size:0;"><img src="'+(o.logo||LOGO)+'" width="18" height="30" alt="Cre8orClub" style="display:block; width:18px; height:30px; border:0;"></td>\n                <td valign="middle" style="vertical-align:middle; padding-left:10px; font-size:24px; line-height:30px; font-weight:700; color:#ffffff; padding-top:4px;">Cre8orClub</td>\n              </tr>\n            </table>\n            <div style="margin-top:22px; font-size:25px; line-height:1.45; font-weight:700; color:#ffffff;'+(f('headline')?' outline:2px solid #07ED21; outline-offset:4px;':'')+'">'+String(p.headline).split('\n').map(inlineHtml).join('<br>')+'</div>\n          </td>\n        </tr>\n';
-    const greet=framed('        <tr>\n          <td style="padding:28px 32px 8px; font-size:15px; line-height:1.7; color:#111111;">\n            '+richHtml(p.greeting)+'\n          </td>\n        </tr>\n',f('greeting'));
-    const intro=p.intro.trim()?framed(row('            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-left:3px solid #07ED21;">\n              <tr>\n                <td style="padding:2px 0 2px 14px; font-size:14px; line-height:1.7; color:#444444;">\n                  '+richHtml(p.intro)+'\n                </td>\n              </tr>\n            </table>'),f('intro')):'';
-    const grey='background-color:#f7f7f7; border-radius:10px;';
-    const gift=p.gift.trim()?framed(row(box(SECTION_TITLES.gift,richHtml(p.gift),grey)),f('gift')):'';
-    const steps=p.steps.trim()?framed(row(box(SECTION_TITLES.steps,richHtml(p.steps),grey)),f('steps')):'';
-    const ask=p.ask.trim()?framed(row(box(SECTION_TITLES.ask,richHtml(p.ask),'border:2px solid #07ED21; border-radius:10px;')),f('ask')):'';
-    const close=framed('        <tr>\n          <td style="padding:28px 32px 32px; font-size:15px; line-height:1.7; color:#111111;">\n            '+richHtml(p.closing)+'<br>\n            <strong>'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</strong>\n          </td>\n        </tr>\n',f('closing')||f('signature'));
-    const slogan='        <tr>\n          <td style="padding:0 32px;"><div style="border-top:1px solid #e5e5e5; font-size:0; line-height:0;">&nbsp;</div></td>\n        </tr>\n        <tr>\n          <td align="center" style="padding:36px 32px 36px; font-size:20px; line-height:1.55; font-weight:700; color:#111111;">\n            당신의 작업이 무대가 되는 곳, Cre8orClub\n          </td>\n        </tr>\n';
-    const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'            <p style="margin:0 0 6px;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'</p>').join('\n');
-    const foot=framed('        <tr>\n          <td style="background-color:#f3f3f3; padding:20px 32px 22px; font-size:11px; line-height:1.6; color:#777777;">\n'+(notes?notes+'\n':'')+
-      '            <p style="margin:0 0 6px;">'+COMPANY.name+' | 대표 최남희 | 사업자등록번호 736-86-01932 | '+COMPANY.address+' | <a href="mailto:'+COMPANY.email+'" style="color:#777777; text-decoration:underline;">'+COMPANY.email+'</a></p>\n'+
-      '            <p style="margin:0;"><a href="'+POLICY.privacy+'" target="_blank" style="color:#444444; font-weight:700; text-decoration:none;">개인정보처리방침</a> · <a href="'+POLICY.terms+'" target="_blank" style="color:#777777; text-decoration:none;">이용약관</a> · © Ratel And Partners Co., Ltd.</p>\n          </td>\n        </tr>\n',f('footer'));
-    const card='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f2;">\n  <tr>\n    <td align="center" style="padding:24px 12px;">\n      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; word-break:keep-all; font-family:'+FONT+'; color:#111111;">\n'+
-      head+greet+intro+gift+steps+ask+close+slogan+foot+'      </table>\n    </td>\n  </tr>\n</table>';
+    const section=(key,pad,extra)=>p[key].trim()?framed('<tr><td style="padding:'+pad+'; font-size:16px; line-height:1.75; color:#333d4b;'+(extra||'')+'">'+richHtml(p[key])+'</td></tr>',f(key)):'';
+    const head='<tr><td style="padding:28px 24px 0;">'+
+      '<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>'+
+      '<td style="vertical-align:middle; line-height:0;"><img src="'+esc(o.logo||LOGO)+'" width="14" height="24" alt="" style="display:block; width:14px; height:24px; border:0;"></td>'+
+      '<td style="padding-left:8px; vertical-align:middle; font-size:19px; line-height:26px; font-weight:700; color:#191f28;">Cre8orClub</td></tr></table></td></tr>';
+    // Keep editable sections and their order; whitespace, rather than boxes, groups the prose.
+    const greet=section('greeting','24px 24px 0');
+    const intro=section('intro','16px 24px 0');
+    const gift=section('gift','24px 24px 0');
+    const steps=section('steps','12px 24px 0');
+    const ask=section('ask','20px 24px 0');
+    const closing=section('closing','12px 24px 0');
+    const signature=framed('<tr><td style="padding:16px 24px 0; font-size:15px; line-height:1.7; font-weight:600; color:#191f28;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</td></tr>',f('signature'));
+    const slogan='<tr><td style="padding:4px 24px 24px; font-size:12px; line-height:1.6; color:#6b7684;">당신의 작업이 무대가 되는 곳, Cre8orClub</td></tr>';
+    const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'<p style="margin:0 0 8px;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'</p>').join('');
+    const foot=framed('<tr><td style="padding:20px 24px 24px; border-top:1px solid #e5e8eb; font-size:12px; line-height:1.65; color:#6b7684;">'+notes+
+      '<p style="margin:0 0 8px;">'+COMPANY.name+' | 대표 최남희 | 사업자등록번호 736-86-01932 | '+COMPANY.address+' | <a href="mailto:'+COMPANY.email+'" style="color:#6b7684; text-decoration:underline;">'+COMPANY.email+'</a></p>'+
+      '<p style="margin:0;"><a href="'+POLICY.privacy+'" target="_blank" style="color:#4e5968; text-decoration:underline;">개인정보처리방침</a> · <a href="'+POLICY.terms+'" target="_blank" style="color:#6b7684; text-decoration:underline;">이용약관</a> · © Ratel And Partners Co., Ltd.</p></td></tr>',f('footer'));
+    const card='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#ffffff;"><tr><td align="center">'+
+      '<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; background-color:#ffffff; word-break:keep-all; overflow-wrap:anywhere; font-family:'+FONT+'; color:#191f28;">'+
+      head+greet+intro+gift+steps+ask+closing+signature+slogan+foot+'</table></td></tr></table>';
     if(o.fragment)return card;
-    return '<!doctype html>\n<html lang="ko">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<meta name="x-apple-disable-message-reformatting">\n<title>'+esc(unmark(p.subject))+'</title>\n<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">\n</head>\n<body style="margin:0; padding:0; background-color:#f2f2f2;">\n'+pre+card+'\n</body>\n</html>\n';
+    return '<!doctype html>\n<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="x-apple-disable-message-reformatting"><title>'+esc(unmark(p.subject))+'</title></head><body style="margin:0; padding:0; background-color:#ffffff;">'+pre+card+'</body></html>';
   }
   /* 「글만」: the same sections as a personal note, no band, no boxes, no images. */
   function plainHtml(p,o){
@@ -227,7 +230,7 @@
   }
   function plain(text){return blocks(text).map(lines=>lines.map(inlinePlain).join('\n')).join('\n\n');}
 
-  /* opts: style 'card' (위클리 양식, default) | 'plain', footer (default true), ad {on,phone},
+  /* opts: style 'card' (편지 양식, default) | 'plain', footer (default true), ad {on,phone},
      preview-only: mark (true or a Set of 칸 names to highlight), outline (section key to frame), logo. */
   function render(tpl,values,opts){
     const v=values||{},o=opts||{},mark=o.mark||false,ad=o.ad&&o.ad.on;
@@ -238,8 +241,8 @@
     p.ad=ad?AD.emailBlock(phone):'';
     const style=o.style==='plain'?'plain':'card';
     const build=style==='plain'?plainHtml:designedHtml;
-    // Section titles travel with the plain text so a plain-text paste keeps the same order.
-    const titled=[plain(p.greeting),plain(p.intro),p.gift.trim()?SECTION_TITLES.gift+'\n'+plain(p.gift):'',p.steps.trim()?SECTION_TITLES.steps+'\n'+plain(p.steps):'',p.ask.trim()?SECTION_TITLES.ask+'\n'+plain(p.ask):'',plain(p.closing)+'\n'+plain(p.signature),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
+    // Plain text follows the same uninterrupted letter, without decorative section labels.
+    const titled=[plain(p.greeting),plain(p.intro),plain(p.gift),plain(p.steps),plain(p.ask),plain(p.closing)+'\n'+plain(p.signature),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
     const dmCore=fill(tpl.dm.message,v,mark);
     const dm=[ad?AD.dmHead(phone):'',dmCore,ad?AD.dmTail:''].filter(Boolean).join('\n\n');
     return {

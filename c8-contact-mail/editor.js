@@ -696,7 +696,7 @@ function downloadSheet(){
 }
 
 /* ---------- Wording fields (this mail only) ---------- */
-const TPL_LABELS={'email.subject':'메일 제목','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.gift':'감사 선물','email.steps':'참여 방법','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
+const TPL_LABELS={'email.subject':'메일 제목','email.preheader':'숨은 미리보기 문장','email.greeting':'인사','email.intro':'소개','email.gift':'감사 선물','email.steps':'참여 방법','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
 function fillTplFields(){
   const box=$('tplFields');
   if(!box.dataset.built){
