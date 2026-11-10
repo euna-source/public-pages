@@ -17,6 +17,7 @@ header{display:flex;align-items:center;justify-content:space-between;gap:12px;fl
 h1{font-size:17px;margin:0;font-weight:700}
 .sub{font-size:12px;color:var(--muted);margin-top:2px}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
+.editor-download{font-size:13px;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--field);color:var(--ink);padding:8px 12px;text-decoration:none;display:inline-flex;align-items:center;min-height:40px}
 button{font:inherit;font-size:13px;font-weight:600;border-radius:8px;border:1px solid var(--line);background:var(--field);color:var(--ink);padding:8px 12px;cursor:pointer}
 button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
@@ -59,9 +60,11 @@ select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--
   <div class="actions">
     <button class="primary" id="copyHtml">HTML 소스 복사</button>
     <button id="copyRich">메일 본문으로 복사</button>
-    <button id="download">HTML 파일 받기</button>
+    <button id="download">메일 HTML 받기</button>
+    <a class="editor-download" id="downloadEditor" href="c8-weeklybest-mail.html" download="c8-weeklybest-mail.html" aria-describedby="editorDownloadHelp">전체 기능 HTML 받기</a>
     <button id="reset">처음 양식으로</button>
   </div>
+  <div class="sub" id="editorDownloadHelp">전체 기능 HTML은 편집 도구를 파일 하나로 저장해요. 현재 초안과 가져온 명단은 포함하지 않아요. 시트를 새로 받으려면 인터넷과 Google 로그인이 필요해요.</div>
 </header>
 <main>
   <section class="form">
