@@ -11,25 +11,26 @@ const codes=(t,v,o)=>C.check(t,v,{now:noon,...o}).map(c=>c.code);
 test('fills every variable and keeps the confirmed facts in both channels',()=>{
   const r=C.render(C.DEFAULTS,base);
   assert.equal(r.subject,'연두님, 크리에이터클럽에서 인사드려요');
-  for(const s of ['신세계 모바일 상품권 1만 원','매주 화요일','당신의 작업이 무대가 되는 곳',C.TRUST,C.LINKS.app,C.LINKS.form,C.LINKS.chat]){
+  for(const s of ['신세계 모바일 상품권 1만 원','매주 화요일','당신의 작업이 무대가 되는 곳',C.TRUST,C.LINKS.app,C.LINKS.form,C.LINKS.chat])
     assert.ok(r.emailHtml.includes(s)&&r.emailText.includes(s),'email '+s);
-    assert.ok(r.dm.includes(s),'dm '+s);
-  }
-  assert.ok(r.emailText.includes('최대: 5개, 총 5만 원')&&r.dm.includes('최대 5개'));
+  for(const s of ['신세계 모바일 상품권 1만 원','매주 화요일','당신의 작업이 무대가 되는 곳'])assert.ok(r.dm.includes(s),'dm '+s);
+  assert.ok(r.emailText.includes('최대: 5개, 총 5만 원')&&r.dm.includes('(최대 5만 원)'));
   assert.ok(!/\{[^}]+\}/.test(r.emailText+r.dm));
 });
 
-test('DM is one message that carries the offer and links',()=>{
+// The DM applied on Instagram 2026-11-10, with a made-up name and line in place of the real person's.
+const DM_APPLIED=['안녕하세요, 연두님!','창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽 운영팀입니다.','','인스타그램에서 연두님의 작업을 보고 연락드렸어요.','','배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.','','연두님만의 개성이 담긴 작업을 더 많은 창작자에게 소개하고 싶어 크리에이터클럽에 초대드리게 되었습니다.','','크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이라는 슬로건 아래, 창작자들이 자신의 작업을 알리고 서로의 작업에 공감하며 새로운 협업의 기회를 만들어 가는 공간이에요.','','이번에 초대드리는 작가님께는 기존 작업을 포트폴리오로 올려 주시면, 감사의 뜻으로 작업 1개당 신세계 모바일 상품권 1만 원(최대 5만 원)을 드리고 있어요.','','기존 작업을 그대로 활용하실 수 있고, 업로드 후 신청서에 작업 링크만 남겨 주시면 매주 화요일에 상품권을 보내 드려요.','','📌 앱 다운로드와 참여 신청서, 문의 채널은 저희 인스타그램 프로필에 있는 링크에서 확인하실 수 있어요.','','연두님의 멋진 작업을 크리에이터클럽에서도 만나볼 수 있으면 좋겠습니다!'].join('\n');
+test('DM is the applied message word for word: team voice, no links, no 담당자명 or 게시물 주소',()=>{
   const r=C.render(C.DEFAULTS,base);
-  assert.ok(r.dm.indexOf('상품권')>r.dm.indexOf('안녕하세요')&&r.dm.includes('앱스토어'));
-  assert.ok(C.chars(r.dm)<C.LIMITS.dmChars);
+  assert.equal(r.dm,DM_APPLIED);
+  assert.ok(!/https?:\/\//.test(r.dm)&&!r.dm.includes('서지원')&&C.chars(r.dm)<C.LIMITS.dmChars);
 });
 
 test('an empty 본 것 한 줄 leaves no double space or dangling blank',()=>{
   const r=C.render(C.DEFAULTS,{...base,'본 것 한 줄':''});
   assert.ok(r.emailText.includes('비핸스에 올려 주신 작업들을 봤어요.\n보다가'));
   assert.ok(!/ {2}/.test(r.emailText+r.dm)&&!/ \n/.test(r.emailText+r.dm));
-  assert.ok(r.dm.includes('연락드렸어요.\n이 작업이'));
+  assert.ok(r.dm.includes('연락드렸어요.\n\n연두님만의'));
 });
 
 test('email follows the Weekly Best layout: black band, logo, boxes, slogan, footer, preheader',()=>{
@@ -74,8 +75,8 @@ test('a complete draft passes with no notes in either channel',()=>{
 
 test('empty required fields block, per channel',()=>{
   assert.ok(codes(C.DEFAULTS,{},{channel:'email'}).includes('empty:활동명'));
-  const dm=codes(C.DEFAULTS,{...base,'플랫폼':'','게시물 주소':''},{channel:'dm'});
-  assert.ok(dm.includes('empty:게시물 주소')&&!dm.includes('empty:플랫폼'));
+  const dm=codes(C.DEFAULTS,{...base,'플랫폼':'','게시물 주소':'','담당자명':''},{channel:'dm'});
+  assert.ok(!dm.some(c=>c.startsWith('empty:'))&&codes(C.DEFAULTS,{},{channel:'dm'}).includes('empty:활동명'));
 });
 
 test('night warning runs 20:50–08:00 Seoul time with a 10-minute heads-up',()=>{
@@ -107,13 +108,12 @@ test('avoid words only in hand-typed fields; 님 suffix and a prior send are cau
 test('links: missing canonical, http, shortener and mismatched text all block',()=>{
   const drop=copy(C.DEFAULTS);drop.email.steps=drop.email.steps.replace(/\n2\. .*\n/,'\n');
   assert.ok(codes(drop,base,{channel:'email'}).includes('link-missing:form'));
-  const http=copy(C.DEFAULTS);http.dm.message=http.dm.message.replace(C.LINKS.app,'http://app.cre8orclub.com');
-  const h=codes(http,base,{channel:'dm'});assert.ok(h.includes('link-http')&&h.includes('link-missing:app'));
+  const http=copy(C.DEFAULTS);http.dm.message+='\nhttp://app.cre8orclub.com';
+  const h=codes(http,base,{channel:'dm'});assert.ok(h.includes('link-http')&&!h.some(c=>c.startsWith('link-missing')));
   const short=copy(C.DEFAULTS);short.dm.message+='\nhttps://bit.ly/abc';
   assert.ok(codes(short,base,{channel:'dm'}).includes('link-short'));
   const lie=copy(C.DEFAULTS);lie.email.ask+='\n[https://app.cre8orclub.com](https://evil.example.com)';
   assert.ok(codes(lie,base,{channel:'email'}).includes('link-text'));
-  assert.ok(codes(C.DEFAULTS,{...base,'게시물 주소':'https://example.com/x'},{channel:'dm'}).includes('post-url'));
 });
 
 test('unknown {칸} in edited wording blocks copying',()=>{
@@ -139,7 +139,7 @@ test('footer line can be left out when ad mode is off',()=>{
 
 test('reward terms come from one constant',()=>{
   const r=C.render(C.DEFAULTS,base);
-  assert.ok(r.emailText.includes('상품권 '+C.REWARD.per)&&r.dm.includes('최대 '+C.REWARD.max+'개'));
+  assert.ok(r.emailText.includes('상품권 '+C.REWARD.per)&&r.dm.includes('(최대 '+C.REWARD.total+')'));
 });
 
 test('reply templates fill name, date and source',()=>{
@@ -311,9 +311,10 @@ test('merge: people without ids key by source, row and name; history keeps every
   assert.equal(m.byName.get('하늘').length,1);
 });
 
+// 2026-11-10: DM replaced with the applied Instagram message; any other change must update this on purpose.
 test('contact.js wording is unchanged (DEFAULTS hash)',()=>{
   const hash=require('node:crypto').createHash('sha256').update(JSON.stringify(C.DEFAULTS)).digest('hex');
-  assert.equal(hash,'a825c6965de4d8f5ea81862558bfe4a253989b399a21059ef6d378a847660199');
+  assert.equal(hash,'ea4dd71164cd8ef266e80709403e1e813220077a3daf0515df0dc706377a5252');
 });
 
 test('merge: a non-listed row bridges mail A to handle B, so a 재연락 금지 on B blocks the 후보 person with A',()=>{

@@ -687,7 +687,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
         <details class="fold" id="settingsFold">
           <summary><span class="t">보내기 설정</span><span class="s" id="settingsSummary"></span><svg class="i chev"><use href="#i-down"/></svg></summary>
           <div class="inner">
-            <div><label for="v-sender">담당자명</label><input class="field" id="v-sender" data-var="담당자명" autocomplete="name" aria-describedby="err-v-sender"><p class="help">이 브라우저에 기억해요.</p><p class="err" id="err-v-sender" hidden></p></div>
+            <div data-only="email"><label for="v-sender">담당자명</label><input class="field" id="v-sender" data-var="담당자명" autocomplete="name" aria-describedby="err-v-sender"><p class="help">이 브라우저에 기억해요.</p><p class="err" id="err-v-sender" hidden></p></div>
             <div>
               <div class="switch-row"><span id="adLabel">광고성 정보로 보내기</span><button class="switch" role="switch" id="adOn" aria-checked="false" aria-labelledby="adLabel"></button></div>
               <div class="indent" id="adBox" hidden>
@@ -703,7 +703,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
           </div>
         </details>
         <details class="fold" id="editFold">
-          <summary><span class="t">이번 메일만 문구 고치기</span><span class="s" id="editSummary"></span><svg class="i chev"><use href="#i-down"/></svg></summary>
+          <summary><span class="t" id="editTitle">이번 메일만 문구 고치기</span><span class="s" id="editSummary"></span><svg class="i chev"><use href="#i-down"/></svg></summary>
           <div class="inner" id="editInner">
             <p class="help" style="margin:8px 0 0">이 메일에만 들어가요. 다른 분을 고르면 확정 문안으로 돌아가요.</p>
             <div id="tplFields"></div>

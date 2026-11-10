@@ -32,9 +32,12 @@ if(ui.scope!=='all')ui.scope='ready';if(typeof ui.filter!=='string')ui.filter=''
 let tpl=mergeTpl(store.get(S,KEY.tpl,null));
 let attempted=false,touched=new Set(),logoBroken=false,focusSeen=false,outline='',last=null,lastChecks=[],checklistOpen=null;
 
+// One-off edits are stamped with the wording they were made on; a new confirmed wording drops them so an old DM never survives a reload.
+function tplStamp(){let h=5381;const s=JSON.stringify(C.DEFAULTS);for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))>>>0;return h.toString(36);}
+const saveTpl=()=>store.set(S,KEY.tpl,{...tpl,v:tplStamp()});
 function mergeTpl(saved){
   const t=JSON.parse(JSON.stringify(C.DEFAULTS));
-  if(saved&&typeof saved==='object')['email','dm'].forEach(c=>{if(saved[c])Object.keys(t[c]).forEach(k=>{if(typeof saved[c][k]==='string')t[c][k]=saved[c][k];});});
+  if(saved&&typeof saved==='object'&&saved.v===tplStamp())['email','dm'].forEach(c=>{if(saved[c])Object.keys(t[c]).forEach(k=>{if(typeof saved[c][k]==='string')t[c][k]=saved[c][k];});});
   return t;
 }
 const editedKeys=()=>C.EMAIL_SECTIONS.filter(k=>tpl.email[k]!==C.DEFAULTS.email[k]).map(k=>'email.'+k).concat(tpl.dm.message!==C.DEFAULTS.dm.message?['dm.message']:[]);
@@ -312,13 +315,17 @@ function render(){
   $('sheetFold').hidden=!p;
   $('noListHint').hidden=hasSheet();
   // Seen count
-  $('seenLabel').textContent=nm?nm+'님 작품에서 본 것':'본 것 한 줄';
+  // DM: the line stands as its own paragraph after 「인스타그램에서 …보고 연락드렸어요」, so it reads as what struck us.
+  $('seenLabel').textContent=isEmail?(nm?nm+'님 작품에서 본 것':'본 것 한 줄'):(nm?nm+'님 작업에서 인상 깊었던 점':'인상 깊었던 점');
+  $('seenHelp').textContent=isEmail?'이 분 작품에서 본 것을 한 문장으로 써요.':'「인스타그램에서 …작업을 보고 연락드렸어요」 다음 문단에 그대로 들어가요.';
+  $('v-seen').placeholder=isEmail?'예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.':'예: 손으로 접은 종이가 펼쳐지며 끝나는 장면이 특히 인상 깊었어요.';
+  $('editTitle').textContent=isEmail?'이번 메일만 문구 고치기':'이번 DM만 문구 고치기';
   renderWorkLink(p,isEmail);
   const n=C.chars(v['본 것 한 줄'].trim());$('seenCount').textContent=n+'/'+C.LIMITS.seenMax+'자';$('seenCount').classList.toggle('over',n>C.LIMITS.seenMax);
   // Subject group
   renderSubjects(v);
   // Settings summary
-  $('settingsSummary').textContent=[$('v-sender').value.trim()||'담당자명 없음',isEmail?(ui.footer?'고지 켜짐':'고지 꺼짐'):'',ui.ad?'광고 켜짐':'광고 꺼짐'].filter(Boolean).join(' · ');
+  $('settingsSummary').textContent=[isEmail?($('v-sender').value.trim()||'담당자명 없음'):'',isEmail?(ui.footer?'고지 켜짐':'고지 꺼짐'):'',ui.ad?'광고 켜짐':'광고 꺼짐'].filter(Boolean).join(' · ');
   $('adOn').setAttribute('aria-checked',String(ui.ad));$('adBox').hidden=!ui.ad;
   $('footerOn').setAttribute('aria-checked',String(ui.footer||ui.ad));$('footerOn').disabled=ui.ad;$('footerLocked').hidden=!ui.ad;
   $('markOn').setAttribute('aria-checked',String(ui.mark));
@@ -390,7 +397,7 @@ function renderWorkLink(p,isEmail){
   const v=$('v-post').value.trim(),u=safeUrl(v),sheetUrl=(p&&p.url)||'',edited=!!(sheetUrl&&v&&safeUrl(sheetUrl)!==u);
   const a=$('postOpen');
   if(u){a.href=u;a.removeAttribute('aria-disabled');}else{a.removeAttribute('href');a.setAttribute('aria-disabled','true');}
-  const msg=!p&&!v?'본 게시물 주소를 넣으면 바로 열 수 있어요.':p&&!sheetUrl&&!v?'시트에 작품 주소가 없어요. 본 게시물 주소를 넣어 주세요.':isEmail?'메일에는 안 들어가요. 본 게시물 주소로 바꿔도 돼요.':'DM에 이 주소가 들어가요. 게시물 하나의 주소가 좋아요.';
+  const msg=!p&&!v?'본 게시물 주소를 넣으면 바로 열 수 있어요.':p&&!sheetUrl&&!v?'시트에 작품 주소가 없어요. 본 게시물 주소를 넣어 주세요.':isEmail?'메일에는 안 들어가요. 본 게시물 주소로 바꿔도 돼요.':'DM에는 안 들어가요. 인상 깊었던 게시물 주소로 바꿔 두면 바로 열어 볼 수 있어요.';
   const sig=msg+'|'+edited;if(sig===postHelpSig)return;postHelpSig=sig;
   const h=$('postHelp');h.replaceChildren(msg);
   if(edited){const b=document.createElement('button');b.type='button';b.className='btn text';b.textContent='시트 주소로 되돌리기';
@@ -687,7 +694,7 @@ function fillTplFields(){
       w.innerHTML='<label for="'+id+'">'+esc(label)+'<span class="changed" hidden>고침</span></label>'+(multi?'<textarea class="field" rows="'+(k==='dm.message'?12:3)+'" id="'+id+'" data-tpl="'+k+'"></textarea>':'<input class="field" id="'+id+'" data-tpl="'+k+'">');
       box.appendChild(w);
       const i=w.querySelector('[data-tpl]');
-      i.addEventListener('input',()=>{const [c,kk]=k.split('.');tpl[c][kk]=i.value;store.set(S,KEY.tpl,tpl);render();});
+      i.addEventListener('input',()=>{const [c,kk]=k.split('.');tpl[c][kk]=i.value;saveTpl();render();});
       i.addEventListener('focus',()=>{const kk=k.split('.')[1];if(k.startsWith('email.')){outline=kk;render();}});
       i.addEventListener('blur',()=>{if(outline){outline='';render();}});
     });

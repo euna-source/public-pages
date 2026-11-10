@@ -48,23 +48,26 @@
       footer:'본 메일은 {활동명}님이 공개해 두신 연락처로 작품 소개를 제안드리기 위해 한 번 보내는 메일이에요. 답이 없으시면 다시 연락드리지 않을게요. '+TRUST
     },
     dm:{
-      // A message request reaches someone who doesn't follow us as one text-only message, so the offer and links travel together.
+      // The applied DM (2026-11-10): sent as the team, no links in the body; app, form and chat live in our profile link.
       message:[
-        '안녕하세요, {활동명}님.',
-        '크리에이터클럽을 만들고 있는 {담당자명}이에요.',
+        '안녕하세요, {활동명}님!',
+        '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽 운영팀입니다.',
         '',
-        '올려 주신 게시물({게시물 주소})을 보고 인사드리고 싶어서 연락드렸어요. {본 것 한 줄}',
-        '이 작업이 더 많은 창작자에게 닿고, 새로운 협업으로도 이어지면 좋겠다 싶었어요.',
+        '인스타그램에서 {활동명}님의 작업을 보고 연락드렸어요.',
         '',
-        '크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이에요. 작업을 알리고, 공감하는 창작자를 만나고, 함께 일할 사람을 찾는 앱이에요.',
+        '{본 것 한 줄}',
         '',
-        '기존 작업을 포트폴리오로 올려 주시면, 감사의 뜻으로 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'을 드려요(최대 '+REWARD.max+'개). 올리신 뒤 신청서에 링크만 남겨 주시면 매주 화요일에 보내 드려요.',
-        '· 앱: '+LINKS.app,
-        '· 신청서: '+LINKS.form,
-        '· 궁금한 점(오픈채팅): '+LINKS.chat,
-        '링크가 안 눌리면 앱스토어에서 「크리에이터클럽」을 검색해 주세요.',
+        '{활동명}님만의 개성이 담긴 작업을 더 많은 창작자에게 소개하고 싶어 크리에이터클럽에 초대드리게 되었습니다.',
         '',
-        '바쁘시면 답 안 주셔도 괜찮아요. '+TRUST
+        '크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이라는 슬로건 아래, 창작자들이 자신의 작업을 알리고 서로의 작업에 공감하며 새로운 협업의 기회를 만들어 가는 공간이에요.',
+        '',
+        '이번에 초대드리는 작가님께는 기존 작업을 포트폴리오로 올려 주시면, 감사의 뜻으로 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'(최대 '+REWARD.total+')을 드리고 있어요.',
+        '',
+        '기존 작업을 그대로 활용하실 수 있고, 업로드 후 신청서에 작업 링크만 남겨 주시면 매주 화요일에 상품권을 보내 드려요.',
+        '',
+        '📌 앱 다운로드와 참여 신청서, 문의 채널은 저희 인스타그램 프로필에 있는 링크에서 확인하실 수 있어요.',
+        '',
+        '{활동명}님의 멋진 작업을 크리에이터클럽에서도 만나볼 수 있으면 좋겠습니다!'
       ].join('\n')
     }
   };
@@ -256,17 +259,14 @@
     // Only anchors the sender controls: the fixed layout's policy links, logo and font are not part of the check.
     const fixed=new Set(Object.values(POLICY));
     const all=channel==='email'?[...r.emailHtml.matchAll(/<a href="([^"]+)"/g)].map(m=>m[1]).filter(u=>!/^mailto:/.test(u)&&!fixed.has(u)).concat(links(r.subject)):links(r.dm);
-    const missing=[['app','앱'],['form','신청서'],['chat','오픈채팅']].filter(([k])=>!all.includes(LINKS[k]));
+    // The DM points to our profile link instead, so only the mail must carry all three.
+    const missing=channel==='email'?[['app','앱'],['form','신청서'],['chat','오픈채팅']].filter(([k])=>!all.includes(LINKS[k])):[];
     missing.forEach(([k,label])=>add('block','link-missing:'+k,label+' 링크('+LINKS[k]+')가 문구에서 빠졌어요.'));
     all.filter(u=>/^http:\/\//i.test(u)).forEach(u=>add('block','link-http','https가 아닌 링크가 있어요: '+u));
     all.filter(u=>SHORTENERS.test(u)).forEach(u=>add('block','link-short','단축 주소는 사기 링크처럼 보여요: '+u));
     if(channel==='email')[...r.emailHtml.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].forEach(m=>{const t=m[2].trim();if(/^https?:\/\//.test(t)&&t!==m[1])add('block','link-text','링크 글자와 실제 주소가 달라요: '+t);});
     const known3=new Set(Object.values(LINKS)),post=clean(v['게시물 주소']);
     [...new Set(all)].filter(u=>!known3.has(u)&&u!==post).forEach(u=>add('warn','link-other','정해진 링크 말고 다른 링크가 있어요: '+u));
-    if(channel==='dm'&&post){
-      let ok=false;try{const u=new URL(post);ok=/(^|\.)instagram\.com$/.test(u.hostname)&&/^\/(p|reel|reels)\/[^/]+/.test(u.pathname);}catch(e){}
-      if(!ok)add('warn','post-url','게시물 주소가 인스타 게시물(instagram.com/p/… 또는 /reel/…) 모양이 아니에요.','v-post');
-    }
     if(o.ad&&o.ad.on){
       if(!clean(o.ad.phone))add('block','ad-phone','광고 표기에는 회사 전화번호가 들어가야 해요.','adPhone');
       if(channel==='email'&&!r.subject.startsWith('(광고)'))add('block','ad-subject','제목이 「(광고)」로 시작해야 해요.');
