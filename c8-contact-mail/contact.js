@@ -72,6 +72,39 @@
       ].join('\n')
     }
   };
+  // Field wordings of the mail: only the sections that differ from DEFAULTS.email. The opening sentence is the sender's own
+  // phrase plus 이/가, because a song or an album does not read as 「○○님의 … 작업」.
+  const EMAIL_VARIANTS={
+    music:{
+      label:'음악',
+      match:/음악|음원|작곡|작사|편곡|보컬|싱어|가수|뮤지션|프로듀서|밴드|연주|래퍼|비트메이커|사운드/,
+      greeting:[
+        '안녕하세요, **{활동명}님!**',
+        '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
+        '',
+        '{플랫폼}{이/가} 인상 깊어 연락드렸어요.',
+        '',
+        '{본 것 한 줄}',
+        '',
+        '이렇게 자신만의 음악적 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요.'
+      ].join('\n'),
+      intro:[
+        '크리에이터클럽은 자신의 작업을 알리고, 그 가치를 알아보는 동료를 만나 새로운 협업을 시작하는 공간이에요.',
+        '',
+        '특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님처럼 자신만의 음악 세계를 만들어가는 분들과도 함께하고 싶어요.'
+      ].join('\n'),
+      closing:'{활동명}님의 앞으로의 음악 활동도 기대하며, 크리에이터클럽에서도 멋진 작업들을 만나볼 수 있으면 좋겠습니다!'
+    }
+  };
+  const variantKey=v=>Object.prototype.hasOwnProperty.call(EMAIL_VARIANTS,v)?v:'basic';
+  /* The full wording for one variant ('basic' or a key of EMAIL_VARIANTS), as a fresh copy. */
+  function template(variant){
+    const t=JSON.parse(JSON.stringify(DEFAULTS)),o=EMAIL_VARIANTS[variantKey(variant)];
+    if(o)EMAIL_SECTIONS.forEach(k=>{if(typeof o[k]==='string')t.email[k]=o[k];});
+    return t;
+  }
+  /* Which variant a candidate's 분야 points to. */
+  function variantOf(field){const f=clean(field);return Object.keys(EMAIL_VARIANTS).find(k=>EMAIL_VARIANTS[k].match.test(f))||'basic';}
   const SUBJECT_ALTERNATIVES=['「{작품명}」 보고 연락드려요','{활동명}님 작업을 크리에이터클럽에 소개하고 싶어요'];
   // Legal ad labelling (정보통신망법 시행령 별표 6). Off until legal review decides; the switch lives in the editor.
   const AD={
@@ -99,6 +132,17 @@
   const clean=v=>String(v??'').normalize('NFC').replace(/[​-‍﻿]/g,'').replace(/\s+/g,' ').trim();
   const MARK_ON='\u0001',MARK_OFF='\u0002';
 
+  /* 이/가 after a filled value: by the last letter's 받침, looking past closing quotes and brackets. */
+  const PARTICLE='{이/가}';
+  function subjectParticle(before){
+    const s=String(before).replace(/[\u0001\u0002]/g,''),m=s.match(/([가-힣A-Za-z0-9])[^가-힣A-Za-z0-9]*$/);
+    if(!m)return '이';
+    const c=m[1];
+    if(/[가-힣]/.test(c))return (c.charCodeAt(0)-0xAC00)%28?'이':'가';
+    if(/[0-9]/.test(c))return /[013678]/.test(c)?'이':'가';
+    // Latin is a guess by how the last letter is usually read (엘·엠·엔·알, -ng); the sender can still fix the wording by hand.
+    return /[lmnLMNR]/.test(c)||/ng[^A-Za-z]*$/.test(s)?'이':'가';
+  }
   /* Replace {변수}. An empty optional token takes its surrounding space with it so no double space or blank line remains.
      mark=true wraps filled values for the preview's 「바뀌는 부분 보기」; copies never use it. */
   function fill(text,values,mark){
@@ -110,6 +154,7 @@
       const on=mark&&(mark===true||(mark.has&&mark.has(k)));
       return v?(on?MARK_ON+v+MARK_OFF:v):'\u0000';
     });
+    out=out.split(PARTICLE).reduce((a,b)=>a+subjectParticle(a.slice(a.lastIndexOf('\n')+1))+b);
     out=out.replace(/[ \t]*\u0000[ \t]*/g,' ').replace(/ +\n/g,'\n').replace(/\n +/g,'\n').replace(/ {2,}/g,' ').replace(/ ([.,)」])/g,'$1');
     return out.split('\n').map(l=>l.trim()===''?'':l.replace(/\s+$/,'')).join('\n').replace(/\n{3,}/g,'\n\n').trim();
   }
@@ -234,6 +279,7 @@
     const used=channel==='email'?EMAIL_SECTIONS.filter(k=>k!=='footer'||o.footer!==false||(o.ad&&o.ad.on)).map(k=>tpl.email[k]||''):[tpl.dm.message];
     const usedKeys=new Set(used.flatMap(tokens));
     const known=new Set(VARS.map(x=>x.key));
+    usedKeys.delete('이/가');
     usedKeys.forEach(k=>{if(!known.has(k))add('block','unknown','모르는 칸 {'+k+'}이 문구에 있어요. 칸 이름을 고치거나 지워 주세요.');});
     VARS.forEach(x=>{if(usedKeys.has(x.key)&&x.required&&!clean(v[x.key]))add('block','empty:'+x.key,'「'+x.key+'」 칸이 비어 있어요.',x.field);});
     const name=clean(v['활동명']);
@@ -286,6 +332,6 @@
     return out;
   }
 
-  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean};
+  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);

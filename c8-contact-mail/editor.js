@@ -24,7 +24,7 @@ const yymmdd=d=>String(d.getFullYear()).slice(2)+String(d.getMonth()+1).padStart
 let sheet=store.get(S,KEY.people,null);
 let log=store.get(S,KEY.log,[]);if(!Array.isArray(log))log=[];
 let drafts=store.get(S,KEY.drafts,{});if(!drafts||typeof drafts!=='object')drafts={};
-let ui=Object.assign({channel:'email',current:'manual',subject:0,footer:true,ad:false,mark:false,width:'desk',scope:'ready',filter:''},store.get(S,KEY.ui,{}));
+let ui=Object.assign({channel:'email',current:'manual',subject:0,variant:'basic',footer:true,ad:false,mark:false,width:'desk',scope:'ready',filter:''},store.get(S,KEY.ui,{}));
 // Two toggles became one scope: a window that had either one off keeps seeing everyone.
 if('fBoth' in ui||'fOpen' in ui){ui.scope=(ui.fBoth===false||ui.fOpen===false)?'all':'ready';delete ui.fBoth;delete ui.fOpen;}
 delete ui.tab;
@@ -33,14 +33,14 @@ let tpl=mergeTpl(store.get(S,KEY.tpl,null));
 let attempted=false,touched=new Set(),logoBroken=false,focusSeen=false,outline='',last=null,lastChecks=[],checklistOpen=null;
 
 // One-off edits are stamped with the wording they were made on; a new confirmed wording drops them so an old DM never survives a reload.
-function tplStamp(){let h=5381;const s=JSON.stringify(C.DEFAULTS);for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))>>>0;return h.toString(36);}
+function tplStamp(){let h=5381;const s=JSON.stringify([C.DEFAULTS,C.EMAIL_VARIANTS,ui.variant]);for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))>>>0;return h.toString(36);}
 const saveTpl=()=>store.set(S,KEY.tpl,{...tpl,v:tplStamp()});
 function mergeTpl(saved){
-  const t=JSON.parse(JSON.stringify(C.DEFAULTS));
+  const t=C.template(ui.variant);
   if(saved&&typeof saved==='object'&&saved.v===tplStamp())['email','dm'].forEach(c=>{if(saved[c])Object.keys(t[c]).forEach(k=>{if(typeof saved[c][k]==='string')t[c][k]=saved[c][k];});});
   return t;
 }
-const editedKeys=()=>C.EMAIL_SECTIONS.filter(k=>tpl.email[k]!==C.DEFAULTS.email[k]).map(k=>'email.'+k).concat(tpl.dm.message!==C.DEFAULTS.dm.message?['dm.message']:[]);
+const editedKeys=()=>{const b=C.template(ui.variant);return C.EMAIL_SECTIONS.filter(k=>tpl.email[k]!==b.email[k]).map(k=>'email.'+k).concat(tpl.dm.message!==b.dm.message?['dm.message']:[]);};
 
 /* ---------- Clipboard: never claim a copy that did not happen ---------- */
 let tt;function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),4000);}
@@ -151,7 +151,7 @@ const renderOpts=()=>({footer:ui.footer,ad:{on:ui.ad,phone:$('adPhone').value}})
 function draft(){return drafts[ui.current]||(drafts[ui.current]={vars:{},to:'',handle:'',flow:''});}
 function saveDraft(){
   const d=draft(),v=values();delete v['담당자명'];
-  d.vars=v;d.to=$('to').value;d.handle=$('handle').value;d.channel=ui.channel;d.subject=ui.subject;
+  d.vars=v;d.to=$('to').value;d.handle=$('handle').value;d.channel=ui.channel;d.subject=ui.subject;d.variant=ui.variant;
   store.set(S,KEY.drafts,drafts);store.set(S,KEY.ui,ui);
   store.set(L,KEY.sender,$('v-sender').value);store.set(L,KEY.phone,$('adPhone').value);
 }
@@ -161,12 +161,12 @@ function loadDraftInto(key,p){
   if(d){
     // Older drafts kept the post address only for DM people: fall back to the sheet's work address.
     set('v-name',d.vars['활동명']);set('v-platform',d.vars['플랫폼']);set('v-post',d.vars['게시물 주소']||(p&&p.url)||'');set('v-seen',d.vars['본 것 한 줄']);set('v-work',d.vars['작품명']);
-    set('to',d.to);set('handle',d.handle);if(d.channel)ui.channel=d.channel;ui.subject=d.subject||0;
+    set('to',d.to);set('handle',d.handle);if(d.channel)ui.channel=d.channel;ui.subject=d.subject||0;ui.variant=d.variant||'basic';
   }else if(p){
     set('v-name',plainName(p.name));set('to',p.email);set('handle',p.handle);set('v-platform',p.platform);
     set('v-post',p.url||'');set('v-seen','');set('v-work','');
-    ui.subject=0;const ch=K.channelOf(p);if(ch)ui.channel=ch;
-  }else{['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
+    ui.subject=0;ui.variant=C.variantOf(p.field);const ch=K.channelOf(p);if(ch)ui.channel=ch;
+  }else{ui.variant='basic';['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
   touched=new Set();attempted=false;
 }
 
@@ -185,8 +185,10 @@ async function choose(key,opts){
   const p=findPerson(key);
   // 「다음 분 쓰기」 can land outside the search or filter: release them so the row is on screen. Scope stays.
   if(p&&!visible().some(q=>q.key===key)&&(query||ui.filter)){query='';$('listSearch').value='';$('listSearchClear').hidden=true;ui.filter='';}
+  const hadEdits=editedKeys().length,was=ui.variant;
   loadDraftInto(key,p);
-  if(switching&&editedKeys().length){store.del(S,KEY.tpl);tpl=mergeTpl(null);fillTplFields();toast('문구를 확정 문안으로 되돌렸어요.');}
+  // The wording follows the person's variant; one-off edits never travel to the next person.
+  if(switching&&(hadEdits||was!==ui.variant)){store.del(S,KEY.tpl);tpl=mergeTpl(null);fillTplFields();if(hadEdits)toast('문구를 확정 문안으로 되돌렸어요.');}
   saveDraft();closeDrawer();renderAll();
   setTimeout(()=>{$('v-seen').focus();},0);
 }
@@ -281,6 +283,12 @@ function goField(id){
 }
 
 /* ---------- Render ---------- */
+function setVariant(v){
+  if(v===ui.variant)return;
+  const hadEdits=editedKeys().some(k=>k.startsWith('email.'));
+  staleCopy();ui.variant=v;store.del(S,KEY.tpl);tpl=mergeTpl(null);fillTplFields();saveDraft();renderAll();
+  if(hadEdits)toast('문구를 확정 문안으로 되돌렸어요.');
+}
 function setChannel(c){const n=c==='dm'?'dm':'email';if(n!==ui.channel)staleCopy();ui.channel=n;saveDraft();renderAll();}
 function renderAll(){renderRecipients();render();}
 function render(){
@@ -294,6 +302,11 @@ function render(){
   const isEmail=ui.channel==='email';
   // Channel-dependent visibility
   document.querySelectorAll('[data-only]').forEach(el=>el.hidden=el.dataset.only!==ui.channel);
+  const music=ui.variant==='music';
+  [['vBasic',!music],['vMusic',music]].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
+  $('platformLabel').textContent=music?'인상 깊었던 곡·앨범':'본 곳';
+  $('help-v-platform').textContent=music?'「(여기)이/가 인상 깊어 연락드렸어요」에 들어가요. 조사는 알아서 붙어요.':'「○○님의 (본 곳) 작업이 인상 깊어 연락드렸어요」에 들어가요.';
+  $('v-platform').placeholder=music?'예: 최근 발매하신 싱글 「새벽 버스」':'예: 홈페이지와 「밤의 정류장」';
   [['chEmail',isEmail],['chDm',!isEmail]].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
   [['wDesk',ui.width==='desk'],['wMobile',ui.width!=='desk']].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
   $('mail').classList.toggle('mobile',ui.width!=='desk');
@@ -748,6 +761,8 @@ $('v-seen').addEventListener('focus',()=>{focusSeen=true;render();});
 // Never rebuild the list on blur: blur fires on mousedown of a row, and a rebuilt row swallows that click.
 $('v-seen').addEventListener('blur',()=>{focusSeen=false;touched.add('v-seen');render();refreshRowStatus();});
 $('chEmail').onclick=()=>setChannel('email');$('chDm').onclick=()=>setChannel('dm');
+$('vBasic').onclick=()=>setVariant('basic');$('vMusic').onclick=()=>setVariant('music');
+radioKeys('variantSeg',['vBasic','vMusic'],id=>setVariant(id==='vMusic'?'music':'basic'));
 radioKeys('channelSeg',['chEmail','chDm'],id=>setChannel(id==='chDm'?'dm':'email'));
 $('wDesk').onclick=()=>{ui.width='desk';render();};$('wMobile').onclick=()=>{ui.width='mobile';render();};
 radioKeys('wDesk'.length&&$('wDesk').parentElement.id||'channelSeg',['wDesk','wMobile'],id=>{ui.width=id==='wDesk'?'desk':'mobile';render();});
