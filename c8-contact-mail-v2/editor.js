@@ -474,7 +474,7 @@ function compute(){
   document.querySelectorAll('[data-only]').forEach(el=>el.hidden=el.dataset.only!==ui.channel);
   // What the write column shows for this person.
   $('seenBlock').hidden=mode==='next'&&!recorded;
-  $('coach').hidden=recorded;$('personFold').hidden=recorded;
+  $('coach').hidden=recorded;$('personFold').hidden=recorded;$('channelRow').hidden=recorded;
   $('v-seen').readOnly=recorded;
   // Nothing to change on a sent mail, a person we do not write to, or the sample shown before any list is in.
   $('subjectChange').hidden=mode==='next'||$('actBar').classList.contains('is-empty');

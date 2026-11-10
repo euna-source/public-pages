@@ -237,6 +237,10 @@ textarea.field{height:auto;padding:8px 12px;resize:vertical}
 .who{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .who.is-empty{color:var(--text-2)}
 .who-row .ch{flex:none;font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2);margin-right:auto;padding-top:4px}
+.who-row .ch{display:none}
+.who-row .who{margin-right:auto}
+.channel-row{display:flex;align-items:center;gap:12px;margin-top:4px}
+.channel-row .label{margin:0;font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
 #postOpen{flex:none}
 #postOpen[aria-disabled="true"]{color:var(--text-2)}
 .sheet-note{font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
@@ -570,16 +574,17 @@ dialog textarea{min-height:200px;margin-bottom:12px}
               <a class="btn line" id="postOpen" target="_blank" rel="noopener noreferrer">작품 보기<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
             </div>
             <p class="sheet-note" id="sheetNote" hidden></p>
+            <!-- 보낼 수단: 늘 펼쳐 둔다 -->
+            <div class="channel-row" id="channelRow">
+              <span class="label" id="channelLabel">보낼 수단</span>
+              <div class="seg" role="radiogroup" aria-labelledby="channelLabel" id="channelSeg">
+                <button role="radio" id="chEmail" aria-checked="true">이메일</button>
+                <button role="radio" id="chDm" aria-checked="false" tabindex="-1">인스타 DM</button>
+              </div>
+            </div>
             <details class="fold" id="personFold">
               <summary><svg class="i" aria-hidden="true"><use href="#i-down"/></svg><span class="ell" id="personLine">이 분 정보</span></summary>
               <div class="pf-body">
-                <div class="prow" data-row="channel">
-                  <span class="label" id="channelLabel">보낼 곳</span>
-                  <div class="seg" role="radiogroup" aria-labelledby="channelLabel" id="channelSeg">
-                    <button role="radio" id="chEmail" aria-checked="true">이메일</button>
-                    <button role="radio" id="chDm" aria-checked="false" tabindex="-1">인스타 DM</button>
-                  </div>
-                </div>
                 <div class="prow" data-row="v-name"><label for="v-name">활동명</label><input class="field" id="v-name" data-var="활동명" autocomplete="off" aria-describedby="err-v-name"><p class="err" id="err-v-name" hidden></p></div>
                 <div class="prow" data-row="to" data-only="email"><label for="to">받는 메일 주소</label><input class="field" id="to" type="email" autocomplete="off" spellcheck="false" inputmode="email" placeholder="name@example.com" aria-describedby="err-to"><p class="err" id="err-to" hidden></p></div>
                 <div class="prow" data-row="handle" data-only="dm" hidden><label for="handle">인스타 계정</label><input class="field" id="handle" autocomplete="off" spellcheck="false" placeholder="parang.art" aria-describedby="err-handle"><p class="err" id="err-handle" hidden></p></div>
