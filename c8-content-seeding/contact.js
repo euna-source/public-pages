@@ -8,7 +8,7 @@
     showcase:'https://abr.ge/001rrqg',apply:'https://forms.gle/Kw1zdMpuV2xQQzsB8',ask:'https://abr.ge/wi3g54p'};
   // Reward terms live in one place so a grade-based amount decision changes only this line.
   const REWARD={per:'1만 원',max:5,total:'5만 원'};
-  const COMPANY={name:'㈜라텔앤드파트너즈',address:'서울특별시 중구 필동로 16 참그루빌딩 2층',email:'support@cre8orclub.com'};
+  const COMPANY={name:'㈜라텔앤드파트너즈',address:'서울특별시 중구 필동로 16 참그루빌딩 3층',email:'support@cre8orclub.com'};
   const TRUST='크리에이터클럽은 입금·계좌번호·비밀번호·신분증을 요청하지 않습니다.';
   const VARS=[
     {key:'활동명',required:true,field:'v-name'},
