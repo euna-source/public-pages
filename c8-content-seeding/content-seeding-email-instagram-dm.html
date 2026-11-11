@@ -330,7 +330,7 @@ textarea.field{height:auto;padding:8px 12px;resize:vertical}
 /* 캔버스(받는 분 화면)는 흰색 고정 */
 .mail{width:640px;max-width:100%;border-radius:12px;box-shadow:var(--sh-canvas);transition:width var(--t-panel) var(--ease)}
 .mail.mobile{width:375px}
-#frame{display:block;width:100%;height:900px;border:0;border-radius:12px;background:#f2f2f2}
+#frame{display:block;width:100%;height:900px;border:0;border-radius:12px;background:#e5e5e5}
 .phone{width:375px;max-width:100%;background:#fff;color:#111;border:1px solid #E3E3DF;border-radius:28px;padding:16px 14px 20px;display:flex;flex-direction:column;gap:8px}
 .bubble{align-self:flex-end;max-width:88%;background:#3797F0;color:#fff;border-radius:18px 18px 4px 18px;padding:10px 13px;font-size:15px;line-height:22px;white-space:pre-wrap;overflow-wrap:anywhere}
 .bubble mark,.mailmark{background:#FFF3A3;color:#111;border-radius:3px}
@@ -515,6 +515,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   :focus-visible,.field:focus-visible{outline:3px solid Highlight!important;outline-offset:2px!important}
   .list li[aria-selected="true"],.list li.active{outline:2px solid Highlight;outline-offset:-2px}
 }
+@media (prefers-color-scheme:light){#previewCol{background:#e5e5e5}}
 </style>
 </head>
 <body>
@@ -837,8 +838,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-seeding-copy"></script>
+<script src="contact.js?v=261111-preview-corners"></script>
 <script src="candidates.js?v=261110-v2"></script>
-<script src="editor.js?v=261111-seeding-copy"></script>
+<script src="editor.js?v=261111-preview-corners"></script>
 </body>
 </html>

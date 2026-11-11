@@ -551,7 +551,9 @@ function paint(){
   $('subjAd').hidden=!ui.ad;
   $('subjPick').hidden=ui.subject!==s.coach.subjectPick.index;
   $('subjectChange').title='제목 3안 가운데 고를 수 있어요. 추천 1안: '+s.coach.subjectPick.why;
-  const doc=$('frame');if(doc.dataset.html!==shown.emailHtml){doc.dataset.html=shown.emailHtml;doc.srcdoc=shown.emailHtml;}
+  // Darken only the preview surround; copied and downloaded email keep their original background.
+  const previewHtml=shown.emailHtml.replace(/background-color:#f2f2f2/g,'background-color:#e5e5e5');
+  const doc=$('frame');if(doc.dataset.html!==previewHtml){doc.dataset.html=previewHtml;doc.srcdoc=previewHtml;}
   const kb=Math.max(1,Math.round(new Blob([r.emailHtml]).size/1024));setText($('exSize'),'약 '+kb+'KB');
   const h=handleOf($('handle').value);
   setText($('dmWho'),h?'@'+h+'에게 보내는 메시지 요청':'인스타 계정을 쓰면 받는 사람이 보여요');
