@@ -284,6 +284,9 @@ textarea.field{height:auto;padding:8px 12px;resize:vertical}
 #coachHints{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
 #coachHints li{display:flex;gap:6px;align-items:flex-start;color:var(--text)}
 #coachHints li .i{width:14px;height:14px;margin-top:2px;color:var(--warn)}
+#coachPolish{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;align-items:start;margin:0;padding:8px;border:1px solid var(--line);border-radius:var(--r-sm);color:var(--text)}
+#coachPolish .fix{white-space:pre-wrap;overflow-wrap:anywhere;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden}
+#coachPolish .why{grid-column:1/-1;color:var(--text-2)}
 #coachSheet{display:flex;align-items:center;gap:4px;min-width:0}
 #coachPanel{margin-top:8px;padding-top:12px;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
 #coachPanel h3{font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
@@ -644,6 +647,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
               <button class="btn sm" id="coachToggle" aria-expanded="false" aria-controls="coachPanel"><svg class="i" aria-hidden="true"><use href="#i-down"/></svg><span id="coachLabel">문장 도움 · 문장 틀과 예시</span></button>
               <div id="seenNotes" aria-live="polite">
                 <p class="err" id="seenErr" hidden></p>
+                <p id="coachPolish" hidden></p>
                 <ul id="coachHints"></ul>
                 <p id="coachSheet" hidden></p>
                 <p id="seenWhere">연락드린 이유 바로 다음 줄에 들어가요.</p>
@@ -873,8 +877,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-three-links2"></script>
+<script src="contact.js?v=261111-polish"></script>
 <script src="candidates.js?v=261110-v2"></script>
-<script src="editor.js?v=261111-html-draft"></script>
+<script src="editor.js?v=261111-polish"></script>
 </body>
 </html>

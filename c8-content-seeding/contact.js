@@ -453,6 +453,47 @@
   const DECO=/[!?！？]{2,}|\p{Emoji_Presentation}|[ㅋㅎㅠㅜ]{2,}|~{2,}/u;
   const FIXED_LINES=['작업이 인상 깊어 연락드렸어요','자신만의 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요'];
   const SUBJECT_WHY='작품 소개 협업을 제안한다는 목적이 제목에서 보여요.';
+  /* ---------- 고친 문장 추천: wording fixes a person can take with one press. Taken from the AI 말투 보정 skill (번역투·겹친 피동·
+     빈 수식) and the 사람글 skill (말끝을 앞뒤 문장에 맞춤). Each rule changes wording only, never what was seen, and a quoted
+     title is left alone. keep = the letters before the change that stay as they are.
+     Left out on purpose because the fix can change what is said: 「을 통해」(수단 → 장소), 「을 가지고 있」(소유 → 존재), 「-았던 것 같아요」(추측 → 단정). ---------- */
+  const STRONG='(?:정말|너무|진짜|매우|굉장히|아주|무척|엄청|진심으로)';
+  const END='(?=[.!?~…)\\s]|$)';
+  const past=c=>(c.charCodeAt(0)-0xAC00)%28===20;   // ends in ㅆ: 았·었·였·했·겠 and 꼈·봤·왔 alike
+  const POLISH=[
+    {id:'double-passive',label:'겹친 피동',re:/(되어|보여|쓰여)(지는|진|졌|집|져)/g,
+      fix:(m,a,b)=>({to:{되어:{지는:'되는',진:'된',졌:'됐',집:'됩',져:'돼'},보여:{지는:'보이는',진:'보인',졌:'보였',집:'보입',져:'보여'},쓰여:{지는:'쓰이는',진:'쓰인',졌:'쓰였',집:'쓰입',져:'쓰여'}}[a][b]})},
+    {id:'in-terms',label:'번역투',re:/(^|[가-힣A-Za-z0-9」』)\]])에 있어서/g,fix:(m,a)=>({keep:a,to:'에서'})},
+    {id:'because',label:'번역투',re:/(^|[가-힣A-Za-z0-9」』)\]])(?:으로|로) 인(?:해서?|하여)/g,fix:(m,a)=>({keep:a,to:' 때문에'})},
+    {id:'could-feel',label:'돌려 말함',re:/느낄 수 있었/g,fix:()=>({to:'느꼈'})},
+    {id:'stiff',label:'딱딱한 말',re:/하였/g,fix:()=>({to:'했'})},
+    {id:'stacked',label:'겹친 강조',re:new RegExp('('+STRONG+')(?:[ \\t]*'+STRONG+')+','g'),fix:(m,a)=>({to:a})},
+    {id:'dash',label:'줄표',re:/(\S)[ \t]*[—–][ \t]*(?=\S)/g,fix:(m,a)=>({keep:a,to:', '})},   // only inside a line: a dash that opens or ends a line stays
+    // Only while the fixed wording around the line ends in 요: the line then matches the sentences next to it.
+    {id:'ending',label:'앞뒤 문장과 말끝 맞춤',soft:true,re:new RegExp('([가-힣])습니다'+END,'g'),fix:(m,a)=>past(a)?{keep:a,to:'어요'}:null}
+  ];
+  /* Does the fixed wording around the line speak in 합니다? Counted on sentence ends; no wording given = 해요 (the shipped templates). */
+  function formalBody(body){
+    const b=String(body??'');if(!b.trim())return false;
+    const n=re=>(b.match(re)||[]).length;
+    return n(/니다(?=[.!?\s]|$)/g)>n(/요(?=[.!?\s:)]|$)/g);
+  }
+  /* {text, changes:[{id,label,from,to}]}: the line with every fix applied. text equals the input when there is nothing to fix. */
+  function polish(text,opt){
+    const o=opt||{},formal=formalBody(o.body),changes=[];
+    const out=String(text??'').split(/([「『][^」』]*[」』])/).map((part,i)=>{
+      if(i%2)return part;
+      return POLISH.reduce((s,r)=>r.soft&&formal?s:s.replace(r.re,(m,...g)=>{
+        const f=r.fix(m,...g);if(!f)return m;
+        const keep=f.keep||'',from=m.slice(keep.length).trim(),to=f.to.trim();
+        if(from===to)return m;
+        changes.push({id:r.id,label:r.label,from,to});return keep+f.to;
+      }),part);
+    }).join('');
+    return {text:out,changes};
+  }
+  // Words that judge the work instead of saying what was seen (사람글: 창작자의 취향과 판단을 대신 정하지 않는다).
+  const PRAISE=/독보적|압도적|탁월|완벽한|최고의|놀라운|뛰어난|훌륭한|대단한|감각적/;
   /* Advice for the hand-typed fields. Hints never block: they carry no level and copying ignores them.
      history is the same [{name, seen}] that check() takes. The screen shows at most two hints, in this order. */
   function coach(input){
@@ -467,6 +508,8 @@
       if(NUMBERS.test(bare))hint('seen-number','팔로워·조회 수 대신 작품에서 본 장면을 써 주세요.');
       const hype=bare.match(HYPE);
       if(hype)hint('typed-hype','「'+hype[0]+'」은 광고 문자처럼 읽힐 수 있어요. 담백한 말로 바꿔 주세요.');
+      const praise=bare.match(PRAISE);
+      if(praise)hint('seen-praise','「'+praise[0]+'」 같은 평가보다 작품에서 본 장면을 써 주세요.');
       const max=o.channel==='dm'?LIMITS.dmSeenMax:LIMITS.seenMax;
       if(chars(seen)>max)hint('seen-long',chars(seen)+'자예요. '+(o.channel==='dm'?'한 문단':'한 문장')+'('+max+'자 안)으로 줄여 주세요.');
       if(EXAMPLES.some(e=>similarity(seen,e.text)>=LIMITS.similar))hint('seen-example','예로 든 문장과 거의 같아요. 이 분 작품에서 본 걸로 바꿔 주세요.');
@@ -494,13 +537,15 @@
     const foldLabel=seen?'문장 도움 · 문장 틀과 '+examplesLabel:'문장이 안 떠오르면 · '+(group?group+' ':'')+'문장 틀 보기';
     const professional=/스튜디오|studio|에이전시|agency|전문 창작자/i.test(name+' '+(o.field||''));
     const subjectPick=professional?{index:2,why:'스튜디오·에이전시에는 포트폴리오 제안을 앞에 두는 제목을 추천해요.'}:work?{index:1,why:'작품명이 있어 어떤 작업을 보고 연락했는지 제목에서 보여 줄 수 있어요.'}:{index:0,why:SUBJECT_WHY};
-    return {hints,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick,blank:hasBlank(seen)};
+    // The fix is made on the text as typed, so line breaks and anything the person wrote stay where they are.
+    const fixed=polish(o.seen,{body:o.body});
+    return {hints,polish:fixed.changes.length?fixed:null,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick,blank:hasBlank(seen)};
   }
 
   function gmailComposeUrl(to,subject){
     return 'https://mail.google.com/mail/?authuser=support%40cre8orclub.com&view=cm&fs=1'+(String(to||'').trim()?'&to='+encodeURIComponent(String(to).trim()):'')+'&su='+encodeURIComponent(String(subject||''));
   }
 
-  const api={gmailComposeUrl,LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,EMAIL_EXAMPLE,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_TYPES,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,prose,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
+  const api={gmailComposeUrl,LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,EMAIL_EXAMPLE,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_TYPES,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,prose,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,polish,coach};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);

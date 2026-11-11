@@ -36,7 +36,7 @@ if(ui.scope!=='all')ui.scope='ready';if(typeof ui.filter!=='string')ui.filter=''
 let tpl=mergeTpl(null);
 let attempted=false,touched=new Set(),logoBroken=false,focusSeen=false,outline='',last=null,lastChecks=[],state=null;
 let sampleChannel='email',sampleVariant='basic',editReturn='compose';
-let copyStale=false,foldDismissed=false,shownHints=[],hintTimer=0,listLimit=200;
+let copyStale=false,foldDismissed=false,shownHints=[],shownPolish=null,polishUndo=null,hintTimer=0,listLimit=200;
 
 // Reusable templates contain wording only. Recipient values remain in session drafts.
 // Store only changed sections, so untouched sections receive future approved copy updates.
@@ -463,7 +463,7 @@ function compute(){
   else if(personBlock){toNext();if(!nx){label='다음 분이 없어요';next='none';}}
   else{mode='open';label=isEmail?'메일 내용 복사':'복사하고 인스타 열기';}
   const lockPrimary=mode==='open'&&blocks.length>0;
-  const coach=C.coach({seen:$('v-seen').value,subject:r.subject,work:v['작품명'],name:nm,field:p?p.field:'',channel:ui.channel,history:histList()});
+  const coach=C.coach({seen:$('v-seen').value,body:ui.channel==='email'?r.emailText:r.dm,subject:r.subject,work:v['작품명'],name:nm,field:p?p.field:'',channel:ui.channel,history:histList()});
   state={v,t,opts,r,checks,blocks,warns,fieldBlocks,personBlock,flow,isEmail,nm,p,rec,recorded,nx,mode,next,lockPrimary,coach,d};
 
   // Primary: only attributes and text change, never the element.
@@ -636,8 +636,26 @@ function paintCoach(s){
   const se=$('seenErr'),ssig=err?err.code+err.msg:'';
   if(se.dataset.sig!==ssig){se.dataset.sig=ssig;se.hidden=!err;se.innerHTML=err?icon('x')+'<span>'+esc(err.msg)+'</span>':'';}
   if(err)$('v-seen').setAttribute('aria-invalid','true');else $('v-seen').removeAttribute('aria-invalid');
-  // 2–3. Hints, as last refreshed (600ms after typing stops, or on leaving the field). Never more than two lines in all.
-  let room=2-(err?1:0);
+  // 2. A reworded line to take with one press, as last refreshed like the hints. Once taken, the same place offers the way back.
+  const who=ui.current+'|'+ui.channel,undo=polishUndo&&polishUndo.who===who&&$('v-seen').value===polishUndo.after?polishUndo:null,now=s.coach.polish,pol=!undo&&shownPolish&&now&&now.text===shownPolish.text?now:null;   // never offer a line older than what is typed
+  const pb=$('coachPolish'),psig=undo?'undo|'+who:pol?who+'|'+pol.text:'';
+  if(pb.dataset.sig!==psig){
+    pb.dataset.sig=psig;pb.hidden=!psig;pb.replaceChildren();
+    const b=document.createElement('button');b.type='button';b.className='btn sm';
+    if(undo){
+      const t=document.createElement('span');t.className='fix';t.textContent='다듬은 문장을 넣었어요.';
+      b.textContent='되돌리기';b.onclick=()=>{const u=polishUndo;polishUndo=null;setSeen(u.before);$('v-seen').focus();};
+      pb.append(t,b);
+    }else if(pol){
+      const t=document.createElement('span');t.className='fix';t.textContent=pol.text;t.title=pol.text;
+      b.textContent='적용';b.onclick=()=>{polishUndo={who,before:$('v-seen').value,after:pol.text};setSeen(pol.text);$('v-seen').focus();};
+      const w=document.createElement('span');w.className='why';
+      w.textContent='이렇게 다듬어 보세요 · '+[...new Set(pol.changes.map(c=>c.label+' 「'+c.from+'」 → 「'+c.to+'」'))].join(' · ');
+      pb.append(t,b,w);
+    }
+  }
+  // 3. Hints, as last refreshed (600ms after typing stops, or on leaving the field). Never more than two lines beside the block and the reworded line.
+  let room=2-(err?1:0)-(psig?1:0);
   const hints=shownHints.slice(0,Math.max(0,room));room-=hints.length;
   const hl=$('coachHints'),hsig=hints.map(h=>h.id+h.text).join('|');
   if(hl.dataset.sig!==hsig){hl.dataset.sig=hsig;hl.replaceChildren();hints.forEach(h=>{const li=document.createElement('li');li.innerHTML=icon('alert')+'<span>'+esc(h.text)+'</span>';hl.appendChild(li);});}
@@ -650,7 +668,7 @@ function paintCoach(s){
   }
   if(sheetLine)room--;
   // 5. Where the line lands, only when nothing above needs the space.
-  $('seenWhere').hidden=!!err||hints.length>0||room<=0;
+  $('seenWhere').hidden=!!err||!!psig||hints.length>0||room<=0;
   setText($('seenWhere'),isEmail?'연락드린 이유 바로 다음 줄에 들어가요.':(ui.variant==='music'?'곡·앨범에서 좋았던 점을 한 문단으로 써 주세요.':'감상과 초대하고 싶은 이유를 한 문단으로 써 주세요.'));
   // Subject popover: the reason for the pick and a hint about what sits up front.
   setText($('subjectWhy'),C.SUBJECT_TYPES[co.subjectPick.index].name+'을 추천해요. '+co.subjectPick.why);
@@ -661,6 +679,7 @@ function refreshHints(){
   clearTimeout(hintTimer);if(!state)return;
   // While the cursor is in the field, an unfinished line is not yet 「too short」 or 「not ended」.
   shownHints=state.coach.hints.filter(h=>h.target==='v-seen'&&!(focusSeen&&(h.id==='seen-thin'||h.id==='seen-end')));
+  shownPolish=state.coach.polish;
   paintCoach(state);
 }
 function renderSubjects(v){
