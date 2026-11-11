@@ -962,7 +962,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-collab-copy',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-collab-copy2',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
