@@ -590,5 +590,13 @@
     "last_kind": "redeploy",
     "last_sha256": "ac2754216574ea279e48c3f1337cb2f00a6905eb22f68b8dceb7375e3e0f0ce8",
     "timestamp": "2026-11-10T16:12:14.518841Z"
+  },
+  "c8-caption-ab-261111": {
+    "slug": "c8-caption-ab-261111",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-caption-ab-261111/",
+    "last_kind": "new",
+    "last_sha256": "1476037e303cb9da928476362dd090cae9ad4a753ca44667fade810b9629710a",
+    "timestamp": "2026-11-11T00:18:59.897929Z"
   }
 }
