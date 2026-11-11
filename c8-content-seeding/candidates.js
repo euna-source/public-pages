@@ -6,8 +6,11 @@
   // so 「컨택 상태 (이전)」 stays a different header from 「컨택 상태」.
   const norm=v=>clean(v).replace(/\s*\([oxOX○◯△●✓✔yYnN예아니오\s\/,·]+\)\s*$/,'').replace(/[\s()·\-_/]/g,'').toLowerCase();
   // Header names seen in the seeding sheet and its predecessors. First match wins per field.
+  // 2026-11-11 sheet: 「이름」 and 「활동명」 are separate columns. We write to people by 활동명, else by 이름,
+  // so alias is matched first and keeps the 활동명 column even when 이름 sits to its left.
   const ALIASES={
-    name:['활동명','이름','작가명','작가','닉네임','크리에이터','크리에이터명','계정명'],
+    alias:['활동명'],
+    name:['이름','작가명','작가','닉네임','크리에이터','크리에이터명','계정명'],
     url:['주플랫폼url','주플랫폼','플랫폼url','포트폴리오','포트폴리오링크','포폴링크','포폴','대표링크','링크','url','주소','작품링크'],
     contact:['연락창구','창구','연락처','인스타','인스타그램','dm','인스타dm','문의채널'],
     email:['이메일','메일','email','e-mail','메일주소','이메일주소'],
@@ -15,7 +18,7 @@
     checked:['직접확인'],
     pick:['직접컨택후보','컨택후보','직접컨택'],
     note:['비고','메모','작품에서본점','샐리가볼점','코멘트'],
-    seen:['본것한줄','본것','개인화문장','개인화첫줄','첫줄'],
+    seen:['개인화첫줄','개인화문장','본것한줄','본것','첫줄'],
     field:['분야','분야직무','직무','직군','카테고리','장르'],
     purpose:['연락목적','목적'],
     status:['연락상태','컨택상태','진행상태','상태','발송'],
@@ -69,7 +72,7 @@
     rows.slice(0,15).forEach((r,i)=>{
       const cells=r.map(norm);let score=0;
       Object.values(ALIASES).forEach(list=>{if(cells.some(c=>list.includes(c)))score++;});
-      if(score>best.score&&cells.some(c=>ALIASES.name.includes(c)))best={index:i,score};
+      if(score>best.score&&cells.some(c=>ALIASES.name.includes(c)||ALIASES.alias.includes(c)))best={index:i,score};
     });
     return best.score>=2?best.index:-1;
   }
@@ -92,7 +95,7 @@
     const get=(r,f)=>col[f]==null?'':clean(r[col[f]]);
     const people=[];
     for(let i=h+1;i<rows.length;i++){
-      const r=rows[i],name=get(r,'name');
+      const r=rows[i],alias=get(r,'alias'),realName=get(r,'name'),name=alias||realName;
       if(!name)continue;
       const cells=r.map(clean);
       const url=get(r,'url')||cells.find(c=>/^https?:\/\//.test(c))||'';
@@ -101,7 +104,7 @@
       const email=((get(r,'email')+' '+contact).match(EMAIL)||[''])[0];
       const handle=handleOf([contact,url,...cells]);
       people.push({
-        row:i+1,name,url,platform:platformName(url)||(handle?'인스타그램':''),
+        row:i+1,name,alias,realName,hasAlias:col.alias!=null,url,platform:platformName(url)||(handle?'인스타그램':''),
         email,handle,contact,
         grade:gradeLetter(get(r,'grade')),gradeRaw:get(r,'grade'),
         checked:col.checked==null?null:yes(get(r,'checked')),
@@ -188,9 +191,12 @@
       members.forEach(add);
       members.forEach(m=>{const I=ids(m);if(I.length)I.forEach(id=>(byId.get(id)||[]).forEach(add));else(byName.get(plainName(m.name))||[]).forEach(add);});
       const hit=hits.find(r=>blockedWhy(r));
-      const hayParts=[];sorted.forEach(m=>[m.name,m.handle,m.email,m.field,m.note].forEach(x=>{const k=nk(x);if(k&&!hayParts.includes(k))hayParts.push(k);}));
+      const hayParts=[];sorted.forEach(m=>[m.name,m.realName,m.handle,m.email,m.field,m.note].forEach(x=>{const k=nk(x);if(k&&!hayParts.includes(k))hayParts.push(k);}));
       const id0=ids(base)[0];
-      people.push({...base,source:base.source,tab:base.tab,
+      // The base row may leave 활동명 or 개인화 첫 줄 empty while another row of the same person has it.
+      const alias=base.alias||(sorted.find(m=>m.alias)||{}).alias||'';
+      const seenLine=base.seen||(sorted.find(m=>m.seen)||{}).seen||'';
+      people.push({...base,alias,name:alias||base.name,seen:seenLine,hasAlias:sorted.some(m=>m.hasAlias),source:base.source,tab:base.tab,
         rows:sorted.map(m=>({source:m.source,tab:m.tab,row:m.row})),
         also:other?other.source:'',
         blocked:hit?{why:blockedWhy(hit),row:hit.row,tab:hit.tab,name:plainName(hit.name),contacted:!uncontacted(hit)}:null,
@@ -200,7 +206,8 @@
     });
     people.sort((a,b)=>rank(a)-rank(b)||a.row-b.row);
     const byKey=new Map();people.forEach(p=>{if(!byKey.has(p.key))byKey.set(p.key,p);});
-    const history=rows.filter(r=>r.seen).map(r=>({name:plainName(r.name),seen:r.seen}));
+    // ids ride along so the editor can drop this person's own sheet line: their 후보 row may say 활동명 and the 수집 row 이름.
+    const history=rows.filter(r=>r.seen).map(r=>({name:plainName(r.name),seen:r.seen,ids:ids(r)}));
     return {people,byKey,byId,byName,compIds,history,readyOut:people.filter(p=>!ready(p)).length};
   }
   const api={ALIASES,parseDelimited,platformName,findHeader,convert,ready,uncontacted,blockedWhy,ids,channelOf,yes,clean,purposeWhy,sourceOf,merge,nk};

@@ -220,7 +220,9 @@ function values(){const v={};varInputs().forEach(i=>v[i.dataset.var]=i.value);v[
 const subjectTpl=()=>ui.subject===3?(ui.customSubject??tpl.email.subject):C.SUBJECT_TYPES[ui.subject===1?1:ui.subject===2?2:0].template;
 const activeTpl=()=>({email:{...tpl.email,subject:subjectTpl()},dm:tpl.dm});
 const renderOpts=()=>({footer:ui.footer,ad:{on:ui.ad,phone:$('adPhone').value}});
-const histList=()=>pool.history.concat(log.map(x=>({name:x.name,seen:x.seen})));
+// Lines written for other people. The recipient's own sheet rows are not 「someone else」, whatever name each row carries.
+// 「Own」 is judged by the mail and handle typed now, not by the picked row: retyping A's draft to B must still block A's line.
+const histList=()=>{const mine=new Set(expandIds(idsOfCurrent()));return pool.history.filter(h=>!(h.ids||[]).some(id=>mine.has(id))).concat(log.map(x=>({name:x.name,seen:x.seen})));};
 function draft(){return drafts[ui.current]||(drafts[ui.current]={vars:{},to:'',handle:'',flow:''});}
 function saveDraft(){
   const d=draft(),v=values();delete v['담당자명'];
@@ -240,7 +242,8 @@ function loadDraftInto(key,p){
     set('to',d.to);set('handle',d.handle);if(d.channel)ui.channel=d.channel;ui.subject=d.subjectVersion===2?(d.subject||0):(d.subject===1?1:0);ui.customSubject=d.customSubject??'';ui.variant=d.variant||'basic';
   }else if(p){
     set('v-name',plainName(p.name));set('to',p.email);set('handle',p.handle);set('v-platform',p.platform);
-    set('v-post',p.url||'');set('v-seen','');set('v-work','');
+    // The sheet's 개인화 첫 줄 is what we saw in their work: it starts the 감상 (mail) and 개인화 문단 (DM) of a new draft.
+    set('v-post',p.url||'');set('v-seen',p.seen||'');set('v-work','');
     ui.variant=C.variantOf(p.field);ui.subject=defaultSubject(ui.variant);ui.customSubject=ui.subject===3?savedTemplate(ui.variant).email.subject:'';const ch=K.channelOf(p);if(ch)ui.channel=ch;
   }else{ui.variant='basic';ui.subject=defaultSubject('basic');ui.customSubject=ui.subject===3?savedTemplate('basic').email.subject:'';['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
   const current=draft();
@@ -347,6 +350,8 @@ function allChecks(r,v){
   // The merged group may be blocked through an id the form does not show (e.g. the 수집 row's mail).
   if(cur&&cur.blocked&&!rec&&!list.some(c=>c.code==='sheet'))list.unshift({level:'block',code:'sheet',msg:sheetMsg(cur.blocked.tab,cur.blocked.row,cur.blocked.name,cur.blocked.why),field:''});
   if(pw&&!rec)list.unshift({level:'block',code:'purpose',msg:(cur.source==='수집'?'플랫폼 수집 탭 ':'후보 탭 ')+cur.row+'행 '+plainName(cur.name)+'님 — '+pw+'. 지금 문안은 기존 작품을 올려 달라는 제안이라 이 분에게는 보내지 않아요.',field:''});
+  // 활동명 is empty, so we call them by the sheet's 이름 — which is sometimes a research label, not a name to greet.
+  if(cur&&!cur.alias&&cur.hasAlias&&plainName(v['활동명'])===plainName(cur.realName)&&/[()（）@㈜]|^브랜드\s|^(주식회사|\(주\))/.test(cur.realName))list.push({level:'warn',code:'name-label',msg:'「'+plainName(cur.realName)+'」은 시트 「이름」 값이에요(활동명 비어 있음). 인사에 부를 이름으로 고쳐 주세요.',field:'v-name'});
   if(cur&&!K.ready(cur)&&!pw&&!rec)list.push({level:'warn',code:'not-ready',msg:'시트에서 아직 「직접 확인」이나 「직접 컨택 후보」가 O가 아닌 분이에요. 확인한 뒤 보내 주세요.',field:''});
   if(ui.channel==='email'&&!$('to').value.trim())list.unshift({level:'block',code:'to-empty',msg:'받는 메일 주소가 비어 있어요.',field:'to',fix:handleOf($('handle').value)?['인스타 DM으로 바꾸기',()=>setChannel('dm')]:null});
   if(ui.channel==='dm'&&!handleOf($('handle').value))list.unshift({level:'block',code:'handle-empty',msg:'인스타 계정을 쓰면 DM 창을 바로 열 수 있어요.',field:'handle',fix:$('to').value.trim()?['이메일로 바꾸기',()=>setChannel('email')]:null});
@@ -615,7 +620,7 @@ function paintFold(s){
   setText($('personLine'),line);
   // What the sheet says about this person: text only, the row link is a fixed element.
   const kv=$('sheetKv'),href=rowHref(p);
-  const rows=p?[['시트 행',(p.source==='수집'?'플랫폼 수집':'후보')+' 탭 '+p.row+'행'],['분야',p.field||''],['등급',p.grade?p.grade+'등급':''],['연락 창구',p.contact||''],['시트 상태',p.status||'미연락'],['비고',p.note||''],['적어 둔 문장',p.seen||'']].filter(x=>x[1]):[];
+  const rows=p?[['시트 행',(p.source==='수집'?'플랫폼 수집':'후보')+' 탭 '+p.row+'행'],['시트 이름',p.alias&&p.realName&&p.realName!==p.alias?p.realName:''],['활동명',p.alias||!p.hasAlias?'':'비어 있어 이름으로 불러요'],['분야',p.field||''],['등급',p.grade?p.grade+'등급':''],['연락 창구',p.contact||''],['시트 상태',p.status||'미연락'],['비고',p.note||''],['개인화 첫 줄',p.seen||'']].filter(x=>x[1]):[];
   const sig=JSON.stringify(rows);
   if(kv.dataset.sig!==sig){kv.dataset.sig=sig;kv.replaceChildren();rows.forEach(([k,val])=>{const dt=document.createElement('dt');dt.textContent=k;const dd=document.createElement('dd');dd.textContent=val;kv.append(dt,dd);});}
   $('sheetRow').hidden=!p;
@@ -666,7 +671,7 @@ function paintCoach(s){
   const cs=$('coachSheet'),csig=sheetLine;
   if(cs.dataset.sig!==csig){
     cs.dataset.sig=csig;cs.hidden=!sheetLine;cs.replaceChildren();
-    if(sheetLine){const t=document.createElement('span');t.className='ell';t.textContent='시트에 적어 둔 문장이 있어요: 「'+sheetLine+'」';t.title=sheetLine;const b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent='넣기';b.onclick=()=>{const q=findPerson(ui.current);if(q&&q.seen){setSeen(q.seen);$('v-seen').focus();}};cs.append(t,b);}
+    if(sheetLine){const t=document.createElement('span');t.className='ell';t.textContent='시트의 개인화 첫 줄: 「'+sheetLine+'」';t.title=sheetLine;const b=document.createElement('button');b.type='button';b.className='btn sm';b.textContent='넣기';b.onclick=()=>{const q=findPerson(ui.current);if(q&&q.seen){setSeen(q.seen);$('v-seen').focus();}};cs.append(t,b);}
   }
   if(sheetLine)room--;
   // 5. Where the line lands, only when nothing above needs the space.
@@ -1058,10 +1063,18 @@ function addTabs(found,file){
   const first=pool.people.find(p=>sendable(p)&&!isSent(p));
   if(first)choose(keyOf(first),{force:true});else{showView('compose');renderAll();}
 }
-// CSV and paste carry one tab: its name says 후보·수집, or a 연락 목적 column means 수집.
-const oneTab=(name,data)=>({name,data,source:K.sourceOf(name)||(data.columns.purpose?'수집':'후보')});
+// CSV and paste carry one tab: its name says 후보·수집. Since 2026-11-11 both tabs have the same columns (연락 목적 included),
+// so a silent name goes by order: the first such tab is 후보, the next is 수집. A sheet without 연락 목적 is the older 후보 tab.
+function oneTab(name,data){
+  const s=K.sourceOf(name);if(s)return {name,data,source:s};
+  if(!data.columns.purpose)return {name,data,source:'후보'};
+  const have=hasSheet()?Object.entries(sheet.listed||{}).filter(([n])=>n!==name).map(([,v])=>v):[];
+  return {name,data,source:have.includes('후보')?'수집':'후보'};
+}
+// Each paste is its own tab, so pasting 후보 then 수집 keeps both.
+function pasteName(){const n=hasSheet()?Object.keys(sheet.tabs).filter(k=>/^붙여 넣은 표/.test(k)).length:0;return n?'붙여 넣은 표 '+(n+1):'붙여 넣은 표';}
 function importText(text){
-  try{addTabs([oneTab('붙여 넣은 표',K.convert(K.parseDelimited(text)))],'붙여 넣은 표');$('sheetPaste').value='';}
+  try{const name=pasteName(),t=oneTab(name,K.convert(K.parseDelimited(text)));addTabs([t],name);$('sheetPaste').value='';}
   catch(e){sheetError(e.message||'표로 읽지 못했어요. 열 이름 줄부터 복사해 붙여 넣어 주세요.');}
 }
 let xlsxLib;
