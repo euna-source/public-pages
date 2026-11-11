@@ -57,7 +57,7 @@ function saveWording(channel,key,value){
   if(value===base[channel][key])delete saved[variant][channel][key];else saved[variant][channel][key]=value;
   const ok=store.set(L,KEY.tpl,saved);
   if(variant===ui.variant)tpl[channel][key]=value;
-  if(channel==='email'&&key==='subject'){ui.subject=3;ui.customSubject=value;saveDraft();}
+  if(channel==='email'&&key==='subject'&&variant===ui.variant&&!sampleMode()){ui.subject=3;ui.customSubject=value;saveDraft();}
   staleCopy();setText($('wordingStatus'),ok?'이 브라우저에 자동 저장했어요.':'저장하지 못했어요. 저장 공간을 확인해 주세요.');
   render();
 }
@@ -1247,7 +1247,7 @@ $('settingsClose').onclick=()=>{showView('compose');$('moreBtn').focus();};
 $('widthToggle').onclick=()=>{ui.width=ui.width==='desk'?'mobile':'desk';hidePop('moreMenu');render();};
 $('importOpen').onclick=()=>{showView('import');};
 $('importClose').onclick=()=>{showView('compose');};
-$('manualStart').onclick=()=>choose('manual');
+$('manualStart').onclick=()=>{if(sampleMode()){ui.subject=defaultSubject(ui.variant);ui.customSubject=ui.subject===3?savedTemplate(ui.variant).email.subject:'';}choose('manual');};
 $('copyLog').onclick=()=>copyAllRows($('copyLog'));
 $('clearLog').onclick=async()=>{
   const go=await ask('보낸 분 '+log.length+'명 목록을 비울까요?','시트에 옮기지 않은 줄은 사라져요.',[['닫기','close',true],['비우기','go',false,true]]);
@@ -1261,9 +1261,10 @@ $('copyOptoutRow').onclick=()=>{const v=replyValues(),c=$('to').value.trim()||('
 $('tplReset').onclick=async()=>{
   const channel=wordingChannel(),variant=wordingVariant();
   if(await ask('이 양식을 기본 문구로 되돌릴까요?','현재 분야의 '+(channel==='email'?'이메일':'DM')+'에서 고친 문구만 지워져요.',[['닫기','close',true],['되돌리기','go',false,true]])!=='go')return;
+  const oldSubject=savedTemplate(variant).email.subject;
   const saved=store.get(L,KEY.tpl,{});if(saved[variant])delete saved[variant][channel];
   if(!store.set(L,KEY.tpl,saved)){toast('저장하지 못했어요. 다시 시도해 주세요.');return;}
-  tpl=mergeTpl();staleCopy();fillTplFields();setText($('wordingStatus'),'기본 문구로 되돌렸어요.');render();
+  tpl=mergeTpl();if(channel==='email'&&variant===ui.variant&&!sampleMode()&&ui.subject===3&&ui.customSubject===oldSubject){ui.subject=0;ui.customSubject='';saveDraft();}staleCopy();fillTplFields();setText($('wordingStatus'),'기본 문구로 되돌렸어요.');render();
 };
 $('manualClose').onclick=()=>$('manual').close();
 $('manualOpen').onclick=()=>{$('manual').close();if(manualThen)manualThen();};
