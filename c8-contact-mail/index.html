@@ -7,8 +7,17 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#F4F4F2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
-<title>직접 컨택 편집기</title>
-<link rel="icon" href="data:,">
+<title>콘텐츠 시딩 연락 편집기</title>
+<meta name="description" content="크리에이터클럽 콘텐츠 시딩 마케팅을 위한 이메일·인스타 DM 문안을 작성하고 미리 보는 연락 편집기.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="크리에이터클럽 콘텐츠 시딩 | 이메일·인스타 DM 편집기">
+<meta property="og:description" content="작품에서 본 한 줄을 더해 이메일과 인스타 DM을 준비하세요.">
+<meta property="og:url" content="https://euna-source.github.io/public-pages/c8-contact-mail/">
+<meta property="og:image" content="https://euna-source.github.io/public-pages/c8-content-seeding/content-seeding-og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://euna-source.github.io/public-pages/c8-contact-mail/">
+<link rel="icon" href="c8-logo-mark.png">
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
 /* ===== 1. 토큰·기본 — index.html <style> 14~36행을 이 블록으로 교체 =====
@@ -567,7 +576,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
   <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
 </svg>
-<h1 class="sr">직접 컨택 편집기</h1>
+<h1 class="sr">콘텐츠 시딩 연락 편집기</h1>
 <div class="scrim" id="scrim"></div>
 <div class="sr" id="live" aria-live="assertive"></div>
 <main class="shell" id="shell">
@@ -671,7 +680,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
             <div class="rowf"><label for="v-name">활동명</label><div><input class="field" id="v-name" data-var="활동명" autocomplete="off" aria-describedby="err-v-name"><p class="err" id="err-v-name" hidden></p></div></div>
             <div class="rowf" data-only="email"><label for="to">받는 메일 주소</label><div><input class="field" id="to" type="email" autocomplete="off" spellcheck="false" inputmode="email" placeholder="name@example.com" aria-describedby="err-to"><p class="err" id="err-to" hidden></p></div></div>
             <div class="rowf" data-only="dm" hidden><label for="handle">인스타 계정</label><div><input class="field" id="handle" autocomplete="off" spellcheck="false" placeholder="parang.art" aria-describedby="err-handle"><p class="err" id="err-handle" hidden></p></div></div>
-            <div class="rowf" data-only="email"><label for="v-platform" id="platformLabel">본 곳</label><div><input class="field" id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off" aria-describedby="help-v-platform err-v-platform" placeholder="예: 홈페이지와 「밤의 정류장」"><p class="help" id="help-v-platform">「○○님의 (본 곳) 작업이 인상 깊어 연락드렸어요」에 들어가요.</p><p class="err" id="err-v-platform" hidden></p></div></div>
+            <div class="rowf" data-only="email"><label for="v-platform" id="platformLabel">본 곳</label><div><input class="field" id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off" aria-describedby="help-v-platform err-v-platform" placeholder="예: 홈페이지와 「밤의 정류장」"><p class="help" id="help-v-platform">「○○님의 (본 곳) 작업을 보고 연락드렸어요」에 들어가요.</p><p class="err" id="err-v-platform" hidden></p></div></div>
             <div class="rowf" id="workRowInfo" hidden><label for="v-work-info">작품명</label><div><input class="field" id="v-work-info" autocomplete="off"></div></div>
           </div>
           <datalist id="platforms"><option value="인스타그램"><option value="비핸스"><option value="노트폴리오"><option value="유튜브"><option value="사운드클라우드"><option value="브런치"><option value="포스타입"><option value="네이버 블로그"></datalist>
@@ -811,8 +820,8 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-brand-frame"></script>
+<script src="contact.js?v=261111-seeding-copy"></script>
 <script src="candidates.js"></script>
-<script src="editor.js?v=261111-brand-frame"></script>
+<script src="editor.js?v=261111-seeding-copy"></script>
 </body>
 </html>

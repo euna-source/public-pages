@@ -305,7 +305,7 @@ function render(){
   const music=ui.variant==='music';
   [['vBasic',!music],['vMusic',music]].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
   $('platformLabel').textContent=music?'인상 깊었던 곡·앨범':'본 곳';
-  $('help-v-platform').textContent=music?'「(여기)이/가 인상 깊어 연락드렸어요」에 들어가요. 조사는 알아서 붙어요.':'「○○님의 (본 곳) 작업이 인상 깊어 연락드렸어요」에 들어가요.';
+  $('help-v-platform').textContent=music?'「(여기)이/가 인상 깊어 연락드렸어요」에 들어가요. 조사는 알아서 붙어요.':'「○○님의 (본 곳) 작업을 보고 연락드렸어요」에 들어가요.';
   $('v-platform').placeholder=music?'예: 최근 발매하신 싱글 「새벽 버스」':'예: 홈페이지와 「밤의 정류장」';
   [['chEmail',isEmail],['chDm',!isEmail]].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
   [['wDesk',ui.width==='desk'],['wMobile',ui.width!=='desk']].forEach(([id,on])=>{$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
@@ -330,7 +330,7 @@ function render(){
   // Seen count
   // DM: the line stands as its own paragraph after 「인스타그램에서 …보고 연락드렸어요」, so it reads as what struck us.
   $('seenLabel').textContent=isEmail?(nm?nm+'님 작품에서 본 것':'본 것 한 줄'):(nm?nm+'님 작업에서 인상 깊었던 점':'인상 깊었던 점');
-  $('seenHelp').textContent=isEmail?'「…작업이 인상 깊어 연락드렸어요」 다음 문단에 그대로 들어가요.':'「인스타그램에서 …작업을 보고 연락드렸어요」 다음 문단에 그대로 들어가요.';
+  $('seenHelp').textContent=isEmail?'연락드린 이유 바로 다음 줄에 들어가요.':'「인스타그램에서 …작업을 보고 연락드렸어요」 다음 문단에 그대로 들어가요.';
   $('v-seen').placeholder=isEmail?'예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.':'예: 손으로 접은 종이가 펼쳐지며 끝나는 장면이 특히 인상 깊었어요.';
   $('editTitle').textContent=isEmail?'이번 메일만 문구 고치기':'이번 DM만 문구 고치기';
   renderWorkLink(p,isEmail);
@@ -616,7 +616,7 @@ function copyAllRows(btn){return copyWithFeedback(btn||$('copyLog'),['활동명\
 function download(){
   if($('exFile').getAttribute('aria-disabled')==='true')return shakeTo($('exportBtn'));
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([last.emailHtml],{type:'text/html'}));
-  a.download='직접컨택_'+(plainName($('v-name').value)||'작가').replace(/[\\/:*?"<>|\s]+/g,'')+'_'+yymmdd(new Date())+'.html';
+  a.download='콘텐츠시딩_이메일_'+(plainName($('v-name').value)||'작가').replace(/[\\/:*?"<>|\s]+/g,'')+'_'+yymmdd(new Date())+'.html';
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
   $('exportMenu').hidePopover();toast('HTML 파일을 받았어요.');
 }

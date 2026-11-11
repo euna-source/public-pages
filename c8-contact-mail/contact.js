@@ -17,7 +17,7 @@
     {key:'작품명',required:false,field:'v-work'}
   ];
   const DEFAULTS={
-    // Editable letter sections; brand and confirmed invitation wording remain shared.
+    // Same sections as the Weekly Best award mail so both mails read as one family.
     // The applied mail (2026-11-10): sent as the team, one link to the hub page.
     email:{
       subject:'{활동명}님, 크리에이터클럽에서 인사드려요',
@@ -27,24 +27,14 @@
         '안녕하세요, **{활동명}님!**',
         '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
         '',
-        '{활동명}님의 {플랫폼} 작업이 인상 깊어 연락드렸어요.',
-        '',
-        '{본 것 한 줄}',
-        '',
-        '이렇게 자신만의 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요.'
+        '{활동명}님의 {플랫폼} 작업을 보고 연락드렸어요.',
+        '{본 것 한 줄}'
       ].join('\n'),
-      intro:[
-        '크리에이터클럽은 자신의 작업을 알리고, 그 가치를 알아보는 동료를 만나 새로운 협업을 시작하는 공간이에요.',
-        '',
-        '{활동명}님의 개성 있는 작업이 크리에이터클럽에서도 소개되고, 다양한 분야의 창작자들과 새로운 기회로 이어지면 좋겠어요.'
-      ].join('\n'),
-      gift:'지금은 기존 작업을 포트폴리오로 올려 주시면 **1개당 신세계 모바일 상품권 '+REWARD.per+', 최대 '+REWARD.total+'**을 드리고 있어요.',
-      steps:[
-        '참여 방법은 아래 링크에서 확인해 주세요.',
-        '['+LINKS.hub+']('+LINKS.hub+')'
-      ].join('\n'),
-      ask:'궁금한 점은 언제든 편하게 회신해 주세요.',
-      closing:'{활동명}님의 다음 작업도 기대하며, 크리에이터클럽에서도 멋진 작품들을 만나볼 수 있으면 좋겠습니다!',
+      intro:'크리에이터클럽에서는 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.',
+      gift:'기존 작업을 포트폴리오로 올려 주시면 작업 1개당 신세계 모바일 상품권 **'+REWARD.per+'씩, 최대 '+REWARD.total+'**을 드리고 있어요. 참여 방법은 아래 링크에서 확인해 주세요.',
+      steps:'[참여 방법 확인하기]('+LINKS.hub+')',
+      ask:'궁금한 점은 언제든 이 메일로 편하게 회신해 주세요.',
+      closing:'',
       signature:'크리에이터클럽 드림',
       footer:'본 메일은 {활동명}님이 공개해 두신 연락처로 작품 소개를 제안드리기 위해 한 번 보내는 메일이에요. 답이 없으시면 다시 연락드리지 않을게요. '+TRUST
     },
@@ -83,17 +73,9 @@
         '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
         '',
         '{플랫폼}{이/가} 인상 깊어 연락드렸어요.',
-        '',
-        '{본 것 한 줄}',
-        '',
-        '이렇게 자신만의 음악적 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요.'
+        '{본 것 한 줄}'
       ].join('\n'),
-      intro:[
-        '크리에이터클럽은 자신의 작업을 알리고, 그 가치를 알아보는 동료를 만나 새로운 협업을 시작하는 공간이에요.',
-        '',
-        '특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님처럼 자신만의 음악 세계를 만들어가는 분들과도 함께하고 싶어요.'
-      ].join('\n'),
-      closing:'{활동명}님의 앞으로의 음악 활동도 기대하며, 크리에이터클럽에서도 멋진 작업들을 만나볼 수 있으면 좋겠습니다!'
+      intro:'크리에이터클럽에서는 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. 특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.'
     }
   };
   const variantKey=v=>Object.prototype.hasOwnProperty.call(EMAIL_VARIANTS,v)?v:'basic';
@@ -198,10 +180,10 @@
     const greet=section('greeting','24px 32px 0');
     const intro=section('intro','16px 32px 0');
     const gift=section('gift','24px 32px 0');
-    const steps=section('steps','12px 32px 0');
+    const steps=section('steps','0 32px 0');
     const ask=section('ask','20px 32px 0');
     const closing=section('closing','12px 32px 0');
-    const signature=framed('<tr><td style="padding:16px 32px 32px; font-size:15px; line-height:1.7; font-weight:600; color:#191f28;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</td></tr>',f('signature'));
+    const signature=framed('<tr><td style="padding:0 32px 32px; font-size:15px; line-height:1.7; font-weight:600; color:#191f28;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</td></tr>',f('signature'));
     const slogan='        <tr>\n          <td style="padding:0 32px;"><div style="border-top:1px solid #e5e5e5; font-size:0; line-height:0;">&nbsp;</div></td>\n        </tr>\n        <tr>\n          <td align="center" style="padding:36px 32px 36px; font-size:20px; line-height:1.55; font-weight:700; color:#111111;">\n            당신의 작업이 무대가 되는 곳, Cre8orClub\n          </td>\n        </tr>\n';
     const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'            <p style="margin:0 0 6px;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'</p>').join('\n');
     const foot=framed('        <tr>\n          <td style="background-color:#f3f3f3; padding:20px 32px 22px; font-size:11px; line-height:1.6; color:#777777;">\n'+(notes?notes+'\n':'')+
@@ -216,8 +198,7 @@
   function plainHtml(p,o){
     const P='margin:0 0 16px; font-size:15px; line-height:1.7; color:#111111;';
     const para=t=>t&&t.trim()?'<div style="'+P+'">'+richHtml(t)+'</div>':'';
-    const body=[para(p.greeting),para(p.intro),para(p.gift),para(p.steps),para(p.ask),para(p.closing),
-      '<p style="margin:24px 0 4px; font-size:15px; font-weight:600; color:#111111;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</p>',
+    const body=[para(p.greeting),para(p.intro),para([p.gift,p.steps].filter(Boolean).join('\n')),para([p.ask,p.closing,p.signature].filter(Boolean).join('\n')),
       '<p style="margin:0 0 20px; font-size:13px; color:#6b6b6b;">당신의 작업이 무대가 되는 곳, Cre8orClub</p>',
       [p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'<p style="margin:0; padding-top:12px; border-top:1px solid #e5e5e5; font-size:12px; line-height:1.6; color:#8a8a8a;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'<br>'+COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email+'</p>').join('')].join('\n');
     const div='<div style="max-width:600px; padding:8px 4px; font-family:'+FONT+'; color:#111111; word-break:keep-all;">\n'+body+'\n</div>';
@@ -226,7 +207,7 @@
   }
   function plain(text){return blocks(text).map(lines=>lines.map(inlinePlain).join('\n')).join('\n\n');}
 
-  /* opts: style 'card' (편지 양식, default) | 'plain', footer (default true), ad {on,phone},
+  /* opts: style 'card' (위클리 양식, default) | 'plain', footer (default true), ad {on,phone},
      preview-only: mark (true or a Set of 칸 names to highlight), outline (section key to frame), logo. */
   function render(tpl,values,opts){
     const v=values||{},o=opts||{},mark=o.mark||false,ad=o.ad&&o.ad.on;
@@ -237,8 +218,8 @@
     p.ad=ad?AD.emailBlock(phone):'';
     const style=o.style==='plain'?'plain':'card';
     const build=style==='plain'?plainHtml:designedHtml;
-    // Plain text follows the same uninterrupted letter, without decorative section labels.
-    const titled=[plain(p.greeting),plain(p.intro),plain(p.gift),plain(p.steps),plain(p.ask),plain(p.closing)+'\n'+plain(p.signature),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
+    // Section titles travel with the plain text so a plain-text paste keeps the same order.
+    const titled=[plain(p.greeting),plain(p.intro),plain([p.gift,p.steps].filter(Boolean).join('\n')),plain([p.ask,p.closing,p.signature].filter(Boolean).join('\n')),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
     const dmCore=fill(tpl.dm.message,v,mark);
     const dm=[ad?AD.dmHead(phone):'',dmCore,ad?AD.dmTail:''].filter(Boolean).join('\n\n');
     return {
@@ -285,15 +266,16 @@
     if(/님$/.test(name))add('warn','name-nim','활동명 끝에 「님」이 있어요. 문구에 이미 「님」이 붙어 「'+name+'님」이 돼요.','v-name');
     const seen=clean(v['본 것 한 줄']);
     if(usedKeys.has('본 것 한 줄')){
-      if(!seen)add('warn','seen-empty','「본 것 한 줄」이 비어 있어요. 이 분에게만 맞는 한 문장이 있으면 답장이 와요.','v-seen');
+      if(!seen)add('warn','seen-empty','「본 것 한 줄」이 비어 있어요. 이 분 작품에서 본 것을 한 문장 써 주세요.','v-seen');
       else{
+        // A sentence frame still holding a blank is never ready: machine check, both channels.
+        if(hasBlank(seen))add('block','seen-blank','빈칸(___)이 남아 있어요. 작품에서 본 것으로 채워 주세요.','v-seen');
         if(chars(seen)>LIMITS.seenMax)add('warn','seen-long','「본 것 한 줄」이 '+chars(seen)+'자예요. 한 문장('+LIMITS.seenMax+'자 안)으로 줄여 주세요.','v-seen');
         if(!/[.!?요다]$/.test(seen))add('warn','seen-end','「본 것 한 줄」을 완결된 문장으로 끝내 주세요(예: …생각났어요.).','v-seen');
-        let best=null;
-        (o.history||[]).filter(h=>h&&h.seen&&clean(h.name)!==name).forEach(h=>{const s=clean(h.seen)===seen?1:similarity(seen,h.seen);if(!best||s>best.s)best={s,h};});
         // Copying the same line to several people is the one thing the plan forbids; a near-copy only warns.
-        if(best&&best.s>=1&&clean(best.h.seen)===seen)add('block','seen-same','「본 것 한 줄」이 '+best.h.name+'님에게 쓴 문장과 똑같아요. 이 분 작품에서 본 걸로 다시 써 주세요.','v-seen');
-        else if(best&&best.s>=LIMITS.similar)add('warn','seen-similar','「본 것 한 줄」이 '+best.h.name+'님에게 쓴 문장과 '+Math.round(best.s*100)+'% 겹쳐요: 「'+clean(best.h.seen)+'」','v-seen');
+        const near=nearest(seen,name,o.history);
+        if(near&&near.same)add('block','seen-same','「본 것 한 줄」이 '+near.h.name+'님에게 쓴 문장과 똑같아요. 이 분 작품에서 본 걸로 다시 써 주세요.','v-seen');
+        else if(near&&near.s>=LIMITS.similar)add('warn','seen-similar','「본 것 한 줄」이 '+near.h.name+'님에게 쓴 문장과 많이 겹쳐요: 「'+clean(near.h.seen)+'」','v-seen');
       }
     }
     const r=render(tpl,v,o);
@@ -331,6 +313,157 @@
     return out;
   }
 
-  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean};
+  /* ---------- 문장 도움: rule-based hints, fill-in frames, examples. Pure: no DOM, no storage, no clock, nothing leaves the page. ---------- */
+  // Fill-in frames by field (젠지 정리 2026-11-10). A frame only offers blanks; the observation itself is always written by a person.
+  const FRAMES=[
+    {id:'c1',group:'공통',text:'「___」에서 ___이/가 먼저 눈에 들어왔어요.'},
+    {id:'c2',group:'공통',text:'___ 부분을 보다가 한참 멈춰 있었어요.'},
+    {id:'c3',group:'공통',text:'「___」의 ___이/가 며칠째 생각나요.'},
+    {id:'i1',group:'일러스트·만화',text:'___번째 컷의 ___에서 한참 머물렀어요.'},
+    {id:'i2',group:'일러스트·만화',text:'___을/를 ___ 색으로 칠하신 장면이 계속 생각났어요.'},
+    {id:'i3',group:'일러스트·만화',text:'배경의 ___이/가 인물보다 먼저 눈에 들어왔어요.'},
+    {id:'d1',group:'디자인',text:'「___」 포스터에서 ___ 글자를 ___에 둔 배치가 먼저 보였어요.'},
+    {id:'d2',group:'디자인',text:'___ 화면의 ___ 처리를 보고 한 번 더 넘겨 봤어요.'},
+    {id:'p1',group:'사진',text:'___에서 찍으신 사진의 ___ 빛이 먼저 눈에 들어왔어요.'},
+    {id:'p2',group:'사진',text:'___을/를 ___ 거리에서 담으신 사진이 계속 생각났어요.'},
+    {id:'v1',group:'영상',text:'「___」 ___초쯤 ___(으)로 넘어가는 전환을 다시 돌려 봤어요.'},
+    {id:'v2',group:'영상',text:'___ 장면에서 ___ 소리만 남는 순간에 멈췄어요.'},
+    {id:'m1',group:'음악',text:'「___」 ___ 부분에서 ___만 남는 순간을 여러 번 다시 들었어요.'},
+    {id:'m2',group:'음악',text:'「___」 가사 중 「___」 한 줄이 계속 맴돌았어요.'},
+    {id:'m3',group:'음악',text:'___ 도입의 ___ 소리에서 바로 끝까지 들었어요.'},
+    {id:'w1',group:'글',text:'「___」에서 「___」(이)라는 문장에 밑줄을 그었어요.'},
+    {id:'w2',group:'글',text:'「___」 마지막 문장의 ___이/가 며칠째 생각나요.'},
+    {id:'k1',group:'공예',text:'「___」의 ___ 부분에 남은 ___ 자국이 먼저 눈에 들어왔어요.'},
+    {id:'k2',group:'공예',text:'___을/를 ___(으)로 마감하신 가장자리를 한참 봤어요.'},
+    {id:'s1',group:'공연·무대',text:'「___」에서 ___이/가 ___하는 순간에 숨을 멈췄어요.'},
+    {id:'s2',group:'공연·무대',text:'___ 동작에서 ___(으)로 넘어가는 부분을 다시 돌려 봤어요.'}
+  ];
+  // First match wins, in this order. 음악 shares the mail variant's own pattern so the two never disagree.
+  const FRAME_GROUPS=[
+    {group:'일러스트·만화',match:/일러스트|만화|웹툰|드로잉|그림|캐릭터/},
+    {group:'디자인',match:/디자인|브랜딩|그래픽|UI|UX|타이포|편집/i},
+    {group:'사진',match:/사진|포토/},
+    {group:'영상',match:/영상|모션|필름|애니메이션|연출|유튜브/},
+    {group:'음악',match:EMAIL_VARIANTS.music.match},
+    {group:'글',match:/글|에세이|소설|시인|작가|문학/},
+    {group:'공예',match:/공예|도자|도예|섬유|목공|가죽|금속|유리/},
+    {group:'공연·무대',match:/공연|무용|연주|무대|연극|뮤지컬|댄스/}
+  ];
+  // source 'made' = written as an illustration; 'sent' = a line that was really sent (none confirmed yet). No names, no handles.
+  const EXAMPLES=[
+    {text:'배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.',fields:['일러스트·만화'],source:'made'},
+    {text:'「밤의 정류장」에서 가로등 빛만 따뜻하게 남긴 색이 오래 남았어요.',fields:['일러스트·만화','사진'],source:'made'},
+    {text:'릴스 마지막에 손으로 접은 종이가 펼쳐지는 장면이 계속 생각났어요.',fields:['영상','공예'],source:'made'}
+  ];
+  function frameGroup(field){const f=clean(field);if(!f)return '';const g=FRAME_GROUPS.find(x=>x.match.test(f));return g?g.group:'';}
+  // Only the blank a frame inserts: three underscores standing alone. An Instagram handle with underscores is not a blank.
+  const BLANK=/(^|[^A-Za-z0-9_.@])_{3}(?![A-Za-z0-9_])/;
+  function hasBlank(text){return BLANK.test(String(text??''));}
+  /* [start,end] of the first blank at or after `from`; null when none follows (never wraps to the start). */
+  function nextBlank(text,from){
+    const re=new RegExp(BLANK.source,'g'),s=String(text??'');let m;
+    while((m=re.exec(s))){const start=m.index+m[1].length;if(start>=(from||0))return [start,start+3];re.lastIndex=start+3;}
+    return null;
+  }
+  /* 이/가 · 을/를 · 와/과 · (으)로 · (이)라는 → the one form that fits the letter before it. A marker right after a blank stays.
+     Looks past closing quotes and brackets; digits by how they are read, Latin by the same guess as subjectParticle. */
+  const PARTICLES=/이\/가(?![가-힣A-Za-z0-9])|을\/를(?![가-힣A-Za-z0-9])|와\/과(?![가-힣A-Za-z0-9])|\(으\)로|\(이\)라는/g;
+  function resolveParticles(text){
+    return String(text??'').replace(PARTICLES,(m,at,all)=>{
+      const before=all.slice(0,at).replace(/[」』)\]"'’”]+$/,'');
+      if(/_{3}$/.test(before))return m;
+      const c=before.slice(-1);
+      let closed,rieul=false;   // closed = ends in a 받침; rieul = that 받침 is ㄹ
+      if(/[가-힣]/.test(c)){const j=(c.charCodeAt(0)-0xAC00)%28;closed=j>0;rieul=j===8;}
+      else if(/[0-9]/.test(c)){closed=/[013678]/.test(c);rieul=/[178]/.test(c);}
+      else if(/[A-Za-z]/.test(c)){closed=/[lmnLMNR]/.test(c)||/ng$/.test(before);rieul=/[lLR]/.test(c);}
+      else closed=subjectParticle(before)==='이';
+      if(m==='이/가')return closed?'이':'가';
+      if(m==='을/를')return closed?'을':'를';
+      if(m==='와/과')return closed?'과':'와';
+      if(m==='(으)로')return closed&&!rieul?'으로':'로';
+      return closed?'이라는':'라는';
+    });
+  }
+  const reEsc=x=>x.replace(/[.*+?^${}()|[\]\\\/]/g,'\\$&');
+  const FRAME_RE=FRAMES.map(f=>{
+    const src=f.text.split('___').map(part=>reEsc(part)
+      .replace(/이\\\/가/g,'(?:이\\/가|이|가)').replace(/을\\\/를/g,'(?:을\\/를|을|를)').replace(/와\\\/과/g,'(?:와\\/과|와|과)')
+      .replace(/\\\(으\\\)로/g,'(?:\\(으\\)로|으로|로)').replace(/\\\(이\\\)라는/g,'(?:\\(이\\)라는|이라는|라는)')).join('(.+?)');
+    return {id:f.id,re:new RegExp('^'+src+'$')};
+  });
+  /* Which frame a finished line was built on, and what was put in its blanks. A line that still holds a blank is no frame. */
+  function stripFrame(text){
+    const t=clean(text);
+    if(!hasBlank(t))for(const f of FRAME_RE){const m=t.match(f.re);if(m)return {frame:f.id,fills:m.slice(1).map(x=>x.trim())};}
+    return {frame:'',fills:[t]};
+  }
+  /* How close one line is to another person's. Two lines on the same frame are compared by what filled the blanks,
+     so the shared frame wording does not count; anything else is compared as whole lines. */
+  function seenScore(a,b){
+    const A=stripFrame(a),B=stripFrame(b);
+    if(!A.frame||A.frame!==B.frame)return similarity(a,b);
+    const fa=A.fills.join(' '),fb=B.fills.join(' '),len=x=>chars(x.replace(/\s/g,''));
+    if(Math.min(len(fa),len(fb))<6)return fa===fb?1:0;
+    return similarity(fa,fb);
+  }
+  /* The closest line written to someone else: {s, h, same}. same = the whole line is identical (the block). */
+  function nearest(seen,name,history){
+    let best=null;
+    (history||[]).filter(h=>h&&h.seen&&clean(h.name)!==name).forEach(h=>{
+      const same=clean(h.seen)===seen,s=same?1:seenScore(seen,h.seen);
+      if(!best||s>best.s||(same&&!best.same))best={s,h,same};
+    });
+    return best;
+  }
+  const noTitles=s=>String(s).replace(/[「『][^」』]*[」』]/g,'');   // a quoted title may hold any word
+  const PITCH=/크리에이터클럽|크클|(저희|우리) *(앱|서비스|플랫폼|팀)|포트폴리오로 *올|상품권|소개하고 *싶|초대(드|하고 *싶|합니다|해요)|제안드|입점/;
+  const NUMBERS=/팔로워|팔로우 *수|구독자|조회 *수|좋아요 *(수[가는도]|[0-9])|[0-9]+ *(만|천) *(명|회|뷰)|인기 *많으|떡상|바이럴/;
+  const HYPE=/무료 *(제공|증정|체험|지급)|공짜|지금 *바로|(인원|기간) *한정|한정 *(모집|혜택)|특별한 *(제안|기회)|기회를 *드|당첨|축하드|선정되셨|100 *%|돈 *버|부업|리워드|오늘까지|이번 *주까지|역대급/;
+  const DECO=/[!?！？]{2,}|\p{Emoji_Presentation}|[ㅋㅎㅠㅜ]{2,}|~{2,}/u;
+  const FIXED_LINES=['작업이 인상 깊어 연락드렸어요','자신만의 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요'];
+  const SUBJECT_WHY='받는 분 이름이 맨 앞에 와요.';
+  /* Advice for the hand-typed fields. Hints never block: they carry no level and copying ignores them.
+     history is the same [{name, seen}] that check() takes. The screen shows at most two hints, in this order. */
+  function coach(input){
+    const o=input||{},name=clean(o.name).replace(/\s*님$/,''),work=clean(o.work);
+    const seen=resolveParticles(clean(o.seen)),bare=noTitles(seen),hints=[];
+    const hint=(id,text,target,pinned)=>hints.push({id,text,target:target||'v-seen',pinned:!!pinned});
+    if(seen){
+      const near=nearest(seen,name,o.history);
+      if(near&&!near.same&&near.s>=LIMITS.similar)hint('seen-similar',near.h.name+'님에게 쓴 문장과 많이 겹쳐요. 이 분 작품에서 본 걸로 바꿔 주세요.','v-seen',true);
+      AVOID.forEach(a=>{const m=seen.match(a.re);if(m)hint('avoid','손으로 쓴 칸의 「'+[...new Set(m)].join('·')+'」 — '+a.why+'.','v-seen',true);});
+      if(PITCH.test(bare))hint('seen-pitch','이 칸에는 작품에서 본 것만 써 주세요. 앱 소개는 바로 다음 문단에 있어요.');
+      if(NUMBERS.test(bare))hint('seen-number','팔로워·조회 수 대신 작품에서 본 장면을 써 주세요.');
+      const hype=bare.match(HYPE);
+      if(hype)hint('typed-hype','「'+hype[0]+'」은 광고 문자처럼 읽힐 수 있어요. 담백한 말로 바꿔 주세요.');
+      if(chars(seen)>LIMITS.seenMax)hint('seen-long',chars(seen)+'자예요. 한 문장('+LIMITS.seenMax+'자 안)으로 줄여 주세요.');
+      if(EXAMPLES.some(e=>similarity(seen,e.text)>=LIMITS.similar))hint('seen-example','예로 든 문장과 거의 같아요. 이 분 작품에서 본 걸로 바꿔 주세요.');
+      const n=chars(seen);
+      if((n<=14&&!/[0-9「『]/.test(seen))||FIXED_LINES.some(f=>similarity(seen,f)>=0.5))hint('seen-thin','어느 작품의 어느 부분인지 한 가지만 더 짚어 주세요.');
+      if(!/[.!?요다]$/.test(seen))hint('seen-end','문장으로 끝내 주세요(예: …생각났어요.).');
+      if(DECO.test(bare))hint('typed-deco','겹친 느낌표나 이모지는 빼거나 하나만 남겨 주세요.');
+    }
+    if(work){
+      const w=noTitles(work),hype=w.match(HYPE);
+      if(hype)hint('typed-hype','「'+hype[0]+'」은 광고 문자처럼 읽힐 수 있어요. 담백한 말로 바꿔 주세요.','subject');
+      if(DECO.test(w))hint('typed-deco','겹친 느낌표나 이모지는 빼거나 하나만 남겨 주세요.','subject');
+    }
+    // Subject: the name or the title should sit in the part every inbox shows.
+    const subject=clean(o.subject).replace(/^\(광고\)\s*/,'');
+    const keys=[name,work].filter(k=>chars(k)>=2);
+    if(subject&&keys.length){
+      const front=keys.some(k=>{const at=subject.indexOf(k);if(at<0)return false;return chars(k)>14?chars(subject.slice(0,at))<=6:chars(subject.slice(0,at+k.length))<=20;});
+      if(!front)hint('subject-front','제목 앞쪽에 받는 분 이름이나 작품명이 보이게 해 주세요.','subject');
+    }
+    const group=frameGroup(o.field),common=FRAMES.filter(f=>f.group==='공통');
+    const frames=group?FRAMES.filter(f=>f.group===group).concat(common.slice(0,2)):common.slice(0,3);
+    const sentOnes=EXAMPLES.some(e=>e.source==='sent'),examplesLabel=sentOnes?'이렇게 썼어요':'예시';
+    const examples=EXAMPLES.filter(e=>group&&e.fields.includes(group)).concat(EXAMPLES.filter(e=>!(group&&e.fields.includes(group)))).slice(0,3).map(e=>({text:e.text,source:e.source}));
+    const foldLabel=seen?'문장 도움 · 문장 틀과 '+examplesLabel:'문장이 안 떠오르면 · '+(group?group+' ':'')+'문장 틀 보기';
+    return {hints,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick:{index:0,why:SUBJECT_WHY},blank:hasBlank(seen)};
+  }
+
+  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);
