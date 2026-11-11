@@ -47,6 +47,7 @@ function savedTemplate(variant){
   }));return t;
 }
 function mergeTpl(){return savedTemplate(ui.variant);}
+function defaultSubject(variant){return savedTemplate(variant).email.subject!==C.template(variant).email.subject?3:0;}
 function sampleMode(){return !hasSheet()&&(viewNow()==='import'||viewNow()==='edit'&&editReturn==='import');}
 function wordingVariant(){return sampleMode()?sampleVariant:ui.variant;}
 function wordingChannel(){return sampleMode()?sampleChannel:ui.channel;}
@@ -56,7 +57,7 @@ function saveWording(channel,key,value){
   if(value===base[channel][key])delete saved[variant][channel][key];else saved[variant][channel][key]=value;
   const ok=store.set(L,KEY.tpl,saved);
   if(variant===ui.variant)tpl[channel][key]=value;
-  if(channel==='email'&&key==='subject')ui.subject=0;
+  if(channel==='email'&&key==='subject'){ui.subject=3;ui.customSubject=value;saveDraft();}
   staleCopy();setText($('wordingStatus'),ok?'이 브라우저에 자동 저장했어요.':'저장하지 못했어요. 저장 공간을 확인해 주세요.');
   render();
 }
@@ -215,7 +216,7 @@ const varInputs=()=>[...document.querySelectorAll('[data-var]')];
 // The six [data-var] fields are always in the DOM, whichever view or popover holds them.
 // 「본 것 한 줄」 is read with its particle markers resolved, so preview, checks, copy and record all use one text.
 function values(){const v={};varInputs().forEach(i=>v[i.dataset.var]=i.value);v['본 것 한 줄']=C.resolveParticles(v['본 것 한 줄']||'');return v;}
-const subjectTpl=()=>ui.subject===0?tpl.email.subject:C.SUBJECT_ALTERNATIVES[ui.subject-1];
+const subjectTpl=()=>ui.subject===3?(ui.customSubject??tpl.email.subject):C.SUBJECT_TYPES[ui.subject===1?1:ui.subject===2?2:0].template;
 const activeTpl=()=>({email:{...tpl.email,subject:subjectTpl()},dm:tpl.dm});
 const renderOpts=()=>({footer:ui.footer,ad:{on:ui.ad,phone:$('adPhone').value}});
 const histList=()=>pool.history.concat(log.map(x=>({name:x.name,seen:x.seen})));
@@ -225,7 +226,7 @@ function saveDraft(){
   v['본 것 한 줄']=$('v-seen').value;   // the draft keeps what was typed
   if(!d.seenByChannel)d.seenByChannel={email:v['본 것 한 줄'],dm:v['본 것 한 줄']};
   d.seenByChannel[ui.channel]=v['본 것 한 줄'];
-  d.vars=v;d.to=$('to').value;d.handle=$('handle').value;d.channel=ui.channel;d.subject=ui.subject;d.variant=ui.variant;
+  d.vars=v;d.to=$('to').value;d.handle=$('handle').value;d.channel=ui.channel;d.subject=ui.subject;d.customSubject=ui.customSubject??'';d.subjectVersion=2;d.variant=ui.variant;
   store.set(S,KEY.drafts,drafts);store.set(S,KEY.ui,ui);
   store.set(L,KEY.sender,$('v-sender').value);store.set(L,KEY.phone,$('adPhone').value);
 }
@@ -235,12 +236,12 @@ function loadDraftInto(key,p){
   if(d){
     // Older drafts kept the post address only for DM people: fall back to the sheet's work address.
     set('v-name',d.vars['활동명']);set('v-platform',d.vars['플랫폼']);set('v-post',d.vars['게시물 주소']||(p&&p.url)||'');set('v-seen',d.vars['본 것 한 줄']);set('v-work',d.vars['작품명']);
-    set('to',d.to);set('handle',d.handle);if(d.channel)ui.channel=d.channel;ui.subject=d.subject||0;ui.variant=d.variant||'basic';
+    set('to',d.to);set('handle',d.handle);if(d.channel)ui.channel=d.channel;ui.subject=d.subjectVersion===2?(d.subject||0):(d.subject===1?1:0);ui.customSubject=d.customSubject??'';ui.variant=d.variant||'basic';
   }else if(p){
     set('v-name',plainName(p.name));set('to',p.email);set('handle',p.handle);set('v-platform',p.platform);
     set('v-post',p.url||'');set('v-seen','');set('v-work','');
-    ui.subject=0;ui.variant=C.variantOf(p.field);const ch=K.channelOf(p);if(ch)ui.channel=ch;
-  }else{ui.variant='basic';['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
+    ui.variant=C.variantOf(p.field);ui.subject=defaultSubject(ui.variant);ui.customSubject=ui.subject===3?savedTemplate(ui.variant).email.subject:'';const ch=K.channelOf(p);if(ch)ui.channel=ch;
+  }else{ui.variant='basic';ui.subject=defaultSubject('basic');ui.customSubject=ui.subject===3?savedTemplate('basic').email.subject:'';['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
   const current=draft();
   if(!current.seenByChannel)current.seenByChannel={email:$('v-seen').value,dm:$('v-seen').value};
   $('v-seen').value=current.seenByChannel[ui.channel]||'';
@@ -349,8 +350,8 @@ function allChecks(r,v){
   if(ui.channel==='email'&&!$('to').value.trim())list.unshift({level:'block',code:'to-empty',msg:'받는 메일 주소가 비어 있어요.',field:'to',fix:handleOf($('handle').value)?['인스타 DM으로 바꾸기',()=>setChannel('dm')]:null});
   if(ui.channel==='dm'&&!handleOf($('handle').value))list.unshift({level:'block',code:'handle-empty',msg:'인스타 계정을 쓰면 DM 창을 바로 열 수 있어요.',field:'handle',fix:$('to').value.trim()?['이메일로 바꾸기',()=>setChannel('email')]:null});
   const first=()=>{staleCopy();ui.subject=0;saveDraft();renderAll();};
-  if(ui.subject===1&&ui.channel==='email'&&!$('v-work').value.trim())list.forEach(c=>{if(c.code==='leftover'||c.code==='empty:작품명'){c.field='v-work';c.fix=['1안으로 바꾸기',first];}});
-  if(ui.subject===1&&ui.channel==='email'&&!$('v-work').value.trim()&&!list.some(c=>c.field==='v-work'))list.unshift({level:'block',code:'work-empty',msg:'2안 제목에 넣을 작품명이 비어 있어요.',field:'v-work',fix:['1안으로 바꾸기',first]});
+  if(ui.subject===1&&ui.channel==='email'&&!$('v-work').value.trim())list.forEach(c=>{if(c.code==='leftover'||c.code==='empty:작품명'){c.field='v-work';c.fix=['창작자 중심으로 바꾸기',first];}});
+  if(ui.subject===1&&ui.channel==='email'&&!$('v-work').value.trim()&&!list.some(c=>c.field==='v-work'))list.unshift({level:'block',code:'work-empty',msg:'작품 중심 제목에 넣을 작품명이 비어 있어요.',field:'v-work',fix:['창작자 중심으로 바꾸기',first]});
   if(ui.channel==='email'&&logoBroken)list.push({level:'warn',code:'logo',msg:'로고 이미지를 불러오지 못했어요. 받는 분에게도 깨져 보여요.',field:''});
   if(ui.channel==='email'&&r){const kb=new Blob([r.emailHtml]).size/1024;if(kb>80)list.push({level:'warn',code:'size',msg:'메일 HTML이 '+Math.round(kb)+'KB예요. 80KB를 넘으면 일부 메일 앱이 자를 수 있어요.',field:''});}
   list.forEach(c=>{
@@ -581,7 +582,7 @@ function paint(){
   const st=$('subjText');if(st.dataset.html!==subjHtml){st.dataset.html=subjHtml;st.innerHTML=subjHtml;st.title=r.subject;}
   $('subjAd').hidden=!ui.ad;
   $('subjPick').hidden=ui.subject!==s.coach.subjectPick.index;
-  $('subjectChange').title='제목 3안 가운데 고를 수 있어요. 추천 1안: '+s.coach.subjectPick.why;
+  $('subjectChange').title='제목 3유형 또는 직접 입력을 선택해요. '+s.coach.subjectPick.why;
   // Darken only the preview surround; copied and downloaded email keep their original background.
   const previewHtml=shown.emailHtml.replace(/background-color:#f2f2f2/g,'background-color:#e5e5e5');
   const doc=$('frame');if(doc.dataset.html!==previewHtml){doc.dataset.html=previewHtml;doc.srcdoc=previewHtml;}
@@ -651,7 +652,7 @@ function paintCoach(s){
   $('seenWhere').hidden=!!err||hints.length>0||room<=0;
   setText($('seenWhere'),isEmail?'연락드린 이유 바로 다음 줄에 들어가요.':(ui.variant==='music'?'곡·앨범에서 좋았던 점을 한 문단으로 써 주세요.':'감상과 초대하고 싶은 이유를 한 문단으로 써 주세요.'));
   // Subject popover: the reason for the pick and a hint about what sits up front.
-  setText($('subjectWhy'),'추천은 1안이에요. '+co.subjectPick.why);
+  setText($('subjectWhy'),C.SUBJECT_TYPES[co.subjectPick.index].name+'을 추천해요. '+co.subjectPick.why);
   const sh=co.hints.filter(h=>h.target==='subject');
   $('subjectHint').hidden=!sh.length;setText($('subjectHint'),sh.map(h=>h.text).join(' '));
 }
@@ -661,24 +662,31 @@ function refreshHints(){
   shownHints=state.coach.hints.filter(h=>h.target==='v-seen'&&!(focusSeen&&(h.id==='seen-thin'||h.id==='seen-end')));
   paintCoach(state);
 }
-const SUBJECT_NOTES=['','작품명이 제목에 보여요. 그 작품을 실제로 보셨을 때만 골라 주세요.','메일 큰 제목과 같은 말이 되풀이돼요.'];
 function renderSubjects(v){
   const g=$('subjectGroup');
   if(!g.dataset.built){
     g.dataset.built='1';
-    [0,1,2].forEach(i=>{
-      const l=document.createElement('label');l.className='radio';
-      l.innerHTML='<input type="radio" name="subject" value="'+i+'"><span class="body"><span class="txt"></span>'+(SUBJECT_NOTES[i]?'<span class="why">'+esc(SUBJECT_NOTES[i])+'</span>':'')+'</span>'+(i===0?'<span class="pick">추천</span>':'');
-      l.querySelector('input').onchange=()=>{staleCopy();ui.subject=i;saveDraft();render();if(i===1&&!$('v-work').value.trim())setTimeout(()=>$('v-work').focus(),0);};
+    [1,0,2,3].forEach(i=>{
+      const type=C.SUBJECT_TYPES[i],l=document.createElement('label');l.className='radio';
+      l.innerHTML='<input type="radio" name="subject" value="'+i+'"><span class="body"><span class="type-name">'+esc(type?type.name:'직접 입력')+'</span><span class="txt"></span><span class="why">'+esc(type?type.audience:'원하는 제목을 직접 써 주세요.')+'</span></span><span class="pick" hidden>추천</span>';
+      l.querySelector('input').onchange=()=>{
+        staleCopy();ui.subject=i;if(i===3&&!ui.customSubject)ui.customSubject=C.fill(tpl.email.subject,values());
+        saveDraft();render();if(i===1&&!$('v-work').value.trim())$('v-work').focus();if(i===3)$('subjectCustom').focus();
+      };
       g.appendChild(l);
       if(i===1){const x=document.createElement('div');x.className='radio-extra';x.id='workRow';x.innerHTML='<label for="v-work">작품명</label><input class="field" id="v-work" data-var="작품명" autocomplete="off" aria-describedby="err-v-work"><p class="err" id="err-v-work" hidden></p>';g.appendChild(x);}
+      if(i===3){const x=document.createElement('div');x.className='radio-extra';x.id='customSubjectRow';x.innerHTML='<label for="subjectCustom">직접 입력할 메일 제목</label><input class="field" id="subjectCustom" autocomplete="off" aria-describedby="err-subjectCustom"><p class="err" id="err-subjectCustom" hidden></p>';g.appendChild(x);x.querySelector('input').oninput=e=>{touched.add('subjectCustom');staleCopy();ui.customSubject=e.target.value;saveDraft();render();};}
     });
   }
-  const opts=[tpl.email.subject,...C.SUBJECT_ALTERNATIVES];
-  // An option whose blank is still empty shows the blank's name, not an empty pair of quotes.
   const named={...v,'활동명':(v['활동명']||'').trim()||'○○','작품명':(v['작품명']||'').trim()||'작품명'};
-  g.querySelectorAll('label.radio').forEach((l,i)=>{const t=(ui.ad?'(광고) ':'')+(C.fill(opts[i],named)||opts[i]);setText(l.querySelector('.txt'),t);l.querySelector('input').checked=ui.subject===i;});
-  $('workRow').hidden=ui.subject!==1;
+  const pick=state?state.coach.subjectPick:C.coach({name:v['활동명'],work:v['작품명']}).subjectPick;
+  g.querySelectorAll('label.radio').forEach(l=>{
+    const i=Number(l.querySelector('input').value),type=C.SUBJECT_TYPES[i];
+    const text=type?C.fill(type.template,named):(ui.customSubject||'제목을 입력해 주세요');
+    setText(l.querySelector('.txt'),(ui.ad?'(광고) ':'')+text);l.querySelector('input').checked=ui.subject===i;l.querySelector('.pick').hidden=i!==pick.index;
+  });
+  $('workRow').hidden=ui.subject!==1;$('customSubjectRow').hidden=ui.subject!==3;
+  if(document.activeElement!==$('subjectCustom'))$('subjectCustom').value=ui.customSubject??'';
 }
 // Sheet row link per tab gid (플랫폼 수집 gid read from the live sheet 2026-11-10).
 function rowHref(p){const g=p&&TAB_GID[p.source];return g?'https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/edit#gid='+g+'&range=A'+p.row:'';}
@@ -900,7 +908,7 @@ async function copyOnly(source=false){
   if(ok){d.flow=d.flow||'copied';if(snap.channel==='email'){delete d.popupBlocked;delete d.openUrl;}d.copiedChannel=snap.channel;store.set(S,KEY.drafts,drafts);copyStale=false;toast(source?'HTML 소스를 복사했어요.':snap.channel==='dm'?'DM을 복사했어요.':'본문을 복사했어요.');renderAll();}
   else manualCopy(snap.text,null,source?undefined:snap.channel,snap);
 }
-const tsvRow=r=>[r.name,r.contact,r.channel==='dm'?'인스타 DM':'메일','발송 '+new Date(r.at).toLocaleDateString('ko-KR'),r.sender||'',r.seen||'',r.post||''].join('\t');
+const tsvRow=r=>[r.name,r.contact,r.channel==='dm'?'인스타 DM':'메일','발송 '+new Date(r.at).toLocaleDateString('ko-KR'),r.sender||'',r.seen||'',r.post||''].map(x=>String(x??'').replace(/[\t\r\n]+/g,' ')).join('\t');
 async function record(opts){
   const nm=plainName($('v-name').value);if(!nm)return;
   const p=findPerson(ui.current)||matchesOf(idsOfCurrent(),nm)[0];
@@ -953,7 +961,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-template-edit',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-newlines',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
@@ -1054,7 +1062,7 @@ function downloadSheet(){
 }
 
 /* ---------- Reusable wording fields ---------- */
-const TPL_LABELS={'email.subject':'메일 제목','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.gift':'감사 선물','email.steps':'참여 방법','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
+const TPL_LABELS={'email.subject':'기본 제목 · 직접 입력용','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.gift':'감사 선물','email.steps':'참여 방법','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
 function fillTplFields(){
   const box=$('tplFields');
   if(!box.dataset.built){
@@ -1146,7 +1154,7 @@ document.addEventListener('input',e=>{
 });
 $('to').addEventListener('blur',()=>{$('to').value=$('to').value.trim();touched.add('to');render();});
 $('handle').addEventListener('change',()=>{$('handle').value=handleOf($('handle').value);saveDraft();render();});
-$('v-seen').addEventListener('paste',e=>{const t=e.clipboardData&&e.clipboardData.getData('text/plain');if(t==null)return;e.preventDefault();document.execCommand('insertText',false,C.clean(t));});
+$('v-seen').addEventListener('paste',e=>{const t=e.clipboardData&&e.clipboardData.getData('text/plain');if(t==null)return;e.preventDefault();document.execCommand('insertText',false,C.prose(t));});
 $('v-seen').addEventListener('focus',()=>{focusSeen=true;render();});
 // Blur computes at once (a click under way must see the latest text and blocks); what would redraw or move waits for the pointer.
 $('v-seen').addEventListener('blur',()=>{

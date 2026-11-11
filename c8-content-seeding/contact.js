@@ -20,7 +20,7 @@
     // Same sections as the Weekly Best award mail so both mails read as one family.
     // The applied mail (2026-11-10): sent as the team, one link to the hub page.
     email:{
-      subject:'{활동명}님, 크리에이터클럽에서 인사드려요',
+      subject:'[크리에이터클럽] {활동명}님의 작업을 소개하고 싶어요',
       preheader:'{활동명}님의 작업을 크리에이터클럽에 소개하고 싶어요. 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'을 드려요.',
       headline:'{활동명}님의 작업을\n크리에이터클럽에서도 소개하고 싶어요',
       greeting:[
@@ -94,7 +94,12 @@
   }
   /* Which variant a candidate's 분야 points to. */
   function variantOf(field){const f=clean(field);return Object.keys(EMAIL_VARIANTS).find(k=>EMAIL_VARIANTS[k].match.test(f))||'basic';}
-  const SUBJECT_ALTERNATIVES=['「{작품명}」 보고 연락드려요','{활동명}님 작업을 크리에이터클럽에 소개하고 싶어요'];
+  const SUBJECT_TYPES=[
+    {name:'창작자 중심',template:'[크리에이터클럽] {활동명}님의 작업을 소개하고 싶어요',audience:'작품 전반의 스타일이 인상적인 창작자'},
+    {name:'작품 중심',template:'[크리에이터클럽] {작품명}{을/를} 보고 연락드렸어요',audience:'개별 작품의 개성이 강한 창작자'},
+    {name:'제안 중심',template:'[크리에이터클럽] {활동명}님께 드리는 포트폴리오 제안',audience:'스튜디오·디자인 에이전시·전문 창작자'}
+  ];
+  const SUBJECT_ALTERNATIVES=SUBJECT_TYPES.slice(1).map(t=>t.template);
   // Legal ad labelling (정보통신망법 시행령 별표 6). Off until legal review decides; the switch lives in the editor.
   const AD={
     subjectPrefix:'(광고) ',
@@ -119,6 +124,7 @@
   const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   /* NFC plus zero-width removal so a pasted look-alike compares equal. */
   const clean=v=>String(v??'').normalize('NFC').replace(/[​-‍﻿]/g,'').replace(/\s+/g,' ').trim();
+  const prose=v=>String(v??'').normalize('NFC').replace(/[​-‍﻿]/g,'').replace(/\r\n?/g,'\n').trim();
   const MARK_ON='\u0001',MARK_OFF='\u0002';
 
   /* 이/가 after a filled value: by the last letter's 받침, looking past closing quotes and brackets. */
@@ -136,18 +142,23 @@
      mark=true wraps filled values for the preview's 「바뀌는 부분 보기」; copies never use it. */
   function fill(text,values,mark){
     const known=new Set(VARS.map(v=>v.key).concat(Object.keys(values||{})));
-    let source=String(text);
+    let source=String(text).replace(/\r\n?/g,'\n');
     if(!clean((values||{})['플랫폼']))source=source.replace('{활동명}님의 {플랫폼} 작업을 보고 연락드렸어요.','{활동명}님의 작업을 보고 연락드렸어요.').replace('{플랫폼}{이/가} 인상 깊어 연락드렸어요.','{활동명}님의 음악을 듣고 연락드렸어요.');
     let out=source.replace(/\{([^{}\n]+)\}/g,(m,k)=>{
       k=k.trim();
       if(!known.has(k))return m;
-      const v=clean((values||{})[k]);
+      // Observation is prose: keep its line structure; identifiers remain single-line.
+      const raw=(values||{})[k];
+      const v=k==='본 것 한 줄'?prose(raw):clean(raw);
       const on=mark&&(mark===true||(mark.has&&mark.has(k)));
-      return v?(on?MARK_ON+v+MARK_OFF:v):'\u0000';
+      return v?(on?v.split('\n').map(line=>line?MARK_ON+line+MARK_OFF:'').join('\n'):v):'\u0000';
     });
     out=out.split(PARTICLE).reduce((a,b)=>a+subjectParticle(a.slice(a.lastIndexOf('\n')+1))+b);
+    out=out.split('{을/를}').reduce((a,b)=>a+(subjectParticle(a.slice(a.lastIndexOf('\n')+1))==='이'?'을':'를')+b);
+    // Omitted optional paragraphs are removed; intentional user blank lines stay.
+    out=out.replace(/\n\n[ \t]*\u0000[ \t]*\n\n/g,'\n\n').replace(/(^|\n)[ \t]*\u0000[ \t]*(\n|$)/g,(m,a,b)=>a&&b?'\n':'');
     out=out.replace(/[ \t]*\u0000[ \t]*/g,' ').replace(/ +\n/g,'\n').replace(/\n +/g,'\n').replace(/ {2,}/g,' ').replace(/ ([.,)」])/g,'$1');
-    return out.split('\n').map(l=>l.trim()===''?'':l.replace(/\s+$/,'')).join('\n').replace(/\n{3,}/g,'\n\n').trim();
+    return out.split('\n').map(l=>l.trim()===''?'':l.replace(/\s+$/,'')).join('\n').trim();
   }
   const unmark=s=>String(s).replace(/[\u0001\u0002]/g,'');
   const markHtml=h=>h.replace(/\u0001/g,'<mark style="background:#fff3a3; color:inherit;">').replace(/\u0002/g,'</mark>');
@@ -163,7 +174,16 @@
   function inlinePlain(s){
     return unmark(String(s).replace(/\[([^\]]+)\]\(mailto:([^)\s]+)\)/g,'$2').replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,(m,t,u)=>t===u?u:t+'('+u+')').replace(/\*\*([^*]+)\*\*/g,'$1'));
   }
-  function blocks(text){return String(text).split(/\n{2,}/).map(p=>p.split('\n').filter(l=>l.trim()!=='')).filter(p=>p.length);}
+  function blocks(text){
+    const out=[];
+    String(text).split(/(\n{2,})/).forEach(part=>{
+      if(/^\n{2,}$/.test(part)){
+        // Two Enters create the paragraph gap; additional Enters remain empty lines.
+        if(out.length)out[out.length-1].push(...Array(part.length-2).fill(''));
+      }else if(part.trim())out.push(part.split('\n'));
+    });
+    return out;
+  }
   const SECTION_TITLES={gift:'🎁 감사 선물',steps:'📝 참여 방법',ask:'💬 궁금한 점'};
   const EMAIL_SECTIONS=['subject','preheader','headline','greeting','intro','gift','steps','ask','closing','signature','footer'];
   const LOGO='https://euna-source.github.io/public-pages/c8-contact-mail/c8-logo-mark.png';
@@ -173,7 +193,7 @@
   function richHtml(text,size){
     return blocks(text).map((lines,bi)=>{
       const gap=bi?'margin-top:12px; ':'';
-      if(lines.every(l=>/^\d+\.\s/.test(l)))return '<ol style="'+gap+'margin-bottom:0; padding-left:20px;">'+lines.map(l=>'<li style="margin:0 0 4px;">'+inlineHtml(l.replace(/^\d+\.\s/,''))+'</li>').join('')+'</ol>';
+      if(lines.every(l=>/^\d+\.\s/.test(unmark(l))))return '<ol style="'+gap+'margin-bottom:0; padding-left:20px;">'+lines.map(l=>'<li style="margin:0 0 4px;">'+inlineHtml(l.replace(/^(\u0001?)\d+\.\s/,'$1'))+'</li>').join('')+'</ol>';
       return '<div style="'+gap+'">'+lines.map(inlineHtml).join('<br>')+'</div>';
     }).join('');
   }
@@ -268,7 +288,7 @@
     const used=channel==='email'?EMAIL_SECTIONS.filter(k=>k!=='footer'||o.footer!==false||(o.ad&&o.ad.on)).map(k=>tpl.email[k]||''):[tpl.dm.message];
     const usedKeys=new Set(used.flatMap(tokens));
     const known=new Set(VARS.map(x=>x.key));
-    usedKeys.delete('이/가');
+    usedKeys.delete('이/가');usedKeys.delete('을/를');
     usedKeys.forEach(k=>{if(!known.has(k))add('block','unknown','모르는 칸 {'+k+'}이 문구에 있어요. 칸 이름을 고치거나 지워 주세요.');});
     VARS.forEach(x=>{if(usedKeys.has(x.key)&&x.required&&!clean(v[x.key]))add('block','empty:'+x.key,'「'+x.key+'」 칸이 비어 있어요.',x.field);});
     const name=clean(v['활동명']);
@@ -310,6 +330,7 @@
       if(/[(\[]\s*광\W+고\s*[)\]]|\[광고\]/.test(text))add('block','ad-variant','「(광고)」는 빈칸·부호 없이 그대로 써야 해요.');
     }
     if(channel==='email'){
+      if(!clean(r.subject.replace(/^\(광고\)\s*/,'')))add('block','subject-empty','메일 제목을 입력해 주세요.','subjectCustom');
       if(chars(r.subject)>LIMITS.subjectChars)add('warn','subject-long','제목이 '+chars(r.subject)+'자예요. 휴대폰 받은편지함에서 '+LIMITS.subjectChars+'자 뒤는 잘려요.');
       if(o.to&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clean(o.to)))add('warn','to','받는 주소 형식을 확인해 주세요.','to');
     }else if(chars(r.dm)>LIMITS.dmChars)add('warn','dm-long','DM이 '+chars(r.dm)+'자예요. 인스타 앱 한도는 확인되지 않았어요. '+LIMITS.dmChars+'자 안으로 줄이면 안전해요.','v-seen');
@@ -431,7 +452,7 @@
   const HYPE=/무료 *(제공|증정|체험|지급)|공짜|지금 *바로|(인원|기간) *한정|한정 *(모집|혜택)|특별한 *(제안|기회)|기회를 *드|당첨|축하드|선정되셨|100 *%|돈 *버|부업|리워드|오늘까지|이번 *주까지|역대급/;
   const DECO=/[!?！？]{2,}|\p{Emoji_Presentation}|[ㅋㅎㅠㅜ]{2,}|~{2,}/u;
   const FIXED_LINES=['작업이 인상 깊어 연락드렸어요','자신만의 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요'];
-  const SUBJECT_WHY='받는 분 이름이 맨 앞에 와요.';
+  const SUBJECT_WHY='작품 전반의 스타일을 소개하고 싶을 때 잘 맞아요.';
   /* Advice for the hand-typed fields. Hints never block: they carry no level and copying ignores them.
      history is the same [{name, seen}] that check() takes. The screen shows at most two hints, in this order. */
   function coach(input){
@@ -471,9 +492,11 @@
     const sentOnes=EXAMPLES.some(e=>e.source==='sent'),examplesLabel=sentOnes?'이렇게 썼어요':'예시';
     const examples=EXAMPLES.filter(e=>group&&e.fields.includes(group)).concat(EXAMPLES.filter(e=>!(group&&e.fields.includes(group)))).slice(0,3).map(e=>({text:e.text,source:e.source}));
     const foldLabel=seen?'문장 도움 · 문장 틀과 '+examplesLabel:'문장이 안 떠오르면 · '+(group?group+' ':'')+'문장 틀 보기';
-    return {hints,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick:{index:0,why:SUBJECT_WHY},blank:hasBlank(seen)};
+    const professional=/스튜디오|studio|에이전시|agency|전문 창작자/i.test(name+' '+(o.field||''));
+    const subjectPick=professional?{index:2,why:'스튜디오·에이전시에는 포트폴리오 제안을 앞에 두는 제목을 추천해요.'}:work?{index:1,why:'작품명이 있어 어떤 작업을 보고 연락했는지 제목에서 보여 줄 수 있어요.'}:{index:0,why:SUBJECT_WHY};
+    return {hints,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick,blank:hasBlank(seen)};
   }
 
-  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
+  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_TYPES,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,prose,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);

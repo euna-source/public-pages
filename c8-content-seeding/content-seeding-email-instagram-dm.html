@@ -378,6 +378,7 @@ textarea.field{height:auto;padding:8px 12px;resize:vertical}
 #checkItems li .btn{flex:none;margin:-5px -4px -5px 0;color:var(--text)}
 /* 제목 바꾸기 */
 #subjectPop{width:420px;padding:16px}
+.type-name{display:block;font-weight:600;margin-bottom:4px}
 #subjectPop h3{font:600 var(--fs-body)/var(--lh-body) var(--font)}
 #subjectWhy{font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2);margin:2px 0 8px}
 #subjectHint{font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--warn);margin-top:8px}
@@ -682,8 +683,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
       <!-- 양식 편집 -->
       <div class="view" data-view-of="edit" hidden>
         <div class="view-head"><h2 id="editHeading">양식 편집</h2><button class="btn sm" id="editClose">편집 마치기</button></div>
-        <p class="help" style="margin:-16px 0 0">고친 내용은 이 브라우저에 자동 저장돼요. 다음 분에게도 같은 양식이 적용돼요. 이메일·DM과 기본·음악 문안은 각각 따로 저장돼요.</p>
-        <p class="help" id="wordingStatus" role="status">{활동명}, {본 것 한 줄}은 그대로 두면 받는 분에 맞게 바뀌어요.</p>
+        <p class="help" style="margin:-16px 0 0">고친 내용은 이 브라우저에 자동 저장돼요. 다음 분에게도 같은 양식이 적용돼요. 이메일·DM과 기본·음악 문안은 각각 따로 저장돼요. Enter로 넣은 줄바꿈과 빈 줄도 양식에 반영돼요.</p>
+        <p class="help" id="wordingStatus" role="status">{활동명}, {본 것 한 줄}은 그대로 두면 받는 분에 맞게 바뀌어요. 기본 제목을 고치면 새로 쓰는 분에게 적용돼요. 제목 선택에서 직접 입력한 내용은 현재 받는 분에게만 저장돼요.</p>
         <div id="tplFields" style="margin-top:-12px"></div>
         <div><button class="btn line" id="tplReset">이 양식을 기본 문구로 되돌리기</button></div>
       </div>
@@ -728,7 +729,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
           <span id="subjAd" hidden>(광고)</span>
           <span class="ell" id="subjText"></span>
           <span class="pick" id="subjPick">추천</span>
-          <button class="btn sm" id="subjectChange" popovertarget="subjectPop">바꾸기</button>
+          <button class="btn sm" id="subjectChange" popovertarget="subjectPop">제목 선택</button>
         </span>
         <span class="ell" id="dmWho" data-only="dm" hidden></span>
       </div>
@@ -863,8 +864,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-template-edit"></script>
+<script src="contact.js?v=261111-newlines"></script>
 <script src="candidates.js?v=261110-v2"></script>
-<script src="editor.js?v=261111-template-edit"></script>
+<script src="editor.js?v=261111-newlines"></script>
 </body>
 </html>
