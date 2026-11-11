@@ -309,15 +309,17 @@ function resetPersonUi(){
 /* ---------- Choosing a person: every path goes through choose() ---------- */
 // Leaving someone whose Gmail or Instagram was opened but not recorded asks first. false = stay.
 async function leaveGuard(){
+  if(sheetBusy)return false;
   const cur=drafts[ui.current];
-  if(cur&&(cur.flow==='opened'||cur.flow==='draft-started')&&!sentFor(idsOfCurrent(),plainName($('v-name').value))){
-    const pick=await ask(plainName($('v-name').value)+'님은 '+(cur.flow==='draft-started'?'메일 작성 화면':ui.channel==='dm'?'인스타':'Gmail')+'을 열었지만 아직 기록하지 않았어요','보냈다면 기록해 두세요. 그래야 다음에 다시 보내지 않아요.',[['닫기','close'],['넘어가기','skip'],['보냈어요 · 기록하기','record',true]]);
+  if(cur&&(cur.flow==='opened'||cur.flow==='draft-started'||cur.flow==='copied')&&!sentFor(idsOfCurrent(),plainName($('v-name').value))){
+    const pick=await ask(plainName($('v-name').value)+'님은 '+(cur.flow==='draft-started'?'메일 작성 화면':ui.channel==='dm'?'인스타':'Gmail')+(cur.flow==='copied'?' 내용을 복사했지만 아직 기록하지 않았어요':'을 열었지만 아직 기록하지 않았어요'),'보냈다면 Google 시트에 연락 기록을 저장해요. 저장한 뒤 다음 분으로 넘어가요.',[['닫기','close'],['넘어가기','skip'],['보냈어요 · 기록하기','record',true]]);
     if(pick==='close'||!pick)return false;
-    if(pick==='record')record({silent:true});
+    if(pick==='record'&&!(await record({silent:true})))return false;
   }
   return true;
 }
 async function choose(key,opts){
+  if(sheetBusy)return;
   const o=opts||{};
   if(key===ui.current&&!o.force){closeDrawer();showView('compose');if(key==='manual'){$('personFold').open=true;if(!$('v-name').value.trim())$('v-name').focus();}return;}
   if(!o.guarded&&!(await leaveGuard()))return;
@@ -439,7 +441,7 @@ document.addEventListener('pointerdown',()=>{pointerDown=true;},true);
 function pointerEnd(){
   if(!pointerDown)return;pointerDown=false;
   const run=afterUp;afterUp=[];
-  setTimeout(()=>{if(paintPending){paintPending=false;paint();}run.forEach(fn=>fn());},0);
+  setTimeout(()=>{if(paintPending){paintPending=false;paint();paintSheetSync();}run.forEach(fn=>fn());},0);
 }
 document.addEventListener('pointerup',pointerEnd,true);document.addEventListener('pointercancel',pointerEnd,true);
 const afterPointer=fn=>{if(pointerDown)afterUp.push(fn);else fn();};
@@ -449,7 +451,7 @@ function setVariant(v){
 }
 function setChannel(c){const n=c==='dm'?'dm':'email';if(n===ui.channel)return;staleCopy();saveDraft();const d=draft();ui.channel=n;$('v-seen').value=d.seenByChannel[n]||'';saveDraft();renderAll();}
 function renderAll(){placePlatform();renderRecipients();render();}
-function render(){compute();if(pointerDown){paintPending=true;return;}paint();}
+function render(){compute();if(pointerDown){paintPending=true;return;}paint();paintSheetSync();}
 
 let primarySig='',primaryGuard=false,guardTimer=0;
 function setPrimaryLabel(label,name){
@@ -460,7 +462,7 @@ function setPrimaryLabel(label,name){
 function compute(){
   const v=values(),t=activeTpl(),opts=renderOpts();
   const r=C.render(t,v,opts);last=r;
-  const checks=allChecks(r,v);lastChecks=checks;
+  const checks=allChecks(r,v);if(pendingContact(ui.current))checks.push({level:'block',code:'sheet-pending',msg:'보냈지만 시트에 아직 저장되지 않았어요. 다시 보내지 말고 저장을 재시도해 주세요.'});lastChecks=checks;
   const blocks=checks.filter(c=>c.level==='block');
   // 길이·끝맺음은 칸 아래 귀띔으로만 보여서 상태 줄에서는 세지 않는다.
   const warns=checks.filter(c=>c.level==='warn'&&c.code!=='seen-long'&&c.code!=='seen-end');
@@ -474,6 +476,7 @@ function compute(){
   let mode,label,name='',next='';
   const toNext=()=>{mode='next';if(nx){label='다음 분 쓰기 · ';name=plainName(nx.name);next='person';}};
   if(recorded){toNext();if(!nx){if(log.length){label='시트 줄 모두 복사';next='rows';}else{label='다음 분이 없어요';next='none';}}}
+  else if(pendingContact(ui.current)){mode='record';label='시트 저장 다시 확인';}
   else if(!isEmail&&(flow==='opened'||flow==='copied')){mode='record';label='보냈어요 · 기록하기';}
   // Someone we do not write to: no copy path anywhere, the button moves on instead.
   else if(personBlock){toNext();if(!nx){label='다음 분이 없어요';next='none';}}
@@ -546,6 +549,7 @@ function syncStatus(s){
 }
 function paint(){
   const s=state;if(!s)return;
+  paintSheetSync();
   const {v,t,opts,r,isEmail,nm,p}=s;
   paintChecks(s);showFieldErrors(s.checks);
   // Segments and menu checks
@@ -758,8 +762,8 @@ function renderAlert(s){
   if(kind==='recorded'){
     const where=p?'시트 '+p.row+'행':'후보 시트';
     const copyRow=btn('시트 줄 복사',b=>{const cur=sentNow();if(cur)copyWithFeedback(b,tsvRow(cur));},'line strong');copyRow.insertAdjacentHTML('afterbegin',icon('copy'));
-    box('result','check','<strong>'+esc(nm)+'님을 보냄으로 기록했어요</strong><span class="sub">'+(rec.channel==='dm'?'DM을':'메일을')+' 보낸 뒤 시트 줄을 복사해 '+esc(where)+' 상태 열 옆에 붙여 넣으면 끝나요.</span>',
-      [copyRow,rowUrl?link('시트 '+p.row+'행 열기',rowUrl):null,btn('되돌리기',undo),noSender?btn('담당자명이 비어 있어요 · 설정 열기',()=>goField('v-sender',true)):null]);
+    box('result','check','<strong>'+esc(nm)+'님을 보냄으로 기록했어요</strong><span class="sub">'+(rec.sheet?'Google 시트에 컨택 상태·개인화 첫 줄·연락 날짜·연락 경로를 저장했어요.':(rec.channel==='dm'?'DM을':'메일을')+' 보낸 뒤 시트 줄을 복사해 '+esc(where)+' 상태 열 옆에 붙여 넣으면 끝나요.')+'</span>',
+      [rec.sheet?null:copyRow,rec.sheet?link('시트 기록 보기',rec.sheet.url):rowUrl?link('시트 '+p.row+'행 열기',rowUrl):null,rec.sheet?null:btn('되돌리기',undo),noSender?btn('담당자명이 비어 있어요 · 설정 열기',()=>goField('v-sender',true)):null]);
   }else if(kind==='sent'){
     box('block','ban',esc(nm)+'님에게는 '+esc(fmtDate(rec.at))+'에 이미 보냈어요. 답이 없으면 다시 보내지 않아요.',[btn('답장이 왔을 때',openReplies)]);
   }else if(kind==='sheet'){
@@ -947,19 +951,81 @@ async function copyOnly(source=false){
   else manualCopy(snap.text,null,source?undefined:snap.channel,snap);
 }
 const tsvRow=r=>[r.name,r.contact,r.channel==='dm'?'인스타 DM':'메일','발송 '+new Date(r.at).toLocaleDateString('ko-KR'),r.sender||'',r.seen||'',r.post||''].map(x=>String(x??'').replace(/[\t\r\n]+/g,' ')).join('\t');
-async function record(opts){
-  const nm=plainName($('v-name').value);if(!nm)return;
-  const p=findPerson(ui.current)||matchesOf(idsOfCurrent(),nm)[0];
-  const ch=draft().copiedChannel||ui.channel;
-  const r={ids:uniq(expandIds(idsOfCurrent()).concat(p&&p.allIds||[])),name:nm,channel:ch,contact:ch==='email'?$('to').value.trim():'@'+handleOf($('handle').value),row:p?p.row:'',seen:values()['본 것 한 줄'].trim(),post:safeUrl($('v-post').value),sender:$('v-sender').value.trim(),at:new Date().toISOString()};
-  log.push(r);store.set(S,KEY.log,log);
-  const d=draft();d.flow='recorded';d.recordedAt=r.at;saveDraft();
-  // Recording never writes the clipboard: the mail body may still be waiting to be pasted.
-  delete $('primary').dataset.flash;primarySig='';
-  renderAll();
-  if(!(opts&&opts.silent)){$('writeScroll').scrollTop=0;if(mqNarrow.matches)window.scrollTo(0,0);}
+// Pending confirmations survive closing the editor; they are never replayed without a click.
+const SHEET_RECORD_APP='https://script.google.com/a/macros/cre8orclub.com/s/AKfycbxCOm8Gxqsl4FQygk34N8qnqit0kCT_rzc5cblm4TsFIwPj32FXxpZsuu9g8ytrw109/exec';
+const SHEET_PENDING_PREFIX='c8-contact-sheet-pending-v1:';
+let sheetBusy=false,sheetSyncError='',sheetBridge=null;
+function pendingContacts(){
+  const entries=[];
+  try{for(let i=0;i<L.length;i++){const key=L.key(i);if(key&&key.startsWith(SHEET_PENDING_PREFIX)){try{const e=JSON.parse(L.getItem(key));if(e&&e.payload&&e.payload.requestId&&e.record&&e.key)entries.push(e);}catch(_){}}}}catch(_){}
+  return entries.sort((a,b)=>a.payload.confirmedAt.localeCompare(b.payload.confirmedAt));
 }
+function pendingContact(key){return pendingContacts().find(e=>e.key===key);}
+function paintSheetSync(){
+  const p=findPerson(ui.current),pending=pendingContacts(),done=!!sentFor(idsOfCurrent(),plainName($('v-name').value));
+  const b=$('contactComplete');b.hidden=!p;
+  b.disabled=sheetBusy||done||!ContactSheet.tabOf(p)||!plainName($('v-name').value)||(ui.channel==='email'?!$('to').value.trim():!handleOf($('handle').value));
+  $('writeScroll').inert=sheetBusy;$('drawerToggle').disabled=sheetBusy;
+  b.textContent=sheetBusy?'시트 저장 중…':done?'연락완료 ✓':pendingContact(ui.current)?'연락완료 · 재시도':'연락완료';
+  const box=$('sheetSyncStatus');box.hidden=!sheetBusy&&!sheetSyncError&&!pending.length;
+  box.textContent=sheetBusy?'Google 시트에 연락 기록을 저장하고 있어요.':sheetSyncError||(pending.length?'시트에 아직 저장되지 않은 연락 기록 '+pending.length+'건이 있어요.':'');
+  $('sheetSyncActions').hidden=sheetBusy||!pending.length;
+  $('sheetRetry').disabled=sheetBusy;$('sheetRetry').textContent=pending.length>1?'미저장 기록 다시 확인 ('+pending.length+'건)':'시트 저장 다시 확인';
+  $('sheetConnect').href=SHEET_RECORD_APP;
+  $('primary').disabled=sheetBusy;
+  ['chEmail','chDm','vBasic','vMusic','alreadySent','sendMail'].forEach(id=>$(id).disabled=sheetBusy);
+}
+function contactRecordSnapshot(){
+  const nm=plainName($('v-name').value),p=findPerson(ui.current);
+  const ch=ui.channel;
+  const at=new Date().toISOString(),contact=ch==='email'?$('to').value.trim():'@'+handleOf($('handle').value);
+  const id=crypto.randomUUID(),seen=values()['본 것 한 줄'].trim();
+  const payload=ContactSheet.payload(p,seen,ch,contact,id,at);
+  const r={ids:uniq(expandIds(idsOfCurrent()).concat(p&&p.allIds||[])),name:nm,channel:ch,contact,row:p.row,seen,post:safeUrl($('v-post').value),sender:$('v-sender').value.trim(),at};
+  return {key:ui.current,payload,record:r};
+}
+async function saveContactEntry(entry,opts){
+  if(sheetBusy)return false;
+  sheetBusy=true;sheetSyncError='';paintSheetSync();
+  try{
+    if(location.origin!==ContactSheet.origin)throw Error('시트 자동 기록은 공개 편집기에서 사용할 수 있어요. 공개 편집기를 열어 주세요.');
+    if(!sheetBridge)sheetBridge=ContactSheet.createBridge(SHEET_RECORD_APP);
+    const saved=await sheetBridge.write(entry.payload);
+    const r={...entry.record,row:saved.row,sheet:saved};
+    if(!log.some(x=>x.sheet&&x.sheet.requestId===saved.requestId))log.push(r);
+    const d=drafts[entry.key]||(drafts[entry.key]={vars:{},flow:''});d.flow='recorded';d.recordedAt=r.at;
+    const stored=store.set(S,KEY.log,log)&&store.set(S,KEY.drafts,drafts);
+    if(!stored)throw Error('시트에는 저장했지만 이 창에 결과를 보관하지 못했어요. 같은 기록으로 다시 확인해 주세요.');
+    store.del(L,SHEET_PENDING_PREFIX+entry.payload.requestId);
+    delete $('primary').dataset.flash;primarySig='';
+    if(!(opts&&opts.silent)&&ui.current===entry.key){$('writeScroll').scrollTop=0;if(mqNarrow.matches)window.scrollTo(0,0);}
+    toast('Google 시트에 연락 기록을 저장했어요.');return true;
+  }catch(e){sheetSyncError=e.message||'시트에 저장하지 못했어요. 다시 확인해 주세요.';toast(sheetSyncError);return false;}
+  finally{sheetBusy=false;renderAll();paintSheetSync();}
+}
+function recordManual(){
+  const nm=plainName($('v-name').value);if(!nm)return false;
+  if(sentFor(idsOfCurrent(),nm))return true;
+  const ch=draft().copiedChannel||ui.channel;
+  const r={ids:idsOfCurrent(),name:nm,channel:ch,contact:ch==='email'?$('to').value.trim():'@'+handleOf($('handle').value),seen:values()['본 것 한 줄'].trim(),post:safeUrl($('v-post').value),sender:$('v-sender').value.trim(),at:new Date().toISOString()};
+  log.push(r);const d=draft();d.flow='recorded';d.recordedAt=r.at;
+  store.set(S,KEY.log,log);saveDraft();renderAll();toast('이 창에 기록했어요. 명단 없이 입력한 분은 시트에 직접 옮겨 주세요.');return true;
+}
+async function record(opts){
+  if(sheetBusy)return false;
+  const nm=plainName($('v-name').value);if(!nm)return false;
+  if(!findPerson(ui.current))return recordManual();
+  if(sentFor(idsOfCurrent(),nm))return true;
+  let entry=pendingContact(ui.current);
+  if(!entry){
+    try{entry=contactRecordSnapshot();}catch(e){sheetSyncError=e.message;paintSheetSync();toast(sheetSyncError);return false;}
+    if(!store.set(L,SHEET_PENDING_PREFIX+entry.payload.requestId,entry)){sheetSyncError='연락 기록을 이 브라우저에 보관하지 못했어요. 저장 공간을 확인해 주세요.';paintSheetSync();toast(sheetSyncError);return false;}
+  }
+  return saveContactEntry(entry,opts);
+}
+
 function undo(){
+  const current=sentFor(idsOfCurrent(),plainName($('v-name').value));if(current&&current.sheet){toast('Google 시트에 저장된 기록이에요. 시트에서 확인해 수정해 주세요.');return;}
   const d=draft();const at=d.recordedAt;log=log.filter(x=>x.at!==at);store.set(S,KEY.log,log);d.flow='opened';delete d.recordedAt;saveDraft();renderAll();
   toast('되돌렸어요. 시트에 붙인 줄은 직접 지워 주세요.');
 }
@@ -1305,7 +1371,7 @@ $('exSource').onclick=()=>menuCopy('exSource',last.emailHtml,'HTML 소스를 복
 $('exText').onclick=()=>menuCopy('exText',last.emailText,'양식 없이 글만 복사했어요.');
 $('alreadySent').onclick=async()=>{
   hidePop('moreMenu');
-  if(await ask(plainName($('v-name').value)+'님에게 이미 보냈나요?','이 창의 보낸 분에 올려요. 시트 줄은 기록한 뒤 「시트 줄 복사」로 복사해요.',[['닫기','close'],['보냈어요 · 기록하기','go',true]])==='go')record();
+  if(await ask(plainName($('v-name').value)+'님에게 이미 보냈나요?','Google 시트에 컨택 상태·개인화 첫 줄·연락 날짜·연락 경로를 저장해요.',[['닫기','close'],['보냈어요 · 기록하기','go',true]])==='go')record();
 };
 $('replyOpen').onclick=()=>{hidePop('moreMenu');openReplies();};
 $('replyClose').onclick=closeReplies;
@@ -1318,6 +1384,8 @@ $('widthToggle').onclick=()=>{ui.width=ui.width==='desk'?'mobile':'desk';hidePop
 $('importOpen').onclick=()=>{showView('import');};
 $('importClose').onclick=()=>{showView('compose');};
 $('manualStart').onclick=()=>{if(sampleMode()){ui.subject=defaultSubject(ui.variant);ui.customSubject=ui.subject===3?savedTemplate(ui.variant).email.subject:'';}choose('manual');};
+$('contactComplete').onclick=()=>record();
+$('sheetRetry').onclick=()=>{const entry=pendingContact(ui.current)||pendingContacts()[0];if(entry)saveContactEntry(entry);};
 $('copyLog').onclick=()=>copyAllRows($('copyLog'));
 $('clearLog').onclick=async()=>{
   const go=await ask('보낸 분 '+log.length+'명 목록을 비울까요?','시트에 옮기지 않은 줄은 사라져요.',[['닫기','close',true],['비우기','go',false,true]]);
@@ -1375,7 +1443,7 @@ document.addEventListener('dragover',e=>{if(hasFiles(e))e.preventDefault();});
 document.addEventListener('dragleave',()=>{if(--dragDepth<=0){dragDepth=0;$('shell').classList.remove('dragging');$('dragNote').hidden=true;}});
 document.addEventListener('drop',e=>{if(!hasFiles(e)||!e.dataTransfer.files.length)return;e.preventDefault();dragDepth=0;$('shell').classList.remove('dragging');$('dragNote').hidden=true;importFile(e.dataTransfer.files[0]);});
 // Leaving with an opened-but-unrecorded mail asks first.
-window.addEventListener('beforeunload',e=>{if(Object.values(drafts).some(d=>d.flow==='opened'||d.flow==='draft-started')){e.preventDefault();e.returnValue='';}});
+window.addEventListener('beforeunload',e=>{if(sheetBusy||pendingContacts().length||Object.values(drafts).some(d=>d.flow==='opened'||d.flow==='draft-started')){e.preventDefault();e.returnValue='';}});
 // The night window can start while the tab is open. render() never opens or closes a popover.
 setInterval(render,60000);
 // Under 1024 the action bar is fixed to the bottom: what scrolls keeps clear of it.
