@@ -38,29 +38,18 @@
       signature:'크리에이터클럽 드림',
       footer:'본 메일은 {활동명}님이 공개해 두신 연락처로 작품 소개를 제안드리기 위해 한 번 보내는 메일이에요. 답이 없으시면 다시 연락드리지 않을게요. '+TRUST
     },
-    dm:{
-      // The applied DM (2026-11-10): sent as the team, no links in the body; app, form and chat live in our profile link.
-      message:[
-        '안녕하세요, {활동명}님!',
-        '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽 운영팀입니다.',
-        '',
-        '인스타그램에서 {활동명}님의 작업을 보고 연락드렸어요.',
-        '',
-        '{본 것 한 줄}',
-        '',
-        '{활동명}님만의 개성이 담긴 작업을 더 많은 창작자에게 소개하고 싶어 크리에이터클럽에 초대드리게 되었습니다.',
-        '',
-        '크리에이터클럽은 「당신의 작업이 무대가 되는 곳」이라는 슬로건 아래, 창작자들이 자신의 작업을 알리고 서로의 작업에 공감하며 새로운 협업의 기회를 만들어 가는 공간이에요.',
-        '',
-        '이번에 초대드리는 작가님께는 기존 작업을 포트폴리오로 올려 주시면, 감사의 뜻으로 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'(최대 '+REWARD.total+')을 드리고 있어요.',
-        '',
-        '기존 작업을 그대로 활용하실 수 있고, 업로드 후 신청서에 작업 링크만 남겨 주시면 매주 화요일에 상품권을 보내 드려요.',
-        '',
-        '📌 앱 다운로드와 참여 신청서, 문의 채널은 저희 인스타그램 프로필에 있는 링크에서 확인하실 수 있어요.',
-        '',
-        '{활동명}님의 멋진 작업을 크리에이터클럽에서도 만나볼 수 있으면 좋겠습니다!'
-      ].join('\n')
-    }
+    dm:{message:[
+      '안녕하세요, {활동명}님!',
+      '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
+      '', '{본 것 한 줄}', '',
+      '크리에이터클럽은 자신의 작업을 알리고, 그 가치를 알아보는 동료를 만나 새로운 협업을 시작하는 공간이에요.',
+      '',
+      '기존 작업을 포트폴리오로 올려 주시면 1개당 신세계 모바일 상품권 '+REWARD.per+', 최대 '+REWARD.total+'을 드려요. 참여 방법은 다음 링크에서 확인해 주세요.',
+      LINKS.hub, '',
+      '궁금한 점은 편하게 답장 주세요.',
+      '{활동명}님의 멋진 작업을 크리에이터클럽에서도 만나볼 수 있으면 좋겠습니다!'
+    ].join('\n')}
+
   };
   // Field wordings of the mail: only the sections that differ from DEFAULTS.email. The opening sentence is the sender's own
   // phrase plus 이/가, because a song or an album does not read as 「○○님의 … 작업」.
@@ -78,11 +67,29 @@
       intro:'크리에이터클럽에서는 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. 특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.'
     }
   };
+  const DM_VARIANTS={music:{message:[
+    '안녕하세요, {활동명}님!',
+    '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
+    '', '{본 것 한 줄}', '',
+    '이런 음악을 더 많은 창작자에게 소개하고 싶어 연락드렸어요.', '',
+    '크리에이터클럽은 자신의 작업을 알리고, 그 가치를 알아보는 동료를 만나 새로운 협업을 시작하는 공간이에요.', '',
+    '특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님처럼 자신만의 음악 세계를 만들어가는 분들과도 함께하고 싶어요.', '',
+    '지금은 기존 작업을 포트폴리오로 올려 주시면 1개당 신세계 모바일 상품권 '+REWARD.per+', 최대 '+REWARD.total+'을 드리고 있어요.', '',
+    '참여 방법은 다음 링크에서 확인해 주세요.', LINKS.hub, '',
+    '궁금한 점은 언제든 편하게 답장 주세요.',
+    '{활동명}님의 음악을 크리에이터클럽에서도 만나볼 수 있으면 좋겠습니다!'
+  ].join('\n')}};
+  // User-provided examples are preview-only; choosing a real recipient never fills these observations.
+  const DM_EXAMPLES={
+    basic:{'활동명':'고산타','본 것 한 줄':'고산타님 그림은 색감부터 너무너무 제 취향이에요… 몽글몽글 귀여운데 보고 있으면 괜히 마음까지 따뜻해져요,, 그래서 고산타님을 저희 앱에 초대하고 싶어 사심을 담아 연락드립니다!'},
+    music:{'활동명':'지넥스','본 것 한 줄':'최근 발매하신 앨범 《동화》의 수록곡 「곁」을 정말 좋게 들었어요. 부드러운 미성과 섬세한 가성이 어우러진 감미로운 음색이 인상 깊었어요. 특히 90년대 솔리드가 떠오르는 R&B 감성이 느껴지면서도, 지넥스님만의 색깔로 풀어낸 음악이 참 매력적이었어요.'}
+  };
   const variantKey=v=>Object.prototype.hasOwnProperty.call(EMAIL_VARIANTS,v)?v:'basic';
   /* The full wording for one variant ('basic' or a key of EMAIL_VARIANTS), as a fresh copy. */
   function template(variant){
     const t=JSON.parse(JSON.stringify(DEFAULTS)),o=EMAIL_VARIANTS[variantKey(variant)];
     if(o)EMAIL_SECTIONS.forEach(k=>{if(typeof o[k]==='string')t.email[k]=o[k];});
+    if(DM_VARIANTS[variantKey(variant)])t.dm.message=DM_VARIANTS[variantKey(variant)].message;
     return t;
   }
   /* Which variant a candidate's 분야 points to. */
@@ -107,7 +114,7 @@
   ];
   const SHORTENERS=/\/\/(www\.)?(bit\.ly|t\.co|han\.gl|me2\.do|url\.kr|vo\.la|tinyurl\.com|buly\.kr|goo\.gl(?!\/forms)|ow\.ly|is\.gd|cutt\.ly|rebrand\.ly)\//i;
   // night: 21:00–08:00 needs separate consent for ads; we start warning at 20:50 like Kakao brand messages.
-  const LIMITS={dmChars:1000,subjectChars:40,seenMax:120,similar:0.7,night:{from:20*60+50,to:8*60,soon:20*60+40}};
+  const LIMITS={dmChars:1000,subjectChars:40,seenMax:120,dmSeenMax:500,similar:0.7,night:{from:20*60+50,to:8*60,soon:20*60+40}};
 
   const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
   /* NFC plus zero-width removal so a pasted look-alike compares equal. */
@@ -270,7 +277,8 @@
       else{
         // A sentence frame still holding a blank is never ready: machine check, both channels.
         if(hasBlank(seen))add('block','seen-blank','빈칸(___)이 남아 있어요. 작품에서 본 것으로 채워 주세요.','v-seen');
-        if(chars(seen)>LIMITS.seenMax)add('warn','seen-long','「본 것 한 줄」이 '+chars(seen)+'자예요. 한 문장('+LIMITS.seenMax+'자 안)으로 줄여 주세요.','v-seen');
+        const limit=channel==='dm'?LIMITS.dmSeenMax:LIMITS.seenMax;
+        if(chars(seen)>limit)add('warn','seen-long','개인화 문구가 '+chars(seen)+'자예요. '+limit+'자 안으로 줄여 주세요.','v-seen');
         if(!/[.!?요다]$/.test(seen))add('warn','seen-end','「본 것 한 줄」을 완결된 문장으로 끝내 주세요(예: …생각났어요.).','v-seen');
         // Copying the same line to several people is the one thing the plan forbids; a near-copy only warns.
         const near=nearest(seen,name,o.history);
@@ -287,8 +295,8 @@
     // Only anchors the sender controls: the fixed layout's policy links, logo and font are not part of the check.
     const fixed=new Set(Object.values(POLICY));
     const all=channel==='email'?[...r.emailHtml.matchAll(/<a href="([^"]+)"/g)].map(m=>m[1]).filter(u=>!/^mailto:/.test(u)&&!fixed.has(u)).concat(links(r.subject)):links(r.dm);
-    // The DM points to our profile link instead, so only the mail must carry the hub link.
-    const missing=channel==='email'?[['hub','참여 방법']].filter(([k])=>!all.includes(LINKS[k])):[];
+    // Both approved DM variants and the email must carry the participation hub link.
+    const missing=[['hub','참여 방법']].filter(([k])=>!all.includes(LINKS[k]));
     missing.forEach(([k,label])=>add('block','link-missing:'+k,label+' 링크('+LINKS[k]+')가 문구에서 빠졌어요.'));
     all.filter(u=>/^http:\/\//i.test(u)).forEach(u=>add('block','link-http','https가 아닌 링크가 있어요: '+u));
     all.filter(u=>SHORTENERS.test(u)).forEach(u=>add('block','link-short','단축 주소는 사기 링크처럼 보여요: '+u));
@@ -433,11 +441,12 @@
       const near=nearest(seen,name,o.history);
       if(near&&!near.same&&near.s>=LIMITS.similar)hint('seen-similar',near.h.name+'님에게 쓴 문장과 많이 겹쳐요. 이 분 작품에서 본 걸로 바꿔 주세요.','v-seen',true);
       AVOID.forEach(a=>{const m=seen.match(a.re);if(m)hint('avoid','손으로 쓴 칸의 「'+[...new Set(m)].join('·')+'」 — '+a.why+'.','v-seen',true);});
-      if(PITCH.test(bare))hint('seen-pitch','이 칸에는 작품에서 본 것만 써 주세요. 앱 소개는 바로 다음 문단에 있어요.');
+      if(o.channel!=='dm'&&PITCH.test(bare))hint('seen-pitch','이 칸에는 작품에서 본 것만 써 주세요. 앱 소개는 바로 다음 문단에 있어요.');
       if(NUMBERS.test(bare))hint('seen-number','팔로워·조회 수 대신 작품에서 본 장면을 써 주세요.');
       const hype=bare.match(HYPE);
       if(hype)hint('typed-hype','「'+hype[0]+'」은 광고 문자처럼 읽힐 수 있어요. 담백한 말로 바꿔 주세요.');
-      if(chars(seen)>LIMITS.seenMax)hint('seen-long',chars(seen)+'자예요. 한 문장('+LIMITS.seenMax+'자 안)으로 줄여 주세요.');
+      const max=o.channel==='dm'?LIMITS.dmSeenMax:LIMITS.seenMax;
+      if(chars(seen)>max)hint('seen-long',chars(seen)+'자예요. '+(o.channel==='dm'?'한 문단':'한 문장')+'('+max+'자 안)으로 줄여 주세요.');
       if(EXAMPLES.some(e=>similarity(seen,e.text)>=LIMITS.similar))hint('seen-example','예로 든 문장과 거의 같아요. 이 분 작품에서 본 걸로 바꿔 주세요.');
       const n=chars(seen);
       if((n<=14&&!/[0-9「『]/.test(seen))||FIXED_LINES.some(f=>similarity(seen,f)>=0.5))hint('seen-thin','어느 작품의 어느 부분인지 한 가지만 더 짚어 주세요.');
@@ -464,6 +473,6 @@
     return {hints,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick:{index:0,why:SUBJECT_WHY},blank:hasBlank(seen)};
   }
 
-  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
+  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);

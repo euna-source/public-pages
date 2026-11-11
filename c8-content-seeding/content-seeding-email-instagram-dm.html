@@ -612,7 +612,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
                 <div class="prow" data-row="to" data-only="email"><label for="to">받는 메일 주소</label><input class="field" id="to" type="email" autocomplete="off" spellcheck="false" inputmode="email" placeholder="name@example.com" aria-describedby="err-to"><p class="err" id="err-to" hidden></p></div>
                 <div class="prow" data-row="handle" data-only="dm" hidden><label for="handle">인스타 계정</label><input class="field" id="handle" autocomplete="off" spellcheck="false" placeholder="parang.art" aria-describedby="err-handle"><p class="err" id="err-handle" hidden></p></div>
                 <div id="platformSlotFold"><div class="prow" data-row="v-platform" data-only="email" id="platformRow"><label for="v-platform" id="platformLabel">본 곳</label><input class="field" id="v-platform" data-var="플랫폼" list="platforms" autocomplete="off" aria-describedby="help-v-platform err-v-platform" placeholder="예: 홈페이지와 「밤의 정류장」"><p class="help" id="help-v-platform">「○○님의 (본 곳) 작업을 보고 연락드렸어요」에 들어가요.</p><p class="err" id="err-v-platform" hidden></p></div></div>
-                <div class="prow" data-row="variant" data-only="email">
+                <div class="prow" data-row="variant">
                   <span class="label" id="variantHeading">메일 문안</span>
                   <div class="seg" role="radiogroup" aria-labelledby="variantHeading" id="variantSeg">
                     <button role="radio" id="vBasic" aria-checked="true">기본</button>
@@ -712,6 +712,10 @@ dialog textarea{min-height:200px;margin-bottom:12px}
       <div class="preview-switch seg" id="previewSwitch" role="radiogroup" aria-label="미리보기 양식">
         <button role="radio" id="previewEmail" aria-checked="true" tabindex="0">이메일 양식</button>
         <button role="radio" id="previewDm" aria-checked="false" tabindex="-1">인스타 DM 양식</button>
+      </div>
+      <div class="preview-switch seg" id="dmVariantSwitch" role="radiogroup" aria-label="DM 미리보기 분야" hidden>
+        <button role="radio" id="dmBasicPreview" aria-checked="true">음악 외</button>
+        <button role="radio" id="dmMusicPreview" aria-checked="false" tabindex="-1">음악</button>
       </div>
       <div class="pv-line">
         <button class="btn icon" id="previewClose" aria-label="미리보기 닫기" title="닫기"><svg class="i lg" aria-hidden="true"><use href="#i-x"/></svg></button>
@@ -856,8 +860,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-share-preview2"></script>
+<script src="contact.js?v=261111-dm-variants2"></script>
 <script src="candidates.js?v=261110-v2"></script>
-<script src="editor.js?v=261111-share-preview2"></script>
+<script src="editor.js?v=261111-dm-variants2"></script>
 </body>
 </html>

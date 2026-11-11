@@ -33,17 +33,20 @@ let ui=Object.assign({channel:'email',current:'manual',subject:0,variant:'basic'
 if('fBoth' in ui||'fOpen' in ui){ui.scope=(ui.fBoth===false||ui.fOpen===false)?'all':'ready';delete ui.fBoth;delete ui.fOpen;}
 delete ui.tab;
 if(ui.scope!=='all')ui.scope='ready';if(typeof ui.filter!=='string')ui.filter='';
+const LEGACY_TPL_STAMPS={basic:'1yvdea8',music:'ymwdbj'};
 let tpl=mergeTpl(store.get(S,KEY.tpl,null));
 let attempted=false,touched=new Set(),logoBroken=false,focusSeen=false,outline='',last=null,lastChecks=[],state=null;
-let sampleChannel='email';
+let sampleChannel='email',sampleVariant='basic';
 let copyStale=false,foldDismissed=false,shownHints=[],hintTimer=0,listLimit=200;
 
 // One-off edits are stamped with the wording they were made on; a new confirmed wording drops them so an old DM never survives a reload.
-function tplStamp(){let h=5381;const s=JSON.stringify([C.DEFAULTS,C.EMAIL_VARIANTS,ui.variant]);for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))>>>0;return h.toString(36);}
+// Prior release had identical email wording: retain its email-only edits when upgrading DM.
+// Remove this migration when the approved email wording changes. Verified against a4c303e47.
+function tplStamp(){let h=5381;const s=JSON.stringify([C.DEFAULTS,C.EMAIL_VARIANTS,C.DM_VARIANTS,ui.variant]);for(let i=0;i<s.length;i++)h=(h*33+s.charCodeAt(i))>>>0;return h.toString(36);}
 const saveTpl=()=>store.set(S,KEY.tpl,{...tpl,v:tplStamp()});
 function mergeTpl(saved){
   const t=C.template(ui.variant);
-  if(saved&&typeof saved==='object'&&saved.v===tplStamp())['email','dm'].forEach(c=>{if(saved[c])Object.keys(t[c]).forEach(k=>{if(typeof saved[c][k]==='string')t[c][k]=saved[c][k];});});
+  if(saved&&typeof saved==='object'&&(saved.v===tplStamp()||saved.v===LEGACY_TPL_STAMPS[ui.variant]))(saved.v===tplStamp()?['email','dm']:['email']).forEach(c=>{if(saved[c])Object.keys(t[c]).forEach(k=>{if(typeof saved[c][k]==='string')t[c][k]=saved[c][k];});});
   return t;
 }
 const editedKeys=()=>{const b=C.template(ui.variant);return C.EMAIL_SECTIONS.filter(k=>tpl.email[k]!==b.email[k]).map(k=>'email.'+k).concat(tpl.dm.message!==b.dm.message?['dm.message']:[]);};
@@ -183,7 +186,7 @@ function rowStatus(p){
   if(!K.ready(p))return {t:'확인 전',ic:'',dim:1};
   if(!K.channelOf(p))return {t:'창구 없음',ic:'alert',dim:1};
   if(d&&d.flow==='opened')return {t:K.channelOf(p)==='dm'?'인스타 열었어요':'Gmail 열었어요',ic:'send'};
-  if(d&&(d.vars&&d.vars['본 것 한 줄']||'').trim())return {t:'쓰는 중',ic:'pen'};
+  if(d&&((d.vars&&d.vars['본 것 한 줄']||'').trim()||Object.values(d.seenByChannel||{}).some(x=>String(x).trim())))return {t:'쓰는 중',ic:'pen'};
   return {t:'연락 전',ic:''};
 }
 // The progress and 「n명 남음」 count the merged list, whatever the search or filter shows.
@@ -209,6 +212,8 @@ function draft(){return drafts[ui.current]||(drafts[ui.current]={vars:{},to:'',h
 function saveDraft(){
   const d=draft(),v=values();delete v['담당자명'];
   v['본 것 한 줄']=$('v-seen').value;   // the draft keeps what was typed
+  if(!d.seenByChannel)d.seenByChannel={email:v['본 것 한 줄'],dm:v['본 것 한 줄']};
+  d.seenByChannel[ui.channel]=v['본 것 한 줄'];
   d.vars=v;d.to=$('to').value;d.handle=$('handle').value;d.channel=ui.channel;d.subject=ui.subject;d.variant=ui.variant;
   store.set(S,KEY.drafts,drafts);store.set(S,KEY.ui,ui);
   store.set(L,KEY.sender,$('v-sender').value);store.set(L,KEY.phone,$('adPhone').value);
@@ -225,6 +230,9 @@ function loadDraftInto(key,p){
     set('v-post',p.url||'');set('v-seen','');set('v-work','');
     ui.subject=0;ui.variant=C.variantOf(p.field);const ch=K.channelOf(p);if(ch)ui.channel=ch;
   }else{ui.variant='basic';['v-name','v-platform','v-post','v-seen','v-work','to','handle'].forEach(id=>set(id,''));}
+  const current=draft();
+  if(!current.seenByChannel)current.seenByChannel={email:$('v-seen').value,dm:$('v-seen').value};
+  $('v-seen').value=current.seenByChannel[ui.channel]||'';
   touched=new Set();attempted=false;
 }
 
@@ -409,11 +417,11 @@ document.addEventListener('pointerup',pointerEnd,true);document.addEventListener
 const afterPointer=fn=>{if(pointerDown)afterUp.push(fn);else fn();};
 function setVariant(v){
   if(v===ui.variant)return;
-  const hadEdits=editedKeys().some(k=>k.startsWith('email.'));
+  const hadEdits=editedKeys().length>0;
   staleCopy();ui.variant=v;store.del(S,KEY.tpl);tpl=mergeTpl(null);fillTplFields();saveDraft();renderAll();
   if(hadEdits)toast('문구를 확정 문안으로 되돌렸어요.');
 }
-function setChannel(c){const n=c==='dm'?'dm':'email';if(n!==ui.channel)staleCopy();ui.channel=n;saveDraft();renderAll();}
+function setChannel(c){const n=c==='dm'?'dm':'email';if(n===ui.channel)return;staleCopy();saveDraft();const d=draft();ui.channel=n;$('v-seen').value=d.seenByChannel[n]||'';saveDraft();renderAll();}
 function renderAll(){placePlatform();renderRecipients();render();}
 function render(){compute();if(pointerDown){paintPending=true;return;}paint();}
 
@@ -528,9 +536,9 @@ function paint(){
   renderWorkLink(p);
   // The line
   // DM: the line stands as its own paragraph after 「인스타그램에서 …보고 연락드렸어요」, so it reads as what struck us.
-  setText($('seenLabel'),isEmail?(nm?nm+'님 작품에서 본 것':'본 것 한 줄'):(nm?nm+'님 작업에서 인상 깊었던 점':'인상 깊었던 점'));
-  $('v-seen').placeholder=isEmail?'예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.':'예: 손으로 접은 종이가 펼쳐지며 끝나는 장면이 특히 인상 깊었어요.';
-  const n=C.chars(v['본 것 한 줄'].trim());setText($('seenCount'),n+'/'+C.LIMITS.seenMax+'자');$('seenCount').classList.toggle('over',n>C.LIMITS.seenMax);
+  setText($('seenLabel'),isEmail?(nm?nm+'님 작품에서 본 것':'본 것 한 줄'):(nm?nm+'님 작업에서 인상 깊었던 점':'개인화 문단'));
+  $('v-seen').placeholder=isEmail?'예: 배경을 손으로 긁어 낸 질감이 인물보다 먼저 눈에 들어왔어요.':'작품에서 좋았던 점을 적어 주세요. 음악 외 문안은 초대하고 싶은 이유도 함께 써 주세요.';
+  const n=C.chars(v['본 것 한 줄'].trim());setText($('seenCount'),n+'/'+(isEmail?C.LIMITS.seenMax:C.LIMITS.dmSeenMax)+'자');$('seenCount').classList.toggle('over',n>(isEmail?C.LIMITS.seenMax:C.LIMITS.dmSeenMax));
   paintCoach(s);
   renderSubjects(v);
   // More menu side notes, settings, wording
@@ -547,10 +555,13 @@ function paint(){
   const sample=viewNow()==='import'&&!hasSheet();
   const previewChannel=sample?sampleChannel:ui.channel;
   const previewLogo=document.querySelector('meta[name="editor-preview-logo"]')?.content;
-  const shown=sample?C.render(C.template('basic'),SAMPLE_VALUES,{footer:true,logo:previewLogo}):
+  const shown=sample?C.render(C.template(previewChannel==='dm'?sampleVariant:'basic'),previewChannel==='dm'?C.DM_EXAMPLES[sampleVariant]:SAMPLE_VALUES,{footer:true,logo:previewLogo}):
     (mark||outline||!nm||previewLogo)?C.render(t,nm?v:{...v,'활동명':'○○'},{...opts,mark,outline,logo:previewLogo}):r;
   $('previewCol').querySelectorAll('[data-only]').forEach(el=>el.hidden=el.dataset.only!==previewChannel);
   ['previewEmail','previewDm'].forEach((id,i)=>{const on=previewChannel===(i?'dm':'email');$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
+  $('dmVariantSwitch').hidden=previewChannel!=='dm';
+  ['dmBasicPreview','dmMusicPreview'].forEach((id,i)=>{const on=(sample?sampleVariant:ui.variant)===(i?'music':'basic');$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
+  setText($('variantHeading'),isEmail?'메일 문안':'DM 문안');setText($('vBasic'),isEmail?'기본':'음악 외');
   $('downloadEmailSource').setAttribute('aria-disabled',String(!sample&&(ui.channel!=='email'||s.blocks.length>0)));
   setText($('pvTitle'),sample||!nm?'받는 분이 볼 모습 · 예시':'받는 분이 볼 모습');
   const subj=ui.ad?shown.subjectMarked.slice(C.AD.subjectPrefix.length):shown.subjectMarked;
@@ -567,7 +578,7 @@ function paint(){
   setText($('dmWho'),h?'@'+h+'에게 보내는 메시지 요청':'인스타 계정을 쓰면 받는 사람이 보여요');
   const dmHtml=esc(shown.dmMarked).replace(/\u0001/g,'<mark>').replace(/\u0002/g,'</mark>');
   const dt=$('dmText');if(dt.dataset.html!==dmHtml){dt.dataset.html=dmHtml;dt.innerHTML=dmHtml;}
-  const dn=C.chars(r.dm);setText($('dmMeta'),dn.toLocaleString()+'/'+C.LIMITS.dmChars.toLocaleString()+'자 · 수락 전 한 통·글만 가요');$('dmMeta').classList.toggle('over',dn>C.LIMITS.dmChars);
+  const dn=C.chars(shown.dm);setText($('dmMeta'),dn.toLocaleString()+'/'+C.LIMITS.dmChars.toLocaleString()+'자 · 수락 전 한 통·글만 가요');$('dmMeta').classList.toggle('over',dn>C.LIMITS.dmChars);
   renderAlert(s);
   renderReplies();renderSent();
 }
@@ -626,7 +637,7 @@ function paintCoach(s){
   if(sheetLine)room--;
   // 5. Where the line lands, only when nothing above needs the space.
   $('seenWhere').hidden=!!err||hints.length>0||room<=0;
-  setText($('seenWhere'),isEmail?'연락드린 이유 바로 다음 줄에 들어가요.':'「인스타그램에서 …작업을 보고 연락드렸어요」 다음 문단에 들어가요.');
+  setText($('seenWhere'),isEmail?'연락드린 이유 바로 다음 줄에 들어가요.':(ui.variant==='music'?'곡·앨범에서 좋았던 점을 한 문단으로 써 주세요.':'감상과 초대하고 싶은 이유를 한 문단으로 써 주세요.'));
   // Subject popover: the reason for the pick and a hint about what sits up front.
   setText($('subjectWhy'),'추천은 1안이에요. '+co.subjectPick.why);
   const sh=co.hints.filter(h=>h.target==='subject');
@@ -929,7 +940,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-share-preview2',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-dm-variants2',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
@@ -1192,6 +1203,9 @@ $('exFile').onclick=download;
 $('downloadEditor').onclick=downloadEditor;
 $('copyDocLink').onclick=()=>copyWithFeedback($('copyDocLink'),EDITOR_URL,'링크를 복사했어요');
 $('downloadEmailSource').onclick=downloadEmailSource;
+const pickDmVariant=v=>{if(viewNow()==='import'&&!hasSheet()){sampleVariant=v;render();}else setVariant(v);};
+$('dmBasicPreview').onclick=()=>pickDmVariant('basic');$('dmMusicPreview').onclick=()=>pickDmVariant('music');
+radioKeys('dmVariantSwitch',['dmBasicPreview','dmMusicPreview'],id=>pickDmVariant(id==='dmMusicPreview'?'music':'basic'));
 $('previewEmail').onclick=()=>switchPreview('email');
 $('previewDm').onclick=()=>switchPreview('dm');
 radioKeys('previewSwitch',['previewEmail','previewDm'],id=>switchPreview(id==='previewDm'?'dm':'email'));
