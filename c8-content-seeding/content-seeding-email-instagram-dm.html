@@ -599,13 +599,10 @@ dialog textarea{min-height:200px;margin-bottom:12px}
           <section class="person" aria-labelledby="who">
             <div class="who-row">
               <h2 class="who is-empty" id="who">새로 쓰는 분</h2>
-              <button class="btn line" id="contactComplete" type="button" title="실제로 보낸 뒤 누르면 Google 시트에 연락 기록을 저장해요">연락완료</button>
               <span class="ch" id="chText">이메일</span>
               <a class="btn line" id="postOpen" target="_blank" rel="noopener noreferrer">작품 보기<svg class="i" aria-hidden="true"><use href="#i-ext"/></svg></a>
             </div>
             <p class="sheet-note" id="sheetNote" hidden></p>
-            <div id="sheetSyncStatus" role="status" class="sheet-note" hidden></div>
-            <div id="sheetSyncActions" class="row" hidden><button class="btn sm" id="sheetRetry" type="button">시트 저장 다시 확인</button><a class="btn sm" id="sheetConnect" target="_blank" rel="noopener">Google 연결 열기</a></div>
             <!-- 보낼 수단: 늘 펼쳐 둔다 -->
             <div class="channel-row" id="channelRow">
               <span class="label" id="channelLabel">보낼 수단</span>
@@ -873,8 +870,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
 </dialog>
 
 <script src="contact.js?v=261111-mail-producer-direct"></script>
-<script src="candidates.js?v=261111-sheet-record"></script>
-<script src="sheet-record.js?v=261111-sheet-record"></script>
-<script src="editor.js?v=261111-sheet-record"></script>
+<script src="candidates.js?v=261111-sheet-alias"></script>
+<script src="editor.js?v=261111-participation"></script>
 </body>
 </html>
