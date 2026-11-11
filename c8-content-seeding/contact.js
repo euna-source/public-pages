@@ -3,7 +3,9 @@
   'use strict';
   const LINKS={app:'https://app.cre8orclub.com',form:'https://forms.gle/t22LtA8dTVBrUc2X8',chat:'https://open.kakao.com/o/pPlfzgWi',
     // One page that carries the app, the form and the chat; the mail points here instead of listing all three.
-    hub:'https://litt.ly/cre8orclub'};
+    hub:'https://litt.ly/cre8orclub',
+    // The mail's three links (샐리 2026-11-11): the app page, the reward form, the open chat.
+    showcase:'https://abr.ge/001rrqg',apply:'https://forms.gle/Kw1zdMpuV2xQQzsB8',ask:'https://abr.ge/wi3g54p'};
   // Reward terms live in one place so a grade-based amount decision changes only this line.
   const REWARD={per:'1만 원',max:5,total:'5만 원'};
   const COMPANY={name:'㈜라텔앤드파트너즈',address:'서울특별시 중구 필동로 16 참그루빌딩 2층',email:'support@cre8orclub.com'};
@@ -18,7 +20,7 @@
   ];
   const DEFAULTS={
     // Same sections as the Weekly Best award mail so both mails read as one family.
-    // The applied mail (2026-11-10): sent as the team, one link to the hub page.
+    // The applied mail (2026-11-11, 샐리): sent as the team; app page, reward form and open chat links.
     email:{
       subject:'[크리에이터클럽] {활동명}님께 작품 소개 협업을 제안드려요',
       preheader:'{활동명}님께 기존 작업을 소개하는 협업을 제안드려요.',
@@ -31,9 +33,15 @@
         '{본 것 한 줄}'
       ].join('\n'),
       intro:'크리에이터클럽은 다양한 분야의 창작자들이 자신의 작업을 소개하고 서로의 작품을 발견할 수 있는 공간이에요. {활동명}님의 작업도 크리에이터클럽에서 소개하고 싶어 이번 협업을 제안드려요.',
-      gift:'이번 제안은 기존에 제작하신 작업을 포트폴리오로 소개하는 방식이며, 참여해 주시는 작업에 대해서는 감사의 마음을 담아 소정의 사례를 제공하고 있어요.',
-      steps:'관심있으시다면 아래 링크를 눌러주세요.\n[👉 협업 제안 자세히 보기]('+LINKS.hub+')',
-      ask:'궁금한 점은 언제든 이 메일로 편하게 회신해 주세요.',
+      gift:'새로운 작업을 제작하실 필요는 없어요.\n기존에 제작하신 작품을 포트폴리오로 올려주시면 되고, 참여해 주신 작업에 대해서는 감사의 마음을 담아 소정의 사례를 제공하고 있어요 :)',
+      steps:[
+        '{활동명}님의 작업이 소개될 공간을 한번 둘러보세요.',
+        '[👉 크리에이터클럽에서 내 작업 소개하기]('+LINKS.showcase+')',
+        '',
+        '작업을 올리신 후에는 아래에서 사례를 신청하실 수 있어요.',
+        '[작업 등록 사례 신청하기]('+LINKS.apply+')'
+      ].join('\n'),
+      ask:'궁금한 점은 이 메일에 회신하시거나 오픈채팅으로 편하게 문의해 주세요.\n[오픈채팅으로 문의하기]('+LINKS.ask+')',
       closing:'감사합니다.',
       signature:'크리에이터클럽 드림',
       footer:'본 메일은 공개하신 연락처로 개별적으로 보내드리는 제안입니다. 원치 않으시면 추가 연락을 드리지 않겠습니다. '+TRUST
