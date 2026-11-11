@@ -197,6 +197,7 @@ function rowStatus(p){
   if(K.purposeWhy(p))return {t:'목적 다름',ic:'ban',dim:1};
   if(!K.ready(p))return {t:'확인 전',ic:'',dim:1};
   if(!K.channelOf(p))return {t:'창구 없음',ic:'alert',dim:1};
+  if(d&&d.flow==='draft-started')return {t:'메일 작성 중',ic:'send'};
   if(d&&d.flow==='opened')return {t:K.channelOf(p)==='dm'?'인스타 열었어요':'Gmail 열었어요',ic:'send'};
   if(d&&((d.vars&&d.vars['본 것 한 줄']||'').trim()||Object.values(d.seenByChannel||{}).some(x=>String(x).trim())))return {t:'쓰는 중',ic:'pen'};
   return {t:'연락 전',ic:''};
@@ -296,8 +297,8 @@ function resetPersonUi(){
 // Leaving someone whose Gmail or Instagram was opened but not recorded asks first. false = stay.
 async function leaveGuard(){
   const cur=drafts[ui.current];
-  if(cur&&cur.flow==='opened'&&!sentFor(idsOfCurrent(),plainName($('v-name').value))){
-    const pick=await ask(plainName($('v-name').value)+'님은 '+(ui.channel==='dm'?'인스타':'Gmail')+'을 열었지만 아직 기록하지 않았어요','보냈다면 기록해 두세요. 그래야 다음에 다시 보내지 않아요.',[['닫기','close'],['넘어가기','skip'],['보냈어요 · 기록하기','record',true]]);
+  if(cur&&(cur.flow==='opened'||cur.flow==='draft-started')&&!sentFor(idsOfCurrent(),plainName($('v-name').value))){
+    const pick=await ask(plainName($('v-name').value)+'님은 '+(cur.flow==='draft-started'?'메일 작성 화면':ui.channel==='dm'?'인스타':'Gmail')+'을 열었지만 아직 기록하지 않았어요','보냈다면 기록해 두세요. 그래야 다음에 다시 보내지 않아요.',[['닫기','close'],['넘어가기','skip'],['보냈어요 · 기록하기','record',true]]);
     if(pick==='close'||!pick)return false;
     if(pick==='record')record({silent:true});
   }
@@ -514,6 +515,7 @@ function syncStatus(s){
   else if(s.fieldBlocks.length){btn={cls:'block',ic:'x',text:s.fieldBlocks.length===1?(shortOf(s.fieldBlocks[0])||'보낼 수 없어요 · 이유 1'):'보낼 수 없어요 · 이유 '+s.fieldBlocks.length,title:s.fieldBlocks.map(c=>c.msg).join('\n')};}
   else if(s.warns.length){btn={cls:'warn',ic:'alert',text:s.warns.length===1?(shortOf(s.warns[0])||'확인 1'):'확인 '+s.warns.length,title:s.warns.map(c=>c.msg).join('\n')};}
   else if(copyStale){kind='info';ic='alert';text='글이 바뀌어서 다시 복사해야 해요';}
+  else if(s.isEmail&&s.flow==='draft-started'){kind='info';ic=s.d.draftStale?'alert':'send';text=s.d.draftStale?'내용이 바뀌었어요 · 메일로 보내기를 다시 눌러 주세요':'메일 작성 중 · Gmail에서 보낸 뒤 더보기에서 기록해 주세요';}
   else if(s.isEmail&&s.flow==='copied'){kind='info';ic='check';text='복사했어요 · 보낸 뒤 더보기에서 기록해 주세요';}
   else text='보낼 수 있어요';
   // Two fixed elements, switched by hidden: the button under the pointer is never rebuilt.
@@ -967,33 +969,25 @@ function menuCopy(id,text,done,channel){
   const writing=writeText(text);hidePop('moreMenu');
   writing.then(ok=>ok?toast(done):manualCopy(text,null,channel));
 }
-const GMAIL_DRAFT_EXTENSION='efgjebegdllneidhmghmpdamchbhkiia';
-function draftExtensionMessage(message,timeout=120000){
-  return new Promise((resolve,reject)=>{
-    if(!globalThis.chrome?.runtime?.sendMessage)return reject(new Error('GMAIL_CONNECT_REQUIRED'));
-    let settled=false;const finish=(err,value)=>{if(settled)return;settled=true;clearTimeout(timer);err?reject(err):resolve(value);};
-    const timer=setTimeout(()=>finish(new Error('Gmail 연결이 늦어지고 있어요. 열린 메일을 먼저 확인해 주세요.')),timeout);
-    try{chrome.runtime.sendMessage(GMAIL_DRAFT_EXTENSION,message,response=>{const error=chrome.runtime.lastError;if(error)return finish(new Error('GMAIL_CONNECT_REQUIRED'));if(!response?.ok)return finish(new Error(response?.error||'GMAIL_CONNECT_REQUIRED'));finish(null,response);});}catch(e){finish(new Error('GMAIL_CONNECT_REQUIRED'));}
-  });
+const GMAIL_DRAFT_APP='https://script.google.com/a/macros/cre8orclub.com/s/AKfycby9_TmSRVoniuZOp-sriT6IXlhlI-OLBYHBOt76IISTrRTQxAagttdxuk1GWQWOS5L3/exec';
+function finalDraftUrl(snap){
+  const app=new URL(GMAIL_DRAFT_APP);
+  if(app.origin!=='https://script.google.com'||!/^\/a\/macros\/cre8orclub\.com\/s\/[\w-]+\/exec$/.test(app.pathname))throw Error('Gmail 연결 주소를 확인해 주세요.');
+  app.hash=encodeURIComponent(JSON.stringify(snap));
+  if(app.href.length>250000)throw Error('메일 양식이 너무 커요. 「메일 내용 복사」를 이용해 주세요.');
+  return app.href;
 }
-function finalDraftNodes(html){
-  const t=document.createElement('template');t.innerHTML=html;
-  const read=n=>n.nodeType===3?{text:n.textContent}:n.nodeType===1?{tag:n.localName,attrs:Object.fromEntries([...n.attributes].map(a=>[a.name,a.value])),children:[...n.childNodes].map(read).filter(Boolean)}:null;
-  return [...t.content.childNodes].map(read).filter(Boolean);
-}
-async function sendFinalDraft(){
+function sendFinalDraft(){
   const b=$('sendMail');if(b.disabled||ui.channel!=='email'||menuLocked('sendMail'))return;
-  const snap={key:ui.current,to:$('to').value.trim(),subject:last.subject,html:last.emailPaste,nodes:finalDraftNodes(last.emailPaste)};
-  b.disabled=true;b.setAttribute('aria-busy','true');
+  const requestId=crypto.randomUUID();
+  const snap={requestId,to:$('to').value.trim(),subject:last.subject,html:last.emailPaste,text:last.emailText};
   try{
-    await draftExtensionMessage({type:'c8-draft-ping'},5000);
-    const requestId=globalThis.crypto?.randomUUID?crypto.randomUUID():'draft-'+Date.now()+'-'+Math.random().toString(36).slice(2);
-    const result=await draftExtensionMessage({type:'c8-create-html-draft',requestId,payload:{to:snap.to,subject:snap.subject,nodes:snap.nodes}});
-    if(result.requestId!==requestId)throw Error('작성 결과를 확인하지 못했어요. 열린 Gmail을 확인해 주세요.');
-    const d=drafts[snap.key]||(drafts[snap.key]={vars:{},to:'',handle:'',flow:''});d.flow='opened';d.copiedChannel='email';delete d.popupBlocked;delete d.openUrl;store.set(S,KEY.drafts,drafts);
-    toast('최종 양식을 넣은 support 새 메일을 열었어요. 확인한 뒤 직접 보내 주세요.');renderAll();
-  }catch(e){if(e.message==='GMAIL_CONNECT_REQUIRED'){$('gmailConnect').showModal();syncPrimaryFill();}else toast(e.message);}
-  finally{b.disabled=false;b.removeAttribute('aria-busy');}
+    const opened=window.open(finalDraftUrl(snap),'_blank');
+    if(!opened){toast('새 창이 차단됐어요. 이 사이트의 팝업을 허용한 뒤 다시 눌러 주세요.');return;}
+    try{opened.opener=null;}catch(e){}
+    const d=draft();d.flow='draft-started';d.copiedChannel='email';delete d.draftStale;saveDraft();renderAll();
+    toast('최종 양식을 확인한 뒤 「초안 만들기」를 눌러 주세요.');
+  }catch(e){toast(e.message);}
 }
 
 const EDITOR_URL='https://euna-source.github.io/public-pages/c8-content-seeding/content-seeding-email-instagram-dm.html';
@@ -1179,7 +1173,9 @@ function autoGrow(){if(SELF_SIZING)return;const t=$('v-seen');t.style.height='au
 /* ---------- Events ---------- */
 function staleCopy(){
   // What sits in the clipboard no longer matches the screen once the text changes.
-  const d=draft();if(d.flow==='copied'||d.flow==='opened'){d.flow='';delete d.copiedChannel;store.set(S,KEY.drafts,drafts);copyStale=true;delete $('primary').dataset.flash;primarySig='';toast('글이 바뀌어서 다시 복사해야 해요.');}
+  const d=draft();
+  if(d.flow==='draft-started'){d.draftStale=true;store.set(S,KEY.drafts,drafts);toast('내용이 바뀌었어요. 메일로 보내기를 다시 눌러 새 초안을 만들어 주세요.');return;}
+  if(d.flow==='copied'||d.flow==='opened'){d.flow='';delete d.copiedChannel;store.set(S,KEY.drafts,drafts);copyStale=true;delete $('primary').dataset.flash;primarySig='';toast('글이 바뀌어서 다시 복사해야 해요.');}
 }
 /* The one way code changes the line: frames and the sheet's line go through here, so a copy made before is marked stale.
    keepCopy is only for swapping particle markers for what values() already resolved them to — the computed text is the same. */
@@ -1281,7 +1277,6 @@ $('previewEmail').onclick=()=>switchPreview('email');
 $('previewDm').onclick=()=>switchPreview('dm');
 radioKeys('previewSwitch',['previewEmail','previewDm'],id=>switchPreview(id==='previewDm'?'dm':'email'));
 $('sendMail').onclick=sendFinalDraft;
-$('gmailConnectClose').onclick=()=>{$('gmailConnect').close();syncPrimaryFill();};
 $('copyMailSource').onclick=()=>{if(!menuLocked('copyMailSource'))copyOnly(true);};
 $('exSource').onclick=()=>menuCopy('exSource',last.emailHtml,'HTML 소스를 복사했어요.');
 $('exText').onclick=()=>menuCopy('exText',last.emailText,'양식 없이 글만 복사했어요.');
@@ -1357,7 +1352,7 @@ document.addEventListener('dragover',e=>{if(hasFiles(e))e.preventDefault();});
 document.addEventListener('dragleave',()=>{if(--dragDepth<=0){dragDepth=0;$('shell').classList.remove('dragging');$('dragNote').hidden=true;}});
 document.addEventListener('drop',e=>{if(!hasFiles(e)||!e.dataTransfer.files.length)return;e.preventDefault();dragDepth=0;$('shell').classList.remove('dragging');$('dragNote').hidden=true;importFile(e.dataTransfer.files[0]);});
 // Leaving with an opened-but-unrecorded mail asks first.
-window.addEventListener('beforeunload',e=>{if(Object.values(drafts).some(d=>d.flow==='opened')){e.preventDefault();e.returnValue='';}});
+window.addEventListener('beforeunload',e=>{if(Object.values(drafts).some(d=>d.flow==='opened'||d.flow==='draft-started')){e.preventDefault();e.returnValue='';}});
 // The night window can start while the tab is open. render() never opens or closes a popover.
 setInterval(render,60000);
 // Under 1024 the action bar is fixed to the bottom: what scrolls keeps clear of it.

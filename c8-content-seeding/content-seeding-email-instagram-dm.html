@@ -582,7 +582,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
       <button class="btn line lg" id="previewOpen"><svg class="i" aria-hidden="true"><use href="#i-eye"/></svg>미리보기</button>
       <button class="btn icon lg" id="moreBtn" popovertarget="moreMenu" aria-label="더보기" title="더보기"><svg class="i lg" aria-hidden="true"><use href="#i-more"/></svg></button>
       <button class="btn line lg" id="copyMailSource" data-only="email">메일 HTML 소스복사</button>
-      <button class="btn line lg" id="sendMail" data-only="email" title="최종 양식을 넣은 support@cre8orclub.com 새 메일을 열어요">메일로 보내기</button>
+      <button class="btn line lg" id="sendMail" data-only="email" title="편집한 최종 양식으로 support Gmail 초안을 만들어요">메일로 보내기</button>
       <button class="btn primary" id="primary" data-mode="open"><span id="primaryLabel">메일 내용 복사</span></button>
     </div>
   </div>
@@ -863,22 +863,14 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   </div>
   <div class="row"><button class="btn" id="manualClose">닫기</button><button class="btn primary" id="manualOpen" hidden>복사했어요 · Gmail 열기</button></div>
 </dialog>
-<dialog id="gmailConnect" aria-labelledby="gmailConnectTitle">
-  <h2 id="gmailConnectTitle">메일 양식 자동 입력 연결</h2>
-  <p>한 번 연결하면 지금 편집한 최종 양식이 support 새 메일에 자동으로 들어가요. 메일은 직접 확인한 뒤 보내요.</p>
-  <p>이 브라우저에서 연결 확장 기능을 설치하고 Gmail 작성 화면 접근을 허용해야 해요.</p>
-  <ol><li>연결 파일을 내려받아 압축을 풀어요.</li><li>브라우저 확장 프로그램 화면에서 개발자 모드를 켜고, ‘압축해제된 확장 프로그램 로드’로 폴더를 선택해요.</li><li>이 편집기를 새로고침하고 ‘메일로 보내기’를 눌러요.</li></ol>
-  <p>자동 입력은 <a href="https://euna-source.github.io/public-pages/c8-content-seeding/content-seeding-email-instagram-dm.html">웹 편집기</a>에서 사용할 수 있어요. 연결 전에도 기존 복사 기능은 그대로 쓸 수 있어요.</p>
-  <div class="row"><button class="btn" id="gmailConnectClose">닫기</button><a class="btn primary" href="https://euna-source.github.io/public-pages/c8-content-seeding/gmail-draft-connection.zip" download>연결 파일 받기</a></div>
-</dialog>
 <dialog id="confirm" aria-labelledby="confirmTitle">
   <h2 id="confirmTitle"></h2>
   <p id="confirmBody"></p>
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-polish"></script>
+<script src="contact.js?v=261111-google-draft-final"></script>
 <script src="candidates.js?v=261110-v2"></script>
-<script src="editor.js?v=261111-polish"></script>
+<script src="editor.js?v=261111-google-draft-final"></script>
 </body>
 </html>
