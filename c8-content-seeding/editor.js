@@ -894,7 +894,7 @@ async function copyAndOpen(btn,openEmail=false){
     store.set(S,KEY.drafts,drafts);
     copyStale=false;
     if(!opened)toast('복사는 됐는데 브라우저가 새 창을 막았어요. 「'+(snap.channel==='dm'?'인스타 DM 직접 열기':'Gmail 직접 열기')+'」로 열어 주세요.');
-    if(opened&&snap.channel==='email')toast('본문을 복사했어요. support 계정 새 메일에 붙여 넣어 주세요.');
+    if(opened&&snap.channel==='email')toast('본문을 복사했어요. 보내는 계정이 support@cre8orclub.com인지 확인하고 붙여 넣어 주세요.');
     if(snap.key===ui.current)flash(btn,'복사했어요');
     renderAll();
   }else{
@@ -963,7 +963,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-support-compose',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-support-compose2',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
