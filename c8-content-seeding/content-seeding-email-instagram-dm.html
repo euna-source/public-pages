@@ -190,7 +190,7 @@ textarea.field{height:auto;padding:8px 12px;resize:vertical}
 .err .btn{margin-left:auto;color:var(--text)}
 
 /* ===== 5. 틀 — 2열: 쓰기 · 받는 분이 볼 모습 ===== */
-.shell{display:grid;grid-template-columns:var(--wcol) minmax(0,1fr);grid-template-rows:var(--bar) minmax(0,1fr);grid-template-areas:"wbar act" "write preview";height:100vh;height:100dvh}
+.shell{display:grid;grid-template-columns:var(--wcol) minmax(0,1fr);grid-template-rows:var(--bar) minmax(0,1fr);grid-template-areas:"wbar act" "write preview";height:calc(100vh - 56px);height:calc(100dvh - 56px)}
 .shell.dragging{outline:2px dashed var(--text);outline-offset:-8px}
 #writeBar{grid-area:wbar;display:flex;align-items:center;gap:12px;min-width:0;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line);border-right:1px solid var(--line)}
 #writeBar .bar-title{font:600 var(--fs-body)/var(--lh-body) var(--font)}
@@ -208,6 +208,8 @@ textarea.field{height:auto;padding:8px 12px;resize:vertical}
 /* 보내기 줄 — 한 벌. 1024 이상은 미리보기 열 머리, 미만은 아래 고정 2행 */
 #actBar{grid-area:act;display:flex;align-items:center;gap:12px;min-width:0;padding:0 24px;background:var(--surface);border-bottom:1px solid var(--line)}
 #actBar.is-empty>*{display:none}
+#actBar.is-empty .act-btns{display:flex}
+#actBar.is-empty .act-btns>*:not(#previewOpen){display:none}
 .act-status{flex:1;min-width:0;display:flex;align-items:center;gap:8px}
 .status{display:inline-flex;align-items:center;gap:6px;min-width:0;font:400 var(--fs-cap)/var(--lh-cap) var(--font);color:var(--text-2)}
 .status.ok .i{color:var(--ok)}
@@ -473,7 +475,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   #writeCol{display:block;border-right:0;min-height:calc(100dvh - 48px)}
   #writeScroll{overflow:visible;padding:16px 16px calc(var(--act-h,112px) + 24px)}
   #actBar{position:fixed;left:0;right:0;bottom:0;z-index:var(--z-bar);flex-direction:column;align-items:stretch;gap:0;padding:8px 16px calc(8px + env(safe-area-inset-bottom));border-bottom:0;box-shadow:var(--sh-bar)}
-  #actBar.is-empty{display:none}
+  #actBar.is-empty{display:flex}
+  .shell.preview-open #actBar.is-empty{display:none}
   .act-status{flex:none;height:44px}
   .act-status .status{flex:1}
   .check-summary{flex:1;justify-content:flex-start;margin-left:-8px}
@@ -516,6 +519,9 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   .list li[aria-selected="true"],.list li.active{outline:2px solid Highlight;outline-offset:-2px}
 }
 @media (prefers-color-scheme:light){#previewCol{background:#e5e5e5}}
+.doc-tools{height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 24px;border-bottom:1px solid var(--line);background:var(--surface)}
+.doc-name{font-weight:600;white-space:nowrap}.doc-actions{display:flex;gap:8px}.preview-switch{display:flex;height:auto;min-height:44px;width:max-content;margin:0 auto 12px}.preview-switch button{min-height:36px;padding:0 14px}
+@media(max-width:1023px){.doc-tools{padding:6px 12px}.doc-name{display:none}.doc-actions{width:100%;justify-content:space-between;gap:4px}.doc-actions .btn{font-size:12px;min-height:44px;padding:0 9px}#previewCol{top:56px}.preview-switch button{min-height:44px}.shell{min-height:calc(100dvh - 56px)}}
 </style>
 </head>
 <body>
@@ -543,6 +549,14 @@ dialog textarea{min-height:200px;margin-bottom:12px}
 <h1 class="sr">콘텐츠 시딩 연락 편집기</h1>
 <div class="sr" id="live" aria-live="assertive"></div>
 <p class="old-browser" id="oldBrowser" hidden>이 브라우저에서는 목록과 메뉴가 열리지 않아요. 최신 Chrome이나 Safari에서 열어 주세요.</p>
+<header class="doc-tools" aria-label="문서 보관과 공유">
+  <span class="doc-name">콘텐츠 시딩 연락 편집기</span>
+  <div class="doc-actions">
+    <button class="btn sm line" id="downloadEditor" aria-label="편집기 HTML 다운로드">편집기 받기</button>
+    <button class="btn sm line" id="copyDocLink">문서 링크 복사</button>
+    <button class="btn sm line" id="downloadEmailSource">이메일 HTML 소스 받기</button>
+  </div>
+</header>
 <main class="shell" id="shell">
   <!-- 쓰기 머리줄 -->
   <header id="writeBar">
@@ -695,6 +709,10 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   <!-- 받는 분이 볼 모습 -->
   <section id="previewCol" aria-label="받는 분이 볼 모습">
     <div class="pv-head">
+      <div class="preview-switch seg" id="previewSwitch" role="radiogroup" aria-label="미리보기 양식">
+        <button role="radio" id="previewEmail" aria-checked="true" tabindex="0">이메일 양식</button>
+        <button role="radio" id="previewDm" aria-checked="false" tabindex="-1">인스타 DM 양식</button>
+      </div>
       <div class="pv-line">
         <button class="btn icon" id="previewClose" aria-label="미리보기 닫기" title="닫기"><svg class="i lg" aria-hidden="true"><use href="#i-x"/></svg></button>
         <span class="pv-title" id="pvTitle">받는 분이 볼 모습</span>
@@ -838,8 +856,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-preview-corners"></script>
+<script src="contact.js?v=261111-share-preview2"></script>
 <script src="candidates.js?v=261110-v2"></script>
-<script src="editor.js?v=261111-preview-corners"></script>
+<script src="editor.js?v=261111-share-preview2"></script>
 </body>
 </html>

@@ -35,6 +35,7 @@ delete ui.tab;
 if(ui.scope!=='all')ui.scope='ready';if(typeof ui.filter!=='string')ui.filter='';
 let tpl=mergeTpl(store.get(S,KEY.tpl,null));
 let attempted=false,touched=new Set(),logoBroken=false,focusSeen=false,outline='',last=null,lastChecks=[],state=null;
+let sampleChannel='email';
 let copyStale=false,foldDismissed=false,shownHints=[],hintTimer=0,listLimit=200;
 
 // One-off edits are stamped with the wording they were made on; a new confirmed wording drops them so an old DM never survives a reload.
@@ -543,8 +544,15 @@ function paint(){
   document.querySelectorAll('[data-tpl]').forEach(i=>{const c=i.dataset.tpl.split('.')[0];i.closest('.tpl-field').hidden=(c==='email')!==isEmail;const m=i.closest('.tpl-field').querySelector('.changed');if(m)m.hidden=!edited.includes(i.dataset.tpl);});
   // Preview: what the recipient sees. With no name yet it is shown as a sample.
   const mark=focusSeen?new Set(['본 것 한 줄']):false;
-  const shown=(mark||outline||!nm)?C.render(t,nm?v:{...v,'활동명':'○○'},{...opts,mark,outline}):r;
-  setText($('pvTitle'),nm?'받는 분이 볼 모습':'받는 분이 볼 모습 · 예시');
+  const sample=viewNow()==='import'&&!hasSheet();
+  const previewChannel=sample?sampleChannel:ui.channel;
+  const previewLogo=document.querySelector('meta[name="editor-preview-logo"]')?.content;
+  const shown=sample?C.render(C.template('basic'),SAMPLE_VALUES,{footer:true,logo:previewLogo}):
+    (mark||outline||!nm||previewLogo)?C.render(t,nm?v:{...v,'활동명':'○○'},{...opts,mark,outline,logo:previewLogo}):r;
+  $('previewCol').querySelectorAll('[data-only]').forEach(el=>el.hidden=el.dataset.only!==previewChannel);
+  ['previewEmail','previewDm'].forEach((id,i)=>{const on=previewChannel===(i?'dm':'email');$(id).setAttribute('aria-checked',String(on));$(id).tabIndex=on?0:-1;});
+  $('downloadEmailSource').setAttribute('aria-disabled',String(!sample&&(ui.channel!=='email'||s.blocks.length>0)));
+  setText($('pvTitle'),sample||!nm?'받는 분이 볼 모습 · 예시':'받는 분이 볼 모습');
   const subj=ui.ad?shown.subjectMarked.slice(C.AD.subjectPrefix.length):shown.subjectMarked;
   const subjHtml=esc(subj).replace(/\u0001/g,'<mark class="mailmark">').replace(/\u0002/g,'</mark>');
   const st=$('subjText');if(st.dataset.html!==subjHtml){st.dataset.html=subjHtml;st.innerHTML=subjHtml;st.title=r.subject;}
@@ -906,6 +914,36 @@ function menuCopy(id,text,done,channel){
   const writing=writeText(text);hidePop('moreMenu');
   writing.then(ok=>ok?toast(done):manualCopy(text,null,channel));
 }
+const EDITOR_URL='https://euna-source.github.io/public-pages/c8-content-seeding/content-seeding-email-instagram-dm.html';
+const SAMPLE_VALUES={'활동명':'○○','플랫폼':'인스타그램','본 것 한 줄':'작품에서 인상 깊었던 장면을 여기에 한 줄로 적어요.'};
+function saveHtml(html,filename){
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));a.download=filename;
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+async function downloadEditor(){
+  const b=$('downloadEditor');if(b.disabled)return;b.disabled=true;
+  try{
+    const payload=$('editorSource');let html;
+    if(payload){
+      const raw=new TextDecoder().decode(Uint8Array.from(atob(JSON.parse(payload.textContent)),c=>c.charCodeAt(0)));
+      const at=raw.lastIndexOf('</body>');
+      html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
+    }else{
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-share-preview2',location.href));
+      if(!response.ok)throw Error('download');html=await response.text();
+    }
+    saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
+  }catch(e){toast('편집기를 받지 못했어요. 인터넷 연결을 확인하고 다시 눌러 주세요.');}
+  finally{b.disabled=false;}
+}
+function downloadEmailSource(){
+  const sample=viewNow()==='import'&&!hasSheet();
+  if(!sample){if($('downloadEmailSource').getAttribute('aria-disabled')==='true'){toast('이메일로 전환하고 받는 분 정보를 채워 주세요.');return;}return download();}
+  saveHtml(C.render(C.template('basic'),SAMPLE_VALUES,{footer:true}).emailHtml,'콘텐츠시딩_이메일_예시.html');toast('예시 이메일 HTML 소스를 받았어요.');
+}
+function switchPreview(channel){
+  if(viewNow()==='import'&&!hasSheet()){sampleChannel=channel;render();}else setChannel(channel);
+}
 function download(){
   if(menuLocked('exFile'))return;
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([last.emailHtml],{type:'text/html'}));
@@ -1151,6 +1189,12 @@ $('copyBody').onclick=()=>{
 $('copySubject').onclick=()=>menuCopy('copySubject',last.subject,'제목을 복사했어요.');
 $('copyTo').onclick=()=>{const t=$('to').value.trim();if(!t){hidePop('moreMenu');return goField('to',true);}menuCopy('copyTo',t,'받는 주소를 복사했어요.');};
 $('exFile').onclick=download;
+$('downloadEditor').onclick=downloadEditor;
+$('copyDocLink').onclick=()=>copyWithFeedback($('copyDocLink'),EDITOR_URL,'링크를 복사했어요');
+$('downloadEmailSource').onclick=downloadEmailSource;
+$('previewEmail').onclick=()=>switchPreview('email');
+$('previewDm').onclick=()=>switchPreview('dm');
+radioKeys('previewSwitch',['previewEmail','previewDm'],id=>switchPreview(id==='previewDm'?'dm':'email'));
 $('exSource').onclick=()=>menuCopy('exSource',last.emailHtml,'HTML 소스를 복사했어요.');
 $('exText').onclick=()=>menuCopy('exText',last.emailText,'양식 없이 글만 복사했어요.');
 $('alreadySent').onclick=async()=>{
