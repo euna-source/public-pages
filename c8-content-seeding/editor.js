@@ -481,7 +481,7 @@ function compute(){
 
   // More menu: a block locks every copy path, here as well as on the button.
   const lock=blocks.length>0;
-  ['copyBody','copySubject','copyTo','exFile','exSource','exText','copyMailSource'].forEach(id=>$(id).setAttribute('aria-disabled',String(lock)));
+  ['copyBody','copySubject','copyTo','exFile','exSource','exText','copyMailSource','sendMail'].forEach(id=>$(id).setAttribute('aria-disabled',String(lock)));
   $('moreLock').hidden=!lock;$('copyLabel').hidden=lock;
   setText($('moreLock'),recorded?'이미 보낸 분이라 복사가 잠겨 있어요':'보낼 수 없는 이유가 있어 복사가 잠겨 있어요');
   const cb=$('copyBody');
@@ -710,7 +710,7 @@ function renderAlert(s){
   const rowUrl=rowHref(p),sheetBlock=s.checks.find(c=>c.code==='purpose'||c.code==='sheet');
   const noSender=!$('v-sender').value.trim();
   const {m,n}=progress();
-  const kind=rec&&flow==='recorded'?'recorded':rec?'sent':sheetBlock?'sheet':!s.isEmail&&flow==='copied'&&d.popupBlocked&&d.openUrl?'popup':hasSheet()&&m>0&&m===n&&ui.current==='manual'?'alldone':'';
+  const kind=rec&&flow==='recorded'?'recorded':rec?'sent':sheetBlock?'sheet':flow==='copied'&&d.popupBlocked&&d.openUrl?'popup':hasSheet()&&m>0&&m===n&&ui.current==='manual'?'alldone':'';
   // Everything a button in here holds on to is part of the signature, so an unchanged slot is left alone (and stays clickable).
   const sig=[kind,ui.current,nm,flow,d.recordedAt||'',rec?rec.at+tsvRow(rec):'',ui.channel,sheetBlock?sheetBlock.msg:'',p?p.row:'',rowUrl,d.openUrl||'',d.copiedChannel||'',noSender].join('|');
   if(slot.dataset.sig===sig)return;slot.dataset.sig=sig;slot.replaceChildren();
@@ -867,7 +867,7 @@ function renderSent(){
 }
 
 /* ---------- Actions ---------- */
-function gmailUrl(){const to=$('to').value.trim();return 'https://mail.google.com/mail/?view=cm&fs=1'+(to?'&to='+encodeURIComponent(to):'')+'&su='+encodeURIComponent(last.subject);}
+function gmailUrl(){return C.gmailComposeUrl($('to').value.trim(),last.subject);}
 function dmUrl(){return 'https://ig.me/m/'+encodeURIComponent(handleOf($('handle').value));}
 /* A blocked press: shake, open 「보내기 전에 볼 것」 inside this same click, then go to the first field to fix. */
 function shakeTo(btn){
@@ -879,8 +879,8 @@ function shakeTo(btn){
   const first=lastChecks.find(c=>c.level==='block'&&c.field&&$(c.field));
   if(first)setTimeout(()=>goField(first.field,true),240);
 }
-async function copyAndOpen(btn){
-  if(ui.channel==='email')return copyOnly();
+async function copyAndOpen(btn,openEmail=false){
+  if(ui.channel==='email'&&!openEmail)return copyOnly();
   // Freeze who, what and where at the click: the person or channel may change while the clipboard write is pending.
   const snap={key:ui.current,channel:ui.channel,html:last.emailPaste,text:ui.channel==='email'?last.emailText:last.dm,url:ui.channel==='email'?gmailUrl():dmUrl(),subject:last.subject,to:$('to').value.trim()};
   const writing=snap.channel==='email'?writeRich(snap.html,snap.text):writeText(snap.text);
@@ -894,6 +894,7 @@ async function copyAndOpen(btn){
     store.set(S,KEY.drafts,drafts);
     copyStale=false;
     if(!opened)toast('복사는 됐는데 브라우저가 새 창을 막았어요. 「'+(snap.channel==='dm'?'인스타 DM 직접 열기':'Gmail 직접 열기')+'」로 열어 주세요.');
+    if(opened&&snap.channel==='email')toast('본문을 복사했어요. support 계정 새 메일에 붙여 넣어 주세요.');
     if(snap.key===ui.current)flash(btn,'복사했어요');
     renderAll();
   }else{
@@ -962,7 +963,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-soft-footer3',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-support-compose',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
@@ -1231,6 +1232,7 @@ radioKeys('dmVariantSwitch',['dmBasicPreview','dmMusicPreview'],id=>pickDmVarian
 $('previewEmail').onclick=()=>switchPreview('email');
 $('previewDm').onclick=()=>switchPreview('dm');
 radioKeys('previewSwitch',['previewEmail','previewDm'],id=>switchPreview(id==='previewDm'?'dm':'email'));
+$('sendMail').onclick=async()=>{const b=$('sendMail');if(b.disabled||ui.channel!=='email'||menuLocked('sendMail'))return;b.disabled=true;try{await copyAndOpen(b,true);}finally{b.disabled=false;}};
 $('copyMailSource').onclick=()=>{if(!menuLocked('copyMailSource'))copyOnly(true);};
 $('exSource').onclick=()=>menuCopy('exSource',last.emailHtml,'HTML 소스를 복사했어요.');
 $('exText').onclick=()=>menuCopy('exText',last.emailText,'양식 없이 글만 복사했어요.');
