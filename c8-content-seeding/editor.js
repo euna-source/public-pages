@@ -44,8 +44,13 @@ function savedTemplate(variant){
   const t=C.template(variant),saved=store.get(L,KEY.tpl,{});
   ['email','dm'].forEach(c=>Object.keys(t[c]).forEach(k=>{
     const text=saved?.[variant]?.[c]?.[k];if(typeof text==='string')t[c][k]=text;
-  }));return t;
+  }));
+  // Old saved forms could repeat the showcase paragraph in both sections.
+  // Compare rendered text (including link destinations), ignoring emphasis only.
+  if(t.email.gift.trim()&&C.plain(t.email.gift).trim()===C.plain(t.email.steps).trim())t.email.gift='';
+  return t;
 }
+function participationText(t){return [t.email.gift,t.email.steps].filter(x=>x&&x.trim()).join("\n\n");}
 function mergeTpl(){return savedTemplate(ui.variant);}
 function defaultSubject(variant){return savedTemplate(variant).email.subject!==C.template(variant).email.subject?3:0;}
 function sampleMode(){return !hasSheet()&&(viewNow()==='import'||viewNow()==='edit'&&editReturn==='import');}
@@ -54,6 +59,11 @@ function wordingChannel(){return sampleMode()?sampleChannel:ui.channel;}
 function saveWording(channel,key,value){
   const variant=wordingVariant(),saved=store.get(L,KEY.tpl,{}),base=C.template(variant);
   if(!saved[variant])saved[variant]={};if(!saved[variant][channel])saved[variant][channel]={};
+  if(channel==='email'&&key==='steps'){
+    // One atomic save for the unified field; retain the old keys for compatibility.
+    saved[variant].email.gift='';
+    if(variant===ui.variant)tpl.email.gift='';
+  }
   if(value===base[channel][key])delete saved[variant][channel][key];else saved[variant][channel][key]=value;
   const ok=store.set(L,KEY.tpl,saved);
   if(variant===ui.variant)tpl[channel][key]=value;
@@ -570,7 +580,7 @@ function paint(){
   setText($('editHeading'),(wv==='music'?'음악':wc==='email'?'기본':'음악 외')+' '+(wc==='email'?'이메일':'인스타 DM')+' 양식 편집');
   setText($('editSummary'),edited.length?'고친 곳 '+edited.length:'');
   $('editBadge').hidden=!edited.length;setText($('editBadge'),'고친 곳 '+edited.length);
-  document.querySelectorAll('[data-tpl]').forEach(i=>{const c=i.dataset.tpl.split('.')[0];i.closest('.tpl-field').hidden=c!==wc;const m=i.closest('.tpl-field').querySelector('.changed');if(m)m.hidden=wt[c][i.dataset.tpl.split('.')[1]]===wb[c][i.dataset.tpl.split('.')[1]];});
+  document.querySelectorAll('[data-tpl]').forEach(i=>{const c=i.dataset.tpl.split('.')[0];i.closest('.tpl-field').hidden=c!==wc;const m=i.closest('.tpl-field').querySelector('.changed');if(m)m.hidden=i.dataset.tpl==='email.steps'?participationText(wt)===participationText(wb):wt[c][i.dataset.tpl.split('.')[1]]===wb[c][i.dataset.tpl.split('.')[1]];});
   // Preview: what the recipient sees. With no name yet it is shown as a sample.
   const mark=focusSeen?new Set(['본 것 한 줄']):false;
   const sample=sampleMode();
@@ -1119,7 +1129,7 @@ function downloadSheet(){
 }
 
 /* ---------- Reusable wording fields ---------- */
-const TPL_LABELS={'email.subject':'기본 제목 · 직접 입력용','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.gift':'협업 방식·사례 안내','email.steps':'협업 안내 링크','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
+const TPL_LABELS={'email.subject':'기본 제목 · 직접 입력용','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.steps':'참여 안내','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
 function fillTplFields(){
   const box=$('tplFields');
   if(!box.dataset.built){
@@ -1135,7 +1145,7 @@ function fillTplFields(){
       i.addEventListener('blur',()=>{if(outline){outline='';render();}});
     });
   }
-  box.querySelectorAll('[data-tpl]').forEach(i=>{const [c,k]=i.dataset.tpl.split('.');i.value=savedTemplate(wordingVariant())[c][k];});
+  box.querySelectorAll('[data-tpl]').forEach(i=>{const [c,k]=i.dataset.tpl.split('.');const t=savedTemplate(wordingVariant());i.value=c==='email'&&k==='steps'?participationText(t):t[c][k];});
 }
 
 /* ---------- Iframe sizing and logo ---------- */
