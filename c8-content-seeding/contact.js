@@ -7,7 +7,7 @@
   // Reward terms live in one place so a grade-based amount decision changes only this line.
   const REWARD={per:'1만 원',max:5,total:'5만 원'};
   const COMPANY={name:'㈜라텔앤드파트너즈',address:'서울특별시 중구 필동로 16 참그루빌딩 2층',email:'support@cre8orclub.com'};
-  const TRUST='크리에이터클럽은 입금·계좌번호·비밀번호·신분증을 요청하지 않아요.';
+  const TRUST='크리에이터클럽은 입금·계좌번호·비밀번호·신분증을 요청하지 않습니다.';
   const VARS=[
     {key:'활동명',required:true,field:'v-name'},
     {key:'담당자명',required:true,field:'v-sender'},
@@ -20,9 +20,9 @@
     // Same sections as the Weekly Best award mail so both mails read as one family.
     // The applied mail (2026-11-10): sent as the team, one link to the hub page.
     email:{
-      subject:'[크리에이터클럽] {활동명}님의 작업을 소개하고 싶어요',
-      preheader:'{활동명}님의 작업을 크리에이터클럽에 소개하고 싶어요. 작업 1개당 신세계 모바일 상품권 '+REWARD.per+'을 드려요.',
-      headline:'{활동명}님의 작업을\n크리에이터클럽에서도 소개하고 싶어요',
+      subject:'[크리에이터클럽] {활동명}님께 작품 소개 협업을 제안드려요',
+      preheader:'{활동명}님께 기존 작업을 소개하는 협업을 제안드려요.',
+      headline:'{활동명}님께\n작품 소개 협업을 제안드려요',
       greeting:[
         '안녕하세요, **{활동명}님!**',
         '창작자를 위한 포트폴리오·네트워크 앱, 크리에이터클럽입니다.',
@@ -30,13 +30,13 @@
         '{활동명}님의 {플랫폼} 작업을 보고 연락드렸어요.',
         '{본 것 한 줄}'
       ].join('\n'),
-      intro:'크리에이터클럽에서는 나의 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.',
-      gift:'기존 작업을 포트폴리오로 올려 주시면 작업 1개당 신세계 모바일 상품권 **'+REWARD.per+'씩, 최대 '+REWARD.total+'**을 드리고 있어요. 참여 방법은 아래 링크에서 확인해 주세요.',
-      steps:'[🎁 참여 방법 확인하기]('+LINKS.hub+')',
+      intro:'크리에이터클럽은 다양한 분야의 창작자들이 자신의 작업을 소개하고 서로의 작품을 발견할 수 있는 공간이에요. {활동명}님의 작업도 크리에이터클럽에서 소개하고 싶어 이번 협업을 제안드려요.',
+      gift:'이번 제안은 기존에 제작하신 작업을 포트폴리오로 소개하는 방식이며, 참여해 주시는 작업에 대해서는 감사의 마음을 담아 소정의 사례를 제공하고 있어요.',
+      steps:'관심있으시다면 아래 링크를 눌러주세요.\n[👉 협업 제안 자세히 보기]('+LINKS.hub+')',
       ask:'궁금한 점은 언제든 이 메일로 편하게 회신해 주세요.',
-      closing:'',
+      closing:'감사합니다.',
       signature:'크리에이터클럽 드림',
-      footer:'본 메일은 {활동명}님이 공개해 두신 연락처로 작품 소개를 제안드리기 위해 한 번 보내는 메일이에요. 답이 없으시면 다시 연락드리지 않을게요. '+TRUST
+      footer:'본 메일은 공개하신 연락처로 개별적으로 보내드리는 제안입니다. 원치 않으시면 추가 연락을 드리지 않겠습니다. '+TRUST
     },
     dm:{message:[
       '안녕하세요, {활동명}님!',
@@ -63,8 +63,7 @@
         '',
         '{플랫폼}{이/가} 인상 깊어 연락드렸어요.',
         '{본 것 한 줄}'
-      ].join('\n'),
-      intro:'크리에이터클럽에서는 나의 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. 특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.'
+      ].join('\n')
     }
   };
   const DM_VARIANTS={music:{message:[
@@ -80,6 +79,7 @@
     '{활동명}님의 음악을 크리에이터클럽에서도 만나볼 수 있으면 좋겠습니다!'
   ].join('\n')}};
   // User-provided examples are preview-only; choosing a real recipient never fills these observations.
+  const EMAIL_EXAMPLE={'활동명':'티티워크룸','플랫폼':'인스타그램','본 것 한 줄':'최근에 올리신 🎃 할로윈 쿠키박스 영상과 홈페이지는 티티워크룸님만의 추구미와 감도 높은 미적감각이 느껴졌어요. 다음에는 또 어떤 새로운 작업을 보여주실지 기대가 됐어요!'};
   const DM_EXAMPLES={
     basic:{'활동명':'고산타','본 것 한 줄':'고산타님 그림은 색감부터 너무너무 제 취향이에요… 몽글몽글 귀여운데 보고 있으면 괜히 마음까지 따뜻해져요,, 그래서 고산타님을 저희 앱에 초대하고 싶어 사심을 담아 연락드립니다!'},
     music:{'활동명':'지넥스','본 것 한 줄':'최근 발매하신 앨범 《동화》의 수록곡 「곁」을 정말 좋게 들었어요. 부드러운 미성과 섬세한 가성이 어우러진 감미로운 음색이 인상 깊었어요. 특히 90년대 솔리드가 떠오르는 R&B 감성이 느껴지면서도, 지넥스님만의 색깔로 풀어낸 음악이 참 매력적이었어요.'}
@@ -95,7 +95,7 @@
   /* Which variant a candidate's 분야 points to. */
   function variantOf(field){const f=clean(field);return Object.keys(EMAIL_VARIANTS).find(k=>EMAIL_VARIANTS[k].match.test(f))||'basic';}
   const SUBJECT_TYPES=[
-    {name:'창작자 중심',template:'[크리에이터클럽] {활동명}님의 작업을 소개하고 싶어요',audience:'작품 전반의 스타일이 인상적인 창작자'},
+    {name:'창작자 중심',template:'[크리에이터클럽] {활동명}님께 작품 소개 협업을 제안드려요',audience:'작품 전반의 스타일이 인상적인 창작자'},
     {name:'작품 중심',template:'[크리에이터클럽] {작품명}{을/를} 보고 연락드렸어요',audience:'개별 작품의 개성이 강한 창작자'},
     {name:'제안 중심',template:'[크리에이터클럽] {활동명}님께 드리는 포트폴리오 제안',audience:'스튜디오·디자인 에이전시·전문 창작자'}
   ];
@@ -209,15 +209,14 @@
     const greet=section('greeting','24px 32px 0');
     const intro=section('intro','16px 32px 0');
     const gift=section('gift','24px 32px 0');
-    const steps=section('steps','0 32px 0');
+    const steps=section('steps','16px 32px 0');
     const ask=section('ask','20px 32px 0');
-    const closing=section('closing','12px 32px 0');
+    const closing=section('closing','0 32px 0');
     const signature=framed('<tr><td style="padding:0 32px 32px; font-size:15px; line-height:1.7; font-weight:600; color:#191f28;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</td></tr>',f('signature'));
     const slogan='        <tr>\n          <td style="padding:0 32px;"><div style="border-top:1px solid #e5e5e5; font-size:0; line-height:0;">&nbsp;</div></td>\n        </tr>\n        <tr>\n          <td align="center" style="padding:36px 32px 36px; font-size:20px; line-height:1.55; font-weight:700; color:#111111;">\n            당신의 작업이 무대가 되는 곳, Cre8orClub\n          </td>\n        </tr>\n';
-    const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'            <p style="margin:0 0 6px;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'</p>').join('\n');
-    const foot=framed('        <tr>\n          <td style="background-color:#f3f3f3; border-radius:0 0 12px 12px; padding:20px 32px 22px; font-size:11px; line-height:1.6; color:#777777;">\n'+(notes?notes+'\n':'')+
-      '            <p style="margin:0 0 6px;">'+COMPANY.name+' | 대표 최남희 | 사업자등록번호 736-86-01932 | '+COMPANY.address+' | <a href="mailto:'+COMPANY.email+'" style="color:#777777; text-decoration:underline;">'+COMPANY.email+'</a></p>\n'+
-      '            <p style="margin:0;"><a href="'+POLICY.privacy+'" target="_blank" style="color:#444444; font-weight:700; text-decoration:none;">개인정보처리방침</a> · <a href="'+POLICY.terms+'" target="_blank" style="color:#777777; text-decoration:none;">이용약관</a> · © Ratel And Partners Co., Ltd.</p>\n          </td>\n        </tr>\n',f('footer'));
+    const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'<p style="margin:0 0 6px; line-height:1.75;">'+String(t).replace(' '+TRUST,'\n'+TRUST).split('\n').map(inlineHtml).join('<br>')+'</p>').join('\n');
+    const company='<div style="'+(notes?'margin-top:18px; padding-top:16px; border-top:1px solid #dcdfe3; ':'')+'line-height:1.8;"><strong style="font-size:12px; font-weight:600; color:#545b66;">'+COMPANY.name+'</strong><br>'+COMPANY.address+'<br><a href="mailto:'+COMPANY.email+'" style="color:#545b66; text-decoration:underline;">'+COMPANY.email+'</a></div>';
+    const foot=framed('<tr><td style="background-color:#f3f3f3; border-radius:0 0 12px 12px; padding:24px 32px; font-size:11px; line-height:1.75; color:#737b87;">'+notes+company+'</td></tr>',f('footer'));
     const card='<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f2f2f2;">\n  <tr>\n    <td align="center" style="padding:24px 12px;">\n      <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; word-break:keep-all; font-family:'+FONT+'; color:#111111;">\n'+
       head+greet+intro+gift+steps+ask+closing+signature+slogan+foot+'      </table>\n    </td>\n  </tr>\n</table>';
     if(o.fragment)return card;
@@ -227,7 +226,7 @@
   function plainHtml(p,o){
     const P='margin:0 0 16px; font-size:15px; line-height:1.7; color:#111111;';
     const para=t=>t&&t.trim()?'<div style="'+P+'">'+richHtml(t)+'</div>':'';
-    const body=[para(p.greeting),para(p.intro),para([p.gift,p.steps].filter(Boolean).join('\n')),para([p.ask,p.closing,p.signature].filter(Boolean).join('\n')),
+    const body=[para(p.greeting),para(p.intro),para([p.gift,p.steps].filter(Boolean).join('\n\n')),para([p.ask,p.closing,p.signature].filter(Boolean).join('\n')),
       '<p style="margin:0 0 20px; font-size:13px; color:#6b6b6b;">당신의 작업이 무대가 되는 곳, Cre8orClub</p>',
       [p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'<p style="margin:0; padding-top:12px; border-top:1px solid #e5e5e5; font-size:12px; line-height:1.6; color:#8a8a8a;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'<br>'+COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email+'</p>').join('')].join('\n');
     const div='<div style="max-width:600px; padding:8px 4px; font-family:'+FONT+'; color:#111111; word-break:keep-all;">\n'+body+'\n</div>';
@@ -248,7 +247,7 @@
     const style=o.style==='plain'?'plain':'card';
     const build=style==='plain'?plainHtml:designedHtml;
     // Section titles travel with the plain text so a plain-text paste keeps the same order.
-    const titled=[plain(p.greeting),plain(p.intro),plain([p.gift,p.steps].filter(Boolean).join('\n')),plain([p.ask,p.closing,p.signature].filter(Boolean).join('\n')),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
+    const titled=[plain(p.greeting),plain(p.intro),plain([p.gift,p.steps].filter(Boolean).join('\n\n')),plain([p.ask,p.closing,p.signature].filter(Boolean).join('\n')),'당신의 작업이 무대가 되는 곳, Cre8orClub',plain([p.footer,p.ad].filter(Boolean).join('\n')),COMPANY.name+' | '+COMPANY.address+' | '+COMPANY.email].filter(x=>x&&x.trim());
     const dmCore=fill(tpl.dm.message,v,mark);
     const dm=[ad?AD.dmHead(phone):'',dmCore,ad?AD.dmTail:''].filter(Boolean).join('\n\n');
     return {
@@ -452,7 +451,7 @@
   const HYPE=/무료 *(제공|증정|체험|지급)|공짜|지금 *바로|(인원|기간) *한정|한정 *(모집|혜택)|특별한 *(제안|기회)|기회를 *드|당첨|축하드|선정되셨|100 *%|돈 *버|부업|리워드|오늘까지|이번 *주까지|역대급/;
   const DECO=/[!?！？]{2,}|\p{Emoji_Presentation}|[ㅋㅎㅠㅜ]{2,}|~{2,}/u;
   const FIXED_LINES=['작업이 인상 깊어 연락드렸어요','자신만의 색깔이 뚜렷한 작업을 더 많은 창작자에게 소개하고 싶었어요'];
-  const SUBJECT_WHY='작품 전반의 스타일을 소개하고 싶을 때 잘 맞아요.';
+  const SUBJECT_WHY='작품 소개 협업을 제안한다는 목적이 제목에서 보여요.';
   /* Advice for the hand-typed fields. Hints never block: they carry no level and copying ignores them.
      history is the same [{name, seen}] that check() takes. The screen shows at most two hints, in this order. */
   function coach(input){
@@ -497,6 +496,6 @@
     return {hints,frames:frames.map(f=>({id:f.id,group:f.group,text:f.text})),examples,foldLabel,examplesLabel,subjectPick,blank:hasBlank(seen)};
   }
 
-  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_TYPES,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,prose,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
+  const api={LINKS,REWARD,COMPANY,TRUST,VARS,DEFAULTS,EMAIL_VARIANTS,DM_VARIANTS,DM_EXAMPLES,EMAIL_EXAMPLE,template,variantOf,EMAIL_SECTIONS,SECTION_TITLES,LOGO,POLICY,SUBJECT_TYPES,SUBJECT_ALTERNATIVES,AD,REPLIES,LIMITS,fill,tokens,render,reply,plain,similarity,check,chars,seoulMinutes,clean,prose,FRAMES,FRAME_GROUPS,EXAMPLES,frameGroup,hasBlank,nextBlank,resolveParticles,stripFrame,coach};
   if(typeof module==='object'&&module.exports)module.exports=api;else root.ContactMail=api;
 })(typeof self!=='undefined'?self:this);

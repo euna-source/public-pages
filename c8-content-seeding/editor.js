@@ -559,6 +559,7 @@ function paint(){
   const edited=editedKeys().filter(k=>isEmail?k.startsWith('email.'):k.startsWith('dm.'));
   setText($('editTitle'),'양식 편집');
   const wc=wordingChannel(),wv=wordingVariant(),wt=savedTemplate(wv),wb=C.template(wv);
+  setText($('tplReset'),wc==='email'?'최신 협업 문안 적용':'이 양식을 기본 문구로 되돌리기');
   setText($('editHeading'),(wv==='music'?'음악':wc==='email'?'기본':'음악 외')+' '+(wc==='email'?'이메일':'인스타 DM')+' 양식 편집');
   setText($('editSummary'),edited.length?'고친 곳 '+edited.length:'');
   $('editBadge').hidden=!edited.length;setText($('editBadge'),'고친 곳 '+edited.length);
@@ -947,7 +948,7 @@ function menuCopy(id,text,done,channel){
   writing.then(ok=>ok?toast(done):manualCopy(text,null,channel));
 }
 const EDITOR_URL='https://euna-source.github.io/public-pages/c8-content-seeding/content-seeding-email-instagram-dm.html';
-const SAMPLE_VALUES={'활동명':'○○','플랫폼':'인스타그램','본 것 한 줄':'작품에서 인상 깊었던 장면을 여기에 한 줄로 적어요.'};
+const SAMPLE_VALUES=C.EMAIL_EXAMPLE;
 function saveHtml(html,filename){
   const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));a.download=filename;
   document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
@@ -961,7 +962,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-newlines',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-collab-copy',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
@@ -1062,7 +1063,7 @@ function downloadSheet(){
 }
 
 /* ---------- Reusable wording fields ---------- */
-const TPL_LABELS={'email.subject':'기본 제목 · 직접 입력용','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.gift':'감사 선물','email.steps':'참여 방법','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
+const TPL_LABELS={'email.subject':'기본 제목 · 직접 입력용','email.preheader':'숨은 미리보기 문장','email.headline':'큰 제목','email.greeting':'인사','email.intro':'소개','email.gift':'협업 방식·사례 안내','email.steps':'협업 안내 링크','email.ask':'궁금한 점','email.closing':'맺음','email.signature':'서명','email.footer':'맨 아래 고지','dm.message':'DM 본문'};
 function fillTplFields(){
   const box=$('tplFields');
   if(!box.dataset.built){
@@ -1260,11 +1261,10 @@ $('copySource').onclick=()=>copyWithFeedback($('copySource'),C.reply('source',re
 $('copyOptoutRow').onclick=()=>{const v=replyValues(),c=$('to').value.trim()||('@'+handleOf($('handle').value));copyWithFeedback($('copyOptoutRow'),[v['활동명'],c,ui.channel==='dm'?'인스타 DM':'메일','수신거부 '+new Date().toLocaleDateString('ko-KR'),$('v-sender').value.trim()].join('\t'));};
 $('tplReset').onclick=async()=>{
   const channel=wordingChannel(),variant=wordingVariant();
-  if(await ask('이 양식을 기본 문구로 되돌릴까요?','현재 분야의 '+(channel==='email'?'이메일':'DM')+'에서 고친 문구만 지워져요.',[['닫기','close',true],['되돌리기','go',false,true]])!=='go')return;
-  const oldSubject=savedTemplate(variant).email.subject;
+  if(await ask(channel==='email'?'최신 협업 문안을 적용할까요?':'이 양식을 기본 문구로 되돌릴까요?',channel==='email'?'고친 이메일 문구와 선택한 제목을 새 기본 문안으로 바꿔요. 받는 분 정보와 감상은 유지돼요.':'현재 분야의 DM에서 고친 문구만 지워져요.',[['닫기','close',true],['되돌리기','go',false,true]])!=='go')return;
   const saved=store.get(L,KEY.tpl,{});if(saved[variant])delete saved[variant][channel];
   if(!store.set(L,KEY.tpl,saved)){toast('저장하지 못했어요. 다시 시도해 주세요.');return;}
-  tpl=mergeTpl();if(channel==='email'&&variant===ui.variant&&!sampleMode()&&ui.subject===3&&ui.customSubject===oldSubject){ui.subject=0;ui.customSubject='';saveDraft();}staleCopy();fillTplFields();setText($('wordingStatus'),'기본 문구로 되돌렸어요.');render();
+  tpl=mergeTpl();if(channel==='email'&&variant===ui.variant&&!sampleMode()){ui.subject=0;ui.customSubject='';saveDraft();}staleCopy();fillTplFields();setText($('wordingStatus'),'기본 문구로 되돌렸어요.');render();
 };
 $('manualClose').onclick=()=>$('manual').close();
 $('manualOpen').onclick=()=>{$('manual').close();if(manualThen)manualThen();};
