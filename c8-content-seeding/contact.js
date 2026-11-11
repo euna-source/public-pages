@@ -11,7 +11,7 @@
   const VARS=[
     {key:'활동명',required:true,field:'v-name'},
     {key:'담당자명',required:true,field:'v-sender'},
-    {key:'플랫폼',required:true,field:'v-platform'},
+    {key:'플랫폼',required:false,field:'v-platform'},
     {key:'게시물 주소',required:true,field:'v-post'},
     {key:'본 것 한 줄',required:false,field:'v-seen'},
     {key:'작품명',required:false,field:'v-work'}
@@ -30,9 +30,9 @@
         '{활동명}님의 {플랫폼} 작업을 보고 연락드렸어요.',
         '{본 것 한 줄}'
       ].join('\n'),
-      intro:'크리에이터클럽에서는 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.',
+      intro:'크리에이터클럽에서는 나의 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.',
       gift:'기존 작업을 포트폴리오로 올려 주시면 작업 1개당 신세계 모바일 상품권 **'+REWARD.per+'씩, 최대 '+REWARD.total+'**을 드리고 있어요. 참여 방법은 아래 링크에서 확인해 주세요.',
-      steps:'[참여 방법 확인하기]('+LINKS.hub+')',
+      steps:'[🎁 참여 방법 확인하기]('+LINKS.hub+')',
       ask:'궁금한 점은 언제든 이 메일로 편하게 회신해 주세요.',
       closing:'',
       signature:'크리에이터클럽 드림',
@@ -64,7 +64,7 @@
         '{플랫폼}{이/가} 인상 깊어 연락드렸어요.',
         '{본 것 한 줄}'
       ].join('\n'),
-      intro:'크리에이터클럽에서는 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. 특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.'
+      intro:'크리에이터클럽에서는 나의 작업을 포트폴리오로 올리고 다른 분야의 창작자들과 교류할 수 있어요. 특히 김형석 작곡가 겸 프로듀서님도 크리에이터클럽의 투자자이자 크리에이터로 직접 활동하고 계세요. {활동명}님의 작업도 이곳에서 소개하고 싶어 초대드려요.'
     }
   };
   const DM_VARIANTS={music:{message:[
@@ -136,7 +136,9 @@
      mark=true wraps filled values for the preview's 「바뀌는 부분 보기」; copies never use it. */
   function fill(text,values,mark){
     const known=new Set(VARS.map(v=>v.key).concat(Object.keys(values||{})));
-    let out=String(text).replace(/\{([^{}\n]+)\}/g,(m,k)=>{
+    let source=String(text);
+    if(!clean((values||{})['플랫폼']))source=source.replace('{활동명}님의 {플랫폼} 작업을 보고 연락드렸어요.','{활동명}님의 작업을 보고 연락드렸어요.').replace('{플랫폼}{이/가} 인상 깊어 연락드렸어요.','{활동명}님의 음악을 듣고 연락드렸어요.');
+    let out=source.replace(/\{([^{}\n]+)\}/g,(m,k)=>{
       k=k.trim();
       if(!known.has(k))return m;
       const v=clean((values||{})[k]);
@@ -273,8 +275,7 @@
     if(/님$/.test(name))add('warn','name-nim','활동명 끝에 「님」이 있어요. 문구에 이미 「님」이 붙어 「'+name+'님」이 돼요.','v-name');
     const seen=clean(v['본 것 한 줄']);
     if(usedKeys.has('본 것 한 줄')){
-      if(!seen)add('warn','seen-empty','「본 것 한 줄」이 비어 있어요. 이 분 작품에서 본 것을 한 문장 써 주세요.','v-seen');
-      else{
+      if(seen){
         // A sentence frame still holding a blank is never ready: machine check, both channels.
         if(hasBlank(seen))add('block','seen-blank','빈칸(___)이 남아 있어요. 작품에서 본 것으로 채워 주세요.','v-seen');
         const limit=channel==='dm'?LIMITS.dmSeenMax:LIMITS.seenMax;
