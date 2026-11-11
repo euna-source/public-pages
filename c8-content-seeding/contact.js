@@ -277,7 +277,7 @@
     const [h,m]=new Intl.DateTimeFormat('en-GB',{timeZone:'Asia/Seoul',hour:'2-digit',minute:'2-digit',hour12:false}).format(d).split(':').map(Number);
     return (h%24)*60+m;
   }
-  function links(text){return [...String(text).matchAll(/https?:\/\/[^\s)<>"']+/g)].map(m=>m[0].replace(/[.,]$/,''));}
+  function links(text){return [...String(text).matchAll(/https?:\/\/[^\s)<>"']+/gi)].map(m=>m[0].replace(/[.,]$/,''));}
 
   /* Each check: level block = 복사 막음, warn = 보내기 전에 보기. field = 눌렀을 때 옮겨 갈 입력칸 id. */
   function check(tpl,values,opts){
@@ -311,15 +311,13 @@
     const typed=[v['본 것 한 줄'],v['활동명'],v['작품명']].map(clean).join('\n');
     AVOID.forEach(a=>{const m=typed.match(a.re);if(m)add('warn','avoid','손으로 쓴 칸의 「'+[...new Set(m)].join('·')+'」 — '+a.why+'.');});
     if(/\{[^{}\n]+\}/.test(text))add('block','leftover','채워지지 않은 {칸}이 남아 있어요.');
-    // Links: the hub link must survive any one-off edit, over https, never shortened.
+    // Links: whatever links are written must be https, never shortened.
     // Only anchors the sender controls: the fixed layout's policy links, logo and font are not part of the check.
     const fixed=new Set(Object.values(POLICY));
-    const all=channel==='email'?[...r.emailHtml.matchAll(/<a href="([^"]+)"/g)].map(m=>m[1]).filter(u=>!/^mailto:/.test(u)&&!fixed.has(u)).concat(links(r.subject)):links(r.dm);
-    // Both approved DM variants and the email must carry the participation hub link.
-    const missing=[['hub','참여 방법']].filter(([k])=>!all.includes(LINKS[k]));
-    missing.forEach(([k,label])=>add('block','link-missing:'+k,label+' 링크('+LINKS[k]+')가 문구에서 빠졌어요.'));
-    all.filter(u=>/^http:\/\//i.test(u)).forEach(u=>add('block','link-http','https가 아닌 링크가 있어요: '+u));
-    all.filter(u=>SHORTENERS.test(u)).forEach(u=>add('block','link-short','단축 주소는 사기 링크처럼 보여요: '+u));
+    const all=channel==='email'?[...r.emailHtml.matchAll(/<a href="([^"]+)"/g)].map(m=>m[1]).concat(links(r.subject),links(r.emailText)).filter(u=>!/^mailto:/i.test(u)&&!fixed.has(u)):links(r.dm);
+    // The participation link is optional (샐리 2026-11-11): senders may swap it for their own links.
+    [...new Set(all)].filter(u=>/^http:\/\//i.test(u)).forEach(u=>add('block','link-http','https가 아닌 링크가 있어요: '+u));
+    [...new Set(all)].filter(u=>SHORTENERS.test(u)).forEach(u=>add('block','link-short','단축 주소는 사기 링크처럼 보여요: '+u));
     if(channel==='email')[...r.emailHtml.matchAll(/<a href="([^"]+)"[^>]*>([^<]+)<\/a>/g)].forEach(m=>{const t=m[2].trim();if(/^https?:\/\//.test(t)&&t!==m[1])add('block','link-text','링크 글자와 실제 주소가 달라요: '+t);});
     const known3=new Set(Object.values(LINKS)),post=clean(v['게시물 주소']);
     [...new Set(all)].filter(u=>!known3.has(u)&&u!==post).forEach(u=>add('warn','link-other','정해진 링크 말고 다른 링크가 있어요: '+u));
