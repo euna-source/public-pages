@@ -948,6 +948,35 @@ function menuCopy(id,text,done,channel){
   const writing=writeText(text);hidePop('moreMenu');
   writing.then(ok=>ok?toast(done):manualCopy(text,null,channel));
 }
+const GMAIL_DRAFT_EXTENSION='efgjebegdllneidhmghmpdamchbhkiia';
+function draftExtensionMessage(message,timeout=120000){
+  return new Promise((resolve,reject)=>{
+    if(!globalThis.chrome?.runtime?.sendMessage)return reject(new Error('GMAIL_CONNECT_REQUIRED'));
+    let settled=false;const finish=(err,value)=>{if(settled)return;settled=true;clearTimeout(timer);err?reject(err):resolve(value);};
+    const timer=setTimeout(()=>finish(new Error('Gmail 연결이 늦어지고 있어요. 열린 메일을 먼저 확인해 주세요.')),timeout);
+    try{chrome.runtime.sendMessage(GMAIL_DRAFT_EXTENSION,message,response=>{const error=chrome.runtime.lastError;if(error)return finish(new Error('GMAIL_CONNECT_REQUIRED'));if(!response?.ok)return finish(new Error(response?.error||'GMAIL_CONNECT_REQUIRED'));finish(null,response);});}catch(e){finish(new Error('GMAIL_CONNECT_REQUIRED'));}
+  });
+}
+function finalDraftNodes(html){
+  const t=document.createElement('template');t.innerHTML=html;
+  const read=n=>n.nodeType===3?{text:n.textContent}:n.nodeType===1?{tag:n.localName,attrs:Object.fromEntries([...n.attributes].map(a=>[a.name,a.value])),children:[...n.childNodes].map(read).filter(Boolean)}:null;
+  return [...t.content.childNodes].map(read).filter(Boolean);
+}
+async function sendFinalDraft(){
+  const b=$('sendMail');if(b.disabled||ui.channel!=='email'||menuLocked('sendMail'))return;
+  const snap={key:ui.current,to:$('to').value.trim(),subject:last.subject,html:last.emailPaste,nodes:finalDraftNodes(last.emailPaste)};
+  b.disabled=true;b.setAttribute('aria-busy','true');
+  try{
+    await draftExtensionMessage({type:'c8-draft-ping'},5000);
+    const requestId=globalThis.crypto?.randomUUID?crypto.randomUUID():'draft-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+    const result=await draftExtensionMessage({type:'c8-create-html-draft',requestId,payload:{to:snap.to,subject:snap.subject,nodes:snap.nodes}});
+    if(result.requestId!==requestId)throw Error('작성 결과를 확인하지 못했어요. 열린 Gmail을 확인해 주세요.');
+    const d=drafts[snap.key]||(drafts[snap.key]={vars:{},to:'',handle:'',flow:''});d.flow='opened';d.copiedChannel='email';delete d.popupBlocked;delete d.openUrl;store.set(S,KEY.drafts,drafts);
+    toast('최종 양식을 넣은 support 새 메일을 열었어요. 확인한 뒤 직접 보내 주세요.');renderAll();
+  }catch(e){if(e.message==='GMAIL_CONNECT_REQUIRED'){$('gmailConnect').showModal();syncPrimaryFill();}else toast(e.message);}
+  finally{b.disabled=false;b.removeAttribute('aria-busy');}
+}
+
 const EDITOR_URL='https://euna-source.github.io/public-pages/c8-content-seeding/content-seeding-email-instagram-dm.html';
 const SAMPLE_VALUES=C.EMAIL_EXAMPLE;
 function saveHtml(html,filename){
@@ -963,7 +992,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-support-compose2',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-html-draft',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
@@ -1232,7 +1261,8 @@ radioKeys('dmVariantSwitch',['dmBasicPreview','dmMusicPreview'],id=>pickDmVarian
 $('previewEmail').onclick=()=>switchPreview('email');
 $('previewDm').onclick=()=>switchPreview('dm');
 radioKeys('previewSwitch',['previewEmail','previewDm'],id=>switchPreview(id==='previewDm'?'dm':'email'));
-$('sendMail').onclick=async()=>{const b=$('sendMail');if(b.disabled||ui.channel!=='email'||menuLocked('sendMail'))return;b.disabled=true;try{await copyAndOpen(b,true);}finally{b.disabled=false;}};
+$('sendMail').onclick=sendFinalDraft;
+$('gmailConnectClose').onclick=()=>{$('gmailConnect').close();syncPrimaryFill();};
 $('copyMailSource').onclick=()=>{if(!menuLocked('copyMailSource'))copyOnly(true);};
 $('exSource').onclick=()=>menuCopy('exSource',last.emailHtml,'HTML 소스를 복사했어요.');
 $('exText').onclick=()=>menuCopy('exText',last.emailText,'양식 없이 글만 복사했어요.');
