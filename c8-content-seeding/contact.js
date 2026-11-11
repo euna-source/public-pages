@@ -211,7 +211,8 @@
     const gift=section('gift','24px 32px 0');
     const steps=section('steps','16px 32px 0');
     const ask=section('ask','20px 32px 0');
-    const closing=section('closing','0 32px 0');
+    // 샐리 2026-11-11: a gap above 「감사합니다」 so the sign-off stands apart from the question paragraph.
+    const closing=section('closing','16px 32px 0');
     const signature=framed('<tr><td style="padding:0 32px 32px; font-size:15px; line-height:1.7; font-weight:600; color:#191f28;">'+String(p.signature).split('\n').map(inlineHtml).join('<br>')+'</td></tr>',f('signature'));
     const slogan='        <tr>\n          <td style="padding:0 32px;"><div style="border-top:1px solid #e5e5e5; font-size:0; line-height:0;">&nbsp;</div></td>\n        </tr>\n        <tr>\n          <td align="center" style="padding:36px 32px 36px; font-size:20px; line-height:1.55; font-weight:700; color:#111111;">\n            당신의 작업이 무대가 되는 곳, Cre8orClub\n          </td>\n        </tr>\n';
     const notes=[p.footer,p.ad].filter(x=>x&&x.trim()).map(t=>'<p style="margin:0 0 6px; line-height:1.75;">'+String(t).split('\n').map(inlineHtml).join('<br>')+'</p>').join('\n');
