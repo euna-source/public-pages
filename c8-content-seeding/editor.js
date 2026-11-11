@@ -585,7 +585,7 @@ function paint(){
   $('subjPick').hidden=ui.subject!==s.coach.subjectPick.index;
   $('subjectChange').title='제목 3유형 또는 직접 입력을 선택해요. '+s.coach.subjectPick.why;
   // Darken only the preview surround; copied and downloaded email keep their original background.
-  const previewHtml=shown.emailHtml.replace(/background-color:#f2f2f2/g,'background-color:#e5e5e5');
+  const previewHtml=shown.emailHtml.replace(/background-color:#f2f2f2/g,'background-color:#d3d6db');
   const doc=$('frame');if(doc.dataset.html!==previewHtml){doc.dataset.html=previewHtml;doc.srcdoc=previewHtml;}
   const kb=Math.max(1,Math.round(new Blob([r.emailHtml]).size/1024));setText($('exSize'),'약 '+kb+'KB');
   const h=handleOf($('handle').value);
@@ -962,7 +962,7 @@ async function downloadEditor(){
       const at=raw.lastIndexOf('</body>');
       html=raw.slice(0,at)+'<script id="editorSource" type="application/json">'+payload.textContent+'<'+ '/script>\n'+raw.slice(at);
     }else{
-      const response=await fetch(new URL('content-seeding-editor.html?v=261111-collab-copy2',location.href));
+      const response=await fetch(new URL('content-seeding-editor.html?v=261111-gmail-footer',location.href));
       if(!response.ok)throw Error('download');html=await response.text();
     }
     saveHtml(html,'콘텐츠시딩_이메일_인스타DM_편집기.html');toast('편집기 HTML을 받았어요. 명단과 초안은 포함되지 않아요.');
