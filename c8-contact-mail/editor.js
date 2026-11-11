@@ -351,7 +351,9 @@ function render(){
   $('ibSubj').innerHTML=esc(shown.subjectMarked).replace(/\u0001/g,'<mark class="mailmark">').replace(/\u0002/g,'</mark>');
   $('ibSnip').textContent=r.emailText.replace(/\s+/g,' ').slice(0,90);
   $('ibTo').textContent='받는 사람 '+($('to').value.trim()||'(비어 있음)');
-  const doc=$('frame');if(doc.dataset.html!==shown.emailHtml){doc.dataset.html=shown.emailHtml;doc.srcdoc=shown.emailHtml;}
+  // Darken only the preview surround; copied and downloaded email keep their original background.
+  const previewHtml=shown.emailHtml.replace(/background-color:#f2f2f2/g,'background-color:#e5e5e5');
+  const doc=$('frame');if(doc.dataset.html!==previewHtml){doc.dataset.html=previewHtml;doc.srcdoc=previewHtml;}
   const kb=Math.max(1,Math.round(new Blob([r.emailHtml]).size/1024));$('sizeNote').textContent='약 '+kb+'KB';$('exSize').textContent='HTML 약 '+kb+'KB';
   // DM preview
   const h=handleOf($('handle').value);

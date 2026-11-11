@@ -425,7 +425,7 @@ a.link .i{width:14px;height:14px}
 .inbox .subj{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .inbox .snip{grid-column:1/-1;color:#5F5F5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .inbox .to{color:#5F5F5B;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#frame{display:block;width:100%;height:900px;border:1px solid #E3E3DF;border-top:0;border-radius:0 0 12px 12px;background:#f2f2f2}
+#frame{display:block;width:100%;height:900px;border:1px solid #E3E3DF;border-top:0;border-radius:0 0 12px 12px;background:#e5e5e5}
 .phone{width:375px;max-width:100%;background:#fff;color:#111;border:1px solid #E3E3DF;border-radius:28px;padding:16px 14px 20px;display:flex;flex-direction:column;gap:8px}
 .phone .whoto{text-align:center;font-size:13px;color:#5F5F5B}
 .bubble{align-self:flex-end;max-width:88%;background:#3797F0;color:#fff;border-radius:18px 18px 4px 18px;padding:10px 13px;font-size:15px;line-height:22px;white-space:pre-wrap;overflow-wrap:anywhere}
@@ -552,6 +552,7 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
   :focus-visible,.btn.primary:focus-visible,.field:focus-visible,.list li:focus-visible,.list li.active{outline:3px solid Highlight!important;outline-offset:2px!important}
   .list li[aria-selected="true"]{outline:2px solid Highlight;outline-offset:-2px}
 }
+@media (prefers-color-scheme:light){#previewCol{background:#e5e5e5}}
 </style>
 </head>
 <body>
@@ -820,8 +821,8 @@ dialog textarea{width:100%;min-height:200px;margin-bottom:16px}
   <div class="row" id="confirmRow"></div>
 </dialog>
 
-<script src="contact.js?v=261111-seeding-copy"></script>
+<script src="contact.js?v=261111-preview-corners"></script>
 <script src="candidates.js"></script>
-<script src="editor.js?v=261111-seeding-copy"></script>
+<script src="editor.js?v=261111-preview-corners"></script>
 </body>
 </html>
