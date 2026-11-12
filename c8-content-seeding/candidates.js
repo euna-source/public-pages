@@ -18,6 +18,7 @@
     checked:['직접확인'],
     pick:['직접컨택후보','컨택후보','직접컨택'],
     note:['비고','메모','작품에서본점','샐리가볼점','코멘트'],
+    researchKey:['조사키'],
     seen:['개인화첫줄','개인화문장','본것한줄','본것','첫줄'],
     field:['분야','분야직무','직무','직군','카테고리','장르'],
     purpose:['연락목적','목적'],
@@ -104,7 +105,7 @@
       const email=((get(r,'email')+' '+contact).match(EMAIL)||[''])[0];
       const handle=handleOf([contact,url,...cells]);
       people.push({
-        row:i+1,name,alias,realName,hasAlias:col.alias!=null,url,platform:platformName(url)||(handle?'인스타그램':''),
+        row:i+1,name,alias,realName,researchKey:get(r,'researchKey'),hasAlias:col.alias!=null,url,platform:platformName(url)||(handle?'인스타그램':''),
         email,handle,contact,
         grade:gradeLetter(get(r,'grade')),gradeRaw:get(r,'grade'),
         checked:col.checked==null?null:yes(get(r,'checked')),
