@@ -1077,10 +1077,149 @@ body.grid-on .ann.cc{display:block}
 .v5 .medash .grp-rows.mg{margin-top:12px}
 .v5 .medash.il .mcol+.mcol{margin-top:0}
 </style>
+<style id="v6css">
+/* ===== v6 덧칠 CSS ===== */
+/* ③ 답 단추: 폭을 글자에 맞추고 높이 36 */
+.v5 .ans{width:auto;max-width:none;gap:6px;flex-wrap:wrap}
+.v5 .ans .dbtn{flex:none;height:36px;min-height:36px;min-width:64px;padding:0 16px;border-radius:18px;font:600 14px/18px var(--font)}
+.v5 .ans.stack{flex-direction:row}
+.v5 .ans.stack .dbtn{width:auto}
+/* ① 직접 입력 */
+.v5 .free{background:transparent!important;color:var(--muted)!important;box-shadow:inset 0 0 0 1px var(--hairline);gap:4px}
+.v5 .qopt.free{min-width:0;padding:0 12px}
+.v5 .ans .dbtn.free{padding:0 12px;min-width:0}
+.free-in{display:flex;align-items:center;gap:6px;width:100%;max-width:400px;min-width:0}
+.free-in .fi-in{flex:1 1 auto;min-width:0;height:36px;border-radius:18px;border:1.5px solid var(--accent);background:var(--surface);padding:0 14px;font:400 14px/18px var(--font);color:var(--text);outline:none}
+.free-in .fi-go,.free-in .fi-x{flex:none;width:36px;height:36px;border-radius:18px;display:inline-flex;align-items:center;justify-content:center}
+.free-in .fi-go{background:var(--accent);color:var(--accent-ink)}
+.free-in .fi-x{background:var(--surface-2);color:var(--muted)}
+.v5 .ans.v6free{width:100%}
+.v5 .qc-a .free-in,.v5 .ra-a .free-in{max-width:none}
+/* ② 펼친 세로 채팅 */
+.pane.v6list{background:var(--bg)}
+.v6split{position:absolute;bottom:0;width:1px;background:var(--hairline);z-index:2}
+.pane.v6list .crow{padding-left:8px;padding-right:8px}
+.pane.v6list .crow .cnw{display:none}
+.pane.v6list .th h2{font-size:22px}
+.v6scrim{position:absolute;inset:0;background:rgba(0,0,0,.28);z-index:5}
+.pane.v6drawer{z-index:6;background:var(--bg);box-shadow:8px 0 32px rgba(0,0,0,.18);border-radius:0 28px 28px 0}
+.v6side{position:absolute;left:20px;top:28px;width:40px;height:40px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:var(--surface);box-shadow:0 0 0 .5px var(--glass-border);z-index:4}
+.scr .btabs{z-index:7}
+/* ④ 자료 */
+.v6seg{display:flex;align-items:center;gap:8px;margin-bottom:12px}
+.v6seg>.seg2{flex:1 1 auto;margin:0!important}
+.lvsw{flex:none;display:inline-flex;height:32px;padding:2px;border-radius:16px;background:var(--surface-2)}
+.lvsw button{width:36px;height:28px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;color:var(--muted)}
+.lvsw button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.v5 .agrid.v6g{gap:16px 12px}
+.v5 .ac-say{display:flex;align-items:flex-start;gap:4px;margin-top:4px;font:400 11.5px/15px var(--font);color:var(--muted)}
+.v5 .ac-say span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.v5 .ac-say img,.v5 .ac-say .face{flex:none;margin-top:1px}
+.lline{display:flex;align-items:center;gap:12px;min-height:60px;padding:8px 4px;box-shadow:inset 0 -.5px 0 var(--hairline);cursor:pointer;min-width:0}
+.lline.sm{min-height:44px;padding:6px 8px;border-radius:10px;box-shadow:none}
+.lline.sel{background:var(--accent-soft)}
+.ll-ic{flex:none;width:36px;height:44px;border-radius:6px;display:flex;align-items:center;justify-content:center;background:var(--surface);box-shadow:0 0 0 .5px var(--hairline);color:var(--muted)}
+.lline.sm .ll-ic{width:24px;height:30px;border-radius:4px}
+.ll-ic.k-report,.ll-ic.k-doc{color:#5b6cff}.ll-ic.k-sheet{color:#2ba84a}.ll-ic.k-image{color:#ff6b7a}.ll-ic.k-link{color:#3a7bd5}.ll-ic.k-audio{color:#ff9500}
+.ll-m{flex:1 1 auto;min-width:0}
+.ll-t{font:600 14px/19px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lline.sm .ll-t{font-size:13px}
+.ll-dot{display:inline-block;width:7px;height:7px;border-radius:4px;background:var(--accent);margin-right:6px;vertical-align:1px}
+.ll-s{display:flex;align-items:center;gap:4px;margin-top:2px;font:400 12px/16px var(--font);color:var(--muted);min-width:0}
+.ll-s span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ll-d{flex:none;text-align:right;font:400 11.5px/15px var(--font);color:var(--muted)}
+.lcol{display:flex;gap:0;min-height:0;flex:1 1 auto;border-radius:16px;background:var(--surface);box-shadow:0 0 0 .5px var(--hairline);overflow:hidden}
+.lc-l{flex:0 0 44%;min-width:0;padding:8px;box-shadow:inset -.5px 0 0 var(--hairline);overflow:hidden}
+.lc-r{flex:1 1 auto;min-width:0;padding:16px;overflow:hidden}
+.lpk{display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0}
+.lpk-pp{flex:none;cursor:default}
+.lc-r{overflow:auto;scrollbar-width:none}
+.lpk-t{margin-top:8px;font:700 15px/20px var(--font)}
+.lpk-m{font:400 12px/16px var(--font);color:var(--muted)}
+.lpk-h{margin-top:12px;font:600 12px/16px var(--font);color:var(--muted)}
+.lpk-go{margin-top:12px;min-height:36px}
+.say{display:flex;gap:8px;align-items:flex-start;padding:8px 0;min-width:0}
+.say b{font:600 13px/18px var(--font)}
+.say-d{margin-left:6px;font:400 11.5px/16px var(--font);color:var(--muted)}
+.say p{margin:2px 0 0;font:400 13.5px/20px var(--font);color:var(--text)}
+.conn{display:flex;align-items:center;gap:10px;min-height:44px;padding:4px 0;box-shadow:inset 0 -.5px 0 var(--hairline);color:var(--muted);min-width:0;width:100%}
+.conn span{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.conn b{font:600 13.5px/18px var(--font);color:var(--text)}
+.conn em{font:normal 400 12px/16px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lk-mini{display:flex;gap:10px;align-items:center;margin-top:10px;padding:8px;border-radius:12px;background:var(--surface-2)}
+.lk-mini .lk-svg{flex:none;width:72px;height:50px;border-radius:6px}
+.lk-mini b{display:block;font:600 12.5px/17px var(--font)}
+.lk-mini em{font:normal 400 11.5px/15px var(--font);color:var(--muted)}
+/* ⑤ 링크 보기 */
+.lk{border-radius:16px;background:var(--surface);box-shadow:0 0 0 .5px var(--hairline);overflow:hidden;flex:none}
+.lk-bar{display:flex;align-items:center;gap:8px;height:44px;padding:0 8px 0 12px;box-shadow:inset 0 -.5px 0 var(--hairline);color:var(--muted)}
+.lk-u{flex:1 1 auto;min-width:0;font:400 12.5px/16px var(--mono);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lk-body{position:relative;height:200px;overflow:hidden;background:#fff}
+.lk-body .lk-svg{width:100%;height:100%;display:block}
+.lk-badge{position:absolute;left:10px;bottom:10px;display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 10px;border-radius:12px;background:rgba(0,0,0,.66);color:#fff;font:600 11.5px/16px var(--font)}
+.lk-note{display:flex;gap:6px;align-items:flex-start;padding:10px 12px 0;font:400 12px/17px var(--font);color:var(--muted)}
+.lk-act{display:flex;gap:6px;flex-wrap:wrap;padding:10px 12px 12px}
+.lk-act .dbtn{min-height:32px;font-size:13px;padding:0 12px}
+/* ⑥ 토큰 · ⚡ 칸 */
+.tok .tk-pin{position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:4px;background:var(--accent);box-shadow:0 0 0 2px var(--surface)}
+.v4 .dk-in .tok{position:relative}
+.v6tp .tp-hd{flex:none;display:flex;align-items:center;justify-content:space-between;height:40px;font:600 13px/16px var(--font)}
+.v6tp .tp-msel{flex:none;display:flex;gap:8px;padding:4px 0 8px}
+.v6tp .tp-msel span{flex:1 1 0;display:flex;flex-direction:column;padding:6px 10px;border-radius:10px;background:var(--surface-2);font:600 12.5px/16px var(--font)}
+.v6tp .tp-msel em{font:normal 400 11px/14px var(--font);color:var(--muted)}
+.v6tp .tp-ft span{display:inline-flex;align-items:center}
+.v6bar{display:flex;flex-direction:column;gap:6px;margin:0 0 12px}
+.v6bar .altsw{margin:0}
+/* ⑥ 보드 */
+#tailspec:empty{display:none}
+.t6b{margin:28px 0 8px}
+.t6g{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.t6f{margin:0;padding:12px;border-radius:16px;background:var(--panel,var(--surface));box-shadow:0 0 0 .5px var(--hairline);display:flex;flex-direction:column;gap:8px;min-width:0}
+.t6f figcaption{display:flex;align-items:center;gap:8px;font:600 14px/18px var(--font)}
+.t6k{flex:none;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--accent-soft);color:var(--accent);font:700 12px/22px var(--font);text-align:center}
+.t6f p{margin:0;font:400 12.5px/18px var(--font);color:var(--muted)}
+.t6s{display:flex;flex-direction:column;gap:8px;padding:10px;border-radius:12px;background:var(--bg)}
+.t6c{display:flex;flex-direction:column;gap:6px;width:100%;max-width:350px}
+.t6c.wn{max-width:260px}
+.t6-row{display:flex;align-items:center;gap:6px}
+.t6-pl{flex:none;width:36px;height:36px;border-radius:18px;background:var(--surface);display:flex;align-items:center;justify-content:center;color:var(--muted);box-shadow:0 0 0 .5px var(--hairline)}
+.t6-in{flex:1 1 auto;min-width:0;height:40px;border-radius:20px;background:var(--surface);display:flex;align-items:center;gap:6px;padding:0 4px 0 14px;box-shadow:0 0 0 .5px var(--hairline)}
+.t6-in.dis{opacity:.55}
+.t6-ph{flex:1 1 auto;min-width:0;font:400 14px/18px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t6-tok{position:relative;flex:none;height:28px;border-radius:14px;display:inline-flex;align-items:center;gap:3px;padding:0 9px 0 6px;font:600 12px/16px var(--font);color:var(--muted);box-shadow:inset 0 0 0 1px var(--hairline);max-width:128px;white-space:nowrap}
+.t6-tok span{overflow:hidden;text-overflow:ellipsis}
+.t6-tok.on{background:var(--accent-soft);color:var(--accent);box-shadow:none}
+.t6-tok.n{padding:0 8px 0 6px}
+.t6-pin{position:absolute;top:-2px;right:-2px;width:8px;height:8px;border-radius:4px;background:var(--accent);box-shadow:0 0 0 2px var(--surface)}
+.t6-snd{flex:none;width:32px;height:32px;border-radius:16px;background:var(--surface-2);color:var(--muted);display:flex;align-items:center;justify-content:center}
+.t6-snd.on{background:var(--accent);color:var(--accent-ink)}
+.t6-strip{display:flex;align-items:center;gap:6px;height:32px;padding:0 6px 0 10px;margin-left:42px;border-radius:16px;background:var(--surface-2);font:400 12.5px/16px var(--font);color:var(--muted);min-width:0}
+.t6-strip.warn{background:rgba(255,149,0,.14);color:#b35c00}
+.t6-q{flex:1 1 auto;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.t6-q b{color:var(--text);margin-right:4px}
+.t6-x{flex:none;width:24px;height:24px;border-radius:12px;display:flex;align-items:center;justify-content:center}
+.t6-more{flex:none;height:22px;padding:0 8px;border-radius:11px;background:var(--surface);font:600 11.5px/22px var(--font);color:var(--text)}
+.t6-th{flex:none;width:24px;height:24px;border-radius:6px;background:linear-gradient(135deg,#ff8a7a,#ffc37a)}
+.t6-th.b{background:linear-gradient(135deg,#7a5cff,#6b7bff)}
+.t6-who{flex:none;display:inline-flex;align-items:center;gap:4px;height:24px;padding:0 8px 0 3px;border-radius:12px;background:var(--surface);font:600 12px/16px var(--font);color:var(--text)}
+.t6-ans{display:flex;gap:6px;margin-left:42px}
+.t6-ans .b{height:32px;padding:0 14px;border-radius:16px;background:var(--surface-2);display:inline-flex;align-items:center;gap:4px;font:600 13px/16px var(--font)}
+.t6-ans .b.p{background:var(--accent);color:var(--accent-ink)}
+.t6-ans .b.f{background:transparent;color:var(--muted);box-shadow:inset 0 0 0 1px var(--hairline)}
+.t6-sent{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.t6-bub{padding:8px 12px;border-radius:18px;background:var(--accent);color:var(--accent-ink);font:400 14px/20px var(--font)}
+.t6-cap{display:inline-flex;align-items:center;gap:3px;font:400 12px/16px var(--font);color:var(--muted)}
+.t6two{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:12px;margin-top:12px}
+.t6s.sheet{padding:12px}
+.t6pop .tail-pop.t6static{position:relative;left:auto;right:auto;bottom:auto;max-height:none;width:100%;max-width:360px}
+.t6t td,.t6t th{font-size:12.5px}
+
+</style>
 </head>
 <body>
 <header class="wrap top">
-  <h1>크루네 듀오 시안 v5 — 지금과 바꾼 뒤</h1>
+  <h1>크루네 듀오 시안 v6 — 지금과 바꾼 뒤</h1>
+  <p><b>v6 (11/16)</b> — 피드백 여섯 가지: ① 답할 때 「직접 입력」을 늘 같이 둡니다 ② 펼친 세로 채팅은 파일 앱 열 보기처럼 목록 1/3 | 대화 2/3로 나란히(덮기도 비교) ③ 거절·허용 단추는 글자 폭에 맞춘 36 ④ 자료 카드는 한 크기로 한 줄 3~5장, 보기는 격자·목록·열 ⑤ 자료에 담은 크루의 한마디·원본·보고서 연결·외부 링크(막히면 캡처) ⑥ 입력부 ⚡ 상태 15가지와 운영 기능 11가지가 옮겨 갈 자리(크루 방 화면 아래). 아래는 v5 설명입니다.</p>
   <p>v4를 듀오에서 본 피드백 열한 가지를 반영했습니다. 할 일은 칩이 「누구」(전체 · 나 · 크루)만 거르고, 묶음 머리는 숫자와 상태만 말해서 같은 말이 두 자리에 나오지 않습니다. 확인 필요는 정할 질문과 답 단추가 바로 보이는 질문 카드가 됐고, 펼친 가로의 「오늘」 요약과 혼자 떠 있던 ⋯는 없앴습니다. 두 길이 다 열려 있는 것은 결정 9~11로 남겼고, 각 추천으로 그렸습니다. 시안 아래 전환 단추로 다른 안을 바로 볼 수 있습니다.</p>
   <div class="facts">
     <span class="fact"><b>기본 보기</b> 홈 화면 앱(레일). 웹 382 배치·Safari도 전환</span>
@@ -1351,7 +1490,7 @@ const BAND={
   saf:{outerP:'Safari 웹 화면 382×618은 에뮬레이터 값입니다. 오른쪽 84 띠에 Safari 막대가 선다고 보고 레일 대신 아래 캡슐을 씁니다. 행과 토큰은 앱과 같습니다.',outerL:'Safari 웹 화면 594×406은 에뮬레이터 값입니다. 레일 대신 아래 캡슐 52(바닥 8)를 씁니다.'}
 };
 const ST={s:'todo',m:'after',r:'app',a:false,z:'fit',t:'light',alt:false,aux:false,c390:false,kb:false,d5:false,wm:false,hd:'A',sc:false,tail:'3',tk:false,plus:false,grid:false,rec:false,d9:'B',d10:'1',d11:'1',nq:'3',pr:false,tp:false,tw:[],tsc:'once',cbx:false,th:'A',lb:'1',qa:{}};
-const SKEY='crewne-duo-mock-v5';
+const SKEY='crewne-duo-mock-v6';
 function load(){
   try{const v=JSON.parse(localStorage.getItem(SKEY)||'{}');Object.assign(ST,v)}catch(e){}
   const h=new URLSearchParams(location.hash.slice(1));
@@ -2753,7 +2892,7 @@ function render(){
     const kbl=S==='login'?'':kbLine(S,p.id);
     const bt=R==='saf'?BAND.saf[p.id]:R==='app382'?(BAND.a382[p.id]||BAND.app[p.id]):BAND.app[p.id];
     const band=S==='login'||!bt?'':`<div class="${R==='saf'?'infoband':'warnband'}">${bt}</div>`;
-    const aftL=`바꾼 뒤 · v5${outer&&S!=='login'?(R==='saf'?' · Safari 아래 캡슐':R==='app382'?' · 웹 382 배치':''):''}`;
+    const aftL=`바꾼 뒤 · v6${outer&&S!=='login'?(R==='saf'?' · Safari 아래 캡슐':R==='app382'?' · 웹 382 배치':''):''}`;
     let body;
     if(ST.m==='both'){
       const fr=[['now','지금'],['after',aftL]];
@@ -2837,6 +2976,242 @@ document.addEventListener('click',e=>{
   if(b.dataset.go){const g=b.dataset.go;if(SCREENS.some(x=>x[0]===g)){ST.s=g;render()}}
 });
 let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(render,120)});
+/* ===================== v6 덧칠 — 샐리 11/16 피드백 6건 =====================
+   ① 답할 때 「직접 입력」 늘 함께  ② 펼친 세로 채팅 = 목록 1/3 | 대화 2/3 (덮기 비교)
+   ③ 거절/허용 단추 작게  ④ 자료 카드 한 크기(한 줄 3~5) + 보기 3가지(격자·목록·열)
+   ⑤ 자료에 담은 크루 한마디 · 원본/보고서 연결 · 외부 링크 미리보기(막히면 캡처)
+   ⑥ 입력부 ⚡ 꼬리말 세밀 기획: 상태 14가지 · 상황 줄 우선순위 · ⚡ 칸            */
+for(const [k,v] of Object.entries({fi:null,lv:'grid',ipo:'0',dk:'report',mdl:'auto',lkv:'shot'}))if(ST[k]===undefined)ST[k]=v;
+
+/* ---------- ① 직접 입력 ---------- */
+const FREE=(id,cls='qopt')=>`<button class="${cls} free" data-fi="${id}" aria-label="직접 입력">${ico('pen',{s:14})}<span>직접 입력</span></button>`;
+function freeBox(q){return `<div class="free-in" data-free="${q.id}"><input class="fi-in" type="text" placeholder="${nm(q.crew)}에게 보낼 답" aria-label="직접 입력한 답"><button class="fi-go" data-fis="${q.id}" aria-label="보내기">${ico('send',{s:16})}</button><button class="fi-x" data-fi="" aria-label="취소">${ico('close',{s:16})}</button></div>`}
+const _qAns=qAns;
+qAns=function(q,o={}){if(ST.fi===q.id)return freeBox(q);return _qAns(q,o)+FREE(q.id)};
+const _ansRow=ansRow;
+ansRow=function(q,o={}){
+  if(!q)return '';
+  if(!ST.qa[q.id]&&ST.fi===q.id)return `<div class="ans v6free">${freeBox(q)}</div>`;
+  const s=_ansRow(q,o);
+  if(ST.qa[q.id])return s;
+  return s.replace(/<\/div>$/,FREE(q.id,'dbtn')+'</div>');
+};
+const _ansChips=ansChips;
+ansChips=function(q,o={}){
+  if(!q)return '';
+  if(!ST.qa[q.id]&&ST.fi===q.id)return `<div class="achips">${freeBox(q)}</div>`;
+  const s=_ansChips(q,o);
+  return ST.qa[q.id]?s:s.replace('<span class="atgt">',FREE(q.id)+'<span class="atgt">');
+};
+const _ansWord=ansWord;
+ansWord=function(q,a){return q.opts.includes(a)?_ansWord(q,a):`「${a}」로 답함`};
+
+/* ---------- ② 펼친 세로 채팅: 나란히(1/3 | 2/3) · 덮기 ---------- */
+const _aInnerP=aInnerP;
+aInnerP=function(S){
+  if(!['chat','room','sess'].includes(S))return _aInnerP(S);
+  const [W,H]=DIM.innerP,LW=224,GX=LW+1,RW=W-GX,kb=kbOn(S,'innerP','after'),V=kb?VB('innerP'):H;
+  CTX.tokP='innerL';
+  const pp={l:12,t:8};
+  const left=S==='sess'?listHead('sess')+sessList():chatList({sel:'genz'});
+  const right=S==='sess'?sessView({pp}):roomView({coverW:96,pp});
+  let h=sysRow();
+  if(ST.ipo==='1'){
+    h+=pane(0,72,W,V-72,right,'',{t:0,l:20,r:20,b:kb?8:24},'--pt:52px');
+    h+=`<div class="v6side" title="목록 열기">${ico('fold-open',{s:20})}</div>`;
+    h+=`<div class="v6scrim"></div>`;
+    h+=pane(0,0,300,H,left,'v6drawer',{t:72,l:16,r:12,b:84});
+    h+=bottomTabs3(TABOF[S],16,H-20-52,268);
+    h+=ann(0,0,300,H,'덮는 목록 300 · 바깥을 누르면 닫힘 · 대화는 뒤에서 흐려짐','tr');
+  }else{
+    h+=pane(0,72,LW,H-72,left,'v6list',{t:0,l:12,r:8,b:84});
+    h+=`<div class="v6split" style="left:${LW}px;top:72px"></div>`;
+    h+=pane(GX,72,RW,V-72,right,'',{t:0,l:16,r:20,b:kb?8:24},'--pt:52px');
+    h+=bottomTabs3(TABOF[S],8,H-20-52,LW-16);
+    h+=ann(0,72,LW,H-72,`목록 ${LW} · 1/3`,'tl');
+    h+=ann(GX,72,RW,V-72,`대화 ${RW} · 2/3`,'tr');
+  }
+  h+=`<div class="crease h" style="top:463px;height:24px;left:0;right:0"></div>`;
+  if(kb)h+=kbBlock('innerP');
+  h+=hingeAnn(0,463,W,24,'접힘 축(노트북 자세)');
+  CTX.tokP=null;
+  return h;
+};
+
+/* ---------- ④ 자료: 한 크기 카드 · 보기 3가지 ---------- */
+const LVI={
+  grid:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg>',
+  list:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r=".8" fill="currentColor"/><circle cx="4.5" cy="12" r=".8" fill="currentColor"/><circle cx="4.5" cy="18" r=".8" fill="currentColor"/></svg>',
+  col:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5"/><path d="M9.5 4.5v15M14.5 4.5v15"/></svg>'};
+const LVN={grid:'격자',list:'목록',col:'열'};
+/* 담을 때 한마디: [크루, 말, 때]. 처음 담은 크루가 맨 위 */
+const SAYS={
+  l1:[['rain','듀오 결정 9에 바로 쓸 근거라 담았어요. 2·3절만 먼저 보면 돼요.','11/15 14:10'],['kiki','시안 v6 머리 정할 때 다시 볼게요.','11/15 18:02']],
+  l2:[['nana','26.46 재검증 기준표예요. 다음 회차도 이걸로 돌려요.','11/14']],
+  l3:[['genz','2안이 저장 수가 높았던 형식이에요.','11/14']],
+  l4:[['kiki','듀오 결정이 11/17로 미뤄진 근거예요.','11/11']],
+  l5:[['loop','주기를 30분으로 늘릴지 판단할 때 쓰세요.','11/10']],
+  n1:[['rain','펼침 전환 사례만 골랐어요.','오늘']],n2:[['rain','표지 3안에 쓸 만한 글꼴이에요.','오늘']],
+  n3:[['rain','QA 자동화를 처음 짤 때 순서가 잘 정리돼 있어요. 4절 체크리스트만 봐도 돼요.','오늘 09:12'],['nana','CCQ 자동 검증 설계에 참고할게요.','오늘 10:40']],
+  n4:[['rain','11/14 실기 때 말로 남긴 메모예요.','오늘']],n5:[['rain','가격 빼고 기능만 비교했어요.','오늘']]};
+const sayOf=l=>(SAYS[l.id]||[])[0];
+function libLine(l,o={}){
+  const s=sayOf(l),sel=o.sel===l.id?' sel':'';
+  return `<div class="lline${sel}${o.sm?' sm':''}" data-go="doc" data-dk="${l.kind==='link'?'link':'report'}" tabindex="0"><span class="ll-ic k-${l.kind}">${ico(KICO[l.kind],{s:o.sm?16:18})}</span><div class="ll-m"><div class="ll-t">${o.dot?'<i class="ll-dot"></i>':''}${l.t}</div>${o.sm?'':`<div class="ll-s">${s?face(s[0],16)+`<span>${s[1]}</span>`:''}</div>`}</div>${o.sm?'':`<span class="ll-d">${l.kl}<br>${l.d||'오늘'}</span>`}</div>`;
+}
+function connOf(l){
+  if(l.kind==='link')return [['doc','이 링크를 근거로 쓴 보고서','폴더블 화면 패턴 정리 · 레인','report'],['book','원본 메모','옵시디언 · QA 자동화 읽을거리','src']];
+  return [['book','원본','옵시디언 · '+l.t,'src'],['doc','근거 문서','HIG 듀오 88항목 대조 · 레인','report'],['web','외부 링크 2','developer.apple.com · medium.com','link']];
+}
+function libPeek(l){
+  const ss=SAYS[l.id]||[];
+  return `<div class="lpk"><div class="acard lpk-pp" style="width:132px">${paper(l,132)}</div><div class="lpk-t">${l.t}</div><div class="lpk-m">${l.kl} · ${nm(l.c)} · ${l.d||'오늘'}</div>
+  ${ss.length?`<div class="lpk-h">담을 때 한마디</div>${ss.map(([c,t,d])=>`<div class="say">${face(c,20)}<div><b>${nm(c)}</b><span class="say-d">${d}</span><p>${t}</p></div></div>`).join('')}`:''}
+  <div class="lpk-h">연결</div>${connOf(l).map(([i,a,b])=>`<div class="conn">${ico(i,{s:16})}<span><b>${a}</b><em>${b}</em></span>${ico('chev',{s:14})}</div>`).join('')}
+  <button class="dbtn pri lpk-go" data-go="doc" data-dk="${l.kind==='link'?'link':'report'}">열기</button></div>`;
+}
+libList5=function(o={}){
+  const P=CTX.P,cw=o.cw||CWDEF[P]||350;
+  const cols=Math.max(3,Math.min(5,Math.floor((cw+12)/122))),w=(cw-12*(cols-1))/cols;
+  const wide=cw>=560,lv=(ST.lv==='col'&&!wide)?'grid':ST.lv;
+  const sw=`<div class="lvsw" role="group" aria-label="보기 방식">${['grid','list','col'].filter(v=>v!=='col'||wide).map(v=>`<button data-k="lv" data-v="${v}" aria-pressed="${lv===v}" title="${LVN[v]}" aria-label="${LVN[v]} 보기">${LVI[v]}</button>`).join('')}</div>`;
+  let h=`<div class="m3blk lsg v6seg">${o.seg!==false?libSeg():'<span class="gh-sp"></span>'}${sw}</div>`;
+  if(lv==='grid'){
+    h+=`<section class="lgrp m3blk">${grpHead('레인이 고른 새 자료',NEWS.length,{link:'모두 보기'})}<div class="agrid v6g" style="--cols:${cols}">${NEWS.slice(0,cols).map(n=>libCard(n,{w,dot:1,why:1})).join('')}</div></section>`;
+    h+=`<section class="lgrp m3blk">${grpHead('담은 자료',LIBS.length)}<div class="agrid v6g" style="--cols:${cols}">${LIBS.map(l=>libCard(l,{w,sel:o.sel})).join('')}</div></section>`;
+  }else if(lv==='list'){
+    h+=`<section class="lgrp m3blk">${grpHead('레인이 고른 새 자료',NEWS.length,{link:'모두 보기'})}${NEWS.slice(0,3).map(l=>libLine(l,{dot:1})).join('')}</section>`;
+    h+=`<section class="lgrp m3blk">${grpHead('담은 자료',LIBS.length)}${LIBS.map(l=>libLine(l,{sel:o.sel})).join('')}</section>`;
+  }else{
+    const sid=o.sel||'l1',sel=[...NEWS,...LIBS].find(x=>x.id===sid)||LIBS[0];
+    h+=`<div class="lcol"><div class="lc-l">${grpHead('새 자료',NEWS.length)}${NEWS.slice(0,2).map(l=>libLine(l,{dot:1,sm:1,sel:sel.id})).join('')}${grpHead('담은 자료',LIBS.length)}${LIBS.map(l=>libLine(l,{sm:1,sel:sel.id})).join('')}</div><div class="lc-r">${libPeek(sel)}</div></div>`;
+  }
+  return `<div class="libv m3band v6lib">${h}</div>`;
+};
+const _libCard=libCard;
+libCard=function(l,o={}){
+  const s=sayOf(l);
+  return _libCard(l,o).replace('data-go="doc"',`data-go="doc" data-dk="${l.kind==='link'?'link':'report'}"`)
+    .replace(/<\/div>$/,s&&!o.why?`<div class="ac-say">${face(s[0],14)}<span>${s[1]}</span></div></div>`:'</div>');
+};
+
+/* ---------- ⑤ 자료 보기: 한마디 · 연결 · 외부 링크 ---------- */
+function saySec(id){const ss=SAYS[id]||[];if(!ss.length)return '';return `<section class="m3blk dsec">${grpHead('담을 때 한마디',ss.length)}${ss.map(([c,t,d])=>`<div class="say">${face(c,24)}<div><b>${nm(c)}</b><span class="say-d">${d}</span><p>${t}</p></div></div>`).join('')}</section>`}
+function shotSVG(){return `<svg class="lk-svg" viewBox="0 0 320 220" preserveAspectRatio="xMidYMin slice" aria-hidden="true"><rect width="320" height="220" fill="#fff"/><rect x="0" y="0" width="320" height="26" fill="#f2f2f2"/><circle cx="16" cy="13" r="6" fill="#111"/><rect x="28" y="9" width="44" height="8" rx="2" fill="#111"/><rect x="250" y="8" width="54" height="10" rx="5" fill="#1a8917"/><rect x="24" y="44" width="240" height="14" rx="2" fill="#191919"/><rect x="24" y="64" width="190" height="14" rx="2" fill="#191919"/><circle cx="32" cy="96" r="8" fill="#c9c9c9"/><rect x="46" y="91" width="80" height="6" rx="2" fill="#6b6b6b"/><rect x="46" y="100" width="56" height="5" rx="2" fill="#a8a8a8"/><rect x="24" y="118" width="272" height="60" rx="4" fill="#e8eefc"/><rect x="24" y="188" width="272" height="5" rx="2" fill="#bcbcbc"/><rect x="24" y="198" width="250" height="5" rx="2" fill="#bcbcbc"/><rect x="24" y="208" width="262" height="5" rx="2" fill="#bcbcbc"/></svg>`}
+function linkView(o={}){
+  const l=NEWS.find(x=>x.id==='n3'),live=ST.lkv==='live';
+  const cover=`<section class="rpt-cover m3blk"><div class="rc-tags"><span class="rtag">${ico('link',{s:12})}&nbsp;링크</span><span class="rtag">medium.com · 읽기 7분</span></div><div class="rc-c">${l.t}</div><div class="rc-who">${face('rain',20)}<span>레인이 담음 · 오늘 09:12 · 나나도 담음</span></div></section>`;
+  const seg=`<span class="tp-seg lk-seg" role="group" aria-label="보기"><button data-k="lkv" data-v="live" aria-pressed="${live}">원문</button><button data-k="lkv" data-v="shot" aria-pressed="${!live}">캡처</button></span>`;
+  const frame=`<section class="lk m3blk"><div class="lk-bar">${ico('web',{s:16})}<span class="lk-u">medium.com/@qa/automation-first-steps</span>${seg}</div><div class="lk-body">${shotSVG()}${live?'':`<span class="lk-badge">${ico('image',{s:12})}캡처 · 담을 때 찍음 · 오늘 09:12</span>`}</div>${live?`<div class="lk-note">${ico('info',{s:14})}<span>원문을 앱 안에서 열어요. 사이트가 막으면 캡처로 바뀌어요.</span></div>`:`<div class="lk-note">${ico('info',{s:14})}<span>medium.com은 앱 안 열기를 막아요. 담을 때 찍은 첫 화면 3장을 보여 줘요.</span></div>`}<div class="lk-act"><button class="dbtn">${ico('out',{s:16})}&nbsp;원문 열기</button><button class="dbtn">${ico('refresh',{s:16})}&nbsp;다시 캡처</button><button class="dbtn">${ico('copy',{s:16})}&nbsp;주소 복사</button></div></section>`;
+  const sum=`<section class="m3blk dsec">${grpHead('레인 요약',3)}<div class="rpt-body"><section class="rpt-sec"><p>① 처음엔 손으로 돌리던 체크리스트를 그대로 옮긴다 ② 실패가 잦은 화면부터 자동화 ③ 결과는 사람이 읽는 한 줄로 남긴다.</p></section></div></section>`;
+  const conn=`<section class="m3blk dsec">${grpHead('연결',connOf(l).length)}${connOf(l).map(([i,a,b])=>`<div class="conn">${ico(i,{s:16})}<span><b>${a}</b><em>${b}</em></span>${ico('chev',{s:14})}</div>`).join('')}</section>`;
+  return `<div class="docv m3band v6doc">${cover}${saySec('n3')}${frame}${sum}${conn}</div>`;
+}
+const _dposLib=DPOS.lib;DPOS.lib=()=>ST.dk==='link'?posX(ico('link',{s:18}),'QA 자동화 글','레인 · 링크 · 오늘'):_dposLib();
+const _docView=docView;
+docView=function(o={}){
+  if(ST.dk==='link')return linkView(o);
+  let s=_docView(o);
+  const q=qItem(DOC.askId);
+  if(q&&!ST.qa[q.id]){
+    if(ST.fi===q.id)s=s.replace(/<div class="ra-a">[\s\S]*?<\/div><\/section>/,`<div class="ra-a">${freeBox(q)}</div></section>`);
+    else s=s.replace(/(<div class="ra-a">[\s\S]*?)<\/div><\/section>/,`$1${FREE(q.id,'qopt sm')}</div></section>`);
+  }
+  if(q&&ST.qa[q.id]&&!q.opts.includes(ST.qa[q.id]))s=s.replace(`답함 · ${ST.qa[q.id]}`,`「${ST.qa[q.id]}」로 답함`);
+  const conn=`<section class="m3blk dsec">${grpHead('연결',3)}${connOf(LIBS[0]).map(([i,a,b])=>`<div class="conn">${ico(i,{s:16})}<span><b>${a}</b><em>${b}</em></span>${ico('chev',{s:14})}</div>`).join('')}<div class="lk-mini">${shotSVG()}<div><b>developer.apple.com · Designing for foldables</b><em>캡처 · 11/15 · 원문 열기 ↗</em></div></div></section>`;
+  s=s.replace(/(<section class="rpt-cover[\s\S]*?<\/section>)/,`$1${saySec('l1')}`);
+  s=s.replace(/<div class="rpt-src">[\s\S]*?<\/div>/,conn);
+  return s;
+};
+
+/* ---------- ⑥ 입력부 ⚡: 토큰 · ⚡ 칸 ---------- */
+function tokParts(kind){const ck=tailChecked(kind),md=ST.mdl==='set';return {ck,md,n:ck.length+(md?1:0)}}
+tokHTML=function(kind){
+  const P=CTX.tokP||CTX.P,{ck,md,n}=tokParts(kind),on=n>0,narrow=P==='outerP'||P==='outerL'||P==='half';
+  let cls,lbl;
+  if(narrow){cls=on?'n40':'ic28';lbl=on?`<span class="tk-l">${n}</span>`:''}
+  else{const p=[];if(ck.length)p.push(ck[0]+(ck.length>1?` +${ck.length-1}`:''));if(md)p.push('Opus·high');cls='lbl';lbl=`<span class="tk-l">${p.length?p.join(' · '):'꼬리말'}</span>`}
+  const pin=on&&ST.tsc==='always'?'<i class="tk-pin" title="늘 붙임"></i>':'';
+  return `<button class="tok ${on?'on':'off'} ${cls}${ST.tp?' open':''}" data-tpo title="⚡ 이번 메시지 설정" aria-label="꼬리말·모델 ${on?n+'개 켜짐':'꺼짐'} · 눌러서 고치기" aria-expanded="${!!ST.tp}">${ico('bolt',{s:16})}${lbl}${pin}</button>`;
+};
+tailPop=function(kind){
+  const P=CTX.tokP||CTX.P,ck=tailChecked(kind),ws=tailWords(),md=ST.mdl==='set';
+  const seg=`<span class="tp-seg" role="group" aria-label="붙이는 범위"><button data-k="tsc" data-v="once" aria-pressed="${ST.tsc!=='always'}">이번만</button><button data-k="tsc" data-v="always" aria-pressed="${ST.tsc==='always'}">늘</button></span>`;
+  const mseg=`<span class="tp-seg" role="group" aria-label="모델"><button data-k="mdl" data-v="auto" aria-pressed="${!md}">자동</button><button data-k="mdl" data-v="set" aria-pressed="${md}">직접</button></span>`;
+  if(P==='outerL'&&ST.kb)return `<div class="tail-pop tstrip" role="dialog" aria-label="⚡ 이번 메시지 설정">${ws.map(w=>{const c=ck.includes(w);return `<button class="tp-chip${c?' on':''}" data-tw="${w}" aria-pressed="${c}">${c?ico('check',{s:14}):''}${w}</button>`}).join('')}<button class="tp-chip${md?' on':''}" data-k="mdl" data-v="${md?'auto':'set'}">${ico('brain',{s:14})}${md?'Opus·high':'모델 자동'}</button>${seg}</div>`;
+  const pos=P==='outerP'?'':P==='innerP'||P==='outerL'?' r360':' r320';
+  const rows=ws.map(w=>{const c=ck.includes(w);return `<div class="tp-row"><button class="tp-ck${c?' on':''}" data-tw="${w}" aria-pressed="${c}" aria-label="${w} 붙이기">${ico('check',{s:16})}</button><span class="tp-nm">${w}</span><button class="tp-rm" data-trm="${w}" aria-label="${w} 빼기">${ico('minus',{s:16})}</button></div>`}).join('');
+  const model=`<div class="tp-ft v6m"><span>${ico('brain',{s:16})}&nbsp;모델·에포트</span>${mseg}</div>${md?`<div class="tp-msel"><span><em>지휘</em>Opus 5.5 · high ›</span><span><em>작업</em>Sonnet 5.5 ›</span></div>`:''}`;
+  return `<div class="tail-pop${pos} v6tp" role="dialog" aria-label="⚡ 이번 메시지 설정"><div class="tp-hd"><b>⚡ 붙일 말</b>${seg}</div>${rows}<div class="tp-add"><span class="tp-pl">${ico('plus',{s:20})}</span>말 추가 · 최대 20</div>${model}<div class="tp-ft"><span>${ico('history',{s:16})}&nbsp;입력 기록 3</span><span>›</span></div></div>`;
+};
+
+/* ---------- ⑥ 상세 기획 보드 ---------- */
+const T6=(o)=>{
+  const tok=o.tok===false?'':`<span class="t6-tok ${o.tc||''}">${ico('bolt',{s:14})}${o.tok?`<span>${o.tok}</span>`:''}${o.pin?'<i class="t6-pin"></i>':''}</span>`;
+  return `<div class="t6c${o.w?' w'+o.w:''}">${o.above||''}${o.strip?`<div class="t6-strip ${o.sc||''}">${o.strip}</div>`:''}<div class="t6-row"><span class="t6-pl">${ico('plus',{s:18})}</span><span class="t6-in${o.dis?' dis':''}"><span class="t6-ph">${o.ph||'젠지에게 새 일 맡기기'}</span>${tok}<span class="t6-snd${o.ready?' on':''}">${ico('send',{s:15})}</span></span></div>${o.after||''}</div>`};
+const T6S=[
+  ['a','기본 · 붙인 것 없음',T6({tok:'꼬리말'}),'⚡와 「꼬리말」 글자를 흐리게. 좁은 자세는 ⚡ 아이콘 28만.'],
+  ['b','말 1개 켬',T6({tok:'Ultrathink',tc:'on'}),'켜진 말 이름을 그대로 보여 줌. 강조 색 옅은 바탕.'],
+  ['c','말 2개 이상',T6({tok:'Ultrathink +1',tc:'on'}),'첫 말 + 남은 개수. 토큰은 최대 128, 넘으면 「⚡ 3」.'],
+  ['d','모델·에포트만 바꿈',T6({tok:'Opus·high',tc:'on'}),'자동이 아니면 모델 이름이 토큰에 뜸. 자동으로 돌리면 사라짐.'],
+  ['e','말 + 모델',T6({tok:'Ultrathink · Opus',tc:'on'}),'말을 먼저, 모델을 뒤에. 폭이 모자라면 「⚡ 2」로 접음.'],
+  ['f','늘 붙이기',T6({tok:'Ultrathink',tc:'on',pin:1}),'「늘」은 오른쪽 위 점. 보낸 뒤에도 남음. 「이번만」은 보내면 꺼짐.'],
+  ['g','좁은 자세(닫힘·반접힘)',T6({tok:'2',tc:'on n',w:'n'})+T6({tok:'',w:'n'}),'켜지면 ⚡ + 개수 배지(40), 꺼지면 ⚡ 28. 이름은 ⚡ 칸에서 확인.'],
+  ['h','인용 중',T6({tok:'꼬리말',strip:`${ico('reply',{s:14})}<span class="t6-q"><b>젠지</b> 2안이 지난달 저장 수가 높았던…</span><span class="t6-x">${ico('close',{s:14})}</span>`}),'상황 줄 32 한 줄. 인용 글은 한 줄로 자름.'],
+  ['i','첨부 있음',T6({tok:'꼬리말',ready:1,strip:`<span class="t6-th"></span><span class="t6-th b"></span><span class="t6-q">파일 2 · 4.1MB</span><span class="t6-x">${ico('close',{s:14})}</span>`}),'썸네일 24 두 개 + 개수. 눌러 펼치면 하나씩 빼기.'],
+  ['j','인용 + 첨부 겹침',T6({tok:'Ultrathink',tc:'on',strip:`${ico('reply',{s:14})}<span class="t6-q"><b>젠지</b> 2안이 지난달…</span><span class="t6-more">+ 첨부 2</span>`}),'상황 줄은 늘 한 줄. 아래 순위만 보이고 나머지는 「+」.'],
+  ['k','크루 전체 방 · 맡을 크루',T6({tok:'꼬리말',ph:'크루들과 논의할 주제',strip:`${ico('group',{s:14})}<span class="t6-q">맡을 크루</span><span class="t6-who">${face('kiki',18)}키키 ▾</span>`}),'그룹 방에서만. 라디오 다섯 개 대신 한 칸 고르기.'],
+  ['l','허용 기다림',T6({tok:false,dis:1,ph:'허용·거절로 답해 주세요',above:`<div class="t6-ans"><span class="b">거절</span><span class="b p">허용</span><span class="b f">${ico('pen',{s:12})}직접 입력</span></div>`}),'입력칸은 잠그고 ⚡ 숨김. 답은 위 답 줄(① 직접 입력 포함).'],
+  ['m','크루가 일하는 중',T6({tok:'꼬리말',dis:1,ph:'끝나면 이어서 말할 수 있어요'}),'입력은 잠그되 ⚡는 열림 — 다음 메시지 설정을 미리.'],
+  ['n','연결 끊김',T6({tok:'꼬리말',sc:'warn',strip:`${ico('warn',{s:14})}<span class="t6-q">연결이 끊겼어요 · 다시 잇는 중</span>`}),'상황 줄 맨 앞 순위. 쓴 글은 기기에 남김.'],
+  ['o','보낸 뒤',`<div class="t6-sent"><div class="t6-bub">2안 좋아. 문구만 더 짧게.</div><div class="t6-cap">${ico('bolt',{s:12})}Ultrathink · 다이나믹워크플로우 · Opus high</div></div>`,'내 말풍선 아래 12/16 회색 한 줄. 눌러야 전체 문구.'],
+];
+const T6MAP=[
+  ['연결 안내','입력칸 위 문단','상황 줄 1순위(끊겼을 때만)'],
+  ['인용 줄 · 크루로 옮기기','입력칸 위 줄','상황 줄 2순위'],
+  ['첨부 목록','입력칸 위 썸네일 줄','상황 줄 3순위(접어서 개수)'],
+  ['맡을 크루 고르기(그룹 방)','라디오 단추 줄','상황 줄 4순위 · 한 칸 고르기'],
+  ['입력 기록','알약 「입력 기록」','⚡ 칸 맨 아래 줄'],
+  ['지휘자·작업자 모델 · 에포트 4칸','선택 상자 줄','⚡ 칸 「모델·에포트」 자동/직접'],
+  ['자주 쓰는 말(편집·추가·삭제)','칩 줄','⚡ 칸 체크 줄 · 말 추가'],
+  ['빠른 답 칩(업무 화면)','칩 줄 앞','답 줄(메시지 아래)로 이동'],
+  ['오류 · 저장 실패 · 힌트','입력칸 위 문단','입력칸 아래 12/16 한 줄(생길 때만)'],
+  ['＋ 첨부 메뉴(사진·파일·자료·링크)','＋ 단추','그대로'],
+  ['뒤로 · 보내기','입력 줄','그대로(뒤로는 머리로)']];
+function tailBoard(){
+  return `<div class="t6b"><h2 class="sh">⑥ 입력부 ⚡ 상세 기획 — 상태 15가지</h2>
+  <p class="shs">운영 크루네 입력부는 입력칸 위에 기능 11가지가 따로 쌓여 많을 때 9줄까지 높아져요. v6는 <b>입력 줄 하나 + 상황 줄 하나(32)</b>로 묶어요. 상황 줄 순위는 <b>연결 끊김 › 인용 › 첨부 › 맡을 크루</b>이고 한 번에 하나만 보여요. 나머지 설정은 모두 ⚡ 칸에 들어가요.</p>
+  <div class="t6g">${T6S.map(([k,t,m,r])=>`<figure class="t6f"><figcaption><span class="t6k">${k.toUpperCase()}</span>${t}</figcaption><div class="t6s">${m}</div><p>${r}</p></figure>`).join('')}</div>
+  <div class="t6two"><figure class="t6f big"><figcaption><span class="t6k">⚡</span>⚡ 칸 — 누르면 입력칸 위로(키보드 유지)</figcaption><div class="t6s sheet">${(()=>{const s=ST.tp,m=ST.mdl;ST.tp=true;CTX.tokP='innerP';const h=`<div class="v5 t6pop" style="position:relative">${tailPop('room').replace('tail-pop r360 v6tp','tail-pop v6tp t6static')}</div>`;CTX.tokP=null;ST.tp=s;return h})()}</div><p>위에서부터 붙일 말(체크) → 말 추가 → 모델·에포트(자동/직접) → 입력 기록. 「이번만 | 늘」은 붙일 말과 모델 모두에 걸려요.</p></figure>
+  <figure class="t6f big"><figcaption><span class="t6k">↔</span>운영 기능 11가지가 옮겨 가는 곳</figcaption><table class="dt t6t"><thead><tr><th>기능</th><th>지금</th><th>v6</th></tr></thead><tbody>${T6MAP.map(r=>`<tr><td>${r[0]}</td><td class="n2">${r[1]}</td><td class="n3">${r[2]}</td></tr>`).join('')}</tbody></table><p>근거: 운영 코드 Composer(attach.jsx)·QuickWords·ExecutionChoice와 방 화면(chat-live.jsx)의 입력칸 위 요소. 줄 높이는 실기에서 안 쟀어요.</p></figure></div></div>`;
+}
+
+/* ---------- 화면 위 v6 막대 · 렌더 덧칠 ---------- */
+function v6bar(){
+  const S=ST.s,b=(k,v,l)=>`<button data-k="${k}" data-v="${v}" aria-pressed="${ST[k]===v}">${l}</button>`;
+  let h='';
+  if(['chat','room','sess'].includes(S))h+=`<div class="altsw">② 펼친 세로 채팅 <div class="seg">${b('ipo','0','나란히 1/3 | 2/3 (추천)')}${b('ipo','1','목록 덮기')}</div></div>`;
+  if(S==='lib')h+=`<div class="altsw">④ 자료 보기 <div class="seg">${b('lv','grid','격자')}${b('lv','list','목록')}${b('lv','col','열(넓은 화면)')}</div></div>`;
+  if(S==='doc')h+=`<div class="altsw">⑤ 자료 종류 <div class="seg">${b('dk','report','보고서')}${b('dk','link','외부 링크')}</div>${ST.dk==='link'?`<div class="seg">${b('lkv','live','원문 열림')}${b('lkv','shot','막혀서 캡처')}</div>`:''}</div>`;
+  if(['room','work','appr','sess'].includes(S))h+=`<div class="altsw">⑥ ⚡ <div class="seg">${b('mdl','auto','모델 자동')}${b('mdl','set','모델 직접')}</div><div class="seg" data-tp><button data-v="1" aria-pressed="${!!ST.tp}">⚡ 칸 열기</button><button data-v="0" aria-pressed="${!ST.tp}">닫기</button></div></div>`;
+  return h?`<div class="v6bar">${h}</div>`:'';
+}
+const _render=render;
+render=function(){
+  _render();
+  const st=$('#stage');if(st){st.insertAdjacentHTML('afterbegin',v6bar());}
+  let tb=$('#tailspec');if(!tb){tb=document.createElement('section');tb.id='tailspec';st.after(tb)}
+  tb.innerHTML=['room','work','appr','sess'].includes(ST.s)&&ST.m!=='now'?tailBoard():'';
+  try{m3Fix()}catch(e){}
+};
+document.addEventListener('click',e=>{
+  const g=e.target.closest('[data-dk]');if(g)ST.dk=g.dataset.dk;
+  const b=e.target.closest('button');if(!b)return;
+  if(b.dataset.fi!==undefined){e.stopImmediatePropagation();ST.fi=b.dataset.fi||null;render();if(ST.fi)setTimeout(()=>{const i=document.querySelector(`[data-free="${ST.fi}"] .fi-in`);if(i)i.focus({preventScroll:true})},30);return}
+  if(b.dataset.fis){e.stopImmediatePropagation();const id=b.dataset.fis,box=b.closest('.free-in'),v=((box&&box.querySelector('.fi-in').value)||'').trim()||'직접 쓴 답';ST.qa=Object.assign({},ST.qa,{[id]:v});QAT[id]=Date.now();ST.fi=null;render();setTimeout(render,4100);return}
+},true);
+document.addEventListener('keydown',e=>{if(e.key==='Enter'&&e.target.classList&&e.target.classList.contains('fi-in')){const g=e.target.closest('.free-in').querySelector('.fi-go');if(g)g.click()}if(e.key==='Escape'&&ST.fi){ST.fi=null;render()}});
+
 load();qsRender();render();
 try{document.fonts.ready.then(()=>render())}catch(e){}
 </script>
