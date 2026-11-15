@@ -646,8 +646,6 @@ body.kb-on .ann.cv{display:block}
 /* 승인: 거절·허용은 입력 줄 바로 위에 고정, 요청 본문만 스크롤. 키보드 때 32 */
 .v4 .apbody{-webkit-mask-image:linear-gradient(180deg,transparent var(--mk0,0px),#000 var(--mk,24px),#000 calc(100% - 12px),transparent 100%);mask-image:linear-gradient(180deg,transparent var(--mk0,0px),#000 var(--mk,24px),#000 calc(100% - 12px),transparent 100%)}
 .scr:has(.plus-panel) .ann.cv{display:none}
-.v4 .apdec{flex:none;flex-wrap:nowrap;margin:0 0 8px;gap:8px}
-.scr.v4[data-kb] .apdec .dbtn.big{min-height:32px;border-radius:16px;font-size:14px}
 .v4 .cpill .wchip{max-width:150px;overflow:hidden;text-overflow:ellipsis}
 .v4 .tailnote{align-self:flex-end;font:400 12px/16px var(--font);color:var(--muted);margin-top:-2px;flex:none;padding-right:2px}
 .v4 .qr{display:flex;gap:8px;margin-left:36px;margin-top:4px;flex:none}
@@ -721,13 +719,369 @@ body.kb-on .ann.cv{display:block}
 .ann.cc{border-color:#ff3b30;border-style:solid}
 .ann.cc .tag{background:#ff3b30}
 body.grid-on .ann.cc{display:block}
+
+/* ================= v5: 피드백 11건 (.scr.v5 안에서만) ================= */
+:root{--press:rgba(18,18,18,.06);--paper:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--press:rgba(255,255,255,.08);--paper:#2c2c2e}}
+:root[data-theme="dark"]{--press:rgba(255,255,255,.08);--paper:#2c2c2e}
+/* 페이지: v5 요약 */
+.v5sum{margin-top:16px;max-width:980px}
+.v5l{margin:0;padding-left:22px;font-size:14px;line-height:1.6}
+.v5l li+li{margin-top:4px}
+.v5l b{font-weight:600}
+
+/* R1 강조는 바깥 8까지, 칸 자르기도 8 넓힘. 줄은 ::before 한 장(고름 · 눌림 · 포커스) */
+.v5 .pane>.fill{margin-inline:-8px;padding-inline:8px}
+.v5 .row.sel::before,.v5 .crow.sel::before,.v5 .ses.sel::before{left:-8px;right:-8px;border-radius:12px}
+.v5 .row:active::before,.v5 .crow:active::before,.v5 .ses:active::before{content:"";position:absolute;top:0;bottom:0;left:-8px;right:-8px;border-radius:12px;background:var(--press);z-index:-1}
+.v5 .row:focus-visible,.v5 .crow:focus-visible,.v5 .ses:focus-visible{outline:none}
+.v5 .row:focus-visible::before,.v5 .crow:focus-visible::before,.v5 .ses:focus-visible::before{content:"";position:absolute;top:0;bottom:0;left:-8px;right:-8px;border-radius:12px;box-shadow:inset 0 0 0 2px var(--accent);z-index:-1}
+.v5 .row.sel::after,.v5 .crow.sel::after,.v5 .ses.sel::after,.v5 .row:has(+ .row.sel)::after,.v5 .crow:has(+ .crow.sel)::after,.v5 .ses:has(+ .ses.sel)::after{display:none}
+/* R2 한 줄 글이 든 도형은 정중앙 */
+.v5 .ctr{display:inline-flex;align-items:center;justify-content:center}
+
+/* R6 묶음 머리 하나 (결정 10 ① 기본, .v2 ② 접는 머리, .v3 ③ 한 줄) */
+.v5 .gh{display:flex;align-items:center;gap:8px;height:20px;margin:16px 0 4px;flex:none;min-width:0}
+.v5 .gh.first,.v5 .tgrp>.gh{margin-top:0}
+.v5 .gh-n{flex:none;min-width:20px;height:20px;padding:0 6px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font:700 12px/16px var(--font);font-variant-numeric:tabular-nums;letter-spacing:0;background:color-mix(in oklab,var(--text) 8%,transparent);color:var(--text)}
+.v5 .gh-n.acc{background:var(--accent);color:var(--accent-ink)}
+.v5 .gh-nm{flex:none;font:700 13px/16px var(--font);color:color-mix(in oklab,var(--text) 80%,transparent);white-space:nowrap}
+.v5 .ghl{flex:1;min-width:8px;height:0;border-top:.5px solid color-mix(in oklab,var(--text) 18%,transparent)}
+.v5 .gh-lk{flex:none;position:relative;font:600 13px/16px var(--font);color:var(--accent);white-space:nowrap;cursor:pointer}
+.v5 .gh-lk::before{content:"";position:absolute;left:-8px;right:-8px;top:-14px;bottom:-14px}
+.v5 .gh-cv{flex:none;display:inline-flex;color:var(--muted)}
+.v5 .gh-sp{flex:1;min-width:0}
+.v5 .gh-c{flex:none;font:400 15px/20px var(--font);color:var(--faint)}
+.v5 .gh.v2{height:44px;gap:6px;box-shadow:inset 0 -.5px 0 color-mix(in oklab,var(--text) 18%,transparent)}
+.v5 .gh.v2 .gh-nm,.v5 .gh.v3 .gh-nm{font:600 15px/20px var(--font);color:var(--text)}
+.v5 .gh.v3{height:44px;gap:6px;margin-bottom:0;color:var(--muted)}
+.v5 .gh.v3>.ic:first-child{color:var(--ok)}
+
+/* 할 일 묶음 */
+.v5 .tgrp{flex:none;display:flex;flex-direction:column;margin-top:16px;min-width:0}
+.v5 .tgrp.first{margin-top:0}
+.v5 .qnone+.tgrp{margin-top:8px}
+.v5 .gi{display:flex;flex-direction:column;gap:8px;min-width:0}
+.v5 .gi.rows,.v5 .gi.cpt{gap:0}
+.v5 .gi.cpt .qc.wide{margin-bottom:4px}
+.v5 .bandfix{display:flex;flex-direction:column;flex:none;min-width:0}
+.v5 .chips.who{margin:0 0 8px}
+
+/* 질문 카드 (좁은 152 · 넓은 112 · 목록 88), 크루 제안, 진행 중 카드 88 */
+.v5 .qc,.v5 .propc,.v5 .tcd{position:relative;flex:none;min-width:0;background:var(--surface);border-radius:12px;padding:12px;display:flex;flex-direction:column}
+.v5 .qc-h{display:flex;align-items:center;gap:8px;height:20px;min-width:0;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap}
+.v5 .qc-h b{flex:none;font:600 13px/16px var(--font);color:var(--text)}
+.v5 .qc:not(.list):not(.wide) .qc-h{padding-right:64px}
+.v5 .qc-t{flex:none}
+.v5 .qc-k{flex:none;height:20px;padding:0 8px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);background:var(--surface-2);color:var(--muted)}
+.v5 .qc-k.appr{background:var(--tint);color:var(--accent)}
+.v5 .qc-k.rec{background:var(--accent);color:var(--accent-ink)}
+.v5 .qc-more{position:absolute;right:12px;top:12px;height:20px;display:inline-flex;align-items:center;font:600 13px/16px var(--font);color:var(--accent);cursor:pointer;white-space:nowrap}
+.v5 .qc-more::before{content:"";position:absolute;left:-8px;right:-8px;top:-12px;bottom:-12px}
+.v5 .qc-q{margin-top:4px;font:700 15px/20px var(--font);letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.v5 .qc-w{margin-top:4px;font:400 13px/18px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .qc-a{display:flex;gap:8px;margin-top:10px;flex-wrap:nowrap;min-width:0}
+.v5 .qc-a.sm{margin-top:8px}
+.v5 .qopt{position:relative;flex:none;height:32px;min-width:72px;padding:0 14px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font:600 14px/16px var(--font);background:var(--surface-2);color:var(--text);white-space:nowrap}
+.v5 .qopt::before{content:"";position:absolute;left:0;right:0;top:-6px;bottom:-6px}
+.v5 .qopt.pri{background:var(--accent);color:var(--accent-ink)}
+.v5 .qopt.rec{background:transparent;box-shadow:inset 0 0 0 1.5px var(--accent);color:var(--accent)}
+.v5 .qopt.sm{height:28px;min-width:64px;padding:0 12px;border-radius:14px;font-size:13px}
+.v5 .qopt.sm::before{top:-8px;bottom:-8px}
+.v5 .qopt.xl{height:44px;min-width:120px;padding:0 20px;border-radius:22px;font-size:15px}
+.v5 .qopt.xl::before{display:none}
+.v5 .qc.wide{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:16px;height:112px;align-items:center}
+.v5 .qc.wide .qc-l{min-width:0;align-self:start}
+.v5 .qc.wide .qc-a{margin:0;max-width:252px;flex-wrap:wrap;justify-content:flex-end;align-content:flex-end;align-self:end}
+.v5 .qc.wide.wrap .qc-more{top:auto;right:auto;left:12px;bottom:12px}
+.v5 .qc.list{height:88px;cursor:pointer}
+.v5 .qc.sel{background:color-mix(in oklab,var(--accent) 8%,var(--surface));box-shadow:inset 0 0 0 1.5px var(--accent)}
+.v5 .qc.t3,.v5 .qline.t3{background:color-mix(in oklab,var(--accent) 9%,var(--surface))}
+.v5 .qc.done{flex-direction:row;align-items:center;gap:8px;height:44px;padding:0 12px;font:600 15px/20px var(--font)}
+.v5 .qc.done>.ic{color:var(--ok)}
+.v5 .qc-undo{position:relative;font:600 13px/16px var(--font);color:var(--accent)}
+.v5 .qc-undo::before{content:"";position:absolute;left:-8px;right:-8px;top:-14px;bottom:-14px}
+.v5 .propc.dsh{background:transparent;outline:1px dashed color-mix(in oklab,var(--text) 28%,transparent);outline-offset:-1px}
+.v5 .tcd{height:88px;cursor:pointer}
+.v5 .tcd-t{margin-top:4px;font:600 15px/20px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .tcd-n{margin-top:2px;font:400 13px/18px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* 질문 줄 64 (닫힘 가로는 한 줄 44) */
+.v5 .qline{position:relative;flex:none;display:flex;align-items:center;gap:12px;height:64px;padding:0 12px;border-radius:12px;background:var(--surface);min-width:0;cursor:pointer}
+.v5 .ql-m{flex:1;min-width:0}
+.v5 .ql-1{font:600 15px/20px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.v5 .ql-2{font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .qline>.ic{flex:none;color:var(--muted)}
+.v5 .qline.one{height:44px;border-radius:0;background:none;padding:0;gap:8px;isolation:isolate}
+.v5 .qline.one .ql-1{flex:1}
+.v5 .qline.one .ql-t{flex:none;font:400 12px/16px var(--font);color:var(--muted)}
+.v5 .qline.one::after{content:"";position:absolute;left:32px;right:0;bottom:0;height:1px;background:var(--hairline);transform:scaleY(.5);transform-origin:0 100%}
+.v5 .qline.one:last-child::after{display:none}
+.v5 .qnone{flex:none;display:flex;align-items:center;gap:8px;height:44px;font:400 13px/16px var(--font);color:var(--muted)}
+.v5 .qnone .ic{color:var(--ok)}
+/* 결정 9 A안 상세 */
+.v5 .qd{flex:1;min-height:0;display:flex;flex-direction:column;gap:8px;min-width:0}
+.v5 .qd-q{flex:none;font:700 20px/28px var(--font);letter-spacing:-.02em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.v5 .qd-ev{flex:none;background:var(--surface);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:6px}
+.v5 .qd-k{display:flex;align-items:center;gap:8px;font:400 12px/16px var(--font);color:var(--muted)}
+.v5 .qd-t{font:400 15px/20px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:6;overflow:hidden}
+.v5 .qd-ev .qc-more{position:relative;right:auto;top:auto;align-self:flex-start;flex:none}
+.v5 .qd-op{flex:none;display:flex;flex-direction:column}
+.v5 .qd-r{display:flex;align-items:center;gap:12px;height:56px;font:600 15px/20px var(--font);box-shadow:inset 0 -.5px 0 var(--hairline)}
+.v5 .qd-rd{flex:none;width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--faint)}
+.v5 .qd-r.on .qd-rd{box-shadow:inset 0 0 0 6px var(--accent)}
+.v5 .qd-ans{flex:none;margin-top:auto;display:flex;gap:8px}
+.v5 .qd-none{flex:none;display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:4px 0}
+.v5 .qd-none>.ic{color:var(--ok)}
+/* ================= v5 M2: 채팅 목록 눌림 · 꼬리말 칸 · 답 줄 · 긴 코드 · 정중앙 ================= */
+/* 4 눌림 고정(시안 전환 pr): :active와 같은 그림 */
+.v5 .crow.prs::before,.v5 .ses.prs::before{content:"";position:absolute;top:0;bottom:0;left:-8px;right:-8px;border-radius:12px;background:var(--press);z-index:-1}
+.v5 .crow.prs::after,.v5 .ses.prs::after,.v5 .crow:has(+ .crow.prs)::after,.v5 .ses:has(+ .ses.prs)::after{display:none}
+/* 5 꼬리말 토큰: 닫힘 ⚡ 28 / ⚡n 40, 펼침 「⚡ 꼬리말」 · 켜진 말 이름 */
+.v5 .dk-in .tok{position:relative;justify-content:center;gap:2px;padding:0 10px 0 6px;cursor:pointer}
+.v5 .dk-in .tok::before{content:"";position:absolute;left:-6px;right:-4px;top:-8px;bottom:-8px}
+.v5 .dk-in .tok.ic28{width:28px;padding:0;border-radius:14px}
+.v5 .dk-in .tok.n40{width:40px;padding:0 2px 0 0;font:600 13px/16px var(--font);font-variant-numeric:tabular-nums}
+.v5 .dk-in .tok.lbl{max-width:128px}
+.v5 .dk-in .tok .tk-l{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v5 .dk-in .tok.full{max-width:200px}
+.v5 .dk-in .tok.open{box-shadow:inset 0 0 0 1.5px var(--accent);color:var(--accent)}
+/* 꼬리말 칸: 입력칸 위 − 8, 키보드 유지. 말 한 줄 44 · 말 추가 44 · 붙이는 범위 44 · 위아래 8 → 말 2개면 192 */
+.v5 .tail-pop{position:absolute;left:0;right:0;bottom:48px;z-index:9;max-height:calc(var(--plusmax,180px) + 12px);overflow:auto;overscroll-behavior:contain;background:var(--surface);border-radius:20px;box-shadow:0 0 0 .5px var(--hairline),0 10px 30px rgba(0,0,0,.16);padding:8px 12px;display:flex;flex-direction:column}
+.v5 .tail-pop.r320{left:auto;width:320px}
+.v5 .tail-pop.r360{left:auto;width:360px}
+.v5 .tp-row,.v5 .tp-add,.v5 .tp-ft{flex:none;display:flex;align-items:center;gap:12px;height:44px;min-width:0}
+.v5 .tp-row+.tp-row,.v5 .tp-add,.v5 .tp-ft{box-shadow:inset 0 .5px 0 var(--hairline)}
+.v5 .tp-ck{position:relative;flex:none;width:24px;height:24px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 1.5px var(--faint);color:transparent}
+.v5 .tp-ck::before{content:"";position:absolute;inset:-10px}
+.v5 .tp-ck.on{background:var(--accent);box-shadow:none;color:var(--accent-ink)}
+.v5 .tp-nm{flex:1;min-width:0;font:400 16px/20px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .tp-rm{position:relative;flex:none;width:28px;height:28px;border-radius:14px;display:inline-flex;align-items:center;justify-content:center;background:var(--surface-2);color:var(--muted)}
+.v5 .tp-rm::before{content:"";position:absolute;inset:-8px}
+.v5 .tp-add{font:600 15px/20px var(--font);color:var(--accent);cursor:pointer}
+.v5 .tp-add .tp-pl{flex:none;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center}
+.v5 .tp-ft{justify-content:space-between;font:400 13px/16px var(--font);color:var(--muted)}
+.v5 .tp-seg{flex:none;display:inline-flex;height:28px;padding:2px;border-radius:14px;background:var(--surface-2)}
+.v5 .tp-seg button{height:24px;padding:0 10px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);color:var(--muted);white-space:nowrap}
+.v5 .tp-seg button[aria-pressed="true"]{background:var(--surface);color:var(--text);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.v5 .tail-pop.tstrip{flex-direction:row;align-items:center;gap:8px;height:56px;padding:0 12px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+.v5 .tail-pop.tstrip::-webkit-scrollbar{display:none}
+.v5 .tp-chip{position:relative;flex:none;height:32px;padding:0 12px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;gap:4px;background:var(--surface-2);font:600 13px/16px var(--font);color:var(--text);white-space:nowrap}
+.v5 .tp-chip::before{content:"";position:absolute;left:0;right:0;top:-6px;bottom:-6px}
+.v5 .tp-chip.on{background:var(--tint);color:var(--accent);box-shadow:inset 0 0 0 1px color-mix(in oklab,var(--accent) 50%,transparent)}
+.v5 .tp-chip.add{width:32px;padding:0}
+.v5 .tail-pop.tstrip .tp-seg{margin-left:auto}
+/* 6 답 줄: 메시지(요청 카드) 바로 아래 간격 8, 단추 xl 44, 폭 최대 360 */
+.v5 .appr .imp{font:400 13px/16px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .appr .rc-k{line-height:16px}
+.v5 .ans{flex:none;display:flex;gap:8px;width:100%;max-width:360px;align-self:flex-start;border-radius:22px}
+.v5 .thread .ans{margin-top:4px}
+.v5 .thread.sx .ans{margin-top:-4px}
+.v5 .ans .dbtn{position:relative;flex:1 1 0;min-width:0;height:44px;min-height:44px;border-radius:22px;padding:0 16px;gap:6px;font:600 15px/20px var(--font);white-space:nowrap}
+.v5 .ans.stack{flex-direction:column}
+.v5 .ans.stack .dbtn{flex:none;width:100%}
+.v5 .ans .dbtn[disabled]{opacity:.4;cursor:default}
+.v5 .ans-rec{flex:none;height:20px;padding:0 6px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);background:var(--tint);color:var(--accent)}
+.v5 .dbtn.pri .ans-rec{background:color-mix(in oklab,var(--accent-ink) 22%,transparent);color:inherit}
+.v5 .ans-done{flex:none;display:flex;align-items:center;gap:4px;height:16px;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap}
+.v5 .thread .ans-done{margin-top:4px}
+.v5 .thread.sx .ans-done{margin-top:-4px}
+.v5 .ans-done .ic{color:var(--ok)}
+.v5 .ans-done.off .ic{color:var(--faint)}
+.v5 .ans.flash{animation:m2flash 1s ease-out}
+@keyframes m2flash{0%,40%{box-shadow:0 0 0 2px var(--accent)}100%{box-shadow:0 0 0 2px transparent}}
+/* 결정 11 ②: 입력칸 위 답 칩 32 + 대상 칩 */
+.v5 .achips{flex:none;display:flex;align-items:center;gap:8px;height:32px;margin:0 0 8px;min-width:0}
+.v5 .achips .qopt{min-width:64px}
+.v5 .atgt{flex:0 1 auto;min-width:0;height:32px;padding:0 12px;border-radius:16px;display:inline-flex;align-items:center;justify-content:center;font:500 13px/16px var(--font);color:var(--muted);box-shadow:inset 0 0 0 .5px var(--hairline);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .achips .ans-done{height:32px}
+/* 답 기다림 알약: 답 줄이 대화 칸에 하나도 안 보일 때만. 입력칸 위 − 8, 대화 칸 가로 가운데 */
+.v5 .waitpill{position:absolute;bottom:48px;left:50%;transform:translateX(-50%);z-index:8;height:32px;padding:0 12px 0 14px;border-radius:16px;gap:4px;background:var(--text);color:var(--bg);font:600 13px/16px var(--font);white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.16)}
+.v5 .waitpill[hidden]{display:none}
+.v5 .waitpill .wpn{font-variant-numeric:tabular-nums}
+.v5 .vw.wp-on>.waitl{visibility:hidden}
+/* 7 긴 코드: 줄을 바꾸고 8줄(닫힘 가로 5줄)이 넘으면 접음 */
+.v5 .sx .cb{margin:8px 0;padding:0 12px 10px;border-radius:12px;background:var(--surface-2);white-space:normal;overflow:visible;font:400 15px/22px var(--font);letter-spacing:0}
+.v5 .cb-h{display:flex;align-items:center;justify-content:space-between;gap:8px;height:32px}
+.v5 .cb-l{font:500 11px/14px var(--mono);color:var(--muted);letter-spacing:0}
+.v5 .cb-cp{position:relative;height:28px;padding:0 10px;margin-right:-6px;border-radius:14px;gap:4px;font:600 12px/16px var(--font);color:var(--muted)}
+.v5 .cb-cp::before{content:"";position:absolute;left:-4px;right:-4px;top:-8px;bottom:-8px}
+.v5 .cb-b{font:500 13px/18px var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;letter-spacing:0;color:var(--text)}
+.v5 .cb .cbl{display:block;padding-left:2ch;text-indent:-2ch}
+.v5 .cb:not(.open) .cb-b{max-height:calc(var(--n,8) * 18px);overflow:hidden;-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 24px),transparent)}
+.v5 .cb-more{width:100%;height:32px;margin-top:8px;border-radius:16px;gap:4px;background:color-mix(in oklab,var(--text) 6%,transparent);font:600 13px/16px var(--font);color:var(--accent)}
+/* 8 정중앙(R2) */
+.v5 .sx .older{display:inline-flex;align-items:center;justify-content:center;height:32px;line-height:16px;padding:0 14px}
+/* mono · 이모지 · 한글 글자 모양 때문에 위아래가 1 넘게 어긋난 도형만 안쪽 여백 1로 보정(R2-4) */
+.v5 .appr .code{font:500 12px/16px var(--mono);padding:7px 10px 9px}
+.v5 .face.mac{line-height:1;padding-top:.08em}
+.v5 .chip:not(.md){padding-bottom:1px}
+.v5 .qopt.rec{padding-top:1px}
+.v5 .cpill{padding-bottom:1px}
+/* ================= v5 M3: 자료 A4 썸네일 · 문서 보고서 · 나 대시보드 ================= */
+.v5 .libv,.v5 .docv,.v5 .medash,.v5 .mem{display:flex;flex-direction:column;flex:none;min-width:0}
+.v5 .libv>.lsg{flex:none}
+.v5 .libv>.lsg>.seg2{margin:0 0 12px}
+.v5 .lgrp{flex:none;display:flex;flex-direction:column;min-width:0}
+.v5 .lgrp+.lgrp{margin-top:12px}
+.v5 .lgrp>.gh,.v5 .dsec>.gh,.v5 .mcol>.gh{margin:0 0 4px}
+.v5 .agrid{display:grid;grid-template-columns:repeat(var(--cols,2),minmax(0,1fr));gap:20px 12px;flex:none;margin-top:4px}
+.v5 .shelf{flex:none;display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;padding:4px 0;margin-right:calc(-1 * var(--ext,0px));scrollbar-width:none;overscroll-behavior-x:contain}
+.v5 .shelf::-webkit-scrollbar{display:none}
+.v5 .shelf>.acard{flex:none}
+/* 카드 · 종이 */
+.v5 .acard{position:relative;display:flex;flex-direction:column;min-width:0;cursor:pointer;outline:none;container-type:inline-size}
+.v5 .paper{position:relative;flex:none;width:100%;height:var(--ph);height:round(up,calc(100cqw * 1.414),4px);border-radius:8px;background:var(--paper);box-shadow:0 0 0 .5px color-mix(in oklab,var(--text) 16%,transparent),0 1px 2px rgba(0,0,0,.06);overflow:hidden;display:flex;flex-direction:column;padding:var(--pp) var(--pp) calc(var(--pp) + 28px);color:var(--text)}
+.v5 .acard.sel .paper,.v5 .acard:focus-visible .paper{box-shadow:0 0 0 2px var(--bg),0 0 0 4px var(--accent)}
+.v5 .acard:active .paper{filter:brightness(.96)}
+.v5 .ac-t{margin-top:8px;min-height:36px;font:600 13px/18px var(--font);letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}
+.v5 .ac-m{margin-top:2px;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .ptag{position:absolute;left:var(--pp);bottom:var(--pp);height:20px;padding:0 6px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;gap:3px;font:600 12px/16px var(--font);background:var(--surface-2);color:var(--muted);white-space:nowrap;z-index:1}
+.v5 .k-image .ptag{background:rgba(0,0,0,.45);color:#fff}
+.v5 .pdot{position:absolute;right:6px;top:6px;width:8px;height:8px;border-radius:4px;background:var(--accent);box-shadow:0 0 0 2px var(--paper);z-index:1}
+.v5 .paper.isnew .pp-c,.v5 .paper.isnew .pp-st,.v5 .paper.isnew .pp-at{padding-right:10px}
+/* 앞면 A 표지형: 문서 · 보고 */
+.v5 .pp-c{flex:none;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:4;overflow:hidden;letter-spacing:-.02em;overflow-wrap:anywhere}
+.v5 .pp-c.b{font:700 15px/20px var(--font)}
+.v5 .pp-c.s{font:700 12px/16px var(--font)}
+.v5 .pp-c.c3{-webkit-line-clamp:3}
+.v5 .pp-n{flex:none;margin-top:4px;font:700 20px/24px var(--mono);letter-spacing:-.02em;color:var(--accent);white-space:nowrap}
+.v5 .pp-l{margin-top:auto;flex:0 1 auto;min-height:0;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding-top:8px}
+.v5 .pp-l i{flex:none;height:4px;border-radius:2px;background:color-mix(in oklab,var(--text) 10%,transparent)}
+.v5 .pp-l i:nth-child(2){width:92%}.v5 .pp-l i:nth-child(3){width:96%}.v5 .pp-l i:nth-child(4){width:60%}
+/* 표 */
+.v5 .pp-st,.v5 .pp-at{flex:none;font:700 12px/16px var(--font);letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.v5 .pp-g{flex:1;min-height:0;margin-top:8px;display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:repeat(6,minmax(0,1fr));border-top:.5px solid color-mix(in oklab,var(--text) 22%,transparent);border-left:.5px solid color-mix(in oklab,var(--text) 22%,transparent)}
+.v5 .pp-g span{min-height:0;display:flex;align-items:center;padding:0 3px;border-right:.5px solid color-mix(in oklab,var(--text) 22%,transparent);border-bottom:.5px solid color-mix(in oklab,var(--text) 22%,transparent);overflow:hidden}
+.v5 .pp-g span.h{background:color-mix(in oklab,var(--text) 6%,transparent)}
+.v5 .pp-g span i{height:3px;border-radius:1.5px;background:color-mix(in oklab,var(--text) 18%,transparent)}
+.v5 .pp-g span.h i{background:color-mix(in oklab,var(--text) 40%,transparent)}
+/* 그림 */
+.v5 .paper.k-image{padding:0}
+.v5 .pp-art{position:absolute;inset:0;width:100%;height:100%;display:block}
+.v5 .paper.k-image.th-C{background:var(--surface-2);padding:var(--pp) var(--pp) calc(var(--pp) + 28px)}
+/* 음성 */
+.v5 .pp-w{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;gap:3px}
+.v5 .pp-w i{flex:none;width:3px;border-radius:1.5px;background:var(--accent)}
+.v5 .pp-d{position:absolute;right:var(--pp);bottom:var(--pp);height:20px;display:inline-flex;align-items:center;justify-content:center;font:500 12px/16px var(--mono);color:var(--muted)}
+/* 링크 */
+.v5 .paper.k-link.th-A{padding:0}
+.v5 .pp-hero{flex:none;height:55%;display:flex;align-items:center;justify-content:center;background:color-mix(in oklab,var(--accent) 12%,var(--paper))}
+.v5 .pp-ltr{width:40px;height:40px;border-radius:20px;display:inline-flex;align-items:center;justify-content:center;background:var(--accent);color:var(--accent-ink);font:700 20px/24px var(--font)}
+.v5 .k-link.th-A .ptag{top:calc(55% - 28px);bottom:auto}
+.v5 .k-link.th-A .pp-ltr{margin-bottom:24px}
+.v5 .pp-lb{flex:none;padding:8px var(--pp) 0;min-width:0}
+.v5 .pp-dom{font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .pp-lt{font:600 13px/18px var(--font);letter-spacing:-.01em;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+/* B 첫 장 축소 · C 종류 기호 */
+.v5 .pp-mini{flex:1;min-height:0;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.v5 .pp-mini b{flex:none;height:6px;width:72%;border-radius:1px;background:color-mix(in oklab,var(--text) 60%,transparent);margin-bottom:4px}
+.v5 .pp-mini i{flex:none;height:2px;border-radius:1px;background:color-mix(in oklab,var(--text) 16%,transparent)}
+.v5 .pp-mini i:nth-child(6n){width:70%;margin-bottom:4px}
+.v5 .pp-sym{margin:auto;display:inline-flex;color:var(--faint)}
+/* 문서 보기 = 보고서 */
+.v5 .docv{gap:12px}
+.v5 .rpt-cover{flex:none;background:var(--surface);border-radius:12px;padding:16px;display:flex;flex-direction:column;min-width:0}
+.v5 .rc-tags{display:flex;gap:6px;height:20px}
+.v5 .rtag{flex:none;height:20px;padding:0 8px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.v5 .rtag.acc{background:var(--accent);color:var(--accent-ink)}
+.v5 .rc-c{margin-top:8px;font:700 17px/24px var(--font);letter-spacing:-.02em;overflow-wrap:anywhere}
+.v5 .rc-nums{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.v5 .rpt-num{min-width:0;height:56px;border-radius:8px;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.v5 .rpt-num b{font:700 20px/24px var(--mono);font-variant-numeric:tabular-nums}
+.v5 .rpt-num span{font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap}
+.v5 .rc-who{margin-top:12px;display:flex;align-items:center;gap:8px;height:20px;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap;min-width:0}
+.v5 .rc-who span{overflow:hidden;text-overflow:ellipsis}
+.v5 .rpt-toc{position:relative;flex:none;height:44px;display:flex;align-items:center;gap:8px;padding:0 12px;border-radius:12px;box-shadow:inset 0 0 0 .5px color-mix(in oklab,var(--text) 18%,transparent);font:600 15px/20px var(--font);cursor:pointer;outline:none}
+.v5 .rpt-toc>.ic{color:var(--muted)}
+.v5 .rpt-toc:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.v5 .rpt-body{flex:none;max-width:520px;display:flex;flex-direction:column;gap:24px;margin-top:4px}
+.v5 .rpt-sec h4{margin:0;display:flex;gap:8px;font:700 16px/22px var(--font);letter-spacing:-.01em}
+.v5 .rs-n{flex:none;font:600 15px/22px var(--mono);color:var(--accent)}
+.v5 .rpt-sec p{margin:8px 0 0;font:400 15px/24px var(--font)}
+.v5 .rpt-ask{flex:none;max-width:520px;margin-top:12px;background:color-mix(in oklab,var(--accent) 9%,var(--surface));border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px;min-width:0}
+.v5 .ra-h{display:flex;align-items:center;gap:8px;height:20px;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap}
+.v5 .ra-h b{font:600 13px/16px var(--font);color:var(--text)}
+.v5 .ra-q{font:700 15px/20px var(--font);letter-spacing:-.01em}
+.v5 .ra-a{display:flex;gap:8px;flex-wrap:wrap}
+.v5 .rpt-ask .ans-done{height:28px}
+.v5 .dsec{flex:none;display:flex;flex-direction:column;min-width:0;max-width:520px}
+.v5 .docv>.dsec,.v5 .dv-main>.dsec{margin-top:4px}
+.v5 .rpt-next{position:relative;display:flex;align-items:center;gap:12px;height:44px;min-width:0;font:400 15px/20px var(--font)}
+.v5 .rpt-next+.rpt-next::after{content:"";position:absolute;left:32px;right:0;top:0;height:1px;background:var(--hairline);transform:scaleY(.5);transform-origin:0 0}
+.v5 .rn-b{flex:none;width:20px;height:20px;border-radius:10px;box-shadow:inset 0 0 0 1.5px var(--faint)}
+.v5 .rn-t{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .rn-d{flex:none;width:40px;text-align:right;font:500 12px/16px var(--mono);color:var(--muted)}
+.v5 .dsec .shelf{margin-right:0}
+.v5 .rpt-src{flex:none;display:flex;align-items:center;gap:6px;height:16px;margin-top:4px;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap}
+.v5 .docv.lb{display:grid;grid-template-columns:176px minmax(0,520px);column-gap:32px;align-items:start;gap:0 32px}
+.v5 .dv-main{display:flex;flex-direction:column;gap:12px;min-width:0}
+.v5 .rpt-tocr{position:sticky;top:0;display:flex;flex-direction:column}
+.v5 .rt-r{position:relative;display:flex;align-items:flex-start;gap:8px;min-height:44px;padding:4px 8px;border-radius:10px;font:400 13px/18px var(--font);min-width:0}
+.v5 .rt-r .rs-n{font:600 13px/18px var(--mono)}
+.v5 .rt-r+.rt-r{margin-top:4px}
+.v5 .rt-r.on{background:var(--tint);font-weight:600}
+/* 나 */
+.v5 .mem .prof{padding:12px}
+.v5 .mem .grp-rows.mg,.v5 .mem .tiles.mts{margin:12px 0 0}
+.v5 .mem .tiles.mts+.foldrow{margin-top:0}
+.v5 .tile.mt{display:flex;flex-direction:column;min-width:0}
+.v5 .mt-a{margin-top:6px;min-width:0}
+.v5 .mt-h{display:flex;align-items:center;gap:6px;height:16px;font:400 12px/16px var(--font);min-width:0}
+.v5 .mt-n{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .mt-h b{margin-left:auto;font:600 12px/16px var(--mono)}
+.v5 .mt-a .bar{height:6px;margin-top:4px;border-radius:3px}
+.v5 .mt-r{margin-top:2px;font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .mt-s{margin-top:6px;font:600 13px/18px var(--font);white-space:nowrap}
+.v5 .mt-s.mono{font-family:var(--mono)}
+.v5 .mt-w{margin-top:4px;align-self:flex-start;height:20px;padding:0 8px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);background:var(--tint);color:var(--accent);white-space:nowrap}
+.v5 .mu-dot{flex:none;width:8px;height:8px;border-radius:4px}
+.v5 .medash{gap:12px}
+.v5 .mprof{flex:none;height:72px;display:flex;align-items:center;gap:12px;padding:0 16px 0 12px;background:var(--surface);border-radius:12px;cursor:pointer}
+.v5 .mp-m{flex:1;min-width:0}
+.v5 .mprof b{font:700 17px/22px var(--font)}
+.v5 .mprof .m{font:400 13px/18px var(--font);color:var(--muted)}
+.v5 .mprof>.ic{color:var(--muted)}
+.v5 .medash-2{flex:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px;align-items:start}
+.v5 .mcol{display:flex;flex-direction:column;min-width:0}
+.v5 .mcard{background:var(--surface);border-radius:12px;padding:12px;display:flex;flex-direction:column;min-width:0}
+.v5 .mu-accs{display:flex;flex-direction:column;gap:12px}
+.v5 .mu-accs.r2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.v5 .mu-a{height:50px;display:flex;flex-direction:column;justify-content:space-between;min-width:0}
+.v5 .mu-h{display:flex;align-items:center;gap:8px;height:20px;font:400 15px/20px var(--font);min-width:0}
+.v5 .mu-n{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .mu-h b{margin-left:auto;font:600 15px/20px var(--mono)}
+.v5 .mu-a .bar{height:6px;border-radius:3px}
+.v5 .mu-r{font:400 12px/16px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .mcard .chart{height:80px;padding:0;margin-top:12px;gap:8px}
+.v5 .mcard .chart-x{height:16px;padding:0;margin-top:4px;font:400 11px/16px var(--font)}
+.v5 .mcard.rows{padding:0 12px}
+.v5 .nowrow{position:relative;display:flex;align-items:center;gap:12px;height:44px;min-width:0;cursor:pointer}
+.v5 .nowrow+.nowrow::after{content:"";position:absolute;left:40px;right:0;top:0;height:1px;background:var(--hairline);transform:scaleY(.5);transform-origin:0 0}
+.v5 .nr-m{flex:1;min-width:0;display:flex;flex-direction:column}
+.v5 .nr-n{font:600 15px/20px var(--font)}
+.v5 .nr-t{font:400 13px/18px var(--font);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v5 .nr-k{flex:none;height:20px;padding:0 8px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font:600 12px/16px var(--font);background:var(--surface-2);color:var(--muted);white-space:nowrap}
+.v5 .nr-k.wait{background:var(--tint);color:var(--accent)}
+.v5 .nr-k.idle{background:transparent;color:var(--faint);box-shadow:inset 0 0 0 .5px color-mix(in oklab,var(--text) 22%,transparent)}
+.v5 .mcard.tl6{padding:8px 12px}
+.v5 .actl{display:flex;align-items:center;gap:8px;height:48px;min-width:0}
+.v5 .al-t{flex:none;width:40px;font:500 12px/16px var(--mono);color:var(--muted)}
+.v5 .al-d{position:relative;flex:none;width:8px;align-self:stretch}
+.v5 .al-d::before{content:"";position:absolute;left:3.75px;top:0;bottom:0;width:.5px;background:color-mix(in oklab,var(--text) 22%,transparent)}
+.v5 .actl:first-child .al-d::before{top:24px}
+.v5 .actl:last-child .al-d::before{bottom:auto;height:24px}
+.v5 .al-d::after{content:"";position:absolute;left:0;top:20px;width:8px;height:8px;border-radius:4px;background:var(--accent)}
+.v5 .al-x{flex:1;min-width:0;font:400 13px/18px var(--font);display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.v5 .al-x.lq{text-indent:-.67em}
+.v5 .medash .grp-rows{border-radius:12px}
+.v5 .medash .grp-rows.mg{margin-top:12px}
+.v5 .medash.il .mcol+.mcol{margin-top:0}
 </style>
 </head>
 <body>
 <header class="wrap top">
-  <h1>크루네 듀오 시안 v4 — 지금과 바꾼 뒤</h1>
-  <p>v3를 듀오에서 본 피드백 여섯 가지(모서리 잘림 · 키보드 · 버튼 · 왼쪽 여백 · 격자 가이드 · HIG 3회 정독)를 반영했습니다. 위 모서리에 제목이 걸린다 → 머리를 모든 자세에서 y24–72 「위치 줄」(표식 32 + 제목·상태 두 줄)로 옮기고, 가운데 48을 바깥 카메라 중심과 맞췄습니다. 키보드를 올리면 대화가 안 보인다 → 입력칸 위에 쌓인 안내·모델·자주 쓰는 말 줄을 입력 줄 하나로 합치고, 기능은 입력칸 안 꼬리말 토큰·＋ 패널·위치 알약으로 옮겼습니다. 닫힘 세로 키보드 때 대화가 0에서 202.6이 됩니다. 버튼이 뚱뚱하다 → 보이는 높이와 누르는 영역 44를 나누고, 함께 쓰는 버튼은 캡슐 하나로 묶었습니다. 왼쪽이 답답하다 → 빈 쪽 여백 16 → 20, 레일 쪽 8 → 12. 격자가 안 보인다 → 「격자 보기」로 v4 값(실선)과 HIG 그림·녹화 값(점선)을 겹쳐 봅니다. HIG를 세 번 다시 읽고 근거마다 HIG 문단 번호(P09처럼 P + 원문 문단 순번)를 달았습니다.</p>
-  <p>모서리 잘림은 머리 자리만 옮겨서 푼 것이 아닙니다. 시안 틀 모서리 반지름을 HIG 그림 실측(바깥 화면 4/55, 안쪽 화면 54)으로 바로잡은 것이 다른 한 축이고, 모든 요소의 모서리 여유는 이 반지름으로 잽니다.</p>
+  <h1>크루네 듀오 시안 v5 — 지금과 바꾼 뒤</h1>
+  <p>v4를 듀오에서 본 피드백 열한 가지를 반영했습니다. 할 일은 칩이 「누구」(전체 · 나 · 크루)만 거르고, 묶음 머리는 숫자와 상태만 말해서 같은 말이 두 자리에 나오지 않습니다. 확인 필요는 정할 질문과 답 단추가 바로 보이는 질문 카드가 됐고, 펼친 가로의 「오늘」 요약과 혼자 떠 있던 ⋯는 없앴습니다. 두 길이 다 열려 있는 것은 결정 9~11로 남겼고, 각 추천으로 그렸습니다. 시안 아래 전환 단추로 다른 안을 바로 볼 수 있습니다.</p>
   <div class="facts">
     <span class="fact"><b>기본 보기</b> 홈 화면 앱(레일). 웹 382 배치·Safari도 전환</span>
     <span class="fact"><b>간격</b> 4pt 격자, 빈 쪽 20 · 레일 쪽 12, 누르는 영역 44</span>
@@ -736,6 +1090,22 @@ body.grid-on .ann.cc{display:block}
     <span class="fact"><b>근거</b> HIG 「iPhone Duo용으로 디자인하기」 2026-09-09</span>
     <span class="fact"><b>예시 내용</b> 지어낸 업무·대화, 실제 기록 아님</span>
   </div>
+  <details class="box v5sum" open>
+    <summary>v5에서 바꾼 것 · 피드백 11건</summary>
+    <ol class="v5l">
+      <li><b>할 일 머리와 칩이 겹침</b> → 칩은 「누구」만 거르고 묶음 머리는 숫자 배지 + 이름 + 얇은 선(결정 10). 확인 필요는 질문 · 근거 한 줄 · 답 단추가 보이는 질문 카드</li>
+      <li><b>펼친 가로 「오늘」이 왼쪽과 중복, ⋯가 거슬림</b> → 오늘 요약을 없애고 「내가 답할 것 | 돌아가는 일」 두 칸 보드(결정 9). 혼자 떠 있는 ⋯는 모든 화면에서 뺌</li>
+      <li><b>펼친 세로는 카드형으로</b> → 1열 카드. 칩은 거르기라 닫힌 화면과 같은 자리(80–108)에 고정. 접힘 축 띠 455–495는 비움</li>
+      <li><b>채팅 목록 고른 줄이 양옆에서 잘림</b> → 바탕을 글 바깥 8까지 그리고 칸 자르기도 8 넓힘. 눌림 · 키보드 포커스 표현 추가</li>
+      <li><b>입력칸 꼬리말은 보고 고칠 수 있어야</b> → ⚡ 토큰을 누르면 꼬리말 칸이 열려 말을 보고 켜고 끄고 빼고 더함</li>
+      <li><b>거절 · 허용은 메시지 아래 또는 답 칩</b> → 메시지 바로 아래 답 줄, 화면 밖이면 「답 기다림」 알약(결정 11)</li>
+      <li><b>긴 코드는 접기 · 펼치기</b> → 줄을 바꿔 좌우 스크롤을 없애고, 8줄이 넘으면 「n줄 더 보기」</li>
+      <li><b>도형 안 글자는 정중앙</b> → 한 줄 글이 든 도형은 위아래 차이 1 이하로 맞춤</li>
+      <li><b>자료는 A4 문서함 썸네일</b> → 종이 썸네일 + 제목 최대 2줄, 색 구분은 없앰</li>
+      <li><b>문서 보기를 보고서처럼</b> → 결론 · 핵심 수치 → 목차 → 본문 → 정할 것 → 다음 행동 순서</li>
+      <li><b>나 탭 펼친 세로의 빈 공간</b> → 사용량 · 크루 지금 · 최근 활동을 펼친 대시보드</li>
+    </ol>
+  </details>
 </header>
 
 <nav class="ctl" aria-label="시안 조작">
@@ -856,8 +1226,8 @@ body.grid-on .ann.cc{display:block}
     </details>
   </div>
 
-  <h2 class="sh">샐리 결정 8가지</h2>
-  <p class="shs">1~4는 v2, 5·6은 v3에서 이어지는 결정이고 7·8은 v4에서 새로 생겼습니다. 아직 고르지 않아 각 추천 ①로 그렸습니다. 질문마다 시안에서 볼 곳을 누르면 그 화면으로 갑니다.</p>
+  <h2 class="sh">샐리 결정 11가지</h2>
+  <p class="shs">1~4는 v2, 5·6은 v3, 7·8은 v4에서 이어지는 결정이고 9~11은 v5에서 새로 생겼습니다. 아직 고르지 않아 각 추천으로 그렸습니다. 질문마다 시안에서 볼 곳을 누르면 그 화면으로 갑니다.</p>
   <section class="qs" id="qs"></section>
   <p class="foot">근거 문단 번호(P)는 HIG 원문 문단 목록 기준입니다. 「지금」은 운영 앱을 단순화한 그림이고, 닫힘 세로 크루 방 키보드 그림은 라이브 캡처(2.951px = 1pt)에서 잰 자리에 맞췄습니다. 「지금」의 대화 높이는 이 그림에서 잰 값이고, 카드 위 숫자는 명세 표 값입니다. 격자 보기의 실선은 v4 값, 점선은 HIG 그림·녹화 값, 빗금은 피할 곳입니다.</p>
 </main>
@@ -868,6 +1238,7 @@ const FACES={"kiki": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIwAAABgCAYA
 const MARK="data:image/png;base64,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";
 const XICON={
   bolt:'<path d="M13.2 2.5 5 13.6h6.1l-1.3 7.9 8.2-11.1h-6.1l1.3-7.9Z"/>',
+  minus:'<path d="M6 12h12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>',
   person:'<circle cx="12" cy="7.6" r="4.1"/><path d="M4 20.4c.4-4.2 3.8-6.9 8-6.9s7.6 2.7 8 6.9Z"/>',
   siri:'<circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.6 12.6c2.6-3.2 5.3-3.2 8.4 0s5.8 3.2 8.4 0" fill="none" stroke="currentColor" stroke-width="1.6"/>',
   check:'<path d="M5 12.6l4.6 4.6L19.2 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>',
@@ -888,13 +1259,13 @@ function ico(n,o={}){
 const CREW={kiki:{n:'키키',r:'비서',now:'듀오 시안 정리'},nana:{n:'나나',r:'QA·개발',now:'C8 26.46 재검증'},rain:{n:'레인',r:'지식',now:'폴더블 사례 근거 확인'},genz:{n:'젠지',r:'콘텐츠',now:'위클리 베스트 표지'},loop:{n:'루프',r:'점검',now:'10분 점검 · 이상 없음'}};
 const nm=id=>id==='home'?'집맥':id==='work'?'회맥':CREW[id].n;
 const TODOS=[
-  {id:'t1',c:'nana',title:'C8 앱 26.46 QA 재검증 결과 확인',st:'결정 대기',sk:'wait',t:'10분 전',g:'need'},
-  {id:'t2',c:'home',title:'Claude 세션 허용 요청 · 기록 커밋',st:'승인 요청',sk:'wait',t:'2분 전',g:'need'},
-  {id:'t3',c:'kiki',title:'크루네 듀오 시안 검토',st:'결정 대기',sk:'wait',t:'방금',g:'need'},
-  {id:'t4',c:'genz',title:'위클리 베스트 11월 2주 게시안',st:'진행 중',sk:'doing',t:'32분 전',g:'doing'},
-  {id:'t5',c:'rain',title:'폴더블 화면 사례 근거 정리',st:'진행 중',sk:'doing',t:'1시간 전',g:'doing'},
-  {id:'t6',c:'kiki',title:'11/18 주간 회의 안건 정리',st:'내 할 일',sk:'mine',t:'오늘',g:'doing'},
-  {id:'t7',c:'loop',title:'자동 동기화 받기 막힘 수리',st:'끝남',sk:'done',t:'3시간 전',g:'done'}
+  {id:'t1',c:'nana',title:'C8 앱 26.46 QA 재검증 결과 확인',st:'결정 대기',sk:'wait',t:'10분 전',g:'need',who:'crew',qid:'q2'},
+  {id:'t2',c:'home',title:'Claude 세션 허용 요청 · 기록 커밋',st:'승인 요청',sk:'wait',t:'2분 전',g:'need',who:'crew',qid:'q1'},
+  {id:'t3',c:'kiki',title:'크루네 듀오 시안 검토',st:'결정 대기',sk:'wait',t:'방금',g:'need',who:'crew',qid:'q3'},
+  {id:'t4',c:'genz',title:'위클리 베스트 11월 2주 게시안',st:'진행 중',sk:'doing',t:'32분 전',g:'doing',who:'crew',news:'1안 · 2안 저장 수 비교 중'},
+  {id:'t5',c:'rain',title:'폴더블 화면 사례 근거 정리',st:'진행 중',sk:'doing',t:'1시간 전',g:'doing',who:'crew',news:'근거 자료 4건 더 찾음'},
+  {id:'t6',c:'kiki',title:'11/18 주간 회의 안건 정리',st:'내 할 일',sk:'mine',t:'오늘',g:'doing',who:'me',news:'안건 초안 3개 · 샐리 확인 전'},
+  {id:'t7',c:'loop',title:'자동 동기화 받기 막힘 수리',st:'끝남',sk:'done',t:'3시간 전',g:'done',who:'crew',today:1}
 ];
 const CHATS=[
   {c:'kiki',last:'시안 묶었어요. 결정 넷만 골라 주세요.',t:'방금',n:1},
@@ -903,27 +1274,47 @@ const CHATS=[
   {c:'rain',last:'근거 자료 4건 더 찾았어요.',t:'1시간',n:0},
   {c:'loop',last:'자동 동기화 받기 막힘 풀었어요.',t:'3시간',n:0}
 ];
+/* 자료. col · i · k는 「지금」 그림(libRow)만 씀. 바꾼 뒤는 kind(종류) · kl(태그 글자) · concl(결론 한 줄) · num(핵심 수치) · dur · dom */
 const LIBS=[
-  {id:'l1',c:'rain',t:'폴더블 화면 패턴 정리',k:'문서',d:'11/15',col:'#6b7bff',i:'doc'},
-  {id:'l2',c:'nana',t:'C8 QA 체크리스트 v3',k:'표',d:'11/14',col:'#2ba84a',i:'file'},
-  {id:'l3',c:'genz',t:'위클리 베스트 표지 시안',k:'그림',d:'11/14',col:'#ff7a8a',i:'image'},
-  {id:'l4',c:'kiki',t:'11/11 주간 회의록',k:'회의록',d:'11/11',col:'#ff9500',i:'ear'},
-  {id:'l5',c:'loop',t:'자동화 점검 주간 요약',k:'보고',d:'11/10',col:'#8e8e93',i:'review'}
+  {id:'l1',c:'rain',t:'폴더블 화면 패턴 정리',k:'문서',d:'11/15',col:'#6b7bff',i:'doc',kind:'report',kl:'보고서',concl:'펼쳐도 글자는 그대로, 목록과 상세를 나란히',num:'9/12'},
+  {id:'l2',c:'nana',t:'C8 QA 체크리스트 v3',k:'표',d:'11/14',col:'#2ba84a',i:'file',kind:'sheet',kl:'표'},
+  {id:'l3',c:'genz',t:'위클리 베스트 표지 시안',k:'그림',d:'11/14',col:'#ff7a8a',i:'image',kind:'image',kl:'그림',art:'cover'},
+  {id:'l4',c:'kiki',t:'11/11 주간 회의록',k:'회의록',d:'11/11',col:'#ff9500',i:'ear',kind:'doc',kl:'회의록',concl:'듀오 시안은 11/17 실기 뒤에 정하기로'},
+  {id:'l5',c:'loop',t:'자동화 점검 주간 요약',k:'보고',d:'11/10',col:'#8e8e93',i:'review',kind:'report',kl:'보고',concl:'이번 주 이상 0건, 점검 주기 30분 검토',num:'168/168'}
 ];
+/* 레인이 고른 새 자료 5 (옛 mini 3 + 2). 메타 자리에 고른 이유 */
+const NEWS=[
+  {id:'n1',c:'rain',t:'폴더블 앱 사례 12 · 펼침 전환과 크루네에 바로 쓸 것',kind:'report',kl:'보고서',concl:'12개 중 9개가 펼치면 목록 + 상세',num:'9/12',why:'사례 12건'},
+  {id:'n2',c:'rain',t:'표지 글꼴 모음',kind:'image',kl:'그림',art:'type',why:'글꼴 8종'},
+  {id:'n3',c:'rain',t:'QA 자동화 글 · 처음 시작할 때 볼 것',kind:'link',kl:'링크',dom:'medium.com',why:'읽기 7분'},
+  {id:'n4',c:'rain',t:'11/14 듀오 실기 메모 녹음',kind:'audio',kl:'음성',dur:'18:42',why:'메모 3건'},
+  {id:'n5',c:'rain',t:'경쟁 앱 기능 비교표',kind:'sheet',kl:'표',why:'앱 6개'}
+];
+/* 문서 보기(보고서). askId는 QITEMS 항목(R5) */
+const DOC={t:'폴더블 화면 패턴 정리',kl:'보고서',concl:'펼쳐도 글자는 그대로 두고, 목록과 상세를 나란히 놓는다',nums:[['12','살핀 앱'],['3','공통 패턴'],['2','바로 쓸 것']],who:'rain',d:'11/15',min:6,src:12,
+  secs:[['목록과 상세를 나란히 둔다','메일 · 메모 · 슬랙은 펼치면 왼쪽에 목록, 오른쪽에 고른 항목을 둬요. 살핀 12개 앱 중 9개가 이 방식이었고, 글자 크기는 닫힌 화면과 같았어요.'],
+    ['조작은 바깥 가장자리 한 기둥에 모은다','자주 누르는 단추는 화면 바깥쪽 세로 막대에 모아요. 접어도 펼쳐도 손이 닿는 자리가 같아서 다시 찾지 않아도 돼요.'],
+    ['접히는 자리에는 단추를 두지 않는다','힌지 위 24에는 누르는 것을 두지 않고 칸 경계로 써요. 펼친 세로에서는 접힘 축 위아래 8까지 비워요.'],
+    ['크루네에는 두 가지를 바로 쓴다','할 일과 자료 탭에 목록 + 상세를 먼저 넣고, 레일은 지금 모양을 유지해요. 남은 하나는 11/17 실기 뒤에 정해요.']],
+  askId:'q3',next:[['시안에 목록 · 상세 반영','nana','11/17'],['실기에서 힌지 자리 재기','loop','11/17'],['근거 약한 사례 3건 정리','rain','11/18']],rel:['n1','l2','n3'],srcLine:'원본 · 옵시디언 · 폴더블 화면 패턴 정리'};
+/* 나 대시보드 */
+const ACCTS=[{n:'Claude · 개인',p:62,col:'#d97757',k:'c',r:'19:00 다시 채워짐 · 3시간 19분 남음',rs:'19:00 채워짐'},{n:'Codex · 회사',p:31,col:'#6e7bf2',k:'x',r:'월요일 다시 채워짐 · 2일 남음',rs:'월요일 채워짐'}];
+const CREWNOW=[['kiki','듀오 시안 v5 정리','work'],['nana','C8 26.46 남은 2건 결정','wait'],['rain','폴더블 사례 근거 확인','work'],['loop','10분 점검 · 이상 없음','work'],['genz','위클리 베스트 표지 · 2안 대기','idle']];
+const ACT=[['14:03','home','「키보드 판정 고치기」 세션이 허용을 기다려요'],['13:52','home','「젠지 제안 기록 정리」 세션 끝남'],['13:31','nana','26.46 재검증 보고 · 12건 중 10건 해결'],['13:12','genz','표지는 2안으로 갈까요?'],['11:20','work','「CCQ-1063 GA 파라미터 정리」 세션 끝남'],['09:05','home','「지식창고 색인 갱신」 세션 끝남']];
 const SESS_T='키보드 판정 고치기';
 const SESS_LIST=[
-  {t:SESS_T,m:'Claude · 14:02 · 진행 중',d:'ok',sel:1},
-  {t:'볼트 기록 커밋 허용 요청',m:'Claude · 14:02 · 허용 대기',d:'warn'},
+  {t:SESS_T,m:'Claude · 14:03 · 허용 대기',d:'warn',sel:1},
+  {t:'젠지 제안 기록 정리',m:'Claude · 13:52 · 끝남',d:''},
   {t:'듀오 시안 v3 그리기',m:'Claude · 13:40 · 끝남',d:''},
   {t:'CCQ-1063 GA 파라미터 정리',m:'Codex · 11:20 · 끝남',d:''},
   {t:'지식창고 색인 갱신',m:'Claude · 09:05 · 끝남',d:''}
 ];
 const TABS=[['todo','todo','할 일'],['chat','chat','채팅'],['lib','lib','자료'],['me','me','나']];
 const BADGE={todo:3,chat:4};
-const SCREENS=[['login','로그인'],['todo','할 일'],['chat','채팅 목록'],['room','크루 방'],['work','업무 상세·보고'],['appr','승인 요청'],['sess','시먹스 대화'],['lib','자료'],['me','나']];
-const KIND={login:'gate',todo:'explore',chat:'explore',lib:'explore',me:'explore',room:'task',work:'task',appr:'task',sess:'task'};
-const TABOF={todo:'todo',chat:'chat',room:'chat',work:'todo',lib:'lib',me:'me',appr:'todo',sess:'chat'};
-const PARENT={room:'chat',work:'todo',appr:'todo',sess:'chat'};
+const SCREENS=[['login','로그인'],['todo','할 일'],['chat','채팅 목록'],['room','크루 방'],['work','업무 상세·보고'],['appr','승인 요청'],['sess','시먹스 대화'],['lib','자료'],['doc','자료 보기'],['me','나']];
+const KIND={login:'gate',todo:'explore',chat:'explore',lib:'explore',me:'explore',room:'task',work:'task',appr:'task',sess:'task',doc:'task'};
+const TABOF={todo:'todo',chat:'chat',room:'chat',work:'todo',lib:'lib',me:'me',appr:'todo',sess:'chat',doc:'lib'};
+const PARENT={room:'chat',work:'todo',appr:'todo',sess:'chat',doc:'lib'};
 const DIM={outerP:[466,678],outerL:[678,466],innerL:[951,669],innerP:[669,951],half:[951,669]};
 const POST=[
   {id:'outerP',n:'닫힘 · 바깥 세로',sz:{app:'466×678 · 내용 382(글 350) + 레일 띠 84',a382:'466×678 · 웹 382(글 350) + 웹 밖 띠 84',saf:'Safari 382×618 · 아래 캡슐 52'}},
@@ -959,27 +1350,30 @@ const BAND={
   a382:{outerP:'<b>정황 그림</b> 라이브 캡처의 입력칸 오른쪽 끝(369.7)과 머리 꺾쇠 자리가 웹 폭 382와 맞습니다. 이 배치에서는 띠 382–466이 웹 밖이라 레일 대신 아래 캡슐 320×52(바닥 24)와 위치 줄 오른쪽 동작 캡슐 36을 씁니다. 머리·입력 줄은 레일 배치와 같습니다.',outerL:'<b>정황 그림</b> 닫힘 세로 정황을 옮긴 가정입니다. 웹 594×466, 아래 캡슐 x137 · 바닥 20. 키보드 때는 레일이 없어 뒤로 원 36 오른쪽에 하는 일 요약 칩 24를 두고, 대화를 그 아래(48)부터 시작해 대화가 85입니다.'},
   saf:{outerP:'Safari 웹 화면 382×618은 에뮬레이터 값입니다. 오른쪽 84 띠에 Safari 막대가 선다고 보고 레일 대신 아래 캡슐을 씁니다. 행과 토큰은 앱과 같습니다.',outerL:'Safari 웹 화면 594×406은 에뮬레이터 값입니다. 레일 대신 아래 캡슐 52(바닥 8)를 씁니다.'}
 };
-const ST={s:'todo',m:'after',r:'app',a:false,z:'fit',t:'light',alt:false,aux:false,c390:false,kb:false,d5:false,wm:false,hd:'A',sc:false,tail:'3',tk:false,plus:false,grid:false,rec:false};
-const SKEY='crewne-duo-mock-v4b';
+const ST={s:'todo',m:'after',r:'app',a:false,z:'fit',t:'light',alt:false,aux:false,c390:false,kb:false,d5:false,wm:false,hd:'A',sc:false,tail:'3',tk:false,plus:false,grid:false,rec:false,d9:'B',d10:'1',d11:'1',nq:'3',pr:false,tp:false,tw:[],tsc:'once',cbx:false,th:'A',lb:'1',qa:{}};
+const SKEY='crewne-duo-mock-v5';
 function load(){
   try{const v=JSON.parse(localStorage.getItem(SKEY)||'{}');Object.assign(ST,v)}catch(e){}
   const h=new URLSearchParams(location.hash.slice(1));
-  for(const k of Object.keys(ST)){if(h.has(k)){const v=h.get(k);ST[k]=typeof ST[k]==='boolean'?(v==='1'||v==='true'):v}}
+  for(const k of Object.keys(ST)){if(h.has(k)){const v=h.get(k);ST[k]=typeof ST[k]==='boolean'?(v==='1'||v==='true'):(ST[k]&&typeof ST[k]==='object')?(()=>{try{return JSON.parse(v)}catch(e){return ST[k]}})():v}}
   if(!SCREENS.some(x=>x[0]===ST.s))ST.s='todo';
   if(!['app','app382','saf'].includes(ST.r))ST.r='app';
   if(!['A','B','C'].includes(ST.hd))ST.hd='A';
   ST.tail=String(ST.tail);if(!['1','2','3'].includes(ST.tail))ST.tail='3';
+  if(!['A','B'].includes(ST.d9))ST.d9='B';ST.d10=String(ST.d10);if(!['1','2','3'].includes(ST.d10))ST.d10='1';ST.d11=String(ST.d11);if(!['1','2'].includes(ST.d11))ST.d11='1';
+  ST.nq=String(ST.nq);if(!['0','3','20'].includes(ST.nq))ST.nq='3';if(!['A','B','C'].includes(ST.th))ST.th='A';ST.lb=String(ST.lb);if(!['1','2'].includes(ST.lb))ST.lb='1';
+  if(!ST.qa||typeof ST.qa!=='object'||Array.isArray(ST.qa))ST.qa={};if(!Array.isArray(ST.tw))ST.tw=[];
 }
 function save(){
   try{localStorage.setItem(SKEY,JSON.stringify(ST))}catch(e){}
-  const p=new URLSearchParams();for(const[k,v]of Object.entries(ST))p.set(k,v===true?'1':v===false?'0':v);
+  const p=new URLSearchParams();for(const[k,v]of Object.entries(ST))p.set(k,v===true?'1':v===false?'0':(v&&typeof v==='object')?JSON.stringify(v):v);
   try{history.replaceState(null,'','#'+p.toString())}catch(e){}
 }
 /* 지금 그리는 쪽이 v3(바꾼 뒤)인지. device()가 그리기 전에 정함 */
 let V3=false;
 /* 지금 그리는 자세·화면 (입력 줄 토큰 표기에 씀) */
 let CTX={P:'outerP',S:'todo'};
-function convScreen(S,P,mode){if(S==='login')return false;if(KIND[S]==='task')return true;return mode!=='now'&&S==='chat'&&(P==='innerL'||P==='half')}
+function convScreen(S,P,mode){if(S==='login'||S==='doc')return false;if(KIND[S]==='task')return true;return mode!=='now'&&S==='chat'&&(P==='innerL'||P==='half')}
 function kbOn(S,P,mode){
   if(!ST.kb||P==='half')return false;
   if(mode!=='now'&&P==='innerP'&&ST.alt)return false;
@@ -1014,6 +1408,7 @@ function todoCard(t,o){const go=t.id==='t2'?'appr':'work';
   return `<div class="card ${o.sel===t.id?'sel':''}" data-go="${go}"><div class="card-h">${face(t.c,22)}<span>${nm(t.c)}</span><span class="tm">${t.t}</span></div><div class="card-t">${t.title}</div>${stc(t)}</div>`}
 const thr=o=>o.right?`<div class="hgrp">${o.right}</div>`:'';
 function todoList(o={}){
+  if(V3)return todoList5(o);
   const by=g=>TODOS.filter(t=>t.g===g);
   const rows=a=>o.cards?`<div class="cards">${a.map(t=>todoCard(t,o)).join('')}</div>`:a.map(t=>todoRow(t,o)).join('');
   const chips=`<div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}${chip('끝남')}${chip('지난 보고')}</div>`;
@@ -1022,27 +1417,170 @@ function todoList(o={}){
     if(o.title!==false)h+=`<div class="th ${o.big?'big':''}"><h2>할 일</h2><span class="th-s">${o.big?'확인 필요 3 · 방금 갱신':'11/15 일'}</span></div>`;
     if(o.now)return h+`<div class="sec">진행 중인 일</div>${rows(by('need').filter(t=>t.id!=='t2'))}${rows(by('doing'))}<div class="sec">끝남</div>${rows(by('done'))}`;
     h+=chips+(o.today!==false?todayStrip():'');
-  }else{
-    if(o.title!==false)h+=o.cmp?`<div class="th cmp"><h2>할 일</h2>${chips}${thr(o)}</div>`:`<div class="th big"><h2>할 일</h2><span class="th-s">${todaySub()}</span>${thr(o)}</div>`;
-    if(!(o.cmp&&o.title!==false)&&o.chips!==false)h+=chips;
   }
   h+=`<div class="sec first">확인 필요 <b>3</b></div>${rows(by('need'))}<div class="sec">진행 중 <b>3</b></div>${rows(by('doing'))}<div class="sec">끝남</div>${rows(by('done'))}<div class="foldrow">크루 제안 2 · 지운 일 ${ico('chev',{s:16})}</div>`;
   return h;
 }
 function apprList(o={}){
+  if(V3)return todoList5({mode:'list',sel:'q1',chips:o.chips});
   const need=TODOS.filter(t=>t.g==='need');
   const head=(!V3||o.th)?`<div class="th big"><h2>할 일</h2><span class="th-s">확인 필요 3</span></div>`:'';
   return `${head}${o.chips===false?'':`<div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}</div>`}<div class="sec${o.chips===false?' first':''}">확인 필요 <b>3</b><span class="act">3건 모두 확인</span></div>${need.map(t=>todoRow(t,o)).join('')}<div class="sec">진행 중 <b>3</b></div>${TODOS.filter(t=>t.g==='doing').map(t=>todoRow(t,o)).join('')}`;
 }
-function todaySummary(o={}){
-  const need=TODOS.filter(t=>t.g==='need');
-  const head=o.nohead?'':V3?`<div class="lhd"><div class="lt"><h2>오늘</h2><span class="th-s">11월 15일 일요일 · 고른 업무가 없을 때</span></div></div>`:`<div class="th"><h2>오늘</h2><span class="th-s">11월 15일 일요일 · 고른 업무가 없을 때</span></div>`;
-  return `<div class="sum">${head}
-  <div class="tiles" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="tile"><div class="n acc">3</div><div class="l">확인 필요</div></div><div class="tile"><div class="n">3</div><div class="l">진행 중</div></div><div class="tile"><div class="n">6</div><div class="l">이번 주 끝남</div></div></div>
-  <div class="blk"><div class="blk-h">확인 필요 바로가기</div>${need.map(t=>`<div class="ln">${face(t.c,24)}<span class="g">${t.title}</span>${stc(t)}</div>`).join('')}</div>
-  <div class="blk"><div class="blk-h">크루 지금</div>${Object.keys(CREW).map(k=>`<div class="ln">${face(k,24)}<b style="font-weight:600">${CREW[k].n}</b><span class="m g">${CREW[k].now}</span></div>`).join('')}</div>
-  <div class="blk"><div class="blk-h">다음 일정</div><div class="ln">${ico('calendar',{s:18})}<span class="g"><b style="font-weight:600">16:00</b> 듀오 시안 검토</span><span class="m">키키</span></div></div>
-  </div>`;
+
+/* ================= v5: 질문 원본 · 묶음 머리 · 할 일 ================= */
+/* R5 한 질문, 한 원본: 할 일 카드 · 대화 답 줄 · 문서 「정할 것」이 같은 항목을 읽고, 답은 ST.qa[id] */
+const QK={appr:'승인',dec:'결정',check:'확인'};
+const QITEMS=[
+  {id:'q1',kind:'appr',crew:'loop',who:'crew',q:'기록 커밋을 위해 집맥 Claude 세션에 push를 허용할까요?',why:'볼트 main 커밋 3건 · 되돌릴 수 있음',opts:['거절','허용'],t:'2분 전',go:'appr',done:null},
+  {id:'q2',kind:'check',crew:'nana',who:'crew',q:'26.46 재검증에서 남은 2건을 이번 배포에서 빼도 될까요?',why:'12건 중 10건 해결 · 남은 2건은 기기 한 대에서만',opts:['빼고 배포','고치고 배포'],t:'10분 전',go:'work',done:null},
+  {id:'q3',kind:'dec',crew:'kiki',who:'crew',q:'펼침 가로 오른쪽을 보드로 할까요, 상세로 둘까요?',why:'키키 추천은 보드 · 하루 건수를 세면 다시 판단',opts:['보드','상세','같이 보기'],rec:0,t:'방금',go:'work',done:null}
+];
+const QMORE=[
+  ['nana','check','재현 영상이 붙은 티켓 2건을 개발 보드로 넘겨도 될까요?','담당 지정 전 · 되돌릴 수 있음',['넘기기','보류']],
+  ['genz','dec','위클리 베스트 11월 2주 표지를 2안으로 갈까요?','저장 수가 2안이 1.4배',['1안','2안']],
+  ['rain','check','폴더블 사례 12건 중 근거가 약한 3건을 빼도 될까요?','출처가 블로그 한 곳뿐',['빼기','남기기']],
+  ['kiki','dec','11/18 주간 회의 안건 순서를 이대로 둘까요?','안건 5개 · 40분',['이대로','바꾸기']],
+  ['loop','check','자동 점검 주기를 10분에서 30분으로 늘려도 될까요?','지난 7일 이상 0건',['늘리기','그대로']]
+];
+/* 확인 필요 n건 (0 · 3 · 20). 승인(q1)이 맨 앞, 나머지는 오래된 순 */
+function QITEMS_N(n){
+  n=Math.max(0,+n||0);const a=QITEMS.slice(0,Math.min(n,3));
+  for(let i=3;i<n;i++){const m=QMORE[(i-3)%QMORE.length];a.push({id:'q'+(i+1),kind:m[1],crew:m[0],who:'crew',q:m[2],why:m[3],opts:m[4],t:(i*6)+'분 전',go:m[1]==='appr'?'appr':'work',done:null})}
+  return a;
+}
+/* 답한 시각(저장 안 함): 4초 동안 「허용함 · 되돌리기」를 보이고 사라짐 */
+const QAT={};let QOPEN=null;
+function qOpen(){const now=Date.now();return QITEMS_N(ST.nq).filter(q=>!ST.qa[q.id]||(QAT[q.id]&&now-QAT[q.id]<4000))}
+
+/* R6 묶음 머리 하나 grpHead(name,n,{fold,link,acc,kind,first,go}). 모양은 결정 10(ST.d10).
+   kind가 need·doing·props이면 ③에서 머리를 그리지 않음. kind가 없는 머리(자료·나)는 ③에서도 ① 모양 */
+function grpHead(name,n,o={}){
+  const v=ST.d10,fold=o.fold,kind=o.kind||'',f=o.first?' first':'';
+  const link=o.link?`<span class="gh-lk"${o.go?` data-go="${o.go}"`:''}>${o.link} ›</span>`:'';
+  if(v==='3'&&['need','doing','props'].includes(kind))return '';
+  if(v==='3'&&fold)return `<div class="gh v3${f}">${kind==='done'?ico('check',{s:16}):''}<span class="gh-nm">${name}</span><span class="gh-c">${n}</span><span class="gh-sp"></span>${ico('chev',{s:16})}</div>`;
+  if(v==='2'&&kind)return `<div class="gh v2${f}"><span class="gh-nm">${name}</span><span class="gh-c">${n}</span><span class="gh-sp"></span>${link}<span class="gh-cv">${ico('chev',{s:16,rot:fold==='closed'?0:90})}</span></div>`;
+  return `<div class="gh${f}"><span class="gh-n${o.acc?' acc':''}">${n}</span><span class="gh-nm">${name}</span><span class="ghl"></span>${link}${fold?`<span class="gh-cv">${ico('chev',{s:16,rot:fold==='open'?90:0})}</span>`:''}</div>`;
+}
+const tgrp5=(cls,head,body,gi)=>(!head&&!body)?'':`<section class="tgrp ${cls||''}">${head}${body?`<div class="gi ${gi||''}">${body}</div>`:''}</section>`;
+/* 피드백 1: 칩은 「누구」만 거름. 상태는 묶음 머리가 말함 */
+function whoChips(){return `<div class="chips who">${chip('전체',true)}${chip('나')}${chip('크루')}</div>`}
+
+const QEV={
+  q1:{k:'루프 보고 발췌',t:'집맥 Claude 세션이 오늘 기록 커밋 3건을 볼트 main에 올리려고 해요. 작업 기록, 젠지 제안 기록, 시안 v5 기록이고 다른 세션 변경은 섞지 않았어요. 올린 뒤에도 커밋 하나로 되돌릴 수 있어요.'},
+  q2:{k:'나나 보고 발췌',t:'재검증 12건 중 10건이 해결됐어요. 남은 2건은 사진 올리기가 멈추는 문제로, 닫힌 가로 자세 기기 한 대에서만 다시 났어요. 재현 영상과 기록을 붙였어요.'},
+  q3:{k:'키키 메모',t:'보드는 모든 건이 한 번씩만 보이고, 상세는 근거와 선택지를 바로 보여 줘요. 하루 확인 필요 건수를 세어 보면 다시 판단할게요.'}
+};
+const PROPS=[
+  {id:'p1',c:'genz',t:'위클리 베스트 표지 저장 수를 매주 자동으로 뽑아 둘까요?',m:'1시간 전'},
+  {id:'p2',c:'rain',t:'폴더블 사례 12건을 자료 문서 한 편으로 묶어 둘게요',m:'어제'}
+];
+const DOING_X=[
+  {id:'t8',c:'nana',title:'C8 26.46 재검증',st:'진행 중',sk:'doing',t:'32분 전',who:'crew',news:'12건 중 10건 확인'},
+  {id:'t9',c:'loop',title:'두 Mac 설정 맞추기',st:'진행 중',sk:'doing',t:'1시간 전',who:'crew',news:'회맥 쪽 받는 중'}
+];
+const doing5=()=>[DOING_X[0]].concat(TODOS.filter(t=>t.g==='doing'),[DOING_X[1]]);
+const DONE5=[TODOS.find(t=>t.id==='t7'),{c:'kiki',title:'듀오 시안 v4 정리',t:'5시간 전',today:1},{c:'rain',title:'지식창고 색인 갱신',t:'오늘 9:05',today:1},{c:'nana',title:'이벤트 측정 값 정리',t:'어제'},{c:'genz',title:'위클리 베스트 11월 1주 게시',t:'어제'},{c:'loop',title:'백업 점검',t:'11/13'}];
+const TRASH=[{c:'genz',t:'표지 3안 만들기',m:'어제'},{c:'kiki',t:'11/11 회의 다시 잡기',m:'11/13'},{c:'rain',t:'경쟁 앱 가격표 정리',m:'11/12'},{c:'nana',t:'구형 기기 재검증',m:'11/10'}];
+
+/* 답 단추: 승인 [거절][허용], 결정 선택지 최대 3개(8자 안, 크루 추천이 맨 앞 · 강조 테두리), 확인 [두 답] */
+function qAns(q,o={}){
+  if(q.kind==='dec'&&(q.opts.length>3||q.opts.some(x=>x.length>8)))return `<span class="qopt" data-go="${q.go}">답하러 가기 ›</span>`;
+  return q.opts.map((x,i)=>`<button class="qopt${q.kind==='appr'&&i===q.opts.length-1?' pri':''}${q.kind==='dec'&&q.rec===i?' rec':''}${o.xl?' xl':''}" data-qa="${q.id}" data-v="${x}">${x}</button>`).join('');
+}
+function qDone(q,wide){const v=ST.qa[q.id];return `<div class="qc done">${ico('check',{s:16})}<span>${q.kind==='appr'?v+'함':'「'+v+'」로 답함'}</span><span class="gh-sp"></span><button class="qc-undo" data-qundo="${q.id}">되돌리기</button></div>`}
+/* 질문 카드: 좁은(폭 520 미만) 152 · 넓은 112 · 목록 88 */
+function qCard(q,o={}){
+  if(ST.qa[q.id])return qDone(q);
+  const t3=ST.d10==='3'?' t3':'';
+  const head=`<div class="qc-h">${face(q.crew,20)}<b>${nm(q.crew)}</b><span class="qc-t">${q.t}</span>${o.list?'<span class="gh-sp"></span>':''}<span class="qc-k ${q.kind}">${QK[q.kind]}</span></div>`;
+  const more=o.list?'':`<span class="qc-more" data-go="${q.go}">자세히 ›</span>`;
+  const qq=`<div class="qc-q">${q.q}</div>`,why=`<div class="qc-w">${q.why}</div>`;
+  if(o.list)return `<div class="qc list${o.sel?' sel':''}${t3}" data-go="${q.go}">${head}${qq}</div>`;
+  /* 넓은 카드: 「자세히 ›」는 카드 오른쪽 위 끝, 답 단추는 한 줄로 오른쪽 아래 끝(답 칸 폭은 단추에 맞춤, 252 넘으면 접고 「자세히 ›」는 이유 아래로) */
+  if(o.wide)return `<div class="qc wide${t3}"><div class="qc-l">${head}${qq}${why}</div><div class="qc-a">${qAns(q)}</div>${more}</div>`;
+  return `<div class="qc${t3}">${head}${qq}${why}<div class="qc-a">${qAns(q)}</div>${more}</div>`;
+}
+/* 질문 줄 64: 누르면 그 자리에서 펼쳐지고 펼쳐 있던 카드는 접힘. 닫힘 가로는 한 줄 44 */
+function qLine(q,o={}){
+  if(ST.qa[q.id])return qDone(q);
+  const t3=ST.d10==='3'?' t3':'';
+  if(o.one)return `<div class="qline one${t3}" data-qopen="${q.id}">${face(q.crew,24)}<span class="ql-1">${q.q}</span><span class="ql-t">${q.t}</span></div>`;
+  return `<div class="qline${t3}" data-qopen="${q.id}">${face(q.crew,28)}<div class="ql-m"><div class="ql-1">${q.q}</div><div class="ql-2">${nm(q.crew)} · ${QK[q.kind]} · ${q.t}</div></div>${ico('chev',{s:16,rot:90})}</div>`;
+}
+const qNone=()=>`<div class="qnone">${ico('check',{s:16})}<span>정할 것 없어요 · 마지막 답 10분 전</span></div>`;
+function propCard(p){return `<div class="propc${ST.d10==='3'?' dsh':''}"><div class="qc-h">${face(p.c,20)}<b>${nm(p.c)}</b><span class="qc-t">${p.m}</span><span class="qc-k">제안</span></div><div class="qc-q">${p.t}</div><div class="qc-a sm"><button class="qopt sm pri">받기</button><button class="qopt sm">안 받기</button></div></div>`}
+/* 진행 중 카드 88(펼침 세로): 머리 + 제목 + 크루 마지막 소식 */
+function tCard(t){return `<div class="tcd" data-go="work"><div class="qc-h">${face(t.c,20)}<b>${nm(t.c)}</b><span class="qc-t">${t.t}</span><span class="gh-sp"></span>${t.sk==='mine'?stc(t):''}</div><div class="tcd-t">${t.title}</div><div class="tcd-n">${t.news}</div></div>`}
+/* 행: 묶음 이름과 같은 상태 태그는 지우고 「내 할 일」만 남김 */
+function row5(t,o={}){
+  const tag=t.sk==='mine'?stc(t):'';
+  if(o.compact)return `<div class="row one" data-go="work">${face(t.c,24)}<div class="row-t">${t.title}</div><span class="row-m">${t.t}</span>${tag}</div>`;
+  const l1=o.board?t.news:t.title,l2=o.board?`${nm(t.c)} · ${t.title} · ${t.t}`:o.done?`${nm(t.c)} · ${t.t} 끝남`:`${nm(t.c)} · ${t.t}`;
+  return `<div class="row" data-go="work">${face(t.c,28)}<div class="row-main"><div class="row-t">${l1}</div><div class="row-m">${l2}</div></div>${tag}</div>`;
+}
+const trashRow=t=>`<div class="row one">${face(t.c,24)}<div class="row-t">${t.t}</div><span class="row-m">${t.m} 지움</span><span class="gh-lk">되살리기</span></div>`;
+/* 할 일 목록(바꾼 뒤). mode: single 닫힘 세로 · compact 닫힘 가로 · wide 펼침 세로 · list 목록 칸 · boardL/boardR 결정 9 B 두 칸
+   순서: 확인 필요 → 진행 중 → 크루 제안 → 끝남(접힘) → 지운 일(접힘) */
+function todoList5(o={}){
+  const P=CTX.P,mode=o.mode||(P==='outerL'?'compact':P==='innerP'?'wide':'single');
+  const items=qOpen(),open=items.filter(q=>!ST.qa[q.id]).length,show=items.slice(0,3),d3=ST.d10==='3';
+  let need;
+  if(!items.length)need=qNone();
+  else{
+    let body;
+    if(mode==='single'){const op=show.find(q=>q.id===QOPEN)||show[0];body=show.map(q=>q===op?qCard(q):qLine(q)).join('')}
+    else if(mode==='compact')body=show.map((q,i)=>i?qLine(q,{one:1}):qCard(q,{wide:!(ST.c390&&ST.r==='app')})).join('');
+    else if(mode==='wide')body=show.map((q,i)=>i<2?qCard(q,{wide:1}):qLine(q)).join('');
+    else if(mode==='list')body=show.map(q=>qCard(q,{list:1,sel:q.id===o.sel})).join('');
+    else body=show.map(q=>qCard(q)).join('');
+    need=tgrp5('first',grpHead('확인 필요',open,{acc:1,kind:'need',link:items.length>3?'차례로 답하기':'',go:'appr'}),body,mode==='compact'?'cpt':'');
+  }
+  const doing=doing5();
+  const doingG=first=>tgrp5(first?'first':'',grpHead('진행 중',doing.length,{kind:'doing'}),doing.map(t=>mode==='wide'?tCard(t):row5(t,{compact:mode==='compact',board:mode==='boardR'})).join(''),mode==='wide'?'':'rows');
+  const propsG=()=>tgrp5('',grpHead('크루 제안',PROPS.length,{kind:'props'}),PROPS.map(propCard).join(''),'');
+  const doneG=op=>tgrp5('',grpHead('끝남',DONE5.length,{kind:'done',fold:op?'open':'closed',link:op&&!d3?'지난 보고':''}),op&&!d3?DONE5.filter(d=>d.today).map(d=>row5(d,{done:1})).join(''):'','rows');
+  const trashG=op=>tgrp5('',grpHead('지운 일',TRASH.length,{kind:'trash',fold:op?'open':'closed'}),op&&!d3?TRASH.map(trashRow).join(''):'','rows');
+  let h=o.chips===false?'':whoChips();
+  if(mode==='boardL')h+=need+propsG();
+  else if(mode==='boardR')h+=doingG(1)+doneG(1)+trashG(0);
+  else h+=need+doingG(0)+propsG()+doneG(0)+trashG(0);
+  return mode==='wide'?`<div class="bandfix">${h}</div>`:h;
+}
+/* 결정 9 A: 첫 건 상세. 질문 20/28 → 근거 블록 → (결정이면) 선택지 56 → 답 줄 44(y599–643) */
+function qDetail(q){
+  if(!q)return qEmptyDetail();
+  const ev=QEV[q.id]||{k:'근거',t:q.why};
+  const radio=q.kind==='dec'?`<div class="qd-op">${q.opts.map((x,i)=>`<div class="qd-r${i===q.rec?' on':''}"><span class="qd-rd"></span><span>${x}</span>${i===q.rec?'<span class="qc-k rec">추천</span>':''}</div>`).join('')}</div>`:'';
+  const ans=q.kind==='dec'?`<button class="qopt xl pri" data-qa="${q.id}" data-v="${q.opts[q.rec||0]}">이걸로 정하기</button>`:qAns(q,{xl:1});
+  return `<div class="qd"><div class="qd-q">${q.q}</div><div class="qd-ev"><div class="qd-k">${face(q.crew,20)}${ev.k}</div><div class="qd-t">${ev.t}</div><span class="qc-more" data-go="${q.go}">보고 전체 ›</span></div>${radio}<div class="qd-ans">${ans}</div></div>`;
+}
+function qEmptyDetail(){
+  return `<div class="qd"><div class="qd-none">${ico('check',{s:28})}<div class="qd-q">정할 것 없어요</div><div class="qd-k">마지막 답 10분 전 · 크루 다섯 중 셋 일하는 중</div></div>${tgrp5('',grpHead('크루 제안',PROPS.length,{kind:'props'}),PROPS.map(propCard).join(''),'')}${tgrp5('',grpHead('지운 일',TRASH.length,{kind:'trash',fold:'open'}),TRASH.map(trashRow).join(''),'rows')}</div>`;
+}
+/* 결정 9 B: 「내가 답할 것 | 돌아가는 일」 두 칸 보드. 힌지(463–487)가 칸 경계, 반접힘도 같은 두 칸 */
+function boardL(half){
+  const [W,H]=DIM.innerL,RX=867;
+  const hp=headTab('todo','innerL',{L:20,rx:443,W,right:listRight('todo')});
+  let h=pane(0,0,463,H,hp.flow+todoList({mode:'boardL',chips:!hp.chipsHead}),(half?'two ':'')+(ST.sc?'scd':''),{t:hp.pt,l:20,r:20,b:28},scv(hp));
+  h+=hp.h;
+  h+=pane(487,0,RX-487,H,todoList({mode:'boardR',chips:false}),half?'two':'',{t:80,l:20,r:12,b:28});
+  h+=hrow({L:507,rx:855,W},posX(ico('doing',{s:18,f:1}),'돌아가는 일','크루 다섯 중 셋 일하는 중'));
+  return h;
+}
+/* R4: 펼침 세로 스크롤 0에서 y455–495(접힘 축 ± 8)에 걸친 카드·묶음 머리는 495로 밀어 냄 */
+function bandFix(){
+  if(ST.sc)return;
+  document.querySelectorAll('.scr.v5[data-p="innerP"] .bandfix').forEach(bf=>{
+    const scr=bf.closest('.scr'),k=(scr.getBoundingClientRect().width/scr.offsetWidth)||1;
+    for(let g=0;g<16;g++){
+      const top=scr.getBoundingClientRect().top;let hit=null;
+      for(const el of bf.querySelectorAll('.gh,.qc,.qline,.tcd,.propc,.qnone,.gi.rows>.row')){const b=el.getBoundingClientRect();if(!b.height)continue;const y=(b.top-top)/k,y2=(b.bottom-top)/k;if(y<495&&y2>455){hit={el,y};break}}
+      if(!hit)break;
+      hit.el.style.marginTop=((parseFloat(getComputedStyle(hit.el).marginTop)||0)+495-hit.y)+'px';
+    }
+  });
 }
 
 /* ---------- 내용: 채팅 ---------- */
@@ -1055,8 +1593,9 @@ function chatList(o={}){
     return h;
   }
   let h=o.title!==false?`<div class="th ${o.cmp?'cmp':'big'}"><h2>채팅</h2><span class="th-s">안 읽음 4</span>${thr(o)}</div>`:'';
-  const row=(fc,name,now,t,last,n,go,sel)=>`<div class="crow ${sel?'sel':''}"${go?` data-go="${go}"`:''}>${fc}<div class="cm"><div class="c1"><b>${name}</b>${now?`<span class="cnw">· ${now}</span>`:''}<span class="ct">${t}</span></div><div class="clast">${last}</div></div>${n?`<span class="cn">${n}</span>`:''}</div>`;
-  h+=CHATS.map(c=>row(face(c.c,40),nm(c.c),CREW[c.c].now,c.t,c.last,c.n,'room',o.sel===c.c)).join('');
+  const row=(fc,name,now,t,last,n,go,sel)=>`<div class="crow ${sel==='p'?'prs':sel?'sel':''}" tabindex="0"${go?` data-go="${go}"`:''}>${fc}<div class="cm"><div class="c1"><b>${name}</b>${now?`<span class="cnw">· ${now}</span>`:''}<span class="ct">${t}</span></div><div class="clast">${last}</div></div>${n?`<span class="cn">${n}</span>`:''}</div>`;
+  const pc=ST.pr?(CHATS.find(c=>c.c!==o.sel)||{}).c:null;
+  h+=CHATS.map(c=>row(face(c.c,40),nm(c.c),CREW[c.c].now,c.t,c.last,c.n,'room',o.sel===c.c?true:c.c===pc?'p':false)).join('');
   h+=`<div class="sec">함께</div>`+row(`<span class="stack">${face('kiki',28)}${face('nana',28)}</span>`,'크루 전체','','어제','키키: 11/18 안건 올렸어요.',0,'',false);
   h+=`<div class="sec">Mac 알림</div>`+row(face('home',40),'집맥','세션 5 · 대화 보기','2분','허용 요청 1건',1,'sess',false)+row(face('work',40),'회맥','','금','세션 끝남',0,'',false);
   return h;
@@ -1064,10 +1603,27 @@ function chatList(o={}){
 /* 꼬리말 토큰: 결정 8의 처음 상태. ③ 늘 꺼짐(추천·기본) ① 새 업무(크루 방)만 켜짐 ② 모두 켜짐. tk면 이번 메시지만 반대로 */
 function tailBase(kind){return ST.tail==='2'?true:ST.tail==='3'?false:kind==='room'}
 function tokOn(kind){const b=tailBase(kind);return ST.tk?!b:b}
+/* 꼬리말 말 목록과 이번 메시지 체크(R: 피드백 5). ST.tw = 처음 상태와 반대로 바꾼 말, TRM = 꼬리말에서 뺀 말(저장 안 함) */
+const TW_BASE=['Ultrathink','다이나믹워크플로우'];const TRM=new Set();
+function tailWords(){return TW_BASE.filter(w=>!TRM.has(w))}
+function tailChecked(kind){const b=tokOn(kind),tw=Array.isArray(ST.tw)?ST.tw:[];return tailWords().filter(w=>b!==tw.includes(w))}
+/* 토큰: 닫힘 · 반접힘(상세 칸 380) ⚡ 28 / ⚡n 40, 펼침 가로 「⚡ 꼬리말」/「⚡ Ultrathink +1」(최대 128), 펼침 세로는 켜진 말 이름(200 넘으면 첫 말 +n). 누르면 꼬리말 칸 */
 function tokHTML(kind){
-  const on=tokOn(kind),P=CTX.tokP||CTX.P;
-  const lbl=P==='innerP'?'Ultrathink · 다이나믹워크플로우':'UT·DW';
-  return `<span class="tok ${on?'on':'off'}" title="꼬리말 Ultrathink · 다이나믹워크플로우 · 이번 메시지만 바뀜" aria-label="꼬리말 ${on?'켜짐':'꺼짐'}" aria-pressed="${on}">${ico('bolt',{s:16})}<span>${lbl}</span></span>`;
+  const P=CTX.tokP||CTX.P,ck=tailChecked(kind),n=ck.length,on=n>0;
+  let cls,lbl;
+  if(P==='outerP'||P==='outerL'||P==='half'){cls=on?'n40':'ic28';lbl=on?`<span class="tk-l">${n}</span>`:''}
+  else if(P==='innerP'){cls=on?'full':'lbl';lbl=`<span class="tk-l">${on?ck.join(' · '):'꼬리말'}</span>`}
+  else{cls='lbl';lbl=`<span class="tk-l">${on?ck[0]+(n>1?` +${n-1}`:''):'꼬리말'}</span>`}
+  return `<button class="tok ${on?'on':'off'} ${cls}${ST.tp?' open':''}" data-tpo data-w="${ck.join('|')}" title="꼬리말 보기 · 고치기" aria-label="꼬리말 ${on?n+'개 켜짐':'꺼짐'} · 눌러서 보기" aria-expanded="${!!ST.tp}">${ico('bolt',{s:16})}${lbl}</button>`;
+}
+/* 꼬리말 칸: ＋ 패널처럼 입력칸 위, 키보드 유지. 보기 · 체크 · 빼기 · 말 추가 · 이번 메시지만 | 늘 */
+function tailPop(kind){
+  const P=CTX.tokP||CTX.P,ck=tailChecked(kind),ws=tailWords();
+  const seg=`<span class="tp-seg" role="group" aria-label="붙이는 범위"><button data-k="tsc" data-v="once" aria-pressed="${ST.tsc!=='always'}">이번 메시지만</button><button data-k="tsc" data-v="always" aria-pressed="${ST.tsc==='always'}">늘</button></span>`;
+  if(P==='outerL'&&ST.kb)return `<div class="tail-pop tstrip" role="dialog" aria-label="꼬리말">${ws.map(w=>{const c=ck.includes(w);return `<button class="tp-chip${c?' on':''}" data-tw="${w}" aria-pressed="${c}">${c?ico('check',{s:14}):''}${w}</button>`}).join('')}<button class="tp-chip add" aria-label="말 추가">${ico('plus',{s:16})}</button>${seg}</div>`;
+  const pos=P==='outerP'?'':P==='innerP'||P==='outerL'?' r360':' r320';
+  const rows=ws.map(w=>{const c=ck.includes(w);return `<div class="tp-row"><button class="tp-ck${c?' on':''}" data-tw="${w}" aria-pressed="${c}" aria-label="${w} 이번 메시지에 붙이기">${ico('check',{s:16})}</button><span class="tp-nm">${w}</span><button class="tp-rm" data-trm="${w}" aria-label="${w} 꼬리말에서 빼기">${ico('minus',{s:16})}</button></div>`}).join('');
+  return `<div class="tail-pop${pos}" role="dialog" aria-label="꼬리말">${rows}<div class="tp-add"><span class="tp-pl">${ico('plus',{s:20})}</span>말 추가</div><div class="tp-ft"><span>붙이는 범위</span>${seg}</div></div>`;
 }
 /* ＋ 패널: 입력칸 위, 키보드 유지. 자주 쓰는 말 · 모델·에포트 · 첨부 · 최근 보낸 글 */
 function plusPanel(){
@@ -1080,7 +1636,7 @@ function plusPanel(){
   return `<div class="plus-panel" role="dialog" aria-label="＋ 패널">${chips}${model}${att}${rec}</div>`;
 }
 function dock(o={}){
-  if(V3)return `${ST.plus?plusPanel():''}<div class="dock"><span class="dk ${ST.plus?'on':''}" title="${ST.plus?'＋ 패널 닫기':'＋ 패널'}">${ico(ST.plus?'close':'plus',{s:20})}</span><span class="dk-in"><span class="ph">${o.ph3||o.ph||'메시지'}</span>${tokHTML(o.kind||'room')}<span class="snd">${ico('send',{s:18})}</span></span></div>`;
+  if(V3){const pl=ST.plus&&!ST.tp;return `${pl?plusPanel():''}${ST.tp?tailPop(o.kind||'room'):''}<div class="dock"><span class="dk ${pl?'on':''}" title="${pl?'＋ 패널 닫기':'＋ 패널'}">${ico(pl?'close':'plus',{s:20})}</span><span class="dk-in"><span class="ph">${o.ph3||o.ph||'메시지'}</span>${tokHTML(o.kind||'room')}<span class="snd">${ico('send',{s:18})}</span></span></div>`;}
   return `<div class="dock">${o.back?`<span class="dk">${ico('back')}</span>`:''}<span class="dk">${ico('plus')}</span><span class="dk-in">${o.ph||'메시지'}</span><span class="dk send">${ico('send',{s:20})}</span></div>`}
 /* 같은 사람이 이어 말하면 얼굴 자리를 비우고 간격 4, 말한 사람이 바뀌면 12 */
 function thread(list,cw){let prev=null;return list.map(m=>{
@@ -1135,9 +1691,17 @@ const RCARD=`<div class="rcard">
       <span class="rc-more">자세히 ›</span>
       <div class="dec"><span class="dbtn pri">다음 배포로 미루기</span><span class="dbtn">다시 여는 티켓 만들기</span></div>
     </div>`;
+const RCARD5=`<div class="rcard">
+      <span class="rc-k">나나 · 보고</span>
+      <span class="rc-t">12건 중 10건 해결, 2건 남음</span>
+      <span class="rc-s">남은 2건은 사진 올리기가 멈추는 문제로, 기기 한 대에서만 다시 났어요. 재현 영상과 기록을 붙였어요. 이번 배포에서 뺄지 골라 주세요.</span>
+      <span class="rc-more">자세히 ›</span>
+    </div>`;
 const WORK=[['day','어제'],['nana','26.46 빌드가 올라왔어요. 지난번 열린 건은 12건이에요.'],['me','사진 올리기 건은 꼭 봐 줘.'],['nana','네, 그 건은 기기 세 대에서 따로 볼게요.'],['day','오늘'],['me','26.46 재검증 돌려 줘. 지난번 열린 건 위주로.'],['nana','재검증 끝났어요. 보고 올려요.'],['raw',RCARD],['qr',['더 짧게','근거 보여 줘']]];
 function workView(o={}){
-  if(V3)return `<div class="vw">${pillOf('work',o)}<div class="thread">${thread(WORK)}</div>${dock({ph3:'나나에게 이어 말하기 · Opus',kind:'work'})}</div>`;
+  if(V3){const q=qItem('q2'),a1=ST.d11!=='2';
+    const w5=WORK.map(m=>m[0]==='raw'?['raw',RCARD5+(a1?ansRow(q,{ml:36}):'')]:m);
+    return `<div class="vw">${pillOf('work',o)}<div class="thread">${thread(w5)}</div>${a1?waitPill():ansChips(q,{tgt:'나나 보고 · 2건'})}${dock({ph3:'나나에게 이어 말하기 · Opus',kind:'work'})}</div>`}
   return `<div class="vw">
   ${o.head!==false?`<div class="vh">${face('nana',24)}<span class="tt">C8 앱 26.46 QA 재검증</span><span class="st wait">결정 대기</span></div>`:''}
   <div class="thread">${thread(WORK)}</div>
@@ -1151,8 +1715,16 @@ const APPR=`<div class="appr">
     <span class="code">git commit · 파일 3개</span>
     <span class="rc-more">명령 전체 보기 ›</span>
   </div>`;
+/* v5: 대상 · 영향 한 줄을 더하고, 거절 · 허용은 카드 바로 아래 답 줄(결정 11 ①) 또는 입력칸 위 답 칩(②) */
+const APPR5=k=>`<div class="appr">${k?`<span class="rc-k">${k}</span>`:''}
+    <span class="t">기록 3건을 커밋하려고 해요</span>
+    <span class="imp">볼트 · 파일 3개 · 되돌릴 수 있음</span>
+    <span class="s">오늘 작업 기록과 젠지 제안 기록을 볼트에 남기는 커밋이에요. 다른 세션 변경은 섞지 않아요.</span>
+    <span class="code">git commit · 파일 3개</span>
+    <span class="rc-more">명령 전체 보기 ›</span>
+  </div>`;
 function apprView(o={}){
-  if(V3)return `<div class="vw">${pillOf('appr',o)}<div class="apbody">${APPR}</div><div class="dec apdec"><span class="dbtn big">거절</span><span class="dbtn big pri">허용</span></div>${dock({ph3:'Mac에 이어 말하기',kind:'mac'})}</div>`;
+  if(V3){const q=qItem('q1'),a1=ST.d11!=='2';return `<div class="vw">${pillOf('appr',o)}<div class="apbody">${APPR5()}${a1?ansRow(q):''}</div>${a1?waitPill():ansChips(q,{tgt:'커밋 · 파일 3개'})}${dock({ph3:'Mac에 이어 말하기',kind:'mac'})}</div>`}
   return `<div class="vw">
   ${o.head!==false?`<div class="vh">${face('home',24)}<b>집맥</b><span class="sub">Claude 세션 · 14:02</span></div>`:''}
   <div class="apnow" style="flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column">
@@ -1174,7 +1746,8 @@ function sessView(o={}){
     <div class="msg">${face('home',28)}<div class="bub">세션 끝남 · ${SESS_T}</div></div>
     <div class="rcard"><span class="rc-k">마지막 답 · 4,000자에서 잘림</span><span class="rc-s">바꿨어요. 폭이 바뀌면 baseH를 다시 재요. 시험 기록은 …</span><span class="rc-more" style="color:var(--faint)">터미널에서 친 말과 앞 턴은 여기서 볼 수 없음</span></div>
   </div>${dock({back:o.back,ph:'Mac에 이어 말하기'})}</div>`;
-  return `<div class="vw">${pillOf('sess',o)}<div class="thread sx">
+  const q=qItem('q1'),a1=ST.d11!=='2';
+  return `<div class="vw">${pillOf('sess',o)}<div class="thread sx"${ST.sc?' style="--jc:flex-start"':''}>
     <span class="older">이전 턴 보기</span>
     <span class="snote">Mac에서 가린 뒤 올라온 대화 · 7일 보관</span>
     <span class="tsep">13:58</span>
@@ -1184,18 +1757,90 @@ function sessView(o={}){
     <span class="tsep">14:02</span>
     <div class="me-t"><div class="bub">포커스랑 baseH로 바꾸고 시험 돌려 줘. 결과는 ${MK('이메일')}로도.</div><span class="src">크루네</span></div>
     <div class="tl">${ico('review',{s:14})}도구 6번 · Edit 2 · Bash 4</div>
-    <div class="ai-t">바꿨어요. 폭이 바뀌면 baseH를 다시 재요.<pre class="cb">kbOpen = focused &amp;&amp; baseH - vv.height &gt; 120</pre>시험 기록은 기록 파일에 남겼고, 닫힘 세로와 펼침 가로 둘 다 열림·닫힘이 한 번에 바뀌었어요. 남은 건 닫힘 가로 실측인데</div>
+    <div class="ai-t">바꿨어요. 폭이 바뀌면 baseH를 다시 재요.${codeBlock(CODE_LONG,{lang:'js'})}시험 기록은 기록 파일에 남겼고, 닫힘 세로와 펼침 가로 둘 다 열림·닫힘이 한 번에 바뀌었어요. 남은 건 닫힘 가로 실측인데</div>
     <div class="cut">… 잘림 · 턴당 12,000자</div>
     <div class="me-t"><div class="bub">닫힘 가로도 재 줘.</div><span class="src">크루네</span></div>
-  </div><div class="waitl"><span class="dot" style="background:var(--warning)"></span>응답 기다리는 중</div>${dock({ph3:'집맥 세션에 이어 말하기',kind:'mac'})}</div>`;
+    <div class="tl">${ico('review',{s:14})}도구 2번 · Bash 2</div>
+    ${APPR5('허용 요청 · 14:03')}${a1?ansRow(q):''}
+  </div><div class="waitl"><span class="dot" style="background:var(--warning)"></span>${ST.qa[q.id]?'응답 기다리는 중':'허용 기다리는 중'}</div>${a1?waitPill():ansChips(q,{tgt:'커밋 · 파일 3개'})}${dock({ph3:'집맥 세션에 이어 말하기',kind:'mac'})}</div>`;
 }
-function sessList(){return SESS_LIST.map(s=>`<div class="ses ${s.sel?'sel':''}" data-go="sess"><span class="sd ${s.d}"></span><div class="row-main"><div class="row-t">${s.t}</div><div class="row-m">${s.m}</div></div></div>`).join('')}
+function sessList(){const pi=V3&&ST.pr?SESS_LIST.findIndex(s=>!s.sel):-1;return SESS_LIST.map((s,i)=>`<div class="ses ${s.sel?'sel':i===pi?'prs':''}"${V3?' tabindex="0"':''} data-go="sess"><span class="sd ${s.d}"></span><div class="row-main"><div class="row-t">${s.t}</div><div class="row-m">${s.m}</div></div></div>`).join('')}
+
+/* ---------- v5 M2: 답 줄 · 답 기다림 알약 · 긴 코드 ---------- */
+/* R5: 대화의 답 줄은 QITEMS의 같은 항목을 읽고, 답은 ST.qa[id]. 답하면 「✓ 허용함 · 샐리 · 14:03」, 다른 곳에서 처리된 건은 단추를 끔 */
+const qItem=id=>QITEMS.find(q=>q.id===id)||QITEMS_N(20).find(q=>q.id===id);
+let WPF=0;
+function ansWord(q,a){return q.kind==='appr'?(a===q.opts[q.opts.length-1]?'허용함':'거절함'):`「${a}」로 답함`}
+function ansRow(q,o={}){
+  if(!q)return '';
+  const a=ST.qa[q.id],ml=o.ml?` style="margin-left:${o.ml}px;max-width:min(360px,calc(100% - ${o.ml}px))"`:'';
+  if(a)return `<div class="ans-done"${ml}>${ico('check',{s:16})}<span>${ansWord(q,a)} · 샐리 · 14:03</span></div>`;
+  const off=q.done==='elsewhere',stack=q.opts.length>=3||q.opts.some(x=>x.length>8);
+  const btn=(x,i)=>`<button class="dbtn${q.kind==='appr'&&i===q.opts.length-1?' pri':''}" data-qa="${q.id}" data-v="${x}"${off?' disabled':''}>${x}${q.kind==='dec'&&q.rec===i?'<span class="ans-rec">추천</span>':''}</button>`;
+  return `${off?`<div class="ans-done off"${ml}>${ico('info',{s:16})}<span>다른 곳에서 처리됨</span></div>`:''}<div class="ans${stack?' stack':''}${Date.now()-WPF<1200?' flash':''}" data-ans="${q.id}"${ml}>${q.opts.slice(0,4).map(btn).join('')}</div>`;
+}
+/* 결정 11 ②: 입력칸 위 답 칩 md 32 + 대상 칩 */
+function ansChips(q,o={}){
+  if(!q)return '';
+  const a=ST.qa[q.id];
+  if(a)return `<div class="achips"><div class="ans-done">${ico('check',{s:16})}<span>${ansWord(q,a)} · 샐리 · 14:03</span></div></div>`;
+  return `<div class="achips">${q.opts.map((x,i)=>`<button class="qopt${q.kind==='appr'&&i===q.opts.length-1?' pri':''}" data-qa="${q.id}" data-v="${x}">${x}</button>`).join('')}<span class="atgt">${o.tgt||nm(q.crew)} ›</span></div>`;
+}
+/* 답 기다림 알약: 그린 뒤 m2Fix가 답 줄이 대화 칸에 보이는지 재서 켬. 누르면 맨 아래로 돌아가 답 줄을 1초 강조 */
+function waitPill(n=1,dir='dn'){return `<button class="waitpill ctr" data-wp hidden>답 기다림 <span class="wpn">${n}</span><span class="wpa">${ico(dir,{s:16})}</span></button>`}
+/* 긴 코드: 줄을 바꾸고(이어지는 줄은 2칸 들여 씀), 보이는 줄이 N(8, 닫힘 가로 5)을 넘으면 접음 */
+const CODE_LONG=[
+  "// 키보드 열림 판정: 포커스 + 처음 높이(baseH) 기준",
+  "const vv = window.visualViewport;",
+  "let baseH = vv.height;",
+  "function onResize() {",
+  "  const focused = document.activeElement?.matches('input, textarea, [contenteditable]');",
+  "  if (!focused) baseH = Math.max(baseH, vv.height);",
+  "  const kbOpen = focused && baseH - vv.height > 120;",
+  "  document.body.classList.toggle('kb-open', kbOpen);",
+  "  document.documentElement.style.setProperty('--kb', kbOpen ? (baseH - vv.height) + 'px' : '0px');",
+  "}",
+  "addEventListener('orientationchange', () => { baseH = 0; requestAnimationFrame(onResize); });",
+  "vv.addEventListener('resize', onResize);",
+  "addEventListener('focusin', onResize);",
+  "addEventListener('focusout', () => setTimeout(onResize, 50));",
+  "onResize();"
+];
+function codeBlock(lines,o={}){
+  const n=o.n||(CTX.P==='outerL'?5:8),open=!!ST.cbx;
+  const esc=t=>t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return `<div class="cb${open?' open':''}" data-n="${n}" style="--n:${n}"><div class="cb-h"><span class="cb-l">${o.lang||'code'}</span><button class="cb-cp ctr" data-cp>${ico('copy',{s:14})}<span>복사</span></button></div><div class="cb-b">${lines.map(l=>`<span class="cbl">${esc(l)||' '}</span>`).join('')}</div><button class="cb-more ctr" data-cbx data-v="${open?0:1}">${open?'접기':`${Math.max(0,lines.length-n)}줄 더 보기`}</button></div>`;
+}
+/* 그린 뒤: 코드 숨은 줄 수 · 펼침 세로 토큰 200 넘음 · 답 기다림 알약 */
+function m2Fix(){
+  document.querySelectorAll('.scr.v5 .cb').forEach(cb=>{
+    const bd=cb.querySelector('.cb-b'),mo=cb.querySelector('.cb-more');if(!bd||!mo)return;
+    const n=+cb.dataset.n||8,total=Math.round(bd.scrollHeight/18);
+    if(total<=n){mo.remove();cb.classList.add('open');return}
+    mo.innerHTML=cb.classList.contains('open')?`접기${ico('chev',{s:14,rot:-90})}`:`${total-n}줄 더 보기${ico('chev',{s:14,rot:90})}`;
+  });
+  document.querySelectorAll('.scr.v5 .tok.full').forEach(t=>{const w=(t.dataset.w||'').split('|');if(t.scrollWidth>200&&w.length>1){const l=t.querySelector('.tk-l');if(l)l.textContent=`${w[0]} +${w.length-1}`}});
+  document.querySelectorAll('.scr.v5 .vw').forEach(vw=>{
+    const wp=vw.querySelector(':scope>.waitpill');if(!wp)return;
+    const th=vw.querySelector(':scope>.thread,:scope>.apbody'),rows=[...vw.querySelectorAll('.ans[data-ans]')];
+    vw.classList.remove('wp-on');wp.hidden=true;
+    if(!th||!rows.length||ST.tp||ST.plus)return;
+    const scr=vw.closest('.scr'),k=(scr.getBoundingClientRect().width/scr.offsetWidth)||1,tb=th.getBoundingClientRect();
+    const top=tb.top+(parseFloat(getComputedStyle(th).getPropertyValue('--mk'))||0)*k;
+    if(rows.some(r=>{const b=r.getBoundingClientRect();return b.bottom>top+1&&b.top<tb.bottom-1}))return;
+    const b0=rows[0].getBoundingClientRect();
+    wp.querySelector('.wpn').textContent=rows.length;wp.querySelector('.wpa').innerHTML=ico(b0.bottom<=top+1?'up':'dn',{s:16});
+    wp.hidden=false;vw.classList.add('wp-on');
+  });
+}
 
 /* ---------- 내용: 자료 ---------- */
 function libRow(l,o){
+  if(V3)return libCard(l,o);
   if(V3)return `<div class="row ${o.sel===l.id?'sel':''}" data-go="lib"><span class="thumb sm" style="background:${l.col}">${ico(l.i,{s:16})}</span><div class="row-main"><div class="row-t">${l.t}</div><div class="row-m">${nm(l.c)} · ${l.k} · ${l.d}</div></div></div>`;
   return `<div class="row ${o.sel===l.id?'sel':''}" data-go="lib"><span class="thumb" style="background:${l.col}">${ico(l.i,{s:20})}</span><div class="row-main"><div class="row-t">${l.t}</div><div class="row-m">${nm(l.c)} · ${l.k} · ${l.d}</div></div></div>`}
 function libList(o={}){
+  if(V3)return libList5(o);
   let h=o.title!==false?(V3?`<div class="th ${o.cmp?'cmp':'big'}"><h2>자료</h2><span class="th-s">담은 자료 5</span>${thr(o)}</div>`:`<div class="th ${o.big?'big':''}"><h2>자료</h2></div>`):'';
   if(!o.now&&o.seg!==false)h+=`<div class="seg2"><span>기록</span><span class="on">결과물</span><span>문서함</span></div>`;
   h+=`<div class="newc"><div class="h">${ico('spark',{s:18})}새로 온 자료 5<span class="m">레인이 고름 ›</span></div><div class="minis"><div class="mini" style="background:#6b7bff">폴더블 앱 사례 12</div><div class="mini" style="background:#ff7a8a">표지 글꼴 모음</div><div class="mini" style="background:#2ba84a">QA 자동화 글</div></div></div>`;
@@ -1203,7 +1848,9 @@ function libList(o={}){
   h+=o.cols===2?`<div class="lgrid">${LIBS.map(l=>libRow(l,o)).join('')}</div>`:LIBS.map(l=>libRow(l,o)).join('');
   return h;
 }
-function libDetail(o={}){
+/* 바꾼 뒤는 보고서(docView). 「지금」 그림은 옛 문서 보기 그대로 */
+function libDetail(o={}){return V3?docView(o):libDetailNow(o)}
+function libDetailNow(o={}){
   return `<div class="doc">
   ${o.nohead?'':`<div class="doc-k">${face('rain',20)}레인 · 문서 · 11/15 · 6분</div>
   <h3 class="doc-t">폴더블 화면 패턴 정리</h3>`}
@@ -1217,6 +1864,7 @@ function libDetail(o={}){
 
 /* ---------- 내용: 나 ---------- */
 function meMenu(o={}){
+  if(V3)return meMenu5(o);
   const g=V3?8:10;
   let h=o.title!==false?(V3?`<div class="th ${o.cmp?'cmp':'big'}"><h2>나</h2>${thr(o)}</div>`:`<div class="th ${o.big?'big':''}"><h2>나</h2></div>`):'';
   h+=`<div class="prof">${face('sally',V3?40:48)}<div style="flex:1;min-width:0"><b>샐리</b><div class="m">크루 다섯과 일하는 중</div></div>${ico('chev',{s:16})}</div>`;
@@ -1243,27 +1891,148 @@ function accountsView(o={}){
   </div>`;
 }
 
+/* ================= v5 M3: 자료 A4 썸네일 · 문서 보고서 · 나 대시보드 ================= */
+const KICO={doc:'doc',report:'doc',sheet:'file',image:'image',audio:'voice',link:'link'};
+/* 종이 높이 = 폭 × 1.414를 4 단위로 올림. 화면에서는 CSS(cqw + round)가 같은 값을 내고, JS 값은 앞면 글자 크기 · 막대 수에만 씀 */
+const paperH=w=>Math.ceil(w*1.414/4)*4;
+const WAVE=[10,18,28,14,36,22,30,12,40,24,8,30,18,34,14,26,10,22,30,12];
+function paperArt(a){
+  if(a==='type')return `<svg class="pp-art" viewBox="0 0 100 141" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100" height="141" fill="#f3ede2"/><rect x="0" y="0" width="100" height="6" fill="#2f5d50"/><text x="10" y="50" font-family="Georgia,serif" font-size="34" fill="#1f1f1f">Aa</text><text x="62" y="50" font-family="IBM Plex Sans KR,sans-serif" font-weight="700" font-size="22" fill="#2f5d50">가</text><rect x="10" y="62" width="80" height=".6" fill="#1f1f1f" opacity=".4"/><text x="10" y="76" font-family="IBM Plex Sans KR,sans-serif" font-weight="700" font-size="9" fill="#1f1f1f">다람쥐 헌 쳇바퀴</text><text x="10" y="90" font-family="Georgia,serif" font-style="italic" font-size="9" fill="#1f1f1f">The quick fox</text><text x="10" y="104" font-family="IBM Plex Mono,monospace" font-size="8" fill="#1f1f1f">0123 4567 89</text><circle cx="70" cy="128" r="4" fill="#2f5d50"/><circle cx="80" cy="128" r="4" fill="#e07a5f"/><circle cx="90" cy="128" r="4" fill="#f2cc8f"/></svg>`;
+  return `<svg class="pp-art" viewBox="0 0 100 141" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="100" height="141" fill="#ff8a7a"/><circle cx="84" cy="22" r="30" fill="#ffc37a"/><circle cx="6" cy="128" r="34" fill="#7a5cff" opacity=".55"/><text x="9" y="36" font-family="IBM Plex Sans KR,sans-serif" font-weight="700" font-size="16" fill="#fff" letter-spacing="-.5">WEEKLY</text><text x="9" y="53" font-family="IBM Plex Sans KR,sans-serif" font-weight="700" font-size="16" fill="#fff" letter-spacing="-.5">BEST</text><text x="9" y="66" font-family="IBM Plex Sans KR,sans-serif" font-weight="600" font-size="7" fill="#fff">11월 2주 · 8편</text><rect x="9" y="74" width="39" height="39" rx="4" fill="#fff" opacity=".92"/><rect x="52" y="74" width="39" height="39" rx="4" fill="#fff" opacity=".7"/><circle cx="28.5" cy="88" r="7" fill="#ff8a7a"/><path d="M13 109l10-11 7 7 5-5 9 9z" fill="#7a5cff" opacity=".7"/><rect x="57" y="80" width="29" height="4" rx="2" fill="#ff8a7a"/><rect x="57" y="88" width="22" height="4" rx="2" fill="#ff8a7a" opacity=".6"/></svg>`;
+}
+/* 앞면: A 표지형(기본) · B 첫 장 축소 · C 종류 기호 */
+function paperFace(l,w){
+  const k=l.kind,th=ST.th,big=w>=140;
+  if(k==='image')return th==='C'?`<span class="pp-sym">${ico('image',{s:40})}</span>`:paperArt(l.art);
+  if(th==='C')return `<span class="pp-sym">${ico(KICO[k],{s:40})}</span>`;
+  if(th==='B')return `<div class="pp-mini"><b></b>${'<i></i>'.repeat(30)}</div>`;
+  if(k==='sheet')return `<div class="pp-st">${l.t}</div><div class="pp-g">${Array.from({length:18},(_,i)=>`<span class="${i<3?'h':''}"><i style="width:${[70,55,40,80,45,60,65,35,50][i%9]}%"></i></span>`).join('')}</div>`;
+  if(k==='audio'){const n=Math.min(20,Math.floor((w-2*(w<120?8:12)+3)/6));return `<div class="pp-at">${l.t}</div><div class="pp-w">${WAVE.slice(0,n).map(x=>`<i style="height:${Math.round(x*(big?1:.8))}px"></i>`).join('')}</div><span class="pp-d">${l.dur}</span>`}
+  if(k==='link')return `<div class="pp-hero"><span class="pp-ltr">${l.dom[0].toUpperCase()}</span></div><div class="pp-lb"><div class="pp-dom">${l.dom}</div><div class="pp-lt">${l.t}</div></div>`;
+  return `<div class="pp-c ${big?'b':'s'}${k==='report'&&!big?' c3':''}">${l.concl||l.t}</div>${k==='report'&&l.num?`<div class="pp-n">${l.num}</div>`:''}<div class="pp-l"><i></i><i></i><i></i><i></i></div>`;
+}
+function paper(l,w,o={}){
+  const pad=w<120?8:12;
+  return `<div class="paper k-${l.kind} th-${ST.th}${o.dot?' isnew':''}" style="--pp:${pad}px;--ph:${paperH(w)}px">${paperFace(l,w)}<span class="ptag">${ico(KICO[l.kind],{s:12})}${l.kl}</span>${o.dot?'<i class="pdot"></i>':''}</div>`;
+}
+/* 카드: 종이 → 8 → 제목 13/18 최대 2줄 → 2 → 메타 12/16. 누르는 영역은 카드 전체, 고름은 종이 바깥 4 고리(R1) */
+function libCard(l,o={}){
+  const w=o.w||148;
+  return `<div class="acard${o.sel===l.id?' sel':''}" data-go="doc" tabindex="0"${o.fixed?` style="width:${w}px"`:''}>${paper(l,w,{dot:o.dot})}<div class="ac-t">${l.t}</div><div class="ac-m">${o.why?l.why:`${nm(l.c)} · ${l.d}`}</div></div>`;
+}
+/* 레인이 고른 새 자료 선반: 104×148 가로 한 줄(펼침 세로는 148×212 4장), 끝은 레일 쪽 화면 끝까지 */
+function newShelf(o={}){
+  const w=o.sw||104,ext=o.ext||0;
+  return `${grpHead('레인이 고른 새 자료',NEWS.length,{link:'모두 보기'})}<div class="shelf" style="--ext:${ext}px">${NEWS.map(n=>libCard(n,{w,fixed:1,dot:1,why:1})).join('')}</div>`;
+}
+const CWDEF={outerP:350,outerL:562,innerL:300,half:423,innerP:629};
+/* 자료 목록(바꾼 뒤): 구분 셋 → 새 자료 선반 → 담은 자료 격자(--cols) */
+function libList5(o={}){
+  const P=CTX.P,cols=o.cols||2,cw=o.cw||CWDEF[P]||350,w=(cw-12*(cols-1))/cols;
+  const ip=P==='innerP'&&!ST.alt,ext=o.ext!=null?o.ext:(P==='outerP'||P==='outerL')?12:ip?0:20;
+  let h='';
+  if(o.seg!==false)h+=`<div class="m3blk lsg">${libSeg()}</div>`;
+  h+=`<section class="lgrp m3blk">${newShelf({sw:ip?w:104,ext})}</section>`;
+  h+=`<section class="lgrp m3blk">${grpHead('담은 자료',LIBS.length)}<div class="agrid" style="--cols:${cols}">${LIBS.map(l=>libCard(l,{w,sel:o.sel})).join('')}</div></section>`;
+  return `<div class="libv m3band">${h}</div>`;
+}
+/* 문서 보기 = 보고서: 표지 요약(결론 · 핵심 수치 · 담당) → 목차 → 본문 절 → 정할 것 → 다음 행동 → 관련 자료 → 원본 */
+function docView(o={}){
+  const D=DOC,q=qItem(D.askId),a=q&&ST.qa[q.id],lb=!!o.lb;
+  const cover=`<section class="rpt-cover m3blk"><div class="rc-tags"><span class="rtag">${D.kl}</span>${q&&!a?'<span class="rtag acc">정할 것 1</span>':''}</div><div class="rc-c">${D.concl}</div><div class="rc-nums">${D.nums.map(([n,l])=>`<div class="rpt-num"><b>${n}</b><span>${l}</span></div>`).join('')}</div><div class="rc-who">${face(D.who,20)}<span>${nm(D.who)} · ${D.d} · ${D.min}분 읽기 · 근거 ${D.src}</span></div></section>`;
+  const toc=lb?'':`<div class="rpt-toc m3blk" tabindex="0">${ico('book',{s:18})}<span>목차 · ${D.secs.length}절</span><span class="gh-sp"></span>${ico('chev',{s:16,rot:90})}</div>`;
+  const body=`<div class="rpt-body">${D.secs.map((x,i)=>`<section class="rpt-sec"><h4><span class="rs-n">${i+1}</span><span>${x[0]}</span></h4><p>${x[1]}</p></section>`).join('')}</div>`;
+  const ask=!q?'':`<section class="rpt-ask m3blk"><div class="ra-h">${face(q.crew,20)}<b>${nm(q.crew)}</b><span>정할 것 · ${q.t}</span></div><div class="ra-q">${q.q}</div>${a?`<div class="ans-done">${ico('check',{s:16})}<span>답함 · ${a}</span></div>`:`<div class="ra-a">${q.opts.map((x,i)=>`<button class="qopt sm${q.rec===i?' rec':''}" data-qa="${q.id}" data-v="${x}">${x}</button>`).join('')}</div>`}</section>`;
+  const next=`<section class="m3blk dsec">${grpHead('다음 행동',D.next.length)}${D.next.map(([t,c,d])=>`<div class="rpt-next"><span class="rn-b"></span><span class="rn-t">${t}</span>${face(c,20)}<span class="rn-d">${d}</span></div>`).join('')}</section>`;
+  const rels=D.rel.map(id=>NEWS.find(x=>x.id===id)||LIBS.find(x=>x.id===id));
+  const rel=`<section class="m3blk dsec">${grpHead('관련 자료',rels.length)}<div class="shelf">${rels.map(l=>libCard(l,{w:104,fixed:1,why:!!l.why})).join('')}</div></section>`;
+  const src=`<div class="rpt-src">${ico('link',{s:14})}<span>${D.srcLine}</span></div>`;
+  const main=cover+toc+body+ask+next+rel+src;
+  if(lb)return `<div class="docv lb"><nav class="rpt-tocr">${D.secs.map((x,i)=>`<div class="rt-r${i?'':' on'}"><span class="rs-n">${i+1}</span><span>${x[0]}</span></div>`).join('')}</nav><div class="dv-main m3band">${main}</div></div>`;
+  return `<div class="docv m3band">${main}</div>`;
+}
+/* 나: 닫힘은 구조 유지 + 타일 글자 보강, 펼친 가로 목록 칸은 tiles:false */
+function meMenu5(o={}){
+  let h=o.title!==false?`<div class="th ${o.cmp?'cmp':'big'}"><h2>나</h2>${thr(o)}</div>`:'';
+  h+=`<div class="prof">${face('sally',40)}<div style="flex:1;min-width:0"><b>샐리</b><div class="m">크루 다섯과 일하는 중 · 집맥 연결</div></div>${ico('chev',{s:16})}</div>`;
+  if(o.tiles!==false){
+    const use=`<div class="tile mt"><div class="l">사용량</div>${ACCTS.map(a=>`<div class="mt-a"><div class="mt-h"><span class="mu-dot" style="background:${a.col}"></span><span class="mt-n">${a.n.split(' · ')[0]}</span><b>${a.p}%</b></div><div class="bar"><i class="${a.k}" style="width:${a.p}%"></i></div><div class="mt-r">${a.rs}</div></div>`).join('')}</div>`;
+    const crew=`<div class="tile mt"><div class="l">크루 지금</div><div class="stack" style="margin-top:6px">${['kiki','nana','rain','genz','loop'].map(k=>face(k,22)).join('')}</div><div class="mt-s">일하는 중 3</div><div class="mt-w">답 기다림 1</div></div>`;
+    if(o.tiles4)h+=`<div class="tiles mts" style="grid-template-columns:repeat(4,minmax(0,1fr))">${use}${crew}<div class="tile mt"><div class="l">이전 활동</div><div class="mt-s">오늘 6건</div><div class="mt-r">마지막 14:03</div></div><div class="tile mt"><div class="l">버전</div><div class="mt-s mono">11.15</div><div class="mt-r">화면 바뀐 점</div></div></div>`;
+    else h+=`<div class="tiles mts" style="grid-template-columns:repeat(2,minmax(0,1fr))">${use}${crew}</div><div class="foldrow" style="padding-top:0">이전 활동 ${ico('chev',{s:16})}</div>`;
+  }
+  const rs=[['bell','알림','al'],['crew','크루','cr'],['palette','화면','ap'],['link','AI 계정과 연결','acc']];
+  h+=`<div class="grp-rows mg">${rs.map(r=>`<div class="srow ${o.sel===r[2]?'sel':''}">${ico(r[0],{s:20})}<span>${r[1]}</span><span class="sp"></span>${ico('chev',{s:16})}</div>`).join('')}</div>`;
+  h+=`<div class="grp-rows mg">${o.tiles4?'':`<div class="srow">${ico('history',{s:20})}<span>크루네 2026.11.15</span><span class="sp"></span><span style="font-size:13px;color:var(--accent);font-weight:600">화면 바뀐 점</span></div>`}<div class="srow danger">${ico('logout',{s:20})}<span>나가기</span></div></div>`;
+  return `<div class="mem">${h}</div>`;
+}
+function usageCard(o={}){
+  const days=['월','화','수','목','금','토','일'],v=[40,62,55,80,48,30,62];
+  return `<div class="mcol">${grpHead('사용량 · 이번 주',ACCTS.length)}<div class="mcard"><div class="mu-accs${o.row?' r2':''}">${ACCTS.map(a=>`<div class="mu-a"><div class="mu-h"><span class="mu-dot" style="background:${a.col}"></span><span class="mu-n">${a.n}</span><b>${a.p}%</b></div><div class="bar"><i class="${a.k}" style="width:${a.p}%"></i></div><div class="mu-r">${a.r}</div></div>`).join('')}</div><div class="chart">${v.map((x,i)=>`<i class="${i===6?'on':''}" style="height:${x}%"></i>`).join('')}</div><div class="chart-x">${days.map(d=>`<span>${d}</span>`).join('')}</div></div></div>`;
+}
+const NRK={work:'일하는 중',wait:'답 기다림 1',idle:'쉼'};
+function crewNow(){return `<div class="mcol">${grpHead('일하는 중 · 크루 지금',CREWNOW.filter(x=>x[2]==='work').length)}<div class="mcard rows">${CREWNOW.map(([c,t,k])=>`<div class="nowrow" data-go="room">${face(c,28)}<div class="nr-m"><div class="nr-n">${nm(c)}</div><div class="nr-t">${t}</div></div><span class="nr-k ${k}">${NRK[k]}</span></div>`).join('')}</div></div>`}
+function actLine(){return `<div class="mcol">${grpHead('최근 활동',ACT.length,{link:'모두'})}<div class="mcard tl6">${ACT.map(([t,c,x])=>`<div class="actl"><span class="al-t">${t}</span><span class="al-d"></span>${face(c,20)}<span class="al-x${x[0]==='「'?' lq':''}">${x}</span></div>`).join('')}</div></div>`}
+function setGroup(){
+  const rs=[['bell','알림'],['crew','크루'],['palette','화면'],['link','AI 계정과 연결']];
+  return `<div class="mcol">${grpHead('설정',rs.length)}<div class="grp-rows">${rs.map(r=>`<div class="srow">${ico(r[0],{s:20})}<span>${r[1]}</span><span class="sp"></span>${ico('chev',{s:16})}</div>`).join('')}</div><div class="grp-rows mg">${`<div class="srow">${ico('history',{s:20})}<span>크루네 2026.11.15</span><span class="sp"></span><span style="font-size:13px;color:var(--accent);font-weight:600">화면 바뀐 점</span></div>`}<div class="srow danger">${ico('logout',{s:20})}<span>나가기</span></div></div></div>`;
+}
+/* 나 대시보드. innerP: 2열(x20–328.5 · 340.5–649), 축 띠 455–495 비움(R4). innerL: 상세 칸 1열 */
+function meDash(P){
+  if(P==='innerP')return `<div class="medash ip m3band"><div class="mprof m3blk">${face('sally',48)}<div class="mp-m"><b>샐리</b><div class="m">크루 다섯과 일하는 중 · 집맥 연결</div></div>${ico('chev',{s:16})}</div><div class="medash-2 m3blk">${usageCard()}${crewNow()}</div><div class="medash-2 m3blk">${actLine()}${setGroup()}</div></div>`;
+  return `<div class="medash il m3band">${usageCard({row:CTX.P!=='half'})}${crewNow()}${actLine()}</div>`;
+}
+/* 펼친 가로 결정 「자료 펼침」 2: 전체 폭(x0–867). 자료는 6열, 문서는 목차 레일 176 + 32 + 본문 520 */
+function libWide(S){
+  const [W,H]=DIM.innerL,RX=867;
+  let h='';
+  if(S==='doc'){
+    h+=pane(0,0,RX,H,docView({lb:1}),'',{t:80,l:20,r:12,b:28});
+    h+=hrow({L:20,rx:619,W},hb(B('fold-open','목록',{go:'lib'}))+DPOS.lib());
+  }else{
+    const hp=headTab('lib','innerL',{L:20,rx:619,W,right:listRight('lib')});
+    h+=pane(0,0,RX,H,hp.flow+libList({title:false,seg:!hp.segHead,cols:6,cw:835,ext:12}),ST.sc?'scd':'',{t:hp.pt,l:20,r:12,b:28},scv(hp));
+    h+=hp.h;
+  }
+  return h;
+}
+/* R4: 펼침 세로 스크롤 0에서 y455–495에 걸친 자료 · 나 · 문서 묶음은 495로 밀어 냄 */
+function m3Fix(){
+  /* 넓은 질문 카드: 답 단추가 두 줄로 접히면 「자세히 ›」는 이유 아래 왼쪽으로 */
+  document.querySelectorAll('.v5 .qc.wide').forEach(c=>{const a=c.querySelector('.qc-a');if(a)c.classList.toggle('wrap',a.offsetHeight>40)});
+  if(ST.sc)return;
+  document.querySelectorAll('.scr.v5[data-p="innerP"] .m3band').forEach(bd=>{
+    const scr=bd.closest('.scr'),k=(scr.getBoundingClientRect().width/scr.offsetWidth)||1;
+    for(const el of bd.querySelectorAll(':scope>.m3blk')){
+      const top=scr.getBoundingClientRect().top,b=el.getBoundingClientRect();if(!b.height)continue;
+      const y=(b.top-top)/k,y2=(b.bottom-top)/k;
+      if(y<495&&y2>455&&y>=80)el.style.marginTop=((parseFloat(getComputedStyle(el).marginTop)||0)+495-y)+'px';
+    }
+  });
+}
+
 /* ---------- 레일 선언 (v3) ---------- */
 const B=(i,l,o={})=>Object.assign({k:'btn',i,l},o);
 const C=(...items)=>({k:'cap',items});
 const X=(i,l,o={})=>Object.assign({i,l},o);
 function declV3(S,P){
-  const tab=TABOF[S],more=B('more','더보기'),back=B('back','뒤로',{go:PARENT[S]});
+  const tab=TABOF[S],back=B('back','뒤로',{go:PARENT[S]});
   const tabs={k:'tabs',active:tab,merged:true},mint={k:'mintab',active:tab},task=KIND[S]==='task';
   if(P==='innerL'||P==='half'){
     const roomCap=C(X('doing','업무 목록',{star:1,b:2}),X('crew','크루 정보'),X('image','결과물',{on:ST.aux&&S==='room'?1:0}));
-    const top={todo:[more],chat:[roomCap,more],room:[roomCap,more],work:[C(X('tick','확인',{star:1}),X('doc','원문'),X('handoff','넘기기')),more],
-      lib:[C(X('handoff','맡기기',{star:1}),X('web','원문')),more],me:[C(X('refresh','연결 바꾸기',{star:1}),X('plus','계정 추가')),more],
-      appr:[C(X('up','이전'),X('dn','다음')),more],sess:[B('refresh','새로 고침',{star:1}),more]}[S];
+    const top={todo:ST.d9==='A'?[C(X('up','이전'),X('dn','다음'))]:[],chat:[roomCap],room:[roomCap],work:[C(X('tick','확인',{star:1}),X('doc','원문'),X('handoff','넘기기'))],
+      lib:[C(X('web','원본 열기',{star:1}),X('forward','공유'),X('handoff','맡기기'))],doc:[C(X('web','원본 열기',{star:1}),X('forward','공유'),X('handoff','맡기기'))],me:[C(X('refresh','연결 바꾸기',{star:1}),X('plus','계정 추가'))],
+      appr:[C(X('up','이전'),X('dn','다음'))],sess:[B('refresh','새로 고침',{star:1})]}[S];
     return {top,bot:[tabs]};
   }
   const L=P==='outerL';
-  const top={todo:L?[B('plus','새 할 일',{star:1}),more]:[B('plus','새 할 일',{star:1}),B('done','골라서 확인'),more],
-    chat:[B('plus','새 방',{star:1}),more],lib:[B('link','링크 담기',{star:1}),more],me:[],
-    room:[back,B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],
-    work:[back,B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],
-    appr:[back,C(X('up','이전'),X('dn','다음')),more],
-    sess:[back,B('refresh','새로 고침',{star:1}),more]}[S];
+  const top={todo:[B('plus','새 할 일',{star:1}),B('done','골라서 확인')],
+    chat:[B('plus','새 방',{star:1})],lib:[B('link','링크 담기',{star:1})],me:[],
+    doc:[back,B('web','원본 열기',{star:1}),C(X('forward','공유'),X('handoff','맡기기'))],
+    room:[back,B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물'))],
+    work:[back,B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기'))],
+    appr:[back,C(X('up','이전'),X('dn','다음'))],
+    sess:[back,B('refresh','새로 고침',{star:1})]}[S];
   return {top,bot:[task?mint:tabs]};
 }
 /* 칸 높이: 단독 48, 동작 캡슐 n×44+8, 탭 캡슐 5×48, 현재 탭 한 칸 48 */
@@ -1340,9 +2109,9 @@ const TASKPOS={
   room:{f:'genz',t:'젠지',sub:'일하는 중 · <span class="nd">확인 1</span> · 대기 2',st:'일하는 중',chip:'확인 1 · 대기 2'},
   work:{f:'nana',t:'C8 앱 26.46 QA 재검증',sub:'나나 · 점검 중 · <span class="nd">결정 대기</span>',st:'점검 중',chip:'결정 대기'},
   appr:{f:'home',t:'승인 요청',sub:'집맥 · 허용 기다리는 중 · <span class="nd">확인 3 중 1</span>',st:'기다리는 중',chip:'확인 3 중 1'},
-  sess:{f:'home',t:SESS_T,sub:'집맥 · 진행 중 · 14:02',st:'진행 중',chip:'',seg:1}
+  sess:{f:'home',t:SESS_T,get sub(){return ST.qa.q1?'집맥 · 진행 중 · 14:03':'집맥 · <span class="nd">허용 대기</span> · 14:03'},get st(){return ST.qa.q1?'진행 중':'허용 대기'},chip:'',seg:1}
 };
-const LISTTAB={todo:'todo',work:'todo',appr:'todo',chat:'chat',room:'chat',lib:'lib',me:'me',sess:'mac'};
+const LISTTAB={todo:'todo',work:'todo',appr:'todo',chat:'chat',room:'chat',lib:'lib',me:'me',sess:'mac',doc:'lib'};
 function hrow(c,inner){return `<div class="hrow" style="left:${c.L}px;width:${c.rx-c.L}px">${inner}${c.right?`<div class="hrt">${c.right}</div>`:''}</div>`}
 /* ① 위치 줄: 표식 32 + 제목 16/20 · 부제 12/16. 스크롤 뒤에는 같은 자리에 유리 알약 44 */
 function posA(k,task){
@@ -1359,7 +2128,7 @@ function pathPill(S){const tab=TABOF[S],T=TASKPOS[S];return `<div class="ppill">
 function cpillH(S,x,y,mw){const T=TASKPOS[S];return `<div class="cpill" style="left:${x}px;top:${y}px${mw?`;max-width:${mw}px`:''}">${face(T.f,28)}<b>${T.t}</b>${T.seg?mseg():`<span class="wchip need">${T.st} · ${T.chip}</span>`}</div>`}
 /* 닫힘 가로 키보드(레일 없는 배치): 뒤로 원 오른쪽 요약 칩 24 */
 function kchipH(S,x,y){const T=TASKPOS[S];return `<div class="ab kbk" style="left:${x}px;top:${y}px"><span class="wchip need">${T.st}${T.chip?' · '+T.chip:''}</span></div>`}
-function todoChips(){return `<div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}${chip('끝남')}${chip('지난 보고')}</div>`}
+function todoChips(){return whoChips()}
 const libSeg=()=>`<div class="seg2"><span>기록</span><span class="on">결과물</span><span>문서함</span></div>`;
 /* 탭(목록) 머리. pt = 내용 시작, hb = 머리 아래 끝 */
 function headTab(k,P,c){
@@ -1380,7 +2149,7 @@ function headTab(k,P,c){
   r.pt=closed?(ex?70:(c.right||back?80:24)):80;r.hb=closed?(ex?62:(c.right||back?72:24)):72;
   return r;
 }
-function headTask(S,P,c){return hrow(c,(c.back||'')+(ST.hd==='C'?pathPill(S):posA(S,true)))}
+function headTask(S,P,c){if(S==='doc')return hrow(c,(c.back||'')+DPOS.lib());return hrow(c,(c.back||'')+(ST.hd==='C'?pathPill(S):posA(S,true)))}
 function headLabel(){return ST.hd==='A'?(ST.sc?'① 스크롤 뒤 유리 알약 44 · 글·자리 그대로':'① 위치 줄 48 · 24–72 · 표식 32 + 16/20 · 12/16'):ST.hd==='B'?(ST.sc?'② 스크롤 뒤 알약 32':'② 큰 제목 28/34 · 31–65'):'③ 제목 없음 · 레일 탭 강조'}
 /* 스크롤 뒤 목록 칸: 머리 띠(머리 아래 끝 − 8 ~ + 16)를 전체 폭으로 흐림 */
 const scv=hp=>ST.sc?`--sm0:${Math.max(0,hp.hb-8)}px;--sm1:${hp.hb+16}px`:'';
@@ -1410,8 +2179,9 @@ function singleOf4(S,P,hp){
   switch(S){
     case 'todo':return todoList({title:false,chips:!hp.chipsHead,compact:L});
     case 'chat':return chatList({title:false});
-    case 'lib':return libList({title:false,seg:!hp.segHead,cols:L?2:1});
-    case 'me':return meMenu({title:false,tiles4:L});
+    case 'lib':{const c4=L&&!(ST.c390&&ST.r==='app');return libList({title:false,seg:!hp.segHead,cols:c4?4:2,cw:c4?562:L?294:350})}
+    case 'doc':return docView();
+    case 'me':return meMenu({title:false,tiles4:L&&!(ST.c390&&ST.r==='app')});
     case 'room':return roomView({coverW:L?80:92,pill:false});
     case 'work':return workView({pill:false});
     case 'appr':return apprView({pill:false});
@@ -1430,9 +2200,8 @@ function webOut(P){
   return `<div class="rest col" style="left:${vw}px;top:0;width:${W-vw}px;height:${H}px;padding-top:${P==='outerL'?40:216}px"><span class="lbl">웹 밖<br>시스템<br>상태<br>(웹 폭<br>${vw}<br>정황)</span></div>`;
 }
 function declP(S){
-  const more=B('more','더보기');
-  return {todo:[B('plus','새 할 일',{star:1}),B('done','골라서 확인'),more],chat:[B('plus','새 방',{star:1}),more],lib:[B('link','링크 담기',{star:1}),more],me:[],
-    room:[B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],work:[B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],appr:[C(X('up','이전'),X('dn','다음')),more],sess:[B('refresh','새로 고침',{star:1}),more]}[S];
+  return {todo:[B('plus','새 할 일',{star:1}),B('done','골라서 확인')],chat:[B('plus','새 방',{star:1})],lib:[B('link','링크 담기',{star:1})],me:[],doc:[B('web','원본 열기',{star:1}),C(X('forward','공유'),X('handoff','맡기기'))],
+    room:[B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물'))],work:[B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기'))],appr:[C(X('up','이전'),X('dn','다음'))],sess:[B('refresh','새로 고침',{star:1})]}[S];
 }
 /* 웹 382 배치 · Safari: 레일 없이 위치 줄 + 오른쪽 동작 캡슐 36, 탭 화면은 아래 캡슐 */
 function aOuterBottom(S,P){
@@ -1441,7 +2210,11 @@ function aOuterBottom(S,P){
   const back=task?hb(B('back','뒤로',{go:PARENT[S]})):'';
   const c={L:20,rx:vw-12,W,right:capOf(S,L?6:2),back};
   let h='';
-  if(task){
+  if(S==='doc'){
+    h+=pane(0,0,vw,vh,docView(),'',{t:80,l:20,r:12,b:saf?12:(L?20:28)});
+    h+=headTask(S,P,c);
+    h+=ann(20,24,vw-32,48,`뒤로 원 36 + 위치 줄 + 동작 캡슐 36(끝 ${vw-12})`,'bl');
+  }else if(task){
     const bb=saf?12:(L?20:28),pb=kb?8:bb,inTop=V-pb-40,cp=kb&&!L&&!ST.d5,ck=kb&&L,hbY=!kb?72:(cp||ck)?48:12;
     h+=pane(0,0,vw,V,singleOf4(S,P),'',{t:0,l:20,r:12,b:pb},taskVars(kb,hbY,inTop));
     if(!kb)h+=headTask(S,P,c);
@@ -1470,7 +2243,8 @@ function aOuter390(S){
   const [W,H]=DIM.outerL,x=144,cw=326,railX=x+cw,task=KIND[S]==='task';
   let h=`<div class="empty390" style="left:0;width:${x}px"></div><div class="empty390" style="left:${x+390}px;right:0"></div><div class="col390" style="left:${x}px;width:390px"></div>`;
   const c={L:x+20,rx:x+cw-12,W};
-  if(task){h+=pane(x,0,cw,H,singleOf4(S,'outerL'),'',{t:0,l:20,r:12,b:20},taskVars(false,72,H-20-40));h+=headTask(S,'outerL',c)}
+  if(S==='doc'){h+=pane(x,0,cw,H,docView(),'',{t:80,l:20,r:12,b:20});h+=headTask(S,'outerL',c)}
+  else if(task){h+=pane(x,0,cw,H,singleOf4(S,'outerL'),'',{t:0,l:20,r:12,b:20},taskVars(false,72,H-20-40));h+=headTask(S,'outerL',c)}
   else{const hp=headTab(S,'outerL',c);h+=pane(x,0,cw,H,hp.flow+singleOf4(S,'outerL',hp),ST.sc?'scd':'',{t:hp.pt,l:20,r:12,b:24},scv(hp));h+=hp.h}
   h+=camL();
   h+=rail(railX,64,H,{r0:24,r8:20,d:declV4(S,'outerL')});
@@ -1487,7 +2261,11 @@ function aOuter(S,o){
   const task=KIND[S]==='task',kb=kbOn(S,P,'after'),V=kb?VB(P):H;
   const c={L:20,rx:cw-12,W};
   let h='';
-  if(task){
+  if(S==='doc'){
+    h+=pane(0,0,cw,H,docView(),'',{t:80,l:20,r:12,b:L?24:bb});
+    h+=headTask(S,P,c);
+    h+=ann(20,24,cw-32,48,'위치 줄: 문서 표식 + 제목 + 「레인 · 보고서 · 11/15」','bl');
+  }else if(task){
     const pb=kb?8:bb,inTop=V-pb-40,cp=kb&&!L&&!ST.d5,hbY=!kb?72:cp?48:12;
     h+=pane(0,0,cw,V,singleOf4(S,P),'',{t:0,l:20,r:12,b:pb},taskVars(kb,hbY,inTop));
     if(!kb)h+=headTask(S,P,c);else if(cp)h+=cpillH(S,16,12,cw-12-16);
@@ -1525,22 +2303,23 @@ function listHead(L){
 function listRight(Lk){
   if(Lk==='sess')return ST.wm?`<span class="mseg"><span class="on">집맥</span><span>회맥</span></span>`:'';
   const st=(i,l)=>X(i,l,{star:1}),f=X('filter','거르기');
-  const its={todo:[f,st('plus','새 할 일')],work:[f,st('plus','새 할 일')],appr:[f,st('plus','새 할 일')],chat:[f,st('plus','새 방')],lib:[st('link','링크 담기')],me:[]}[Lk];
+  const dn=X('done','골라서 확인'),its={todo:[dn,st('plus','새 할 일')],work:[dn,st('plus','새 할 일')],appr:[dn,st('plus','새 할 일')],chat:[f,st('plus','새 방')],lib:[st('link','링크 담기')],me:[]}[Lk];
   return its.length?`<div class="hcap">${its.map(cell).join('')}</div>`:'';
 }
 function listOf4(Lk,hp){
-  switch(Lk){case 'todo':return todoList({title:false,chips:!hp.chipsHead});case 'work':return todoList({title:false,chips:!hp.chipsHead,sel:'t1'});case 'appr':return apprList({sel:'t2',chips:!hp.chipsHead});
-    case 'chat':return chatList({title:false,sel:'genz'});case 'lib':return libList({title:false,seg:!hp.segHead,sel:'l1'});case 'me':return meMenu({title:false,sel:'acc'});case 'sess':return sessList();}
+  switch(Lk){case 'todo':return todoList({mode:'list',title:false,chips:!hp.chipsHead,sel:(qOpen().find(q=>!ST.qa[q.id])||{}).id});case 'work':return todoList({mode:'list',title:false,chips:!hp.chipsHead,sel:'q2'});case 'appr':return apprList({sel:'q1',chips:!hp.chipsHead});
+    case 'chat':return chatList({title:false,sel:'genz'});case 'lib':return libList({title:false,seg:!hp.segHead,sel:'l1',cols:2,cw:CTX.P==='half'?423:300});case 'me':return meMenu({title:false,tiles:false});case 'sess':return sessList();}
 }
 function detailOf4(Lk,half){
-  switch(Lk){case 'todo':return todaySummary({nohead:1});case 'work':return workView({pill:false});case 'appr':return apprView({pill:false});
-    case 'chat':return roomView({coverW:half?84:104,pill:false});case 'lib':return libDetail({side:!half,nohead:1});case 'me':return accountsView({nohead:1});case 'sess':return sessView({pill:false});}
+  switch(Lk){case 'todo':return qDetail(qOpen().find(q=>!ST.qa[q.id]));case 'work':return workView({pill:false});case 'appr':return apprView({pill:false});
+    case 'chat':return roomView({coverW:half?84:104,pill:false});case 'lib':return docView();case 'me':return meDash('innerL');case 'sess':return sessView({pill:false});}
 }
-const DPOS={todo:()=>posX(ico('calendar',{s:18,f:1}),'오늘','11월 15일 일요일 · 고른 업무가 없을 때'),lib:()=>posX(ico('doc',{s:18,f:1}),'폴더블 화면 패턴 정리','레인 · 문서 · 11/15 · 6분'),me:()=>posX(ico('link',{s:18}),'AI 계정과 연결','이번 주 사용량 · 지금 연결')};
+const DPOS={todo:()=>{const a=qOpen().filter(x=>!ST.qa[x.id]),q=a[0];if(!q)return posX(ico('check',{s:18}),'정할 것 없어요','크루 제안 2 · 지운 일 4');return `<div class="pos${ST.sc?' glass':''}"><span class="mk fc">${face(q.crew,32)}</span><span class="tx"><span class="tt">${QK[q.kind]} · ${nm(q.crew)}</span><span class="sub">확인 필요 ${a.length} 중 1 · ${q.t}</span></span></div>`},lib:()=>posX(ico('doc',{s:18,f:1}),DOC.t,`${nm(DOC.who)} · ${DOC.kl} · ${DOC.d}`),me:()=>posX(ico('me',{s:18,f:1}),'오늘의 나','사용량 62% · 일하는 중 3')};
 function aInnerL(S,half){
   const [W,H]=DIM.innerL,app=ST.r!=='saf';
-  const LW=half?463:340,DX=half?487:340,RX=867,RW=72,r0=app?178:20,r8=24;
-  const Lk=S==='room'?'chat':S,conv=convScreen(Lk,'innerL','after');
+  const board=S==='todo'&&ST.d9==='B',LW=half||board?463:340,DX=half||board?487:340,RX=867,RW=72,r0=app?178:20,r8=24;
+  const Lk=S==='room'?'chat':S==='doc'?'lib':S,conv=convScreen(Lk,'innerL','after');
+  const lbw=!half&&(S==='lib'||S==='doc')&&ST.lb==='2';
   const kb=!half&&kbOn(S,'innerL','after'),V=kb?VB('innerL'):H,hide=kb&&ST.d5;
   const slide=S==='room'&&ST.aux;
   let h='';
@@ -1550,7 +2329,9 @@ function aInnerL(S,half){
     if(!hide)h+=headTask('room','innerL',{L:20,rx:443,W,back:hb(B('fold-open','목록 펴기'))});
     h+=pane(487,0,RX-487,H,auxView(),'two',{t:24,l:20,r:12,b:28});
     h+=cvAnn(0,hbY,463,inTop-8);
-  }else{
+  }else if(board){h+=boardL(half)}
+  else if(lbw){h+=libWide(S)}
+  else{
     const hp=headTab(LISTTAB[S],'innerL',{L:20,rx:LW-20,W,right:listRight(Lk)});
     h+=pane(0,0,LW,H,hp.flow+listOf4(Lk,hp),(half?'two ':'')+(ST.sc?'scd':''),{t:hp.pt,l:20,r:20,b:28},scv(hp));
     h+=hp.h;
@@ -1563,7 +2344,7 @@ function aInnerL(S,half){
       h+=cvAnn(DX,hbY,RX-DX,inTop-8-(Lk==='sess'?24:0));
       h+=ann(DX+20,inTop,RX-DX-32,40,`입력 40 · ${f1(inTop)}–${f1(inTop+40)}`,'bl');
     }else{
-      h+=pane(DX,0,RX-DX,H,detailOf4(Lk,half),half?'two':'',{t:80,l:20,r:12,b:28});
+      h+=pane(DX,0,RX-DX,H,detailOf4(Lk,half),half?'two':'',{t:80,l:20,r:12,b:Lk==='todo'?26:28});
       h+=hrow(dc,DPOS[Lk]());
     }
   }
@@ -1572,6 +2353,8 @@ function aInnerL(S,half){
   if(!half)h+=`<div class="crease" style="left:463px;width:24px;top:0;bottom:0"></div>`;
   if(kb)h+=kbBlock('innerL');
   if(slide){h+=ann(0,0,463,H,'보조 열림: 대화 463','bl');h+=ann(487,0,RX-487,H,`보조 ${RX-487} · 미닫이 P43·P45`,'bl')}
+  else if(board){h+=ann(0,0,463,H,'왼쪽 「내가 답할 것」 463 · 글 20–443','bl');h+=ann(487,0,RX-487,H,'오른쪽 「돌아가는 일」 380 · 글 507–855','bl');h+=ann(20,24,423,48,'위치 줄 + 캡슐 [골라서 확인 · ＋★]','tl');h+=ann(507,24,348,48,'오른쪽 칸 위치 줄 x507','bl')}
+  else if(lbw){h+=ann(0,0,RX,H,S==='doc'?'전체 폭 문서: 목차 레일 x20–196 + 32 + 본문 x228–748':'전체 폭 6열 · 종이 129×184','bl');h+=ann(20,24,599,48,'위치 줄 · 오른쪽 한계 619(안쪽 카메라)','tl')}
   else{
     h+=ann(0,0,LW,H,`목록 ${LW} · 글 ${LW-40}`,'bl');
     h+=ann(DX,0,RX-DX,H,`상세 ${RX-DX} · 글 ${RX-DX-32}`,'bl');
@@ -1587,25 +2370,29 @@ function aInnerL(S,half){
 
 /* ---------- 바꾼 뒤: 펼친 세로 (HIG 예외) ---------- */
 function mergedRight(S){
-  const st=(i,l,o={})=>X(i,l,Object.assign({star:1},o)),more=X('more','더보기');
-  const R={todo:[st('plus','새 할 일'),X('done','골라서 확인'),more],chat:[st('plus','새 방'),more],lib:[st('link','링크 담기'),more],me:[],
-    room:[st('doing','업무 목록',{b:2}),X('crew','크루 정보'),X('image','결과물'),more],work:[st('tick','확인'),X('doc','원문'),X('handoff','넘기기'),more],
-    appr:[X('up','이전'),X('dn','다음'),more],sess:[st('refresh','새로 고침'),more]}[S];
+  const st=(i,l,o={})=>X(i,l,Object.assign({star:1},o));
+  const R={todo:[st('plus','새 할 일'),X('done','골라서 확인')],chat:[st('plus','새 방')],lib:[st('link','링크 담기')],me:[],doc:[st('web','원본 열기'),X('forward','공유'),X('handoff','맡기기')],
+    room:[st('doing','업무 목록',{b:2}),X('crew','크루 정보'),X('image','결과물')],work:[st('tick','확인'),X('doc','원문'),X('handoff','넘기기')],
+    appr:[X('up','이전'),X('dn','다음')],sess:[st('refresh','새로 고침')]}[S];
   return R.length?`<div class="hcap">${R.map(cell).join('')}</div>`:'';
 }
 function wideOf(S){
-  switch(S){case 'todo':return todoList({cards:1,title:false});case 'chat':return chatList({title:false});case 'lib':return libList({cols:2,title:false});
+  switch(S){case 'todo':return todoList({mode:'wide',title:false});case 'chat':return chatList({title:false});case 'lib':return libList({cols:4,cw:629,title:false});case 'doc':return docView();
     case 'me':return meMenu({title:false});case 'room':return roomView({pill:false,coverW:120});case 'work':return workView({pill:false});case 'appr':return apprView({pill:false});case 'sess':return sessView({pill:false});}
 }
 function wideOf4(S,hp){
-  switch(S){case 'todo':return todoList({cards:1,title:false,chips:!hp.chipsHead});case 'chat':return chatList({title:false});case 'lib':return libList({cols:2,title:false,seg:!hp.segHead});
-    case 'me':return meMenu({title:false});default:return wideOf(S);}
+  switch(S){case 'todo':return todoList({mode:'wide',title:false,chips:!hp.chipsHead});case 'chat':return chatList({title:false});case 'lib':return libList({cols:4,cw:629,title:false,seg:!hp.segHead});
+    case 'me':return meDash('innerP');default:return wideOf(S);}
 }
 function aInnerP(S){
   const [W,H]=DIM.innerP,task=KIND[S]==='task',kb=kbOn(S,'innerP','after'),V=kb?VB('innerP'):H;
   const c={L:20,rx:497,W,right:mergedRight(S)};
   let h=sysRow();
-  if(task){
+  if(S==='doc'){
+    c.back=hb(B('fold-open','목록',{go:'lib'}));
+    h+=pane(0,0,W,H,docView(),'',{t:80,l:20,r:20,b:24});
+    h+=headTask(S,'innerP',c);
+  }else if(task){
     c.back=hb(B('fold-open','목록',{go:PARENT[S]}));
     const pb=kb?8:24,inTop=V-pb-40;
     h+=pane(0,0,W,V,wideOf(S),'',{t:0,l:20,r:20,b:pb},taskVars(kb,72,inTop));
@@ -1630,10 +2417,10 @@ function aInnerP(S){
 function aInnerPAlt(S){
   const [W,H]=DIM.innerP;
   CTX.tokP='innerL';
-  const L={todo:'todo',work:'todo',appr:'appr',chat:'chat',room:'chat',lib:'lib',me:'me',sess:'sess'}[S];
-  const left=L==='todo'?todoList({sel:'t1'}):L==='appr'?apprList({sel:'t2',th:1}):L==='chat'?chatList({sel:'genz'}):L==='lib'?libList({sel:'l1'}):L==='sess'?listHead('sess')+sessList():meMenu({sel:'acc'});
+  const L={todo:'todo',work:'todo',appr:'appr',chat:'chat',room:'chat',lib:'lib',me:'me',sess:'sess',doc:'lib'}[S];
+  const left=L==='todo'?todoList({mode:'list',sel:'q2'}):L==='appr'?apprList({sel:'t2',th:1}):L==='chat'?chatList({sel:'genz'}):L==='lib'?libList({sel:'l1',cw:232}):L==='sess'?listHead('sess')+sessList():meMenu({sel:'acc'});
   const pp={l:12,t:8};
-  const right={todo:workView({pp}),work:workView({pp}),appr:apprView({pp}),chat:roomView({coverW:84,pp}),room:roomView({coverW:84,pp}),lib:libDetail({}),me:accountsView(),sess:sessView({pp})}[S];
+  const right={todo:workView({pp}),work:workView({pp}),appr:apprView({pp}),chat:roomView({coverW:84,pp}),room:roomView({coverW:84,pp}),lib:libDetail({}),doc:libDetail({}),me:accountsView(),sess:sessView({pp})}[S];
   const rt=KIND[S]==='task'||S==='chat'||S==='todo';
   let h=`<div style="position:absolute;inset:0;background:var(--groove)"></div>`+sysRow();
   h+=pane(0,72,260,H-72,left,'two',{t:0,l:16,r:12,b:84});
@@ -1700,13 +2487,14 @@ function nowBar(S,c){
     room:`<span class="ib" data-go="chat" title="채팅 목록으로">${ico('back')}</span><span class="t">${face('genz',28)}젠지</span>${bt('more')}`,
     work:`<span class="ib" data-go="todo">${ico('back')}</span><span class="t">C8 앱 26.46 QA 재검증</span>${bt('more')}`,
     appr:`<span class="ib" data-go="todo">${ico('back')}</span><span class="t">보고 카드</span>`,
-    sess:`<span class="ib" data-go="chat">${ico('back')}</span><span class="t">${face('home',28)}집맥</span>${bt('more')}`
+    sess:`<span class="ib" data-go="chat">${ico('back')}</span><span class="t">${face('home',28)}집맥</span>${bt('more')}`,
+    doc:`<span class="ib" data-go="lib">${ico('back')}</span><span class="t">폴더블 화면 패턴 정리</span>${bt('more')}`
   }[S];
   return `<div class="nbar" style="left:${L}px;width:${w}px;top:${c.top}px">${m}</div>`;
 }
 function nowBody(S,c,kb){
   switch(S){case 'todo':return todoList({now:1,title:false});case 'chat':return chatList({title:false});case 'lib':return libList({now:1,title:false});
-    case 'me':return meMenu({now:1,title:false});case 'room':return roomView({head:false,back:true,coverW:96,kb});case 'work':return workView({head:false,back:true});case 'appr':return apprView({head:false,now:1});case 'sess':return sessView({back:true});}
+    case 'me':return meMenu({now:1,title:false});case 'room':return roomView({head:false,back:true,coverW:96,kb});case 'work':return workView({head:false,back:true});case 'appr':return apprView({head:false,now:1});case 'sess':return sessView({back:true});case 'doc':return libDetail({});}
 }
 /* 지금 · 닫힘 세로 크루 방 · 키보드 열림: 라이브 캡처(1375×2000, 2.951px = 1pt)에서 잰 자리 그대로 */
 function nowKbRoomP(){
@@ -1781,7 +2569,7 @@ function device(P,S,mode){
   let inner=V3?afterCompose(P,S):nowCompose(P,S);
   if(V3&&ST.grid)inner+=gridOverlay(P,S);
   const meas=!V3&&P!=='half'&&convScreen(S,P,'now')&&!(P==='outerP'&&S==='room'&&kbOn(S,P,'now'));
-  const scr=`<div class="scr ${P} ${two?'two':''} ${V3?'v3 v4':''}" data-p="${P}" style="width:${W}px;height:${H}px"${meas?' data-meas="1"':''}${kbOn(S,P,mode)?' data-kb="1"':''}>${inner}</div>`;
+  const scr=`<div class="scr ${P} ${two?'two':''} ${V3?'v3 v4 v5':''}" data-p="${P}" style="width:${W}px;height:${H}px"${meas?' data-meas="1"':''}${kbOn(S,P,mode)?' data-kb="1"':''}>${inner}</div>`;
   V3=false;
   const padL=P==='outerP'?20:12,padT=P==='outerL'?20:12;
   const dw=W+padL+12,dh=H+padT+12;
@@ -1818,6 +2606,10 @@ function gridDef(P){
       hat:[],bx:[]}
   };
   G.half={v:[[20,'K1 20'],[60,'K2 60'],[443,'443'],[463,'접힘 463'],[487,'487'],[507,'507'],[855,'855'],[867,'띠 867'],[903,'레일 903']],h:G.innerL.h.filter(r=>r[0]<500),k:[],hat:[],bx:[]};
+  /* v5 경계: 할 일 닫힘 세로 카드·질문 줄, 펼침 가로 보드 칸, 자료 닫힘 세로 2열, 펼침 세로 축 띠 */
+  if(CTX.S==='todo'){G.outerP.h=G.outerP.h.concat([[292,'292'],[300,'300'],[364,'364'],[372,'372'],[436,'436']]);if(ST.d9==='B')G.innerL.v=G.innerL.v.concat([[443,'443'],[463,'칸 463'],[487,'칸 487'],[507,'507']])}
+  if(CTX.S==='lib')G.outerP.v=G.outerP.v.concat([[189,'189'],[201,'201']]);
+  G.innerP.h=G.innerP.h.concat([[455,'축 띠 455',1],[495,'축 띠 495',1]]);
   return G[P];
 }
 function gridOverlay(P,S){
@@ -1943,13 +2735,25 @@ function render(){
     if(p.id==='outerL'&&R==='app'&&aft)alt+=`<div class="altsw">결정 2 비교 <div class="seg" data-c390><button data-v="0" aria-pressed="${!ST.c390}">① 390 풂</button><button data-v="1" aria-pressed="${!!ST.c390}">② 390 유지</button></div></div>`;
     if(ST.kb&&ST.m!=='now'&&['outerP','outerL','innerL'].includes(p.id)&&kbOn(S,p.id,'after'))alt+=`<div class="altsw">결정 5 비교 <div class="seg" data-d5><button data-v="0" aria-pressed="${!ST.d5}">① 닫힘 가로만 숨김(닫힘 세로는 위치 알약)</button><button data-v="1" aria-pressed="${!!ST.d5}">② 레일 자세 모두 숨김</button></div></div>`;
     if(S==='sess'&&(p.id==='innerL'||p.id==='half')&&ST.m!=='now')alt+=`<div class="altsw">결정 6 비교 <div class="seg" data-wm><button data-v="0" aria-pressed="${!ST.wm}">① 집맥만</button><button data-v="1" aria-pressed="${!!ST.wm}">② 회맥도</button></div></div>`;
+    const segA=(lbl,key,opts)=>`<div class="altsw">${lbl} <div class="seg">${opts.map(([v,l])=>`<button data-k="${key}" data-v="${v}" aria-pressed="${String(ST[key])===v}">${l}</button>`).join('')}</div></div>`;
+    if(aft&&S==='todo'){
+      if(p.id==='innerL'||p.id==='half')alt+=segA('결정 9 펼침 가로','d9',[['B','B 두 칸 보드(추천)'],['A','A 목록 + 첫 건 상세']]);
+      alt+=segA('결정 10 묶음 머리','d10',[['1','① 숫자 + 선(추천)'],['2','② 접는 머리'],['3','③ 글자 머리 없음']]);
+      alt+=segA('확인 필요','nq',[['0','0건'],['3','3건'],['20','20건']]);
+    }
+    if(aft&&(S==='appr'||S==='sess'))alt+=segA('결정 11 답 자리','d11',[['1','① 메시지 아래 답 줄(추천)'],['2','② 입력칸 위 답 칩']]);
+    if(aft&&(S==='lib'||S==='doc')){alt+=segA('썸네일 앞면','th',[['A','A 표지형'],['B','B 첫 장 축소'],['C','C 종류 기호']]);if(p.id==='innerL')alt+=segA('자료 펼침','lb',[['1','목록 + 상세'],['2','전체 폭 6열']])}
+    if(aft&&(S==='chat'||S==='sess'))alt+=`<div class="altsw">고른 줄 <div class="seg" data-pr><button data-v="0" aria-pressed="${!ST.pr}">고름</button><button data-v="1" aria-pressed="${!!ST.pr}">눌림 고정</button></div></div>`;
+    if(aft&&['room','work','appr','sess'].includes(S))alt+=`<div class="altsw">꼬리말 칸 <div class="seg" data-tp><button data-v="0" aria-pressed="${!ST.tp}">닫힘</button><button data-v="1" aria-pressed="${!!ST.tp}">⚡ 눌러 열림</button></div></div>`;
+    if(aft&&S==='sess')alt+=`<div class="altsw">긴 코드 <div class="seg" data-cbx><button data-v="0" aria-pressed="${!ST.cbx}">접힘(${p.id==='outerL'?5:8}줄)</button><button data-v="1" aria-pressed="${!!ST.cbx}">펼침</button></div><div class="seg" data-sc><button data-v="0" aria-pressed="${!ST.sc}">맨 아래</button><button data-v="1" aria-pressed="${!!ST.sc}">위로 스크롤 · 답 기다림 알약</button></div></div>`;
     let pre='';
+    if(aft&&S==='todo'&&p.id==='innerL')pre+=`<span class="nt">${ST.d9==='B'?'결정 9 B: 왼쪽 「내가 답할 것」 0–463 | 오른쪽 「돌아가는 일」 487–867. 힌지가 칸 경계라 반접힘에서도 그대로':'결정 9 A: 목록 340 | 확인 필요 첫 건 상세 527. 답 줄 y599–643'}</span>`;
     if(p.id==='outerL'&&aft)pre+=`<span class="nt">${R==='app'?(ST.c390?'결정 2 ②를 고른 그림: 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다.':'결정 2 ①(390 기둥 해제)이 전제입니다. 앱 창 폭이 678로 잡히면 600 이상 규칙에 걸리고, 594로 잡히면 걸리지 않습니다(미측정).'):R==='app382'?'웹 382 배치는 닫힘 세로 정황을 닫힘 가로에 옮긴 가정입니다.':'Safari는 390 기둥 규칙(홈 화면 앱 전용) 밖이라 결정 2와 상관없습니다.'}</span>`;
     const trig=S==='login'?'':`<span class="trig">${TRIG[p.id][rk]}${R==='app382'&&outer?' · <b>웹 382 배치</b> 띠를 웹이 못 그린다는 정황 그림':''}</span>`;
     const kbl=S==='login'?'':kbLine(S,p.id);
     const bt=R==='saf'?BAND.saf[p.id]:R==='app382'?(BAND.a382[p.id]||BAND.app[p.id]):BAND.app[p.id];
     const band=S==='login'||!bt?'':`<div class="${R==='saf'?'infoband':'warnband'}">${bt}</div>`;
-    const aftL=`바꾼 뒤 · v4${outer&&S!=='login'?(R==='saf'?' · Safari 아래 캡슐':R==='app382'?' · 웹 382 배치':''):''}`;
+    const aftL=`바꾼 뒤 · v5${outer&&S!=='login'?(R==='saf'?' · Safari 아래 캡슐':R==='app382'?' · 웹 382 배치':''):''}`;
     let body;
     if(ST.m==='both'){
       const fr=[['now','지금'],['after',aftL]];
@@ -1961,23 +2765,27 @@ function render(){
   }
   stage.innerHTML=out;
   measureNow();
+  bandFix();
+  m2Fix();
+  m3Fix();
   cornerCheck();
   save();
 }
 const NOTES={
   login:{now:['\'이 기기 등록\'은 실패했을 때만 보임','Mac 숫자 승인은 60초 뒤 오류만 뜸','넓은 화면에서도 390 가운데 기둥'],after:['단추 셋 늘 보임: 패스키 · 이 기기 등록 · 구글','숫자 승인에 남은 시간 막대와 취소','넓은 화면은 왼쪽 카드 | 오른쪽 처음 쓰는 기기 3단계. 막대 없는 관문 (P60)']},
-  todo:{now:['확인 필요가 할 일과 나 대시보드 둘로 갈림','일정 알약은 나로만 보냄','탭 배지는 숫자 없는 6px 점'],after:['위치 줄 48(24–72): 할 일 표식 32 + 「할 일」 16/20 + 부제 「16:00 듀오 시안 검토 외 1 ›」. 가운데 48은 바깥 카메라 중심과 같은 선','칩 80–108 · 섹션 116–136 · 첫 할 일 행 140. v3보다 28 내려가지만 위 모서리에 글자가 걸리지 않음','빈 쪽 20 · 레일 쪽 12. 얼굴 28 + 12 → 글 시작 60(K2), 구분선도 60부터, 마지막 행 뒤에는 없음','레일은 동작 캡슐 하나(★ 새 할 일 · 골라서 확인 · ⋯), 칸 44','펼친 가로: 목록 340 | 상세 527. 목록 머리 오른쪽 캡슐 36(거르기 · ＋★)']},
-  chat:{now:['줄마다 마지막 말만 보임','펼친 화면에서도 목록 한 칸'],after:['위치 줄: 채팅 표식 + 「채팅」 + 「안 읽음 4」','첫 채팅 행 80, 평평한 행 64. 얼굴 40 + 12 → 글 72(K2c)','Mac 알림 집맥 줄에서 세션 대화로 들어감','펼친 가로: 목록 340 | 고른 방. 방 머리는 상세 칸 x360부터, 오른쪽 한계 619(안쪽 카메라)']},
-  room:{now:['뒤로가 두 곳: 머리 오른쪽 꺾쇠와 독 왼쪽','키보드를 올리면 머리 61 + 하는 일 카드 44 + 안내 줄 + 모델 알약 32 + 자주 쓰는 말 30 + 입력 52가 쌓임','여기에 보조 막대 띠 67까지 더해져 닫힘 세로 대화가 0(라이브 캡처)'],after:['위치 줄: 젠지 얼굴 32 + 「젠지」 + 「일하는 중 · 확인 1 · 대기 2」. 하는 일 카드 44가 부제로 들어감. 부제를 누르면 업무 목록 시트','입력 줄 하나: ＋36 · 입력칸 40 안에 안내글 · 꼬리말 토큰 28(기호 + UT·DW 캡슐, 보내기와 가운데 사이 44 넘음) · 보내기 32. 안내 줄 · 모델 알약 · 자주 쓰는 말 줄은 없앰','자주 쓰는 말 · 모델 · 첨부 · 최근 보낸 글은 ＋ 패널(키보드 유지). 꼬리말은 토큰 1탭으로 이번 메시지만 끄고 켬','키보드: 닫힘 세로는 위치 알약 36(12–48)으로 줄이고 입력칸을 웹 바닥 − 8에 붙임. 대화 0 → 202.6(한 줄 말풍선 기준 5개, 이 예시 대화로는 3개)','보낸 말풍선 아래 흐린 꼬리 줄 「＋ Ultrathink · 다이나믹워크플로우」']},
-  work:{now:['할 일에서 열어도 펼친 화면 왼쪽이 채팅 목록으로 바뀜','확인·그만이 글자 단추로 머리에 섞임'],after:['위치 줄: 나나 얼굴 + 업무 이름 + 「나나 · 결정 대기」','★확인은 레일 캡슐 첫 칸, 원문 · 넘기기 · ⋯이 같은 캡슐','마지막 보고 카드 밑에 빠른 답 칩 32 「더 짧게」「근거 보여 줘」(보고 가까이, P62)','보고 카드 버튼 36 → 32. 결정 8 ③(추천)이면 토큰은 늘 꺼짐이고 1탭으로 이번 메시지에 붙음, 안내글 끝 모델 이름은 모델을 바꿨을 때만']},
-  appr:{now:['옛 받은함은 뒤로·탭이 없는 막다른 화면','다음 건으로 가려면 목록으로 돌아가야 함'],after:['위치 줄: 집맥 + 「승인 요청」 + 「집맥 · 확인 3 중 1」','레일에 이전↑ · 다음↓이 ⋯과 한 캡슐','결정하면 다음 건 자동, 목록 강조도 따라감','거절·허용 44는 입력칸 바로 위 엄지 자리']},
-  sess:{now:['Mac 알림방에는 세션 카드와 마지막 답 한 덩어리만 보임. 4,000자에서 잘림','터미널에서 친 말과 앞 턴은 크루네에서 볼 수 없음','지금 보는 길은 폰에서 따로 여는 브릿지 웹앱뿐'],after:['위치 줄 오른쪽에 [알림 | 대화] 전환, 기본은 대화. 새 탭은 만들지 않음(탭 캡슐 5칸 유지)','샐리 말은 오른쪽 말풍선 + 출처(터미널 · 크루네), 최종 답은 말풍선 없이 칸 폭 15/22, 도구는 이름별 횟수 한 줄','턴이 끝날 때 Mac이 한 건씩 올림. 도구 입출력 · 파일 · 시스템 주입은 빼고, 토큰 · 이메일 · 개인 경로는 Mac에서 가림','화면을 열 때 30턴만 읽음(실시간 구독 없음). 턴당 4,000+8,000자, 7일 보관, 샐리만 읽기']},
-  lib:{now:['찾기를 누르면 머리를 갈아 끼움','기록 · 결과물 · 문서함이 한 줄에 섞임'],after:['위치 줄: 자료 표식 + 「자료」 + 「담은 자료 5」','구분 셋 28은 내용 80에서 시작','자료 행 56(썸네일 28 + 12 → 글 60), 구분선은 글 시작점부터','링크 담기는 레일 캡슐 ★, 찾기는 탭 캡슐 끝 검색 칸(자료 범위)']},
-  me:{now:['확인 필요·일정 타일이 나에 있음','설정 행 이름과 화면 제목이 다름'],after:['위치 줄: 나 표식 + 「나」','확인 필요·일정은 할 일로 옮김','설정 행 44, 타일 안쪽 8/12','펼친 가로: 메뉴 | AI 계정과 연결(상세 위치 줄)']}
+  todo:{now:['확인 필요가 할 일과 나 대시보드 둘로 갈림','일정 알약은 나로만 보냄','탭 배지는 숫자 없는 6px 점'],after:['칩은 「누구」만 거름: 전체 · 나 · 크루(80–108). 상태 칩과 「지난 보고」 칩은 빼고, 지난 보고는 끝남 머리 링크로','묶음 머리는 숫자 배지 → 이름 → 끝까지 가는 얇은 선(결정 10 ①). 같은 말이 칩과 머리 두 자리에 나오지 않음','확인 필요 첫 건은 질문 카드 140–292: 누가 · 무엇을 · 근거 한 줄 · 답 단추. 다음 두 건은 질문 줄 64, 누르면 그 자리에서 펼침','순서: 확인 필요 → 진행 중 → 크루 제안 → 끝남(접힘) → 지운 일(접힘). 레일과 머리 캡슐에 ⋯ 없음','펼친 가로는 「내가 답할 것 | 돌아가는 일」 두 칸 보드(결정 9 B). 펼친 세로는 1열 카드, 칩은 같은 자리, 접힘 축 띠 455–495는 비움']},
+  chat:{now:['줄마다 마지막 말만 보임','펼친 화면에서도 목록 한 칸'],after:['위치 줄: 채팅 표식 + 「채팅」 + 「안 읽음 4」','첫 채팅 행 80, 평평한 행 64. 얼굴 40 + 12 → 글 72(K2c)','Mac 알림 집맥 줄에서 세션 대화로 들어감','펼친 가로: 목록 340 | 고른 방. 방 머리는 상세 칸 x360부터, 오른쪽 한계 619(안쪽 카메라)','고른 줄 바탕은 글 바깥 8까지(닫힘 세로 x12–378), 모서리 12. 칸 자르기도 8 넓혀 양옆이 잘리지 않음. 누르는 동안은 옅은 회색, 키보드 포커스는 안쪽 2 선','레일은 ⋯ 없이 새 방 ★. 방 정리(고정 · 알림 끄기 · 나가기)는 줄을 길게 눌러 여는 메뉴로']},
+  room:{now:['뒤로가 두 곳: 머리 오른쪽 꺾쇠와 독 왼쪽','키보드를 올리면 머리 61 + 하는 일 카드 44 + 안내 줄 + 모델 알약 32 + 자주 쓰는 말 30 + 입력 52가 쌓임','여기에 보조 막대 띠 67까지 더해져 닫힘 세로 대화가 0(라이브 캡처)'],after:['위치 줄: 젠지 얼굴 32 + 「젠지」 + 「일하는 중 · 확인 1 · 대기 2」. 하는 일 카드 44가 부제로 들어감. 부제를 누르면 업무 목록 시트','입력 줄 하나: ＋36 · 입력칸 40 안에 안내글 · 꼬리말 토큰(닫힘 ⚡ 28, 켜지면 ⚡2 폭 40 · 펼침은 「⚡ 꼬리말」 또는 켜진 말 이름) · 보내기 32. 안내 줄 · 모델 알약 · 자주 쓰는 말 줄은 없앰','자주 쓰는 말 · 모델 · 첨부 · 최근 보낸 글은 ＋ 패널(키보드 유지). ⚡를 누르면 꼬리말 칸이 열려 붙을 말을 보고, 체크로 붙이고, 빼고, 더함. 「이번 메시지만 | 늘」로 처음 상태도 바꿈. ＋ 패널과 동시에 열리지 않음','키보드: 닫힘 세로는 위치 알약 36(12–48)으로 줄이고 입력칸을 웹 바닥 − 8에 붙임. 대화 0 → 202.6(한 줄 말풍선 기준 5개, 이 예시 대화로는 3개)','보낸 말풍선 아래 흐린 꼬리 줄 「＋ Ultrathink · 다이나믹워크플로우」','레일은 ⋯ 없이 업무 목록 ★ · 크루 정보 · 결과물. 방 알림 · 나가기는 크루 정보 시트 아래로']},
+  work:{now:['할 일에서 열어도 펼친 화면 왼쪽이 채팅 목록으로 바뀜','확인·그만이 글자 단추로 머리에 섞임'],after:['위치 줄: 나나 얼굴 + 업무 이름 + 「나나 · 결정 대기」','★확인은 레일 캡슐 첫 칸, 원문 · 넘기기가 같은 캡슐. ⋯ 없음: 업무 이름 바꾸기 · 멈추기는 위치 줄을 누르면 여는 업무 시트로','마지막 보고 카드 밑에 빠른 답 칩 32 「더 짧게」「근거 보여 줘」(보고 가까이, P62)','보고 카드 안 결정 단추는 빼고 카드 바로 아래 답 줄 44(결정 11 ①). 답하면 「✓ 「빼고 배포」로 답함 · 샐리 · 14:03」 한 줄이 대화에 남음. 할 일 질문 카드와 같은 질문이라 한쪽에서 답하면 다른 쪽도 바뀜','결정 8 ③(추천)이면 토큰은 늘 꺼짐. ⚡를 누르면 꼬리말 칸이 열림. 안내글 끝 모델 이름은 모델을 바꿨을 때만']},
+  appr:{now:['옛 받은함은 뒤로·탭이 없는 막다른 화면','다음 건으로 가려면 목록으로 돌아가야 함'],after:['위치 줄: 집맥 + 「승인 요청」 + 「집맥 · 확인 3 중 1」','레일에 이전↑ · 다음↓ 한 캡슐, ⋯ 없음. 지난 승인 기록은 목록 끝 「지난 승인」 머리 링크로','결정하면 다음 건 자동, 목록 강조도 따라감','거절 · 허용 44는 요청 카드 바로 아래(결정 11 ①). 카드에 대상 · 영향 한 줄 「볼트 · 파일 3개 · 되돌릴 수 있음」','결정 11 ②를 고르면 입력칸 바로 위 답 칩 32 + 대상 칩 「커밋 · 파일 3개 ›」']},
+  sess:{now:['Mac 알림방에는 세션 카드와 마지막 답 한 덩어리만 보임. 4,000자에서 잘림','터미널에서 친 말과 앞 턴은 크루네에서 볼 수 없음','지금 보는 길은 폰에서 따로 여는 브릿지 웹앱뿐'],after:['위치 줄 오른쪽에 [알림 | 대화] 전환, 기본은 대화. 새 탭은 만들지 않음(탭 캡슐 5칸 유지)','샐리 말은 오른쪽 말풍선 + 출처(터미널 · 크루네), 최종 답은 말풍선 없이 칸 폭 15/22, 도구는 이름별 횟수 한 줄','턴이 끝날 때 Mac이 한 건씩 올림. 도구 입출력 · 파일 · 시스템 주입은 빼고, 토큰 · 이메일 · 개인 경로는 Mac에서 가림','화면을 열 때 30턴만 읽음(실시간 구독 없음). 턴당 4,000+8,000자, 7일 보관, 샐리만 읽기','긴 코드는 줄을 바꿔 좌우 스크롤이 없음. 8줄(닫힘 가로 5줄)이 넘으면 「n줄 더 보기」로 펼침. 머리 줄에 언어 · 복사','허용 요청도 대화 안 카드 + 바로 아래 답 줄. 위로 스크롤해 답 줄이 안 보이면 입력칸 위에 「답 기다림 1 ↓」 알약','레일은 ⋯ 없이 새로 고침 ★. 세션 정보(Mac · 시작 시각 · 폴더)는 위치 줄을 누르면 여는 시트로']},
+  lib:{now:['찾기를 누르면 머리를 갈아 끼움','기록 · 결과물 · 문서함이 한 줄에 섞임','새로 온 자료가 색 칸 셋으로만 보여 무엇인지 알기 어려움'],after:['모든 자료를 A4 종이(1:1.414) 썸네일로: 앞면은 표지형(결론 한 줄 · 핵심 수치 · 본문 자리 줄), 표는 격자, 그림은 그림, 음성은 파형, 링크는 사이트 그림','종이 아래 제목 13/18 최대 2줄(넘치면 말줄임) + 「누가 · 날짜」 한 줄. 색 구분은 없애고 종류는 종이 왼쪽 아래 태그로만','「레인이 고른 새 자료」는 104×148 선반 한 줄, 화면 끝까지 넓혀 다음 장이 살짝 보임. 머리는 할 일과 같은 묶음 머리(숫자 + 이름 + 선)','담은 자료: 닫힘 세로 2열 169×240, 닫힘 가로 4열, 펼친 가로 목록 2열 + 첫 자료 보고서, 펼친 세로 4열 148×212(「담은 자료」 머리는 접힘 축 아래 495)','레일은 ⋯ 없이 링크 담기 ★. 썸네일 앞면 · 자료 펼침은 비교 전환']},
+  doc:{now:['제목 아래 글이 바로 이어져 결론을 찾으려면 끝까지 읽어야 함','관련 자료가 색 네모 줄로만 보임','머리 오른쪽 ⋯ 안에 공유 · 맡기기가 숨음'],after:['보고서 순서: 표지 요약(결론 17/24 · 핵심 수치 셋 · 담당 줄) → 목차(접힌 줄 44) → 절마다 결론 문장 머리 → 정할 것 → 다음 행동 → 관련 자료 → 원본','정할 것은 할 일 질문 카드 · 대화 답 줄과 같은 질문 원본. 여기서 답하면 할 일 카드도 사라짐','본문 폭 최대 520(약 40자), 닫힘 세로는 350','레일: ★원본 열기 · 공유 · 맡기기 한 캡슐, ⋯ 없음','자료 펼침 2를 고르면 펼친 가로 전체 폭에 목차 레일 176 + 본문 520']},
+  me:{now:['확인 필요·일정 타일이 나에 있음','설정 행 이름과 화면 제목이 다름'],after:['닫힘: 구조 그대로, 사용량 타일에 계정 · % · 다시 채워지는 시각, 크루 타일에 「답 기다림 1」','펼친 세로는 대시보드: 프로필 띠 → 사용량 | 크루 지금 → (접힘 축 띠 비움) → 최근 활동 | 설정','펼친 가로: 왼쪽 메뉴, 오른쪽은 아무것도 안 골랐을 때 사용량 · 크루 지금 · 최근 활동 1열. 위치 줄 「오늘의 나 · 사용량 62% · 일하는 중 3」','묶음 머리는 할 일 · 자료와 같은 부품(숫자 + 이름 + 선)']}
 };
 function whatBox(){
   const n=NOTES[ST.s],name=SCREENS.find(x=>x[0]===ST.s)[1];
-  $('#what').innerHTML=`<div class="box"><h3><span class="k now">지금</span>${name}에서 걸리는 점</h3><ul>${n.now.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="box"><h3><span class="k aft">바꾼 뒤 v4</span>${name}에서 바뀌는 점</h3><ul>${n.after.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  $('#what').innerHTML=`<div class="box"><h3><span class="k now">지금</span>${name}에서 걸리는 점</h3><ul>${n.now.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="box"><h3><span class="k aft">바꾼 뒤 v5</span>${name}에서 바뀌는 점</h3><ul>${n.after.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
 }
 function segs(){
   const mk=(id,opts,key)=>{$(id).innerHTML=opts.map(([v,l])=>`<button data-k="${key}" data-v="${v}" aria-pressed="${ST[key]===v}">${l}</button>`).join('')};
@@ -1991,27 +2799,38 @@ function segs(){
 /* ---------- 결정 질문 ---------- */
 const QS=[
   {tag:'v2',q:'닫힌 화면(바깥 세로·가로)에서 탭과 머리 단추를 오른쪽 세로 레일로 옮길까요?',opt:'① 오른쪽 세로 레일(위: 뒤로 · 동작 캡슐, 아래: 탭 캡슐 + 검색 끝 칸)　② 하단 캡슐(웹 382 배치)',rec:'① 레일. HIG가 측면 막대를 듀오의 핵심 패턴이라 하고 기본 막대 배치를 바꾸지 말라고 함(P09·P22·P50·P59). v4 시안에서 닫힘 세로 크루 방 대화 높이가 지금 367에서 530으로 늘어남.',flip:'새 정황: 닫힘 세로 홈 화면 앱의 웹 폭이 382로 보입니다(라이브 캡처 입력칸 오른쪽 끝 369.7, 머리 꺾쇠 자리). innerWidth 382 · 오른쪽 안전 영역 0으로 확인되면 웹이 레일 띠를 못 그리므로, 취향이 아니라 가능 여부로 ②가 됩니다. 머리와 입력 줄은 두 배치에서 같습니다. 실측 전에는 개발 플래그로만 켭니다.',see:[['할 일 · 닫힘 세로 나란히',{s:'todo',m:'both',r:'app'},'f-outerP'],['웹 382 배치 · 할 일 닫힘 세로',{s:'todo',m:'after',r:'app382'},'f-outerP'],['웹 382 배치 · 크루 방 키보드 켬',{s:'room',m:'after',r:'app382',kb:true},'f-outerP'],['Safari 보기 · 아래 캡슐',{s:'todo',m:'after',r:'saf'},'f-outerP']]},
-  {tag:'v2',q:'듀오 터치 화면 전체(닫힘 가로 홈 화면 앱, 안쪽 951·669)에서 10/18에 정한 \'390 가운데 기둥\'을 풀까요? Mac 앱 창은 그대로 둡니다.',opt:'① 듀오 터치 전체에서 풂, Mac 앱 창(마우스)은 390 유지　② 모두 유지　③ 모두 풂',rec:'① 듀오 터치만 풂. 10/18의 이유(\'매번 똑같아야\')는 Mac 앱 창에서 지키고, 넓은 화면에서는 빈 여백 대신 목록 + 상세를 보여 줌.',flip:'951 시안을 보고도 \'폰과 똑같이 보여야\'가 더 중요하면 ②. 그러면 안쪽 두 칸은 멈추고, 닫힘 가로 앱도 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다(볼 곳 셋째).',see:[['업무 상세 · 펼친 가로 나란히',{s:'work',m:'both',r:'app'},'f-innerL'],['할 일 · 펼친 가로(오늘 요약)',{s:'todo',m:'both',r:'app'},'f-innerL'],['닫힘 가로 앱 · ②면 390 기둥 안 레일',{s:'todo',m:'after',r:'app',c390:true},'f-outerL']]},
+  {tag:'v2',q:'듀오 터치 화면 전체(닫힘 가로 홈 화면 앱, 안쪽 951·669)에서 10/18에 정한 \'390 가운데 기둥\'을 풀까요? Mac 앱 창은 그대로 둡니다.',opt:'① 듀오 터치 전체에서 풂, Mac 앱 창(마우스)은 390 유지　② 모두 유지　③ 모두 풂',rec:'① 듀오 터치만 풂. 10/18의 이유(\'매번 똑같아야\')는 Mac 앱 창에서 지키고, 넓은 화면에서는 빈 여백 대신 목록 + 상세를 보여 줌.',flip:'951 시안을 보고도 \'폰과 똑같이 보여야\'가 더 중요하면 ②. 그러면 안쪽 두 칸은 멈추고, 닫힘 가로 앱도 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다(볼 곳 셋째).',see:[['업무 상세 · 펼친 가로 나란히',{s:'work',m:'both',r:'app'},'f-innerL'],['할 일 · 펼친 가로(보드)',{s:'todo',m:'both',r:'app'},'f-innerL'],['닫힘 가로 앱 · ②면 390 기둥 안 레일',{s:'todo',m:'after',r:'app',c390:true},'f-outerL']]},
   {tag:'v2',q:'펼친 세로(669×951)에서 한 칸을 넓혀 쓸까요, 목록과 상세를 두 칸으로 나눌까요?',opt:'① 한 칸 넓힘(카드 2열, 합친 줄 + 아래 탭)　② 목록 260 + 상세 409 두 칸',rec:'① 한 칸 넓힘. HIG는 높이가 더 긴 영역은 위아래로 나눈다고 함(P42). 상세 409는 말풍선과 카드가 좁음. 목록은 합친 줄 왼쪽 원으로 겹침 패널 320을 엶.',flip:'안쪽을 세로로 쥔 채 확인 필요를 연달아 처리하는 일이 잦으면 ②. 실측 폭이 720 이상이라 상세가 400 넘게 나와도 ②.',see:[['할 일 · 한 칸 넓힘',{s:'todo',m:'after',r:'app',alt:false},'f-innerP'],['할 일 · 두 칸 대안',{s:'todo',m:'after',r:'app',alt:true},'f-innerP'],['크루 방 · 두 칸 대안',{s:'room',m:'after',r:'app',alt:true},'f-innerP']]},
-  {tag:'v2',q:'앱을 열면 처음 보이는 화면을 무엇으로 할까요? 코드 안에서 \'/\'의 뜻이 채팅과 받은함으로 엇갈려 있어 하나로 정해야 합니다.',opt:'① 할 일(맨 위 확인 필요 묶음)　② 채팅(지금 그대로)',rec:'① 할 일. 기다리는 Mac 승인과 결정이 첫 화면에 바로 보이고, 951 두 칸에서는 열자마자 확인 필요와 오늘 요약이 나란히 보임.',flip:'최근 2주 열기 기록에서 하루 첫 동작이 크루 방 지시인 날이 더 많으면 ② 채팅 유지.',see:[['할 일 첫 화면 · 펼친 가로',{s:'todo',m:'after',r:'app'},'f-innerL'],['채팅 첫 화면 · 펼친 가로',{s:'chat',m:'after',r:'app'},'f-innerL'],['할 일 · 닫힘 세로',{s:'todo',m:'after',r:'app'},'f-outerP']]},
+  {tag:'v2',q:'앱을 열면 처음 보이는 화면을 무엇으로 할까요? 코드 안에서 \'/\'의 뜻이 채팅과 받은함으로 엇갈려 있어 하나로 정해야 합니다.',opt:'① 할 일(맨 위 확인 필요 묶음)　② 채팅(지금 그대로)',rec:'① 할 일. 기다리는 Mac 승인과 결정이 첫 화면에 바로 보이고, 951 두 칸에서는 열자마자 확인 필요와 돌아가는 일이 나란히 보임.',flip:'최근 2주 열기 기록에서 하루 첫 동작이 크루 방 지시인 날이 더 많으면 ② 채팅 유지.',see:[['할 일 첫 화면 · 펼친 가로',{s:'todo',m:'after',r:'app'},'f-innerL'],['채팅 첫 화면 · 펼친 가로',{s:'chat',m:'after',r:'app'},'f-innerL'],['할 일 · 닫힘 세로',{s:'todo',m:'after',r:'app'},'f-outerP']]},
   {tag:'v3u',q:'키보드가 열리면 머리를 어떻게 줄일까요?',opt:'① 닫힘 가로만 숨김(닫힘 세로는 위치 알약 36 → 대화 202.6, 펼침 가로는 위치 줄 그대로 196)　② 레일 자세 모두 숨김(닫힘 세로 238.6 · 펼침 가로 256, 위치와 배지가 사라짐). 펼침 세로는 그 줄에 목록 원이 있어 어느 쪽이든 남김',rec:'① 닫힘 가로만. 닫힘 세로는 위치 알약 36(12–48)으로 줄여 「확인 1」 배지를 남김(P58). 네이티브 메시지도 펼침 가로에서 키보드 때 머리를 지킴. 닫힘 가로는 웹 바닥이 189뿐이라 머리를 내줌.',flip:'듀오 실기에서 키보드를 연 채 크루 답이 8줄 미만이거나 샐리가 「아직 좁다」고 하면 ②.',see:[['크루 방 · 키보드 켬 · 닫힘 세로 나란히',{s:'room',m:'both',r:'app',kb:true},'f-outerP'],['크루 방 · 키보드 켬 · 펼침 가로',{s:'room',m:'after',r:'app',kb:true},'f-innerL'],['② 레일 자세 모두 숨김으로 보기',{s:'room',m:'after',r:'app',kb:true,d5:true},'f-outerP']]},
   {tag:'v3',q:'회맥 세션 대화도 크루네에 올릴까요?',opt:'① 집맥만　② 회맥도',rec:'① 집맥만. 회맥 터미널에 친 말에는 회사 자료가 섞일 수 있고, 올리면 클라우드를 거쳐 7일 보관됨.',flip:'회맥에서 이어 말하기를 자주 쓰고 회사 정책상 문제가 없다고 판단하면 ②. 그러면 Mac 알림 목록 머리에 [집맥 | 회맥]이 생김.',see:[['세션 대화 · 펼침 가로 목록 칸 머리',{s:'sess',m:'after',r:'app'},'f-innerL'],['② 회맥도 올리면',{s:'sess',m:'after',r:'app',wm:true},'f-innerL'],['세션 대화 · 닫힘 세로 나란히',{s:'sess',m:'both',r:'app'},'f-outerP']]},
   {tag:'v4',q:'머리에서 지금 위치를 어떻게 보여 줄까요?',opt:'① 위치 줄 48: 표식 32 + 제목 · 상태 두 줄을 모든 자세 y24–72에　② 큰 제목을 같은 줄에 두고, 스크롤하면 알약 32로 접음　③ 제목 없이 레일 탭 강조, 깊은 화면에만 경로 알약',rec:'① 위치 줄. 네 자세가 같은 자리이고(P55) 바깥 카메라와 같은 기준선 48(P11·P53). 상태를 머리에 담아 하는 일 카드가 없어지고, 「확인 1」이 키보드 때도 보임(P58). 네이티브 듀오 머리 줄 24–72와 같음. 반론: 탭 첫 화면 첫 행이 28 내려가고, 큰 제목이 iOS에서 더 익숙함.',flip:'실기에서 「어느 탭인지 바로 안 들어온다」면 ②. 목록 한 줄이 더 중요하고 레일 강조로 충분하면 ③(펼침 세로만 ①). 웹이 레일을 못 그리는 것으로 확인되면 ③은 빠집니다.',see:[['할 일 · 닫힘 세로 ① 위치 줄',{s:'todo',m:'after',r:'app',hd:'A'},'f-outerP'],['크루 방 · 스크롤 뒤 유리 알약',{s:'room',m:'after',r:'app',hd:'A',sc:true},'f-outerP'],['할 일 · ② 큰 제목 · 펼침 가로',{s:'todo',m:'after',r:'app',hd:'B'},'f-innerL'],['채팅 · ③ 제목 없음',{s:'chat',m:'after',r:'app',hd:'C'},'f-outerP']]},
-  {tag:'v4',q:'꼬리말(Ultrathink · 다이나믹워크플로우)을 어디서 기본으로 켤까요?',opt:'① 새 업무(크루 방 입력)는 켜짐, 업무 이어 말하기는 꺼짐　② 모든 입력에서 켜짐　③ 늘 꺼짐, 토큰 1탭으로 이번 메시지에 붙음(지금 2탭 → 1탭)',rec:'③ 늘 꺼짐, 1탭으로 붙임. 최근 14일 샐리 터미널 메시지 1,344건 중 Ultrathink를 붙인 것은 93건(약 7%), 200자 넘는 긴 메시지 612건 중에서도 63건(약 10%)입니다. 명세의 지난 입력 기록(11.5%, 새 업무 첫 요청 20%)도 같은 방향이라 「거의 매번」이라는 전제는 맞지 않습니다. 붙이면 보낸 말풍선 아래 흐린 꼬리 줄로 보여 줌. 반론: 크루네 방에서는 터미널보다 무거운 새 업무를 더 자주 맡겨 붙이는 비율이 높을 수 있음.',flip:'크루네 2주 집계에서 새 업무에 50% 넘게 붙이면 ①, 이어 말하기까지 80% 넘게 붙이면 ②. 어느 쪽이든 입력 줄 배치와 대화 높이는 같습니다.',see:[['③ 크루 방 · 키보드 켬 · 토큰 꺼짐(추천)',{s:'room',m:'after',r:'app',kb:true,tail:'3'},'f-outerP'],['③에서 토큰 1탭 · 이번 메시지에 붙음',{s:'room',m:'after',r:'app',kb:true,tail:'3',tk:true},'f-outerP'],['① 비교 · 크루 방 토큰 켜짐',{s:'room',m:'after',r:'app',kb:true,tail:'1'},'f-outerP'],['＋ 패널 열림(키보드 유지)',{s:'room',m:'after',r:'app',kb:true,plus:true},'f-outerP']]}
+  {tag:'v4',q:'꼬리말(Ultrathink · 다이나믹워크플로우)을 어디서 기본으로 켤까요?',opt:'① 새 업무(크루 방 입력)는 켜짐, 업무 이어 말하기는 꺼짐　② 모든 입력에서 켜짐　③ 늘 꺼짐. 토큰을 누르면 꼬리말 칸이 열리고 체크로 이번 메시지에 붙임(2탭). 「늘」로 저장하면 처음 상태가 바뀜',rec:'③ 늘 꺼짐, 꼬리말 칸에서 보고 붙임. 최근 14일 샐리 터미널 메시지 1,344건 중 Ultrathink를 붙인 것은 93건(약 7%), 200자 넘는 긴 메시지 612건 중에서도 63건(약 10%)입니다. 명세의 지난 입력 기록(11.5%, 새 업무 첫 요청 20%)도 같은 방향이라 「거의 매번」이라는 전제는 맞지 않습니다. 붙이면 보낸 말풍선 아래 흐린 꼬리 줄로 보여 줌. 반론: 크루네 방에서는 터미널보다 무거운 새 업무를 더 자주 맡겨 붙이는 비율이 높을 수 있음.',flip:'크루네 2주 집계에서 새 업무에 50% 넘게 붙이면 ①, 이어 말하기까지 80% 넘게 붙이면 ②. 어느 쪽이든 입력 줄 배치와 대화 높이는 같습니다.',see:[['③ 크루 방 · 키보드 켬 · 토큰 꺼짐(추천)',{s:'room',m:'after',r:'app',kb:true,tail:'3'},'f-outerP'],['③ 꼬리말 칸 열림',{s:'room',m:'after',r:'app',kb:true,tail:'3',tp:true},'f-outerP'],['① 비교 · 크루 방 토큰 켜짐',{s:'room',m:'after',r:'app',kb:true,tail:'1'},'f-outerP'],['＋ 패널 열림(키보드 유지)',{s:'room',m:'after',r:'app',kb:true,plus:true},'f-outerP']]},
+  {tag:'v5',q:'펼친 가로(951×669)에서 할 일을 어떻게 쓸까요? 「오늘」 요약은 왼쪽 목록과 겹쳐서 없앴습니다.',opt:'A. 목록 + 첫 건 상세: 왼쪽 목록 카드, 오른쪽에 확인 필요 첫 건을 자동으로 열어 근거 · 선택지와 함께 바로 답함　B. 「내가 답할 것 | 돌아가는 일」 두 칸 보드: 힌지를 칸 경계로, 왼쪽은 확인 필요 + 크루 제안, 오른쪽은 진행 중 · 끝남 · 지운 일. 행을 누르면 오른쪽 칸 위에 시트',rec:'B 두 칸 보드(확신도 60). 피드백의 핵심이 중복이고 B만 모든 건이 한 번씩 보입니다. 확인 필요가 0건인 날에도 왼쪽이 크루 제안으로 자연스럽게 채워지고, 반접힘(책)에서도 같은 두 칸 그대로입니다. 반론: 결정마다 보고서를 읽어야 정할 수 있다면 「자세히」를 한 번 더 눌러야 해서 느리고, 할 일 탭만 칸 나눔(463 | 487)이 달라 탭을 오갈 때 경계가 움직입니다. 따로 받은 검토 의견은 A였습니다.',flip:'하루 확인 필요 건수를 세어 보고, 근거 한 줄로 못 정하고 「자세히」를 여는 비율이 절반을 넘으면 A.',see:[['B 보드 · 확인 필요 3건',{s:'todo',m:'after',r:'app',d9:'B',nq:'3'},'f-innerL'],['B 보드 · 0건',{s:'todo',m:'after',r:'app',d9:'B',nq:'0'},'f-innerL'],['A 목록 + 상세 · 3건',{s:'todo',m:'after',r:'app',d9:'A',nq:'3'},'f-innerL'],['A 목록 + 상세 · 0건',{s:'todo',m:'after',r:'app',d9:'A',nq:'0'},'f-innerL'],['펼친 세로 · 1열 카드',{s:'todo',m:'after',r:'app',d9:'B'},'f-innerP']]},
+  {tag:'v5',q:'할 일 묶음 머리를 어떻게 보여 줄까요? v4는 칩과 묶음 머리가 같은 말(확인 필요 · 진행 중 · 끝남)을 두 번 써서 겹쳐 보였습니다.',opt:'① 숫자 먼저 + 얇은 선: 숫자 배지 → 이름 13/16 → 끝까지 가는 0.5 선, 끝남 · 지운 일만 꺾쇠로 접힘　② 접는 묶음 머리: 한 줄 44, 이름 15/20 + 개수 + 꺾쇠, 모든 묶음이 접힘　③ 글자 머리 없음: 확인 필요는 색 입힌 질문 카드, 끝남은 한 줄 「✓ 끝남 6 ›」, 크루 제안은 점선 카드',rec:'① 숫자 먼저 + 얇은 선. 칩은 바탕을 채운 캡슐에 이름이 먼저이고, ①은 숫자가 먼저 · 글자에 바탕 없음 · 선이 끝까지 가서 단추가 아니라 구분선으로 읽힙니다. 머리가 20이라 닫힌 세로에서 ②보다 한 행이 더 보입니다. 자료 · 나 대시보드도 같은 머리를 씁니다. 반론: ②가 iOS에서 더 익숙하고 접는 동작이 모든 묶음에 같습니다. ③은 겹칠 글자가 아예 없습니다.',flip:'① 시안에서도 「칩과 겹쳐 보인다」면 ③. 묶음을 자주 접었다 폈다 한다면 ②.',see:[['① 숫자 먼저 + 선 · 닫힘 세로',{s:'todo',m:'after',r:'app',d10:'1',nq:'3'},'f-outerP'],['② 접는 묶음 머리',{s:'todo',m:'after',r:'app',d10:'2',nq:'3'},'f-outerP'],['③ 글자 머리 없음',{s:'todo',m:'after',r:'app',d10:'3',nq:'3'},'f-outerP'],['① 닫힘 가로',{s:'todo',m:'after',r:'app',d10:'1'},'f-outerL']]},
+  {tag:'v5',q:'승인 · 결정의 답(거절 · 허용, 선택지)을 어디서 받을까요?',opt:'① 메시지 바로 아래 답 줄(44 단추), 답 줄이 화면 밖일 때만 「답 기다림」 알약　② 입력칸 위 답 칩(대상 칩 함께)',rec:'① 메시지 아래. 제어는 영향을 주는 내용 가까이에 둡니다(P62). 누가 무엇을 언제 허용했는지 대화에 남고, 두 건이 쌓여도 어느 건인지 헷갈리지 않습니다. 반론: ②는 손가락이 닿기 쉽고 스크롤해도 늘 보입니다. ①은 지나치면 알약으로 한 번 이동해야 합니다.',flip:'실기에서 알약을 눌러 이동한 뒤 답하는 일이 답의 절반을 넘으면 ②.',see:[['① 승인 · 닫힘 세로',{s:'appr',m:'after',r:'app',d11:'1'},'f-outerP'],['① 키보드 켬',{s:'appr',m:'after',r:'app',d11:'1',kb:true},'f-outerP'],['② 입력칸 위 답 칩',{s:'appr',m:'after',r:'app',d11:'2'},'f-outerP'],['세션 대화 · 펼친 가로',{s:'sess',m:'after',r:'app',d11:'1'},'f-innerL'],['① 세션 · 위로 스크롤 뒤 답 기다림 알약',{s:'sess',m:'after',r:'app',d11:'1',sc:true},'f-outerP']]}
 ];
 function qsRender(){
-  const TAG={v2:'v2에서 이어짐 · 추천 ①로 그림',v3:'v3에서 이어짐',v3u:'v3에서 이어짐 · 숫자 갱신',v4:'v4 새 결정'};
-  $('#qs').innerHTML=QS.map((q,i)=>`<article class="q"><span class="qn">결정 ${i+1}<span class="qt ${q.tag==='v4'?'new':''}">${TAG[q.tag]}</span></span><h3>${q.q}</h3><dl><dt>고를 것</dt><dd>${q.opt}</dd><dt>추천</dt><dd>${q.rec}</dd><dt>뒤집힐 때</dt><dd>${q.flip}</dd></dl><div><div class="shs" style="margin:0 0 6px;font-size:13px">시안에서 볼 곳</div><div class="gos">${q.see.map((s,j)=>`<button class="go" data-q="${i}" data-j="${j}">${ico('chev',{s:14})}${s[0]}</button>`).join('')}</div></div></article>`).join('');
+  const TAG={v2:'v2에서 이어짐 · 추천 ①로 그림',v3:'v3에서 이어짐',v3u:'v3에서 이어짐 · 숫자 갱신',v4:'v4에서 이어짐',v5:'v5 새 결정'};
+  $('#qs').innerHTML=QS.map((q,i)=>`<article class="q"><span class="qn">결정 ${i+1}<span class="qt ${q.tag==='v4'||q.tag==='v5'?'new':''}">${TAG[q.tag]}</span></span><h3>${q.q}</h3><dl><dt>고를 것</dt><dd>${q.opt}</dd><dt>추천</dt><dd>${q.rec}</dd><dt>뒤집힐 때</dt><dd>${q.flip}</dd></dl><div><div class="shs" style="margin:0 0 6px;font-size:13px">시안에서 볼 곳</div><div class="gos">${q.see.map((s,j)=>`<button class="go" data-q="${i}" data-j="${j}">${ico('chev',{s:14})}${s[0]}</button>`).join('')}</div></div></article>`).join('');
 }
 
 /* ---------- 이벤트 ---------- */
 const $=s=>document.querySelector(s);
 document.addEventListener('click',e=>{
-  const b=e.target.closest('button,[data-go]');if(!b)return;
+  const b=e.target.closest('button,[data-go],[data-qopen]');if(!b)return;
+  if(b.dataset.qa){const id=b.dataset.qa;ST.qa=Object.assign({},ST.qa,{[id]:b.dataset.v});QAT[id]=Date.now();render();setTimeout(render,4100);return}
+  if(b.dataset.qundo){const q=Object.assign({},ST.qa);delete q[b.dataset.qundo];delete QAT[b.dataset.qundo];ST.qa=q;render();return}
+  if(b.dataset.qopen){QOPEN=b.dataset.qopen;render();return}
+  if(b.dataset.tpo!==undefined){ST.tp=!ST.tp;if(ST.tp)ST.plus=false;render();return}
+  if(b.dataset.tw){const w=b.dataset.tw,t=(Array.isArray(ST.tw)?ST.tw:[]).slice(),i=t.indexOf(w);if(i<0)t.push(w);else t.splice(i,1);ST.tw=t;render();return}
+  if(b.dataset.trm){TRM.add(b.dataset.trm);render();return}
+  if(b.dataset.cp!==undefined){const l=b.querySelector('span');if(l){l.textContent='복사됨';clearTimeout(b._t);b._t=setTimeout(()=>{l.textContent='복사'},1500)}return}
+  if(b.dataset.wp!==undefined){ST.sc=false;WPF=Date.now();render();setTimeout(render,1300);return}
   if(b.dataset.k){const k=b.dataset.k;ST[k]=b.dataset.v;if(k==='tail')ST.tk=false;render();return}
   if(b.dataset.kb!==undefined){ST.kb=b.dataset.kb==='1';if(!ST.kb)ST.plus=false;render();return}
-  for(const key of ['alt','aux','c390','d5','wm','sc','tk','plus','grid','rec']){if(b.closest(`[data-${key}]`)&&b.dataset.v!==undefined){ST[key]=b.dataset.v==='1';render();return}}
-  if(b.dataset.q!==undefined){const s=QS[+b.dataset.q].see[+b.dataset.j];Object.assign(ST,{aux:false,c390:false,kb:false,d5:false,wm:false,alt:false,hd:'A',sc:false,tail:'3',tk:false,plus:false,rec:false},s[1]);render();const el=document.getElementById(s[2]);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
+  for(const key of ['alt','aux','c390','d5','wm','sc','tk','plus','grid','rec','pr','tp','cbx']){if(b.closest(`[data-${key}]`)&&b.dataset.v!==undefined){ST[key]=b.dataset.v==='1';if(key==='tp'&&ST.tp)ST.plus=false;if(key==='plus'&&ST.plus)ST.tp=false;render();return}}
+  if(b.dataset.q!==undefined){const s=QS[+b.dataset.q].see[+b.dataset.j];Object.assign(ST,{aux:false,c390:false,kb:false,d5:false,wm:false,alt:false,hd:'A',sc:false,tail:'3',tk:false,plus:false,rec:false,d9:'B',d10:'1',d11:'1',nq:'3',pr:false,tp:false,tw:[],tsc:'once',cbx:false,th:'A',lb:'1',qa:{}},s[1]);QOPEN=null;render();const el=document.getElementById(s[2]);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
   if(b.id==='tgA'){ST.a=!ST.a;render();return}
   if(b.id==='tgG'){ST.grid=!ST.grid;render();return}
   if(b.id==='tgT'){ST.t=ST.t==='dark'?'light':'dark';render();return}
@@ -2019,6 +2838,7 @@ document.addEventListener('click',e=>{
 });
 let rt;addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(render,120)});
 load();qsRender();render();
+try{document.fonts.ready.then(()=>render())}catch(e){}
 </script>
 </body>
 </html>
