@@ -36,17 +36,18 @@
 html,body{margin:0}
 body{background:var(--page);color:var(--text);font:400 15px/1.55 var(--font);letter-spacing:-.01em;word-break:keep-all;overflow-wrap:anywhere;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
-.wrap{max-width:1680px;margin:0 auto;padding:0 16px}
+.wrap{max-width:1680px;margin:0 auto;padding:0 24px}
+@media (max-width:600px){.wrap{padding:0 16px}}
 
 /* 머리·조작 줄 */
-.top{padding:28px 0 12px}
+.top{padding-top:32px;padding-bottom:16px}
 .top h1{margin:0;font-size:28px;line-height:1.2;letter-spacing:-.02em}
 .top p{margin:8px 0 0;color:var(--muted);max-width:820px;font-size:14.5px}
 .facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .fact{font-size:12px;padding:3px 9px;border-radius:999px;background:var(--panel);color:var(--muted)}
 .fact b{color:var(--text);font-weight:600}
 .ctl{position:sticky;top:0;z-index:30;background:color-mix(in oklab,var(--page) 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--hairline)}
-.ctl .wrap{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;padding-top:10px;padding-bottom:10px}
+.ctl .wrap{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;padding-top:12px;padding-bottom:12px}
 .grp{display:flex;align-items:center;gap:8px;flex-wrap:wrap;min-width:0}
 .grp>span{font-size:12px;color:var(--muted);font-weight:600}
 .seg{display:flex;flex-wrap:wrap;gap:2px;padding:3px;border-radius:12px;background:var(--panel);box-shadow:0 0 0 1px var(--hairline)}
@@ -60,7 +61,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .tg[aria-pressed="true"] i{background:var(--ann)}
 .tg[aria-pressed="true"] i::after{left:14px}
 
-.what{margin:18px 0 6px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}
+.what{margin:24px 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:12px}
 .box{background:var(--panel);border-radius:18px;padding:16px 18px;box-shadow:0 0 0 1px var(--hairline)}
 .box h3{margin:0 0 8px;font-size:15px}
 .box ul{margin:0;padding-left:18px;font-size:14px;line-height:1.6}
@@ -70,7 +71,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .k.aft{background:var(--tint);color:var(--accent)}
 code,.mono{font-family:var(--mono);font-size:.88em}
 
-.stage{display:flex;flex-wrap:wrap;gap:36px 28px;align-items:flex-start;padding:22px 0 30px}
+.stage{display:flex;flex-wrap:wrap;gap:40px 32px;align-items:flex-start;padding:32px 0 40px}
 .fcard{display:flex;flex-direction:column;gap:10px;min-width:0;max-width:100%}
 .fcap{display:flex;flex-direction:column;gap:2px}
 .fcap b{font-size:15px}
@@ -810,8 +811,8 @@ function bottomBody(S,P){
 function aOuterBottom(S,P){
   const [W,H]=DIM[P],vw=P==='outerP'?382:594,vh=vpH(P),task=KIND[S]==='task';
   const items=P==='outerL'?declP(S):declP(S).filter(it=>it.k!=='cap');
-  let h=`<div class="head52 nar" style="left:10px;width:${vw-20}px;top:6px;height:52px">${task?`<span class="rb" data-go="${PARENT[S]}" title="뒤로">${ico('back')}</span>`:''}<div class="ttl">${headTitle(S)}</div><div class="hgrp">${items.map(hItem).join('')}</div></div>`;
-  h+=pane(0,60,vw,vh-60,bottomBody(S,P),'',{t:4,r:16,l:16,b:task?12:84});
+  let h=`<div class="head52 nar" style="left:20px;width:${vw-40}px;top:14px;height:52px">${task?`<span class="rb" data-go="${PARENT[S]}" title="뒤로">${ico('back')}</span>`:''}<div class="ttl">${headTitle(S)}</div><div class="hgrp">${items.map(hItem).join('')}</div></div>`;
+  h+=pane(0,70,vw,vh-70,bottomBody(S,P),'',{t:6,r:20,l:20,b:task?20:88});
   const tw=Math.min(vw-96,340),tx=Math.round((vw-tw-64)/2);
   if(!task)h+=bottomTabs(TABOF[S],tx,vh-10-64,true,true,tw);
   h+=sysRest(P,true);
@@ -824,9 +825,9 @@ function aOuterBottom(S,P){
 function aOuter390(S){
   const [W,H]=DIM.outerL,x=144,cw=326,railX=x+cw,task=KIND[S]==='task';
   let h=`<div class="empty390" style="left:0;width:${x}px"></div><div class="empty390" style="left:${x+390}px;right:0"></div><div class="col390" style="left:${x}px;width:390px"></div>`;
-  h+=pane(x,0,cw,H,singleOf(S,'outerP',cw),'',{t:12,r:8,l:16,b:task?12:0});
+  h+=pane(x,0,cw,H,singleOf(S,'outerP',cw),'',{t:18,r:12,l:16,b:task?18:0});
   h+=island(636,H-30,28);
-  h+=rail(railX,64,H,{r0:12,r8:12,d:decl(S,'outerL')});
+  h+=rail(railX,64,H,{r0:20,r8:20,d:decl(S,'outerL')});
   h+=ann(0,0,x,H,`빈 여백 ${x}`,'c','fillx')+ann(x+390,0,W-x-390,H,`빈 여백 ${W-x-390}`,'c','fillx');
   h+=ann(x,0,cw,H,`결정 2 ② · 내용 ${cw}`,'bl')+ann(railX,12,64,H-24,'레일 64','tr');
   return h;
@@ -837,10 +838,10 @@ function aOuter(S,o,variant){
   if(app&&o==='L'&&ST.c390)return aOuter390(S);
   const H=vpH(P);
   const colX=o==='P'?382:594, railX=app?colX:colX-64, railW=app?84:64, cw=railX;
-  const r0=app?(o==='P'?168:12):(o==='P'?12:12), r8=app?(o==='P'?20:56):12;
+  const r0=app?(o==='P'?168:20):20, r8=app?(o==='P'?22:56):20;
   const task=KIND[S]==='task';
   let h='';
-  h+=pane(0,0,cw,H,singleOf(S,P,cw),'',{t:12,r:8,l:16,b:task?(o==='P'?20:12):0});
+  h+=pane(0,0,cw,H,singleOf(S,P,cw),'',{t:o==='P'?22:18,r:12,l:o==='P'?20:24,b:task?(o==='P'?22:18):0});
   if(!app)h+=sysRest(P,false);
   if(o==='P'){h+=island(424,34,30);h+=sysCol(colX,84,64)}
   else h+=island(636,H0-30,28);
@@ -878,17 +879,17 @@ function detailOf(S,half){
 }
 function aInnerL(S,half){
   const [W,H]=DIM.innerL,app=ST.r==='app';
-  const LW=half?463:342,DX=half?487:354,RX=887,r0=app?120:12,r8=20;
+  const LW=half?463:342,DX=half?487:354,RX=887,r0=app?120:20,r8=20;
   let h='';
   const slide=S==='room'&&ST.aux;
   if(slide){
-    h+=pane(0,0,463,H,roomView({coverW:110}),'two',{t:20,r:16,l:16,b:20});
-    h+=pane(487,0,W-487,H,auxView(),'two',{t:20,r:72,l:16,b:20});
+    h+=pane(0,0,463,H,roomView({coverW:110}),'two',{t:20,r:20,l:20,b:20});
+    h+=pane(487,0,W-487,H,auxView(),'two',{t:20,r:80,l:20,b:20});
   }else{
     const L=S==='room'?'chat':S;
-    h+=pane(0,0,LW,H,listCtl(L)+listOf(L),'two',{t:12,r:16,l:16,b:0});
+    h+=pane(0,0,LW,H,listCtl(L)+listOf(L),'two',{t:20,r:20,l:20,b:0});
     const task=KIND[S]==='task'||S==='chat';
-    h+=pane(DX,0,W-DX,H,detailOf(L,half),'two',{t:20,r:72,l:16,b:task?20:0});
+    h+=pane(DX,0,W-DX,H,detailOf(L,half),'two',{t:20,r:80,l:20,b:task?20:0});
   }
   if(app)h+=sysCol(RX,64,22);
   h+=rail(RX,64,H,{r0,r8,d:decl(S,half?'half':'innerL')});
@@ -931,12 +932,12 @@ function wideOf(S){
 function aInnerP(S){
   const [W,H]=DIM.innerP,task=KIND[S]==='task';
   let h=statusBar();
-  h+=`<div class="head52" style="left:20px;right:20px;top:46px;height:52px">${task?`<span class="rb" data-go="${PARENT[S]}" title="뒤로">${ico('back')}</span>`:''}<div class="ttl">${headTitle(S)}</div><div class="hgrp">${declP(S).map(hItem).join('')}</div></div>`;
-  h+=pane(0,100,W,H-100,wideOf(S),'',{t:8,r:24,l:24,b:task?24:104});
-  if(!task)h+=bottomTabs(TABOF[S],200,H-24-64,true,true,268);
+  h+=`<div class="head52" style="left:24px;right:24px;top:48px;height:52px">${task?`<span class="rb" data-go="${PARENT[S]}" title="뒤로">${ico('back')}</span>`:''}<div class="ttl">${headTitle(S)}</div><div class="hgrp">${declP(S).map(hItem).join('')}</div></div>`;
+  h+=pane(0,104,W,H-104,wideOf(S),'',{t:12,r:24,l:24,b:task?24:108});
+  if(!task)h+=bottomTabs(TABOF[S],Math.round((W-268-12-52)/2),H-28-64,true,true,268);
   h+=`<div class="crease h" style="top:463px;height:24px;left:0;right:0"></div>`;
   h+=ann(20,46,W-40,52,'위 머리 52: 뒤로·제목 | 주요→캡슐→⋯','bl');
-  if(!task)h+=ann(200,H-88,332,64,'하단 탭 268 + 검색 52','lo');
+  if(!task)h+=ann(Math.round((W-268-12-52)/2),H-92,332,64,'하단 탭 268 + 검색 52','lo');
   h+=`<div class="ann" style="left:24px;top:${task?560:640}px"><span class="tag" style="position:static;display:inline-block">P50 안쪽 세로만 가로 막대 유지</span></div>`;
   h+=hingeAnn(0,463,W,24,'접힘 축(노트북 자세)');
   return h;
@@ -947,8 +948,8 @@ function aInnerPAlt(S){
   const left=L==='todo'?todoList({sel:'t1',today:false}):L==='appr'?apprList({sel:'t2'}):L==='chat'?chatList({sel:'genz'}):L==='lib'?libList({sel:'l1'}):meMenu({sel:'acc'});
   const right={todo:workView({}),work:workView({}),appr:apprView({}),chat:roomView({coverW:90}),room:roomView({coverW:90}),lib:libDetail({}),me:accountsView()}[S];
   let h=`<div class="scr-two-bg" style="position:absolute;inset:0;background:var(--groove)"></div>`+statusBar();
-  h+=pane(0,44,260,H-44,left,'two',{t:8,r:12,l:12,b:96});
-  h+=pane(266,44,W-266,H-44,right,'two',{t:12,r:16,l:16,b:20});
+  h+=pane(0,48,260,H-48,left,'two',{t:12,r:16,l:16,b:96});
+  h+=pane(266,48,W-266,H-48,right,'two',{t:12,r:20,l:20,b:24});
   h+=bottomTabs(TABOF[S],16,H-24-56,true,false,228).replace('height:64px','');
   h+=ann(0,44,260,H-44,'대안 ② 목록 260','tl');
   h+=ann(266,44,W-266,H-44,'상세 403 · 말풍선 좁아짐','tr');
@@ -958,10 +959,10 @@ function aInnerPAlt(S){
 /* ---------- 로그인 ---------- */
 function gButtons(w,phase){
   if(phase==='num')return `<div class="cdown" style="width:${w}px;align-items:center"><span class="num">47</span><span class="gsub">Mac 알림에서 이 숫자를 누르세요</span><div class="bar" style="width:100%"><i style="width:72%"></i></div><span class="gsub" style="font-size:13px">남은 시간 0:43</span><span class="gb txt">취소</span></div>`;
-  return `<div class="gbtns" style="width:${w}px"><span class="gb pri">${ico('faceid',{s:22})}Face ID로 들어가기</span><span class="gb line">이 기기 등록</span><span class="gb txt">${ico('google',{s:18})}&nbsp;구글로 들어가기</span></div>`;
+  return `<div class="gbtns" style="width:${w}px"><span class="gb pri">${ico('faceid',{s:22})}패스키로 들어가기</span><span class="gb line">이 기기 등록</span><span class="gb txt">${ico('google',{s:18})}&nbsp;구글로 들어가기</span></div>`;
 }
 const gMark=(s=72)=>`<img src="${MARK}" alt="" width="${s}" height="${s}">`;
-function steps(on=0){return `<div class="steps"><span class="h">처음 쓰는 기기라면</span>${['이 기기 등록을 누르기','Mac 알림에 뜬 숫자 누르기','끝. 다음부터 Face ID로 바로'].map((t,i)=>`<div class="stp ${i===on?'on':''}"><i>${i+1}</i><span>${t}</span></div>`).join('')}<div class="faces" style="margin-top:6px">${['kiki','nana','rain','genz','loop'].map(k=>face(k,52)).join('')}</div></div>`}
+function steps(on=0){return `<div class="steps"><span class="h">처음 쓰는 기기라면</span>${['이 기기 등록을 누르기','Mac 알림에 뜬 숫자 누르기','끝. 다음부터 패스키로 바로'].map((t,i)=>`<div class="stp ${i===on?'on':''}"><i>${i+1}</i><span>${t}</span></div>`).join('')}<div class="faces" style="margin-top:6px">${['kiki','nana','rain','genz','loop'].map(k=>face(k,52)).join('')}</div></div>`}
 function loginAfter(P){
   const app=ST.r==='app';let h='';
   if(P==='outerP'){const cw=382;
@@ -993,9 +994,9 @@ function loginNow(P){
 function nowCol(P){
   const app=ST.r==='app';
   switch(P){
-    case 'outerP':return {x:0,w:382,top:8,frame:false};
-    case 'outerL':return app?{x:144,w:390,top:8,frame:true}:{x:0,w:594,top:8};
-    case 'innerL':case 'half':return app?{x:280.5,w:390,top:8,frame:true}:{x:115.5,w:720,top:8,tab390:true};
+    case 'outerP':return {x:0,w:382,top:16,frame:false};
+    case 'outerL':return app?{x:144,w:390,top:16,frame:true}:{x:0,w:594,top:16};
+    case 'innerL':case 'half':return app?{x:280.5,w:390,top:16,frame:true}:{x:115.5,w:720,top:16,tab390:true};
     case 'innerP':return app?{x:139.5,w:390,top:44,frame:true}:{x:0,w:669,top:44};
   }
 }
@@ -1032,7 +1033,7 @@ function nowCompose(P,S){
     h+=pane(c.x,c.top+52,c.w,H-c.top-52,nowBody(S,c),'',{t:4,r:16,l:16,b:bottom});
     if(!task){
       const tw=c.tab390?390:c.w-32, tx=c.tab390?(W-390)/2:c.x+16;
-      h+=bottomTabs(TABOF[S],tx,H-12-64-(P==='innerP'?8:0),false,false,tw);
+      h+=bottomTabs(TABOF[S],tx,H-20-64-(P==='innerP'?8:0),false,false,tw);
     }
   }
   if(P==='innerL'||P==='innerP')h+=`<div class="crease ${P==='innerP'?'h':''}" style="${P==='innerP'?'top:463px;height:24px;left:0;right:0':'left:463px;width:24px;top:0;bottom:0'}"></div>`;
@@ -1040,7 +1041,7 @@ function nowCompose(P,S){
   if(c.frame){h+=ann(0,0,c.x,H,`빈 여백 ${Math.round(c.x)}`,'c','fillx');h+=ann(c.x+c.w,0,W-c.x-c.w,H,`빈 여백 ${Math.round(W-c.x-c.w)}`,'c','fillx');h+=ann(c.x,0,c.w,H,'390 기둥 · styles.css:551','tl')}
   else h+=ann(c.x,0,c.w,H,`내용 ${c.w}`,'tl');
   if(S!=='login'){
-    if(!task){const tw=c.tab390?390:c.w-32,tx=c.tab390?(W-390)/2:c.x+16;h+=ann(tx,H-12-64-(P==='innerP'?8:0),tw,64,'탭 배지는 6px 점 · tabbar.jsx','tl')}
+    if(!task){const tw=c.tab390?390:c.w-32,tx=c.tab390?(W-390)/2:c.x+16;h+=ann(tx,H-20-64-(P==='innerP'?8:0),tw,64,'탭 배지는 6px 점 · tabbar.jsx','tl')}
     else if(S==='room'||S==='work')h+=ann(c.x+8,H-60,48,48,'','tl')+`<div class="ann" style="left:${c.x+60}px;top:${H-84}px"><span class="tag" style="position:static;display:inline-block">독 왼쪽 뒤로 · attach.jsx:307</span></div>`;
     if(S==='room')h+=ann(c.x+8,c.top,44,52,'','tl')+`<div class="ann" style="left:${c.x+60}px;top:${c.top+52}px"><span class="tag" style="position:static;display:inline-block">머리 뒤로 · chat-live.jsx:1411</span></div>`;
   }
@@ -1069,10 +1070,10 @@ function device(P,S,mode){
   if(P!=='half')return {html:`<div class="dev ${P}">${scr}</div>`,w:dw,h:dh};
   const one=`<div class="dev half">${scr}</div>`;
   const m=40;
-  return {html:`<div class="fold3d" style="width:${dw}px;height:${dh}px;margin:${m/2}px ${m}px">
+  return {html:`<div class="fold3d" style="width:${dw}px;height:${dh}px;margin:${m/2}px 0 ${m/2}px -34px">
     <div class="crease3d" style="left:${12+463}px;width:24px"></div>
     <div class="half3d l" style="clip-path:inset(0 ${dw-(12+463)}px 0 0);transform-origin:${12+475}px 50%">${one}</div>
-    <div class="half3d r" style="clip-path:inset(0 0 0 ${12+487}px);transform-origin:${12+475}px 50%">${one}</div></div>`,w:dw+m*2,h:dh+m};
+    <div class="half3d r" style="clip-path:inset(0 0 0 ${12+487}px);transform-origin:${12+475}px 50%">${one}</div></div>`,w:dw,h:dh+m};
 }
 function scaleFor(w,avail){
   const cap=ST.z==='fit'?.8:ST.z==='50'?.5:1;
@@ -1124,7 +1125,7 @@ function render(){
 }
 const LCAP={now:{outerP:'가운데 카드 한 장. 등록 단추는 실패 때만',outerL:'앱은 390 기둥 가운데',innerL:'390 기둥 가운데, 양옆 빈 여백',innerP:'390 기둥 가운데',half:'접힘이 카드 한가운데를 지남'},after:{outerP:'막대 없는 관문. 단추 셋은 아래 엄지 자리',outerL:'왼쪽 마크 | 오른쪽 단추 셋',innerL:'왼쪽 반 로그인 카드 | 오른쪽 반 처음 쓰는 기기 3단계',innerP:'카드 420 가운데, 단추는 아래 절반',half:'왼쪽 카드 | 오른쪽 3단계, 접힘 24는 비움'}};
 const NOTES={
-  login:{now:['\'이 기기 등록\'은 실패했을 때만 보임 (App.jsx:497-503)','Mac 숫자 승인은 60초 뒤 오류만 뜸 (App.jsx:466-471)','넓은 화면에서도 390 가운데 기둥'],after:['단추 셋 늘 보임: Face ID · 이 기기 등록 · 구글','숫자 승인에 남은 시간 막대와 취소','넓은 화면은 왼쪽 카드 | 오른쪽 처음 쓰는 기기 3단계. 막대 없는 관문 (P60)']},
+  login:{now:['\'이 기기 등록\'은 실패했을 때만 보임 (App.jsx:497-503)','Mac 숫자 승인은 60초 뒤 오류만 뜸 (App.jsx:466-471)','넓은 화면에서도 390 가운데 기둥'],after:['단추 셋 늘 보임: 패스키 · 이 기기 등록 · 구글','숫자 승인에 남은 시간 막대와 취소','넓은 화면은 왼쪽 카드 | 오른쪽 처음 쓰는 기기 3단계. 막대 없는 관문 (P60)']},
   todo:{now:['확인 필요가 할 일과 나 대시보드 둘로 갈림','일정 알약은 나로만 보냄 (schedule.jsx:24)','탭 배지는 숫자 없는 6px 점 (tabbar.jsx:36-41)'],after:['맨 위 확인 필요 묶음 하나가 탭 배지·앱 배지의 단일 출처','오늘 띠를 누르면 그 자리에서 일·주·월','거르기에 \'지난 보고\' 흡수 (/history/inbox → /inbox?f=past)','펼친 가로에서 고른 업무가 없으면 오늘 요약으로 채움']},
   chat:{now:['줄마다 마지막 말만 보임','펼친 화면에서도 목록 한 칸'],after:['줄마다 크루가 지금 하는 일 한 줄','새 방은 레일 ★ 한 자리 (P58)','펼친 가로: 목록 | 고른 방, 고른 행 강조']},
   room:{now:['뒤로가 두 곳: 머리 \'채팅 목록으로\'(chat-live.jsx:1411-1418)와 독 왼쪽(attach.jsx:307)','방 메뉴·업무 목록·프로필이 각자 다른 시트'],after:['뒤로는 레일 맨 위 하나 (P56)','업무 목록 ★ · 크루 정보 · 결과물은 레일 캡슐, 방 메뉴는 ⋯ 하나 (P69)','펼친 가로 기본은 목록 342 | 방. 결과물을 열 때만 미닫이 [대화 | 결과물], 레일 맨 위에 목록 펴기 (\'보조 열기\' 전환)','두 칸에서 방을 고르면 기록을 쌓지 않음(go(p, true)). 닫은 뒤 뒤로는 채팅 목록']},
