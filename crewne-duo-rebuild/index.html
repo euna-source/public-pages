@@ -371,20 +371,212 @@ h2.sh{font-size:20px;margin:26px 0 4px;letter-spacing:-.02em}
 .shs{color:var(--muted);font-size:14px;margin:0 0 12px}
 .foot{color:var(--faint);font-size:12.5px;padding:0 0 40px}
 @media (max-width:640px){.top h1{font-size:23px}.ctl .wrap{gap:8px 12px}.seg button{padding:0 9px;font-size:13px}}
+@media (max-width:600px){.ctl{position:static}}
 @media (prefers-reduced-motion:reduce){.tg i::after{transition:none}}
+
+/* ================= v3: 바꾼 뒤 화면 안 토큰 (.scr.v3 안에서만) ================= */
+:root{--kb-bg:#d1d3d9;--kb-key:#fff;--kb-key2:#abb0ba;--kb-ink:#111;--kb-sh:rgba(0,0,0,.3)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--kb-bg:#2b2b2d;--kb-key:#68686c;--kb-key2:#454548;--kb-ink:#fff;--kb-sh:rgba(0,0,0,.55)}}
+:root[data-theme="dark"]{--kb-bg:#2b2b2d;--kb-key:#68686c;--kb-key2:#454548;--kb-ink:#fff;--kb-sh:rgba(0,0,0,.55)}
+
+/* 페이지: v3 표·키보드 줄 */
+.k.v3t{background:var(--ann-bg);color:var(--ann)}
+.fcap .kbl{font-size:12.5px;line-height:1.5;color:var(--text)}
+.fcap .kbl b{font-weight:600;color:var(--accent)}
+.tblw{overflow-x:auto;background:var(--panel);border-radius:18px;box-shadow:0 0 0 1px var(--hairline);margin:8px 0 6px}
+.dt{border-collapse:collapse;width:100%;min-width:600px;font-size:13.5px;line-height:1.45}
+.dt th,.dt td{text-align:left;padding:8px 14px;vertical-align:top;border-bottom:1px solid var(--hairline)}
+.dt thead th{font-size:12px;color:var(--muted);font-weight:600}
+.dt td:first-child{font-weight:600;width:26%}
+.dt td.n2{color:var(--muted);width:30%}
+.dt td.n3{color:var(--text)}
+.dt td.n3 b{color:var(--accent);font-weight:600}
+.dt tr.g td{font-size:12px;font-weight:700;color:var(--muted);background:color-mix(in oklab,var(--panel) 94%,var(--text));padding-top:6px;padding-bottom:6px}
+.dt tr:last-child td{border-bottom:0}
+.tnote{color:var(--muted);font-size:13px;margin:0 0 20px}
+.q .qn .qt{margin-left:6px;font-weight:600;padding:1px 6px;border-radius:6px;background:var(--surface-2);color:var(--muted)}
+.q .qn .qt.new{background:var(--ann-bg);color:var(--ann)}
+
+/* 기기 안: 머리·제목 */
+.v3 .th{display:flex;align-items:baseline;gap:8px;height:36px;min-height:0;margin:8px 0 4px;flex-wrap:nowrap;flex:none;min-width:0}
+.v3 .th h2,.v3 .th.big h2{font-size:28px;line-height:34px;flex:none}
+.v3 .th.cmp{margin:8px 0 8px;align-items:center}
+.v3 .th.cmp h2{font-size:20px;line-height:24px}
+.v3 .th.cmp .chips{flex:1;min-width:0;margin:0}
+.v3 .th .hgrp{margin-left:auto;align-self:center;gap:8px}
+.v3 .th .hb{margin:0}
+.v3 .th-s{font-size:12px;line-height:16px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.v3 .th-s b{color:var(--accent);font-weight:600}
+.lhd{display:flex;align-items:center;gap:4px;height:44px;margin:0 0 8px;flex:none;min-width:0}
+.lt{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;overflow:hidden}
+.v3 .lt h2{font-size:20px;line-height:24px;flex:none}
+.v3 .hgrp{gap:0}
+.hb{width:36px;height:36px;margin:4px;border-radius:50%;display:grid;place-items:center;background:var(--glass);box-shadow:0 0 0 .5px var(--hairline),0 2px 8px rgba(0,0,0,.06);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);color:var(--text);flex:none;position:relative}
+.hb.star{background:var(--accent);color:var(--accent-ink);box-shadow:0 2px 10px color-mix(in oklab,var(--accent) 30%,transparent)}
+.hb .nb{top:-4px;right:-5px}
+.v3 .hcap{height:36px;margin:4px 0;padding:0 4px;border-radius:18px}
+.v3 .hcap .rcell{width:40px;height:36px;border-radius:18px}
+.mrow{position:absolute;left:16px;right:172px;top:24px;height:44px;display:flex;align-items:center;gap:4px;z-index:6;min-width:0}
+.mrow .tleft{display:flex;align-items:center;gap:8px;min-width:0;flex:1}
+.mrow .hgrp{margin-left:auto}
+.nm{font:700 15px/20px var(--font);letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.mrow .nm{font-size:17px;line-height:22px}
+.sysrow{position:absolute;left:505px;top:24px;width:148px;height:44px;display:flex;align-items:center;justify-content:flex-end;gap:6px;font:600 15px var(--font);z-index:6;color:var(--text)}
+.shd{position:absolute;display:flex;align-items:center;gap:4px;height:44px;z-index:6;min-width:0}
+.shd .hgrp{margin-left:auto}
+.vline{position:absolute;top:0;bottom:0;width:1px;background:var(--hairline);z-index:3}
+
+/* 떠 있는 이름 알약 */
+.pill{position:absolute;z-index:6;display:flex;align-items:center;gap:8px;height:36px;padding:0 6px 0 4px;border-radius:18px;background:color-mix(in oklab,var(--surface) 94%,transparent);box-shadow:0 0 0 .5px var(--hairline),0 4px 14px rgba(0,0,0,.08);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);max-width:calc(100% - 24px);min-width:0}
+.nw{white-space:nowrap}
+.pill.st{position:static;flex:0 1 auto;max-width:none}
+.pill b{font:700 15px/20px var(--font);letter-spacing:-.02em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.wchip{flex:none;height:24px;padding:0 8px;border-radius:12px;display:inline-flex;align-items:center;font:600 12px/16px var(--font);white-space:nowrap;background:var(--surface-2);color:var(--muted)}
+.wchip.need{background:var(--accent);color:var(--accent-ink)}
+.mseg{display:flex;flex:none;height:28px;padding:2px;border-radius:14px;background:var(--surface-2)}
+.mseg span{width:56px;height:24px;border-radius:12px;display:grid;place-items:center;font:700 13px/16px var(--font);color:var(--muted)}
+.mseg span.on{background:var(--surface);color:var(--text);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+
+/* 칩·섹션 */
+.v3 .chips{gap:8px;height:32px;align-items:center;margin:0 0 8px}
+.v3 .chip{height:28px;padding:0 11px;font-size:13px}
+.v3 .sec{height:20px;font:700 13px/16px var(--font);margin:16px 0 4px;align-items:center}
+.v3 .sec.first{margin-top:8px}
+.v3 .chips+.sec,.v3 .th.cmp+.sec{margin-top:0}
+.v3 .th.big+.crow{margin-top:4px}
+
+/* 평평한 행 */
+.v3 .row{position:relative;isolation:isolate;gap:12px;padding:10px 0;border-radius:0;background:none;margin:0;min-height:56px;box-shadow:none}
+.v3 .row::after,.v3 .crow::after,.v3 .ses::after{content:"";position:absolute;left:40px;right:0;bottom:0;height:1px;background:var(--hairline);transform:scaleY(.5);transform-origin:0 100%}
+.v3 .crow::after{left:52px}
+.v3 .ses::after{left:22px}
+.v3 .row.one{min-height:44px;height:44px;padding:0}
+.v3 .row.one::after{left:36px}
+.v3 .row.sel,.v3 .crow.sel,.v3 .ses.sel{background:none;box-shadow:none}
+.v3 .row.sel::before,.v3 .crow.sel::before,.v3 .ses.sel::before{content:"";position:absolute;top:0;bottom:0;left:-4px;right:-4px;border-radius:10px;background:var(--tint);z-index:-1}
+.v3 .row-t{font-size:15px;line-height:20px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.v3 .row-m{font-size:12px;line-height:16px;overflow:hidden;text-overflow:ellipsis}
+.v3 .thumb.sm{width:28px;height:28px;border-radius:8px}
+.v3 .lgrid{gap:0 16px}
+.v3 .cards{gap:8px;margin:0}
+.v3 .card{padding:10px 12px;min-height:0;gap:4px;border-radius:14px}
+.v3 .card-t{line-height:20px}
+.v3 .foldrow{height:44px;padding:0;font-size:13px}
+.v3 .crow{position:relative;isolation:isolate;align-items:center;gap:12px;height:64px;padding:0;border-radius:0;background:none;margin:0}
+.v3 .c1{align-items:baseline;gap:0;min-width:0}
+.v3 .c1 b{font-size:15px;line-height:20px;flex:none;font-weight:700;letter-spacing:-.01em}
+.v3 .c1 .cnw{font-size:13px;line-height:18px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:0 1 auto;margin-left:4px}
+.v3 .c1 .ct{margin-left:auto;padding-left:8px;flex:none;line-height:16px}
+.v3 .clast{font-size:13px;line-height:18px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ses{display:flex;align-items:center;gap:12px;height:56px;position:relative;isolation:isolate;flex:none;cursor:pointer;min-width:0}
+.ses .sd{width:8px;height:8px;border-radius:50%;background:var(--faint);flex:none;margin:0 1px}
+.ses .sd.ok{background:var(--ok)}
+.ses .sd.warn{background:var(--warning)}
+
+/* 자료·나·요약 */
+.v3 .seg2{margin:0 0 8px;padding:2px;border-radius:10px}
+.v3 .seg2 span{height:28px;line-height:28px;font-size:13px}
+.v3 .newc{padding:10px 12px;border-radius:14px;gap:8px}
+.v3 .newc .h{font-size:14px}
+.v3 .mini{min-height:48px;border-radius:10px}
+.v3 .tiles{gap:8px}
+.v3 .tile{padding:8px 12px;border-radius:12px}
+.v3 .tile .n{font-size:22px;line-height:26px}
+.v3 .blk{padding:8px 12px;border-radius:12px;gap:4px}
+.v3 .ln{min-height:28px}
+.v3 .sum{gap:8px}
+.v3 .prof{padding:8px 12px;border-radius:14px}
+.v3 .grp-rows{border-radius:14px}
+.v3 .srow{min-height:44px;padding:0 12px}
+.v3 .acc{padding:10px 12px;border-radius:14px}
+.v3 .doc{gap:8px}
+.v3 .aux{gap:8px}
+
+/* 대화 */
+.v3 .thread{gap:4px;padding:var(--pt,52px) 0 8px;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 24px);mask-image:linear-gradient(180deg,transparent 0,#000 24px)}
+.v3 .msg.sw{margin-top:8px}
+.v3 .bub{padding:8px 12px;line-height:20px;border-radius:18px;border-top-left-radius:6px}
+.v3 .msg.me .bub{border-radius:18px;border-top-right-radius:6px}
+.v3 .day{font-size:11px;line-height:14px;padding:8px 0 4px}
+.v3 .fsp{width:28px;flex:none}
+.v3 .rcard{padding:12px;border-radius:16px;gap:4px;margin-top:4px}
+.v3 .rc-t{font-size:15px;line-height:20px}
+.v3 .rc-s{font-size:13px;line-height:18px}
+.v3 .rcard .dbtn{min-height:36px;font-size:13.5px;padding:0 12px}
+.v3 .apbody{display:flex;flex-direction:column;gap:8px;flex:1;min-height:0;padding:var(--pt,52px) 0 8px;overflow:hidden}
+.v3 .appr{padding:12px;border-radius:16px;gap:6px}
+.v3 .appr .t{font-size:16px;line-height:22px}
+.v3 .appr .s{font-size:13.5px;line-height:19px}
+.v3 .dbtn.big{min-height:44px;border-radius:22px}
+.v3 .dock{gap:8px;height:40px}
+.v3 .dk{width:36px;height:36px}
+.v3 .dk-in{height:40px;border-radius:20px;font-size:16px;line-height:20px;padding:0 4px 0 14px;gap:8px}
+.v3 .dk-in .ph{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.v3 .dk-in .snd{width:32px;height:32px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+
+/* 시먹스 세션 대화 */
+.v3 .thread.sx{gap:12px}
+.sx .older{align-self:center;height:32px;padding:0 14px;border-radius:16px;background:var(--surface);font-size:13px;font-weight:600;color:var(--muted);flex:none}
+.sx .snote{align-self:center;font-size:11px;line-height:14px;color:var(--faint);flex:none;margin-top:-4px}
+.sx .tsep{align-self:center;font-size:11px;line-height:14px;color:var(--faint);margin:4px 0;flex:none}
+.sx .me-t{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex:none}
+.sx .me-t .bub{background:var(--chat-color);color:var(--chat-ink);max-width:78%;font-size:15px}
+.sx .src{font-size:11px;line-height:14px;color:var(--faint);padding-right:4px}
+.sx .tl{height:20px;font-size:12px;line-height:16px;color:var(--faint);display:flex;align-items:center;gap:6px;flex:none}
+.sx .ai-t{font-size:15px;line-height:22px;flex:none;min-width:0}
+.sx .tl+.ai-t{margin-top:-8px}
+.sx .cb{margin:6px 0;font:500 13px/18px var(--mono);background:var(--surface-2);border-radius:10px;padding:8px 10px;overflow-x:auto;white-space:pre;letter-spacing:0}
+.sx .cut{font-size:12px;line-height:16px;color:var(--muted);margin-top:-8px;flex:none}
+.mask{display:inline-flex;align-items:center;height:20px;padding:0 6px;border-radius:6px;font:600 11.5px/1 var(--font);background:color-mix(in oklab,currentColor 20%,transparent);white-space:nowrap;vertical-align:1px;letter-spacing:0}
+.waitl{display:flex;align-items:center;gap:6px;height:16px;margin:0 0 4px 4px;font-size:12px;line-height:16px;color:var(--muted);flex:none}
+
+/* 레일 v3: 단독 원 44(칸 48), 사이 12, 캡슐 폭 48 */
+.v3 .rail{gap:12px}
+.v3 .rsp{min-height:0}
+.v3 .rail .rb{width:44px;height:44px;margin:2px 0}
+.v3 .rcap{width:48px;padding:4px;border-radius:24px}
+.v3 .rcell{width:40px;height:44px;border-radius:20px}
+.v3 .rcap.tabs,.v3 .rcap.mint{padding:0}
+.v3 .rcap.tabs .rcell,.v3 .rcap.mint .rcell{width:48px;height:48px;border-radius:24px;isolation:isolate;background:none}
+.v3 .rcap.tabs .rcell.on,.v3 .rcap.mint .rcell{background:none;color:var(--text)}
+.v3 .rcap.tabs .rcell.on::before,.v3 .rcap.mint .rcell::before{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--surface-2);z-index:-1}
+.v3 .rcap .nb{top:2px;right:1px}
+.v3 .kbh{opacity:0;visibility:hidden;transition:opacity .12s}
+@media (prefers-reduced-motion:reduce){.v3 .kbh{transition:none}}
+.hbar.v3b{height:52px;padding:4px;gap:0;border-radius:26px}
+.hbar.v3b .tb{border-radius:22px}
+.hbar.v3b .tb.on{background:var(--surface-2);color:var(--text)}
+.hbar.v3b .tsp{width:1px;align-self:stretch;margin:10px 2px;background:var(--hairline);flex:none}
+.hbar.v3b .tb .nb{top:3px}
+
+/* 키보드 그림 */
+.kbd{position:absolute;left:0;right:0;z-index:20;background:var(--kb-bg);display:flex;flex-direction:column;align-items:center;padding:0 3px}
+.kb-pred{position:relative;height:36px;width:100%;display:flex;align-items:center;gap:28px;padding:0 18px;font-size:15px;color:var(--kb-ink);flex:none}
+.kb-tag{position:absolute;right:14px;top:9px;font:600 11.5px/1 var(--mono);background:var(--ann);color:#fff;padding:4px 7px;border-radius:6px;letter-spacing:0}
+.kb-keys{flex:1;min-height:0;width:100%;display:flex;flex-direction:column;gap:var(--kg,10px);padding:2px 0 var(--kbb,22px)}
+.kb-r{flex:1;display:flex;gap:6px;justify-content:center;min-height:0}
+.kb-r i{flex:1;max-width:var(--kw,36px);border-radius:5px;background:var(--kb-key);box-shadow:0 1px 0 var(--kb-sh);display:grid;place-items:center;font:400 17px/1 var(--font);font-style:normal;color:var(--kb-ink);min-width:0}
+.kb-r i.fn{background:var(--kb-key2);font-size:13px}
+.kb-r i.w{flex:1.45;max-width:calc(var(--kw,36px) * 1.45)}
+.kb-r i.sp{flex:5;max-width:calc(var(--kw,36px) * 5.6);font-size:14px}
+
+/* 주석: 대화 높이는 키보드를 켜면 늘 보임 */
+.ann.cv{border-color:var(--accent);background:color-mix(in oklab,var(--accent) 7%,transparent)}
+.ann.cv .tag{background:var(--accent);color:var(--accent-ink)}
+body.kb-on .ann.cv{display:block}
 </style>
 </head>
 <body>
 <header class="wrap top">
-  <h1>크루네 듀오 시안 — 지금과 바꾼 뒤</h1>
-  <p>같은 화면을 접는 아이폰의 다섯 자세에 놓고, 지금 구조와 바꾼 구조를 나란히 봅니다. 바꾼 뒤의 핵심은 하나입니다. 닫힌 화면과 펼친 가로 화면에서는 탭과 머리 단추를 카메라 쪽 오른쪽 가장자리의 세로 레일로 옮기고, 넓은 화면은 확대하지 않고 목록과 상세를 나란히 둡니다.</p>
+  <h1>크루네 듀오 시안 v3 — 지금과 바꾼 뒤</h1>
+  <p>v2를 실제 듀오에서 본 피드백 넷을 반영했습니다. 머리가 두껍다 → 탭 첫 화면은 큰 제목 한 줄, 방·상세는 떠 있는 이름 알약 36 하나로 줄였습니다. 여백이 넓다 → 카드 목록을 평평한 행(채팅 64·할 일 56)으로 바꾸고 간격을 4/8 토큰으로 맞췄습니다. 키보드를 올리면 대화가 더 좁아진다 → 머리는 남기고 중간 줄(업무 띠·자주 쓰는 말·안내)을 없애 입력칸을 키보드 위 8에 붙입니다. 시먹스 대화를 못 본다 → 세션 카드 상세에 [알림 | 대화] 전환을 더했습니다.</p>
   <div class="facts">
-    <span class="fact"><b>치수</b> HIG 그림 비례·에뮬레이터 값, 실기 미측정</span>
-    <span class="fact"><b>기본 보기</b> Safari(최악값). 홈 화면 앱은 미측정 가정</span>
-    <span class="fact"><b>레일 켜기</b> 실측 전에는 ?bars=side 개발 플래그로만</span>
-    <span class="fact"><b>R0·바닥 56</b> 그림에서 잰 추정값</span>
+    <span class="fact"><b>기본 보기</b> 홈 화면 앱. Safari는 아래 캡슐</span>
+    <span class="fact"><b>간격</b> 4/8 토큰, 글자 크기·터치 44는 그대로</span>
+    <span class="fact"><b>키보드</b> 펼침 278·366 녹화 실측, 닫힘 336·210 가정</span>
+    <span class="fact"><b>가장 약한 전제</b> 위 안전 영역 0 · 레일 띠 84, 실기 미측정</span>
     <span class="fact"><b>근거</b> HIG 「iPhone Duo용으로 디자인하기」 2026-09-09</span>
-    <span class="fact"><b>예시 내용</b> 지어낸 업무, 실제 기록 아님</span>
+    <span class="fact"><b>예시 내용</b> 지어낸 업무·대화, 실제 기록 아님</span>
   </div>
 </header>
 
@@ -392,6 +584,7 @@ h2.sh{font-size:20px;margin:26px 0 4px;letter-spacing:-.02em}
   <div class="wrap">
     <div class="grp"><span>화면</span><div class="seg" id="segS"></div></div>
     <div class="grp"><span>비교</span><div class="seg" id="segM"></div></div>
+    <div class="grp"><span>키보드</span><div class="seg" id="segK"></div></div>
     <div class="grp"><span>실행</span><div class="seg" id="segR"></div></div>
     <div class="grp"><span>배율</span><div class="seg" id="segZ"></div></div>
     <button class="tg" id="tgA" aria-pressed="false"><i></i>주석 보기</button>
@@ -403,51 +596,88 @@ h2.sh{font-size:20px;margin:26px 0 4px;letter-spacing:-.02em}
   <section class="what" id="what"></section>
   <section class="stage" id="stage" aria-live="polite"></section>
 
+  <h2 class="sh">v2 대비 바뀐 수치</h2>
+  <p class="shs">단위는 pt. 자세가 넷인 줄은 닫힘 세로 · 닫힘 가로 · 펼침 가로 · 펼침 세로 순서입니다.</p>
+  <div class="tblw"><table class="dt">
+    <thead><tr><th>항목</th><th>v2</th><th>v3</th></tr></thead>
+    <tbody>
+      <tr class="g"><td colspan="3">머리</td></tr>
+      <tr><td>닫힘 세로 탭 첫 화면</td><td class="n2">위 22 + 큰 제목 34 + 아래 8</td><td class="n3">위 8 + 큰 제목 <b>36</b> + 아래 4. 스크롤하면 0</td></tr>
+      <tr><td>방·상세 머리</td><td class="n2">머리 32 + 업무 띠 32 + 간격 8</td><td class="n3">떠 있는 알약 <b>36</b>(8–44). 대화가 밑으로 지나감</td></tr>
+      <tr><td>펼침 가로 목록 칸 머리</td><td class="n2">조작 줄 52 + 큰 제목 34</td><td class="n3">한 줄 <b>44</b>(제목 + 거르기·＋)</td></tr>
+      <tr><td>펼침 세로 머리</td><td class="n2">상태 막대 44 + 머리 52</td><td class="n3">상태 줄과 합친 <b>44</b>(24–68)</td></tr>
+      <tr><td>오늘 띠</td><td class="n2">38 + 4</td><td class="n3">없앰. 제목 부제 「16:00 듀오 시안 검토 외 1 ›」</td></tr>
+      <tr class="g"><td colspan="3">목록</td></tr>
+      <tr><td>채팅 행</td><td class="n2">카드 80 + 사이 6</td><td class="n3">평평한 행 <b>64</b> + 0, 구분선 0.5</td></tr>
+      <tr><td>할 일 행</td><td class="n2">58 + 6 · 한 줄 50 + 6</td><td class="n3"><b>56</b> · 한 줄 <b>44</b></td></tr>
+      <tr><td>칩 줄 · 섹션 머리</td><td class="n2">30 + 아래 10 · 위 14 + 19 + 아래 6</td><td class="n3">32(칩 28) + 아래 8 · <b>20</b>, 위 8·16, 아래 4</td></tr>
+      <tr><td>닫힘 세로 좌·우 / 글 폭</td><td class="n2">20·12 / 326</td><td class="n3">16·8 / <b>358</b></td></tr>
+      <tr><td>펼침 가로 목록 칸</td><td class="n2">342(글 302)</td><td class="n3"><b>375</b>(글 339) | 상세 491</td></tr>
+      <tr><td>첫 할 일 행 y</td><td class="n2">185 · 181 · 241 · 237</td><td class="n3"><b>112 · 76 · 128 · 140</b></td></tr>
+      <tr><td>한 화면 채팅 행 수</td><td class="n2">7.1 · 4.7 · 5.5 · 8.6</td><td class="n3"><b>9.8 · 6.5 · 9.5 · 12.5</b></td></tr>
+      <tr class="g"><td colspan="3">막대</td></tr>
+      <tr><td>레일 첫 자리 / 띠</td><td class="n2">168 · 펼침 가로 120 / 84 · 64</td><td class="n3"><b>218 · 178</b> / 모두 84</td></tr>
+      <tr><td>레일 간격</td><td class="n2">단추 사이 8</td><td class="n3">사이 <b>12</b>, 위·아래 묶음 24 이상</td></tr>
+      <tr><td>레일 탭 캡슐</td><td class="n2">52×200 + 검색 원 44</td><td class="n3"><b>48×240</b>(검색 끝 칸)</td></tr>
+      <tr><td>펼침 세로 아래 탭</td><td class="n2">268×64 + 검색 52</td><td class="n3"><b>320×52</b>(검색 포함), 바닥 20</td></tr>
+      <tr class="g"><td colspan="3">입력·키보드</td></tr>
+      <tr><td>입력 묶음</td><td class="n2">입력 44 + 자주 쓰는 말 42</td><td class="n3">입력칸 <b>40</b> 한 줄(＋36, 보내기 32는 칸 안)</td></tr>
+      <tr><td>말풍선</td><td class="n2">안쪽 9/13, 반지름 20, 사이 8</td><td class="n3">8/12, 18, 같은 사람 4 · 바뀔 때 12</td></tr>
+      <tr><td>대화 높이 · 키보드 없음</td><td class="n2">476 · 272 · 471 · 685</td><td class="n3"><b>562 · 354 · 545 · 811</b></td></tr>
+      <tr><td>대화 높이 · 키보드 열림</td><td class="n2">154 · 72 · 205 · 336</td><td class="n3"><b>242 · 192 · 283 · 461</b></td></tr>
+    </tbody>
+  </table></div>
+  <p class="tnote">대화 높이 = (입력칸 위 − 8) − 머리 아래 끝. 닫힘 가로 키보드 열림 192는 알약을 숨긴 값(결정 5 ①). 닫힘 자세 키보드 336·210은 녹화가 없어 가정입니다.</p>
+
   <h2 class="sh">레일 한눈에</h2>
   <p class="shs">닫힌 화면·펼친 가로 화면의 오른쪽 기둥. 위에서 아래로 이 순서이고, 자세가 바뀌어도 순서는 그대로입니다.</p>
   <div class="legend">
     <div class="box">
       <h3>위 묶음 (도구 막대)</h3>
       <ul class="rlist">
-        <li><b>R0</b><span>시스템 칸. Dynamic Island·시각·와이파이. 앱 단추를 두지 않음 (P28·P51)</span></li>
-        <li><b>R1</b><span>뒤로·닫기. 한 칸일 때만. 동작은 부모 경로로 이동이고, 앱 안 기록이 부모와 같을 때만 history.back. 두 칸에서 행을 고를 때는 기록을 쌓지 않음(replace). 시험: 두 칸에서 3건 고르기 → 닫기 → 뒤로 = 목록. 지금 세 곳의 뒤로를 여기 하나로 (P55·P56)</span></li>
-        <li><b>R2</b><span>★ 새로 만들기 또는 그 화면의 주요 동작 하나 (P56·P58)</span></li>
-        <li><b>R3</b><span>지금 연 항목 동작 캡슐 2~3개. 상세의 주 동작이 맨 위 (P61)</span></li>
+        <li><b>R0</b><span>시스템 칸. 닫힘 세로 0–218(카메라 25–103 · 상태 115–200), 펼침 가로 0–178(상태 23–160). 앱 단추 없음 (P28·P51)</span></li>
+        <li><b>R1</b><span>뒤로. 한 칸일 때만. 펼침 가로는 목록이 보이므로 없음. 두 칸에서 행을 고를 때는 기록을 쌓지 않음 (P55·P56)</span></li>
+        <li><b>R2</b><span>★ 그 화면의 주요 동작 하나. 펼침 가로의 ＋새로 만들기는 목록 칸 머리로 옮김 (P58·P62)</span></li>
+        <li><b>R3</b><span>지금 연 항목의 동작 캡슐 2~3칸, 칸 높이 44 (P61)</span></li>
         <li><b>R4</b><span>⋯ 넘침 메뉴. 줄임표는 여기만 (P69)</span></li>
+        <li><b>크기</b><span>단독 원 보이는 44 · 칸 48, 사이 12, 캡슐 폭 48</span></li>
       </ul>
     </div>
     <div class="box">
       <h3>아래 묶음 (탭 막대)</h3>
       <ul class="rlist">
-        <li><b>‖</b><span>늘어나는 간격. 위·아래 막대를 가름 (P56)</span></li>
-        <li><b>R6</b><span>탭 캡슐 할 일·채팅·자료·나. 점 대신 숫자 배지 (P58)</span></li>
-        <li><b>R7</b><span>검색 원. 지금 탭 범위로 시작</span></li>
-        <li><b>R8</b><span>바닥 여유. 세로 20, 닫힘 가로 앱 56(카메라)</span></li>
-        <li><b>압축</b><span>탐색 화면은 도구를 ⋯로, 작업 화면은 탭을 최소화 탭 하나로 (P65·P66)</span></li>
+        <li><b>‖</b><span>늘어나는 간격. 위·아래 묶음 사이 24 이상 (P56)</span></li>
+        <li><b>R6</b><span>탭 캡슐 48×240 = 할 일·채팅·자료·나 + 검색 끝 칸. 숫자 배지 (P58)</span></li>
+        <li><b>한 칸</b><span>작업 화면은 현재 탭 한 칸 48×48, 배지는 합계 (P66)</span></li>
+        <li><b>R8</b><span>바닥 24. 닫힘 가로는 56(카메라, 가정)</span></li>
+        <li><b>키보드</b><span>탭 캡슐·한 칸은 숨김. 위 단추는 아래 끝이 (보이는 높이 − 8)을 넘는 것만 120ms에 흐려 숨김. 옮기지 않음</span></li>
       </ul>
     </div>
     <div class="box">
-      <h3>레일을 켜는 판정 (위에서부터)</h3>
+      <h3>자세 판정 (웹은 크기만 앎)</h3>
       <ul class="rlist">
-        <li><b>①</b><span>시스템 신호: 세로로 긴 화면에서 좌우 안전 여백 한쪽 ≥ 24, 위 안전 여백 &lt; 20이면 그 쪽에 켬. Safari 382×618은 네 방향 모두 0px라 안 걸림(에뮬레이터 실측)</span></li>
-        <li><b>②</b><span>화면 기하: screen.width/height(방향 정규화)로만 잼. 거친 포인터, 짧은 변 ≤ 700, 긴 변/짧은 변 &lt; 1.6, (가로이거나 창 폭 &lt; 600). 창 값으로 재면 아이폰 SE Safari 창(약 375×553=1.47)이 걸려 보통 아이폰 기준을 깸</span></li>
-        <li><b>③</b><span>둘 다 아니면 하단 막대. 펼친 세로 669도 여기</span></li>
-        <li><b>실측</b><span>듀오의 screen.* 값을 나나 1단계 실측에 넣음. 그 전에는 ?bars=side 개발 플래그로만 켬. 각 자세 설명에 어느 신호로 켜지는지 적어 둠</span></li>
+        <li><b>①</b><span>레일: 긴 변/짧은 변 1.6 미만, 짧은 변 700 이하, 터치. screen.*을 방향 정규화해 잼</span></li>
+        <li><b>②</b><span>짧은 변 600 이상이고 세로면 펼침 세로: 합친 줄 + 아래 탭(HIG 예외, P50)</span></li>
+        <li><b>③</b><span>폭 760 이상이면 두 칸(fold-core.mjs:5 FOLD_MIN 재사용). 닫힘 가로 678은 한 칸, 펼침 가로 951은 두 칸. 「폭 600 이상이면 펼침」은 닫힘 가로를 잘못 고름</span></li>
+        <li><b>키보드</b><span>kbOpen = 입력칸 포커스 &amp;&amp; (baseH − vv.height) &gt; 120. baseH는 지금 폭에서 본 innerHeight 최댓값. resizes-content가 켜져도 꺼져도 맞음</span></li>
+        <li><b>실측</b><span>안전 영역 4값, 닫힘 키보드 한 컷씩, 크루네 방 키보드 프레임 기록은 나나가 11/17까지</span></li>
       </ul>
     </div>
     <details class="box">
       <summary>새 메뉴 구조 (뼈대)</summary>
       <pre class="tree">크루네
 ├ 앱 틀: 막대 두 모양
-│   레일(세로) | 위 머리 + 하단 탭(669 세로·보통 아이폰)
+│   레일(닫힘·펼침 가로) | 합친 줄 + 아래 탭(펼침 세로)
 ├ 할 일 /inbox — 탐색
-│   목록: 확인 필요 묶음 · 오늘 띠 · 거르기 칩
+│   목록: 확인 필요 묶음 · 거르기 칩
 │         (확인 필요·내 할 일·크루 할 일·진행 중·끝남·지난 보고)
+│   제목 부제: 다음 일정 「16:00 … ›」 (오늘 띠 대신)
 │   상세: 업무 대화 · 승인 요청 · 크루 페이지
 │   ★ 새 할 일
 ├ 채팅 /chats — 탐색
 │   목록: 크루 방 5(지금 하는 일) · 함께 · Mac 알림
 │   상세: 크루 방 · 그룹 방 · Mac 알림 기록
+│         세션 카드 상세 [알림 | 대화]  ← v3
 │   보조: 업무 목록 · 크루 정보 · 결과물
 │   ★ 새 방
 ├ 자료 /library — 탐색
@@ -456,17 +686,17 @@ h2.sh{font-size:20px;margin:26px 0 4px;letter-spacing:-.02em}
 ├ 나 /me — 탐색
 │   프로필 · 사용량 · 크루 요약 · 이전 활동
 │   설정: 알림 · 크루 · 화면 · AI 계정과 연결
-├ 검색: 레일 검색 원 한 곳
+├ 검색: 탭 캡슐 끝 칸 한 곳
 ├ 관문: 로그인(Face ID · 이 기기 등록 · 구글)
 └ 정리: /history/inbox → 할 일 '지난 보고'
         /history/chats → /chats</pre>
     </details>
   </div>
 
-  <h2 class="sh">샐리 결정 4가지</h2>
-  <p class="shs">질문마다 시안에서 볼 곳을 눌러 바로 그 화면으로 갑니다.</p>
+  <h2 class="sh">샐리 결정 6가지</h2>
+  <p class="shs">1~4는 v2에서 이어지는 결정입니다. 아직 고르지 않아 각 추천 ①로 그렸습니다. 5·6은 v3에서 새로 생겼습니다. 질문마다 시안에서 볼 곳을 누르면 그 화면으로 갑니다.</p>
   <section class="qs" id="qs"></section>
-  <p class="foot">근거 문단 번호(P)는 HIG 원문 문단 목록(paragraphs.json) 기준입니다. 「지금」은 현행 코드를 단순화한 그림이고, 앱 모드 390 기둥은 styles.css 551–554, 마우스 전용 두 칸은 fold-core.mjs 기준입니다.</p>
+  <p class="foot">근거 문단 번호(P)는 HIG 원문 문단 목록 기준입니다. 「지금」은 현행 코드를 단순화한 그림이고, 앱 모드 390 기둥은 styles.css 551–554, 두 칸 판정은 fold-core.mjs, 키보드 판정은 main.jsx:33-38 기준입니다. 「지금」의 대화 높이는 이 그림에서 잰 값이고, 카드 위 「명세」 숫자는 실측·명세 표 값입니다.</p>
 </main>
 
 <script>
@@ -513,44 +743,67 @@ const LIBS=[
   {id:'l4',c:'kiki',t:'11/11 주간 회의록',k:'회의록',d:'11/11',col:'#ff9500',i:'ear'},
   {id:'l5',c:'loop',t:'자동화 점검 주간 요약',k:'보고',d:'11/10',col:'#8e8e93',i:'review'}
 ];
+const SESS_T='crew-space 키보드 판정 고치기';
+const SESS_LIST=[
+  {t:SESS_T,m:'Claude · 14:02 · 진행 중',d:'ok',sel:1},
+  {t:'볼트 기록 커밋 허용 요청',m:'Claude · 14:02 · 허용 대기',d:'warn'},
+  {t:'듀오 시안 v3 그리기',m:'Claude · 13:40 · 끝남',d:''},
+  {t:'CCQ-1063 GA 파라미터 정리',m:'Codex · 11:20 · 끝남',d:''},
+  {t:'지식창고 색인 갱신',m:'Claude · 09:05 · 끝남',d:''}
+];
 const TABS=[['todo','todo','할 일'],['chat','chat','채팅'],['lib','lib','자료'],['me','me','나']];
 const BADGE={todo:3,chat:4};
-const SCREENS=[['login','로그인'],['todo','할 일'],['chat','채팅 목록'],['room','크루 방'],['work','업무 상세·보고'],['lib','자료'],['me','나'],['appr','승인 요청']];
-const KIND={login:'gate',todo:'explore',chat:'explore',lib:'explore',me:'explore',room:'task',work:'task',appr:'task'};
-const TABOF={todo:'todo',chat:'chat',room:'chat',work:'todo',lib:'lib',me:'me',appr:'todo'};
-const PARENT={room:'chat',work:'todo',appr:'todo'};
+const SCREENS=[['login','로그인'],['todo','할 일'],['chat','채팅 목록'],['room','크루 방'],['work','업무 상세·보고'],['appr','승인 요청'],['sess','시먹스 대화'],['lib','자료'],['me','나']];
+const KIND={login:'gate',todo:'explore',chat:'explore',lib:'explore',me:'explore',room:'task',work:'task',appr:'task',sess:'task'};
+const TABOF={todo:'todo',chat:'chat',room:'chat',work:'todo',lib:'lib',me:'me',appr:'todo',sess:'chat'};
+const PARENT={room:'chat',work:'todo',appr:'todo',sess:'chat'};
 const DIM={outerP:[466,678],outerL:[678,466],innerL:[951,669],innerP:[669,951],half:[951,669]};
 const POST=[
-  {id:'outerP',n:'닫힘 · 바깥 세로',sz:{app:'466×678 · 내용 382 + 시스템 열 84(미측정)',saf:'Safari 382×618 · 내용 318 + 레일 64'}},
-  {id:'outerL',n:'닫힘 · 바깥 가로',sz:{app:'678×466 · 내용 594 + 열 84',saf:'Safari 594×406 · 내용 530 + 레일 64'}},
-  {id:'innerL',n:'펼침 · 안쪽 가로',sz:{app:'951×669 · 목록 342 | 상세 533 | 레일 64',saf:'Safari 951×약 620 · 배치 같음'}},
-  {id:'innerP',n:'펼침 · 안쪽 세로',sz:{app:'669×951 · 한 칸 넓힘',saf:'Safari 669×약 902 · 배치 같음'}},
-  {id:'half',n:'반접힘 · 책',sz:{app:'951×669 · 목록 463 | 접힘 24 | 상세 464',saf:'951×669 · 접힘 24 제외'}}
+  {id:'outerP',n:'닫힘 · 바깥 세로',sz:{app:'466×678 · 내용 382(글 358) + 레일 띠 84',saf:'Safari 382×618 · 아래 캡슐 52'}},
+  {id:'outerL',n:'닫힘 · 바깥 가로',sz:{app:'678×466 · 내용 594(글 570) + 레일 띠 84 · 녹화 없음',saf:'Safari 594×406 · 아래 캡슐 52'}},
+  {id:'innerL',n:'펼침 · 안쪽 가로',sz:{app:'951×669 · 목록 375 | 상세 491 | 레일 띠 84',saf:'Safari 951×약 620 · 배치 같음'}},
+  {id:'innerP',n:'펼침 · 안쪽 세로',sz:{app:'669×951 · 한 칸, 머리는 상태 줄과 합친 24–68',saf:'Safari 669×약 902 · 배치 같음'}},
+  {id:'half',n:'반접힘 · 책',sz:{app:'951×669 · 목록 463 | 접힘 24 | 상세 380 | 띠 84',saf:'951×669 · 접힘 24 제외'}}
 ];
+/* 키보드 높이: 펼침 둘은 녹화 실측, 닫힘 둘은 일반 아이폰 값(가정) */
+const KBH={outerP:336,outerL:210,innerL:278,innerP:366};
+const KBA={outerP:1,outerL:1};
+/* 명세 4절 대화 보이는 높이 (크루 방 기준): [지금, v2, v3, 네이티브] */
+const CONV={outerP:{off:[367,476,562,'529~610'],on:[67,154,242,'203~284(추정)']},outerL:{off:[168,272,354,'미관찰'],on:[0,72,192,'미관찰']},innerL:{off:[371,471,545,'520'],on:[116,205,283,'251(추정)']},innerP:{off:[596,685,811,'803'],on:[267,336,461,'447']}};
 
 /* ---------- 상태 ---------- */
-/* 레일을 켜는 판정. ②는 screen.width/height(방향 정규화)로만 잰다. 창 값(innerWidth)으로 재면 아이폰 SE Safari 창(약 375×553=1.47)이 걸린다 */
 const TRIG={
-  outerP:{app:'<b>켜는 신호</b> ① 예상: 오른쪽 열이 안전 여백으로 넘어오면(미측정). 실측 전에는 ?bars=side 개발 플래그로만 켬',saf:'<b>켜는 신호</b> ② screen.* 기준. 466×678(1.46)로 나오면 걸림. 창 값 382×618(1.62)로는 안 걸림. screen.*가 382×618로 나오면 하단 캡슐(결정 1 ②). 실측 전에는 ?bars=side 플래그로만'},
-  outerL:{app:'<b>켜는 신호</b> ① 또는 ② screen.* 678×466(1.46, 가로). 미측정이라 실측 전에는 ?bars=side 플래그로만',saf:'<b>켜는 신호</b> ② screen.* 가로·짧은 변 466(1.46). 미측정이라 실측 전에는 ?bars=side 플래그로만'},
-  innerL:{app:'<b>켜는 신호</b> ② screen.* 951×669(1.42, 가로). 실측 전에는 ?bars=side 플래그로만',saf:'<b>켜는 신호</b> ② screen.* 951×669(1.42, 가로). 실측 전에는 ?bars=side 플래그로만'},
-  innerP:{app:'<b>켜는 신호</b> 없음. ①·② 모두 안 걸림(세로이고 창 669 ≥ 600) → 위 머리 + 하단 탭(P50 예외)',saf:'<b>켜는 신호</b> 없음. ①·② 모두 안 걸림 → 위 머리 + 하단 탭(P50 예외)'},
-  half:{app:'<b>켜는 신호</b> ② 펼친 가로와 같음. 접힘 감지는 Safari 27.1 플래그 뒤라 덤',saf:'<b>켜는 신호</b> ② 펼친 가로와 같음. 접힘 감지는 덤'}
+  outerP:{app:'<b>판정</b> 짧은 변 466 · 긴 변/짧은 변 1.46 &lt; 1.6 · 터치 → 레일. 실측 전에는 ?bars=side 플래그로만',saf:'<b>판정</b> 레일 조건은 같지만 Safari는 시스템 띠 84 위에 레일을 또 그리지 않고 아래 캡슐 52(바닥 8)'},
+  outerL:{app:'<b>판정</b> 짧은 변 466 → 레일. 폭 678 &lt; 760(FOLD_MIN) → 한 칸',saf:'<b>판정</b> Safari는 아래 캡슐 52(바닥 8). 폭 594 → 한 칸'},
+  innerL:{app:'<b>판정</b> 가로 · 1.42 &lt; 1.6 → 레일. 폭 951 ≥ 760 → 두 칸',saf:'<b>판정</b> 가로 · 1.42 → 레일. 폭 951 ≥ 760 → 두 칸'},
+  innerP:{app:'<b>판정</b> 짧은 변 669 ≥ 600이고 세로 → 합친 줄 + 아래 탭(P50 예외). 폭 669 &lt; 760 → 한 칸',saf:'<b>판정</b> 세로 · 짧은 변 669 → 합친 줄 + 아래 탭(P50 예외)'},
+  half:{app:'<b>판정</b> 펼친 가로와 같음. 접힘 감지는 Safari 27.1 플래그 뒤라 덤',saf:'<b>판정</b> 펼친 가로와 같음. 접힘 감지는 덤'}
 };
 const BAND={
-  app:{outerP:'<b>미측정 가정</b> 오른쪽 열 84는 다른 프로젝트 시뮬레이터에서 본 값이고, R0 168은 HIG 그림 비례로 잰 값입니다. 웹은 env()로 열 너비만 알고 상태 막대가 끝나는 높이는 모릅니다. 그래서 R0은 박아 넣은 px이고, Dynamic Island가 커질 때 단추가 같이 밀리는 동작(P28)은 웹에서 지킬 수 없습니다.',outerL:'<b>미측정 가정</b> 오른쪽 열 84와 바닥 56(카메라 몫)은 남의 관찰값과 그림 비례입니다. 실기에서 다를 수 있습니다.',innerL:'<b>미측정 가정</b> R0 120은 HIG 그림 비례로 잰 값입니다.',half:'<b>미측정 가정</b> R0 120·접힘 24는 그림 비례로 잰 값입니다.'},
-  saf:{outerP:'Safari 웹 화면은 382×618(에뮬레이터 값)입니다. 오른쪽 84 열과 아래 60이 실제로 어디에 서는지는 미측정입니다. 옆 열에 Safari 막대(뒤로 등)가 서면 레일과 두 겹이 되므로 오른쪽 그림(결정 1 ②)으로 물러섭니다.',outerL:'Safari 웹 화면은 594×406(에뮬레이터 값)입니다. 옆 열에 Safari 막대가 서면 오른쪽 그림(결정 1 ②)으로 물러섭니다. 390 기둥 규칙은 홈 화면 앱에만 걸려 Safari와 상관없습니다.'}
+  app:{outerP:'<b>미측정 가정</b> 레일 띠 84 · 위 안전 영역 0 · 첫 자리 218은 실기에서 재지 않았습니다. 위 안전 영역이 0보다 크면 알약과 제목을 그만큼 내리고 대화 높이에서 뺍니다.',outerL:'<b>미측정 가정</b> 닫힘 가로는 녹화가 없어 띠 84 · 바닥 56(카메라) · 키보드 210이 모두 가정입니다. 실측 키보드가 더 크면 레일에는 ⋯만 남깁니다.',innerL:'<b>미측정 가정</b> 첫 자리 178은 녹화 v1의 상태 표시(23–160)에서 잡은 값입니다. 키보드 278은 녹화 실측입니다.',innerP:'<b>가장 약한 전제</b> 상태 줄 왼쪽(x 0–497)에 그릴 수 있다는 가정입니다. 못 그리면 머리를 안전 영역 아래로 내리고, 대화가 20~44 줄고 첫 할 일 행이 44 내려갑니다.',half:'<b>미측정 가정</b> 첫 자리 178 · 접힘 24는 그림 비례로 잰 값입니다.'},
+  saf:{outerP:'Safari 웹 화면 382×618은 에뮬레이터 값입니다. 오른쪽 84 띠에 Safari 막대가 선다고 보고 레일 대신 아래 캡슐을 씁니다. 행과 토큰은 앱과 같습니다.',outerL:'Safari 웹 화면 594×406은 에뮬레이터 값입니다. 레일 대신 아래 캡슐 52(바닥 8)를 씁니다.'}
 };
-const ST={s:'todo',m:'after',r:'saf',a:false,z:'fit',t:'light',alt:false,aux:false,c390:false};
+const ST={s:'todo',m:'after',r:'app',a:false,z:'fit',t:'light',alt:false,aux:false,c390:false,kb:false,d5:false,wm:false};
+const SKEY='crewne-duo-mock-v3';
 function load(){
-  try{const v=JSON.parse(localStorage.getItem('crewne-duo-mock-v2')||'{}');Object.assign(ST,v)}catch(e){}
+  try{const v=JSON.parse(localStorage.getItem(SKEY)||'{}');Object.assign(ST,v)}catch(e){}
   const h=new URLSearchParams(location.hash.slice(1));
   for(const k of Object.keys(ST)){if(h.has(k)){const v=h.get(k);ST[k]=(v==='1'?true:v==='0'?false:v)}}
+  if(!SCREENS.some(x=>x[0]===ST.s))ST.s='todo';
 }
 function save(){
-  try{localStorage.setItem('crewne-duo-mock-v2',JSON.stringify(ST))}catch(e){}
+  try{localStorage.setItem(SKEY,JSON.stringify(ST))}catch(e){}
   const p=new URLSearchParams();for(const[k,v]of Object.entries(ST))p.set(k,v===true?'1':v===false?'0':v);
   try{history.replaceState(null,'','#'+p.toString())}catch(e){}
+}
+/* 지금 그리는 쪽이 v3(바꾼 뒤)인지. device()가 그리기 전에 정함 */
+let V3=false;
+function convScreen(S,P,mode){if(S==='login')return false;if(KIND[S]==='task')return true;return mode!=='now'&&S==='chat'&&(P==='innerL'||P==='half')}
+function kbOn(S,P,mode){
+  if(!ST.kb||P==='half')return false;
+  if(mode!=='now'&&P==='innerP'&&ST.alt)return false;
+  if(mode!=='now'&&P==='outerL'&&ST.c390&&ST.r==='app')return false;
+  return convScreen(S,P,mode);
 }
 
 /* ---------- 작은 부품 ---------- */
@@ -563,38 +816,47 @@ const chip=(t,on)=>`<span class="chip ${on?'on':''}">${t}</span>`;
 const stc=t=>`<span class="st ${t.sk}">${t.st}</span>`;
 function ann(x,y,w,h,label,pos='tl',cls=''){return `<div class="ann box ${cls}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px">${label?`<span class="tag ${pos}">${label}</span>`:''}</div>`}
 function hingeAnn(x,y,w,h,label,pos='c'){return `<div class="ann hinge" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px"><span class="tag ${pos}">${label}</span></div>`}
-function pane(x,y,w,h,inner,cls,p){p=Object.assign({t:12,r:16,b:0,l:16},p||{});
-  return `<div class="pane ${cls||''}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;padding:${p.t}px ${p.r}px ${p.b}px ${p.l}px"><div class="fill">${inner}</div></div>`}
+const note=(x,y,t,right)=>`<div class="ann" style="left:${x}px;top:${y}px;${right?'transform:translateX(-100%)':''}"><span class="tag" style="position:static;display:inline-block">${t}</span></div>`;
+function pane(x,y,w,h,inner,cls,p,st){p=Object.assign({t:12,r:16,b:0,l:16},p||{});
+  return `<div class="pane ${cls||''}" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px;padding:${p.t}px ${p.r}px ${p.b}px ${p.l}px;${st||''}"><div class="fill">${inner}</div></div>`}
+/* 대화 보이는 높이 주석: (입력칸 위 − 8) − 머리 아래 끝 */
+function cvAnn(x,top,w,bot){const h=Math.round(bot-top);return ann(x+8,top,w-16,Math.max(2,h),`대화 ${h}`,'tr','cv')}
+const mseg=()=>`<span class="mseg"><span>알림</span><span class="on">대화</span></span>`;
+const todaySub=()=>`<b>16:00</b> 듀오 시안 검토 외 1 ›`;
 
 /* ---------- 내용: 할 일 ---------- */
 function todayStrip(){return `<div class="today">${ico('calendar',{s:18})}<span><b>16:00</b> 듀오 시안 검토 외 1</span><span class="sp"></span>${ico('chev',{s:16})}</div>`}
 function todoRow(t,o){const go=t.id==='t2'?'appr':'work';const sel=o.sel===t.id?'sel':'';
-  if(o.compact)return `<div class="row one ${sel}" data-go="${go}">${face(t.c,28)}<div class="row-t">${t.title}</div><span class="row-m">${t.t}</span>${stc(t)}</div>`;
-  return `<div class="row ${sel}" data-go="${go}">${face(t.c,32)}<div class="row-main"><div class="row-t">${t.title}</div><div class="row-m">${nm(t.c)} · ${t.t}</div></div>${stc(t)}</div>`}
+  if(o.compact)return `<div class="row one ${sel}" data-go="${go}">${face(t.c,V3?24:28)}<div class="row-t">${t.title}</div><span class="row-m">${t.t}</span>${stc(t)}</div>`;
+  return `<div class="row ${sel}" data-go="${go}">${face(t.c,V3?28:32)}<div class="row-main"><div class="row-t">${t.title}</div><div class="row-m">${nm(t.c)} · ${t.t}</div></div>${stc(t)}</div>`}
 function todoCard(t,o){const go=t.id==='t2'?'appr':'work';
   return `<div class="card ${o.sel===t.id?'sel':''}" data-go="${go}"><div class="card-h">${face(t.c,22)}<span>${nm(t.c)}</span><span class="tm">${t.t}</span></div><div class="card-t">${t.title}</div>${stc(t)}</div>`}
+const thr=o=>o.right?`<div class="hgrp">${o.right}</div>`:'';
 function todoList(o={}){
   const by=g=>TODOS.filter(t=>t.g===g);
   const rows=a=>o.cards?`<div class="cards">${a.map(t=>todoCard(t,o)).join('')}</div>`:a.map(t=>todoRow(t,o)).join('');
+  const chips=`<div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}${chip('끝남')}${chip('지난 보고')}</div>`;
   let h='';
-  if(o.title!==false)h+=`<div class="th ${o.big?'big':''}"><h2>할 일</h2><span class="th-s">${o.big?'확인 필요 3 · 방금 갱신':'11/15 일'}</span></div>`;
-  if(o.now){
-    h+=`<div class="sec">진행 중인 일</div>${rows(by('need').filter(t=>t.id!=='t2'))}${rows(by('doing'))}<div class="sec">끝남</div>${rows(by('done'))}`;
-    return h;
+  if(!V3){
+    if(o.title!==false)h+=`<div class="th ${o.big?'big':''}"><h2>할 일</h2><span class="th-s">${o.big?'확인 필요 3 · 방금 갱신':'11/15 일'}</span></div>`;
+    if(o.now)return h+`<div class="sec">진행 중인 일</div>${rows(by('need').filter(t=>t.id!=='t2'))}${rows(by('doing'))}<div class="sec">끝남</div>${rows(by('done'))}`;
+    h+=chips+(o.today!==false?todayStrip():'');
+  }else{
+    if(o.title!==false)h+=o.cmp?`<div class="th cmp"><h2>할 일</h2>${chips}${thr(o)}</div>`:`<div class="th big"><h2>할 일</h2><span class="th-s">${todaySub()}</span>${thr(o)}</div>`;
+    if(!(o.cmp&&o.title!==false))h+=chips;
   }
-  h+=`<div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}${chip('끝남')}${chip('지난 보고')}</div>`;
-  if(o.today!==false)h+=todayStrip();
-  h+=`<div class="sec">확인 필요 <b>3</b></div>${rows(by('need'))}<div class="sec">진행 중 <b>3</b></div>${rows(by('doing'))}<div class="sec">끝남</div>${rows(by('done'))}<div class="foldrow">크루 제안 2 · 지운 일 ${ico('chev',{s:16})}</div>`;
+  h+=`<div class="sec first">확인 필요 <b>3</b></div>${rows(by('need'))}<div class="sec">진행 중 <b>3</b></div>${rows(by('doing'))}<div class="sec">끝남</div>${rows(by('done'))}<div class="foldrow">크루 제안 2 · 지운 일 ${ico('chev',{s:16})}</div>`;
   return h;
 }
 function apprList(o={}){
   const need=TODOS.filter(t=>t.g==='need');
-  return `<div class="th big"><h2>할 일</h2><span class="th-s">확인 필요 3</span></div><div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}</div><div class="sec">확인 필요 <b>3</b><span class="act">3건 모두 확인</span></div>${need.map(t=>todoRow(t,o)).join('')}<div class="sec">진행 중 <b>3</b></div>${TODOS.filter(t=>t.g==='doing').map(t=>todoRow(t,o)).join('')}`;
+  const head=(!V3||o.th)?`<div class="th big"><h2>할 일</h2><span class="th-s">확인 필요 3</span></div>`:'';
+  return `${head}<div class="chips">${chip('확인 필요 3',true)}${chip('내 할 일')}${chip('크루 할 일')}${chip('진행 중')}</div><div class="sec">확인 필요 <b>3</b><span class="act">3건 모두 확인</span></div>${need.map(t=>todoRow(t,o)).join('')}<div class="sec">진행 중 <b>3</b></div>${TODOS.filter(t=>t.g==='doing').map(t=>todoRow(t,o)).join('')}`;
 }
 function todaySummary(){
   const need=TODOS.filter(t=>t.g==='need');
-  return `<div class="sum">
-  <div class="th"><h2>오늘</h2><span class="th-s">11월 15일 일요일 · 고른 업무가 없을 때</span></div>
+  const head=V3?`<div class="lhd"><div class="lt"><h2>오늘</h2><span class="th-s">11월 15일 일요일 · 고른 업무가 없을 때</span></div></div>`:`<div class="th"><h2>오늘</h2><span class="th-s">11월 15일 일요일 · 고른 업무가 없을 때</span></div>`;
+  return `<div class="sum">${head}
   <div class="tiles" style="grid-template-columns:repeat(3,minmax(0,1fr))"><div class="tile"><div class="n acc">3</div><div class="l">확인 필요</div></div><div class="tile"><div class="n">3</div><div class="l">진행 중</div></div><div class="tile"><div class="n">6</div><div class="l">이번 주 끝남</div></div></div>
   <div class="blk"><div class="blk-h">확인 필요 바로가기</div>${need.map(t=>`<div class="ln">${face(t.c,24)}<span class="g">${t.title}</span>${stc(t)}</div>`).join('')}</div>
   <div class="blk"><div class="blk-h">크루 지금</div>${Object.keys(CREW).map(k=>`<div class="ln">${face(k,24)}<b style="font-weight:600">${CREW[k].n}</b><span class="m g">${CREW[k].now}</span></div>`).join('')}</div>
@@ -604,86 +866,127 @@ function todaySummary(){
 
 /* ---------- 내용: 채팅 ---------- */
 function chatList(o={}){
-  let h=o.title!==false?`<div class="th ${o.big?'big':''}"><h2>채팅</h2>${o.big?'<span class="th-s">안 읽음 4</span>':''}</div>`:'';
-  h+=CHATS.map(c=>`<div class="crow ${o.sel===c.c?'sel':''}" data-go="room">${face(c.c,40)}<div class="cm"><div class="c1"><b>${nm(c.c)}</b><span class="ct">${c.t}</span></div><div class="cnow">지금: ${CREW[c.c].now}</div><div class="clast">${c.last}</div></div>${c.n?`<span class="cn">${c.n}</span>`:''}</div>`).join('');
-  h+=`<div class="sec">함께</div><div class="crow"><span class="stack">${face('kiki',28)}${face('nana',28)}${face('genz',28)}</span><div class="cm"><div class="c1"><b>크루 전체</b><span class="ct">어제</span></div><div class="clast">키키: 11/18 안건 올렸어요.</div></div></div>`;
-  h+=`<div class="sec">Mac 알림</div><div class="crow">${face('home',40)}<div class="cm"><div class="c1"><b>집맥</b><span class="ct">2분</span></div><div class="clast">허용 요청 1건</div></div><span class="cn">1</span></div><div class="crow">${face('work',40)}<div class="cm"><div class="c1"><b>회맥</b><span class="ct">금</span></div><div class="clast">세션 끝남</div></div></div>`;
+  if(!V3){
+    let h=o.title!==false?`<div class="th ${o.big?'big':''}"><h2>채팅</h2>${o.big?'<span class="th-s">안 읽음 4</span>':''}</div>`:'';
+    h+=CHATS.map(c=>`<div class="crow ${o.sel===c.c?'sel':''}" data-go="room">${face(c.c,40)}<div class="cm"><div class="c1"><b>${nm(c.c)}</b><span class="ct">${c.t}</span></div><div class="cnow">지금: ${CREW[c.c].now}</div><div class="clast">${c.last}</div></div>${c.n?`<span class="cn">${c.n}</span>`:''}</div>`).join('');
+    h+=`<div class="sec">함께</div><div class="crow"><span class="stack">${face('kiki',28)}${face('nana',28)}${face('genz',28)}</span><div class="cm"><div class="c1"><b>크루 전체</b><span class="ct">어제</span></div><div class="clast">키키: 11/18 안건 올렸어요.</div></div></div>`;
+    h+=`<div class="sec">Mac 알림</div><div class="crow" data-go="sess">${face('home',40)}<div class="cm"><div class="c1"><b>집맥</b><span class="ct">2분</span></div><div class="clast">허용 요청 1건</div></div><span class="cn">1</span></div><div class="crow">${face('work',40)}<div class="cm"><div class="c1"><b>회맥</b><span class="ct">금</span></div><div class="clast">세션 끝남</div></div></div>`;
+    return h;
+  }
+  let h=o.title!==false?`<div class="th ${o.cmp?'cmp':'big'}"><h2>채팅</h2><span class="th-s">안 읽음 4</span>${thr(o)}</div>`:'';
+  const row=(fc,name,now,t,last,n,go,sel)=>`<div class="crow ${sel?'sel':''}"${go?` data-go="${go}"`:''}>${fc}<div class="cm"><div class="c1"><b>${name}</b>${now?`<span class="cnw">· ${now}</span>`:''}<span class="ct">${t}</span></div><div class="clast">${last}</div></div>${n?`<span class="cn">${n}</span>`:''}</div>`;
+  h+=CHATS.map(c=>row(face(c.c,40),nm(c.c),CREW[c.c].now,c.t,c.last,c.n,'room',o.sel===c.c)).join('');
+  h+=`<div class="sec">함께</div>`+row(`<span class="stack">${face('kiki',28)}${face('nana',28)}</span>`,'크루 전체','','어제','키키: 11/18 안건 올렸어요.',0,'',false);
+  h+=`<div class="sec">Mac 알림</div>`+row(face('home',40),'집맥','세션 5 · 대화 보기','2분','허용 요청 1건',1,'sess',false)+row(face('work',40),'회맥','','금','세션 끝남',0,'',false);
   return h;
 }
-function dock(o={}){return `<div class="dock">${o.back?`<span class="dk">${ico('back')}</span>`:''}<span class="dk">${ico('plus')}</span><span class="dk-in">${o.ph||'메시지'}</span><span class="dk send">${ico('send',{s:20})}</span></div>`}
+function dock(o={}){
+  if(V3)return `<div class="dock"><span class="dk">${ico('plus',{s:20})}</span><span class="dk-in"><span class="ph">${o.ph3||o.ph||'메시지'}</span><span class="snd">${ico('send',{s:18})}</span></span></div>`;
+  return `<div class="dock">${o.back?`<span class="dk">${ico('back')}</span>`:''}<span class="dk">${ico('plus')}</span><span class="dk-in">${o.ph||'메시지'}</span><span class="dk send">${ico('send',{s:20})}</span></div>`}
+/* 같은 사람이 이어 말하면 얼굴 자리를 비우고 간격 4, 말한 사람이 바뀌면 12 */
+function thread(list,cw){let prev=null;return list.map(m=>{
+  if(m[0]==='day'){prev=null;return `<div class="day">${m[1]}</div>`}
+  if(m[0]==='att')return `<div class="att"><div class="cover a" style="width:${cw}px;height:${Math.round(cw*1.2)}px"><small>1안</small>11월 2주</div><div class="cover b" style="width:${cw}px;height:${Math.round(cw*1.2)}px"><small>2안</small>11월 2주</div></div>`;
+  if(m[0]==='raw'){prev='raw';return m[1]}
+  const me=m[0]==='me',sw=prev!==null&&prev!==m[0],cont=prev===m[0];prev=m[0];
+  return `<div class="msg ${me?'me':''} ${V3&&sw?'sw':''}">${me?'':(V3&&cont?'<span class="fsp"></span>':face(m[0],28))}<div class="bub">${m[1]}</div></div>`}).join('')}
+const ROOM=[['day','어제'],['me','이번 주 위클리 베스트 후보 좀 골라 줘.'],['genz','네, 지난 2주 저장 수 기준으로 볼게요.'],['genz','후보를 고르는 기준은 저장 수, 댓글 수, 새 창작자 비율 세 가지예요.'],['day','오늘'],['genz','위클리 베스트 11월 2주 후보 8개를 골랐어요. 표지는 두 안이에요.'],['att'],['genz','2안이 지난달 저장 수가 높았던 형식이라 2안을 권해요.'],['me','2안 좋아. 문구만 더 짧게.'],['genz','네, 15자 안으로 줄여서 다시 올릴게요.']];
+const PILL={
+  room:()=>`${face('genz',28)}<b>젠지</b><span class="dot"></span><span class="wchip need">확인 1 · 진행 2</span>`,
+  work:()=>`${face('nana',28)}<b>C8 앱 26.46 QA 재검증</b><span class="wchip need">결정 대기</span>`,
+  appr:()=>`${face('home',28)}<b>승인 요청</b><span class="wchip need">확인 3 중 1</span>`,
+  sess:()=>`${face('home',28)}<b>${SESS_T}</b>${mseg()}`
+};
+const pillOf=(k,o)=>o.pill===false?'':`<div class="pill" style="left:${(o.pp||{l:12}).l}px;top:${(o.pp||{t:8}).t}px">${PILL[k]()}</div>`;
 function roomView(o={}){
   const cw=o.coverW||110;
+  if(V3)return `<div class="vw">${pillOf('room',o)}<div class="thread">${thread(ROOM,cw)}</div>${dock({ph3:'젠지에게 · 새 업무 · Opus'})}</div>`;
   return `<div class="vw">
   ${o.head!==false?`<div class="vh">${face('genz',24)}<b>젠지</b><span class="dot"></span><span class="sub">일하는 중</span></div>`:''}
-  <div class="strip">${ico('doing',{s:16})}<span>진행 중 <b>2</b> · 확인 필요 <b>1</b></span><span class="sp"></span>${ico('chev',{s:14})}</div>
-  <div class="thread">
-    <div class="day">어제</div>
-    <div class="msg me"><div class="bub">이번 주 위클리 베스트 후보 좀 골라 줘.</div></div>
-    <div class="msg">${face('genz',28)}<div class="bub">네, 지난 2주 저장 수 기준으로 볼게요.</div></div>
-    <div class="msg">${face('genz',28)}<div class="bub">후보를 고르는 기준은 저장 수, 댓글 수, 새 창작자 비율 세 가지예요.</div></div>
-    <div class="day">오늘</div>
-    <div class="msg">${face('genz',28)}<div class="bub">위클리 베스트 11월 2주 후보 8개를 골랐어요. 표지는 두 안이에요.</div></div>
-    <div class="att"><div class="cover a" style="width:${cw}px;height:${Math.round(cw*1.2)}px"><small>1안</small>11월 2주</div><div class="cover b" style="width:${cw}px;height:${Math.round(cw*1.2)}px"><small>2안</small>11월 2주</div></div>
-    <div class="msg">${face('genz',28)}<div class="bub">2안이 지난달 저장 수가 높았던 형식이라 2안을 권해요.</div></div>
-    <div class="msg me"><div class="bub">2안 좋아. 문구만 더 짧게.</div></div>
-    <div class="msg">${face('genz',28)}<div class="bub">네, 15자 안으로 줄여서 다시 올릴게요.</div></div>
-  </div>
+  ${o.kb?`<div class="strip h1" style="min-height:44px">${ico('doing',{s:16})}<span>하는 일 · 표지 문구 줄이는 중 · 진행 <b>2</b></span><span class="sp"></span>${ico('chev',{s:14})}</div>`:`<div class="strip">${ico('doing',{s:16})}<span>진행 중 <b>2</b> · 확인 필요 <b>1</b></span><span class="sp"></span>${ico('chev',{s:14})}</div>`}
+  <div class="thread">${thread(ROOM,cw)}</div>
   <div class="qw">${chip('좋아, 진행해')}${chip('근거 보여 줘')}${chip('오늘 안에')}</div>
   ${dock({back:o.back,ph:'젠지에게 말하기'})}
   </div>`;
 }
 function auxView(){
-  return `<div class="aux">
-  <div class="vh"><span class="tt">결과물</span><span class="sub">위클리 베스트 표지 2안 · 젠지</span></div>
+  const head=V3?`<div class="lhd"><div class="lt"><h2>결과물</h2><span class="th-s">위클리 베스트 표지 2안 · 젠지</span></div></div>`:`<div class="vh"><span class="tt">결과물</span><span class="sub">위클리 베스트 표지 2안 · 젠지</span></div>`;
+  return `<div class="aux">${head}
   <div class="cover b" style="flex:1;min-height:0;border-radius:20px;padding:22px;font-size:34px"><small style="font-size:14px">크리에이터클럽 · 11월 2주</small>위클리<br>베스트</div>
   <div class="tools"><span class="dbtn">${ico('pen',{s:18})}&nbsp;수정 표시</span><span class="dbtn">${ico('doc',{s:18})}&nbsp;메모</span><span class="dbtn pri">${ico('send',{s:18})}&nbsp;지시 보내기</span></div>
   </div>`;
 }
 
-/* ---------- 내용: 업무·보고 ---------- */
-function workView(o={}){
-  return `<div class="vw">
-  ${o.head!==false?`<div class="vh">${face('nana',24)}<span class="tt">C8 앱 26.46 QA 재검증</span><span class="st wait">결정 대기</span></div>`:''}
-  <div class="thread">
-    <div class="day">어제</div>
-    <div class="msg">${face('nana',28)}<div class="bub">26.46 빌드가 올라왔어요. 지난번 열린 건은 12건이에요.</div></div>
-    <div class="msg me"><div class="bub">사진 올리기 건은 꼭 봐 줘.</div></div>
-    <div class="msg">${face('nana',28)}<div class="bub">네, 그 건은 기기 세 대에서 따로 볼게요.</div></div>
-    <div class="day">오늘</div>
-    <div class="msg me"><div class="bub">26.46 재검증 돌려 줘. 지난번 열린 건 위주로.</div></div>
-    <div class="msg">${face('nana',28)}<div class="bub">재검증 끝났어요. 보고 올려요.</div></div>
-    <div class="rcard">
+/* ---------- 내용: 업무·보고·승인 ---------- */
+const RCARD=`<div class="rcard">
       <span class="rc-k">나나 · 보고</span>
       <span class="rc-t">12건 중 11건 통과, 1건 다시 남</span>
       <span class="rc-s">사진 올리기가 멈추는 문제만 다시 났어요. 재현 영상과 기록을 붙였어요. 배포를 어떻게 할지 골라 주세요.</span>
       <span class="rc-more">자세히 ›</span>
       <div class="dec"><span class="dbtn pri">다음 배포로 미루기</span><span class="dbtn">다시 여는 티켓 만들기</span></div>
-    </div>
-  </div>
+    </div>`;
+const WORK=[['day','어제'],['nana','26.46 빌드가 올라왔어요. 지난번 열린 건은 12건이에요.'],['me','사진 올리기 건은 꼭 봐 줘.'],['nana','네, 그 건은 기기 세 대에서 따로 볼게요.'],['day','오늘'],['me','26.46 재검증 돌려 줘. 지난번 열린 건 위주로.'],['nana','재검증 끝났어요. 보고 올려요.'],['raw',RCARD]];
+function workView(o={}){
+  if(V3)return `<div class="vw">${pillOf('work',o)}<div class="thread">${thread(WORK)}</div>${dock({ph3:'나나에게 이어 말하기'})}</div>`;
+  return `<div class="vw">
+  ${o.head!==false?`<div class="vh">${face('nana',24)}<span class="tt">C8 앱 26.46 QA 재검증</span><span class="st wait">결정 대기</span></div>`:''}
+  <div class="thread">${thread(WORK)}</div>
   <div class="qw">${chip('더 짧게')}${chip('근거')}${chip('다시')}</div>
   ${dock({back:o.back,ph:'나나에게 말하기'})}
   </div>`;
 }
-function apprView(o={}){
-  return `<div class="vw">
-  ${o.head!==false?`<div class="vh">${face('home',24)}<b>집맥</b><span class="sub">Claude 세션 · 14:02</span></div>`:''}
-  <div class="cnt">${o.now?'보고 카드':'확인 필요 3 중 1'}</div>
-  <div class="appr">
+const APPR=`<div class="appr">
     <span class="t">기록 3건을 커밋하려고 해요</span>
     <span class="s">오늘 작업 기록과 젠지 제안 기록을 볼트에 남기는 커밋이에요. 다른 세션 변경은 섞지 않아요.</span>
     <span class="code">vault-commit run · 파일 3개</span>
     <span class="rc-more">명령 전체 보기 ›</span>
-  </div>
+  </div>`;
+function apprView(o={}){
+  if(V3)return `<div class="vw">${pillOf('appr',o)}<div class="apbody">${APPR}<div style="flex:1"></div><div class="dec" style="flex-wrap:nowrap"><span class="dbtn big">거절</span><span class="dbtn big pri">허용</span></div></div>${dock({ph3:'Mac에 이어 말하기'})}</div>`;
+  return `<div class="vw">
+  ${o.head!==false?`<div class="vh">${face('home',24)}<b>집맥</b><span class="sub">Claude 세션 · 14:02</span></div>`:''}
+  <div class="apnow" style="flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column">
+  <div class="cnt">${o.now?'보고 카드':'확인 필요 3 중 1'}</div>
+  ${APPR}
   <div style="flex:1"></div>
   <div class="dec" style="margin:8px 0 10px;flex-wrap:nowrap"><span class="dbtn big">거절</span><span class="dbtn big pri">허용</span></div>
+  </div>
   ${dock({back:o.back,ph:'Mac에 이어 말하기'})}
   </div>`;
 }
 
+/* ---------- 내용: 시먹스 세션 대화 ---------- */
+const MK=t=>`<span class="mask">가림 · ${t}</span>`;
+function sessView(o={}){
+  if(!V3)return `<div class="vw"><div class="thread">
+    <div class="day">오늘</div>
+    <div class="msg">${face('home',28)}<div class="bub">허용 요청 · vault-commit run · 파일 3개</div></div>
+    <div class="msg">${face('home',28)}<div class="bub">세션 끝남 · ${SESS_T}</div></div>
+    <div class="rcard"><span class="rc-k">마지막 답 · 4,000자에서 잘림</span><span class="rc-s">바꿨어요. 폭이 바뀌면 baseH를 다시 재요. 시험 기록은 …</span><span class="rc-more" style="color:var(--faint)">터미널에서 친 말과 앞 턴은 여기서 볼 수 없음</span></div>
+  </div>${dock({back:o.back,ph:'Mac에 이어 말하기'})}</div>`;
+  return `<div class="vw">${pillOf('sess',o)}<div class="thread sx">
+    <span class="older">이전 턴 보기</span>
+    <span class="snote">Mac에서 가린 뒤 올라온 대화 · 7일 보관</span>
+    <span class="tsep">13:58</span>
+    <div class="me-t"><div class="bub">kb-open이 27.3에서 꺼진다는 얘기 확인해 줘. 브릿지 토큰은 ${MK('토큰')}</div><span class="src">터미널</span></div>
+    <div class="tl">${ico('review',{s:14})}도구 9번 · Read 5 · Bash 3 · Grep 1</div>
+    <div class="ai-t">확인했어요. index.html:5에 interactive-widget=resizes-content가 이미 있어서, <span class="nw">27.3에서는</span> 레이아웃 높이가 키보드만큼 같이 줄어요. 지금 식은 그 차이를 재니까 0에 가까워져요.</div>
+    <span class="tsep">14:02</span>
+    <div class="me-t"><div class="bub">포커스랑 baseH로 바꾸고 시험 돌려 줘. 결과는 ${MK('이메일')}로도.</div><span class="src">크루네</span></div>
+    <div class="tl">${ico('review',{s:14})}도구 6번 · Edit 2 · Bash 4</div>
+    <div class="ai-t">바꿨어요. 폭이 바뀌면 baseH를 다시 재요.<pre class="cb">kbOpen = focused &amp;&amp; baseH - vv.height &gt; 120</pre>시험 기록은 기록 파일에 남겼고, 닫힘 세로와 펼침 가로 둘 다 열림·닫힘이 한 번에 바뀌었어요. 남은 건 닫힘 가로 실측인데</div>
+    <div class="cut">… 잘림 · 턴당 12,000자</div>
+    <div class="me-t"><div class="bub">닫힘 가로도 재 줘.</div><span class="src">크루네</span></div>
+  </div><div class="waitl"><span class="dot" style="background:var(--warning)"></span>응답 기다리는 중</div>${dock({ph3:'집맥 세션에 이어 말하기'})}</div>`;
+}
+function sessList(){return SESS_LIST.map(s=>`<div class="ses ${s.sel?'sel':''}" data-go="sess"><span class="sd ${s.d}"></span><div class="row-main"><div class="row-t">${s.t}</div><div class="row-m">${s.m}</div></div></div>`).join('')}
+
 /* ---------- 내용: 자료 ---------- */
-function libRow(l,o){return `<div class="row ${o.sel===l.id?'sel':''}" data-go="lib"><span class="thumb" style="background:${l.col}">${ico(l.i,{s:20})}</span><div class="row-main"><div class="row-t">${l.t}</div><div class="row-m">${nm(l.c)} · ${l.k} · ${l.d}</div></div></div>`}
+function libRow(l,o){
+  if(V3)return `<div class="row ${o.sel===l.id?'sel':''}" data-go="lib"><span class="thumb sm" style="background:${l.col}">${ico(l.i,{s:16})}</span><div class="row-main"><div class="row-t">${l.t}</div><div class="row-m">${nm(l.c)} · ${l.k} · ${l.d}</div></div></div>`;
+  return `<div class="row ${o.sel===l.id?'sel':''}" data-go="lib"><span class="thumb" style="background:${l.col}">${ico(l.i,{s:20})}</span><div class="row-main"><div class="row-t">${l.t}</div><div class="row-m">${nm(l.c)} · ${l.k} · ${l.d}</div></div></div>`}
 function libList(o={}){
-  let h=o.title!==false?`<div class="th ${o.big?'big':''}"><h2>자료</h2></div>`:'';
+  let h=o.title!==false?(V3?`<div class="th ${o.cmp?'cmp':'big'}"><h2>자료</h2><span class="th-s">담은 자료 5</span>${thr(o)}</div>`:`<div class="th ${o.big?'big':''}"><h2>자료</h2></div>`):'';
   if(!o.now)h+=`<div class="seg2"><span>기록</span><span class="on">결과물</span><span>문서함</span></div>`;
   h+=`<div class="newc"><div class="h">${ico('spark',{s:18})}새로 온 자료 5<span class="m">레인이 고름 ›</span></div><div class="minis"><div class="mini" style="background:#6b7bff">폴더블 앱 사례 12</div><div class="mini" style="background:#ff7a8a">표지 글꼴 모음</div><div class="mini" style="background:#2ba84a">QA 자동화 글</div></div></div>`;
   h+=`<div class="sec">담은 자료</div>`;
@@ -704,24 +1007,23 @@ function libDetail(o={}){
 
 /* ---------- 내용: 나 ---------- */
 function meMenu(o={}){
-  let h=o.title!==false?`<div class="th ${o.big?'big':''}"><h2>나</h2></div>`:'';
-  h+=`<div class="prof">${face('sally',48)}<div style="flex:1;min-width:0"><b>샐리</b><div class="m">크루 다섯과 일하는 중</div></div>${ico('chev',{s:16})}</div>`;
+  const g=V3?8:10;
+  let h=o.title!==false?(V3?`<div class="th ${o.cmp?'cmp':'big'}"><h2>나</h2>${thr(o)}</div>`:`<div class="th ${o.big?'big':''}"><h2>나</h2></div>`):'';
+  h+=`<div class="prof">${face('sally',V3?40:48)}<div style="flex:1;min-width:0"><b>샐리</b><div class="m">크루 다섯과 일하는 중</div></div>${ico('chev',{s:16})}</div>`;
   const use=`<div class="tile"><div class="l">사용량</div><div style="display:flex;flex-direction:column;gap:6px;margin-top:6px"><div class="bar"><i class="c" style="width:62%"></i></div><div class="bar"><i class="x" style="width:31%"></i></div></div></div>`;
   const crew=`<div class="tile"><div class="l">크루 요약</div><div class="stack" style="margin-top:6px">${['kiki','nana','rain','genz','loop'].map(k=>face(k,22)).join('')}</div><div class="l" style="margin-top:4px">일하는 중 3</div></div>`;
-  if(o.now){
-    h+=`<div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:10px 0"><div class="tile"><div class="n acc">3</div><div class="l">확인 필요</div></div><div class="tile"><div class="l">일정</div><div style="font-weight:600;font-size:14px;margin-top:4px">16:00 듀오 시안 검토</div></div></div>`;
-  }
-  if(o.tiles4)h+=`<div class="tiles" style="grid-template-columns:repeat(4,minmax(0,1fr));margin:10px 0">${use}${crew}<div class="tile"><div class="l">이전 활동</div><div style="font-weight:600;font-size:14px;margin-top:6px">접힘 ›</div></div><div class="tile"><div class="l">버전</div><div style="font:600 13px var(--mono);margin-top:6px">11.15</div></div></div>`;
-  else h+=`<div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:10px 0">${use}${crew}</div><div class="foldrow" style="padding-top:4px">이전 활동 ${ico('chev',{s:16})}</div>`;
+  if(o.now)h+=`<div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:10px 0"><div class="tile"><div class="n acc">3</div><div class="l">확인 필요</div></div><div class="tile"><div class="l">일정</div><div style="font-weight:600;font-size:14px;margin-top:4px">16:00 듀오 시안 검토</div></div></div>`;
+  if(o.tiles4)h+=`<div class="tiles" style="grid-template-columns:repeat(4,minmax(0,1fr));margin:${g}px 0">${use}${crew}<div class="tile"><div class="l">이전 활동</div><div style="font-weight:600;font-size:14px;margin-top:6px">접힘 ›</div></div><div class="tile"><div class="l">버전</div><div style="font:600 13px var(--mono);margin-top:6px">11.15</div></div></div>`;
+  else h+=`<div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr));margin:${g}px 0">${use}${crew}</div><div class="foldrow" style="padding-top:${V3?0:4}px">이전 활동 ${ico('chev',{s:16})}</div>`;
   const rs=[['bell','알림','al'],['crew','크루','cr'],['palette','화면','ap'],['link','AI 계정과 연결','acc']];
   h+=`<div class="grp-rows">${rs.map(r=>`<div class="srow ${o.sel===r[2]?'sel':''}">${ico(r[0],{s:20})}<span>${r[1]}</span><span class="sp"></span>${ico('chev',{s:16})}</div>`).join('')}</div>`;
-  h+=`<div class="grp-rows" style="margin-top:10px">${o.tiles4?'':`<div class="srow">${ico('history',{s:20})}<span>크루네 2026.11.15</span><span class="sp"></span><span style="font-size:13px;color:var(--accent);font-weight:600">화면 바뀐 점</span></div>`}<div class="srow danger">${ico('logout',{s:20})}<span>나가기</span></div></div>`;
+  h+=`<div class="grp-rows" style="margin-top:${g}px">${o.tiles4?'':`<div class="srow">${ico('history',{s:20})}<span>크루네 2026.11.15</span><span class="sp"></span><span style="font-size:13px;color:var(--accent);font-weight:600">화면 바뀐 점</span></div>`}<div class="srow danger">${ico('logout',{s:20})}<span>나가기</span></div></div>`;
   return h;
 }
 function accountsView(){
   const days=['월','화','수','목','금','토','일'],v=[40,62,55,80,48,30,62];
-  return `<div class="sum">
-  <div class="th"><h2>AI 계정과 연결</h2></div>
+  const head=V3?`<div class="lhd"><div class="lt"><h2>AI 계정과 연결</h2></div></div>`:`<div class="th"><h2>AI 계정과 연결</h2></div>`;
+  return `<div class="sum">${head}
   <div class="blk"><div class="blk-h">이번 주 사용량</div><div class="chart">${v.map((x,i)=>`<i class="${i===6?'on':''}" style="height:${x}%"></i>`).join('')}</div><div class="chart-x">${days.map(d=>`<span>${d}</span>`).join('')}</div></div>
   <div class="tiles" style="grid-template-columns:repeat(2,minmax(0,1fr))">
    <div class="acc"><div class="h"><span class="dot" style="background:#d97757"></span>Claude · 개인<span class="m">62%</span></div><div class="bar"><i class="c" style="width:62%"></i></div><div class="ln m" style="font-size:12.5px;color:var(--muted)">오늘 19:00 다시 채워짐 · 크루 다섯 연결</div></div>
@@ -731,228 +1033,269 @@ function accountsView(){
   </div>`;
 }
 
-/* ---------- 레일 선언 ---------- */
+/* ---------- 레일 선언 (v3) ---------- */
 const B=(i,l,o={})=>Object.assign({k:'btn',i,l},o);
 const C=(...items)=>({k:'cap',items});
 const X=(i,l,o={})=>Object.assign({i,l},o);
-function decl(S,P){
-  const tab=TABOF[S], tabs={k:'tabs',active:tab}, srch={k:'search'}, more=B('more','더보기');
-  const outerL=P==='outerL', inner=P==='innerL'||P==='half';
-  const bot=outerL?[{k:'tabs',active:tab,merged:true}]:[tabs,srch];
-  const back=B('back','뒤로',{go:PARENT[S]});
-  const mint=[{k:'mintab',active:tab}];
-  switch(S){
-    case 'todo': return {top:inner||outerL?[B('plus','새 할 일',{star:1}),more]:[B('plus','새 할 일',{star:1}),B('done','골라서 확인'),more],bot};
-    case 'chat': return inner?{top:[B('plus','새 방',{star:1}),C(X('doing','업무 목록',{star:1}),X('crew','크루 정보'),X('image','결과물')),more],bot:[tabs,srch]}:{top:[B('plus','새 방',{star:1}),more],bot};
-    case 'room': if(inner&&!ST.aux)return {top:[B('plus','새 방',{star:1}),C(X('doing','업무 목록',{star:1}),X('crew','크루 정보'),X('image','결과물')),more],bot:[tabs,srch]};
-      return inner?{top:[B('fold-open','목록 펴기'),C(X('doing','업무 목록',{star:1}),X('crew','크루 정보'),X('image','결과물',{on:1})),more],bot:[tabs,srch]}:{top:[back,B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],bot:mint};
-    case 'work': return inner?{top:[B('plus','새 할 일',{star:1}),C(X('tick','확인',{star:1}),X('doc','원문'),X('handoff','넘기기')),more],bot:[tabs,srch]}:{top:[back,B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],bot:mint};
-    case 'lib': return inner?{top:[B('link','링크 담기',{star:1}),C(X('handoff','맡기기',{star:1}),X('web','원문')),more],bot:[tabs,srch]}:{top:[B('link','링크 담기',{star:1}),more],bot};
-    case 'me': return inner?{top:[C(X('refresh','연결 바꾸기',{star:1}),X('plus','계정 추가')),more],bot:[tabs,srch]}:{top:[],bot:[tabs,srch]};
-    case 'appr': return inner?{top:[B('plus','새 할 일',{star:1}),C(X('up','이전'),X('dn','다음')),more],bot:[tabs,srch]}:{top:[back,C(X('up','이전'),X('dn','다음')),more],bot:mint};
+function declV3(S,P){
+  const tab=TABOF[S],more=B('more','더보기'),back=B('back','뒤로',{go:PARENT[S]});
+  const tabs={k:'tabs',active:tab,merged:true},mint={k:'mintab',active:tab},task=KIND[S]==='task';
+  if(P==='innerL'||P==='half'){
+    const roomCap=C(X('doing','업무 목록',{star:1,b:2}),X('crew','크루 정보'),X('image','결과물',{on:ST.aux&&S==='room'?1:0}));
+    const top={todo:[more],chat:[roomCap,more],room:[roomCap,more],work:[C(X('tick','확인',{star:1}),X('doc','원문'),X('handoff','넘기기')),more],
+      lib:[C(X('handoff','맡기기',{star:1}),X('web','원문')),more],me:[C(X('refresh','연결 바꾸기',{star:1}),X('plus','계정 추가')),more],
+      appr:[C(X('up','이전'),X('dn','다음')),more],sess:[B('refresh','새로 고침',{star:1}),more]}[S];
+    return {top,bot:[tabs]};
   }
-  return {top:[],bot:[]};
+  const L=P==='outerL';
+  const top={todo:L?[B('plus','새 할 일',{star:1}),more]:[B('plus','새 할 일',{star:1}),B('done','골라서 확인'),more],
+    chat:[B('plus','새 방',{star:1}),more],lib:[B('link','링크 담기',{star:1}),more],me:[],
+    room:[back,B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],
+    work:[back,B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],
+    appr:[back,C(X('up','이전'),X('dn','다음')),more],
+    sess:[back,B('refresh','새로 고침',{star:1}),more]}[S];
+  return {top,bot:[task?mint:tabs]};
 }
-function itemH(it,c){return it.k==='btn'||it.k==='search'?44:it.k==='cap'?it.items.length*c+8:it.k==='tabs'?(it.merged?5:4)*c+8:it.k==='mintab'?c+8:0}
-function railH(d,c){const t=d.top.reduce((s,i)=>s+itemH(i,c),0)+Math.max(0,d.top.length-1)*8,b=d.bot.reduce((s,i)=>s+itemH(i,c),0)+Math.max(0,d.bot.length-1)*8;return t+b+24}
+/* 칸 높이: 단독 48, 동작 캡슐 n×44+8, 탭 캡슐 5×48, 현재 탭 한 칸 48 */
+function itemH(it){return it.k==='cap'?it.items.length*44+8:it.k==='tabs'?(it.merged?5:4)*48:48}
 function cell(x){return `<button class="rcell ${x.star?'star':''} ${x.on?'on':''}" title="${x.l}" aria-label="${x.l}">${ico(x.i,{s:22})}${x.b?`<span class="nb">${x.b}</span>`:''}</button>`}
-function ri(it){
-  if(it.k==='btn')return `<button class="rb ${it.star?'star':''} ${it.on?'on':''}" title="${it.l}" aria-label="${it.l}"${it.go?` data-go="${it.go}"`:''}>${ico(it.i,{s:22})}${it.b?`<span class="nb">${it.b}</span>`:''}</button>`;
-  if(it.k==='cap')return `<div class="rcap">${it.items.map(cell).join('')}</div>`;
-  if(it.k==='tabs')return `<div class="rcap tabs">${TABS.map(([id,ic,l])=>`<button class="rcell ${it.active===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${ico(ic,{s:24,f:it.active===id})}${BADGE[id]?`<span class="nb">${BADGE[id]}</span>`:''}</button>`).join('')}${it.merged?`<button class="rcell" title="검색" aria-label="검색">${ico('search',{s:22})}</button>`:''}</div>`;
-  if(it.k==='mintab'){const t=TABS.find(x=>x[0]===it.active);return `<div class="rcap mint"><button class="rcell" data-go="${it.active}" title="탭 펼치기" aria-label="탭 펼치기">${ico(t[1],{s:24,f:1})}<span class="nb">7</span></button></div>`}
-  if(it.k==='search')return `<button class="rb" title="검색" aria-label="검색">${ico('search',{s:22})}</button>`;
+function ri(it,hide){
+  const hc=hide?' kbh':'';
+  if(it.k==='btn')return `<button class="rb ${it.star?'star':''} ${it.on?'on':''}${hc}" title="${it.l}" aria-label="${it.l}"${it.go?` data-go="${it.go}"`:''}>${ico(it.i,{s:22})}${it.b?`<span class="nb">${it.b}</span>`:''}</button>`;
+  if(it.k==='cap')return `<div class="rcap${hc}">${it.items.map(cell).join('')}</div>`;
+  if(it.k==='tabs')return `<div class="rcap tabs${hc}">${TABS.map(([id,ic,l])=>`<button class="rcell ${it.active===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${ico(ic,{s:24,f:it.active===id})}${BADGE[id]?`<span class="nb">${BADGE[id]}</span>`:''}</button>`).join('')}${it.merged?`<button class="rcell" title="검색" aria-label="검색">${ico('search',{s:22})}</button>`:''}</div>`;
+  if(it.k==='mintab'){const t=TABS.find(x=>x[0]===it.active);return `<div class="rcap mint${hc}"><button class="rcell" data-go="${it.active}" title="탭 펼치기" aria-label="탭 펼치기">${ico(t[1],{s:24,f:1})}<span class="nb">7</span></button></div>`}
   return '';
 }
+/* 키보드가 열리면 탭 쪽은 숨기고, 위 묶음은 아래 끝이 kbLim(보이는 높이 − 8)을 넘는 항목만 흐려 숨김 */
 function rail(x,w,H,o){
-  const avail=H-o.r0-o.r8;let c=48;if(railH(o.d,48)>avail)c=44;
-  const over=railH(o.d,c)>avail;
-  return `<div class="rail" style="left:${x}px;top:${o.r0}px;width:${w}px;height:${avail}px;--c:${c}px">${o.d.top.map(ri).join('')}<div class="rsp"></div>${o.d.bot.map(ri).join('')}</div>`+(over?ann(x,o.r0,w,avail,'넘침','tl','warnx'):'');
+  const avail=H-o.r0-o.r8,kb=o.kbLim!=null;
+  const tH=o.d.top.reduce((s,i)=>s+itemH(i),0)+Math.max(0,o.d.top.length-1)*12;
+  const bH=o.d.bot.reduce((s,i)=>s+itemH(i),0)+Math.max(0,o.d.bot.length-1)*12;
+  const over=tH+bH+(o.d.top.length&&o.d.bot.length?24:0)>avail;
+  let y=o.r0;
+  const top=o.d.top.map(it=>{const h=itemH(it),hide=kb&&y+h>o.kbLim;y+=h+12;return ri(it,hide)}).join('');
+  return `<div class="rail" style="left:${x}px;top:${o.r0}px;width:${w}px;height:${avail}px">${top}<div class="rsp"></div>${o.d.bot.map(it=>ri(it,kb)).join('')}</div>`+(over?ann(x,o.r0,w,avail,'넘침','tl','warnx'):'');
 }
+function hb(it){return `<button class="hb ${it.star?'star':''}" title="${it.l}" aria-label="${it.l}"${it.go?` data-go="${it.go}"`:''}>${ico(it.i,{s:20})}${it.b?`<span class="nb">${it.b}</span>`:''}</button>`}
 function hItem(it){
-  if(it.k==='btn')return ri(it);
+  if(it.k==='btn')return hb(it);
   if(it.k==='cap')return `<div class="hcap">${it.items.map(cell).join('')}</div>`;
   return '';
 }
+/* 지금(현행) 하단 탭 */
 function bottomTabs(active,x,y,after=true,search=true,w=268){
   return `<div class="btabs" style="left:${x}px;top:${y}px"><div class="hbar ${after?'after':''}" style="width:${w}px">${TABS.map(([id,ic,l])=>`<button class="tb ${active===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${ico(ic,{s:28,f:active===id})}${after?(BADGE[id]?`<span class="nb">${BADGE[id]}</span>`:''):(BADGE[id]?`<span class="tdot ${BADGE[id]>2?'l3':''}"></span>`:'')}</button>`).join('')}</div>${search?`<span class="srch">${ico('search',{s:22})}</span>`:''}</div>`;
+}
+/* v3 아래 탭: 높이 52, 검색은 캡슐 끝 칸 */
+function bottomTabs3(active,x,y,w){
+  return `<div class="btabs" style="left:${x}px;top:${y}px"><div class="hbar v3b" style="width:${w}px">${TABS.map(([id,ic,l])=>`<button class="tb ${active===id?'on':''}" data-go="${id}" title="${l}" aria-label="${l}">${ico(ic,{s:24,f:active===id})}${BADGE[id]?`<span class="nb">${BADGE[id]}</span>`:''}</button>`).join('')}<i class="tsp"></i><button class="tb" title="검색" aria-label="검색">${ico('search',{s:22})}</button></div></div>`;
 }
 
 /* ---------- 시스템·하드웨어 ---------- */
 const island=(x,y,d=30)=>`<span class="hw" style="left:${x-d/2}px;top:${y-d/2}px;width:${d}px;height:${d}px"></span>`;
-function sysCol(x,w,top,withTime=true){return `<div class="sys" style="left:${x}px;width:${w}px;top:${top}px"><span class="sys-t">9:41</span>${ico('wifi',{s:22})}</div>`}
+/* 닫힘 세로 카메라: 세로 알약 x403–433 y25–103 */
+const camP=()=>`<span class="hw" style="left:403px;top:25px;width:30px;height:78px;border-radius:15px"></span>`;
+function sysCol(x,w,top){return `<div class="sys" style="left:${x}px;width:${w}px;top:${top}px"><span class="sys-t">9:41</span>${ico('wifi',{s:20})}${ico('batt',{s:22})}</div>`}
+const sysRow=()=>`<div class="sysrow"><span>9:41</span>${ico('wifi',{s:18})}${ico('batt',{s:22})}</div>`;
 function statusBar(){return `<div class="sbar"><span>9:41</span><span>${ico('wifi',{s:18})}${ico('batt',{s:22})}</span></div>`}
-function safariCol(x,y,w,h,label){return `<div class="safcol" style="left:${x}px;top:${y}px;width:${w}px;height:${h}px"><span class="sb">${ico('back',{s:18})}</span><span class="sb">${ico('web',{s:18})}</span><span class="lbl">Safari<br>막대 자리<br>(추정)</span></div>`}
+function keyboard(W,H,kh,as){
+  const kw=Math.min(Math.floor((W-6-54)/10),84);
+  const k=a=>a.map(x=>`<i>${x}</i>`).join('');
+  return `<div class="kbd" style="top:${H-kh}px;height:${kh}px;--kw:${kw}px;--kbb:${kh>300?24:kh>240?14:8}px;--kg:${kh>300?11:kh>240?8:6}px" aria-hidden="true"><div class="kb-pred"><span>네</span><span>좋아</span><span>그럼</span><b class="kb-tag">키보드 ${kh}${as?' · 가정':''}</b></div><div class="kb-keys"><div class="kb-r">${k(['ㅂ','ㅈ','ㄷ','ㄱ','ㅅ','ㅛ','ㅕ','ㅑ','ㅐ','ㅔ'])}</div><div class="kb-r">${k(['ㅁ','ㄴ','ㅇ','ㄹ','ㅎ','ㅗ','ㅓ','ㅏ','ㅣ'])}</div><div class="kb-r"><i class="fn w">⇧</i>${k(['ㅋ','ㅌ','ㅊ','ㅍ','ㅠ','ㅜ','ㅡ'])}<i class="fn w">⌫</i></div><div class="kb-r"><i class="fn w">123</i><i class="fn">☺</i><i class="sp">스페이스</i><i class="fn w">↵</i></div></div></div>`;
+}
 
 /* ---------- 바꾼 뒤: 닫힘 ---------- */
-function singleOf(S,P,w){
+function singleOf(S,P,o={}){
+  const L=P==='outerL',pp={l:12,t:8};
   switch(S){
-    case 'todo':return todoList({compact:P==='outerL'});
-    case 'chat':return chatList({});
-    case 'room':return roomView({coverW:P==='outerL'?84:96});
-    case 'work':return workView({});
-    case 'lib':return libList({cols:P==='outerL'?2:1});
-    case 'me':return meMenu({tiles4:P==='outerL'});
-    case 'appr':return apprView({});
+    case 'todo':return todoList({cmp:L,compact:L,right:o.right});
+    case 'chat':return chatList({cmp:L,right:o.right});
+    case 'room':return roomView({coverW:L?80:92,pill:o.pill,pp});
+    case 'work':return workView({pill:o.pill,pp});
+    case 'lib':return libList({cmp:L,cols:L?2:1,right:o.right});
+    case 'me':return meMenu({cmp:L,tiles4:L,right:o.right});
+    case 'appr':return apprView({pill:o.pill,pp});
+    case 'sess':return sessView({pill:o.pill,pp});
   }
 }
 /* Safari 웹 화면 크기. 앱은 기기 화면 전체 */
 function vpH(P){if(ST.r==='app')return DIM[P][1];return P==='outerP'?618:P==='outerL'?406:DIM[P][1]}
 function sysRest(P,withBar){
   const [W,H]=DIM[P],vw=P==='outerP'?382:594,vh=vpH(P);
-  return `<div class="rest col" style="left:${vw}px;top:0;width:${W-vw}px;height:${H}px;${P==='outerL'?'padding-top:40px':''}">${withBar?`<span class="sb">${ico('back',{s:18})}</span><span class="sb">${ico('web',{s:18})}</span><span class="lbl">Safari 막대<br>같은 쪽<br>가정</span>`:`<span class="lbl">Safari·<br>시스템<br>영역<br>(위치<br>미측정)</span>`}</div><div class="rest" style="left:0;top:${vh}px;width:${vw}px;height:${H-vh}px"><span class="lbl">웹 화면 밖 ${H-vh} · 위치 미측정</span></div>`;
-}
-function bottomBody(S,P){
-  const L=P==='outerL';
-  switch(S){case 'todo':return todoList({title:false,compact:L});case 'chat':return chatList({title:false});case 'lib':return libList({title:false,cols:L?2:1});
-    case 'me':return meMenu({title:false,tiles4:L});case 'room':return roomView({head:false,coverW:L?84:96});case 'work':return workView({head:false});case 'appr':return apprView({head:false});}
-}
-/* 결정 1 ②: Safari 막대가 같은 오른쪽에 서면 레일 대신 위 머리 + 하단 캡슐 */
-function aOuterBottom(S,P){
-  const [W,H]=DIM[P],vw=P==='outerP'?382:594,vh=vpH(P),task=KIND[S]==='task';
-  const items=P==='outerL'?declP(S):declP(S).filter(it=>it.k!=='cap');
-  let h=`<div class="head52 nar" style="left:20px;width:${vw-40}px;top:14px;height:52px">${task?`<span class="rb" data-go="${PARENT[S]}" title="뒤로">${ico('back')}</span>`:''}<div class="ttl">${headTitle(S)}</div><div class="hgrp">${items.map(hItem).join('')}</div></div>`;
-  h+=pane(0,70,vw,vh-70,bottomBody(S,P),'',{t:6,r:20,l:20,b:task?20:88});
-  const tw=Math.min(vw-96,340),tx=Math.round((vw-tw-64)/2);
-  if(!task)h+=bottomTabs(TABOF[S],tx,vh-10-64,true,true,tw);
-  h+=sysRest(P,true);
-  if(P==='outerP'){h+=island(424,34,30);h+=sysCol(vw,84,64)}else h+=island(636,H-30,28);
-  h+=ann(0,0,vw,vh,`결정 1 ② · 웹 ${vw}×${vh}`,'bl');
-  if(!task)h+=ann(tx,vh-74,tw+64,64,`하단 캡슐 ${tw} + 검색`,'tl');
-  return h;
-}
-/* 결정 2 ②: 390 기둥을 지키면 닫힘 가로 앱도 기둥 안에 레일 */
-function aOuter390(S){
-  const [W,H]=DIM.outerL,x=144,cw=326,railX=x+cw,task=KIND[S]==='task';
-  let h=`<div class="empty390" style="left:0;width:${x}px"></div><div class="empty390" style="left:${x+390}px;right:0"></div><div class="col390" style="left:${x}px;width:390px"></div>`;
-  h+=pane(x,0,cw,H,singleOf(S,'outerP',cw),'',{t:18,r:12,l:16,b:task?18:0});
-  h+=island(636,H-30,28);
-  h+=rail(railX,64,H,{r0:20,r8:20,d:decl(S,'outerL')});
-  h+=ann(0,0,x,H,`빈 여백 ${x}`,'c','fillx')+ann(x+390,0,W-x-390,H,`빈 여백 ${W-x-390}`,'c','fillx');
-  h+=ann(x,0,cw,H,`결정 2 ② · 내용 ${cw}`,'bl')+ann(railX,12,64,H-24,'레일 64','tr');
-  return h;
-}
-function aOuter(S,o,variant){
-  const P=o==='P'?'outerP':'outerL',[W,H0]=DIM[P],app=ST.r==='app';
-  if(!app&&variant==='B')return aOuterBottom(S,P);
-  if(app&&o==='L'&&ST.c390)return aOuter390(S);
-  const H=vpH(P);
-  const colX=o==='P'?382:594, railX=app?colX:colX-64, railW=app?84:64, cw=railX;
-  const r0=app?(o==='P'?168:20):20, r8=app?(o==='P'?22:56):20;
-  const task=KIND[S]==='task';
-  let h='';
-  h+=pane(0,0,cw,H,singleOf(S,P,cw),'',{t:o==='P'?22:18,r:12,l:o==='P'?20:24,b:task?(o==='P'?22:18):0});
-  if(!app)h+=sysRest(P,false);
-  if(o==='P'){h+=island(424,34,30);h+=sysCol(colX,84,64)}
-  else h+=island(636,H0-30,28);
-  if(!app)h+=`<div class="ann" style="left:${railX-6}px;top:${o==='P'?120:90}px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">Safari: 레일은 웹 화면 끝, 카메라 축보다 왼쪽</span></div>`;
-  h+=rail(railX,railW,H,{r0,r8,d:decl(S,P)});
-  // 주석
-  h+=ann(0,0,cw,H,`내용 ${cw}`,'bl');
-  h+=ann(railX,r0,railW,H-r0-r8,`레일 ${railW}`,'lo');
-  if(o==='P'){
-    if(app)h+=ann(colX,0,84,r0,`R0 ${r0}`,'lo');
-    h+=ann(railX,H-r8,railW,r8,'','tl');
-    h+=`<div class="ann" style="left:6px;top:${H/2-60}px"><span class="tag tl" style="position:static;display:inline-block">힌지 쪽 · 단추 없음</span></div>`;
-    h+=`<div class="ann" style="left:${cw-6}px;top:${task?260:200}px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">P09·P22·P50 측면 막대</span></div>`;
-    h+=`<div class="ann" style="left:${cw-6}px;top:${task?292:232}px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">P56 위: 뒤로→주요 · 아래: 탭</span></div>`;
-  }else{
-    h+=ann(railX,H-r8,railW,r8,app?'R8 56 카메라':'','lo');
-    h+=`<div class="ann" style="left:${cw-6}px;top:${H/2-40}px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">${task?'P66 작업형: 탭 최소화':'P65 탐색형: 검색이 탭 캡슐 안으로'}</span></div>`;
-    h+=`<div class="ann" style="left:12px;top:6px"><span class="tag" style="position:static;display:inline-block">힌지는 위 테두리</span></div>`;
-  }
-  return h;
-}
-
-/* ---------- 바꾼 뒤: 펼친 가로·반접힘 ---------- */
-function listCtl(S){
-  const caps={todo:[X('done','골라서 확인'),X('filter','거르기'),X('more','더보기')],work:[X('done','골라서 확인'),X('filter','거르기'),X('more','더보기')],appr:[X('done','골라서 확인'),X('filter','거르기'),X('more','더보기')],chat:[X('filter','거르기'),X('more','더보기')],lib:[X('more','더보기')],me:[]}[S]||[];
-  return `<div class="lctl"><span class="rb" title="목록 접기">${ico('fold-open',{s:22})}</span>${caps.length?`<div class="hcap">${caps.map(cell).join('')}</div>`:''}</div>`;
-}
-function listOf(S){
-  switch(S){case 'todo':return todoList({big:1});case 'work':return todoList({big:1,sel:'t1'});case 'appr':return apprList({sel:'t2'});
-    case 'chat':return chatList({big:1,sel:'genz'});case 'lib':return libList({big:1,sel:'l1'});case 'me':return meMenu({big:1,sel:'acc'});}
-}
-function detailOf(S,half){
-  switch(S){case 'todo':return todaySummary();case 'work':return workView({});case 'appr':return apprView({});
-    case 'chat':return roomView({coverW:half?90:110});case 'lib':return libDetail({side:!half});case 'me':return accountsView();}
-}
-function aInnerL(S,half){
-  const [W,H]=DIM.innerL,app=ST.r==='app';
-  const LW=half?463:342,DX=half?487:354,RX=887,r0=app?120:20,r8=20;
-  let h='';
-  const slide=S==='room'&&ST.aux;
-  if(slide){
-    h+=pane(0,0,463,H,roomView({coverW:110}),'two',{t:20,r:20,l:20,b:20});
-    h+=pane(487,0,W-487,H,auxView(),'two',{t:20,r:80,l:20,b:20});
-  }else{
-    const L=S==='room'?'chat':S;
-    h+=pane(0,0,LW,H,listCtl(L)+listOf(L),'two',{t:20,r:20,l:20,b:0});
-    const task=KIND[S]==='task'||S==='chat';
-    h+=pane(DX,0,W-DX,H,detailOf(L,half),'two',{t:20,r:80,l:20,b:task?20:0});
-  }
-  if(app)h+=sysCol(RX,64,22);
-  h+=rail(RX,64,H,{r0,r8,d:decl(S,half?'half':'innerL')});
-  if(!half)h+=`<div class="crease" style="left:463px;width:24px;top:0;bottom:0"></div>`;
-  // 주석
-  const lw=slide?463:LW, dx=slide?487:DX;
-  h+=ann(0,0,lw,H,slide?`보조 열림: 대화 463`:`목록 ${lw} · P38·P62`,'bl');
-  h+=ann(dx,0,RX-dx,H,slide?`보조 ${RX-dx} · 미닫이 P43·P45`:`상세 ${RX-dx} · P18`,'bl');
-  h+=ann(RX,r0,64,H-r0-r8,'레일 64 · P22','lo');
-  if(app)h+=ann(RX,0,64,r0,`R0 ${r0}`,'lo');
-  if(half)h+=hingeAnn(463,0,24,H,'P30 접힘 24 제외');
-  else h+=hingeAnn(463,0,24,H,'힌지 463–487');
-  if(!slide)h+=`<div class="ann" style="left:${lw-8}px;top:70px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">P62 목록 조작은 목록 위</span></div>`;
-  if(slide)h+=`<div class="ann" style="left:${RX-6}px;top:${r0+4}px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">목록 접힘 → 맨 위 '목록 펴기'</span></div>`;
-  if(half)h+=`<div class="ann" style="left:${RX-6}px;top:${H-60}px;transform:translateX(-100%)"><span class="tag" style="position:static;display:inline-block">P37 단추는 그대로, 줄바꿈만</span></div>`;
-  return h;
-}
-
-/* ---------- 바꾼 뒤: 펼친 세로 (HIG 예외) ---------- */
-function headTitle(S){
-  switch(S){
-    case 'todo':return `<b>할 일</b><span class="s">11/15 일 · 확인 필요 3</span>`;
-    case 'chat':return `<b>채팅</b><span class="s">안 읽음 4</span>`;
-    case 'lib':return `<b>자료</b>`;
-    case 'me':return `<b>나</b>`;
-    case 'room':return `${face('genz',28)}<b>젠지</b><span class="dot"></span><span class="s">일하는 중</span>`;
-    case 'work':return `${face('nana',28)}<b>C8 앱 26.46 QA 재검증</b>`;
-    case 'appr':return `${face('home',28)}<b>승인 요청</b><span class="s">확인 필요 3 중 1</span>`;
-  }
+  return `<div class="rest col" style="left:${vw}px;top:0;width:${W-vw}px;height:${H}px;padding-top:${P==='outerL'?40:216}px">${withBar?`<span class="sb">${ico('back',{s:18})}</span><span class="sb">${ico('web',{s:18})}</span><span class="lbl">Safari 막대<br>같은 쪽<br>가정</span>`:`<span class="lbl">Safari·<br>시스템<br>영역<br>(위치<br>미측정)</span>`}</div><div class="rest" style="left:0;top:${vh}px;width:${vw}px;height:${H-vh}px"><span class="lbl">웹 화면 밖 ${H-vh} · 위치 미측정</span></div>`;
 }
 function declP(S){
   const more=B('more','더보기');
   return {todo:[B('plus','새 할 일',{star:1}),B('done','골라서 확인'),more],chat:[B('plus','새 방',{star:1}),more],lib:[B('link','링크 담기',{star:1}),more],me:[],
-    room:[B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],work:[B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],appr:[C(X('up','이전'),X('dn','다음')),more]}[S];
+    room:[B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],work:[B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],appr:[C(X('up','이전'),X('dn','다음')),more],sess:[B('refresh','새로 고침',{star:1}),more]}[S];
+}
+/* Safari 보기: 시스템 띠 위에 레일을 또 그리지 않고 아래 캡슐 52(바닥 8) */
+function aOuterBottom(S,P){
+  const [W,H]=DIM[P],vw=P==='outerP'?382:594,vh=vpH(P),task=KIND[S]==='task';
+  const kb=kbOn(S,P,'after')?KBH[P]:0,vis=kb?Math.min(vh,H-kb):vh;
+  const items=declP(S).filter(it=>P==='outerL'||it.k!=='cap');
+  const right=items.map(hItem).join('');
+  let h='';
+  if(task){
+    const pillOn=!(kb&&(P==='outerL'||ST.d5));
+    if(pillOn)h+=`<div class="shd" style="left:8px;width:${vw-12}px;top:4px">${hb(B('back','뒤로',{go:PARENT[S]}))}<div class="pill st">${PILL[S]()}</div><div class="hgrp">${right}</div></div>`;
+    h+=pane(0,0,vw,vis,singleOf(S,P,{pill:false}),'',{t:0,l:16,r:8,b:12},`--pt:${pillOn?52:8}px`);
+    const inTop=vis-12-40;h+=cvAnn(0,pillOn?44:8,vw,inTop-8-(S==='sess'?20:0));
+    if(pillOn)h+=ann(8,4,vw-12,44,'머리 한 줄 44: 뒤로 · 알약 · 동작','bl');
+  }else{
+    h+=pane(0,0,vw,vh,singleOf(S,P,{right}),'',{t:0,l:16,r:8,b:68});
+    const tw=Math.min(vw-32,320),tx=Math.round((vw-tw)/2);
+    h+=bottomTabs3(TABOF[S],tx,vh-8-52,tw);
+    h+=ann(tx,vh-60,tw,52,`아래 캡슐 ${tw}×52 · 바닥 8`,'tl');
+  }
+  h+=sysRest(P,true);
+  if(P==='outerP'){h+=camP()+sysCol(vw,W-vw-12,115)}else h+=island(636,H-30,28);
+  if(kb)h+=keyboard(W,H,kb,KBA[P]);
+  h+=ann(0,0,vw,vh,`Safari 웹 ${vw}×${vh}`,'bl');
+  return h;
+}
+/* 결정 2 ②: 390 기둥을 지키면 닫힘 가로 앱도 기둥 안에 레일 */
+function aOuter390(S){
+  const [W,H]=DIM.outerL,x=144,cw=326,railX=x+cw;
+  let h=`<div class="empty390" style="left:0;width:${x}px"></div><div class="empty390" style="left:${x+390}px;right:0"></div><div class="col390" style="left:${x}px;width:390px"></div>`;
+  h+=pane(x,0,cw,H,singleOf(S,'outerL',{pill:true}),'',{t:0,l:16,r:8,b:20},'--pt:52px');
+  h+=island(636,H-30,28);
+  h+=rail(railX,64,H,{r0:20,r8:20,d:declV3(S,'outerL')});
+  h+=ann(0,0,x,H,`빈 여백 ${x}`,'c','fillx')+ann(x+390,0,W-x-390,H,`빈 여백 ${W-x-390}`,'c','fillx');
+  h+=ann(x,0,cw,H,`결정 2 ② · 내용 ${cw}`,'bl')+ann(railX,12,64,H-24,'레일 64','tr');
+  return h;
+}
+function aOuter(S,o){
+  const P=o==='P'?'outerP':'outerL',[W,H]=DIM[P];
+  if(ST.r!=='app')return aOuterBottom(S,P);
+  if(o==='L'&&ST.c390)return aOuter390(S);
+  const cw=o==='P'?382:594,RW=o==='P'?72:84,r0=o==='P'?218:20,r8=o==='P'?24:56,bb=o==='P'?24:20;
+  const task=KIND[S]==='task',kb=kbOn(S,P,'after')?KBH[P]:0,vis=H-kb;
+  const pillOn=!(kb&&(P==='outerL'||ST.d5));
+  const ph=task?vis:H,pb=task&&kb?8:bb;
+  let h=pane(0,0,cw,ph,singleOf(S,P,{pill:pillOn}),'',{t:0,l:16,r:8,b:pb},`--pt:${pillOn?52:8}px`);
+  if(o==='P')h+=camP()+sysCol(cw,RW,115);else h+=island(636,H-30,28);
+  h+=rail(cw,RW,H,{r0,r8,d:declV3(S,P),kbLim:kb?vis-8:null});
+  if(kb)h+=keyboard(W,H,kb,KBA[P]);
+  if(task){const inTop=ph-pb-40;h+=cvAnn(0,pillOn?44:8,cw,inTop-8-(S==='sess'?20:0));h+=ann(16,inTop,cw-24,40,`입력 40 · ${inTop}–${inTop+40}`,'bl')}
+  // 주석
+  h+=ann(0,0,cw,H,`내용 ${cw} · 글 폭 ${cw-24}`,'bl');
+  if(o==='P')h+=ann(cw,0,RW,r0,`R0 ${r0}`,'lo');
+  h+=ann(cw,r0,RW,H-r0-r8,`레일 띠 ${W-cw}`,'lo');
+  if(task&&pillOn)h+=ann(12,8,Math.min(300,cw-24),36,'알약 36 · 고정','bl');
+  else if(!task)h+=ann(16,8,cw-24,36,o==='P'?'큰 제목 36 · 스크롤하면 0':'제목 + 칩 한 줄 36','bl');
+  if(task&&kb&&!pillOn)h+=note(16,12,'결정 5: 키보드 때 알약 숨김');
+  if(o==='P'&&!task)h+=note(cw-6,r0+4,'P09·P22·P50 측면 막대',true);
+  return h;
+}
+
+/* ---------- 바꾼 뒤: 펼친 가로·반접힘 ---------- */
+function listHead(L){
+  const ttl={todo:'할 일',work:'할 일',appr:'할 일',chat:'채팅',lib:'자료',me:'나',sess:'Mac 알림'}[L];
+  const sub={todo:todaySub(),work:todaySub(),appr:'확인 필요 3',chat:'안 읽음 4',lib:'담은 자료 5',me:'',sess:'집맥 · 세션 5'}[L];
+  const f=B('filter','거르기'),star=(i,l)=>B(i,l,{star:1});
+  const btn={todo:[f,star('plus','새 할 일')],work:[f,star('plus','새 할 일')],appr:[f,star('plus','새 할 일')],chat:[f,star('plus','새 방')],lib:[star('link','링크 담기')],me:[],sess:[]}[L];
+  const right=L==='sess'&&ST.wm?`<span class="mseg"><span class="on">집맥</span><span>회맥</span></span>`:btn.map(hb).join('');
+  return `<div class="lhd"><div class="lt"><h2>${ttl}</h2>${sub&&!(L==='sess'&&ST.wm)?`<span class="th-s">${sub}</span>`:''}</div><div class="hgrp">${right}</div></div>`;
+}
+function listOf(S){
+  switch(S){case 'todo':return todoList({title:false});case 'work':return todoList({title:false,sel:'t1'});case 'appr':return apprList({sel:'t2'});
+    case 'chat':return chatList({title:false,sel:'genz'});case 'lib':return libList({title:false,sel:'l1'});case 'me':return meMenu({title:false,sel:'acc'});case 'sess':return sessList();}
+}
+function detailOf(S,half,o){
+  switch(S){case 'todo':return todaySummary();case 'work':return workView(o);case 'appr':return apprView(o);
+    case 'chat':return roomView(Object.assign({coverW:half?84:104},o));case 'lib':return libDetail({side:!half});case 'me':return accountsView();case 'sess':return sessView(o);}
+}
+function aInnerL(S,half){
+  const [W,H]=DIM.innerL,app=ST.r==='app';
+  const LW=half?463:375,DX=half?487:376,RX=867,RW=72,r0=app?178:20,r8=24;
+  const L=S==='room'?'chat':S,conv=convScreen(L,'innerL','after');
+  const kb=!half&&kbOn(S,'innerL','after')?KBH.innerL:0,vis=H-kb;
+  const pillOn=!(kb&&ST.d5);
+  const slide=S==='room'&&ST.aux;
+  let h='';
+  if(slide){
+    const ph=vis,pb=kb?8:24;
+    h+=pane(0,0,463,ph,roomView({coverW:104,pill:pillOn,pp:{l:60,t:16}}),'two',{t:0,l:20,r:20,b:pb},`--pt:${pillOn?60:8}px`);
+    h+=`<div class="ab" style="left:12px;top:12px;z-index:7">${hb(B('fold-open','목록 펴기'))}</div>`;
+    h+=pane(487,0,RX-487,H,auxView(),'two',{t:12,l:20,r:20,b:24});
+    h+=cvAnn(0,pillOn?52:8,463,ph-pb-40-8);
+  }else{
+    h+=pane(0,0,LW,H,listHead(L)+listOf(L),half?'two':'',{t:12,l:20,r:16,b:24});
+    if(!half)h+=`<div class="vline" style="left:${LW}px"></div>`;
+    const ph=conv?vis:H,pb=conv?(kb?8:24):24;
+    h+=pane(DX,0,RX-DX,ph,detailOf(L,half,{pill:pillOn,pp:{l:16,t:16}}),half?'two':'',{t:conv?0:12,l:20,r:20,b:pb},`--pt:${pillOn?60:8}px`);
+    if(conv)h+=cvAnn(DX,pillOn?52:8,RX-DX,ph-pb-40-8-(L==='sess'?20:0));
+  }
+  if(app)h+=sysCol(RX,RW,23);
+  h+=rail(RX,RW,H,{r0,r8,d:declV3(S,half?'half':'innerL'),kbLim:kb?vis-8:null});
+  if(!half)h+=`<div class="crease" style="left:463px;width:24px;top:0;bottom:0"></div>`;
+  if(kb)h+=keyboard(W,H,kb,false);
+  // 주석
+  if(slide){h+=ann(0,0,463,H,'보조 열림: 대화 463','bl');h+=ann(487,0,RX-487,H,`보조 ${RX-487} · 미닫이 P43·P45`,'bl');h+=note(60,56,"'목록 펴기'는 대화 칸 왼쪽 위 원 (레일은 그대로)")}
+  else{
+    h+=ann(0,0,LW,H,`목록 ${LW} · 글 ${LW-36}`,'bl');
+    h+=ann(DX,0,RX-DX,H,`상세 ${RX-DX} · 글 ${RX-DX-40}`,'bl');
+    h+=ann(20,12,LW-36,44,'목록 머리 44 · ＋는 여기(P62)','tl');
+    if(conv&&pillOn)h+=ann(DX+16,16,220,36,'알약 36 · 16–52','bl');
+  }
+  h+=ann(RX,r0,RW,H-r0-r8,'레일 띠 84 · P22','lo');
+  if(app)h+=ann(RX,0,RW,r0,`R0 ${r0}`,'lo');
+  if(half)h+=hingeAnn(463,0,24,H,'P30 접힘 24 제외');
+  else h+=hingeAnn(463,0,24,H,'힌지 463–487');
+  return h;
+}
+
+/* ---------- 바꾼 뒤: 펼친 세로 (HIG 예외) ---------- */
+const MROW={
+  room:()=>`${face('genz',28)}<span class="nm">젠지</span><span class="dot"></span><span class="wchip need">확인 1 · 진행 2</span>`,
+  work:()=>`${face('nana',28)}<span class="nm">C8 앱 26.46 QA 재검증</span><span class="wchip need">결정 대기</span>`,
+  appr:()=>`${face('home',28)}<span class="nm">승인 요청</span><span class="wchip need">확인 3 중 1</span>`,
+  sess:()=>`${face('home',28)}<span class="nm">${SESS_T}</span>${mseg()}`
+};
+function mergedRow(S){
+  const task=KIND[S]==='task',more=B('more','더보기');
+  const T={todo:['할 일',todaySub()],chat:['채팅','안 읽음 4'],lib:['자료','담은 자료 5'],me:['나','']};
+  const R={todo:[B('plus','새 할 일',{star:1}),B('done','골라서 확인'),more],chat:[B('plus','새 방',{star:1}),more],lib:[B('link','링크 담기',{star:1}),more],me:[],
+    room:[B('doing','업무 목록',{star:1,b:2}),C(X('crew','크루 정보'),X('image','결과물')),more],work:[B('tick','확인',{star:1}),C(X('doc','원문'),X('handoff','넘기기')),more],
+    appr:[C(X('up','이전'),X('dn','다음')),more],sess:[B('refresh','새로 고침',{star:1}),more]}[S];
+  const left=task?`${hb(B('fold-open','목록',{go:PARENT[S]}))}<div class="tleft">${MROW[S]()}</div>`:`<div class="lt"><h2>${T[S][0]}</h2>${T[S][1]?`<span class="th-s">${T[S][1]}</span>`:''}</div>`;
+  return `<div class="mrow">${left}<div class="hgrp">${R.map(hItem).join('')}</div></div>`;
 }
 function wideOf(S){
   switch(S){case 'todo':return todoList({cards:1,title:false});case 'chat':return chatList({title:false});case 'lib':return libList({cols:2,title:false});
-    case 'me':return meMenu({title:false});case 'room':return roomView({head:false,coverW:140});case 'work':return workView({head:false});case 'appr':return apprView({head:false});}
+    case 'me':return meMenu({title:false});case 'room':return roomView({pill:false,coverW:120});case 'work':return workView({pill:false});case 'appr':return apprView({pill:false});case 'sess':return sessView({pill:false});}
 }
 function aInnerP(S){
-  const [W,H]=DIM.innerP,task=KIND[S]==='task';
-  let h=statusBar();
-  h+=`<div class="head52" style="left:24px;right:24px;top:48px;height:52px">${task?`<span class="rb" data-go="${PARENT[S]}" title="뒤로">${ico('back')}</span>`:''}<div class="ttl">${headTitle(S)}</div><div class="hgrp">${declP(S).map(hItem).join('')}</div></div>`;
-  h+=pane(0,104,W,H-104,wideOf(S),'',{t:12,r:24,l:24,b:task?24:108});
-  if(!task)h+=bottomTabs(TABOF[S],Math.round((W-268-12-52)/2),H-28-64,true,true,268);
+  const [W,H]=DIM.innerP,task=KIND[S]==='task',kb=kbOn(S,'innerP','after')?KBH.innerP:0,vis=H-kb;
+  const ph=(task?vis:H)-68,pb=task?(kb?8:24):80;
+  let h=sysRow()+mergedRow(S);
+  h+=pane(0,68,W,ph,wideOf(S),'',task?{t:0,l:16,r:16,b:pb}:{t:8,l:16,r:16,b:pb},'--pt:8px');
+  if(!task)h+=bottomTabs3(TABOF[S],175,879,320);
   h+=`<div class="crease h" style="top:463px;height:24px;left:0;right:0"></div>`;
-  h+=ann(20,46,W-40,52,'위 머리 52: 뒤로·제목 | 주요→캡슐→⋯','bl');
-  if(!task)h+=ann(Math.round((W-268-12-52)/2),H-92,332,64,'하단 탭 268 + 검색 52','lo');
-  h+=`<div class="ann" style="left:24px;top:${task?560:640}px"><span class="tag" style="position:static;display:inline-block">P50 안쪽 세로만 가로 막대 유지</span></div>`;
+  if(kb)h+=keyboard(W,H,kb,false);
+  if(task){const inTop=68+ph-pb-40;h+=cvAnn(0,68,W,inTop-8-(S==='sess'?20:0))}
+  h+=ann(16,24,481,44,'합친 줄 24–68: 상태 줄 왼쪽, 단추는 x497에서 끝','bl');
+  h+=ann(505,24,148,44,'상태 505–653','lo');
+  if(!task){h+=ann(175,879,320,52,'아래 탭 320×52 · 검색 포함','lo');h+=note(24,820,'목록 아래 여백 80 · 반투명 탭 밑으로 지나감')}
+  h+=note(24,task?560:640,'P50 안쪽 세로만 가로 막대 유지');
   h+=hingeAnn(0,463,W,24,'접힘 축(노트북 자세)');
   return h;
 }
 function aInnerPAlt(S){
   const [W,H]=DIM.innerP;
-  const L={todo:'todo',work:'todo',appr:'appr',chat:'chat',room:'chat',lib:'lib',me:'me'}[S];
-  const left=L==='todo'?todoList({sel:'t1',today:false}):L==='appr'?apprList({sel:'t2'}):L==='chat'?chatList({sel:'genz'}):L==='lib'?libList({sel:'l1'}):meMenu({sel:'acc'});
-  const right={todo:workView({}),work:workView({}),appr:apprView({}),chat:roomView({coverW:90}),room:roomView({coverW:90}),lib:libDetail({}),me:accountsView()}[S];
-  let h=`<div class="scr-two-bg" style="position:absolute;inset:0;background:var(--groove)"></div>`+statusBar();
-  h+=pane(0,48,260,H-48,left,'two',{t:12,r:16,l:16,b:96});
-  h+=pane(266,48,W-266,H-48,right,'two',{t:12,r:20,l:20,b:24});
-  h+=bottomTabs(TABOF[S],16,H-24-56,true,false,228).replace('height:64px','');
-  h+=ann(0,44,260,H-44,'대안 ② 목록 260','tl');
-  h+=ann(266,44,W-266,H-44,'상세 403 · 말풍선 좁아짐','tr');
+  const L={todo:'todo',work:'todo',appr:'appr',chat:'chat',room:'chat',lib:'lib',me:'me',sess:'sess'}[S];
+  const left=L==='todo'?todoList({sel:'t1'}):L==='appr'?apprList({sel:'t2',th:1}):L==='chat'?chatList({sel:'genz'}):L==='lib'?libList({sel:'l1'}):L==='sess'?listHead('sess')+sessList():meMenu({sel:'acc'});
+  const pp={l:12,t:8};
+  const right={todo:workView({pp}),work:workView({pp}),appr:apprView({pp}),chat:roomView({coverW:84,pp}),room:roomView({coverW:84,pp}),lib:libDetail({}),me:accountsView(),sess:sessView({pp})}[S];
+  const rt=KIND[S]==='task'||S==='chat'||S==='todo';
+  let h=`<div style="position:absolute;inset:0;background:var(--groove)"></div>`+sysRow();
+  h+=pane(0,72,260,H-72,left,'two',{t:0,l:16,r:12,b:84});
+  h+=pane(266,72,W-266,H-72,right,'two',{t:rt?0:12,l:16,r:16,b:24},'--pt:52px');
+  h+=bottomTabs3(TABOF[S],16,H-20-52,228);
+  h+=ann(0,72,260,H-72,'대안 ② 목록 260','tl');
+  h+=ann(266,72,W-266,H-72,'상세 403 · 말풍선 좁아짐','tr');
   return h;
 }
 
@@ -967,9 +1310,9 @@ function loginAfter(P){
   const app=ST.r==='app';let h='';
   if(P==='outerP'){const cw=382;
     h+=`<div class="gate" style="right:${466-cw}px"><div class="gcard" style="position:absolute;left:0;width:${cw}px;top:110px">${gMark(72)}<span class="gname">크루네</span><span class="gsub">샐리와 크루 다섯의 일터</span></div><div style="position:absolute;left:16px;top:440px">${gButtons(cw-32)}</div></div>`;
-    h+=island(424,34,30)+sysCol(382,84,64);if(!app)h+=sysRest('outerP',false);
+    h+=camP()+sysCol(382,72,115);if(!app)h+=sysRest('outerP',false);
     h+=ann(16,436,cw-32,170,'엄지 자리 · 단추 셋 늘 보임','tl')+ann(382,0,84,678,'막대 없음 · P60','lo');
-  }else if(P==='outerL'){const cw=app?594:594;
+  }else if(P==='outerL'){const cw=594;
     h+=`<div class="gate" style="right:${678-cw}px"><div class="gcard" style="position:absolute;left:0;width:${cw/2}px;top:120px">${gMark(64)}<span class="gname">크루네</span><span class="gsub">샐리와 크루 다섯의 일터</span></div><div style="position:absolute;left:${cw/2+16}px;top:150px">${gButtons(cw/2-32)}</div></div>`;
     h+=island(636,436,28);if(!app)h+=sysRest('outerL',false);
     h+=ann(0,0,cw/2,466,'마크','bl')+ann(cw/2,0,cw/2,466,'단추 셋','bl');
@@ -979,7 +1322,7 @@ function loginAfter(P){
   }else{
     const half=P==='half';
     h+=`<div class="gate" style="background:var(--groove)"><div class="pane two" style="left:0;top:0;width:463px;height:669px;display:flex;align-items:center;justify-content:center"><div class="gcard" style="width:340px">${gMark(80)}<span class="gname">크루네</span><span class="gsub" style="margin-bottom:18px">샐리와 크루 다섯의 일터</span>${gButtons(340)}</div></div><div class="pane two" style="left:487px;top:0;width:464px;height:669px;padding:0 40px;display:flex;justify-content:center">${steps(0)}</div></div>`;
-    if(app)h+=sysCol(887,64,22);
+    if(app)h+=sysCol(867,72,23);
     h+=ann(0,0,463,669,'왼쪽 반: 로그인 카드','bl')+ann(487,0,464,669,'오른쪽 반: 3단계','bl')+hingeAnn(463,0,24,669,half?'P30 접힘 제외':'가운데 비움');
   }
   return h;
@@ -1010,61 +1353,68 @@ function nowBar(S,c){
     me:`<span class="t" style="padding-left:8px">나</span>`,
     room:`<span class="ib" data-go="chat" title="채팅 목록으로">${ico('back')}</span><span class="t">${face('genz',28)}젠지</span>${bt('more')}`,
     work:`<span class="ib" data-go="todo">${ico('back')}</span><span class="t">C8 앱 26.46 QA 재검증</span>${bt('more')}`,
-    appr:`<span class="ib" data-go="todo">${ico('back')}</span><span class="t">보고 카드</span>`
+    appr:`<span class="ib" data-go="todo">${ico('back')}</span><span class="t">보고 카드</span>`,
+    sess:`<span class="ib" data-go="chat">${ico('back')}</span><span class="t">${face('home',28)}집맥</span>${bt('more')}`
   }[S];
   return `<div class="nbar" style="left:${L}px;width:${w}px;top:${c.top}px">${m}</div>`;
 }
-function nowBody(S,c){
+function nowBody(S,c,kb){
   switch(S){case 'todo':return todoList({now:1,title:false});case 'chat':return chatList({title:false});case 'lib':return libList({now:1,title:false});
-    case 'me':return meMenu({now:1,title:false});case 'room':return roomView({head:false,back:true,coverW:96});case 'work':return workView({head:false,back:true});case 'appr':return apprView({head:false,now:1});}
+    case 'me':return meMenu({now:1,title:false});case 'room':return roomView({head:false,back:true,coverW:96,kb});case 'work':return workView({head:false,back:true});case 'appr':return apprView({head:false,now:1});case 'sess':return sessView({back:true});}
 }
 function nowCompose(P,S){
   const [W,H0]=DIM[P],app=ST.r==='app',c=nowCol(P),task=KIND[S]==='task',H=(P==='outerP'||P==='outerL')?vpH(P):H0;
+  const kb=kbOn(S,P,'now')?KBH[P]:0,Hv=kb?Math.min(H,H0-kb):H;
   let h='';
   if(c.frame){h+=`<div class="empty390" style="left:0;width:${c.x}px"></div><div class="empty390" style="left:${c.x+c.w}px;right:0"></div><div class="col390" style="left:${c.x}px;width:${c.w}px"></div>`}
-  if(P==='outerP'){h+=island(424,34,30)+sysCol(382,84,64);if(!app)h+=sysRest(P,false)}
+  if(P==='outerP'){h+=camP()+sysCol(382,72,115);if(!app)h+=sysRest(P,false)}
   if(P==='outerL'){h+=island(636,H0-30,28);if(!app)h+=sysRest(P,false)}
-  if(P==='innerL'||P==='half')h+=sysCol(887,64,22);
+  if(P==='innerL'||P==='half')h+=sysCol(867,72,23);
   if(P==='innerP')h+=statusBar();
   if(S==='login'){h+=loginNow(P)}
   else{
     h+=nowBar(S,c);
-    const bottom=task?14:(P==='innerP'?110:96);
-    h+=pane(c.x,c.top+52,c.w,H-c.top-52,nowBody(S,c),'',{t:4,r:16,l:16,b:bottom});
+    const bottom=task?(kb?8:14):(P==='innerP'?110:96);
+    h+=pane(c.x,c.top+52,c.w,(task?Hv:H)-c.top-52,nowBody(S,c,!!kb),'',{t:4,r:16,l:16,b:bottom});
     if(!task){
       const tw=c.tab390?390:c.w-32, tx=c.tab390?(W-390)/2:c.x+16;
       h+=bottomTabs(TABOF[S],tx,H-20-64-(P==='innerP'?8:0),false,false,tw);
     }
   }
   if(P==='innerL'||P==='innerP')h+=`<div class="crease ${P==='innerP'?'h':''}" style="${P==='innerP'?'top:463px;height:24px;left:0;right:0':'left:463px;width:24px;top:0;bottom:0'}"></div>`;
+  if(kb)h+=keyboard(W,H0,kb,KBA[P]);
   // 주석
   if(c.frame){h+=ann(0,0,c.x,H,`빈 여백 ${Math.round(c.x)}`,'c','fillx');h+=ann(c.x+c.w,0,W-c.x-c.w,H,`빈 여백 ${Math.round(W-c.x-c.w)}`,'c','fillx');h+=ann(c.x,0,c.w,H,'390 기둥 · styles.css:551','tl')}
   else h+=ann(c.x,0,c.w,H,`내용 ${c.w}`,'tl');
   if(S!=='login'){
     if(!task){const tw=c.tab390?390:c.w-32,tx=c.tab390?(W-390)/2:c.x+16;h+=ann(tx,H-20-64-(P==='innerP'?8:0),tw,64,'탭 배지는 6px 점 · tabbar.jsx','tl')}
-    else if(S==='room'||S==='work')h+=ann(c.x+8,H-60,48,48,'','tl')+`<div class="ann" style="left:${c.x+60}px;top:${H-84}px"><span class="tag" style="position:static;display:inline-block">독 왼쪽 뒤로 · attach.jsx:307</span></div>`;
-    if(S==='room')h+=ann(c.x+8,c.top,44,52,'','tl')+`<div class="ann" style="left:${c.x+60}px;top:${c.top+52}px"><span class="tag" style="position:static;display:inline-block">머리 뒤로 · chat-live.jsx:1411</span></div>`;
+    else if(!kb&&(S==='room'||S==='work'))h+=ann(c.x+8,Hv-60,48,48,'','tl')+note(c.x+60,Hv-84,'독 왼쪽 뒤로 · attach.jsx:307');
+    if(S==='room')h+=ann(c.x+8,c.top,44,52,'','tl')+note(c.x+60,c.top+52,'머리 뒤로 · chat-live.jsx:1411');
+    if(kb)h+=note(c.x+8,Hv-4,'kb-open: b = clientHeight − offsetTop − vv.height &gt; 80 (main.jsx:33)');
   }
-  if(P==='outerP'&&app&&S!=='login'&&!task)h+=`<div class="ann" style="left:16px;top:${H-120}px"><span class="tag" style="position:static;display:inline-block">tabbar.css:2-3 좌우 안전 여백 없음 · 앱 모드 겹침 가능(미측정)</span></div>`;
+  if(P==='outerP'&&app&&S!=='login'&&!task)h+=note(16,H-120,'tabbar.css:2-3 좌우 안전 여백 없음 · 앱 모드 겹침 가능(미측정)');
   if(P==='innerL'||P==='half')h+=hingeAnn(463,0,24,H,P==='half'?'접힘이 기둥 한가운데':'힌지가 기둥 가운데');
-  if((P==='innerL'||P==='half')&&S!=='login')h+=`<div class="ann" style="left:${c.x+c.w+12}px;top:120px"><span class="tag" style="position:static;display:inline-block">두 칸은 마우스에서만 · fold-core.mjs</span></div>`;
+  if((P==='innerL'||P==='half')&&S!=='login')h+=note(c.x+c.w+12,120,'두 칸은 마우스에서만 · fold-core.mjs');
   return h;
 }
 
 /* ---------- 틀 ---------- */
-function afterCompose(P,S,v){
+function afterCompose(P,S){
   if(S==='login')return loginAfter(P);
-  if(P==='outerP')return aOuter(S,'P',v);
-  if(P==='outerL')return aOuter(S,'L',v);
+  if(P==='outerP')return aOuter(S,'P');
+  if(P==='outerL')return aOuter(S,'L');
   if(P==='innerL')return aInnerL(S,false);
   if(P==='half')return aInnerL(S,true);
   if(P==='innerP')return ST.alt?aInnerPAlt(S):aInnerP(S);
 }
 function device(P,S,mode){
   const [W,H]=DIM[P];
-  const two=mode==='after'&&(P==='innerL'||P==='half')||(mode==='after'&&P==='innerP'&&ST.alt);
-  const inner=mode==='now'?nowCompose(P,S):afterCompose(P,S,mode==='afterB'?'B':'');
-  const scr=`<div class="scr ${P} ${two?'two':''}" style="width:${W}px;height:${H}px">${inner}</div>`;
+  V3=mode!=='now';
+  const two=V3&&S!=='login'&&(P==='half'||(P==='innerL'&&S==='room'&&ST.aux)||(P==='innerP'&&ST.alt));
+  const inner=V3?afterCompose(P,S):nowCompose(P,S);
+  const meas=!V3&&P!=='half'&&convScreen(S,P,'now');
+  const scr=`<div class="scr ${P} ${two?'two':''} ${V3?'v3':''}" style="width:${W}px;height:${H}px"${meas?' data-meas="1"':''}${kbOn(S,P,mode)?' data-kb="1"':''}>${inner}</div>`;
+  V3=false;
   const padL=P==='outerP'?20:12,padT=P==='outerL'?20:12;
   const dw=W+padL+12,dh=H+padT+12;
   if(P!=='half')return {html:`<div class="dev ${P}">${scr}</div>`,w:dw,h:dh};
@@ -1084,77 +1434,109 @@ function frameHTML(P,S,mode,avail){
   const d=device(P,S,mode),s=scaleFor(d.w,avail);
   return `<div class="fscroll"><div class="fwrap" style="width:${Math.round(d.w*s)}px;height:${Math.round(d.h*s)}px"><div class="fscale" style="transform:scale(${s})">${d.html}</div></div></div>`;
 }
+/* 「지금」 그림의 대화 높이는 그린 뒤에 잰다 */
+function measureNow(){
+  document.querySelectorAll('.scr[data-meas]').forEach(scr=>{
+    const r=scr.getBoundingClientRect(),k=(r.width/scr.offsetWidth)||1;
+    const R=el=>{const b=el.getBoundingClientRect();return {x:(b.left-r.left)/k,y:(b.top-r.top)/k,w:b.width/k,h:b.height/k}};
+    let top,bot,x,w;
+    const th=scr.querySelector('.thread');
+    if(th){const b=R(th),cs=getComputedStyle(th);top=b.y+parseFloat(cs.paddingTop);bot=b.y+b.h-parseFloat(cs.paddingBottom);x=b.x;w=b.w}
+    else{const a=scr.querySelector('.apnow');if(!a)return;const A=R(a);top=A.y;bot=A.y+A.h;x=A.x;w=A.w}
+    const hh=Math.max(0,Math.round(bot-top));
+    let out=ann(x,top,w,Math.max(2,bot-top),`대화 ${hh} (그림)`,hh<40?'tl':'tr','cv');
+    if(scr.dataset.kb){
+      const s=scr.querySelector('.strip.h1');if(s){const b=R(s);out+=ann(b.x,b.y,b.w,b.h,'H1′ 하는 일 카드 44가 남음','tr','cv')}
+      const q=scr.querySelector('.qw');if(q){const b=R(q);out+=ann(b.x,b.y,b.w,b.h,'자주 쓰는 말 줄 남음','tr','cv')}
+    }
+    scr.insertAdjacentHTML('beforeend',out);
+  });
+}
 const CAP={
-  after:{outerP:'한 칸 + 오른쪽 레일. 위 머리·하단 탭이 없어 세로가 돌아옴',outerL:'높이가 낮아 압축. 탐색 화면은 검색이 탭 캡슐로, 작업 화면은 탭이 하나로',innerL:'두 칸 자동. 넓어진 만큼 확대하지 않고 목록을 옆에 둠',innerP:'HIG 예외: 세로가 충분해 위 머리 + 하단 탭. 한 칸을 넓혀 2열',half:'목록이 463으로 넓어지고 접힘 24는 비움. 단추 자리는 그대로'},
+  after:{outerP:'한 칸 + 오른쪽 레일. 머리는 큰 제목 한 줄(8–44)이나 떠 있는 알약 36뿐이고, 스크롤하면 0',outerL:'높이가 낮아 제목과 칩을 한 줄로, 할 일은 한 줄 행 44. 작업 화면은 탭이 한 칸으로',innerL:'목록 375 | 상세 491 | 레일 84. ＋새로 만들기는 목록 칸 머리로',innerP:'HIG 예외: 머리를 상태 줄과 같은 줄(24–68)에 합치고 아래 탭 320×52',half:'목록이 463으로 넓어지고 접힘 24는 비움. 단추 자리는 그대로'},
   now:{outerP:'위 머리 + 하단 캡슐 4탭. 시스템이 막대를 옮겨 주지 않음',outerL:'앱 창 폭이 678로 잡히면 600 이상이라 390 기둥(594로 잡히면 아님, 미측정). Safari는 전체 폭',innerL:'390 기둥 한 칸. 양옆이 비고 힌지가 가운데를 지남',innerP:'앱은 390 기둥 한 칸',half:'접힘이 390 기둥 한가운데를 지나감'}
 };
+const LCAP={now:{outerP:'가운데 카드 한 장. 등록 단추는 실패 때만',outerL:'앱은 390 기둥 가운데',innerL:'390 기둥 가운데, 양옆 빈 여백',innerP:'390 기둥 가운데',half:'접힘이 카드 한가운데를 지남'},after:{outerP:'막대 없는 관문. 단추 셋은 아래 엄지 자리',outerL:'왼쪽 마크 | 오른쪽 단추 셋',innerL:'왼쪽 반 로그인 카드 | 오른쪽 반 처음 쓰는 기기 3단계',innerP:'카드 420 가운데, 단추는 아래 절반',half:'왼쪽 카드 | 오른쪽 3단계, 접힘 24는 비움'}};
+function kbLine(S,P){
+  if(!convScreen(S,P,'after'))return '';
+  if(P==='half')return ST.kb?'<span class="kbl">반접힘에는 키보드를 그리지 않습니다(덤 시안).</span>':'';
+  if(P==='innerP'&&ST.alt&&ST.kb)return '<span class="kbl">결정 3 ② 두 칸 그림에는 키보드를 그리지 않습니다.</span>';
+  const c=CONV[P][ST.kb?'on':'off'],app=ST.r==='app';
+  return `<span class="kbl"><b>${ST.kb?`키보드 ${KBH[P]}${KBA[P]?'(가정)':''} 열림`:'키보드 없음'}</b> 대화 보이는 높이 · 명세(크루 방${app?'':', 홈 화면 앱 기준'}): 지금 ${c[0]} · v2 ${c[1]} · <b>v3 ${c[2]}</b> · 네이티브 ${c[3]}</span>`;
+}
 function render(){
   document.documentElement.setAttribute('data-theme',ST.t);
   document.body.classList.toggle('ann-on',!!ST.a);
+  document.body.classList.toggle('kb-on',!!ST.kb);
   $('#tgA').setAttribute('aria-pressed',ST.a);$('#tgT').setAttribute('aria-pressed',ST.t==='dark');
   segs();whatBox();
   const stage=$('#stage'),cw=stage.clientWidth||document.documentElement.clientWidth-32;
   const S=ST.s;let out='';
   for(const p of POST){
-    const app=ST.r==='app',sz=app?p.sz.app:p.sz.saf,outer=p.id==='outerP'||p.id==='outerL';
-    let cap=ST.m==='both'?`${CAP.now[p.id]} → ${CAP.after[p.id]}`:CAP[ST.m][p.id];
+    const app=ST.r==='app',sz=app?p.sz.app:p.sz.saf;
+    const capA=!app&&(p.id==='outerP'||p.id==='outerL')?'Safari: 레일 없이 큰 제목 한 줄(또는 뒤로 · 알약 · 동작 한 줄 44) + 아래 캡슐 52(바닥 8). 행과 토큰은 앱과 같음':CAP.after[p.id];
+    let cap=ST.m==='both'?`${CAP.now[p.id]} → ${capA}`:ST.m==='now'?CAP.now[p.id]:capA;
     if(S==='login')cap=LCAP[ST.m==='now'?'now':'after'][p.id];
     let alt='';
     if(p.id==='innerP'&&ST.m!=='now'&&S!=='login')alt=`<div class="altsw">결정 3 비교 <div class="seg" data-alt><button data-v="0" aria-pressed="${!ST.alt}">한 칸 넓힘</button><button data-v="1" aria-pressed="${!!ST.alt}">두 칸 260+409</button></div></div>`;
     if(S==='room'&&(p.id==='innerL'||p.id==='half')&&ST.m!=='now')alt+=`<div class="altsw">보조 열기 <div class="seg" data-aux><button data-v="0" aria-pressed="${!ST.aux}">닫힘: 목록 | 방</button><button data-v="1" aria-pressed="${!!ST.aux}">결과물 열림: 미닫이</button></div></div>`;
     if(p.id==='outerL'&&app&&ST.m!=='now'&&S!=='login')alt+=`<div class="altsw">결정 2 비교 <div class="seg" data-c390><button data-v="0" aria-pressed="${!ST.c390}">① 390 풂</button><button data-v="1" aria-pressed="${!!ST.c390}">② 390 유지</button></div></div>`;
+    if(ST.kb&&ST.m!=='now'&&['outerP','outerL','innerL'].includes(p.id)&&kbOn(S,p.id,'after'))alt+=`<div class="altsw">결정 5 비교 <div class="seg" data-d5><button data-v="0" aria-pressed="${!ST.d5}">① 닫힘 가로만 알약 숨김</button><button data-v="1" aria-pressed="${!!ST.d5}">② 레일 자세 모두 숨김</button></div></div>`;
+    if(S==='sess'&&(p.id==='innerL'||p.id==='half')&&ST.m!=='now')alt+=`<div class="altsw">결정 6 비교 <div class="seg" data-wm><button data-v="0" aria-pressed="${!ST.wm}">① 집맥만</button><button data-v="1" aria-pressed="${!!ST.wm}">② 회맥도</button></div></div>`;
     let pre='';
-    if(p.id==='outerL'&&ST.m!=='now'&&S!=='login')pre+=`<span class="nt">${app?(ST.c390?'결정 2 ②를 고른 그림: 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다.':'이 그림은 결정 2 ①(390 기둥 해제)이 전제입니다. 앱 창 폭이 678로 잡히면 styles.css:551의 600 이상 규칙에 걸리고, 594로 잡히면 걸리지 않습니다(미측정).'):'Safari는 390 기둥 규칙(홈 화면 앱 전용) 밖이라 결정 2와 상관없습니다.'}</span>`;
+    if(p.id==='outerL'&&ST.m!=='now'&&S!=='login')pre+=`<span class="nt">${app?(ST.c390?'결정 2 ②를 고른 그림: 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다.':'결정 2 ①(390 기둥 해제)이 전제입니다. 앱 창 폭이 678로 잡히면 styles.css:551의 600 이상 규칙에 걸리고, 594로 잡히면 걸리지 않습니다(미측정).'):'Safari는 390 기둥 규칙(홈 화면 앱 전용) 밖이라 결정 2와 상관없습니다.'}</span>`;
     const trig=S==='login'?'':`<span class="trig">${TRIG[p.id][app?'app':'saf']}</span>`;
+    const kbl=S==='login'?'':kbLine(S,p.id);
     const band=S==='login'?'':(app?(BAND.app[p.id]?`<div class="warnband">${BAND.app[p.id]}</div>`:''):(BAND.saf[p.id]?`<div class="infoband">${BAND.saf[p.id]}</div>`:''));
-    const withB=!app&&outer&&ST.m!=='now'&&S!=='login';
+    const aftL=`바꾼 뒤 · v3${!app&&(p.id==='outerP'||p.id==='outerL')&&S!=='login'?' · Safari 아래 캡슐':''}`;
     let body;
-    if(ST.m==='both'||withB){
-      const fr=[];
-      if(ST.m==='both')fr.push(['now','지금']);
-      fr.push(['after',withB?'바꾼 뒤 · 옆 열이 시스템 상태뿐이면(레일)':'바꾼 뒤']);
-      if(withB)fr.push(['afterB','바꾼 뒤 · 옆 열에 Safari 막대가 서면(결정 1 ②)']);
-      const d=device(p.id,S,'now'),n=fr.length,gap=18*(n-1),side=(cw-gap)/n>=d.w*.42;
-      const av=side?(cw-gap)/n:cw;
+    if(ST.m==='both'){
+      const fr=[['now','지금'],['after',aftL]];
+      const d=device(p.id,S,'now'),gap=18,side=(cw-gap)/2>=d.w*.42;
+      const av=side?(cw-gap)/2:cw;
       body=`<div class="pair">${fr.map(([m,l])=>`<div class="fone"><span class="mtag ${m==='now'?'now':'after'}">${l}</span>${frameHTML(p.id,S,m,av)}</div>`).join('')}</div>`;
-    }else body=`<div class="fone"><span class="mtag ${ST.m}">${ST.m==='now'?'지금':'바꾼 뒤'}</span>${frameHTML(p.id,S,ST.m,cw)}</div>`;
-    out+=`<article class="fcard" id="f-${p.id}"><div class="fcap"><b>${p.n}</b><span class="sz">${sz}</span><span class="nt">${cap}</span>${trig}${pre}${alt}</div>${band}${body}</article>`;
+    }else body=`<div class="fone"><span class="mtag ${ST.m}">${ST.m==='now'?'지금':aftL}</span>${frameHTML(p.id,S,ST.m,cw)}</div>`;
+    out+=`<article class="fcard" id="f-${p.id}"><div class="fcap"><b>${p.n}</b><span class="sz">${sz}</span><span class="nt">${cap}</span>${trig}${kbl}${pre}${alt}</div>${band}${body}</article>`;
   }
   stage.innerHTML=out;
+  measureNow();
   save();
 }
-const LCAP={now:{outerP:'가운데 카드 한 장. 등록 단추는 실패 때만',outerL:'앱은 390 기둥 가운데',innerL:'390 기둥 가운데, 양옆 빈 여백',innerP:'390 기둥 가운데',half:'접힘이 카드 한가운데를 지남'},after:{outerP:'막대 없는 관문. 단추 셋은 아래 엄지 자리',outerL:'왼쪽 마크 | 오른쪽 단추 셋',innerL:'왼쪽 반 로그인 카드 | 오른쪽 반 처음 쓰는 기기 3단계',innerP:'카드 420 가운데, 단추는 아래 절반',half:'왼쪽 카드 | 오른쪽 3단계, 접힘 24는 비움'}};
 const NOTES={
   login:{now:['\'이 기기 등록\'은 실패했을 때만 보임 (App.jsx:497-503)','Mac 숫자 승인은 60초 뒤 오류만 뜸 (App.jsx:466-471)','넓은 화면에서도 390 가운데 기둥'],after:['단추 셋 늘 보임: 패스키 · 이 기기 등록 · 구글','숫자 승인에 남은 시간 막대와 취소','넓은 화면은 왼쪽 카드 | 오른쪽 처음 쓰는 기기 3단계. 막대 없는 관문 (P60)']},
-  todo:{now:['확인 필요가 할 일과 나 대시보드 둘로 갈림','일정 알약은 나로만 보냄 (schedule.jsx:24)','탭 배지는 숫자 없는 6px 점 (tabbar.jsx:36-41)'],after:['맨 위 확인 필요 묶음 하나가 탭 배지·앱 배지의 단일 출처','오늘 띠를 누르면 그 자리에서 일·주·월','거르기에 \'지난 보고\' 흡수 (/history/inbox → /inbox?f=past)','펼친 가로에서 고른 업무가 없으면 오늘 요약으로 채움']},
-  chat:{now:['줄마다 마지막 말만 보임','펼친 화면에서도 목록 한 칸'],after:['줄마다 크루가 지금 하는 일 한 줄','새 방은 레일 ★ 한 자리 (P58)','펼친 가로: 목록 | 고른 방, 고른 행 강조']},
-  room:{now:['뒤로가 두 곳: 머리 \'채팅 목록으로\'(chat-live.jsx:1411-1418)와 독 왼쪽(attach.jsx:307)','방 메뉴·업무 목록·프로필이 각자 다른 시트'],after:['뒤로는 레일 맨 위 하나 (P56)','업무 목록 ★ · 크루 정보 · 결과물은 레일 캡슐, 방 메뉴는 ⋯ 하나 (P69)','펼친 가로 기본은 목록 342 | 방. 결과물을 열 때만 미닫이 [대화 | 결과물], 레일 맨 위에 목록 펴기 (\'보조 열기\' 전환)','두 칸에서 방을 고르면 기록을 쌓지 않음(go(p, true)). 닫은 뒤 뒤로는 채팅 목록']},
-  work:{now:['할 일에서 열어도 펼친 화면 왼쪽이 채팅 목록으로 바뀜 (chat-live.jsx:679-687)','확인·그만이 글자 단추로 머리에 섞임'],after:['들어온 탭의 목록을 왼쪽에 유지하고 그 행 강조','★확인(결정 대기) 또는 ★그만(진행 중)이 레일 캡슐 맨 위','결정 선택지는 글자가 핵심이라 카드 안 가로줄 그대로 (P64)','두 칸에서 행을 고르면 기록을 쌓지 않음(go(p, true)). 지금은 App.jsx:552가 매번 pushState라, 세 건 고른 뒤 닫고 뒤로 가면 직전 업무로 감 → 바꾼 뒤에는 목록']},
-  lib:{now:['찾기를 누르면 머리를 갈아 끼움 (library.jsx:93·97)','기록·결과물·문서함이 한 줄에 섞임'],after:['구분 셋 [기록 · 결과물 · 문서함]','링크 담기는 레일 ★, 찾기는 레일 검색 원(자료 범위)','펼친 가로: 목록 | 자료 상세 68ch + 관련 자료']},
-  me:{now:['확인 필요·일정 타일이 나에 있음','설정 행 이름과 화면 제목이 다름'],after:['확인 필요·일정은 할 일로 옮김','설정 행 이름 = 화면 제목(\'화면\' · \'AI 계정과 연결\')','펼친 가로: 메뉴 | AI 계정과 연결']},
-  appr:{now:['옛 받은함은 뒤로·탭이 없는 막다른 화면 (App.jsx:746-749)','다음 건으로 가려면 목록으로 돌아가야 함'],after:['할 일 상세가 됨. 레일에 이전↑·다음↓ (메일 닫힘 그림과 같은 자리)','결정하면 다음 건 자동, 목록 강조도 따라감','거절·허용은 독 바로 위 엄지 자리 가로줄']}
+  todo:{now:['확인 필요가 할 일과 나 대시보드 둘로 갈림','일정 알약은 나로만 보냄 (schedule.jsx:24)','탭 배지는 숫자 없는 6px 점 (tabbar.jsx:36-41)'],after:['큰 제목 한 줄 8–44 + 칩 48–80 + 첫 섹션 88. 첫 할 일 행 185 → 112','오늘 띠는 없애고 제목 부제 「16:00 듀오 시안 검토 외 1 ›」로. 누르면 그 자리에서 일·주·월','카드 대신 평평한 행 56(한 줄 44), 구분선은 글 시작점부터','펼친 가로: 목록 머리 44에 [거르기][＋★], 고른 업무가 없으면 오늘 요약']},
+  chat:{now:['줄마다 마지막 말만 보임','펼친 화면에서도 목록 한 칸'],after:['평평한 행 64: 1줄 이름 · 지금 하는 일 · 시각, 2줄 마지막 말','한 화면 채팅 행 7.1 → 9.8(닫힘 세로)','Mac 알림 집맥 줄에서 세션 대화로 들어감','펼친 가로: 목록 375 | 고른 방, 고른 행 옅은 강조']},
+  room:{now:['뒤로가 두 곳: 머리 \'채팅 목록으로\'(chat-live.jsx:1411-1418)와 독 왼쪽(attach.jsx:307)','머리 32 + 업무 띠 32 + 자주 쓰는 말 42 + 입력 44가 대화 높이를 나눠 씀','키보드를 올리면 하는 일 카드 한 줄과 자주 쓰는 말이 남아 대화가 67까지 줄어듦(명세 표, 닫힘 세로)'],after:['머리는 떠 있는 알약 36 하나: 아바타 · 이름 · 상태 점 · 하는 일 칩 「확인 1 · 진행 2」. 대화가 밑으로 지나감','업무 띠는 알약 칩과 레일 ★업무 목록으로, 자주 쓰는 말·모델은 ＋ 메뉴로(빈 방에서만 한 줄 32)','입력은 칸 40 한 줄: ＋36 · 안내글 「젠지에게 · 새 업무 · Opus」 · 보내기 32는 칸 안','키보드: 머리는 남기고 중간 줄 없음, 입력칸은 키보드 위 8. 닫힘 세로 대화 242(지금 67)']},
+  work:{now:['할 일에서 열어도 펼친 화면 왼쪽이 채팅 목록으로 바뀜 (chat-live.jsx:679-687)','확인·그만이 글자 단추로 머리에 섞임'],after:['알약 36: 나나 · 업무 이름 · 「결정 대기」 칩','★확인이 레일 맨 위, 원문·넘기기는 캡슐','결정 선택지는 글자가 핵심이라 카드 안 가로줄 그대로 (P64)','키보드 규칙은 크루 방과 같음']},
+  appr:{now:['옛 받은함은 뒤로·탭이 없는 막다른 화면 (App.jsx:746-749)','다음 건으로 가려면 목록으로 돌아가야 함'],after:['할 일 상세가 됨. 알약 칩 「확인 3 중 1」, 레일에 이전↑·다음↓','결정하면 다음 건 자동, 목록 강조도 따라감','거절·허용은 입력칸 바로 위 엄지 자리 가로줄 44']},
+  sess:{now:['Mac 알림방에는 세션 카드와 마지막 답 한 덩어리만 보임. 브릿지가 4,000자에서 자름','터미널에서 친 말과 앞 턴은 크루네에서 볼 수 없음','지금 보는 길은 폰 Tailscale + 키키 브릿지 웹앱(agent-bridge url)뿐'],after:['세션 카드 상세 머리에 [알림 | 대화] 전환, 기본은 대화. 새 탭은 만들지 않음(탭 캡슐 5칸 유지)','샐리 말은 오른쪽 말풍선 + 출처(터미널·크루네), AI 최종 답은 말풍선 없이 칸 폭 15/22, 도구는 이름별 횟수 한 줄','턴이 끝날 때 Mac 훅이 한 건씩 올림. 도구 입출력·파일·생각·하위 에이전트·시스템 주입은 빼고, 토큰·이메일·/Users/이름은 Mac에서 가림','화면을 열 때 30턴만 읽음(실시간 구독 없음). 턴당 4,000+8,000자, 7일 보관, 샐리만 읽기']},
+  lib:{now:['찾기를 누르면 머리를 갈아 끼움 (library.jsx:93·97)','기록·결과물·문서함이 한 줄에 섞임'],after:['구분 셋 [기록 · 결과물 · 문서함] 28','자료 행 56(썸네일 28), 구분선은 글 시작점부터','링크 담기는 레일 ★, 찾기는 탭 캡슐 끝 검색 칸(자료 범위)']},
+  me:{now:['확인 필요·일정 타일이 나에 있음','설정 행 이름과 화면 제목이 다름'],after:['확인 필요·일정은 할 일로 옮김','설정 행 44, 타일 안쪽 8/12','펼친 가로: 메뉴 | AI 계정과 연결']}
 };
 function whatBox(){
   const n=NOTES[ST.s],name=SCREENS.find(x=>x[0]===ST.s)[1];
-  $('#what').innerHTML=`<div class="box"><h3><span class="k now">지금</span>${name}에서 걸리는 점</h3><ul>${n.now.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="box"><h3><span class="k aft">바꾼 뒤</span>${name}에서 바뀌는 점</h3><ul>${n.after.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
+  $('#what').innerHTML=`<div class="box"><h3><span class="k now">지금</span>${name}에서 걸리는 점</h3><ul>${n.now.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="box"><h3><span class="k aft">바꾼 뒤 v3</span>${name}에서 바뀌는 점</h3><ul>${n.after.map(x=>`<li>${x}</li>`).join('')}</ul></div>`;
 }
 function segs(){
   const mk=(id,opts,key)=>{$(id).innerHTML=opts.map(([v,l])=>`<button data-k="${key}" data-v="${v}" aria-pressed="${ST[key]===v}">${l}</button>`).join('')};
   mk('#segS',SCREENS,'s');
   mk('#segM',[['now','지금'],['after','바꾼 뒤'],['both','나란히']],'m');
+  $('#segK').innerHTML=[['0','끔'],['1','켬']].map(([v,l])=>`<button data-kb="${v}" aria-pressed="${!!ST.kb===(v==='1')}">${l}</button>`).join('');
   mk('#segR',[['app','홈 화면 앱'],['saf','Safari']],'r');
   mk('#segZ',[['fit','맞춤'],['50','50%'],['100','100%']],'z');
 }
 
 /* ---------- 결정 질문 ---------- */
 const QS=[
-  {q:'닫힌 화면(바깥 세로·가로)에서 탭과 머리 단추를 오른쪽 세로 레일로 옮길까요?',opt:'① 오른쪽 세로 레일(위: 뒤로·새로 만들기·⋯, 아래: 탭 캡슐+검색)　② 지금 하단 캡슐 유지',rec:'① 레일. HIG가 측면 막대를 듀오의 핵심 패턴이라 하고 기본 막대 배치를 바꾸지 말라고 함(P09·P22·P50·P59). 594×406 크루 방의 대화 높이가 약 244에서 286으로 늘어남(추정).',flip:'나나의 실측에서 웹이 듀오 바깥과 보통 아이폰을 구분할 신호가 없으면 ②. 기하 판정 ②는 screen.width/height로만 재는데, 듀오 Safari에서 screen.*가 382×618(1.62)로 나오면 Safari 닫힘 세로는 ②. Safari 막대가 레일과 같은 쪽에 서도 Safari만 ②(시안의 오른쪽 그림). 실측 전에는 ?bars=side 개발 플래그로만 켭니다.',see:[['할 일 · 닫힘 세로 (Safari, 레일과 ② 나란히)',{s:'todo',m:'after',r:'saf'},'f-outerP'],['크루 방 · 594×406 압축 (Safari)',{s:'room',m:'both',r:'saf'},'f-outerL'],['홈 화면 앱으로 보기 (열 84 미측정)',{s:'todo',m:'both',r:'app'},'f-outerP']]},
-  {q:'듀오 터치 화면 전체(닫힘 가로 홈 화면 앱, 안쪽 951·669)에서 10/18에 정한 \'390 가운데 기둥\'을 풀까요? Mac 앱 창은 그대로 둡니다.',opt:'① 듀오 터치 전체에서 풂, Mac 앱 창(마우스)은 390 유지　② 모두 유지　③ 모두 풂',rec:'① 듀오 터치만 풂. 10/18의 이유(\'매번 똑같아야\')는 Mac 앱 창에서 지키고, 넓은 화면에서는 빈 여백 대신 목록+상세를 보여 줌.',flip:'951 시안을 보고도 \'폰과 똑같이 보여야\'가 더 중요하면 ②. 그러면 안쪽 확장(두 칸·짝수 열)은 멈추고, 닫힘 가로 앱도 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다(볼 곳 셋째). 390 규칙(styles.css:551)은 홈 화면 앱·폭 600 이상에만 걸려 Safari와 닫힘 세로는 영향이 없습니다. 닫힘 가로 앱 폭이 678로 잡히면 걸리고 594로 잡히면 안 걸립니다(미측정).',see:[['업무 상세 · 펼친 가로 나란히',{s:'work',m:'both'},'f-innerL'],['할 일 · 펼친 가로(오늘 요약)',{s:'todo',m:'both'},'f-innerL'],['닫힘 가로 앱 · ②면 390 기둥 안 레일(내용 326)',{s:'todo',m:'after',r:'app',c390:true},'f-outerL']]},
-  {q:'펼친 세로(669×951)에서 한 칸을 넓혀 쓸까요, 목록과 상세를 두 칸으로 나눌까요?',opt:'① 한 칸 넓힘(카드 2열, 위 머리 + 하단 탭)　② 목록 260 + 상세 409 두 칸',rec:'① 한 칸 넓힘. HIG는 높이가 더 긴 영역은 위아래로 나눈다고 함(P42). 상세 409는 말풍선과 카드가 좁음.',flip:'안쪽을 세로로 쥔 채 확인 필요를 연달아 처리하는 일이 잦으면 ②. 실측 폭이 720 이상이라 상세가 400 넘게 나와도 ②.',see:[['할 일 · 한 칸 넓힘',{s:'todo',m:'after',alt:false},'f-innerP'],['할 일 · 두 칸 대안',{s:'todo',m:'after',alt:true},'f-innerP'],['크루 방 · 두 칸 대안',{s:'room',m:'after',alt:true},'f-innerP']]},
-  {q:'앱을 열면 처음 보이는 화면을 무엇으로 할까요? 코드 안에서 \'/\'의 뜻이 채팅과 받은함으로 엇갈려 있어 하나로 정해야 합니다.',opt:'① 할 일(맨 위 확인 필요 묶음)　② 채팅(지금 그대로)',rec:'① 할 일. 기다리는 Mac 승인과 결정이 첫 화면에 바로 보이고, 951 두 칸에서는 열자마자 확인 필요와 오늘 요약이 나란히 보임.',flip:'최근 2주 열기 기록에서 하루 첫 동작이 크루 방 지시인 날이 더 많으면 ② 채팅 유지.',see:[['할 일 첫 화면 · 펼친 가로',{s:'todo',m:'after'},'f-innerL'],['채팅 첫 화면 · 펼친 가로',{s:'chat',m:'after'},'f-innerL'],['할 일 · 닫힘 세로',{s:'todo',m:'after'},'f-outerP']]}
+  {tag:'v2',q:'닫힌 화면(바깥 세로·가로)에서 탭과 머리 단추를 오른쪽 세로 레일로 옮길까요?',opt:'① 오른쪽 세로 레일(위: 뒤로·새로 만들기·⋯, 아래: 탭 캡슐 + 검색 끝 칸)　② 지금 하단 캡슐 유지',rec:'① 레일. HIG가 측면 막대를 듀오의 핵심 패턴이라 하고 기본 막대 배치를 바꾸지 말라고 함(P09·P22·P50·P59). v3 시안에서 닫힘 세로 크루 방 대화 높이가 지금 367에서 562로 늘어남.',flip:'나나의 실측에서 웹이 듀오 바깥과 보통 아이폰을 구분할 신호가 없으면 ②. Safari는 시스템 띠 위에 레일을 또 그리지 않고 아래 캡슐 52를 씁니다. 실측 전에는 ?bars=side 개발 플래그로만 켭니다.',see:[['할 일 · 닫힘 세로 나란히',{s:'todo',m:'both',r:'app'},'f-outerP'],['크루 방 · 닫힘 가로 나란히',{s:'room',m:'both',r:'app'},'f-outerL'],['Safari 보기 · 아래 캡슐',{s:'todo',m:'after',r:'saf'},'f-outerP']]},
+  {tag:'v2',q:'듀오 터치 화면 전체(닫힘 가로 홈 화면 앱, 안쪽 951·669)에서 10/18에 정한 \'390 가운데 기둥\'을 풀까요? Mac 앱 창은 그대로 둡니다.',opt:'① 듀오 터치 전체에서 풂, Mac 앱 창(마우스)은 390 유지　② 모두 유지　③ 모두 풂',rec:'① 듀오 터치만 풂. 10/18의 이유(\'매번 똑같아야\')는 Mac 앱 창에서 지키고, 넓은 화면에서는 빈 여백 대신 목록 + 상세를 보여 줌.',flip:'951 시안을 보고도 \'폰과 똑같이 보여야\'가 더 중요하면 ②. 그러면 안쪽 두 칸은 멈추고, 닫힘 가로 앱도 390 기둥 안에 레일이 들어가 내용이 326으로 줄어듭니다(볼 곳 셋째).',see:[['업무 상세 · 펼친 가로 나란히',{s:'work',m:'both',r:'app'},'f-innerL'],['할 일 · 펼친 가로(오늘 요약)',{s:'todo',m:'both',r:'app'},'f-innerL'],['닫힘 가로 앱 · ②면 390 기둥 안 레일',{s:'todo',m:'after',r:'app',c390:true},'f-outerL']]},
+  {tag:'v2',q:'펼친 세로(669×951)에서 한 칸을 넓혀 쓸까요, 목록과 상세를 두 칸으로 나눌까요?',opt:'① 한 칸 넓힘(카드 2열, 합친 줄 + 아래 탭)　② 목록 260 + 상세 409 두 칸',rec:'① 한 칸 넓힘. HIG는 높이가 더 긴 영역은 위아래로 나눈다고 함(P42). 상세 409는 말풍선과 카드가 좁음. 목록은 합친 줄 왼쪽 원으로 겹침 패널 320을 엶.',flip:'안쪽을 세로로 쥔 채 확인 필요를 연달아 처리하는 일이 잦으면 ②. 실측 폭이 720 이상이라 상세가 400 넘게 나와도 ②.',see:[['할 일 · 한 칸 넓힘',{s:'todo',m:'after',r:'app',alt:false},'f-innerP'],['할 일 · 두 칸 대안',{s:'todo',m:'after',r:'app',alt:true},'f-innerP'],['크루 방 · 두 칸 대안',{s:'room',m:'after',r:'app',alt:true},'f-innerP']]},
+  {tag:'v2',q:'앱을 열면 처음 보이는 화면을 무엇으로 할까요? 코드 안에서 \'/\'의 뜻이 채팅과 받은함으로 엇갈려 있어 하나로 정해야 합니다.',opt:'① 할 일(맨 위 확인 필요 묶음)　② 채팅(지금 그대로)',rec:'① 할 일. 기다리는 Mac 승인과 결정이 첫 화면에 바로 보이고, 951 두 칸에서는 열자마자 확인 필요와 오늘 요약이 나란히 보임.',flip:'최근 2주 열기 기록에서 하루 첫 동작이 크루 방 지시인 날이 더 많으면 ② 채팅 유지.',see:[['할 일 첫 화면 · 펼친 가로',{s:'todo',m:'after',r:'app'},'f-innerL'],['채팅 첫 화면 · 펼친 가로',{s:'chat',m:'after',r:'app'},'f-innerL'],['할 일 · 닫힘 세로',{s:'todo',m:'after',r:'app'},'f-outerP']]},
+  {tag:'new',q:'키보드가 열리면 방 이름 알약을 숨길까요?',opt:'① 닫힘 가로만 숨김　② 레일 자세 모두 숨김(대화가 닫힘 세로 +36 → 278, 펼침 가로 +44 → 327). 펼침 세로는 그 줄에 목록 원이 있어 어느 쪽이든 남김',rec:'① 닫힘 가로만. 네이티브 메시지도 키보드가 떠 있는 동안 머리를 지킴(녹화 v1 12.40–12.59s). 닫힘 가로는 키보드 뒤 높이가 256뿐이라 알약 36을 내줌.',flip:'실기에서 키보드 때 대화가 아직 좁다고 느끼면 ②.',see:[['크루 방 · 키보드 켬 · 닫힘 세로 나란히',{s:'room',m:'both',r:'app',kb:true},'f-outerP'],['크루 방 · 키보드 켬 · 펼침 가로',{s:'room',m:'after',r:'app',kb:true},'f-innerL'],['② 레일 자세 모두 숨김으로 보기',{s:'room',m:'after',r:'app',kb:true,d5:true},'f-outerP']]},
+  {tag:'new',q:'회맥 세션 대화도 크루네에 올릴까요?',opt:'① 집맥만　② 회맥도',rec:'① 집맥만. 회맥 터미널에 친 말에는 회사 자료가 섞일 수 있고, 올리면 Google 클라우드를 거쳐 7일 보관됨.',flip:'회맥에서 이어 말하기를 자주 쓰고 회사 정책상 문제가 없다고 판단하면 ②. 그러면 Mac 알림 목록 머리에 [집맥 | 회맥]이 생김.',see:[['세션 대화 · 펼침 가로 목록 칸 머리',{s:'sess',m:'after',r:'app'},'f-innerL'],['② 회맥도 올리면',{s:'sess',m:'after',r:'app',wm:true},'f-innerL'],['세션 대화 · 닫힘 세로 나란히',{s:'sess',m:'both',r:'app'},'f-outerP']]}
 ];
 function qsRender(){
-  $('#qs').innerHTML=QS.map((q,i)=>`<article class="q"><span class="qn">결정 ${i+1}</span><h3>${q.q}</h3><dl><dt>고를 것</dt><dd>${q.opt}</dd><dt>추천</dt><dd>${q.rec}</dd><dt>뒤집힐 때</dt><dd>${q.flip}</dd></dl><div><div class="shs" style="margin:0 0 6px;font-size:13px">시안에서 볼 곳</div><div class="gos">${q.see.map((s,j)=>`<button class="go" data-q="${i}" data-j="${j}">${ico('chev',{s:14})}${s[0]}</button>`).join('')}</div></div></article>`).join('');
+  $('#qs').innerHTML=QS.map((q,i)=>`<article class="q"><span class="qn">결정 ${i+1}<span class="qt ${q.tag==='new'?'new':''}">${q.tag==='new'?'v3 새 결정':'v2에서 이어짐 · 추천 ①로 그림'}</span></span><h3>${q.q}</h3><dl><dt>고를 것</dt><dd>${q.opt}</dd><dt>추천</dt><dd>${q.rec}</dd><dt>뒤집힐 때</dt><dd>${q.flip}</dd></dl><div><div class="shs" style="margin:0 0 6px;font-size:13px">시안에서 볼 곳</div><div class="gos">${q.see.map((s,j)=>`<button class="go" data-q="${i}" data-j="${j}">${ico('chev',{s:14})}${s[0]}</button>`).join('')}</div></div></article>`).join('');
 }
 
 /* ---------- 이벤트 ---------- */
@@ -1162,10 +1544,9 @@ const $=s=>document.querySelector(s);
 document.addEventListener('click',e=>{
   const b=e.target.closest('button,[data-go]');if(!b)return;
   if(b.dataset.k){const k=b.dataset.k;ST[k]=b.dataset.v;render();return}
-  if(b.closest('[data-alt]')&&b.dataset.v!==undefined){ST.alt=b.dataset.v==='1';render();return}
-  if(b.closest('[data-aux]')&&b.dataset.v!==undefined){ST.aux=b.dataset.v==='1';render();return}
-  if(b.closest('[data-c390]')&&b.dataset.v!==undefined){ST.c390=b.dataset.v==='1';render();return}
-  if(b.dataset.q!==undefined){const s=QS[+b.dataset.q].see[+b.dataset.j];Object.assign(ST,{aux:false,c390:false},s[1]);render();const el=document.getElementById(s[2]);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
+  if(b.dataset.kb!==undefined){ST.kb=b.dataset.kb==='1';render();return}
+  for(const key of ['alt','aux','c390','d5','wm']){if(b.closest(`[data-${key}]`)&&b.dataset.v!==undefined){ST[key]=b.dataset.v==='1';render();return}}
+  if(b.dataset.q!==undefined){const s=QS[+b.dataset.q].see[+b.dataset.j];Object.assign(ST,{aux:false,c390:false,kb:false,d5:false,wm:false,alt:false},s[1]);render();const el=document.getElementById(s[2]);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});return}
   if(b.id==='tgA'){ST.a=!ST.a;render();return}
   if(b.id==='tgT'){ST.t=ST.t==='dark'?'light':'dark';render();return}
   if(b.dataset.go){const g=b.dataset.go;if(SCREENS.some(x=>x[0]===g)){ST.s=g;render()}}
