@@ -94,8 +94,9 @@ function makeSelectedMail(){
     preheader:data.week+' 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
     week:data.week,name:p.name,awards:p.awards,total:'모바일 상품권 '+WeeklySheet.money(p.total),prize:WeeklySheet.personPrize(p),
     receipt:$('receiptVersion').value==='custom'?$('receipt').value:RECEIPTS[receiptVersion],bizno:$('bizno').value||DEFAULTS.bizno};
-  KEYS.forEach(k=>$(k).value=v[k]);setMode(false);syncReceiptVersion();
-  sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인한 뒤 복사해 주세요. 이메일 주소는 시트에 없어 자동 입력하지 않아요.');
+  // A new person never inherits the previous recipient's address.
+  KEYS.forEach(k=>$(k).value=v[k]);$('to').value='';setMode(false);syncReceiptVersion();
+  sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인해 주세요. 이메일 주소는 시트에 없어 자동 입력하지 않아요. 받는 메일 주소를 넣고 「메일로 보내기」를 누르면 support 계정 초안이 만들어져요.');
 }
 $('sheetWeek').onchange=updatePeople;
 $('sheetPerson').onchange=()=>sheetMessage('선택한 대상자: '+$('sheetPerson').selectedOptions[0]?.textContent+'\n‘선택한 분의 메일 만들기’를 눌러 양식에 반영해 주세요.');
@@ -103,7 +104,7 @@ $('makeMail').onclick=makeSelectedMail;
 $('forgetSheet').onclick=()=>{
   if(!confirm('이 브라우저에 가져온 모든 주차 명단과 현재 메일 초안을 지울까요? 원본 시트는 바뀌지 않아요.'))return;
   weeks={};try{sessionStorage.removeItem(SHEET_STORE);sessionStorage.removeItem(STORE);localStorage.removeItem(STORE);}catch(e){}
-  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
+  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
   sheetMessage('가져온 명단과 현재 메일 초안을 지웠어요. 원본 시트는 바뀌지 않았어요.');
 };
 $('receiptVersion').onchange=()=>{

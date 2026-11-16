@@ -57,7 +57,8 @@ select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--
     <div class="sub">내용을 고치면 오른쪽 미리보기가 바로 바뀌어요. 고친 내용과 가져온 명단은 이 창에만 저장돼요. 창을 닫기 전에 필요한 메일을 복사해 주세요.</div>
   </div>
   <div class="actions">
-    <button class="primary" id="copyHtml">HTML 소스 복사</button>
+    <button class="primary" id="sendMail">메일로 보내기</button>
+    <button id="copyHtml">HTML 소스 복사</button>
     <button id="copyRich">메일 본문으로 복사</button>
     <button id="download">메일 HTML 받기</button>
     <a class="editor-download" id="downloadEditor" href="c8-weeklybest-mail.html" download="c8-weeklybest-mail.html" aria-describedby="editorDownloadHelp">전체 기능 HTML 받기</a>
@@ -93,6 +94,8 @@ select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--
     <div id="paneForm">
       <fieldset>
         <legend>메일 정보</legend>
+        <label for="to">받는 메일 주소 <span class="hint">「메일로 보내기」는 support@cre8orclub.com Gmail에 이 주소로 초안을 만들어요</span></label>
+        <input id="to" type="email" autocomplete="off" spellcheck="false" placeholder="name@example.com">
         <label for="subject">메일 제목</label>
         <div class="copyline"><input id="subject"><button id="copySubject">복사</button></div>
         <label for="preheader">받은편지함 미리보기 문장 <span class="hint">제목 옆에 보이는 한 줄</span></label>
@@ -455,12 +458,13 @@ function values(){const v={};KEYS.forEach(k=>v[k]=$(k).value);return v}
 function current(){return rawMode?$('raw').value:build(values())}
 function render(){
   $('frame').srcdoc=current().split(LOGO).join(LOGO_PREVIEW).replace(/<link rel="stylesheet"[^>]*>/g, "");
-  try{sessionStorage.setItem(STORE,JSON.stringify({tpl:TPL,v:values(),raw:rawMode?$('raw').value:null,rawMode}))}catch(e){}
+  try{sessionStorage.setItem(STORE,JSON.stringify({tpl:TPL,v:values(),to:$('to').value,raw:rawMode?$('raw').value:null,rawMode}))}catch(e){}
 }
 function load(){
   let saved=null;
   try{saved=JSON.parse(sessionStorage.getItem(STORE)||localStorage.getItem(STORE)||'null')}catch(e){}
   KEYS.forEach(k=>$(k).value=(saved&&saved.v&&saved.v[k]!=null)?saved.v[k]:DEFAULTS[k]);
+  $('to').value=typeof saved?.to==='string'?saved.to:'';
   if(OLD_SUBJECTS.includes($('subject').value))$('subject').value=DEFAULTS.subject;
   $('subject').value=$('subject').value.replace(/^\[크리에이터클럽\]/,'[Cre8orClub]');
   $('prize').value=WeeklySheet.formatPrize($('prize').value);
@@ -497,9 +501,27 @@ $('tabForm').onclick=()=>{if(rawMode&&!confirm('직접 고친 HTML 대신 양식
 $('tabRaw').onclick=()=>{if(!rawMode)setMode(true)};
 $('copyHtml').onclick=()=>copyText(current(),'HTML 소스를 복사했어요.');
 $('copyRich').onclick=copyRich;
+/* Same support-owned Apps Script as the content seeding editor: it previews the final HTML and saves a Gmail draft; sending stays manual. */
+const GMAIL_DRAFT_APP='https://script.google.com/a/macros/cre8orclub.com/s/AKfycby9_TmSRVoniuZOp-sriT6IXlhlI-OLBYHBOt76IISTrRTQxAagttdxuk1GWQWOS5L3/exec';
+function sendMail(){
+  const to=$('to').value.trim(),subject=$('subject').value.trim(),html=current();
+  if(!/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(to)){toast('받는 메일 주소를 먼저 입력해 주세요.');$('to').focus();return;}
+  if(!subject||/[\r\n]/.test(subject)){toast('메일 제목을 확인해 주세요.');$('subject').focus();return;}
+  if(!/<table\b/i.test(html)){toast('메일 양식을 확인해 주세요.');return;}
+  const text=$('frame').contentDocument?.body?.innerText||'';
+  const app=new URL(GMAIL_DRAFT_APP);
+  app.hash=encodeURIComponent(JSON.stringify({requestId:crypto.randomUUID(),to,subject,html,text}));
+  if(app.href.length>250000){toast('메일 양식이 너무 커요. 「메일 본문으로 복사」를 이용해 주세요.');return;}
+  const opened=window.open(app.href,'_blank');
+  if(!opened){toast('새 창이 차단됐어요. 팝업을 허용한 뒤 다시 눌러 주세요.');return;}
+  try{opened.opener=null;}catch(e){}
+  toast('새 창에서 최종 양식을 확인하고 「초안 만들기」를 눌러 주세요.');
+}
+$('sendMail').onclick=sendMail;
+$('to').addEventListener('input',render);
 $('copySubject').onclick=()=>copyText($('subject').value,'제목을 복사했어요.');
 $('download').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([current()],{type:'text/html'}));a.download='위클리베스트_수상안내메일.html';a.click();URL.revokeObjectURL(a.href)};
-$('reset').onclick=()=>{if(!confirm('고친 내용을 모두 지우고 처음 양식으로 돌아갈까요?'))return;try{sessionStorage.removeItem(STORE);localStorage.removeItem(STORE)}catch(e){}KEYS.forEach(k=>$(k).value=DEFAULTS[k]);setMode(false)};
+$('reset').onclick=()=>{if(!confirm('고친 내용을 모두 지우고 처음 양식으로 돌아갈까요?'))return;try{sessionStorage.removeItem(STORE);localStorage.removeItem(STORE)}catch(e){}KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';setMode(false)};
 $('wDesk').onclick=()=>{$('frame').style.width='640px';$('wDesk').setAttribute('aria-pressed','true');$('wMobile').setAttribute('aria-pressed','false')};
 $('wMobile').onclick=()=>{$('frame').style.width='390px';$('wMobile').setAttribute('aria-pressed','true');$('wDesk').setAttribute('aria-pressed','false')};
 load();
@@ -614,8 +636,9 @@ function makeSelectedMail(){
     preheader:data.week+' 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
     week:data.week,name:p.name,awards:p.awards,total:'모바일 상품권 '+WeeklySheet.money(p.total),prize:WeeklySheet.personPrize(p),
     receipt:$('receiptVersion').value==='custom'?$('receipt').value:RECEIPTS[receiptVersion],bizno:$('bizno').value||DEFAULTS.bizno};
-  KEYS.forEach(k=>$(k).value=v[k]);setMode(false);syncReceiptVersion();
-  sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인한 뒤 복사해 주세요. 이메일 주소는 시트에 없어 자동 입력하지 않아요.');
+  // A new person never inherits the previous recipient's address.
+  KEYS.forEach(k=>$(k).value=v[k]);$('to').value='';setMode(false);syncReceiptVersion();
+  sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인해 주세요. 이메일 주소는 시트에 없어 자동 입력하지 않아요. 받는 메일 주소를 넣고 「메일로 보내기」를 누르면 support 계정 초안이 만들어져요.');
 }
 $('sheetWeek').onchange=updatePeople;
 $('sheetPerson').onchange=()=>sheetMessage('선택한 대상자: '+$('sheetPerson').selectedOptions[0]?.textContent+'\n‘선택한 분의 메일 만들기’를 눌러 양식에 반영해 주세요.');
@@ -623,7 +646,7 @@ $('makeMail').onclick=makeSelectedMail;
 $('forgetSheet').onclick=()=>{
   if(!confirm('이 브라우저에 가져온 모든 주차 명단과 현재 메일 초안을 지울까요? 원본 시트는 바뀌지 않아요.'))return;
   weeks={};try{sessionStorage.removeItem(SHEET_STORE);sessionStorage.removeItem(STORE);localStorage.removeItem(STORE);}catch(e){}
-  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
+  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
   sheetMessage('가져온 명단과 현재 메일 초안을 지웠어요. 원본 시트는 바뀌지 않았어요.');
 };
 $('receiptVersion').onchange=()=>{
