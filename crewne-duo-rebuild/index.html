@@ -1326,12 +1326,38 @@ body.grid-on .ann.cc{display:block}
 .v5 .tail-pop.t8.deep>.t8fill{flex-shrink:1}
 .face.cut8{transform:scale(1.18);transform-origin:50% 100%}
 
+/* ===== v9 덧칠 CSS ===== */
+/* 2 지금 일 묶음 */
+.j9-sum{display:flex;align-items:center;gap:6px;margin:2px 0 8px}
+.j9-d{font:400 12px/16px var(--font);color:var(--muted);margin-left:2px}
+.j9g{border-radius:12px;background:var(--surface);padding:4px 12px;margin-bottom:8px}
+.j9h{display:flex;align-items:center;gap:6px;height:32px;font:600 13px/16px var(--font);color:var(--muted)}
+.j9h b{color:var(--text)}
+.j9h span{margin-left:auto;font:600 12px/16px var(--font)}
+.j9r{display:flex;align-items:center;gap:10px;min-height:44px;box-shadow:inset 0 .5px 0 var(--hairline)}
+.j9dot{flex:none;width:8px;height:8px;border-radius:4px;background:#8e8e93}
+.j9dot.run{background:#34c759}.j9dot.wait{background:var(--accent)}
+.j9t{flex:1 1 auto;min-width:0;display:flex;flex-direction:column}
+.j9t b{font:600 13.5px/18px var(--font);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.j9t em{font:normal 400 12px/16px var(--font);color:var(--muted)}
+/* 3 크루 지금 요약이 머리와 안 겹치게 */
+.v5 .mcard.cn7{padding-top:12px}
+.cn7-sum{flex-wrap:wrap;row-gap:4px}
+.v5 .mcol>.gh+.mcard.cn7{margin-top:4px}
+/* 5 일반 아이폰 */
+.dev.phone{border-radius:66px}
+.scr.phone{border-radius:55px}
+.ph9in{position:absolute;left:0;width:393px}
+.sbar.ph9{height:54px;padding:0 34px}
+.ph9home{position:absolute;left:129px;bottom:8px;width:135px;height:5px;border-radius:3px;background:var(--text);opacity:.85;z-index:9}
+.ph9now{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:40px;text-align:center;font:500 15px/22px var(--font);color:var(--muted)}
+
 </style>
 </head>
 <body>
 <header class="wrap top">
-  <h1>크루네 듀오 시안 v8 — 지금과 바꾼 뒤</h1>
-  <p><b>v8 (11/16 새벽)</b> — ⚡ 토큰은 고른 말의 약어(UT·다워) · ⚡ 칸은 낮은 화면에서 2단계(메뉴 → 붙일 말), 높은 화면은 칸 전체 스크롤 · 크루 얼굴은 동그라미 없는 누끼(프로필은 몸 전체) · 집맥·회맥은 아이콘만.</p><p><b>v7 (11/16 새벽)</b> — 질문 카드 겹침 수정 · 「직접 입력」 글자만 · 펼친 세로 머리를 펼친 가로와 같게, 아래 탭은 목록과 겹치지 않는 자리 · 여러 요청을 모아 한 번에 맡기기 · 꼬리말 약어 · ⚡ 칸 말 12개·긴 문장·네모 체크 · 자료 유형은 아이콘만 · 나 화면 크루별 진행·대기·끝남 · 크루 프로필 화면(「크루 프로필」).</p><p><b>v6 (11/16)</b> — 피드백 여섯 가지: ① 답할 때 「직접 입력」을 늘 같이 둡니다 ② 펼친 세로 채팅은 파일 앱 열 보기처럼 목록 1/3 | 대화 2/3로 나란히(덮기도 비교) ③ 거절·허용 단추는 글자 폭에 맞춘 36 ④ 자료 카드는 한 크기로 한 줄 3~5장, 보기는 격자·목록·열 ⑤ 자료에 담은 크루의 한마디·원본·보고서 연결·외부 링크(막히면 캡처) ⑥ 입력부 ⚡ 상태 15가지와 운영 기능 11가지가 옮겨 갈 자리(크루 방 화면 아래). 아래는 v5 설명입니다.</p>
+  <h1>크루네 듀오 시안 v9 — 지금과 바꾼 뒤</h1>
+  <p><b>v9 (11/16 오전)</b> — 접힘 축 피하기로 생기던 빈 공백 없앰 · 크루 프로필 「지금 일」은 업무별 묶음 · 나 화면 겹침 수정, 샐리 줄 없이 메뉴를 밖으로 · <b>일반 아이폰 393×852 틀 추가</b>(듀오와 같은 부품, 레일 대신 아래 탭) · PC 크루네는 펼친 가로 화면을 그대로 씀.</p><p><b>v8 (11/16 새벽)</b> — ⚡ 토큰은 고른 말의 약어(UT·다워) · ⚡ 칸은 낮은 화면에서 2단계(메뉴 → 붙일 말), 높은 화면은 칸 전체 스크롤 · 크루 얼굴은 동그라미 없는 누끼(프로필은 몸 전체) · 집맥·회맥은 아이콘만.</p><p><b>v7 (11/16 새벽)</b> — 질문 카드 겹침 수정 · 「직접 입력」 글자만 · 펼친 세로 머리를 펼친 가로와 같게, 아래 탭은 목록과 겹치지 않는 자리 · 여러 요청을 모아 한 번에 맡기기 · 꼬리말 약어 · ⚡ 칸 말 12개·긴 문장·네모 체크 · 자료 유형은 아이콘만 · 나 화면 크루별 진행·대기·끝남 · 크루 프로필 화면(「크루 프로필」).</p><p><b>v6 (11/16)</b> — 피드백 여섯 가지: ① 답할 때 「직접 입력」을 늘 같이 둡니다 ② 펼친 세로 채팅은 파일 앱 열 보기처럼 목록 1/3 | 대화 2/3로 나란히(덮기도 비교) ③ 거절·허용 단추는 글자 폭에 맞춘 36 ④ 자료 카드는 한 크기로 한 줄 3~5장, 보기는 격자·목록·열 ⑤ 자료에 담은 크루의 한마디·원본·보고서 연결·외부 링크(막히면 캡처) ⑥ 입력부 ⚡ 상태 15가지와 운영 기능 11가지가 옮겨 갈 자리(크루 방 화면 아래). 아래는 v5 설명입니다.</p>
   <p>v4를 듀오에서 본 피드백 열한 가지를 반영했습니다. 할 일은 칩이 「누구」(전체 · 나 · 크루)만 거르고, 묶음 머리는 숫자와 상태만 말해서 같은 말이 두 자리에 나오지 않습니다. 확인 필요는 정할 질문과 답 단추가 바로 보이는 질문 카드가 됐고, 펼친 가로의 「오늘」 요약과 혼자 떠 있던 ⋯는 없앴습니다. 두 길이 다 열려 있는 것은 결정 9~11로 남겼고, 각 추천으로 그렸습니다. 시안 아래 전환 단추로 다른 안을 바로 볼 수 있습니다.</p>
   <div class="facts">
     <span class="fact"><b>기본 보기</b> 홈 화면 앱(레일). 웹 382 배치·Safari도 전환</span>
@@ -1602,7 +1628,7 @@ const BAND={
   saf:{outerP:'Safari 웹 화면 382×618은 에뮬레이터 값입니다. 오른쪽 84 띠에 Safari 막대가 선다고 보고 레일 대신 아래 캡슐을 씁니다. 행과 토큰은 앱과 같습니다.',outerL:'Safari 웹 화면 594×406은 에뮬레이터 값입니다. 레일 대신 아래 캡슐 52(바닥 8)를 씁니다.'}
 };
 const ST={s:'todo',m:'after',r:'app',a:false,z:'fit',t:'light',alt:false,aux:false,c390:false,kb:false,d5:false,wm:false,hd:'A',sc:false,tail:'3',tk:false,plus:false,grid:false,rec:false,d9:'B',d10:'1',d11:'1',nq:'3',pr:false,tp:false,tw:[],tsc:'once',cbx:false,th:'A',lb:'1',qa:{}};
-const SKEY='crewne-duo-mock-v8';
+const SKEY='crewne-duo-mock-v9';
 function load(){
   try{const v=JSON.parse(localStorage.getItem(SKEY)||'{}');Object.assign(ST,v)}catch(e){}
   const h=new URLSearchParams(location.hash.slice(1));
@@ -3004,7 +3030,7 @@ function render(){
     const kbl=S==='login'?'':kbLine(S,p.id);
     const bt=R==='saf'?BAND.saf[p.id]:R==='app382'?(BAND.a382[p.id]||BAND.app[p.id]):BAND.app[p.id];
     const band=S==='login'||!bt?'':`<div class="${R==='saf'?'infoband':'warnband'}">${bt}</div>`;
-    const aftL=`바꾼 뒤 · v8${outer&&S!=='login'?(R==='saf'?' · Safari 아래 캡슐':R==='app382'?' · 웹 382 배치':''):''}`;
+    const aftL=`바꾼 뒤 · v9${outer&&S!=='login'?(R==='saf'?' · Safari 아래 캡슐':R==='app382'?' · 웹 382 배치':''):''}`;
     let body;
     if(ST.m==='both'){
       const fr=[['now','지금'],['after',aftL]];
@@ -3533,6 +3559,70 @@ face=function(id,s=32){
 const body=(id,h)=>`<img class="body8" src="${CUT[id].body}" alt="" style="height:${h}px">`;
 const _crewView=crewView;
 crewView=function(){return _crewView().replace(/(<section class="cp7-hero m3blk">)<img class="face cut8"[^>]*>/,`$1<span class="cp8-fig">${body(PROF.c,132)}</span>`)};
+
+/* ===================== v9 덧칠 — 샐리 11/16 10시 =====================
+   1 접힘 축 피하기로 생기던 빈 공백 없앰(크루 프로필 · 나)
+   2 크루 프로필 「지금 일」: 숫자 넷 → 한 줄 요약 + 업무별 묶음
+   3 나(펼친 가로) 크루 지금 요약이 머리와 겹치던 것 수정
+   4 나(펼친 세로) 샐리 줄 빼고 메뉴를 밖으로(뎁스 없음)
+   5 일반 아이폰(393×852) 틀 추가 — 듀오와 같은 부품, 레일 대신 아래 탭. PC는 펼친 가로와 같은 화면  */
+
+/* 1 공백: 접힘 축 밀어내기 끔 */
+m3Fix=function(){document.querySelectorAll('.v5 .qc.wide').forEach(c=>{const a=c.querySelector('.qc-a');if(a)c.classList.toggle('wrap',a.offsetHeight>40)})};
+
+/* 2 지금 일: 업무별 묶음 */
+const JOBS=[
+  {t:'위클리 베스트 11월 2주',items:[['표지 2안','샐리 답 기다림 · 18분','wait'],['게시 문구 15자로 줄이기','진행 중 · 방금','run']]},
+  {t:'11월 3주 카드뉴스',items:[['문구 시안','샐리 확인 전 · 어제','wait']]}];
+crewView=(function(prev){return function(){
+  const s=prev();
+  const now=`<section class="m3blk dsec">${grpHead('지금 일',JOBS.length)}<div class="j9-sum"><span class="cs run"><i></i>진행 1</span><span class="cs wait"><i></i>대기 2</span><span class="j9-d">오늘 끝남 1</span></div>${JOBS.map(j=>`<div class="j9g"><div class="j9h">${ico('doing',{s:14})}<b>${j.t}</b><span>${j.items.length}</span></div>${j.items.map(([t,m,k])=>`<div class="j9r"><span class="j9dot ${k}"></span><span class="j9t"><b>${t}</b><em>${m}</em></span>${k==='wait'?'<button class="qopt sm">답하기</button>':''}</div>`).join('')}</div>`).join('')}</section>`;
+  return s.replace(/<section class="m3blk dsec">(?:(?!<section)[\s\S])*?지금 일[\s\S]*?<\/section>/,now);
+}})(crewView);
+
+/* 4 나(펼친 세로): 샐리 줄 없이, 설정 메뉴를 위로 꺼냄 */
+meDash=(function(prev){return function(P){
+  if(P!=='innerP')return prev(P);
+  return `<div class="medash ip m3band"><div class="medash-2 m3blk">${usageCard()}${crewNow()}</div><div class="medash-2 m3blk">${actLine()}${setGroup()}</div></div>`;
+}})(meDash);
+
+/* 5 일반 아이폰 */
+POST.push({id:'phone',n:'일반 아이폰 · 세로',sz:{app:'393×852 · 한 칸 + 아래 탭(레일 없음)',a382:'393×852 · 한 칸 + 아래 탭',saf:'393×852 · Safari'}});
+DIM.phone=[393,852];CORNER.phone=[55,55,55,55];
+CAP.after.phone='듀오와 같은 부품을 한 칸에. 레일 대신 아래 탭 · 상세는 뒤로';CAP.now.phone='지금 운영 앱(390 기둥)과 같음';
+LCAP.now.phone='가운데 카드 한 장';LCAP.after.phone='듀오 닫힘 세로와 같은 로그인';
+const PY=47,PH=852-47;
+function aPhone(S){
+  const W=393,H=PH,c={L:16,rx:377,W};
+  let h=`<div class="sbar ph9"><span>9:41</span><span>${ico('wifi',{s:18})}${ico('batt',{s:22})}</span></div><span class="hw" style="left:134px;top:11px;width:125px;height:37px;border-radius:19px"></span>`;
+  let in_='';
+  const tab=['todo','chat','lib','me'].includes(S),task=['room','work','appr','sess'].includes(S);
+  if(S==='login')in_=loginAfter('outerP');
+  else if(tab){
+    const hp=headTab(S,'outerP',Object.assign({},c,{right:S==='me'?'':listRight(S)}));
+    in_+=pane(0,0,W,H,hp.flow+singleOf4(S,'outerP',hp),'',{t:hp.pt,l:16,r:16,b:96})+hp.h;
+    in_+=bottomTabs3(TABOF[S],16,H-34-52,W-32);
+  }else if(task){
+    const inTop=H-34-40;
+    in_+=pane(0,0,W,H,singleOf4(S,'outerP'),'',{t:0,l:16,r:16,b:34},taskVars(false,72,inTop));
+    in_+=headTask(S,'outerP',Object.assign({},c,{back:hb(B('back','뒤로',{go:PARENT[S]}))}));
+  }else{
+    const crew=S==='crew';if(crew)swapIn();
+    try{in_+=pane(0,0,W,H,docView(),'',{t:80,l:16,r:16,b:34});in_+=hrow(c,hb(B('back','뒤로',{go:crew?'chat':'lib'}))+DPOS.lib())}finally{if(crew)swapOut()}
+  }
+  h+=`<div class="ph9in" style="top:${PY}px;height:${H}px">${in_}</div>`;
+  h+=`<span class="ph9home"></span>`;
+  return h;
+}
+afterCompose=(function(prev){return function(P,S){return P==='phone'?(S==='crew'?(swapIn(),(()=>{try{return aPhone('crew')}finally{swapOut()}})()):aPhone(S)):prev(P,S)}})(afterCompose);
+nowCompose=(function(prev){return function(P,S){return P==='phone'?`<div class="ph9now">지금 운영 앱은 듀오 닫힘 세로와 같은 390 기둥 한 칸이에요.</div>`:prev(P,S)}})(nowCompose);
+kbOn=(function(prev){return function(S,P,m){return P==='phone'?false:prev(S,P,m)}})(kbOn);
+TRIG.phone={app:'<b>판정</b> 폭 393 &lt; 600 · 레일 없음 → 아래 탭 + 한 칸. 듀오 닫힘 세로와 같은 부품(위치 줄 48 · 답 줄 · ⚡ 입력 · 누끼 얼굴)',saf:'<b>판정</b> Safari도 같은 한 칸 + 아래 탭'};
+TRIG.phone.a382=TRIG.phone.app;
+KBH.phone=336;KBAND.phone=0;CWDEF.phone=361;CONV.phone=CONV.outerP;
+for(const k of ['app','a382','saf'])if(BAND[k])BAND[k].phone='일반 아이폰은 듀오 닫힘 세로에서 레일만 아래 탭으로 바꾼 같은 화면입니다. PC 크루네는 펼친 가로(목록 | 상세 + 레일) 화면을 그대로 씁니다.';
+/* 4 나: 모든 자세에서 샐리 줄(뎁스) 없앰 */
+meMenu5=(function(prev){return function(o={}){return prev(o).replace(/<div class="prof">[\s\S]*?<\/div><\/div>[\s\S]*?<\/svg><\/div>/,'')}})(meMenu5);
 
 load();qsRender();render();
 try{document.fonts.ready.then(()=>render())}catch(e){}

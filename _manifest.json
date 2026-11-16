@@ -1198,5 +1198,13 @@
     "last_kind": "new",
     "last_sha256": "4dfa05fd395d0fdbe833a032035babeb9529fa092b4635c971638915c3222201",
     "timestamp": "2026-11-16T01:19:24.621421Z"
+  },
+  "crewne-duo-rebuild": {
+    "slug": "crewne-duo-rebuild",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/crewne-duo-rebuild/",
+    "last_kind": "redeploy",
+    "last_sha256": "85a2f9b3e486ea98826c6ac60e300f548c2c54c4c30149974b8be877dc69e0fc",
+    "timestamp": "2026-11-16T01:22:17.466274Z"
   }
 }
