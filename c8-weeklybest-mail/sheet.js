@@ -131,27 +131,6 @@
     if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
     return {weeks,errors,emails};
   }
-  // Import private copy from the supplied Markdown; never publish recipient names.
-  function convertThanksMarkdown(text){
-    text=String(text).replace(/\r/g,'');
-    const section=text.split('## 시딩 감사')[1]?.split('## 확인할 것')[0];
-    if(!section)throw Error('시딩 감사 메일 문안이 있는 MD 파일을 선택해 주세요.');
-    const subject=section.match(/^제목: (.+)$/m)?.[1];
-    const body=section.match(/안녕하세요, \{이름\} 님![\s\S]*?크리에이터클럽 드림/)?.[0];
-    if(!subject||!body||!body.includes('크리에이터클럽 운영팀입니다.')||!body.includes('감사합니다.'))throw Error('참여 감사 메일 제목과 본문을 찾지 못했어요.');
-    const people=[];
-    for(const line of section.split('\n')){
-      const row=line.match(/^\| ([^|]+) \| \d{4}-\d{2}-\d{2} \|/);
-      if(!row)continue;
-      const name=row[1].trim();
-      if(people.some(p=>p.name===name))throw Error('참여 감사 대상 이름이 중복되어 있어요.');
-      const personal=section.split('\n').find(l=>l.startsWith('- '+name+': '))?.slice(name.length+4)||'';
-      const detail=personal.startsWith('올려 주신')?personal:'';
-      people.push({name,kind:'thanks',notice:'발송 보류 · 원문 확인',subject:subject.replaceAll('{이름}',name),body:body.replaceAll('{이름}',name).replace('{근황 문장}',detail).replace(/\n{3,}/g,'\n\n')});
-    }
-    if(!people.length)throw Error('참여 감사 대상자 표를 찾지 못했어요.');
-    return {week:'참여 감사 문안',people,total:0,hold:'발송 보류: 원문에 수신거부 및 보상 약속 확인 필요가 명시돼 있어요. 편집·검토용 문안입니다.'};
-  }
-  root.WeeklySheet={convertThanksMarkdown,parseDelimited,convert,convertBook,contactEmails,emailFor,money,formatPrize,personPrize};
+  root.WeeklySheet={parseDelimited,convert,convertBook,contactEmails,emailFor,money,formatPrize,personPrize};
   if(typeof module==='object')module.exports=root.WeeklySheet;
 })(typeof globalThis==='object'?globalThis:this);
