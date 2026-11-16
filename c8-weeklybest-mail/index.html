@@ -204,9 +204,10 @@ function syncMailType(){
     f.hidden=f.id==='thanksFields'?!thanks:thanks&&!f.contains($('mailType'))&&!f.contains($('name'))&&!f.contains($('subject'));
   }
   $('week').parentElement.hidden=thanks;
+  $('intro').hidden=thanks;$('intro').previousElementSibling.hidden=thanks;
 }
 function build(v){
-  if(v.mailType==='thanks')return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>${esc(v.subject)}</title></head><body style="margin:0;background:#f2f2f2"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding:24px 12px"><table role="presentation" width="600" style="width:100%;max-width:600px;background:white;border-radius:12px;overflow:hidden;font:15px/1.8 'Apple SD Gothic Neo','Malgun Gothic',sans-serif" cellspacing="0" cellpadding="0"><tr><td style="padding:28px 32px;background:#111;color:white"><img src="${LOGO}" width="18" height="30" alt="" style="vertical-align:middle"> <strong style="font-size:24px">Cre8orClub</strong><div style="margin-top:22px;font-size:25px;font-weight:bold">소중한 작품을 올려 주셔서<br>감사합니다 🎁</div></td></tr><tr><td style="padding:28px 32px">안녕하세요, <strong>${esc(v.name)} 님!</strong><br>크리에이터클럽 운영팀입니다.<br><br>${br(v.thanksBody)}<br><br>감사합니다.<br><strong>크리에이터클럽 드림</strong></td></tr><tr><td style="padding:20px 32px;background:#f3f3f3;font-size:11px;color:#777">㈜라텔앤드파트너즈 · <a href="mailto:support@cre8orclub.com" style="color:#777">support@cre8orclub.com</a></td></tr></table></td></tr></table></body></html>`;
+  if(v.mailType==='thanks')return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>${esc(v.subject)}</title></head><body style="margin:0;background:#f2f2f2"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding:24px 12px"><table role="presentation" width="600" style="width:100%;max-width:600px;background:white;border-radius:12px;overflow:hidden;font:15px/1.8 'Apple SD Gothic Neo','Malgun Gothic',sans-serif" cellspacing="0" cellpadding="0"><tr><td style="padding:28px 32px;background:#111;color:white"><table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td valign="middle" style="vertical-align:middle;font-size:0;line-height:0"><img src="${LOGO}" width="18" height="30" alt="Cre8orClub" style="display:block;width:18px;height:30px;border:0"></td><td valign="middle" style="vertical-align:middle;padding:4px 0 0 10px;font-size:24px;line-height:30px;font-weight:700;color:#fff">Cre8orClub</td></tr></table><div style="margin-top:20px;font-size:25px;line-height:1.4;font-weight:700;word-break:keep-all">소중한 작품을 올려 주셔서<br>감사합니다 🎁</div></td></tr><tr><td style="padding:28px 32px">안녕하세요, <strong>${esc(v.name)} 님!</strong><br>크리에이터클럽 운영팀입니다.<br><br>${br(v.thanksBody)}<br><br>감사합니다.<br><strong>크리에이터클럽 드림</strong></td></tr><tr><td style="padding:20px 32px;background:#f3f3f3;font-size:11px;color:#777">㈜라텔앤드파트너즈 · <a href="mailto:support@cre8orclub.com" style="color:#777">support@cre8orclub.com</a></td></tr></table></td></tr></table></body></html>`;
 
   const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map((a,i)=>/^\[.+\]$/.test(a)?'                  <div style="'+(i?'margin-top:10px; ':'')+'font-weight:700;">'+esc(a.slice(1,-1))+'</div>':'                  • '+esc(a)+'<br>').join('\n');
   const pz=WeeklySheet.formatPrize(v.prize).split('\n').map(s=>s.trim()).filter(Boolean);
@@ -376,6 +377,11 @@ async function copyRich(){
 }
 KEYS.forEach(k=>$(k).addEventListener('input',render));
 $('raw').addEventListener('input',render);
+$('name').addEventListener('input',()=>{
+  if($('mailType').value==='thanks'&&/^\[크리에이터클럽\] .* 님, 오랜만에 인사드려요 🎁$/.test($('subject').value)){
+    $('subject').value='[크리에이터클럽] '+$('name').value+' 님, 오랜만에 인사드려요 🎁';render();
+  }
+});
 $('mailType').addEventListener('change',()=>{
   $('subject').value=$('mailType').value==='thanks'?'[크리에이터클럽] '+$('name').value+' 님, 오랜만에 인사드려요 🎁':DEFAULTS.subject;
   render();
@@ -410,6 +416,6 @@ $('wDesk').onclick=()=>{$('frame').style.width='640px';$('wDesk').setAttribute('
 $('wMobile').onclick=()=>{$('frame').style.width='390px';$('wMobile').setAttribute('aria-pressed','true');$('wDesk').setAttribute('aria-pressed','false')};
 load();
 </script>
-<script src="editor.js?v=cb4f08d469cc"></script>
+<script src="editor.js?v=c6cb18caebe2"></script>
 </body>
 </html>

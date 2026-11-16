@@ -404,9 +404,10 @@ function syncMailType(){
     f.hidden=f.id==='thanksFields'?!thanks:thanks&&!f.contains($('mailType'))&&!f.contains($('name'))&&!f.contains($('subject'));
   }
   $('week').parentElement.hidden=thanks;
+  $('intro').hidden=thanks;$('intro').previousElementSibling.hidden=thanks;
 }
 function build(v){
-  if(v.mailType==='thanks')return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>${esc(v.subject)}</title></head><body style="margin:0;background:#f2f2f2"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding:24px 12px"><table role="presentation" width="600" style="width:100%;max-width:600px;background:white;border-radius:12px;overflow:hidden;font:15px/1.8 'Apple SD Gothic Neo','Malgun Gothic',sans-serif" cellspacing="0" cellpadding="0"><tr><td style="padding:28px 32px;background:#111;color:white"><img src="${LOGO}" width="18" height="30" alt="" style="vertical-align:middle"> <strong style="font-size:24px">Cre8orClub</strong><div style="margin-top:22px;font-size:25px;font-weight:bold">소중한 작품을 올려 주셔서<br>감사합니다 🎁</div></td></tr><tr><td style="padding:28px 32px">안녕하세요, <strong>${esc(v.name)} 님!</strong><br>크리에이터클럽 운영팀입니다.<br><br>${br(v.thanksBody)}<br><br>감사합니다.<br><strong>크리에이터클럽 드림</strong></td></tr><tr><td style="padding:20px 32px;background:#f3f3f3;font-size:11px;color:#777">㈜라텔앤드파트너즈 · <a href="mailto:support@cre8orclub.com" style="color:#777">support@cre8orclub.com</a></td></tr></table></td></tr></table></body></html>`;
+  if(v.mailType==='thanks')return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>${esc(v.subject)}</title></head><body style="margin:0;background:#f2f2f2"><table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding:24px 12px"><table role="presentation" width="600" style="width:100%;max-width:600px;background:white;border-radius:12px;overflow:hidden;font:15px/1.8 'Apple SD Gothic Neo','Malgun Gothic',sans-serif" cellspacing="0" cellpadding="0"><tr><td style="padding:28px 32px;background:#111;color:white"><table role="presentation" cellspacing="0" cellpadding="0" border="0"><tr><td valign="middle" style="vertical-align:middle;font-size:0;line-height:0"><img src="${LOGO}" width="18" height="30" alt="Cre8orClub" style="display:block;width:18px;height:30px;border:0"></td><td valign="middle" style="vertical-align:middle;padding:4px 0 0 10px;font-size:24px;line-height:30px;font-weight:700;color:#fff">Cre8orClub</td></tr></table><div style="margin-top:20px;font-size:25px;line-height:1.4;font-weight:700;word-break:keep-all">소중한 작품을 올려 주셔서<br>감사합니다 🎁</div></td></tr><tr><td style="padding:28px 32px">안녕하세요, <strong>${esc(v.name)} 님!</strong><br>크리에이터클럽 운영팀입니다.<br><br>${br(v.thanksBody)}<br><br>감사합니다.<br><strong>크리에이터클럽 드림</strong></td></tr><tr><td style="padding:20px 32px;background:#f3f3f3;font-size:11px;color:#777">㈜라텔앤드파트너즈 · <a href="mailto:support@cre8orclub.com" style="color:#777">support@cre8orclub.com</a></td></tr></table></td></tr></table></body></html>`;
 
   const awards=v.awards.split('\n').map(s=>s.trim()).filter(Boolean).map((a,i)=>/^\[.+\]$/.test(a)?'                  <div style="'+(i?'margin-top:10px; ':'')+'font-weight:700;">'+esc(a.slice(1,-1))+'</div>':'                  • '+esc(a)+'<br>').join('\n');
   const pz=WeeklySheet.formatPrize(v.prize).split('\n').map(s=>s.trim()).filter(Boolean);
@@ -576,6 +577,11 @@ async function copyRich(){
 }
 KEYS.forEach(k=>$(k).addEventListener('input',render));
 $('raw').addEventListener('input',render);
+$('name').addEventListener('input',()=>{
+  if($('mailType').value==='thanks'&&/^\[크리에이터클럽\] .* 님, 오랜만에 인사드려요 🎁$/.test($('subject').value)){
+    $('subject').value='[크리에이터클럽] '+$('name').value+' 님, 오랜만에 인사드려요 🎁';render();
+  }
+});
 $('mailType').addEventListener('change',()=>{
   $('subject').value=$('mailType').value==='thanks'?'[크리에이터클럽] '+$('name').value+' 님, 오랜만에 인사드려요 🎁':DEFAULTS.subject;
   render();
@@ -647,18 +653,19 @@ function fillSelect(el,items,empty){
   if(!items.length){const o=new Option(empty,'');el.add(o);el.disabled=true;return;}
   el.disabled=false;items.forEach(([label,value])=>el.add(new Option(label,value)));
 }
-function updatePeople(){
+function updatePeople(autoApply=true){
   const data=weeks[$('sheetWeek').value];
   fillSelect($('sheetPerson'),data?data.people.map((p,i)=>[p.name+' · '+(p.kind==='thanks'?'참여 감사':WeeklySheet.money(p.total))+' · '+(p.notice||'안내 상태 미확인'),String(i)]):[],'지급 대상자 없음');
   $('makeMail').disabled=!data?.people.length;
+  if(autoApply&&data?.people[0]?.kind==='thanks'){makeSelectedMail({automatic:true});return;}
   if(data?.hold){sheetMessage(data.hold+'\n대상 '+data.people.length+'명 · 선택한 분의 메일 만들기를 눌러 주세요.');return;}
   if(data)sheetMessage(data.week+' · 지급대상 '+data.people.length+'명 · 총 '+WeeklySheet.money(data.total)+'\n가져온 시각: '+new Date(data.importedAt).toLocaleString('ko-KR')+'\n‘선택한 분의 메일 만들기’를 누르면 아래 양식에 반영돼요.');
 }
-function updateWeeks(selected){
+function updateWeeks(selected,autoApply=true){
   const entries=Object.values(weeks).filter(d=>d&&typeof d.week==='string'&&Array.isArray(d.people));
   fillSelect($('sheetWeek'),entries.map(d=>[d.week,d.week]),'시트를 먼저 가져와 주세요');
   if(selected&&weeks[selected])$('sheetWeek').value=selected;
-  updatePeople();
+  updatePeople(autoApply);
 }
 function importSheet(csv,gid=''){
   const data=WeeklySheet.convert(WeeklySheet.parseDelimited(csv));
@@ -723,10 +730,10 @@ async function importFile(f){
 function syncReceiptVersion(){
   $('receiptVersion').value=Object.keys(RECEIPTS).find(k=>RECEIPTS[k]===$('receipt').value)||'custom';
 }
-function makeSelectedMail(){
+function makeSelectedMail({automatic=false}={}){
   const data=weeks[$('sheetWeek').value],p=data?.people[Number($('sheetPerson').value)];
   if(!p)return;
-  if(!confirm(p.name+' 님의 '+data.week+' 메일을 만들까요? 현재 양식과 직접 고친 HTML은 새 내용으로 바뀝니다.'))return;
+  if(!automatic&&!confirm(p.name+' 님의 '+data.week+' 메일을 만들까요? 현재 양식과 직접 고친 HTML은 새 내용으로 바뀝니다.'))return;
   if(p.kind==='thanks'){
     KEYS.forEach(k=>$(k).value=DEFAULTS[k]);
     $('name').value=p.name;$('subject').value=p.subject||'[크리에이터클럽] '+p.name+' 님, 오랜만에 인사드려요 🎁';$('mailType').value='thanks';
@@ -748,12 +755,15 @@ function makeSelectedMail(){
   sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인해 주세요. '+(to?'받는 주소는 시트 「수상자 연락처」의 이메일('+to+')로 채웠어요.':'시트 「수상자 연락처」에 이 분 이메일이 없어요. 받는 메일 주소를 직접 넣어 주세요.')+' 「메일로 보내기」를 누르면 support 계정 초안이 만들어져요.');
 }
 $('sheetWeek').onchange=updatePeople;
-$('sheetPerson').onchange=()=>sheetMessage('선택한 대상자: '+$('sheetPerson').selectedOptions[0]?.textContent+'\n‘선택한 분의 메일 만들기’를 눌러 양식에 반영해 주세요.');
+$('sheetPerson').onchange=()=>{
+  const p=weeks[$('sheetWeek').value]?.people[Number($('sheetPerson').value)];
+  if(p?.kind==='thanks'){makeSelectedMail({automatic:true});return;}
+  sheetMessage('선택한 대상자: '+$('sheetPerson').selectedOptions[0]?.textContent+'\n‘선택한 분의 메일 만들기’를 눌러 양식에 반영해 주세요.');};
 $('makeMail').onclick=makeSelectedMail;
 $('forgetSheet').onclick=()=>{
   if(!confirm('이 브라우저에 가져온 모든 주차 명단과 현재 메일 초안을 지울까요? 원본 시트는 바뀌지 않아요.'))return;
   weeks={};emails={};try{sessionStorage.removeItem(SHEET_STORE);sessionStorage.removeItem(EMAIL_STORE);sessionStorage.removeItem(STORE);localStorage.removeItem(STORE);}catch(e){}
-  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('optionOn').checked=false;syncOption();$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
+  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('optionOn').checked=false;syncOption();$('raw').value='';setMode(false);updateWeeks(undefined,false);syncReceiptVersion();
   sheetMessage('가져온 명단과 현재 메일 초안을 지웠어요. 원본 시트는 바뀌지 않았어요.');
 };
 $('receiptVersion').onchange=()=>{
@@ -790,7 +800,7 @@ if($('receipt').value===PREVIOUS_KNOCK){$('receipt').value=RECEIPTS.knock;render
 for(const data of Object.values(weeks)){if(Array.isArray(data?.people))for(const p of data.people){if(typeof p?.prize==='string'){const old=p.prize;p.prize=WeeklySheet.personPrize(p);if($('week').value===data.week&&$('name').value===p.name&&WeeklySheet.formatPrize($('prize').value)===WeeklySheet.formatPrize(old))$('prize').value=p.prize;}}}
 render();
 $('prize').addEventListener('change',()=>{$('prize').value=WeeklySheet.formatPrize($('prize').value);render();});
-updateWeeks();syncReceiptVersion();
+updateWeeks(undefined,false);syncReceiptVersion();
 if(location.hash==='#sheet-import'){
   history.replaceState(null,'',location.pathname+location.search);
   sheetMessage('시트에서 선택한 주차를 가져오고 있어요.');
