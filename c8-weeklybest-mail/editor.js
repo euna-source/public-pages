@@ -100,7 +100,7 @@ function makeSelectedMail(){
     receipt:$('receiptVersion').value==='custom'?$('receipt').value:RECEIPTS[receiptVersion],bizno:$('bizno').value||DEFAULTS.bizno};
   // The address comes only from this person's contact row, never from the previous recipient.
   const to=WeeklySheet.emailFor(emails,p.name);
-  KEYS.forEach(k=>$(k).value=v[k]);$('to').value=to;setMode(false);syncReceiptVersion();
+  KEYS.forEach(k=>$(k).value=v[k]);$('to').value=to;$('optionOn').checked=false;syncOption();setMode(false);syncReceiptVersion();
   sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인해 주세요. '+(to?'받는 주소는 시트 「수상자 연락처」의 이메일('+to+')로 채웠어요.':'시트 「수상자 연락처」에 이 분 이메일이 없어요. 받는 메일 주소를 직접 넣어 주세요.')+' 「메일로 보내기」를 누르면 support 계정 초안이 만들어져요.');
 }
 $('sheetWeek').onchange=updatePeople;
@@ -109,7 +109,7 @@ $('makeMail').onclick=makeSelectedMail;
 $('forgetSheet').onclick=()=>{
   if(!confirm('이 브라우저에 가져온 모든 주차 명단과 현재 메일 초안을 지울까요? 원본 시트는 바뀌지 않아요.'))return;
   weeks={};emails={};try{sessionStorage.removeItem(SHEET_STORE);sessionStorage.removeItem(EMAIL_STORE);sessionStorage.removeItem(STORE);localStorage.removeItem(STORE);}catch(e){}
-  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
+  KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('optionOn').checked=false;syncOption();$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
   sheetMessage('가져온 명단과 현재 메일 초안을 지웠어요. 원본 시트는 바뀌지 않았어요.');
 };
 $('receiptVersion').onchange=()=>{
