@@ -91,13 +91,16 @@ select{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--
         <button id="importPaste">붙여 넣은 표 가져오기</button>
       </details>
     </div>
+    <fieldset>
+      <legend>보내기</legend>
+      <label for="to">받는 메일 주소 <span class="hint">「메일로 보내기」는 support@cre8orclub.com Gmail에 이 주소로 초안을 만들어요</span></label>
+      <input id="to" type="email" autocomplete="off" spellcheck="false" placeholder="name@example.com">
+      <label for="subject">메일 제목</label>
+      <div class="copyline"><input id="subject" maxlength="500"><button id="copySubject">복사</button></div>
+    </fieldset>
     <div id="paneForm">
       <fieldset>
         <legend>메일 정보</legend>
-        <label for="to">받는 메일 주소 <span class="hint">「메일로 보내기」는 support@cre8orclub.com Gmail에 이 주소로 초안을 만들어요</span></label>
-        <input id="to" type="email" autocomplete="off" spellcheck="false" placeholder="name@example.com">
-        <label for="subject">메일 제목</label>
-        <div class="copyline"><input id="subject"><button id="copySubject">복사</button></div>
         <label for="preheader">받은편지함 미리보기 문장 <span class="hint">제목 옆에 보이는 한 줄</span></label>
         <input id="preheader">
       </fieldset>
@@ -506,7 +509,7 @@ const GMAIL_DRAFT_APP='https://script.google.com/a/macros/cre8orclub.com/s/AKfyc
 function sendMail(){
   const to=$('to').value.trim(),subject=$('subject').value.trim(),html=current();
   if(!/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/.test(to)){toast('받는 메일 주소를 먼저 입력해 주세요.');$('to').focus();return;}
-  if(!subject||/[\r\n]/.test(subject)){toast('메일 제목을 확인해 주세요.');$('subject').focus();return;}
+  if(!subject||subject.length>500||/[\r\n]/.test(subject)){toast('메일 제목을 확인해 주세요.');$('subject').focus();return;}
   if(!/<table\b/i.test(html)){toast('메일 양식을 확인해 주세요.');return;}
   const text=$('frame').contentDocument?.body?.innerText||'';
   const app=new URL(GMAIL_DRAFT_APP);
