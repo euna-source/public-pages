@@ -115,11 +115,24 @@
     return emails;
   }
   function emailFor(emails,name){return (emails||{})[nameKey(name)]||'';}
+  function contactThanks(rows){
+    const head=(rows||[]).findIndex(r=>r.some(c=>clean(c)==='수령인'));
+    if(head<0)return [];
+    const ni=rows[head].findIndex(c=>clean(c)==='수령인'),seen=new Set(),people=[];
+    for(const r of rows.slice(head+1)){
+      if(!r.some(c=>/(?:시딩|참여|일반)\s*감사/.test(clean(c))))continue;
+      const name=clean(r[ni]),key=nameKey(name);
+      if(!key||seen.has(key))continue;
+      seen.add(key);
+      people.push({name,kind:'thanks',notice:r.map(clean).find(c=>/발송\s*보류/.test(c))||'안내 상태 미확인'});
+    }
+    return people;
+  }
   function convertBook(sheets){
-    const found=new Map(),errors=[];let emails={};
+    const found=new Map(),errors=[];let emails={},thanks=[];
     const weekName=name=>(name.match(/^\s*(\d+월\s*\d+주차)\s*$/)||[])[1]?.replace(/월\s*/,'월 ');
     for(const {name,rows} of sheets){
-      if(name.trim()==='수상자 연락처'){emails=contactEmails(rows)||{};continue;}
+      if(name.trim()==='수상자 연락처'){emails=contactEmails(rows)||{};thanks=contactThanks(rows);continue;}
       try{const d=convert(rows,name);found.set(d.week,[...(found.get(d.week)||[]),{name,d}]);}
       catch(e){const week=weekName(name);if(week)errors.push({week,message:name.trim()+': '+e.message});}
     }
@@ -128,9 +141,30 @@
       if(list.length>1)errors.push({week,message:week+': 같은 주차 탭이 여러 개예요 ('+list.map(x=>x.name).join(', ')+'). 하나만 남긴 뒤 다시 받아 주세요.'});
       else if(!errors.some(e=>e.week===week))weeks.push(list[0].d);
     }
-    if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
-    return {weeks,errors,emails};
+    if(!weeks.length&&!errors.length&&!thanks.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
+    return {weeks,errors,emails,thanks};
   }
-  root.WeeklySheet={parseDelimited,convert,convertBook,contactEmails,emailFor,money,formatPrize,personPrize};
+  // Import private copy from the supplied Markdown; never publish recipient names.
+  function convertThanksMarkdown(text){
+    text=String(text).replace(/\r/g,'');
+    const section=text.split('## 시딩 감사')[1]?.split('## 확인할 것')[0];
+    if(!section)throw Error('시딩 감사 메일 문안이 있는 MD 파일을 선택해 주세요.');
+    const subject=section.match(/^제목: (.+)$/m)?.[1];
+    const body=section.match(/안녕하세요, \{이름\} 님![\s\S]*?크리에이터클럽 드림/)?.[0];
+    if(!subject||!body||!body.includes('크리에이터클럽 운영팀입니다.')||!body.includes('감사합니다.'))throw Error('참여 감사 메일 제목과 본문을 찾지 못했어요.');
+    const people=[];
+    for(const line of section.split('\n')){
+      const row=line.match(/^\| ([^|]+) \| \d{4}-\d{2}-\d{2} \|/);
+      if(!row)continue;
+      const name=row[1].trim();
+      if(people.some(p=>p.name===name))throw Error('참여 감사 대상 이름이 중복되어 있어요.');
+      const personal=section.split('\n').find(l=>l.startsWith('- '+name+': '))?.slice(name.length+4)||'';
+      const detail=personal.startsWith('올려 주신')?personal:'';
+      people.push({name,kind:'thanks',notice:'발송 보류 · 원문 확인',subject:subject.replaceAll('{이름}',name),body:body.replaceAll('{이름}',name).replace('{근황 문장}',detail).replace(/\n{3,}/g,'\n\n')});
+    }
+    if(!people.length)throw Error('참여 감사 대상자 표를 찾지 못했어요.');
+    return {week:'참여 감사 문안',people,total:0,hold:'발송 보류: 원문에 수신거부 및 보상 약속 확인 필요가 명시돼 있어요. 편집·검토용 문안입니다.'};
+  }
+  root.WeeklySheet={convertThanksMarkdown,parseDelimited,convert,convertBook,contactEmails,contactThanks,emailFor,money,formatPrize,personPrize};
   if(typeof module==='object')module.exports=root.WeeklySheet;
 })(typeof globalThis==='object'?globalThis:this);

@@ -23,8 +23,9 @@ function fillSelect(el,items,empty){
 }
 function updatePeople(){
   const data=weeks[$('sheetWeek').value];
-  fillSelect($('sheetPerson'),data?data.people.map((p,i)=>[p.name+' · '+WeeklySheet.money(p.total)+' · '+(p.notice||'안내 상태 미확인'),String(i)]):[],'지급 대상자 없음');
+  fillSelect($('sheetPerson'),data?data.people.map((p,i)=>[p.name+' · '+(p.kind==='thanks'?'참여 감사':WeeklySheet.money(p.total))+' · '+(p.notice||'안내 상태 미확인'),String(i)]):[],'지급 대상자 없음');
   $('makeMail').disabled=!data?.people.length;
+  if(data?.hold){sheetMessage(data.hold+'\n대상 '+data.people.length+'명 · 선택한 분의 메일 만들기를 눌러 주세요.');return;}
   if(data)sheetMessage(data.week+' · 지급대상 '+data.people.length+'명 · 총 '+WeeklySheet.money(data.total)+'\n가져온 시각: '+new Date(data.importedAt).toLocaleString('ko-KR')+'\n‘선택한 분의 메일 만들기’를 누르면 아래 양식에 반영돼요.');
 }
 function updateWeeks(selected){
@@ -56,7 +57,11 @@ function loadXlsx(){
 async function importWorkbook(buffer){
   const X=await loadXlsx();
   const wb=X.read(new Uint8Array(buffer),{type:'array'});
-  const {weeks:found,errors,emails:book}=WeeklySheet.convertBook(wb.SheetNames.map(name=>({name,rows:X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})})));
+  const {weeks:found,errors,emails:book,thanks}=WeeklySheet.convertBook(wb.SheetNames.map(name=>({name,rows:X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})})));
+  // Replace the contact-derived list on every workbook import, including an empty list.
+  delete weeks['일반 감사 안내'];
+  if(thanks.length)found.push({week:'일반 감사 안내',people:thanks,total:0,
+    hold:'「수상자 연락처」에서 가져온 감사 대상자예요. 대상자별 안내 상태를 확인해 주세요.'});
   const importedAt=new Date().toISOString();
   found.forEach(d=>{d.gid='';d.importedAt=importedAt;weeks[d.week]=d;});
   // A week that failed this time must not keep serving last time's list.
@@ -76,7 +81,11 @@ async function importWorkbook(buffer){
 async function importFile(f){
   if(!f)return;
   try{
-    if(/\.xlsx$/i.test(f.name)){
+    if(/\.md$/i.test(f.name)){
+      if(f.size>1000000)throw Error('MD 파일은 1MB까지 가져올 수 있어요.');
+      const data=WeeklySheet.convertThanksMarkdown(await f.text());
+      data.importedAt=new Date().toISOString();weeks[data.week]=data;saveWeeks();updateWeeks(data.week);
+    }else if(/\.xlsx$/i.test(f.name)){
       if(f.size>5000000)throw Error('당첨자 관리 시트에서 받은 파일을 선택해 주세요. xlsx 파일은 5MB까지 가져올 수 있어요.');
       await importWorkbook(await f.arrayBuffer());
     }else{
@@ -92,6 +101,15 @@ function makeSelectedMail(){
   const data=weeks[$('sheetWeek').value],p=data?.people[Number($('sheetPerson').value)];
   if(!p)return;
   if(!confirm(p.name+' 님의 '+data.week+' 메일을 만들까요? 현재 양식과 직접 고친 HTML은 새 내용으로 바뀝니다.'))return;
+  if(p.kind==='thanks'){
+    KEYS.forEach(k=>$(k).value=DEFAULTS[k]);
+    $('name').value=p.name;$('subject').value=p.subject||'[크리에이터클럽] '+p.name+' 님, 오랜만에 인사드려요 🎁';$('mailType').value='thanks';
+    $('thanksBody').value=p.body?p.body.split('크리에이터클럽 운영팀입니다.')[1].split('감사합니다.')[0].trim():DEFAULTS.thanksBody;
+    $('to').value=WeeklySheet.emailFor(emails,p.name);
+    $('optionOn').checked=false;syncOption();setMode(false);
+    sheetMessage((data.hold||'')+'\n안내 상태: '+p.notice+'\n현재 문안: '+p.name+' 님 · 일반 감사 안내 양식에서 수정할 수 있어요.'+(!$('to').value?' 시트 파일을 가져오거나 받는 주소를 직접 입력해 주세요.':''));
+    return;
+  }
   const receiptVersion=$('receiptVersion').value==='knock'?'knock':'basic';
   const v={...DEFAULTS,
     subject:'[Cre8orClub] '+data.week+' 위클리 베스트 수상 및 경품 지급 안내',
