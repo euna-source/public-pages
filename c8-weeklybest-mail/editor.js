@@ -7,7 +7,9 @@ const RECEIPTS={
 };
 const PREVIOUS_BASIC='경품 지급 확인 문자는 크리에이터클럽 운영팀 담당자 번호로 따로 보내드립니다.\n문자를 확인하신 후 안내에 따라 회신 부탁드립니다.';
 const PREVIOUS_KNOCK='경품 지급은 크리에이터클럽 운영팀 담당자 번호로 문자 안내합니다. My 프로필에 휴대폰 번호가 없으면 앱 내 노크로 안내할 수 있습니다. 문자나 노크를 확인한 뒤 안내에 따라 회신해 주세요.';
-let weeks={};
+let weeks={},emails={};
+const EMAIL_STORE='c8-weeklybest-private-emails-v1';
+try{const data=JSON.parse(sessionStorage.getItem(EMAIL_STORE)||'{}');if(data&&typeof data==='object'&&!Array.isArray(data))emails=data;}catch(e){}
 try{const data=JSON.parse(sessionStorage.getItem(SHEET_STORE)||'{}');if(data&&typeof data==='object'&&!Array.isArray(data))weeks=data;}catch(e){}
 const sheetMessage=(s,error=false)=>{ $('sheetStatus').textContent=s;$('sheetStatus').style.color=error?'var(--ink)':''; };
 function saveWeeks(){
@@ -54,11 +56,13 @@ function loadXlsx(){
 async function importWorkbook(buffer){
   const X=await loadXlsx();
   const wb=X.read(new Uint8Array(buffer),{type:'array'});
-  const {weeks:found,errors}=WeeklySheet.convertBook(wb.SheetNames.map(name=>({name,rows:X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})})));
+  const {weeks:found,errors,emails:book}=WeeklySheet.convertBook(wb.SheetNames.map(name=>({name,rows:X.utils.sheet_to_json(wb.Sheets[name],{header:1,raw:false,defval:'',blankrows:true})})));
   const importedAt=new Date().toISOString();
   found.forEach(d=>{d.gid='';d.importedAt=importedAt;weeks[d.week]=d;});
   // A week that failed this time must not keep serving last time's list.
   errors.forEach(e=>delete weeks[e.week]);
+  emails=book||{};
+  try{sessionStorage.setItem(EMAIL_STORE,JSON.stringify(emails));}catch(e){}
   const saved=saveWeeks();
   // Newest week first: tab order in the sheet puts the latest week at the front.
   updateWeeks(found[0]?.week);
@@ -94,16 +98,17 @@ function makeSelectedMail(){
     preheader:data.week+' 위클리 베스트 선정을 축하드려요. 경품 지급 안내를 확인해 주세요.',
     week:data.week,name:p.name,awards:p.awards,total:'모바일 상품권 '+WeeklySheet.money(p.total),prize:WeeklySheet.personPrize(p),
     receipt:$('receiptVersion').value==='custom'?$('receipt').value:RECEIPTS[receiptVersion],bizno:$('bizno').value||DEFAULTS.bizno};
-  // A new person never inherits the previous recipient's address.
-  KEYS.forEach(k=>$(k).value=v[k]);$('to').value='';setMode(false);syncReceiptVersion();
-  sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인해 주세요. 이메일 주소는 시트에 없어 자동 입력하지 않아요. 받는 메일 주소를 넣고 「메일로 보내기」를 누르면 support 계정 초안이 만들어져요.');
+  // The address comes only from this person's contact row, never from the previous recipient.
+  const to=WeeklySheet.emailFor(emails,p.name);
+  KEYS.forEach(k=>$(k).value=v[k]);$('to').value=to;setMode(false);syncReceiptVersion();
+  sheetMessage('현재 메일: '+data.week+' · '+p.name+' 님 · '+WeeklySheet.money(p.total)+'\n수상 내역·경품·안내 버전을 확인해 주세요. '+(to?'받는 주소는 시트 「수상자 연락처」의 이메일('+to+')로 채웠어요.':'시트 「수상자 연락처」에 이 분 이메일이 없어요. 받는 메일 주소를 직접 넣어 주세요.')+' 「메일로 보내기」를 누르면 support 계정 초안이 만들어져요.');
 }
 $('sheetWeek').onchange=updatePeople;
 $('sheetPerson').onchange=()=>sheetMessage('선택한 대상자: '+$('sheetPerson').selectedOptions[0]?.textContent+'\n‘선택한 분의 메일 만들기’를 눌러 양식에 반영해 주세요.');
 $('makeMail').onclick=makeSelectedMail;
 $('forgetSheet').onclick=()=>{
   if(!confirm('이 브라우저에 가져온 모든 주차 명단과 현재 메일 초안을 지울까요? 원본 시트는 바뀌지 않아요.'))return;
-  weeks={};try{sessionStorage.removeItem(SHEET_STORE);sessionStorage.removeItem(STORE);localStorage.removeItem(STORE);}catch(e){}
+  weeks={};emails={};try{sessionStorage.removeItem(SHEET_STORE);sessionStorage.removeItem(EMAIL_STORE);sessionStorage.removeItem(STORE);localStorage.removeItem(STORE);}catch(e){}
   KEYS.forEach(k=>$(k).value=DEFAULTS[k]);$('to').value='';$('raw').value='';setMode(false);updateWeeks();syncReceiptVersion();
   sheetMessage('가져온 명단과 현재 메일 초안을 지웠어요. 원본 시트는 바뀌지 않았어요.');
 };

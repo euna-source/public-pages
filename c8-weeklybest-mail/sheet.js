@@ -94,10 +94,32 @@
     return {week,people,total:people.reduce((n,p)=>n+p.total,0),rowCount:rows.length};
   }
   // Whole-workbook import: keep every weekly tab, skip helper tabs, and refuse weeks that are broken or appear twice.
+  /* 「수상자 연락처」 tab: 수령인 + 이메일 columns. 「타이탄(titan)」 answers to 타이탄 and titan. */
+  const nameKey=s=>String(s||'').replace(/\s+/g,'').replace(/님$/,'').toLowerCase();
+  const EMAIL=/^[^\s@,;<>]+@[^\s@,;<>]+\.[^\s@,;<>]+$/;
+  function contactEmails(rows){
+    const head=(rows||[]).findIndex(r=>r.some(c=>String(c).trim()==='수령인')&&r.some(c=>String(c).trim()==='이메일'));
+    if(head<0)return null;
+    const ni=rows[head].findIndex(c=>String(c).trim()==='수령인'),ei=rows[head].findIndex(c=>String(c).trim()==='이메일');
+    const emails={},conflict=new Set();
+    for(const r of rows.slice(head+1)){
+      const name=String(r[ni]||'').trim(),email=String(r[ei]||'').trim();
+      if(!name||!EMAIL.test(email))continue;
+      const m=name.match(/^(.*?)\s*\((.*?)\)\s*$/);
+      for(const k of new Set([name,...(m?[m[1],m[2]]:[])].map(nameKey).filter(Boolean))){
+        // Two different addresses for one name: refuse to guess.
+        if(emails[k]&&emails[k]!==email)conflict.add(k);else emails[k]=email;
+      }
+    }
+    conflict.forEach(k=>delete emails[k]);
+    return emails;
+  }
+  function emailFor(emails,name){return (emails||{})[nameKey(name)]||'';}
   function convertBook(sheets){
-    const found=new Map(),errors=[];
+    const found=new Map(),errors=[];let emails={};
     const weekName=name=>(name.match(/^\s*(\d+월\s*\d+주차)\s*$/)||[])[1]?.replace(/월\s*/,'월 ');
     for(const {name,rows} of sheets){
+      if(name.trim()==='수상자 연락처'){emails=contactEmails(rows)||{};continue;}
       try{const d=convert(rows,name);found.set(d.week,[...(found.get(d.week)||[]),{name,d}]);}
       catch(e){const week=weekName(name);if(week)errors.push({week,message:name.trim()+': '+e.message});}
     }
@@ -107,8 +129,8 @@
       else if(!errors.some(e=>e.week===week))weeks.push(list[0].d);
     }
     if(!weeks.length&&!errors.length)throw Error('주차별 탭을 찾지 못했어요. 당첨자 관리 시트에서 받은 파일인지 확인해 주세요.');
-    return {weeks,errors};
+    return {weeks,errors,emails};
   }
-  root.WeeklySheet={parseDelimited,convert,convertBook,money,formatPrize,personPrize};
+  root.WeeklySheet={parseDelimited,convert,convertBook,contactEmails,emailFor,money,formatPrize,personPrize};
   if(typeof module==='object')module.exports=root.WeeklySheet;
 })(typeof globalThis==='object'?globalThis:this);
