@@ -1,0 +1,404 @@
+
+
+.c8-nav__title{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:var(--textPrimary);font:var(--font-bodyMdBoldTight);letter-spacing:var(--tracking-bodyMdBoldTight)}
+
+/* 설정 한 줄 — Component/RowMenu/SettingRowMenuView.swift:36~80
+   위 16 · 아래 12 · 이름 bodySmBold 흰색(Color.white :42) · 오른쪽 list_next(24) 위쪽 맞춤(HStack alignment .top :38)
+   설명이 있으면 이름 아래 6 띄우고 labelSm textPrimary · 아래 선 uiLine5 1(:75) — 마지막 줄은 선 없음(isDivider) */
+.c8-set-row{display:block}
+.c8-set-row__main{display:flex;align-items:center;height:52px;padding:0} /* 설정 줄 52 · 글자 세로 가운데 — 유실장 s61 설정 목록 ① */
+.c8-set-row__main:has(.c8-set-row__desc){align-items:flex-start;height:auto;padding:16px 0 12px} /* 설명 붙은 여러 줄은 높이 고정 아님 */
+.c8-set-row__name{flex:1;color:#fff;font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold)} /* 높이 고정 칸의 한 줄 글자 = Tight — 유실장 s61 설정 목록 ③ */
+.c8-set-row__main:has(.c8-set-row__desc) .c8-set-row__name{font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-set-row__desc{display:block;margin-top:6px;color:var(--textPrimary);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm)}
+.c8-set-row__next{width:24px;height:24px;flex:none}
+.c8-set-row__line{height:1px;background:var(--uiLine5)}
+.c8-set-row.no-line .c8-set-row__line{display:none}
+
+/* 가입 계정 표시 — Component/MyAccountComponent/MyAccountView.swift:22~29
+   가입 방식 아이콘 12(member_type_*_12) · 사이 6 · 글 bodySmTight textTertiary */
+.c8-my-account{display:inline-flex;align-items:center;gap:6px;color:var(--textTertiary);font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight);white-space:nowrap}
+.c8-my-account img{width:12px;height:12px}
+
+/* 설정 첫 화면 바닥 회사 정보 — View/SettingList/SettingListView.swift:100~168
+   bgSurface 높이 160(maxHeight) · 화면 바닥에 붙음(.ignoresSafeArea bottom :177)
+   글 묶음은 가운데 overlay · 좌우 16 · 아래 20 · 줄 사이 6 · 첫 줄 bodySmBold 흰색 · 나머지 bodySm textSecondary
+   약관 줄 = HStack 기본 간격 */
+.c8-set-footer{position:absolute;left:0;right:0;bottom:0;height:160px;background:var(--bgSurface);display:flex;align-items:center;justify-content:center}
+.c8-set-footer__in{display:flex;flex-direction:column;gap:6px;padding:0 16px 20px}
+.c8-set-footer__in>i{display:block;height:1px}
+.c8-set-footer__first{color:#fff;font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-set-footer__lines{color:var(--textSecondary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+/* 짐작: HStack 기본 간격 8 */
+.c8-set-footer__links{display:flex;gap:8px;color:var(--textSecondary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-set-footer__links b{font-weight:400;color:#fff}
+
+/* 알림 토글 줄 — View/Noti/NotiListView.swift:133~166 (NotiToggleRowView)
+   위 16 · 아래 11 · 오른쪽 16 · 왼쪽 16(푸시 줄) / 32(갈래 줄 :53) · 제목 bodySmBold · 설명 labelSm · 둘 다 textPrimary
+   줄 사이 3(VStack spacing :46) · 목록 위 16(:77) */
+.c8-noti-list{display:flex;flex-direction:column;gap:0;padding-top:16px} /* 줄 사이 0 — 유실장 s57 판정 4 */
+/* 알림 설정 — 휴대폰 알림 권한 꺼짐 안내 띠(26.46.0 · 모양 짐작: 피그마 없음) */
+.c8-noti-banner{display:flex;align-items:center;gap:12px;margin:8px 16px 4px;padding:12px 12px 12px 16px;border-radius:12px;background:var(--bgElevated)}
+.c8-noti-banner__text{flex:1;color:var(--textPrimary);font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-noti-banner__btn{flex:none;padding:6px 12px;border-radius:999px;background:var(--bgRaised);color:var(--textPrimary);font:var(--font-labelMd);letter-spacing:var(--tracking-labelMd)}
+.c8-noti-row{display:flex;align-items:center;padding:14px 16px 13px 16px} /* 보이는 글자 위아래 19.3/15.6 → 17.3/17.6 · 높이 64 그대로(유실장 판정 ④) */
+.c8-noti-row.is-sub{padding-left:32px}
+.c8-noti-row__text{flex:1;display:flex;flex-direction:column;color:var(--textPrimary)}
+.c8-noti-row__title{font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-noti-row__desc{font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm)}
+
+/* iOS 켜고 끄기 단추 — SwiftUI Toggle(.tint(bgBrand) · NotiListView.swift:158~161)
+   짐작: 시스템 부품이라 크기 51×31 · 꺼짐 바탕 회색 · 손잡이 흰색은 iOS 기본값으로 그림(iOS 26은 모양이 조금 다름) */
+/* 재욱: iOS 26 시스템 Toggle 모양 — 가로로 긴 알약 손잡이 · 크기 짐작(64×28 · 손잡이 38×24) */
+.c8-switch{position:relative;width:64px;height:28px;border-radius:var(--radius-pill);background:rgba(120,120,128,.36);flex:none}
+.c8-switch::after{content:"";position:absolute;top:2px;left:2px;width:38px;height:24px;border-radius:12px;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.c8-switch.is-on{background:var(--bgBrand)}
+.c8-switch.is-on::after{left:24px}
+.c8-switch.is-disabled{opacity:.5}
+
+/* 차단 안내 띠 — View/OpenScale/BlockedUserListView.swift:114~127
+   높이 50 · bgRaised · 모서리 12 · 좌우 바깥 16 · 글 왼쪽 20 · bodySmTight(색 지정 없음 = 기본 흰색) */
+.c8-notice-band{height:50px;margin:0 16px;padding-left:20px;display:flex;align-items:center;border-radius:var(--radius-12);background:var(--bgRaised);color:var(--textPrimary);font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight)}
+
+/* 목록 제목 + 개수 — BlockedUserListView.swift:129~139
+   높이 40 · 위 12 · 왼쪽 16 · bodyMdBoldTight · 개수 흰색 50%(:133) · 짐작: HStack 기본 간격 8 */
+.c8-list-title{height:40px;margin-top:12px;padding-left:16px;display:flex;align-items:center;gap:8px}
+.c8-list-title span{color:rgba(255,255,255,.5)}
+
+/* 차단한 사람 줄 — BlockedUserListView.swift:141~200
+   높이 52 · 사진 40(UserCircleView · 바탕 bgRaised) 왼쪽 16 · 사진과 글 사이 16 · 오른쪽 16
+   이름 줄 높이 21(인증 표시 ico_verified_s · 사이 4 · 이름 bodySmBold) · 직업 bodySm textTertiary
+   단추 위 6 · 아래 선 bgSubtle 1(:195) · 줄 사이 12 · 목록 위 20(LazyVStack :56·66) */
+.c8-blocked-list{display:flex;flex-direction:column;gap:12px;padding-top:20px}
+.c8-blocked-row{height:52px;display:flex;align-items:flex-start;gap:16px;padding-left:16px}
+.c8-blocked-row__body{flex:1;min-width:0;height:52px;display:flex;flex-direction:column;padding-right:16px}
+.c8-blocked-row__top{flex:1;display:flex;align-items:flex-start}
+.c8-blocked-row__info{flex:1;min-width:0}
+.c8-blocked-row__name{height:21px;display:flex;align-items:center;gap:4px;color:var(--textPrimary);font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold);white-space:nowrap}
+.c8-blocked-row__name img{width:17.3px;height:17px}
+.c8-blocked-row__job{color:var(--textTertiary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-blocked-row__btn{margin-top:6px}
+.c8-blocked-row__line{height:1px;background:var(--bgSubtle)}
+
+/* 행동 단추 — UIComponents/Sources/Component/ActionButtonView.swift:100~197 · 색 ActionButtonStyle.swift:18~55
+   글 Pretendard Bold · 자간 −0.3(:151)
+   inlinePill: 높이 28 · 좌우 8 · 모서리 8 · 13pt(:133~137·171)
+   capsuleCompact: 높이 32 · 좌우 14 · 알약 · 14pt(:123~127·169)
+   secondary = bgSubtle 바탕 + textPrimary · primary = bgBrand 바탕 + textInverse */
+.c8-action{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;font-family:Pretendard,-apple-system,sans-serif;font-weight:700;letter-spacing:-0.3px}
+.c8-action--inline-pill{height:32px;padding:0 12px;border-radius:var(--radius-pill);font-size:13px} /* 작은 알약 32에 맞춤(유실장 판정 ②) */
+.c8-action--capsule-compact{height:32px;padding:0 14px;border-radius:var(--radius-pill);font-size:14px}
+.c8-action--secondary{background:var(--bgSubtle);color:var(--textPrimary)}
+.c8-action--primary{background:var(--bgBrand);color:var(--textInverse)}
+
+/* 북마크 칩 줄 — View/BookMark/BookMarkView.swift:40~50·108~118
+   줄 높이 46 · 앞 빈칸 8 + 간격 4 · 칩 bodySmBold · 위아래 5.5 · 좌우 12 · 알약
+   고른 칩 = 흰색 바탕(.white :116) + textInverse · 안 고른 칩 = bgSubtle + 흰색 */
+.c8-bm-chips{height:46px;display:flex;align-items:center;gap:4px;padding-left:12px}
+.c8-bm-chip{padding:5.5px 12px;border-radius:var(--radius-pill);background:var(--bgSubtle);color:#fff;font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold);white-space:nowrap}
+.c8-bm-chip.is-selected{background:#fff;color:var(--textInverse)}
+
+/* 북마크 크리에이터 격자 — View/BookMark/Creator/BookmarkCreatorView.swift:29~68
+   두 칸 · 칸 사이 7 · 좌우 8(BookMarkView.swift:67) · 위 12(:91) · 칸 = 카드 280 + 6 + 북마크 아이콘 줄 20
+   짐작: LazyVGrid 세로 간격 기본값 8 */
+.c8-bm-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:7px;row-gap:8px;padding:12px 8px 0}
+.c8-bm-cell{display:flex;flex-direction:column;gap:6px;min-width:0}
+.c8-bm-cell__mark{height:20px;display:flex;align-items:center}
+.c8-bm-cell__mark img{width:24px;height:24px}
+
+/* 크리에이터 카드 뒷면 — UIComponents/Sources/Component/CreatorCard/CreatorCardBackView.swift:65~225
+   높이 280 · 모서리 24 · bgRaised · 테두리 흰색 6% 1(:101)
+   사진 35 + 사이 6 · 아이디 labelSm textPrimary · 이름 labelSm 흰색 · 위 10 좌우 10
+   정보 칩: 위 9 좌우 8 · 줄 사이 5 · 칩 사이 4 · 높이 20 · 좌우 6 · 모서리 6 · 검정 60%(:181) · labelSm (내용 있음 흰색 / 없음 textSecondary)
+   소개: labelSm textSecondary 5줄 · 위 8 좌우 10 · 숫자 묶음: 아래 13 좌우 10 · 줄 사이 3 · 이름 흰색 · 숫자 흰색 60% */
+.c8-card-back{position:relative;height:280px;border-radius:var(--radius-24);background:var(--bgRaised);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06);display:flex;flex-direction:column;overflow:hidden}
+.c8-card-back__profile{display:flex;align-items:center;gap:6px;padding:10px 10px 0}
+.c8-card-back__avatar{width:35px;height:35px;border-radius:50%;background:var(--bgRaised);flex:none;outline:1px solid rgba(255,255,255,.1);outline-offset:-1px} /* 재욱: UserCircleView 흰 10% 1pt 테두리 (UserCircleView.swift:70~73) */
+.c8-card-back__who{display:flex;flex-direction:column;gap:1px;min-width:0;font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);white-space:nowrap}
+.c8-card-back__nick{color:var(--textPrimary);overflow:hidden;text-overflow:ellipsis}
+.c8-card-back__name{color:#fff}
+.c8-card-back__name.is-hidden{color:var(--textTertiary)}
+.c8-card-back__chips{display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:9px 8px 0}
+.c8-card-back__chiprow{display:flex;gap:4px}
+.c8-card-back__chip{height:20px;padding:0 6px;border-radius:var(--radius-6);background:rgba(0,0,0,.6);color:#fff;font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);line-height:20px;white-space:nowrap}
+.c8-card-back__chip.is-empty{color:var(--textSecondary)}
+.c8-card-back__intro{padding:8px 10px 0;color:var(--textSecondary);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+.c8-card-back__counts{margin-top:auto;padding:0 10px 13px;display:flex;flex-direction:column;gap:3px;color:#fff;font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm)}
+.c8-card-back__counts div{display:flex;gap:3px}
+.c8-card-back__counts span{color:rgba(255,255,255,.6)}
+.c8-card-back__counts .gap{margin-left:9px}
+
+/* ══ 2026-10-11 추가(설정 12장) — 아래 부품은 새로 더한 것 ══ */
+
+/* 바닥 단추가 있는 화면 틀 — 상태 막대 아래부터 홈 표시줄 안전영역(34) 위까지 세로로 쌓음
+   짐작: 390×844 기기 아래 안전영역 34 (iOS 기기 값 · 코드에 없음) */
+.c8-set-page{position:absolute;top:0;left:0;right:0;bottom:34px;display:flex;flex-direction:column}
+.c8-set-page__fill{flex:1;min-height:0;overflow:hidden}
+.c8-set-page__fill.is-guide{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding-top:0!important}
+.c8-set-page__fill.is-guide .c8-set-heading{color:var(--textPrimary)}.c8-set-page__fill.is-guide .c8-set-lead{color:var(--textSecondary)} /* «안내» 제목 textPrimary · 설명 textSecondary(깐깐이 157839 ⑦) */ /* «안내» 틀 가운데형 — 글 덩어리 세로·가로 가운데(크리스 157825 «가운데로» · 유실장 s57 새 틀 판정) */
+
+/* 큰 단추 — UIComponents ActionButtonView .fullWidthProminent (ActionButtonView.swift:102~109 · 글 16 :160)
+   높이 52 · 모서리 12 · c8-action 과 같이 Pretendard Bold 자간 −0.3
+   .disable = bgSubtle 95% 바탕 + 흰색 30% 글자 (ActionButtonStyle.swift:25·40) */
+.c8-action--full{display:flex;height:52px;border-radius:var(--radius-12);font-size:16px}
+.c8-action--disable{background:var(--actionDisabledBg);color:var(--actionDisabledText)} /* 단추 52 끔 = 토큰(유실장 판정 ① · 깐깐이 157850) */
+
+/* 큰 제목 + 안내 글 — DeleteAccountView.swift:48~52 · WithdrwalCompletionView.swift:42~51 · TwoFactorCompleteView.swift:28~37
+   제목 headingMdBold 흰색(Color.white) · 좌우 26 · 안내 글 textPrimary 좌우 26 (글자 토큰은 화면마다 달라 클래스로 고름) */
+.c8-set-heading{padding:0 26px;color:#fff;font:var(--font-headingMdBold);letter-spacing:var(--tracking-headingMdBold);white-space:pre-line}
+.c8-set-lead{padding:0 26px;color:var(--textPrimary);white-space:pre-line}
+.c8-set-lead.is-bodySm{font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-set-lead.is-bodyMdBold{font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)}
+
+/* 숨김 입력칸(비밀번호) — UIComponents SecureUnderlineTextFieldView.swift:41~106
+   .prominent 높이 54(:89~90) · 글 displayMd(:54) · 커서 iconBrand(:55) · 눈 단추 closed_eye(36 · :65)
+   밑줄 2 — 입력 중 borderBrand · 틀림 borderDanger · 쉬는 borderDefault(:98~105) */
+.c8-secure-field{height:54px;display:flex;flex-direction:column;margin:0 26px}
+.c8-secure-field__row{flex:1;display:flex;align-items:center;gap:8px} /* 짐작: HStack 기본 간격 8 */
+.c8-secure-field__input{flex:1;display:flex;align-items:center;font:var(--font-displayMd);letter-spacing:var(--tracking-displayMd);color:var(--textPrimary)}
+.c8-secure-field__caret{width:2px;height:32px;background:var(--iconBrand)} /* 짐작: UIKit 커서 굵기 2 · 높이 */
+.c8-secure-field__eye{width:36px;height:36px}
+.c8-secure-field__line{height:2px;background:var(--borderDefault)}
+.c8-secure-field.is-focus .c8-secure-field__line{background:var(--borderBrand)}
+.c8-secure-field.is-error .c8-secure-field__line{background:var(--borderDanger)}
+
+/* 개인정보 동의 철회 본문 — View/ServiceAgreement/PersonalInfoAgreementView.swift:167~239
+   위 18(:69) · 묶음 사이 20(:170) · 그림 왼쪽 20 · 제목 headingMdBold 좌우 26 · 점 줄 사이 6(:185) bodySm textPrimary(강조 = bodySmBold 흰색 :42~44)
+   «•» 따로 선 줄은 점↔글 10(:194) · 기능 목록 bodySmBold 왼쪽 12(:213~217) · 아래 묶음 사이 12(:224) · 링크 bodySmBold textBrand */
+.c8-consent{display:flex;flex-direction:column;gap:20px;padding-top:18px}
+.c8-consent__art{padding:0 20px}
+.c8-consent__art img{display:block}
+.c8-consent__title{padding:0 26px;white-space:pre-line}
+.c8-consent__list{padding:0 26px;display:flex;flex-direction:column;gap:6px;color:var(--textPrimary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);white-space:pre-wrap}
+.c8-consent__list b{font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold);color:#fff}
+.c8-consent__dot{display:flex;gap:10px;align-items:flex-start}
+.c8-consent__features{padding-left:12px;font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold);color:var(--textPrimary);white-space:pre-line}
+.c8-consent__foot{display:flex;flex-direction:column;align-items:center;gap:12px;padding-bottom:6px}
+.c8-consent__link{font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold);color:var(--textBrand)}
+.c8-consent__foot .c8-action{align-self:stretch;margin:0 16px}
+
+/* 회색 안내 상자 — View/2FA/TwoFactorUnAuthView.swift:98~108
+   사방 15 · bgRaised · 모서리 12 · 좌우 바깥 16 · 아래 16 · bodySm textPrimary */
+.c8-info-box{margin:0 16px 16px;padding:15px;border-radius:var(--radius-12);background:var(--bgRaised);color:var(--textPrimary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+
+/* 묶음 이름(작은 회색) — TwoFactorUnAuthView.swift:111~113 · OpenScale/OpenScaleProfileView.swift:30~32 (bodySmBold textTertiary) */
+.c8-set-label{color:var(--textTertiary);font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+
+/* 하나 고르기 줄 — OpenScaleProfileView.swift:69~80 radioItem
+   높이 52 · 글 bodySmTightBold textPrimary 왼쪽 16 · 오른쪽 아이콘 20(고름 ico_radio_cheked / 안 고름 ico_checkbox_normal) 오른쪽 20 */
+.c8-radio-row{height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px 0 16px;color:var(--textPrimary);font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold)}
+.c8-radio-row img{width:20px;height:20px}
+
+/* 켜고 끄기 한 줄 — View/2FA/TwoFactorEmailManageView.swift:44~53
+   높이 52 · 위 38 · 글 bodySmTightBold 왼쪽 16 · Toggle 오른쪽 16 (단추 = c8-switch) */
+.c8-toggle-row{height:52px;margin-top:38px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;color:var(--textPrimary);font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold)}
+
+/* 2FA 머리글 묶음 — TwoFactorEmailManageView.swift:31~42 (위 16 · 왼쪽 26 · 사이 8 · 제목 headingMdBold 높이 35 · 안내 bodyMdBold textPrimary) */
+.c8-2fa-head{padding:16px 0 0 26px;display:flex;flex-direction:column;gap:8px}
+.c8-2fa-head__title{display:flex;align-items:center} /* 입력 틀: 머리 아래 → 제목 글자 18(크리스 2026-11-16 페이지 틀 맞추기) */
+.c8-2fa-head__desc{color:var(--textPrimary);font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold);white-space:pre-line}
+
+/* 개수 칩 — Contents/Liked/LikedListView.swift:65~77 · Comments/MyCommentsAndRepliesListView.swift:75~87
+   높이 32 · 좌우 12 · 글↔숫자 3 · bodySmBold · 고름 = 흰색 바탕 + textInverse · 안 고름 = bgSubtle + 흰색 · 칩 사이 4 */
+
+/* 내 댓글 한 칸 — Contents/Comments/ContentsCommentView.swift:25~106
+   원글 줄: 사진 30(UserCircleView · bgRaised · 테두리 흰색 10% 1) 왼쪽 12 · 사진↔글 8 · 이름 bodySmBold · «·» bodySm textSecondary · 시간 labelSm textSecondary · 사이 2 · 높이 21
+   원글 bodySm textPrimary 한 줄 · 내 댓글 줄 위 13 · 사진 30 · 사이 8 · 이름↔글 2 · 구분선 흰색 5% 1 사방 12 */
+.c8-mycomment{display:flex;align-items:flex-start;gap:8px;padding-left:12px}
+.c8-mycomment__body{flex:1;min-width:0}
+.c8-mycomment__line{height:21px;display:flex;align-items:center;gap:2px;white-space:nowrap;color:var(--textPrimary);font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-mycomment__line i{font-style:normal;color:var(--textSecondary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-mycomment__line em{font-style:normal;color:var(--textSecondary);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm)}
+.c8-mycomment__text{color:var(--textPrimary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.c8-mycomment__mine{display:flex;align-items:flex-start;gap:8px;padding-top:13px}
+.c8-mycomment__mine .c8-mycomment__line{height:auto}
+.c8-mycomment__mine>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.c8-mycomment__div{height:1px;margin:12px;background:rgba(255,255,255,.05)}
+
+/* 리스펙트 개수 줄 — Contents/RespectedPortfolios/RespectedPortfoliosView.swift:39~50 (bodySmTightBold · 이름 textSecondary · 숫자 textDisabled · 위아래 12 · 왼쪽 16) */
+.c8-respect-count{padding:12px 0 12px 16px;font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold);color:var(--textSecondary)}
+.c8-respect-count span{color:var(--textDisabled)}
+
+/* 두 줄 벽돌 판 — RespectedPortfoliosView.swift:54·130 MasonryVStack(columns 2 · spacing 7) · 좌우 8 · 위 8(:142)
+   짐작: 세로 간격도 spacing 7 */
+.c8-masonry{display:flex;gap:12px;padding:8px 8px 0}
+.c8-masonry__col{flex:1;min-width:0;display:flex;flex-direction:column;gap:12px}
+
+/* 작은 작업물 칸 — UIComponents/Sources/Component/Media/CompactMediaTileViews.swift
+   모서리 16 · 테두리 흰색 10% 1 안쪽 1(:464~469) · 사진 칸 높이 300(:50) · 여러 장/글 칸은 높이 = 폭(:110·281)
+   제목 배지 labelSm 높이 22 좌우 8 검정 40%(:424~435) · 사진 칸은 좌우 6 아래 10 · 여러 장/글 칸은 사방 6
+   장수 배지 labelSm 높이 22 좌우 6 검정 70%(:438~449) 오른쪽 위 6 · 이 화면은 고정 핀 숨김(pinVisible false)
+   글 칸: 바탕 rgb(0.07) · 흰 종이 좌우 12 · 아래로 40 · 글 6pt 검정 사방 12 · 아래 그늘 80(:255~287 · 536~549) */
+.c8-tile{position:relative;border-radius:var(--radius-16);overflow:hidden;background:var(--bgElevated)}
+.c8-tile::after{content:"";position:absolute;inset:1px;border-radius:16px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);pointer-events:none}
+.c8-tile--image{height:300px}
+.c8-tile--square{aspect-ratio:1/1}
+.c8-tile__title{position:absolute;left:6px;bottom:10px;height:22px;padding:0 8px;border-radius:var(--radius-pill);background:rgba(0,0,0,.4);color:var(--textPrimary);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);line-height:22px;white-space:nowrap;max-width:calc(100% - 12px);overflow:hidden;text-overflow:ellipsis}
+.c8-tile--square .c8-tile__title{bottom:6px}
+.c8-tile__count{position:absolute;top:6px;right:6px;height:22px;padding:0 6px;border-radius:var(--radius-pill);background:rgba(0,0,0,.7);color:var(--textPrimary);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);line-height:22px}
+.c8-tile--text{background:rgb(18,18,18)} /* Color(red:0.07,green:0.07,blue:0.07) · CompactMediaTileViews.swift:532 */
+.c8-tile__paper{position:absolute;left:12px;right:12px;top:40px;bottom:-40px;border-radius:var(--radius-16);background:#fff;padding:12px;color:#000;font:400 6px/10px Pretendard,-apple-system,sans-serif;overflow:hidden} /* 짐작: pretendard6_R_lh10 = 6pt 줄 10 */
+.c8-tile__shade{position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(rgba(18,18,18,0),rgba(18,18,18,.6))}
+
+/* 연결 진단 — View/Diagnostics/ChatConnectionDiagnosticsView.swift (내부 배포·개발 빌드 전용)
+   판: 좌우 16 · 위아래 20 · 묶음 사이 16(:31~37)
+   상태 카드(:51~100): 사방 16 · 모서리 12 · 흰색 6% · 줄 사이 8 · 점 10(Color.green/red) · 상태 bodyMd 흰색 · 나머지 bodySm textSecondary
+     «로그 복사» bodySm 흰색 좌우 12 위아래 6 · 테두리 textSecondary 1 모서리 6 · 위 4
+   필터 칩(:104~121): 사이 8 · bodySm · 좌우 12 위아래 6 · 고름 흰색 바탕 검정 글 / 안 고름 흰색 12% 바탕 흰 글
+   기록 줄(:134~166): 위아래 10 · 시간·기호·요약 사이 8 · bodySm · 시간 textSecondary · 요약 흰색 · 구분선 흰색 8% */
+.c8-diag{display:flex;flex-direction:column;gap:16px;padding:20px 16px}
+.c8-diag-card{padding:16px;border-radius:var(--radius-12);background:rgba(255,255,255,.06);display:flex;flex-direction:column;gap:8px;color:var(--textSecondary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-diag-card__state{display:flex;align-items:center;gap:8px}
+.c8-diag-card__dot{width:10px;height:10px;border-radius:50%;background:var(--textSuccess)} /* 짐작: SwiftUI Color.green 어두운 모드 값 */
+.c8-diag-card__dot.is-off{background:var(--borderDanger)} /* 짐작: SwiftUI Color.red 어두운 모드 값 */
+.c8-diag-card__name{flex:1;color:#fff;font:var(--font-bodyMd);letter-spacing:var(--tracking-bodyMd)}
+.c8-diag-card__copy{align-self:flex-start;margin-top:4px;padding:6px 12px;border-radius:var(--radius-6);box-shadow:inset 0 0 0 1px var(--textSecondary);color:#fff}
+.c8-diag-chips{display:flex;gap:8px}
+.c8-diag-chip{padding:6px 12px;border-radius:var(--radius-pill);background:rgba(255,255,255,.12);color:#fff;font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-diag-chip.is-selected{background:#fff;color:#000}
+.c8-diag-row{display:flex;align-items:flex-start;gap:8px;padding:10px 0;font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);color:#fff}
+.c8-diag-row time{color:var(--textSecondary)}
+.c8-diag-row span:last-child{flex:1}
+.c8-diag-line{height:.5px;background:rgba(255,255,255,.08)} /* 짐작: Divider 굵기 = 1픽셀(1/3pt) */
+
+/* ══ 2026-10-11 추가(도우미 · 비밀번호·서비스 동의·탈퇴 이유·북마크 포트폴리오·로그아웃 알림) ══ */
+
+/* 비밀번호 칸 상태 — UIComponents SecureUnderlineTextFieldView.swift:50~57 (글자색: 입력 중 .label 흰색 · 쉬는 칸 .placeholderText)
+   짐작: .placeholderText 어두운 모드 값 rgba(235,235,245,.3) */
+.c8-secure-field.is-idle .c8-secure-field__input{color:rgba(235,235,245,.3)}
+.c8-secure-field__input span{letter-spacing:2px} /* 짐작: iOS 숨김 글자(●) 간격 */
+
+/* 밑줄 입력칸(큰·고칠 수 없음) — UIComponents UnderlineTextFieldView.swift .prominent (높이 40 · 26 굵게 · 밑줄 2)
+   쉬는 칸 글자 textSecondary · 밑줄 borderDefault · ResetPasswordView.swift:41~44(이메일 · disabled · 위 40 좌우 26) */
+.c8-uline-lg{height:40px;margin:0 26px;display:flex;flex-direction:column;justify-content:space-between}
+.c8-uline-lg__text{font:700 26px/31px Pretendard,-apple-system,sans-serif;color:var(--textSecondary);white-space:nowrap;overflow:hidden} /* 줄 높이 31 = 짐작(코드는 .font만 지정) */
+.c8-uline-lg__line{height:2px;background:var(--borderDefault)}
+
+/* 비밀번호 조건 줄 — View/ChangePassword/ChangePasswordView.swift:140~159
+   위 12 · 줄 사이 2 · 줄 높이 20 · 아이콘 20(check_Icon_green_20 / check_Icon_gray_20) · 사이 2 · bodySm · 맞음 textBrand / 아직 textSecondary */
+.c8-pw-help{display:flex;flex-direction:column;gap:2px;padding-top:12px}
+.c8-pw-help div{height:20px;display:flex;align-items:center;gap:2px;font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);color:var(--textSecondary)}
+.c8-pw-help div.is-ok{color:var(--textBrand)}
+.c8-pw-help img{width:20px;height:20px;display:block}
+/* 입력칸 아래 한 줄 알림 — ChangePasswordView.swift:65~71·110~120 · ResetPasswordView.swift:103~113 (bodySm · 기본 textSecondary · 맞음 textBrand · 틀림 textDanger) */
+.c8-pw-note{font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);color:var(--textSecondary)}
+.c8-pw-note.is-ok{color:var(--textBrand)}
+.c8-pw-note.is-error{color:var(--textDanger)}
+
+/* 서비스 동의 줄 — View/ServiceAgreement/ServiceAgreementView.swift:119~158
+   좌우 16 · 위 10 · 제목 bodySmBold + «보기» labelSm textBrand 밑줄(사이 4) · 오른쪽 Toggle(c8-switch) · 설명 labelSm textSecondary · 선 lineOverlaySubtle 1 위 16 */
+.c8-agree{padding:0 16px}
+.c8-agree__top{display:flex;align-items:center;gap:4px;padding-top:10px;color:var(--textPrimary);font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-agree__look{color:var(--textBrand);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);text-decoration:underline}
+.c8-agree__top .c8-switch{margin-left:auto}
+.c8-agree__desc{color:var(--textSecondary);font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm)}
+.c8-agree__line{margin-top:16px;height:1px;background:var(--lineOverlaySubtle)}
+
+/* 직접 입력 머리 — View/AccountList/WithdrawalReasonInputView.swift:65~89 (c8-nav 위에: 가운데 제목 bodyLgBold · 오른쪽 «다음» bodySmTightBold 켜짐 textBrand / 꺼짐 textTertiary) */
+.c8-nav__title.is-lg{font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold)}
+.c8-nav__next{margin-left:auto;color:var(--textTertiary);font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold)}
+.c8-nav__next.is-on{color:var(--textBrand)}
+/* 이유 입력칸 — WithdrawalReasonInputView.swift:39~52 (TextEditor bodySm · 좌우 20 · 빈 칸 안내 textTertiary · 왼쪽 5 위 10 · 커서 iconBrand) */
+.c8-reason-edit{position:relative;margin:0 20px;height:100%;font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);color:var(--textPrimary)}
+.c8-reason-edit__ph{position:absolute;left:5px;top:10px;color:var(--textTertiary)}
+.c8-reason-edit__caret{position:absolute;left:5px;top:9px;width:2px;height:20px;background:var(--iconBrand)} /* 짐작: TextEditor 안쪽 위 8 · 왼쪽 5 · 커서 크기 */
+
+/* 아래 시트 — UIComponents Modal/ModalStyle.swift:33~47 · Modal.swift:228~245 (모서리 30 · bgSurface · 테두리 bgRaised 1.5 · 손잡이 보임)
+   my.css c8-sheet 와 같은 값(설정 화면은 my.css를 링크하지 않아 여기 둠) · iOS 26은 시스템 유리 시트 = 이 판은 iOS 26 미만 값 */
+.c8-set-sheet{position:absolute;left:0;right:0;bottom:0;z-index:21;border-radius:32px 32px 0 0;background:var(--bgSurface);box-shadow:inset 0 0 0 1.5px var(--bgRaised)}
+
+/* 탈퇴 이유 고르기 — View/AccountList/Withdrwal/WithdrwalReasonSelectionBottomSheetView.swift:42~100
+   머리: 좌우 20 · 뒤로 back_arrow_24 + 오른쪽 6 · «회원 탈퇴» bodyMdBold 흰색 · 오른쪽 gray_close_24 · 아래 3 · 안내 bodySm textPrimary · 아래 23
+   이유 목록: 좌우 20 · 아래 16 · 줄 높이 46 · 고름 표시 ico_verified_check 20 + 오른쪽 8 · 글 bodySmTight textSecondary · 줄 사이 선 흰색 10% 1
+   단추: 좌우 20 · c8-action--full (고르기 전 disable / 고른 뒤 primary) */
+.c8-wreason__head{padding:0 20px 23px}
+.c8-wreason__bar{display:flex;align-items:center;padding-bottom:3px;color:#fff;font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)}
+.c8-wreason__bar img{width:24px;height:24px;display:block}
+.c8-wreason__bar img:first-child{margin-right:6px}
+.c8-wreason__bar img:last-child{margin-left:auto}
+.c8-wreason__desc{color:var(--textPrimary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-wreason__list{padding:0 20px 16px}
+.c8-wreason__row{height:46px;display:flex;align-items:center;color:var(--textSecondary);font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight)}
+.c8-wreason__row img{width:20px;height:20px;margin-right:8px;display:block}
+.c8-wreason__row+.c8-wreason__row{box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.c8-wreason__btn{padding:0 16px}
+
+/* 북마크 포트폴리오 — View/BookMark/Portfolio/BookMarkPortfolioView.swift:29~102
+   MasonryVStack(columns 2 · spacing 12) · 좌우 8(BookMarkView.swift:84) · 위 12(:91) · 칸 = 작업물 칸(c8-tile) + 6 + 북마크 아이콘 24(book_mark_green_24 / gray) */
+.c8-masonry.is-gap12{gap:12px;padding:12px 8px 0}
+.c8-masonry.is-gap12 .c8-masonry__col{gap:12px}
+.c8-bm-pcell{display:flex;flex-direction:column;gap:6px}
+.c8-bm-pcell>img{width:24px;height:24px;display:block}
+.c8-alert__title{padding:40px 16px 37px;text-align:center;color:var(--textPrimary);font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold)} /* 알림창 하나(유실장 s57 157662) */
+.c8-alert__line{height:1px;background:var(--bgRaised)} /* 앱 DividerView = bgRaised(AlertViews.swift:72 · DividerView.swift:21) · 크리스 2026-11-16 «라인 왜 진해» */
+
+/* ── 2026-10-11 02시 누락 칸 채움(my·setting 도우미) ── */
+/* 고객센터 이메일 알림창 — Component/CustomerServiceAlertView.swift:24~122 (상자·딤 = c8-alert-dim · c8-alert 그대로)
+   위 26 · 좌우 20 · 제목 bodyMdBoldTight 높이 24 · 제목↔안내 2 · 안내 bodySm textPrimary 높이 18
+   목록 판: 위 8 · 좌우 20 · 아래 26 · 바탕 bgRaised · 모서리 12 · 안 위아래 10 · 줄 사이 10 · 줄 좌우 10
+   점 = bgInverse 지름 2(아래로 8) · 점↔글 8(짐작: HStack 기본 간격) · 글 bodySm textPrimary 줄 높이 18 */
+.c8-csalert__head{padding:40px 20px 0;display:flex;flex-direction:column;gap:4px}
+.c8-csalert__title{color:var(--textPrimary);font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold)} /* 알림창 하나(유실장 s57 157662) */ /* 제목 색 지정 없음(시스템 기본 흰색) */
+.c8-csalert__desc{color:var(--textSecondary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-csalert__box{margin:12px 20px 24px;padding:10px 0;border-radius:12px;background:var(--bgRaised);display:flex;flex-direction:column;gap:10px}
+.c8-csalert__item{padding:0 10px;display:flex;align-items:flex-start;gap:8px;color:var(--textPrimary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.c8-csalert__item i{flex:none;width:2px;height:2px;border-radius:50%;background:var(--bgInverse);margin-top:8px}
+.c8-csalert__item div span{display:block;height:18px;line-height:18px}
+/* 북마크 빈 상태 — View/BookMark/Creator/BookmarkCreatorEmptyView.swift:21~31 · Portfolio/BookMarkPortfolioEmptyView.swift:21~31
+   글 bodySm textTertiary · 글↔단추 12 · 단추 = ActionButtonView(.capsuleCompact · .primary) = c8-action c8-action--capsule-compact c8-action--primary
+   자리 = 칩 줄 아래 위 12 띄운 칸의 가운데에서 위로 30 (BookMarkView.swift:52~64·91) */
+.c8-bm-empty{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:12px;transform:translateY(-50%)}
+.c8-bm-empty__msg{color:var(--textSecondary);font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)} /* 빈 상태 하나(유실장 s57 157611) */
+.c8-bm-empty .c8-action--capsule-compact{padding:0 12px;font-size:13px} /* 작은 알약 밝은 바탕 변형 32·13/700 */
+/* 약관 문서 머리 — UIComponents/Sources/Component/ServiceAgreement/ServiceAgreementDocumentView.swift:91~126
+   높이 52 · 좌우 6 · 아이콘 칸 44×44(push로 들어오면 back_arrow_24 · closeDrawnAsBackArrow) · 제목 bodyMdBold 흰색 가운데 · 바탕 bgSurface */
+.c8-doc{position:absolute;inset:0;background:var(--bgSurface);display:flex;flex-direction:column}
+.c8-doc__head{position:relative;height:52px;padding:0 6px;display:flex;align-items:center}
+.c8-doc__icon{width:44px;height:44px;display:grid;place-items:center}
+.c8-doc__icon img{width:24px;height:24px;display:block}
+.c8-doc__title{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;color:#fff;font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)}
+.c8-doc__web{flex:1;margin:0 0 0;border-top:1px dashed var(--uiLine10);padding:20px 16px;display:flex;flex-direction:column;gap:10px} /* 짐작: 웹 문서 자리(본문은 서버 약관 웹 · 코드 값 없음) */
+.c8-doc__web i{display:block;height:12px;border-radius:4px;background:var(--bgRaised)}
+/* 약관 못 불러옴 — View/ServiceAgreement/UserContentAgreementView.swift:27~42 (가운데 · 사이 20 · 글 bodyMdBold textPrimary · «다시 시도» bodyMdBold textBrand) */
+.c8-docfail{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;gap:20px;transform:translateY(-50%)}
+.c8-docfail__msg{color:var(--textPrimary);font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)}
+.c8-docfail__retry{color:var(--textBrand);font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)}
+/* 목록 빈 글(댓글) — Contents/Comments/ContentsCommentsListView.swift:46~53 (목록 칸 가운데 · bodySmTight textTertiary) */
+.c8-list-empty{position:absolute;left:0;right:0;text-align:center;transform:translateY(-50%);color:var(--textSecondary);font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight)}
+/* 좋아요 빈 상태 — Contents/Liked/Inspiration/LikedInspirationsView.swift:89~112
+   Respect_Thumb 64 · 아래 12 · 글 bodyMdBoldTight textPrimary · 아래 9 · «둘러보기» bodySmBold 흰색 · 위아래 6 · 좌우 12 · bgSubtle 알약 */
+.c8-liked-empty{position:absolute;left:0;right:0;display:flex;flex-direction:column;align-items:center;transform:translateY(-50%)}
+.c8-liked-empty img{width:64px;height:64px;display:block;margin-bottom:12px}
+.c8-liked-empty__msg{margin-bottom:12px;color:var(--textPrimary);font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)} /* 빈 상태 하나(유실장 s57 157611) */
+.c8-liked-empty__btn{padding:6px 12px;border-radius:var(--radius-pill);background:var(--bgSubtle);color:#fff;font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+
+/* ── 배지 예시(도우미 배지 2026-10-11 · 크리스 03:11 «화면에도 표시되야») — 이 탭 화면의 예시 사람 몇에만 붙임 ── */
+/* 인증 — Gen.Assets.verified_check_12 원래 크기(@3x 52×51 → 17.33×17) · FeedCommentRowView.swift:113 · FeedReplyRowView.swift:105 · RespectUserRowView.swift:47 */
+.c8-bdg-v{width:17.33px;height:17px;flex:none;display:block}
+/* 베타 — Gen.Assets.beta_badge_16 원래 크기(@3x 57×65 → 19×21.67) · FeedCommentRowView.swift:117 · BaseUserRowView.swift:74 */
+.c8-bdg-b{width:19px;height:21.67px;flex:none;display:block}
+/* 인증(글 머리) — Gen.Assets.verified_check_icon(@3x 69 → 23) · .frame(16×16)이지만 resizable 없음 → 그림은 23 그대로 16 칸 가운데 · FeedHeaderView.swift:111~112 */
+.c8-bdg-vi{width:23px;height:23px;margin:-3.5px;flex:none;display:block}
+/* 이름 줄(배지 + 이름) 가로 묶음 — 간격 4 · BaseUserRowView.swift:72 HStack(spacing: 4) */
+.c8-bdg-line{display:flex;align-items:center;gap:4px;min-width:0}
+/* 뮤즈 이름 — VIPNicknameTextView.swift:24~38 · 글 Color(red 1, green .93, blue .57)=#FFED91(코드 raw · 토큰 아님) · Pretendard Bold 13(fontSize 기본 13) · 자간 −0.3 · 날개 vip_*_wing_13(@3x 32×53 → 10.67×17.67) · 날개 y +1.6 · 왼 날개 뒤 2 */
+/* VIP 배지 규칙은 components.css 한 곳 — 유실장 s57 판정 2 */
+/* 뮤즈 금색 링 — UserCircleView.swift:54~69(크기 >30 = 굵기 2.5 · ≤30 = 1.2) · FollowableUserCircleView.swift:45~59(굵기 2) · vipGoldLight→vipGoldMedium→vipGoldLight · topLeading→bottomTrailing */
+.c8-bdg-ring{position:relative;box-shadow:none!important;outline:none!important}
+.c8-bdg-ring::after{content:"";position:absolute;inset:0;z-index:0;border-radius:50%;padding:2.5px;background:linear-gradient(135deg,var(--vipGoldLight),var(--vipGoldMedium),var(--vipGoldLight));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.c8-bdg-ring--s::after{padding:1.2px} /* size ≤ 30 */
+.c8-bdg-ring--f::after{padding:2px} /* FollowableUserCircleView */
+.c8-bdg-ring>img:not(:first-child){z-index:1} /* 왕관 등 위에 얹는 그림은 링 위 */
+/* <img> 프로필 원 위에 겹쳐 그리는 링(같은 크기 · 앞 형제 자리로 당김) */
+.c8-bdg-ringel{display:block;flex:none;border-radius:50%;padding:2.5px;background:linear-gradient(135deg,var(--vipGoldLight),var(--vipGoldMedium),var(--vipGoldLight));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;box-sizing:border-box}
+/* 뮤즈 카드 테두리 — CreatorCardVIPStrokeView.swift:22~52 (radius 24 = CreatorCardBackView.swift:16) · 바깥 3pt(inset 1.5) vipGoldLight20→vipGoldShadow20→vipGoldLight20 + 안 1pt(inset .5) vipGoldLight→vipGoldShadow→vipGoldLight · topLeading→bottomTrailing · 뮤즈면 흰 6% 테두리 대신(CreatorCardBackView.swift:96~103) */
+.c8-bdg-cardvip{box-shadow:none!important}
+.c8-bdg-cardvip::before,.c8-bdg-cardvip::after{content:"";position:absolute;inset:0;border-radius:24px;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;z-index:2}
+.c8-bdg-cardvip::before{padding:3px;background:linear-gradient(to bottom right,var(--vipGoldLight20),var(--vipGoldShadow20),var(--vipGoldLight20))}
+.c8-bdg-cardvip::after{padding:1px;background:linear-gradient(to bottom right,var(--vipGoldLight),var(--vipGoldShadow),var(--vipGoldLight))}
+/* Muse 특권 안내 띠 — SettingListView.swift:38~40(viewModel.isMuse일 때만) · :237~262 museGuideSection: 위아래 흰 10% 1 · 높이 42 · 배경 Color(.13,.13,.13)=rgb(33,33,33) raw · «이 플랫폼의 기준, »(bodySmTight textPrimary) + VIPNicknameTextView(«Muse», 14) + « 특권 안내» */
+.c8-bdg-museband{height:42px;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,.1);border-bottom:1px solid rgba(255,255,255,.1);background:rgb(33,33,33);color:var(--textPrimary);font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight);white-space:pre}
+.c8-alert__btns{height:48px;display:flex;font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold)}
+.c8-alert__btns span{flex:1;display:grid;place-items:center;color:#fff}
+.c8-alert__btns span:first-child{color:var(--textSecondary)}
+.c8-alert__btns i{width:1px;background:var(--bgRaised)}
