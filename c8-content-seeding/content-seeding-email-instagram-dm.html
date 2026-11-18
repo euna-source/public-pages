@@ -488,6 +488,8 @@ dialog textarea{min-height:200px;margin-bottom:12px}
   #previewOpen{display:inline-flex}
   .shell.preview-open #previewOpen{display:none}
   #primary{flex:1;min-width:0;max-width:none}
+  .act-btns{flex-wrap:wrap}
+  #copyDm{order:-1;flex:1 0 100%}   /* DM만 복사는 늘 보이도록 주 버튼 위 한 줄 */
   #previewCol{position:fixed;inset:0;z-index:var(--z-sheet);transform:translateY(100%);visibility:hidden;transition:transform var(--t-panel) var(--ease),visibility 0s var(--t-panel);overscroll-behavior:contain}
   #previewCol.open{transform:none;visibility:visible;transition:transform var(--t-panel) var(--ease)}
   .pv-head{padding:2px 8px 0}
@@ -583,6 +585,7 @@ dialog textarea{min-height:200px;margin-bottom:12px}
       <button class="btn icon lg" id="moreBtn" popovertarget="moreMenu" aria-label="더보기" title="더보기"><svg class="i lg" aria-hidden="true"><use href="#i-more"/></svg></button>
       <button class="btn line lg" id="copyMailSource" data-only="email">메일 HTML 소스복사</button>
       <button class="btn line lg" id="sendMail" data-only="email" title="편집한 최종 양식으로 support Gmail 초안을 만들어요">메일로 보내기</button>
+      <button class="btn line lg" id="copyDm" data-only="dm" title="인스타를 열지 않고 DM 글만 복사해요"><svg class="i" aria-hidden="true"><use href="#i-copy"/></svg><span>DM만 복사</span></button>
       <button class="btn primary" id="primary" data-mode="open"><span id="primaryLabel">메일 내용 복사</span></button>
     </div>
   </div>

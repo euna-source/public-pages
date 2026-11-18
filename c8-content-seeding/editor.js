@@ -519,6 +519,8 @@ function compute(){
   // More menu: a block locks every copy path, here as well as on the button.
   const lock=blocks.length>0;
   ['copyBody','copySubject','copyTo','exFile','exSource','exText','copyMailSource','sendMail'].forEach(id=>$(id).setAttribute('aria-disabled',String(lock)));
+  // DM만 복사 never opens Instagram, so a missing account does not lock it.
+  $('copyDm').setAttribute('aria-disabled',String(blocks.some(b=>b.code!=='handle-empty')));
   $('moreLock').hidden=!lock;$('copyLabel').hidden=lock;
   setText($('moreLock'),recorded?'이미 보낸 분이라 복사가 잠겨 있어요':'보낼 수 없는 이유가 있어 복사가 잠겨 있어요');
   const cb=$('copyBody');
@@ -1389,6 +1391,17 @@ $('previewDm').onclick=()=>switchPreview('dm');
 radioKeys('previewSwitch',['previewEmail','previewDm'],id=>switchPreview(id==='previewDm'?'dm':'email'));
 $('sendMail').onclick=sendFinalDraft;
 $('copyMailSource').onclick=()=>{if(!menuLocked('copyMailSource'))copyOnly(true);};
+// DM text only, at every step: never opens Instagram; a block still shows its reasons instead of copying.
+$('copyDm').onclick=()=>{
+  if(ui.channel!=='dm')return;
+  if($('copyDm').getAttribute('aria-disabled')==='true'){
+    const bl=lastChecks.filter(c=>c.level==='block'&&c.code!=='handle-empty');
+    toast(bl.map(c=>c.msg).join(' '));const f=bl.find(c=>c.field&&$(c.field));if(f)goField(f.field,true);return;
+  }
+  // Without an account there is nothing to record against: copy the text only and leave the step as it is.
+  if(!handleOf($('handle').value)){const text=last.dm;return writeText(text).then(ok=>ok?toast('DM을 복사했어요. 보낸 뒤 기록하려면 인스타 계정을 적어 주세요.'):manualCopy(text,null,'dm'));}
+  copyOnly();
+};
 $('exSource').onclick=()=>menuCopy('exSource',last.emailHtml,'HTML 소스를 복사했어요.');
 $('exText').onclick=()=>menuCopy('exText',last.emailText,'양식 없이 글만 복사했어요.');
 $('alreadySent').onclick=async()=>{
