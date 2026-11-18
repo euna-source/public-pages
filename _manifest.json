@@ -1222,5 +1222,13 @@
     "last_kind": "new",
     "last_sha256": "ea08bc116c6d55d1bc14cdf344b41b2010f7bd3cef7af1f8e782f46e506fb751",
     "timestamp": "2026-11-18T06:04:21.199807Z"
+  },
+  "c8-faq-draft": {
+    "slug": "c8-faq-draft",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/c8-faq-draft/",
+    "last_kind": "new",
+    "last_sha256": "103dcaf24b5fe45bfb7dd9e2474aa1cb89cddb7da6da0e921c2ccfc923367c5a",
+    "timestamp": "2026-11-18T12:45:32.650638Z"
   }
 }
