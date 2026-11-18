@@ -1214,5 +1214,13 @@
     "last_kind": "new",
     "last_sha256": "0efd8c78627fad8eb64db2123b6b5490ee3922a58ad39ab2231897ec85ddab83",
     "timestamp": "2026-11-18T01:12:30.967798Z"
+  },
+  "genz-selfrating-gate-261118": {
+    "slug": "genz-selfrating-gate-261118",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/genz-selfrating-gate-261118/",
+    "last_kind": "new",
+    "last_sha256": "ea08bc116c6d55d1bc14cdf344b41b2010f7bd3cef7af1f8e782f46e506fb751",
+    "timestamp": "2026-11-18T06:04:21.199807Z"
   }
 }
