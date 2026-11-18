@@ -1,0 +1,285 @@
+/* 서체 — 폴더 안 Pretendard 원본을 건다(맥스 2026-10-14 · 패트릭 §15). 컴퓨터에 Pretendard가 안 깔려 있어도 같은 글꼴.
+   앱 Typography.swift가 400~900을 써서 여섯 벌 다 건다(800·900이 없으면 브라우저가 700을 굵게 흉내 냄). */
+@font-face{font-family:Pretendard;font-weight:400;font-style:normal;font-display:block;src:url("../assets/app/_other/DesignSystem/Pretendard-Regular.otf") format("opentype")}
+@font-face{font-family:Pretendard;font-weight:500;font-style:normal;font-display:block;src:url("../assets/app/_other/DesignSystem/Pretendard-Medium.otf") format("opentype")}
+@font-face{font-family:Pretendard;font-weight:600;font-style:normal;font-display:block;src:url("../assets/app/_other/DesignSystem/Pretendard-SemiBold.otf") format("opentype")}
+@font-face{font-family:Pretendard;font-weight:700;font-style:normal;font-display:block;src:url("../assets/app/_other/DesignSystem/Pretendard-Bold.otf") format("opentype")}
+@font-face{font-family:Pretendard;font-weight:800;font-style:normal;font-display:block;src:url("../assets/app/_other/DesignSystem/Pretendard-ExtraBold.otf") format("opentype")}
+@font-face{font-family:Pretendard;font-weight:900;font-style:normal;font-display:block;src:url("../assets/app/_other/DesignSystem/Pretendard-Black.otf") format("opentype")}
+/* 크리에이터클럽 iOS 디자인 토큰 — 이름 = 앱 코드 이름 그대로.
+   색: DesignSystem/Resources/Colors.xcassets (기본 = 어두운 값 · 앱이 화면 대부분을 .dark로 고정)
+   글자: DesignSystem/Sources/Tokens/Typography.swift figmaSpec (크기 · 줄 높이 = 크기×% · 자간 = 크기×%)
+   크기: DesignSystem/Sources/Tokens/LayoutMetrics.swift · 모서리: 공통 토큰 없음(코드 빈도값) */
+:root {
+  --actionDisabledBg: #282828;
+  --actionDisabledText: #444444;
+  --actionPrimaryBg: #07ED21;
+  --actionPrimaryBgHover: #20EF35;
+  --actionPrimaryText: #181818;
+  --actionSecondaryBg: #282828;
+  --actionSecondaryBgHover: #333333;
+  --actionSecondaryText: #F5F5F5;
+  --backgroundSecondary: #000000;
+  --bgBase: #121212;
+  --bgBase72: rgba(18,18,18,0.72);
+  --bgBrand: #07ED21;
+  --bgBrandSubtle: #004007;
+  --bgDanger: #F87171;
+  --bgDangerSubtle: #7F1D1D;
+  --bgElevated: #282828;
+  --bgNeutral: #444444; /* c8c-swift DesignSystem bgNeutral.colorset 0.267 (밝기 판 따로 없음 · 2026-10-27) */
+  --bgElevated35: rgba(40,40,40,0.35);
+  --bgElevated72: rgba(40,40,40,0.72);
+  --bgInverse: #F5F5F5;
+  --bgOverlaySubtle: rgba(255,255,255,0.1);
+  --bgRaised: #202020;
+  --bgSubtle: #282828;
+  --bgSuccess: #059669;
+  --bgSuccessSubtle: #064E3B;
+  --bgSurface: #181818;
+  --bgWarning: #CA8A04;
+  --bgWarningSubtle: #713F12;
+  --bgWidgetTile: #F0F0F0;
+  --borderBrand: #20EF35;
+  --borderDanger: #FF3333;
+  --borderDefault: #333333;
+  --borderFocus: #20EF35;
+  --borderStrong: #444444;
+  --borderSubtle: #282828;
+  --bottomsheetDivider: rgba(255,255,255,0.1);
+  --bottomsheetRowBackground: rgba(0,0,0,0.2);
+  --brand200: #BBFFC3;
+  --brand800: #03670F;
+  --contentOnMediaBrand: #20EF35;
+  --contentOnMediaCard: #121212;
+  --contentOnMediaPrimary: #F5F5F5;
+  --contentOnMediaPrimary44: rgba(245,245,245,0.44);
+  --contentOnMediaPrimary68: rgba(245,245,245,0.68);
+  --contentOnMediaSecondary: #888888;
+  --contentOnMediaTertiary: #D9D9D9;
+  --dim70: rgba(0,0,0,0.7);
+  --gray200: #D9D9D9;
+  --grayScale33: #333333;
+  --iconBrand: #20EF35;
+  --iconDisabled: #333333;
+  --iconInformation: #5B74DA;
+  --iconInverse: #181818;
+  --iconLike: #DC2626;
+  --iconLoading: #FC5555;
+  --iconPrimary: #F5F5F5;
+  --iconSecondary: #666666;
+  --lineDefault: #FFFFFF;
+  --lineOverlayDefault: rgba(255,255,255,0.1);
+  --lineOverlayStrong: rgba(255,255,255,0.2);
+  --lineOverlaySubtle: rgba(255,255,255,0.06);
+  --overlayDimSoft: rgba(0,0,0,0.4);
+  --overlayDimStrong: rgba(0,0,0,0.6);
+  --overlayGradientTop: rgba(0,0,0,0.7);
+  --primitiveWhite: #FFFFFF;
+  --subBlue: #5B74DA;
+  --subCoral: #E45F4E;
+  --subGreen: #248F63;
+  --subPink: #C969A9;
+  --subYellow: #BFC536;
+  --surfaceMedia: #000000;
+  --surfaceMedia06: rgba(0,0,0,0.06);
+  --surfaceMedia72: rgba(0,0,0,0.72);
+  --surfaceOnMediaCard: #FFFFFF;
+  --textBrand: #20EF35;
+  --textDanger: #F87171;
+  --textDisabled: #444444;
+  --textInverse: #181818;
+  --textLink: #20EF35;
+  --textPrimary: #F5F5F5;
+  --textSecondary: #888888;
+  --textSuccess: #34D399;
+  --textTertiary: #666666;
+  --textWarning: #FACC15;
+  --textWidgetTile: #111111;
+  --toastActionText: #20EF35;
+  --toastBorder: rgba(255,255,255,0.1);
+  --toastBorderBrand: #07ED21;
+  --toastFailureIcon: #F87171;
+  --toastShadow: rgba(0,0,0,0.4);
+  --toastSuccessIcon: #20EF35;
+  --toastSurface: rgba(18,18,18,0.8);
+  --toastSurfaceBrand: #003F07;
+  --uiLine10: rgba(255,255,255,0.1);
+  --uiLine5: rgba(255,255,255,0.05);
+  --vipGoldLight: #FFE793;
+  --vipGoldLight20: rgba(255,231,147,0.2);
+  --vipGoldMedium: #C59F35;
+  --vipGoldShadow: #856409;
+  --vipGoldShadow20: rgba(133,100,9,0.2);
+  --vipTextGoldBase: #E5CD52;
+  --vipTextGoldBright: #FFFBD4;
+  --vipTextGoldDeep: #C0AD47;
+  --vipTextGoldLight: #FFEE92;
+  --vipTextGoldMuted: #EEE19A;
+  --font-displayXxlg: 700 90px/108px Pretendard, -apple-system, sans-serif;
+  --tracking-displayXxlg: -1.8px;
+  --font-displayXlg: 700 40px/48px Pretendard, -apple-system, sans-serif;
+  --tracking-displayXlg: -0.8px;
+  --font-displayXlgExbold: 900 40px/48px Pretendard, -apple-system, sans-serif;
+  --tracking-displayXlgExbold: -0.8px;
+  --font-displayLg: 700 32px/38.4px Pretendard, -apple-system, sans-serif;
+  --tracking-displayLg: -0.64px;
+  --font-displayLgExbold: 800 32px/38.4px Pretendard, -apple-system, sans-serif;
+  --tracking-displayLgExbold: 0px;
+  --font-displayLgBlack: 900 32px/38.4px Pretendard, -apple-system, sans-serif;
+  --tracking-displayLgBlack: -0.32px;
+  --font-displayMd: 700 28px/37.8px Pretendard, -apple-system, sans-serif;
+  --tracking-displayMd: -0.56px;
+  --font-displayMdExbold: 800 28px/37.8px Pretendard, -apple-system, sans-serif;
+  --tracking-displayMdExbold: 0px;
+  --font-displayMdTight: 700 28px/33.6px Pretendard, -apple-system, sans-serif;
+  --tracking-displayMdTight: -0.56px;
+  --font-headingLg: 600 24px/33.6px Pretendard, -apple-system, sans-serif;
+  --tracking-headingLg: -0.48px;
+  --font-headingLgBold22: 700 22px/35.2px Pretendard, -apple-system, sans-serif;
+  --tracking-headingLgBold22: -0.66px;
+  --font-headingLgExbold: 800 24px/28.8px Pretendard, -apple-system, sans-serif;
+  --tracking-headingLgExbold: -0.72px;
+  --font-headingLgTight: 600 24px/28.8px Pretendard, -apple-system, sans-serif;
+  --tracking-headingLgTight: -0.48px;
+  --font-headingMd: 600 20px/28px Pretendard, -apple-system, sans-serif;
+  --tracking-headingMd: -0.4px;
+  --font-headingMdBold: 700 20px/28px Pretendard, -apple-system, sans-serif;
+  --tracking-headingMdBold: -0.4px;
+  --font-bodyLg: 400 18px/27px Pretendard, -apple-system, sans-serif;
+  --tracking-bodyLg: -0.54px;
+  --font-bodyLgBold: 700 18px/27px Pretendard, -apple-system, sans-serif;
+  --tracking-bodyLgBold: -0.54px;
+  --font-bodyMd: 400 16px/24px Pretendard, -apple-system, sans-serif;
+  --tracking-bodyMd: -0.48px;
+  --font-bodyMdBold: 700 16px/24px Pretendard, -apple-system, sans-serif;
+  --tracking-bodyMdBold: -0.48px;
+  --font-bodyMdBoldTight: 700 16px/21.6px Pretendard, -apple-system, sans-serif;
+  --tracking-bodyMdBoldTight: -0.48px;
+  --font-bodySm: 400 14px/21px Pretendard, -apple-system, sans-serif;
+  --tracking-bodySm: -0.42px;
+  --font-bodySmBold: 700 14px/21px Pretendard, -apple-system, sans-serif;
+  --tracking-bodySmBold: -0.28px;
+  --font-bodySmTight: 400 14px/18.2px Pretendard, -apple-system, sans-serif;
+  --tracking-bodySmTight: -0.42px;
+  --font-bodySmTightBold: 700 14px/18.2px Pretendard, -apple-system, sans-serif;
+  --tracking-bodySmTightBold: -0.42px;
+  --font-labelLg: 500 15px/21px Pretendard, -apple-system, sans-serif;
+  --tracking-labelLg: -0.45px;
+  --font-labelMd: 500 13px/18.2px Pretendard, -apple-system, sans-serif;
+  --tracking-labelMd: -0.39px;
+  --font-labelMdBold: 700 13px/20.8px Pretendard, -apple-system, sans-serif;
+  --tracking-labelMdBold: -0.39px;
+  --font-labelMdRegular: 400 13px/20.8px Pretendard, -apple-system, sans-serif;
+  --tracking-labelMdRegular: -0.39px;
+  --font-labelSm: 500 11px/15.95px Pretendard, -apple-system, sans-serif;
+  --tracking-labelSm: -0.33px;
+  --font-labelSmBold: 700 11px/12.1px Pretendard, -apple-system, sans-serif;
+  --tracking-labelSmBold: -0.33px;
+  --font-caption12: 400 12px/19.2px Pretendard, -apple-system, sans-serif;
+  --tracking-caption12: -0.36px;
+  --header-height: 58px; /* LayoutMetrics.swift:28 headerHeight */
+  --header-icon-size: 24px; /* LayoutMetrics.swift:29 headerIconSize */
+  --header-icon-padding: 9px; /* LayoutMetrics.swift:31 headerIconPadding */
+  --header-horizontal-padding: 16px; /* LayoutMetrics.swift:47 headerHorizontalPadding */
+  --header-item-spacing: 8px; /* LayoutMetrics.swift:50 headerItemSpacing */
+  --header-glass-group-inset: 4px; /* LayoutMetrics.swift:53 headerGlassGroupInset */
+  --tab-bar-height: 80px; /* LayoutMetrics.swift:54 tabBarHeight */
+  --search-bar-height: 34px; /* LayoutMetrics.swift:56 searchBarHeight */
+  --profile-card-width: 300px; /* LayoutMetrics.swift:25 profileCardWidth */
+  --profile-card-height: 440px; /* LayoutMetrics.swift:24 profileCardHeight */
+  --radius-4: 4px;
+  --radius-6: 6px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-pill: 999px;
+}
+/* 밝은 모드 값(앱이 밝은 화면을 쓰는 곳용) */
+[data-theme="light"] {
+  --actionDisabledBg: #EBEBEB;
+  --actionDisabledText: #888888;
+  --actionPrimaryBg: #07ED21;
+  --actionPrimaryBgHover: #05C01A;
+  --actionPrimaryText: #181818;
+  --actionSecondaryBg: #EBEBEB;
+  --actionSecondaryBgHover: #D9D9D9;
+  --actionSecondaryText: #181818;
+  --bgBase: #FFFFFF;
+  --bgBase72: rgba(255,255,255,0.72);
+  --bgBrand: #07ED21;
+  --bgBrandSubtle: #E6FDE8;
+  --bgDanger: #FF3333;
+  --bgDangerSubtle: #FEE2E2;
+  --bgElevated: #D9D9D9;
+  --bgNeutral: #444444; /* 앱 색 하나뿐(universal) — 밝은 판도 같은 값 */
+  --bgElevated35: rgba(217,217,217,0.35);
+  --bgElevated72: rgba(217,217,217,0.72);
+  --bgInverse: #181818;
+  --bgRaised: #C8C8C8;
+  --bgSubtle: #EBEBEB;
+  --bgSuccess: #10B981;
+  --bgSuccessSubtle: #D1FAE5;
+  --bgSurface: #F5F5F5;
+  --bgWarning: #EAB308;
+  --bgWarningSubtle: #FEF9C3;
+  --borderBrand: #07ED21;
+  --borderDanger: #FF3333;
+  --borderDefault: #D9D9D9;
+  --borderFocus: #07ED21;
+  --borderStrong: #C8C8C8;
+  --borderSubtle: #EBEBEB;
+  --iconBrand: #05C01A;
+  --iconDisabled: #C8C8C8;
+  --iconInverse: #FFFFFF;
+  --iconLike: #DC2626;
+  --iconPrimary: #333333;
+  --iconSecondary: #666666;
+  --lineDefault: #000000;
+  --lineOverlayDefault: rgba(0,0,0,0.1);
+  --lineOverlayStrong: rgba(0,0,0,0.2);
+  --lineOverlaySubtle: rgba(0,0,0,0.06);
+  --textBrand: #049314;
+  --textDanger: #DC2626;
+  --textDisabled: #888888;
+  --textInverse: #F5F5F5;
+  --textLink: #049314;
+  --textPrimary: #181818;
+  --textSecondary: #444444;
+  --textSuccess: #059669;
+  --textTertiary: #666666;
+  --textWarning: #CA8A04;
+}
+.t-displayXxlg{font:var(--font-displayXxlg);letter-spacing:var(--tracking-displayXxlg)}
+.t-displayXlg{font:var(--font-displayXlg);letter-spacing:var(--tracking-displayXlg)}
+.t-displayXlgExbold{font:var(--font-displayXlgExbold);letter-spacing:var(--tracking-displayXlgExbold)}
+.t-displayLg{font:var(--font-displayLg);letter-spacing:var(--tracking-displayLg)}
+.t-displayLgExbold{font:var(--font-displayLgExbold);letter-spacing:var(--tracking-displayLgExbold)}
+.t-displayLgBlack{font:var(--font-displayLgBlack);letter-spacing:var(--tracking-displayLgBlack)}
+.t-displayMd{font:var(--font-displayMd);letter-spacing:var(--tracking-displayMd)}
+.t-displayMdExbold{font:var(--font-displayMdExbold);letter-spacing:var(--tracking-displayMdExbold)}
+.t-displayMdTight{font:var(--font-displayMdTight);letter-spacing:var(--tracking-displayMdTight)}
+.t-headingLg{font:var(--font-headingLg);letter-spacing:var(--tracking-headingLg)}
+.t-headingLgBold22{font:var(--font-headingLgBold22);letter-spacing:var(--tracking-headingLgBold22)}
+.t-headingLgExbold{font:var(--font-headingLgExbold);letter-spacing:var(--tracking-headingLgExbold)}
+.t-headingLgTight{font:var(--font-headingLgTight);letter-spacing:var(--tracking-headingLgTight)}
+.t-headingMd{font:var(--font-headingMd);letter-spacing:var(--tracking-headingMd)}
+.t-headingMdBold{font:var(--font-headingMdBold);letter-spacing:var(--tracking-headingMdBold)}
+.t-bodyLg{font:var(--font-bodyLg);letter-spacing:var(--tracking-bodyLg)}
+.t-bodyLgBold{font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold)}
+.t-bodyMd{font:var(--font-bodyMd);letter-spacing:var(--tracking-bodyMd)}
+.t-bodyMdBold{font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)}
+.t-bodyMdBoldTight{font:var(--font-bodyMdBoldTight);letter-spacing:var(--tracking-bodyMdBoldTight)}
+.t-bodySm{font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm)}
+.t-bodySmBold{font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.t-bodySmTight{font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight)}
+.t-bodySmTightBold{font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold)}
+.t-labelLg{font:var(--font-labelLg);letter-spacing:var(--tracking-labelLg)}
+.t-labelMd{font:var(--font-labelMd);letter-spacing:var(--tracking-labelMd)}
+.t-labelMdBold{font:var(--font-labelMdBold);letter-spacing:var(--tracking-labelMdBold)}
+.t-labelMdRegular{font:var(--font-labelMdRegular);letter-spacing:var(--tracking-labelMdRegular)}
+.t-labelSm{font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm)}
+.t-labelSmBold{font:var(--font-labelSmBold);letter-spacing:var(--tracking-labelSmBold)}
+.t-caption12{font:var(--font-caption12);letter-spacing:var(--tracking-caption12)}
