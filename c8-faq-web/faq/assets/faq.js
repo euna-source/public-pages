@@ -20,7 +20,7 @@
     hits.innerHTML = rows.map(x => `<a class="row" href="q/${x.id}.html"><span class="row__label"><span class="row__sub">${esc(x.c)}</span>${mark(x.t, words)}</span>${chev}</a>`).join("");
   }
   // 검색어를 주소(#q=)에 남겨, 답에서 뒤로 왔을 때 웹뷰가 페이지를 새로 읽어도 결과를 되살린다
-  const fromHash = () => { const m = location.hash.match(/^#q=(.*)$/); return m ? decodeURIComponent(m[1]) : ""; };
+  const fromHash = () => { const m = location.hash.match(/^#q=(.*)$/); try { return m ? decodeURIComponent(m[1]) : ""; } catch { return ""; } };
   input.addEventListener("input", () => { history.replaceState(null, "", input.value ? "#q=" + encodeURIComponent(input.value) : location.pathname); render(); });
   addEventListener("pageshow", () => { if (!input.value) input.value = fromHash(); render(); });
   input.value = fromHash();
