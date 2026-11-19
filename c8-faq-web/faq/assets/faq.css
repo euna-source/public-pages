@@ -1,0 +1,53 @@
+/* 크리에이터클럽 자주 묻는 질문 — 정본 앱 토큰(다크) 값을 풀어 넣음. 앱 머리(뒤로·제목)는 네이티브가 그린다. */
+:root{
+  --bg:#121212;--surface:#181818;--subtle:#282828;
+  --t1:#F5F5F5;--t2:#888888;--t3:#666666;--line:rgba(255,255,255,0.06);--brand:#20EF35;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--t2);font:400 14px/21px 'Pretendard Variable',Pretendard,-apple-system,sans-serif;letter-spacing:-0.42px;word-break:keep-all;overflow-wrap:break-word;-webkit-tap-highlight-color:transparent}
+a{color:inherit;text-decoration:none}
+.faq{padding:8px 0 calc(40px + env(safe-area-inset-bottom))}
+
+.intro{padding:8px 16px 0}
+.intro h1,.answer h1{margin:0;color:var(--t1);font-size:20px;line-height:28px;font-weight:600;letter-spacing:-0.4px}
+.intro p{margin:8px 0 0}
+
+.search{position:sticky;top:0;z-index:1;padding:16px 16px 8px;background:var(--bg)}
+.search__field{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border-radius:8px;background:var(--subtle);color:var(--t2)}
+.search__field svg{width:20px;height:20px;flex:none}
+.search__field input{flex:1;min-width:0;height:100%;border:0;outline:0;background:transparent;color:var(--t1);font:inherit;letter-spacing:inherit;-webkit-appearance:none;appearance:none}
+.search__field input::placeholder{color:var(--t3)}
+.search__field input::-webkit-search-cancel-button{filter:invert(.6)}
+
+.sec{margin:24px 16px 4px;color:var(--t3);font-size:13px;line-height:20px;font-weight:500}
+.list{padding:0 16px}
+.row{display:flex;align-items:center;gap:8px;min-height:56px;padding:14px 0;border-bottom:1px solid var(--line);color:var(--t1);font-size:16px;line-height:24px}
+.row:last-child{border-bottom:0}
+.row:active{opacity:.6}
+.row__label{flex:1;min-width:0}
+.row__sub{display:block;color:var(--t3);font-size:12px;line-height:18px}
+.row mark{background:none;color:var(--brand)}
+.count{color:var(--t3);font-size:14px}
+.chev{width:16px;height:16px;flex:none;color:var(--t3)}
+.empty{margin:32px 16px;text-align:center}
+
+.answer{padding:8px 16px 0}
+.answer a.cat{text-decoration:none;display:inline-block;margin-bottom:8px;color:var(--t3);font-size:13px;line-height:20px}
+.answer h1{margin-bottom:16px}
+.answer p{margin:0 0 12px}
+.answer h2{margin:20px 0 8px;color:var(--t1);font-size:14px;line-height:21px;font-weight:700}
+.answer ol,.answer ul{margin:0 0 12px;padding-left:20px}
+.answer li{margin:2px 0}
+.answer strong,.answer b{color:var(--t1);font-weight:600}
+.answer a{color:var(--t1);text-decoration:underline;text-underline-offset:3px}
+.answer figure{margin:4px 0 16px}
+.answer img{display:block;width:100%;height:auto;border-radius:12px;border:1px solid var(--line)}
+.answer figcaption{margin-top:8px}
+.note{color:var(--t3)}
+
+.contact{margin:32px 16px 0;padding:20px 16px;border-radius:12px;background:var(--surface);text-align:center}
+.contact p{margin:0 0 12px}
+.pill{display:inline-block;height:40px;line-height:40px;padding:0 20px;border-radius:999px;background:var(--subtle);color:var(--t1);font-size:13px;font-weight:700;letter-spacing:-0.39px}
+.intro .slogan{margin:0;color:var(--t1);font-size:16px;line-height:24px;font-weight:700;letter-spacing:-0.48px}
