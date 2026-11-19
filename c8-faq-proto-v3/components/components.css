@@ -1,0 +1,216 @@
+/* 크리에이터클럽 iOS 부품 — 토큰만 쓴다(값을 여기 새로 쓰지 않는다 · 예외는 각 줄 주석).
+   이름 = c8-<부품> · 각 부품 위 주석 = 앱의 SwiftUI View · 파일 */
+*{box-sizing:border-box;margin:0;padding:0}
+.c8-phone{width:390px;height:844px;position:relative;overflow:hidden;background:var(--bgBase);color:var(--textPrimary);font-family:Pretendard,-apple-system,sans-serif}
+
+/* iOS 상태 막대 — 앱 코드가 아님(시스템) · 390×844 기기 기준 높이 47 = 짐작 */
+.c8-statusbar{height:47px;display:flex;align-items:center;justify-content:space-between;padding:0 30px 0 34px;font:600 16px/1 -apple-system,Pretendard,sans-serif}
+.c8-statusbar svg{display:block}
+.c8-header__title{font:var(--font-displayMd);letter-spacing:var(--tracking-displayMd)}
+
+/* 머리 유리 단추 묶음 — UIComponents HeaderGlassButtonGroupView (.glassEffect(.regular) in .capsule)
+   유리 효과는 iOS 시스템 효과라 반투명 흰색으로 비슷하게 그림 = 짐작 */
+.c8-glass-group{height:calc(var(--header-icon-size) + var(--header-icon-padding)*2);padding:0 var(--header-glass-group-inset);display:flex;align-items:center;border-radius:var(--radius-pill);background:rgba(32,32,32,.55);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);box-shadow:inset 0 .5px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.10),0 2px 8px rgba(0,0,0,.25)}
+.c8-glass-group__btn{width:calc(var(--header-icon-size) + var(--header-icon-padding)*2);height:calc(var(--header-icon-size) + var(--header-icon-padding)*2);display:grid;place-items:center;color:var(--iconPrimary)}
+.c8-glass-group__btn img,.c8-glass-group__btn i{width:var(--header-icon-size);height:var(--header-icon-size)}
+
+/* 칩 줄 — Features/Chatty/Sources/View/ChattyTabChipRowView.swift (높이 40 · 위 간격 6 = ChattyTitleVisibility.swift 36·38) */
+.c8-chip-row{display:flex;gap:8px;padding:6px 16px 0}
+/* VIP 배지 — 한 규칙(유실장 s57 판정 2 · 다섯 화면 묶음 CSS에 따로 있던 것을 모음). 이름 줄 안 세로 가운데 · 배지가 줄 높이를 늘리지 않음. 앱 VIPNicknameTextView */
+.c8-bdg-vip{display:inline-flex;align-items:center;vertical-align:middle;flex:none;max-width:100%;color:var(--vipTextGoldLight);font:700 13px/1.2 Pretendard,-apple-system,sans-serif;letter-spacing:-.3px;white-space:nowrap}
+.c8-bdg-vip>img{width:10.67px;height:17.67px;flex:none;display:block;margin:0} /* 옛 top:1.6px 뺌 — 배지가 세로 가운데라 그림이 이름 칸 아래로 1.6 삐져 잘렸음(깐깐이 157567) */
+.c8-bdg-vip>img:first-child{margin-right:2px}
+.c8-bdg-vip--14{font-size:14px} /* VIPNicknameTextView(fontSize: 14) — SettingListView.swift:250 · DiscoveryCardActionBarView.swift:59 */
+.c8-chip{position:relative;height:40px;padding:0 16px;border-radius:var(--radius-pill);background:var(--bgElevated);color:var(--textPrimary);display:inline-flex;align-items:center;gap:4px;font:var(--font-bodySmTightBold);letter-spacing:var(--tracking-bodySmTightBold);white-space:nowrap}
+.c8-chip.is-selected{background:var(--bgBrand);color:var(--textInverse)}
+.c8-chip{flex:none}
+.c8-chip b,.c8-chip>span{font-weight:inherit} /* 개수 숫자(알림 «전체 15» · 인맥 «일촌 12») · 글자와 사이는 gap 4 */
+.c8-chip-row--bar{flex:1 1 auto;min-width:0;height:52px;align-items:center;padding:6px 16px;background:var(--bgBase);overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain} /* 오른쪽 글 단추(«모두 읽기»)와 한 줄에 놓는 칩 줄 · 좁으면 칩만 가로로 밀림(크리스 2026-11-15) · 이전 c8-web-chiptabs */
+.c8-chip-row--bar::-webkit-scrollbar{display:none}
+.c8-chip-row--bar+*{flex:none;align-self:stretch;display:flex;align-items:center;white-space:nowrap;position:relative;z-index:1;margin-left:-24px;padding-left:24px;background:linear-gradient(90deg,transparent,var(--bgBase) 24px)} /* 옆 «모두 읽기» 고정 · 왼쪽 24 바탕색 그라데이션 = 좁은 화면에서 밀린 칩이 그 아래로 사라짐(크리스 2026-11-16) · 바탕은 줄 높이 52 위아래 꽉 채움(크리스 2026-11-17) */
+.c8-chip__icon{width:20px;height:20px;display:inline-grid;place-items:center}
+.c8-chip__dot{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--bgBrand)}
+
+/* 라운지 칩 빛 — Features/Chatty/Sources/View/ChattyChipHalationView.swift 133~141
+   (1.5초 한 바퀴 · 기본 선 흰색 .12 · 선 1 · 빛 띠 3 · 흐림 1.5 · 세기 .20 · 쉬는 각 140°) */
+@property --c8-hal-angle{syntax:"<angle>";inherits:false;initial-value:140deg}
+.c8-halation{position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.c8-halation::before,.c8-halation::after{content:"";position:absolute;border-radius:var(--radius-pill);background:conic-gradient(from var(--c8-hal-angle),transparent 0 74%,rgba(255,255,255,.9) 84%,transparent 92% 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:c8-hal-spin 1.5s linear infinite}
+.c8-halation::before{inset:0;padding:1px;opacity:.4}
+.c8-halation::after{inset:-1px;padding:3px;filter:blur(1.5px);opacity:.2}
+@keyframes c8-hal-spin{to{--c8-hal-angle:500deg}}
+
+/* 채팅 줄 — Features/Chatty/Sources/Component/SuggestChattyRowView.swift (높이 104 · 위아래 16 · 좌우 12 · 사진 72) */
+.c8-chat-row{height:104px;padding:16px 12px;display:flex;align-items:flex-start}
+.c8-chat-row__avatar{width:72px;height:72px;border-radius:50%;margin-right:16px;flex:none;background:var(--bgElevated);object-fit:cover}
+.c8-chat-row__body{flex:1;min-width:0;margin-right:12px;padding-top:4px}
+.c8-chat-row__title{height:23px;display:flex;align-items:center;gap:2px;white-space:nowrap;overflow:hidden}
+.c8-chat-row__name{font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold);color:var(--textPrimary)}
+.c8-chat-row__sep{font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);color:var(--textSecondary)}
+.c8-chat-row__job{font:var(--font-bodyMd);letter-spacing:var(--tracking-bodyMd);color:var(--textSecondary);overflow:hidden;text-overflow:ellipsis}
+.c8-chat-row__message{margin-top:4px;font:var(--font-bodySm);letter-spacing:var(--tracking-bodySm);color:var(--textSecondary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.c8-chat-row__tail{display:flex;flex-direction:column;align-items:flex-end;gap:12px;padding-top:4px}
+.c8-chat-row__time{height:24px;font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);color:var(--textTertiary);white-space:nowrap}
+
+/* 안 읽음 배지 — Features/Chatty/Sources/Component/ChatStatusLabelView.swift 17~18 (높이 20 · 좌우 8)
+   글자색 = 순검정(코드가 토큰 대신 .black을 씀 — 밝은 모드에서도 읽히게) */
+.c8-unread{height:20px;padding:0 8px;border-radius:var(--radius-pill);background:var(--bgBrand);color:#000;font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);line-height:20px}
+
+/* 빈 상태 — Features/Chatty/Sources/EmptyState/ChattyEmptyStateView.swift (그림 63 · 사이 12 · 글 폭 192 · 위로 20) */
+.c8-empty{display:flex;flex-direction:column;align-items:center;gap:12px;transform:translateY(-20px)}
+.c8-empty__art{width:64px;height:64px} /* 빈 상태 하나(유실장 s57 157611) */
+.c8-empty__text{width:192px;display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center}
+.c8-empty__title{font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold);color:var(--textPrimary)}
+.c8-empty__message{font:var(--font-labelMdRegular);letter-spacing:var(--tracking-labelMdRegular);color:var(--textSecondary)}
+
+/* 알약 단추(작은) — ChattyEmptyStateView 단추 (높이 32 · 좌우 12 · labelMdBold · bgElevated) */
+.c8-pill-button{height:32px;padding:0 12px;border-radius:var(--radius-pill);background:var(--bgElevated);color:var(--textPrimary);font:var(--font-labelMdBold);letter-spacing:var(--tracking-labelMdBold);line-height:32px;display:inline-block}
+
+/* 하단 탭 — App/Cre8orClub/Sources/View/MainTab/TabBarView.swift (높이 80 · 위 선 흰색 .05 · 가운데 + 자리 60×36 · 내 사진 32/24 · 테두리 2)
+   iOS 26 이상은 시스템 유리 탭바(MainTabView.swift:229) — 이 판은 그 아래 버전의 자체 탭바 */
+.c8-tabbar{position:absolute;left:0;right:0;bottom:0;height:var(--tab-bar-height);background:var(--bgBase)}
+.c8-tabbar__line{height:1px;background:rgba(255,255,255,.05)}
+.c8-tabbar__items{display:flex;align-items:center;height:44px;margin-top:4px}
+.c8-tabbar__items>span{flex:1}
+.c8-tabbar__tab{width:28px;height:28px;-webkit-mask-size:28px;mask-size:28px;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;background:var(--iconDisabled)}
+.c8-tabbar__tab.is-selected{background:var(--iconBrand)}
+.c8-tabbar__slot{width:60px;height:36px}
+.c8-tabbar__me{width:32px;height:32px;border-radius:50%;box-shadow:inset 0 0 0 2px var(--bgRaised);display:grid;place-items:center}
+.c8-tabbar__me.is-selected{box-shadow:inset 0 0 0 2px var(--borderBrand)}
+.c8-tabbar__me img{width:24px;height:24px;border-radius:50%}
+.c8-tabbar__plus{position:absolute;left:50%;top:9px;width:50px;height:36px;margin-left:-25px}
+
+/* 하단 탭 — iOS 26 이상(지금 크리스 폰) · 재욱 2026-10-11 · 기준 origin/develop 2026-10-08 10:06
+   App/Cre8orClub/Sources/View/MainTab/MainTabView.swift:229~331 IOS26TabView = 시스템 TabView(유리 탭바)
+   · 탭 넷: 아이콘(Tab/discovery·finder·chatty 28pt 템플릿) + 글자 Discovery·Finder·Chatty·My (TabItem.swift ios26Title)
+   · 고른 탭 색 = .tint(Gen.Assets.iconBrand) (MainTabView.swift:331) · 안 고른 탭 = 시스템 기본(밝은 글자색)
+   · My = 프로필 사진 24 + 28 원 테두리 4(잘려서 2 보임) · 고르면 borderBrand · 아니면 흰 30% (MainTabViewModel.swift:256~272)
+   · Chatty 안 읽음 = .badge(1) → 배지 바탕 bgBrand · 글자 투명(크기 3·kern -200) = 초록 점 (AppDelegate.swift:362~389)
+   · 오른쪽 둥근 «+» = role: .search 탭 · SF Symbol plus · 색 rgb(0.4,0.4,0.4) (MainTabView.swift:322~329)
+   짐작: 막대 높이 62 · 좌우 21 · 아래 21 · 막대와 «+» 사이 8 · 유리 색·흐림 · 고른 탭 받침 · 글자 10 · 점 크기 — iOS 26 시스템이 정하는 값이라 코드에 없음 */
+/* ── 인터랙션·모션(Chatty 첫 샘플) ─────────────────────────────────────────
+   머리 접힘 — Features/Chatty/Sources/View/ChattyTitleVisibility.swift:34 .easeInOut(duration: 0.22) · :55 hideThreshold 64
+   칩 줄 높이 40 · 위 6 · 아래 16(:36~39) → 펼침 높이 = 47(상태 막대) + 58 + 62 · 접힘 = 47 + 58, 칩이 머리 줄로 올라감(ChattyView chipCollapsedOffsetY)
+   탭바 접힘 — MainTabView .tabBarMinimizeBehavior(.onScrollDown) · 접힌 모양·시간은 iOS 시스템 = 짐작 */
+.c8-chatty{position:absolute;inset:0}
+.c8-chatty__scroll{position:absolute;inset:0;overflow-y:auto;padding-top:167px;padding-bottom:110px;scrollbar-width:none}
+.c8-chatty__scroll::-webkit-scrollbar{display:none}
+/* 탭 화면 스크롤 끝 여백 하나: 마지막 내용 아래 끝 → 탭 막대 위 끝 24 = 스크롤 칸 아래 안쪽 107(83+24) — 유실장 s57 판정 10 */
+.c8-phone:has(>.c8-tabbar26) :is(.c8-chatty__scroll,.cb-scroll){padding-bottom:107px}
+.c8-chatty__scroll:has(>.c8-lounge-row:first-child){padding-top:151px} /* 채팅방 목록: 칩 줄 아래 0 + 줄 안쪽 16 = 첫 내용 16 — 유실장 s57 판정 6 */
+.c8-qa-scroll{scrollbar-width:none} /* 화면 안 스크롤 칸 — 스크롤 막대 숨김(앱처럼) · 크리스 2026-10-25 «스크롤바가 노출되었어» */
+.c8-qa-scroll::-webkit-scrollbar{display:none}
+.c8-chatty__top{position:absolute;top:0;left:0;right:0;height:167px;background:var(--bgBase);z-index:3;transition:height .22s ease-in-out}
+.c8-chatty__top .c8-header__title{transition:opacity .22s ease-in-out}
+.c8-chatty__top .c8-chip-row{transition:transform .22s ease-in-out}
+.c8-chatty.is-collapsed .c8-chatty__top{height:105px}
+.c8-chatty.is-collapsed .c8-header__title{opacity:0}
+.c8-chatty.is-collapsed .c8-chip-row{transform:translateY(-55px);margin-right:150px;overflow:hidden} /* 짐작: 접혔을 때 칩 줄이 머리 단추 앞에서 끊김(코드 확인 전) */
+.c8-chatty .c8-chip{cursor:pointer}
+.c8-chatty .c8-chat-row{cursor:pointer;transition:background .12s}
+.c8-chatty .c8-chat-row:active{background:rgba(255,255,255,.06)} /* 짐작: List 줄 눌림 바탕(시스템) */
+.c8-tabbar26{z-index:4}
+.c8-tabbar26__bar,.c8-tabbar26__tab{transition:all .3s ease}  /* 짐작: 시스템 탭바 접힘 시간 */
+.c8-tabbar26.is-min .c8-tabbar26__bar{flex:0 0 62px;padding:0}
+.c8-tabbar26.is-min .c8-tabbar26__tab:not(.is-selected){width:0;opacity:0;overflow:hidden;padding:0}
+.c8-tabbar26.is-min .c8-tabbar26__tab.is-selected{width:62px;background:none;font-size:0}
+
+.c8-tabbar26{position:absolute;left:21px;right:21px;bottom:21px;height:62px;display:flex;gap:8px;pointer-events:none;z-index:20}
+.c8-glass26{background:rgba(32,32,32,.55);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);
+  box-shadow:inset 0 .5px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.10),0 6px 20px rgba(0,0,0,.30)} /* 짐작: Liquid Glass 근사 */
+.c8-tabbar26__bar{flex:1;height:62px;border-radius:31px;display:flex;align-items:center;padding:0 4px}
+.c8-tabbar26__tab{position:relative;flex:1;height:54px;border-radius:27px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  color:var(--textPrimary);font:600 10px/12px -apple-system,"SF Pro Text",Pretendard,sans-serif;letter-spacing:.1px}
+.c8-tabbar26__tab.is-selected{color:var(--iconBrand);background:rgba(255,255,255,.10)} /* 짐작: 고른 탭 받침 */
+.c8-tabbar26__icon{width:28px;height:28px;display:block}
+.c8-tabbar26__me{width:28px;height:28px;border-radius:50%;padding:2px;box-sizing:border-box;box-shadow:inset 0 0 0 2px rgba(255,255,255,.3)}
+.c8-tabbar26__tab.is-selected .c8-tabbar26__me{box-shadow:inset 0 0 0 2px var(--borderBrand)}
+.c8-tabbar26__me img{width:24px;height:24px;border-radius:50%;display:block}
+.c8-tabbar26__badge{position:absolute;top:7px;left:calc(50% + 9px);width:9px;height:9px;border-radius:50%;background:var(--bgBrand)} /* 앱 = 시스템 탭 배지 .badge(1)(MainTabView.swift:281) · 바탕 bgBrand · 숫자 글자는 투명·크기 3으로 숨겨 점만 보임(AppDelegate.swift:363~387 configureTabBarBadgeAppearance) → 크기·자리는 iOS가 정함(9px·자리는 짐작) · 머리 알림 점(6×6 · HomeFeedHeaderView)과는 다른 규칙 · 크리스 2026-10-19 확인 */
+.c8-tabbar26__plus{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;color:#666666}
+.c8-tabbar26__plus svg{width:22px;height:22px} /* 짐작: SF Symbol plus 크기 */
+
+/* 전체 화면 미디어 머리 — 레이아웃 «전체 화면 미디어»(유실장 s57 새 틀 판정 · 크리스 157783·157789)
+   높이 58(상태 막대 아래 47~105 · 머리 막대와 같음) · 좌우 16 · 닫기 아이콘 24 = 왼쪽 16 · 위 64 · 오른쪽 글 단추 칸 52×52 = 오른쪽 끝 16 */
+.c8-phone :is(.c8-imgedit__head,.c8-vcrop-head,.c8-bi-edit__head,.c8-cover-pick-head,.c8-wpimg__head){height:58px;padding:0 16px;box-sizing:border-box;flex:none;display:flex;align-items:center;justify-content:space-between}
+.c8-phone .c8-imgedit__head>.c8-imgedit__icon,.c8-phone .c8-cover-pick-head>span{width:24px;height:24px}
+.c8-phone .c8-imgedit__head>.c8-imgedit__icon svg,.c8-phone .c8-cover-pick-head>span svg{width:24px;height:24px}
+.c8-phone .c8-vcrop-head>img,.c8-phone .c8-bi-edit__head>img{width:24px;height:24px;padding:0}
+.c8-phone .c8-wpimg__head img{margin:0}
+.c8-phone .c8-vcrop-head>em,.c8-phone .c8-bi-edit__head>b,.c8-phone .c8-wpimg__head .c8-wpimg__done{width:52px;height:52px;padding:0;display:grid;place-items:center;box-sizing:border-box}
+.c8-phone :is(.c8-imgedit__head,.c8-cover-pick-head){position:relative}
+.c8-phone .c8-imgedit__head>.c8-imgedit__title,.c8-phone .c8-cover-pick-head>b{position:absolute;left:0;right:0;text-align:center;pointer-events:none} /* 닫기 24 · 글 단추 52로 양쪽 폭이 달라져 제목은 화면 가운데에 고정 */
+
+/* 제목 줄 하나(크리스 2026-11-16 «타이틀이 여러개인게 이상해 · 합쳐줘») — 이전 구역 제목(cbm-sec·cb-sec-row) · 댓글 제목(c8-board-comments__head·c8-csec__head·c8-dsa-fhead·c8-dsa-chead) · 목록 머리(c8-finder-result-head·c8-dsa-rhead·c8-hd-resp__head)를 합침 */
+.c8-title-row{display:flex;align-items:center;gap:6px;padding:8px 16px;font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold);color:var(--textPrimary);white-space:nowrap} /* 기본 = 개수 붙은 제목(댓글 N · 포트폴리오 N) · 위아래 8 · 좌우 16 */
+.c8-title-row b{font:inherit}
+.c8-title-row>span:not(:last-child),.c8-title-row>span:only-child{color:var(--textSecondary)} /* 제목 옆 개수 */
+.c8-title-row em{font-style:normal;font:inherit;color:var(--textSecondary);margin-left:6px}
+.c8-title-row>img,.c8-title-row__end{margin-left:auto;width:26px;height:26px;display:block} /* 오른쪽 닫기·정렬 26 */
+.c8-title-row--section{align-items:baseline;justify-content:space-between;padding:22px 16px 10px} /* 구역 제목 줄 · 22/16/10(유실장 판정 K) */
+.c8-title-row--section>span{font:var(--font-labelMd);letter-spacing:var(--tracking-labelMd);color:var(--textSecondary);cursor:pointer} /* 오른쪽 «전체보기» */
+.c8-title-row--list{height:40px;padding:0 16px;box-sizing:border-box} /* 목록 머리(검색 결과 N · 리스펙트를 남긴 크리에이터) · 높이 40 */
+.c8-glass-circle{width:calc(var(--header-icon-size) + var(--header-icon-padding)*2);height:calc(var(--header-icon-size) + var(--header-icon-padding)*2);flex:none;border-radius:50%;display:grid;place-items:center;position:relative;color:var(--iconPrimary);background:rgba(32,32,32,.55);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);box-shadow:inset 0 .5px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.10),0 2px 8px rgba(0,0,0,.25)} /* 유리 둥근 단추(머리 뒤로·닫기 등) · 합침: c8-nav__back (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-glass-circle img{width:var(--header-icon-size);height:var(--header-icon-size)}
+.c8-glass-circle img,.c8-glass-circle svg{width:var(--header-icon-size);height:var(--header-icon-size)}
+.c8-sheet__grabber{position:absolute;top:5px;left:50%;width:36px;height:5px;margin-left:-18px;border-radius:3px;background:rgba(255,255,255,.3);z-index:1} /* 시트 손잡이 · 합침: c8-disc-sheet__grabber, c8-csheet__grabber, c8-set-sheet__grabber (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-disc-sheet--large:has(> .c8-drp-confirm) > :not(.c8-drp-head):not(.c8-drp-confirm):not(.c8-sheet__grabber):not(.c8-drp-attach){min-height:0;overflow:auto}
+.c8-pcard__title{font:var(--font-bodyMdBoldTight);letter-spacing:var(--tracking-bodyMdBoldTight);color:var(--contentOnMediaPrimary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden} /* 카드 제목 · 합침: c8-pj-card__title, c8-pf-card__title (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-chead__writer{display:flex;align-items:center;gap:8px;color:var(--textPrimary);white-space:nowrap} /* 상세 작성자 줄 · 합침: c8-disc-writer (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-chead__title{padding-right:99px;font:var(--font-headingLgTight);letter-spacing:var(--tracking-headingLgTight);color:var(--textPrimary)} /* 상세 제목 · 합침: c8-disc-chead__title (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-disc-chead{padding:74px 16px 24px;display:flex;flex-direction:column;gap:12px} /* 상세 머리 묶음 · 합침: c8-dsa-psk__head (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+/* 메뉴 시트 줄 하나 · 합침: c8-sheet-row (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-disc-actmenu__row{height:45px;padding:0 16px;display:flex;align-items:center;gap:9px;color:var(--textPrimary);font:var(--font-bodySmBold);letter-spacing:var(--tracking-bodySmBold)}
+.c8-disc-actmenu__row img{width:26px;height:26px;flex:none}
+.c8-disc-actmenu__row img.is-24{width:24px;height:24px;margin:0 1px} /* share_white 원래 크기 24 */
+.c8-nav{position:relative;height:var(--header-height);display:flex;align-items:center;justify-content:space-between;gap:var(--header-item-spacing);padding:0 var(--header-horizontal-padding)} /* 머리 막대(맨 위 뒤로·제목·단추 줄) · 합침: c8-bar, c8-disc-dhead, c8-header, c8-web-head, c8-finder-bar, c8-room-head, c8-disc-nav, c8-title-header (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.cbm-top .c8-nav .c8-glass-group{margin-left:auto}
+.c8-nav .c8-glass-group__btn svg{width:17px;height:17px}
+.c8-glass-btn{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(32,32,32,.55);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);box-shadow:inset 0 .5px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.10),0 2px 8px rgba(0,0,0,.25);color:var(--iconPrimary);flex:none} /* 유리 단추(머리 오른쪽 42) · 합침: c8-disc-glassbtn, c8-ivw__btn (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-glass-btn img,.c8-glass-btn svg{width:24px;height:24px;display:block}
+.c8-glass-btn img{width:24px;height:24px;display:block}
+.c8-alert-dim{position:absolute;inset:0;z-index:30;background:var(--dim70);display:flex;align-items:center;padding:0 40px} /* 알림창 뒤 어둡게 · 합침: c8n-dim, c8-walert-dim (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-disc-dbar{height:92px;padding:16px;display:flex;align-items:center;gap:8px;box-sizing:border-box} /* 상세 아래 고정 단추 칸 92 · 합침: cb-cta, c8-detail-cta, c8-hd-knock__bar (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-disc-dbar.is-sticky{position:sticky;bottom:24px;z-index:2}
+.cb-cta__main{flex:1;height:60px;border-radius:var(--radius-pill);background:var(--actionPrimaryBg);color:var(--actionPrimaryText);display:grid;place-items:center;font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold);cursor:pointer} /* 고정 칸 큰 단추 60 · 합침: c8-detail-cta__main, c8-cta60 (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.cb-cta__main.is-disabled{background:var(--actionDisabledBg);color:var(--actionDisabledText);opacity:1}
+.cb-cta__main.is-secondary{background:var(--actionSecondaryBg);color:var(--actionSecondaryText)}
+.cb-cta__main.is-wait{background:var(--bgElevated);color:var(--textTertiary)}
+.c8-disc-dbar__btn{width:60px;height:60px;flex:none;border-radius:50%;background:var(--bgSurface);box-shadow:inset 0 0 0 1px var(--lineOverlayDefault);display:grid;place-items:center;cursor:pointer} /* 고정 칸 작은 둥근 단추 60 · 합침: cb-cta__more, c8-detail-cta__more (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-disc-dbar__btn img{width:28px;height:28px}
+.c8-disc-dbar__btn.c8-disc-glass{background:rgba(32,32,32,.55);backdrop-filter:blur(14px) saturate(1.6);-webkit-backdrop-filter:blur(14px) saturate(1.6);box-shadow:inset 0 .5px 0 rgba(255,255,255,.22),inset 0 0 0 .5px rgba(255,255,255,.10),0 2px 8px rgba(0,0,0,.25)}
+.c8-pcard__respect{position:absolute;left:12px;top:12px;height:20px;padding:0 6px;border-radius:var(--radius-pill);background:rgba(0,0,0,.7);display:flex;align-items:center;gap:2px;font:var(--font-labelSm);letter-spacing:var(--tracking-labelSm);color:var(--contentOnMediaPrimary)} /* 리스펙트 꼬리표 · 합침: c8-respect (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-pcard__respect img{width:16px;height:16px}
+.cbm-meet__state{align-self:flex-start;height:18px;padding:0 6px;border-radius:4px;background:var(--bgBrandSubtle);color:var(--textBrand);font:var(--font-labelSmBold);letter-spacing:var(--tracking-labelSmBold);line-height:18px} /* 상태 꼬리표(모집 중·역할) · 합침: cbm-role, cb-recruit (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.cbm-meet__state.is-full{background:var(--bgElevated);color:var(--textSecondary)}
+.cbm-meet__state.is-closed,.cbm-meet__state.is-wait{background:var(--bgNeutral);color:var(--textPrimary)}
+.ctm-mem .cbm-meet__state{margin:0}
+.cb-tag{height:18px;padding:0 6px;border-radius:4px;font:var(--font-labelSmBold);letter-spacing:var(--tracking-labelSmBold);line-height:18px;flex:none} /* 종류 꼬리표(팀·프로젝트·오픈채팅) · 합침: cb-ring__kind (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.cbm-kicker .cb-tag{background:rgba(0,0,0,.25);color:#fff}
+.cbm-kicker .cb-tag.is-state{background:var(--bgBrandSubtle);color:var(--textBrand)}
+.cbm-bcard__cover .cb-tag{position:absolute;left:10px;top:10px}
+.c8-menu-cover__desc{max-width:280px;margin-top:4px;font:var(--font-bodySmTight);letter-spacing:var(--tracking-bodySmTight);color:var(--textSecondary);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden} /* 목록 줄 설명 글 · 합침: c8-lounge-rec__message, c8-lounge-row__message (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-feed-comment__avatar{width:30px;height:30px;flex:none;border-radius:50%;background:var(--bgRaised);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);object-fit:cover} /* 댓글 사진 30 · 합침: c8-mycomment__avatar (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-board-author__avatar{width:40px;height:40px;flex:none;border-radius:50%;background:var(--bgRaised) center/cover no-repeat;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);object-fit:cover} /* 사람 사진 40 · 합침: c8-contact-row__avatar, c8-applicant__avatar, cb-applogin__av, c8-cbfeed__avatar, c8-disc-fhead__avatar, c8-dtm-layer__avatar, c8-dsa-rrow__av, c8-viewed-card__avatar, c8-blocked-row__avatar (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-viewed-vip .c8-board-author__avatar{margin-right:0;display:block}
+.c8-board-author__avatar.is-vip{border:2.5px solid transparent;box-shadow:none;background:linear-gradient(var(--bgRaised),var(--bgRaised)) padding-box,linear-gradient(135deg,var(--vipGoldLight),var(--vipGoldMedium),var(--vipGoldLight)) border-box}
+.c8-spinner{width:26px;height:26px;display:block;animation:c8-spin 1s linear infinite} /* 로딩 돌기 26 · 합침: c8-chatty-spinner, c8-hd-spin, c8-cover-pick-spinner (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+@keyframes c8-spin{to{transform:rotate(360deg)}}
+.c8-title-row--sm{padding:0;gap:4px;white-space:normal;font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold);color:var(--textPrimary)} /* 작은 제목 줄 16 · 높이·여백은 그 자리 class(c8-bi-shead·c8-contact-head·c8-fsa-ohead·c8-bi-psec__head·c8-hc-vhead·c8-filter__head·c8-suggest__head·c8-list-title·c8-isec·c8-hc-rhead·c8-hc-mhead·c8-hc-vis__head·c8-bi-kstep__head)가 정함 (크리스 2026-11-16 «1, 2, 3번 다 합치기») */
+.c8-title-row--tight{font:var(--font-bodyMdBoldTight);letter-spacing:var(--tracking-bodyMdBoldTight)} /* 시트 제목 16/700 줄 높이 21.6 · --sm 과 같이 씀 · 높이·여백은 그 자리 class(c8-drp-head__row·c8-hc-cshead__row·c8-terms__title·c8-bi-shead)가 정함 (크리스 2026-11-16 «컴포넌트는 업데이트 안돼?») */
+.c8-page-title{font:var(--font-headingMdBold);letter-spacing:var(--tracking-headingMdBold);color:var(--textPrimary)} /* 페이지 큰 제목 24 · 위 여백은 그 자리 class(c8-jtitle·c8-form-head__title·c8-2fa-head__title·c8-consent__title·c8-permission__title·c8-maint__title)가 정함 (크리스 2026-11-16) */
+
+/* ── 이름만 다르던 부품 합침 2(디자인 담당이 고름 · 크리스 2026-11-16 «부품을 니가 정해서 만들어야지») ── */
+.c8-nav__title{position:absolute;left:0;right:0;text-align:center;pointer-events:none;font:var(--font-bodyMdBoldTight);letter-spacing:var(--tracking-bodyMdBoldTight);color:var(--textPrimary)} /* 머리 막대 가운데 제목 · 합침: c8-bar__title (설정 화면은 setting.css가 칸 높이 가운데 맞춤을 덧씀) */
+.c8-nav__title--lg{font:var(--font-bodyLgBold);letter-spacing:var(--tracking-bodyLgBold)} /* 큰 제목 18 · 합침: c8-bar__title--lg */
+.c8-nav__title--md{font:var(--font-bodyMdBold);letter-spacing:var(--tracking-bodyMdBold)} /* 제목 16 줄 높이 넉넉 · 합침: c8-bar__title--md */
+.c8-sheet-dim{position:absolute;inset:0;background:var(--overlayDimSoft);z-index:25} /* 유리 시트 뒤 어둡게(탭바 20보다 위 · ContentView.swift:329~334) · 합침: c8-disc-sheet-dim, c8-fsa-dim · 짐작: 시스템 시트 뒤 어둡기 */
+.c8-dim{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:20} /* 꽉 찬 시트 뒤 어둡게 40% · 합침: c8-set-dim · 짐작: 시스템 시트 뒤 어둡게 */
+.c8-alert{flex:1;border-radius:20px;background:var(--bgSurface);box-shadow:inset 0 0 0 1px var(--uiLine10);overflow:hidden} /* 알림창 상자(AlertContainerModifier · 뒤 어둡게 = c8-alert-dim) · 합침: c8-walert */
+.c8-divider{height:1px;background:var(--lineOverlaySubtle)} /* 시트·메뉴 안 구분선 1(유리 위 흰 6% · 크리스 2026-10-25) · 합침: c8-attach-line, c8-disc-actmenu__line, c8-dsa-psk__line, c8-dtm-layer__line, c8-hc-bi__line */
+.c8-contact-row{padding:0 16px;display:flex;align-items:center} /* 사람·팀 목록 줄(좌우 16 · 안쪽 칸에 아래 선) · 합침: c8-team-row */
+.c8-contact-row__main{flex:1;min-width:0;padding:12px 0 10px;display:flex;align-items:center;gap:8px;box-shadow:inset 0 -1px 0 rgba(255,255,255,.05)} /* 합침: c8-team-row__main */
+.c8-contact-row__text{flex:1;min-width:0;display:flex;flex-direction:column} /* 합침: c8-team-row__text */
+.c8-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px} /* 두 칸 카드 격자(좌우 16 · 사이 12 · .c8-pgrid와 같음 · 유실장 s61 2차 3) · 합침: c8-creator-grid, c8-result-grid */
+.c8-pcard{position:relative;aspect-ratio:3/4;border-radius:24px;overflow:hidden;background:var(--bgRaised)} /* 3:4 카드(포트폴리오·프로젝트) · 합침: c8-pf-card */
+.c8-pcard__media{position:absolute;inset:0;background:var(--bgElevated)} /* 카드 사진 자리(서버 사진) · 합침: c8-pf-card__media, c8-ccard__media, c8-disc-card__media */

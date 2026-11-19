@@ -1,0 +1,30 @@
+
+
+.c8-doc__web.is-webfill{border-top:0;padding:0;gap:0;display:block;overflow:hidden;position:relative}
+.c8-sp-badges{position:absolute;left:32px;right:32px;top:639.6px;padding-bottom:16px;display:flex;flex-direction:column;gap:4px;font-family:"Pretendard Variable",Pretendard,sans-serif;font-size:13px;line-height:20.8px;letter-spacing:-.39px;color:#FFFFFF}
+[data-view^="ClubScheduleCreateView · ScrollView"]>*{flex-shrink:0}
+.c8-web-intro__register{line-height:1.6;letter-spacing:-.39px}
+.c8-web-noti__body{white-space:pre-line}
+.c8-web-page>.c8-web-ranks{padding-bottom:50px}
+.c8-wdoc{padding:20px;text-align:left;text-underline-position:from-font;text-decoration-skip-ink:none}
+.c8m-hide-after::after{opacity:0!important}
+.c8-group-avatar.is-square{border-radius:var(--radius-16)}
+.c8-sp-badges__row{display:flex;gap:4px}
+.c8-wdoc,.c8-wdoc *{font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;color:var(--gray200);font-size:12px;font-weight:400;line-height:160%;letter-spacing:-0.36px}
+.na-readall{flex:none;white-space:nowrap;font:500 13px/18px Pretendard,sans-serif;letter-spacing:-.39px;color:var(--bgBrand)}
+.c8-wdoc ol.flex{display:flex;flex-direction:column;gap:10px}
+.c8-sp-badge__detail{color:#FFFFFF;font-size:13px;font-weight:700}
+.c8-wdoc strong{font-weight:700}
+.c8-sp-badge__text{color:#FFFFFF;font-size:13px;font-weight:700}
+.c8-web-noti__thumb.is-round{border-radius:var(--radius-pill)}
+.na-cat{font:700 14px/21px Pretendard,sans-serif;letter-spacing:-.28px;color:var(--textSecondary)}
+.c8-sp-badge__name{color:#FFFFFF;font-size:14px;font-weight:700;line-height:150%;text-align:center;text-shadow:0 1.581px 1.581px rgba(0,0,0,.25)}
+.c8-wdoc .bold,.c8-wdoc ol.bold li{font-weight:700}
+.na-cat.is-brand{color:var(--textBrand)}
+.na-time{font:400 14px/21px Pretendard,sans-serif;letter-spacing:-.42px;color:var(--textTertiary)}
+.c8-wdoc .indent-2{text-indent:2px}
+.c8n-item{border-top:1px solid var(--uiLine10)}
+.c8-wdoc .terms-selector{position:relative}
+.c8-phone .c8-tabbar26.is-c8min,.c8-phone .c8-tabbar26.is-min{pointer-events:auto}
+.c8-phone .c8-switch{cursor:pointer}
+@media (prefers-reduced-motion:reduce){.c8-phone .c8-halation::before,.c8-phone .c8-halation::after{animation:none!important;--c8-hal-angle:140deg}}

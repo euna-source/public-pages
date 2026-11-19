@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="robots" content="noindex,nofollow">
+<title>자주 묻는 질문 프로토타입</title>
+<style>
+:root{--stage:#1b1b1b;--cap:#8a8a8a}
+html,body{margin:0;height:100%;background:var(--stage);overflow:hidden;font-family:Pretendard,-apple-system,sans-serif;-webkit-tap-highlight-color:transparent}
+#wrap{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+#scaler{width:390px;height:844px;transform-origin:top left;flex:none}
+#frame{position:relative;width:390px;height:844px;overflow:hidden;border-radius:44px;background:#121212;box-shadow:0 0 0 10px #050505,0 20px 60px rgba(0,0,0,.6)}
+#frame iframe{position:absolute;left:0;top:0;width:390px;height:844px;border:0;background:#121212;will-change:transform}
+#frame .dim{position:absolute;inset:0;background:#000;opacity:0;pointer-events:none}
+#cap{color:var(--cap);font-size:12px;display:flex;gap:14px;align-items:center}
+#cap button{all:unset;cursor:pointer;color:#cfcfcf;border:1px solid #3a3a3a;border-radius:999px;padding:4px 12px}
+body.full #frame{border-radius:0;box-shadow:none}
+body.full #cap{display:none}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <div id="scaler"><div id="frame"></div></div>
+  <div id="cap"><span>크리에이터클럽 · 자주 묻는 질문 v0.3 프로토타입</span><button id="home" type="button">처음으로</button></div>
+</div>
+<script>
+const SCREENS = ["setting-2fa", "setting-support", "setting-withdraw-reason", "web-faq", "web-faq-category-0", "web-faq-category-1", "web-faq-category-2", "web-faq-category-3", "web-faq-category-4", "web-faq-category-5", "web-faq-category-6", "web-faq-category-7", "web-faq-category-8", "web-faq-detail-0-1", "web-faq-detail-0-2", "web-faq-detail-0-3", "web-faq-detail-0-4", "web-faq-detail-0-5", "web-faq-detail-1-1", "web-faq-detail-1-2", "web-faq-detail-1-3", "web-faq-detail-1-4", "web-faq-detail-1-5", "web-faq-detail-1-6", "web-faq-detail-1-7", "web-faq-detail-1-8", "web-faq-detail-2-1", "web-faq-detail-2-2", "web-faq-detail-2-3", "web-faq-detail-2-4", "web-faq-detail-2-5", "web-faq-detail-2-6", "web-faq-detail-3-1", "web-faq-detail-3-2", "web-faq-detail-3-3", "web-faq-detail-3-4", "web-faq-detail-3-5", "web-faq-detail-3-6", "web-faq-detail-3-7", "web-faq-detail-3-8", "web-faq-detail-4-1", "web-faq-detail-4-2", "web-faq-detail-4-3", "web-faq-detail-4-4", "web-faq-detail-4-5", "web-faq-detail-4-6", "web-faq-detail-4-7", "web-faq-detail-4-8", "web-faq-detail-5-1", "web-faq-detail-5-2", "web-faq-detail-5-3", "web-faq-detail-5-4", "web-faq-detail-5-5", "web-faq-detail-5-6", "web-faq-detail-5-7", "web-faq-detail-6-1", "web-faq-detail-6-2", "web-faq-detail-6-3", "web-faq-detail-6-4", "web-faq-detail-6-5", "web-faq-detail-6-6", "web-faq-detail-6-7", "web-faq-detail-6-8", "web-faq-detail-7-1", "web-faq-detail-7-2", "web-faq-detail-7-3", "web-faq-detail-7-4", "web-faq-detail-7-5", "web-faq-detail-7-6", "web-faq-detail-7-7", "web-faq-detail-8-1", "web-faq-detail-8-2", "web-faq-detail-8-3", "web-faq-detail-8-4", "web-faq-detail-8-5", "web-faq-detail-8-6", "web-faq-v2", "web-faq-v3", "web-faq-v3-0-1", "web-faq-v3-0-2", "web-faq-v3-0-3", "web-faq-v3-0-4", "web-faq-v3-0-5", "web-faq-v3-1-1", "web-faq-v3-1-2", "web-faq-v3-1-3", "web-faq-v3-1-4", "web-faq-v3-1-5", "web-faq-v3-1-6", "web-faq-v3-1-7", "web-faq-v3-1-8", "web-faq-v3-2-1", "web-faq-v3-2-2", "web-faq-v3-2-3", "web-faq-v3-2-4", "web-faq-v3-2-5", "web-faq-v3-2-6", "web-faq-v3-3-1", "web-faq-v3-3-2", "web-faq-v3-3-3", "web-faq-v3-3-4", "web-faq-v3-3-5", "web-faq-v3-3-6", "web-faq-v3-3-7", "web-faq-v3-3-8", "web-faq-v3-4-1", "web-faq-v3-4-2", "web-faq-v3-4-3", "web-faq-v3-4-4", "web-faq-v3-4-5", "web-faq-v3-4-6", "web-faq-v3-4-7", "web-faq-v3-4-8", "web-faq-v3-5-1", "web-faq-v3-5-2", "web-faq-v3-5-3", "web-faq-v3-5-4", "web-faq-v3-5-5", "web-faq-v3-5-6", "web-faq-v3-5-7", "web-faq-v3-6-1", "web-faq-v3-6-2", "web-faq-v3-6-3", "web-faq-v3-6-4", "web-faq-v3-6-5", "web-faq-v3-6-6", "web-faq-v3-6-7", "web-faq-v3-6-8", "web-faq-v3-7-1", "web-faq-v3-7-2", "web-faq-v3-7-3", "web-faq-v3-7-4", "web-faq-v3-7-5", "web-faq-v3-7-6", "web-faq-v3-7-7", "web-faq-v3-8-1", "web-faq-v3-8-2", "web-faq-v3-8-3", "web-faq-v3-8-4", "web-faq-v3-8-5", "web-faq-v3-8-6"];
+const START = "setting-support";
+const frame = document.getElementById("frame"), scaler = document.getElementById("scaler");
+const EASE = "cubic-bezier(.2,.8,.2,1)", DUR = 380;
+let stack = [], busy = false;
+
+function fit() {
+  const full = innerWidth <= 500;
+  document.body.classList.toggle("full", full);
+  const s = full ? innerWidth / 390 : Math.min(1, (innerHeight - 70) / 844, (innerWidth - 40) / 390);
+  const h = full ? innerHeight / s : 844;
+  scaler.style.transform = `scale(${s})`;
+  scaler.style.width = 390 * s + "px"; scaler.style.height = h * s + "px";
+  frame.style.height = h + "px";
+  frame.querySelectorAll("iframe").forEach(f => f.style.height = h + "px");
+}
+addEventListener("resize", fit);
+
+function make(id) {
+  const f = document.createElement("iframe");
+  f.src = "screens/" + id + ".html"; f.dataset.id = id; f.title = id;
+  f.style.height = frame.style.height || "844px";
+  f.addEventListener("load", () => wire(f));
+  frame.appendChild(f);
+  return f;
+}
+
+function wire(f) {
+  const d = f.contentDocument; if (!d) return;
+  const st = d.createElement("style");
+  st.textContent = `html,body{background:#121212!important;overflow:hidden}
+  .c8-phone{height:${parseFloat(f.style.height) || 844}px!important}
+  [data-go-screen]{cursor:pointer;transition:background .12s}
+  [data-go-screen].is-press{background:rgba(255,255,255,.06)}
+  [data-back]{cursor:pointer}
+  .c8-phone::before{content:"";position:absolute;left:0;right:0;top:0;height:105px;background:var(--bgBase);z-index:19;pointer-events:none}
+  .c8-statusbar{position:relative;z-index:21}`;
+  d.head.appendChild(st);
+  d.addEventListener("click", e => {
+    const back = e.target.closest("[data-back]");
+    if (back) { e.preventDefault(); if (stack.length > 1) history.back(); return; }
+    const go = e.target.closest("[data-go-screen]");
+    if (go && SCREENS.includes(go.dataset.goScreen)) {
+      e.preventDefault(); go.classList.add("is-press");
+      setTimeout(() => go.classList.remove("is-press"), 220);
+      push(go.dataset.goScreen);
+    }
+  });
+  d.addEventListener("pointerdown", e => { const g = e.target.closest("[data-go-screen]"); if (g) g.classList.add("is-press"); });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(t => d.addEventListener(t, () => d.querySelectorAll(".is-press").forEach(x => setTimeout(() => x.classList.remove("is-press"), 120))));
+  swipe(f, d);
+}
+
+function anim(el, from, to, done) {
+  const a = el.animate([{ transform: from }, { transform: to }], { duration: DUR, easing: EASE, fill: "forwards" });
+  a.onfinish = () => { el.style.transform = to; a.cancel(); done && done(); };
+}
+function dimAnim(dim, a, b, done) {
+  const x = dim.animate([{ opacity: a }, { opacity: b }], { duration: DUR, easing: EASE, fill: "forwards" });
+  x.onfinish = () => { dim.style.opacity = b; x.cancel(); done && done(); };
+}
+
+function push(id, fromHistory) {
+  if (busy) return; busy = true;
+  const prev = stack[stack.length - 1];
+  const dim = document.createElement("div"); dim.className = "dim"; frame.appendChild(dim);
+  const f = make(id); f.style.transform = "translateX(100%)";
+  stack.push({ id, f, dim });
+  if (!fromHistory) history.pushState({ depth: stack.length }, "", "#" + stack.map(s => s.id).join("/"));
+  const go = () => {
+    anim(prev.f, "translateX(0)", "translateX(-30%)");
+    dimAnim(dim, 0, .35);
+    anim(f, "translateX(100%)", "translateX(0)", () => { busy = false; });
+  };
+  f.addEventListener("load", go, { once: true });
+}
+
+function pop(fromSwipe) {
+  if (stack.length < 2) return;
+  busy = true;
+  const top = stack.pop(), prev = stack[stack.length - 1];
+  const cur = new DOMMatrix(getComputedStyle(top.f).transform).m41;
+  const pct = Math.max(0, Math.min(1, cur / 390));
+  anim(prev.f, `translateX(${-30 * (1 - pct)}%)`, "translateX(0)");
+  dimAnim(top.dim, .35 * (1 - pct), 0);
+  anim(top.f, `translateX(${pct * 100}%)`, "translateX(100%)", () => { top.f.remove(); top.dim.remove(); busy = false; });
+}
+
+function swipe(f, d) {
+  let x0 = null, y0 = 0, dx = 0, on = false;
+  d.addEventListener("touchstart", e => { const t = e.touches[0]; if (t.clientX < 28 && stack.length > 1 && stack[stack.length - 1].f === f) { x0 = t.clientX; y0 = t.clientY; dx = 0; on = false; } }, { passive: true });
+  d.addEventListener("touchmove", e => {
+    if (x0 === null) return; const t = e.touches[0]; dx = Math.max(0, t.clientX - x0);
+    if (!on && Math.abs(t.clientY - y0) > 12 && dx < 12) { x0 = null; return; }
+    on = true; const p = dx / 390, prev = stack[stack.length - 2], top = stack[stack.length - 1];
+    top.f.style.transform = `translateX(${dx}px)`; prev.f.style.transform = `translateX(${-30 * (1 - p)}%)`; top.dim.style.opacity = .35 * (1 - p);
+  }, { passive: true });
+  d.addEventListener("touchend", () => {
+    if (x0 === null) return; x0 = null; if (!on) return;
+    const top = stack[stack.length - 1], prev = stack[stack.length - 2];
+    if (dx > 110) { history.back(); }
+    else { anim(top.f, `translateX(${dx}px)`, "translateX(0)"); anim(prev.f, prev.f.style.transform, "translateX(-30%)"); top.dim.style.opacity = .35; }
+  });
+}
+
+addEventListener("popstate", () => {
+  const want = (location.hash.slice(1) || START).split("/").filter(x => SCREENS.includes(x));
+  if (want.length < stack.length) pop();
+  else if (want.length > stack.length) push(want[want.length - 1], true);
+});
+
+function reset(path) {
+  frame.innerHTML = ""; stack = []; busy = false;
+  path.forEach((id, i) => {
+    const dim = document.createElement("div"); dim.className = "dim"; if (i) { frame.appendChild(dim); dim.style.opacity = i < path.length - 1 ? .35 : 0; }
+    const f = make(id); f.style.transform = i < path.length - 1 ? "translateX(-30%)" : "translateX(0)";
+    stack.push({ id, f, dim });
+  });
+}
+document.getElementById("home").onclick = () => { history.replaceState(null, "", "#" + START); reset([START]); };
+
+fit();
+let init = (location.hash.slice(1) || START).split("/").filter(x => SCREENS.includes(x));
+if (!init.length || init[0] !== START) init = [START, ...init];
+history.replaceState(null, "", "#" + init.join("/"));
+reset(init);
+</script>
+</body>
+</html>
