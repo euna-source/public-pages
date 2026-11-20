@@ -72,12 +72,28 @@ function wire(f) {
     if (go && SCREENS.includes(go.dataset.goScreen)) {
       e.preventDefault(); go.classList.add("is-press");
       setTimeout(() => go.classList.remove("is-press"), 220);
-      push(go.dataset.goScreen);
+      if (ALERTS.includes(go.dataset.goScreen)) alertOver(d, go.dataset.goScreen);
+      else push(go.dataset.goScreen);
     }
   });
   d.addEventListener("pointerdown", e => { const g = e.target.closest("[data-go-screen]"); if (g) g.classList.add("is-press"); });
   ["pointerup", "pointercancel", "pointerleave"].forEach(t => d.addEventListener(t, () => d.querySelectorAll(".is-press").forEach(x => setTimeout(() => x.classList.remove("is-press"), 120))));
   swipe(f, d);
+}
+
+// 알림창 화면은 넘어가지 않고, 지금 화면 위에 알림창만 덮는다(아니오·이메일 보내기를 누르면 닫힘)
+const ALERTS = ["setting-support-email-alert"];
+async function alertOver(d, id) {
+  const host = d.querySelector(".c8-phone");
+  if (!host || host.querySelector(":scope > .c8-alert-dim")) return;
+  const src = new DOMParser().parseFromString(await (await fetch("screens/" + id + ".html")).text(), "text/html");
+  const dim = src.querySelector(".c8-alert-dim"); if (!dim) return;
+  const el = d.importNode(dim, true);
+  el.style.cssText = "z-index:40;opacity:0;transition:opacity .2s";
+  host.appendChild(el);
+  d.defaultView.requestAnimationFrame(() => { el.style.opacity = 1; });
+  const close = () => { el.style.opacity = 0; setTimeout(() => el.remove(), 200); };
+  el.querySelectorAll(".c8-alert__btns > span").forEach(b => { b.style.cursor = "pointer"; b.addEventListener("click", close); });
 }
 
 function anim(el, from, to, done) {
