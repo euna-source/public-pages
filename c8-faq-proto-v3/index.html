@@ -133,7 +133,7 @@ function pop(fromSwipe) {
 
 function swipe(f, d) {
   let x0 = null, y0 = 0, dx = 0, on = false;
-  d.addEventListener("touchstart", e => { const t = e.touches[0]; if (t.clientX < 28 && stack.length > 1 && stack[stack.length - 1].f === f) { x0 = t.clientX; y0 = t.clientY; dx = 0; on = false; } }, { passive: true });
+  d.addEventListener("touchstart", e => { const t = e.touches[0]; if (t.clientX < 28 && stack.length > 1 && stack[stack.length - 1].f === f && !d.querySelector(".c8-phone > .c8-alert-dim")) { x0 = t.clientX; y0 = t.clientY; dx = 0; on = false; } }, { passive: true });
   d.addEventListener("touchmove", e => {
     if (x0 === null) return; const t = e.touches[0]; dx = Math.max(0, t.clientX - x0);
     if (!on && Math.abs(t.clientY - y0) > 12 && dx < 12) { x0 = null; return; }
@@ -165,7 +165,7 @@ function reset(path) {
 document.getElementById("home").onclick = () => { history.replaceState(null, "", "#" + START); reset([START]); };
 
 fit();
-let init = (location.hash.slice(1) || START).split("/").filter(x => SCREENS.includes(x));
+let init = (location.hash.slice(1) || START).split("/").filter(x => SCREENS.includes(x) && !ALERTS.includes(x));  // 알림창이 끝에 붙은 옛 주소는 뒤 화면까지만 연다
 if (!init.length || init[0] !== START) init = [START, ...init];
 history.replaceState(null, "", "#" + init[0]);  // 깊은 주소로 바로 들어와도 뒤로 가기가 한 화면씩 되돌아가게 단계마다 기록을 쌓는다
 for (let i = 2; i <= init.length; i++) history.pushState(null, "", "#" + init.slice(0, i).join("/"));
