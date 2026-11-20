@@ -1270,5 +1270,13 @@
     "last_kind": "new",
     "last_sha256": "6af0ac124828bf307da2394df337776f7fd653591c2e45a78f7eb9f073d0b2ea",
     "timestamp": "2026-11-20T01:09:17.987325Z"
+  },
+  "genz-adgate-261120": {
+    "slug": "genz-adgate-261120",
+    "mode": "main",
+    "url": "https://euna-source.github.io/public-pages/genz-adgate-261120/",
+    "last_kind": "new",
+    "last_sha256": "fc1fe8b98c62ef21699b1d96a28cb8009f8a0773526dc50336617451321a746f",
+    "timestamp": "2026-11-20T06:02:42.395358Z"
   }
 }
