@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>크루와 오르카 능력 비교</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafaf7;--card:#ffffff;--ink:#1d1d1b;--sub:#6b6b66;--line:#e4e3dc;--grid:#d9d8d0;--orca:#8a8a84;--crew:#2f6fd6;--good:#1f8a5b;--warn:#b5651d;--chip:#f1f0ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151514;--card:#1e1e1c;--ink:#ececE6;--sub:#a3a39c;--line:#33332f;--grid:#3d3d38;--orca:#9b9b94;--crew:#6ea2ff;--good:#4cc08a;--warn:#e19a55;--chip:#2a2a27}}
+:root[data-theme="dark"]{--bg:#151514;--card:#1e1e1c;--ink:#ececE6;--sub:#a3a39c;--line:#33332f;--grid:#3d3d38;--orca:#9b9b94;--crew:#6ea2ff;--good:#4cc08a;--warn:#e19a55;--chip:#2a2a27}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans KR",system-ui,sans-serif;line-height:1.6;word-break:keep-all}
+main{max-width:1080px;margin:0 auto;padding:40px 16px 64px}
+h1{font-size:28px;line-height:1.3;margin:0 0 8px}
+h2{font-size:20px;margin:48px 0 12px}
+p.lead{color:var(--sub);margin:0 0 20px;max-width:760px}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:14px;color:var(--sub);margin:12px 0 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:18px;height:3px;border-radius:2px;display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card h3{margin:0;font-size:17px}
+.card .role{color:var(--sub);font-size:13px;margin:0 0 6px}
+.card svg{width:100%;height:auto;display:block}
+.notes{font-size:14px;margin:8px 0 0;padding:0;list-style:none}
+.notes li{margin:6px 0;padding-left:12px;position:relative}
+.notes li::before{content:"";position:absolute;left:0;top:10px;width:5px;height:5px;border-radius:50%;background:var(--sub)}
+.notes b{font-weight:700}
+.tag-good{color:var(--good)} .tag-warn{color:var(--warn)}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:center}
+th:first-child,td:first-child{text-align:left}
+thead th{background:var(--chip);font-weight:500}
+td.hi{font-weight:700;color:var(--good)} td.lo{font-weight:700;color:var(--warn)}
+.axes{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px;font-size:14px}
+.axes div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.axes b{display:block}
+.map{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px}
+.caveat{font-size:13px;color:var(--sub);margin-top:28px;border-top:1px solid var(--line);padding-top:14px}
+.theme{position:fixed;top:12px;right:12px;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+</style>
+</head>
+<body>
+<button class="theme" id="theme" aria-label="화면 밝기 바꾸기">밝기</button>
+<main>
+<h1>크루 다섯과 오르카 봇, 육각형 능력 비교</h1>
+<p class="lead">오픈소스 Orca Bots를 기준선(회색)으로 두고 크루원 다섯을 같은 여섯 축에서 견줬습니다. 오르카는 약속을 코드로 지키는 쪽이 강하고, 크루는 샐리의 정정을 학습하고 고친 뒤 다시 확인하는 쪽이 강합니다.</p>
+<div class="legend"><span><i class="sw" style="background:var(--orca)"></i>오르카 봇</span><span><i class="sw" style="background:var(--crew)"></i>크루원</span><span>점수 1~5 · 높을수록 그 능력이 장치로 돌아감</span></div>
+
+<h2>여섯 축</h2>
+<div class="axes">
+<div><b>기억</b>쓰고, 정리하고, 다시 찾아 쓰는 힘. 넘친 기억을 숨기지 않는지도 봅니다.</div>
+<div><b>스스로 일 찾기</b>부르지 않아도 할 일을 찾고, 없으면 조용히 끝내는 힘.</div>
+<div><b>사람 확인</b>샐리가 정할 것을 한 번에 고르기 쉽게 묻고, 승인 범위를 지키는 힘.</div>
+<div><b>안전 강제</b>위험한 일·비밀·권한을 말이 아니라 코드로 막는 정도.</div>
+<div><b>정직한 보고</b>못 읽음을 0이나 없음으로 쓰지 않고, 증거가 있을 때만 「했다」고 하는 힘.</div>
+<div><b>검증·평가</b>시험·채점·사고 회귀로 같은 실수를 다시 못 하게 하는 힘.</div>
+</div>
+
+<h2>크루원별 육각형</h2>
+<div class="grid" id="cards"></div>
+
+<h2>포지셔닝 맵</h2>
+<div class="map"><svg id="map" viewBox="0 0 640 440" role="img" aria-label="자율성과 강제 정도 포지셔닝 맵"></svg></div>
+<p class="lead" style="margin-top:12px">가로는 스스로 움직이는 정도, 세로는 코드로 강제하는 정도(안전 강제와 검증·평가의 평균)입니다. 오르카와 루프만 오른쪽 위에 있고, 레인·젠지·키키는 말로 지키는 왼쪽 아래에 모여 있습니다. 크루가 오른쪽 위로 가는 길은 장치를 늘리는 것이 아닙니다. 이미 있는 규칙 가운데 반복해서 어겨진 것만 코드로 옮기는 것입니다.</p>
+
+<h2>점수표</h2>
+<div class="wrap"><table id="tbl"></table></div>
+
+<p class="caveat">점수는 측정값이 아닙니다. 오르카 핵심 840파일을 세 번 읽고 크루원마다 렌즈별로 「있다·약하다·없다·크루가 낫다」를 판정한 비교표를, 축마다 1~5점으로 옮긴 판정값입니다. 오르카는 봇 한 종류의 설계를 기준으로 했고, 실제 운영 성과는 재지 않았습니다. 2026-11-22 기준.</p>
+</main>
+<script>
+const AX=["기억","스스로 일 찾기","사람 확인","안전 강제","정직한 보고","검증·평가"];
+const ORCA=[4.5,4,4,5,4.5,4];
+const CREW=[
+ {n:"🎀 키키",r:"비서·기획",s:[3,3,3.5,2.5,3.5,2],
+  good:"샐리 정정에서 고른 모범 답안과 「왜 맞나」가 있습니다. 브리프가 못 읽은 곳을 첫 문장에 밝히고, 관제가 그날 브리프를 검사합니다. 둘 다 오르카에 없습니다.",
+  gap:"검증·평가가 2점입니다. 회귀 시험이 없고, 「없어요」를 어디까지 보고 말했는지 밝히지 않습니다.",
+  next:"「본 곳에서 못 찾았어요」로 범위를 붙이고, 「챙길게요」는 다시 여는 장치를 건 뒤에만 말합니다."},
+ {n:"✅ 나나",r:"QA·개발",s:[3,2.5,3.5,3.5,3,4],
+  good:"검증·평가 4점으로 오르카와 같습니다. 회귀 시험 5개와 실패를 막는 린트가 있고, 판정 근거를 앱 판 단위로 고정합니다.",
+  gap:"스스로 일 찾기가 2.5점입니다. 「개발 완료」 같은 이벤트를 기다리지 못해 매일 찾아보고, 막힌 출처도 회차마다 다시 시도합니다.",
+  next:"완료 사다리를 둡니다. 재현·격리 시험·실제 적용·실앱 가운데 어디까지 확인했는지 보고마다 한 구절로 밝힙니다."},
+ {n:"📚 레인",r:"지식",s:[4,2.5,3,2.5,3.5,1.5],
+  good:"기억은 크루에서 가장 강합니다. 독립 근거 둘이 있어야 승격하고, 회상 자체 시험을 하며, 두 Mac 대화를 한 회상으로 묶습니다.",
+  gap:"검증·평가가 1.5점입니다. 조사 회귀 시험 세트가 없고, 독후감 무작위 점검도 멈춰 있습니다.",
+  next:"정의 맨 앞에 「묻지 않고 하는 것 / 절대 안 하는 것」을 둡니다. 틀렸던 질문으로 회귀 세트를 만듭니다."},
+ {n:"📷 젠지",r:"콘텐츠",s:[2.5,2.5,3,2,3.5,2],
+  good:"정직한 보고는 오르카보다 낫다는 판정입니다. 못 읽은 게시물·반응을 그렇다고 씁니다.",
+  gap:"안전 강제가 2점입니다. 로그인된 브라우저를 「읽기만」 하는 규칙이 문장뿐이고, 반응이 없는데도 13회차 동안 제안 생산이 이어졌습니다.",
+  next:"샐리 별점이 세 번 연속 없으면 새 안을 멈추고, 별점 카드 한 장만 보냅니다."},
+ {n:"🛠️ 루프",r:"점검",s:[2.5,4,3,3,4,3.5],
+  good:"찾은 자리에서 고치고 다시 검사하며, 결과물 나이를 감시하고, 여유 계정을 자동으로 고릅니다. 이 셋은 오르카에 없습니다.",
+  gap:"기억이 2.5점입니다. 원장이 1,144줄인데 정리 규칙이 한 번도 돌지 않았고, 두 Mac이 같은 원장 끝에 덧붙여 갈라집니다.",
+  next:"원장 상태를 못 읽으면 0이 아니라 「못 셈」으로 올리고, 사용 한도로 못 돈 회차는 실패가 아니라 「놓침」으로 셉니다."}
+];
+const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+function radar(scores,orcaOnly){
+ const W=380,H=280,cx=190,cy=145,R=95,n=6;
+ const pt=(i,v)=>{const a=-Math.PI/2+i*2*Math.PI/n;return[cx+Math.cos(a)*R*v/5,cy+Math.sin(a)*R*v/5]};
+ let g="";
+ for(let k=1;k<=5;k++){g+=`<polygon points="${AX.map((_,i)=>pt(i,k).join(",")).join(" ")}" fill="none" stroke="var(--grid)" stroke-width="${k===5?1.2:0.7}"/>`}
+ AX.forEach((a,i)=>{const[x,y]=pt(i,5);g+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--grid)" stroke-width="0.7"/>`;
+  const[lx,ly]=pt(i,6.15);const anchor=Math.abs(lx-cx)<8?"middle":(lx>cx?"start":"end");
+  g+=`<text x="${lx}" y="${ly+4}" font-size="12" fill="var(--sub)" text-anchor="${anchor}">${a}</text>`});
+ const poly=(s,c,op,dash)=>`<polygon points="${s.map((v,i)=>pt(i,v).join(",")).join(" ")}" fill="${c}" fill-opacity="${op}" stroke="${c}" stroke-width="2" ${dash?'stroke-dasharray="5 4"':''}/>`;
+ if(orcaOnly){g+=poly(ORCA,"var(--orca)",0.22,false);return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="육각형 능력 그래프">${g}</svg>`}
+ g+=poly(ORCA,"var(--orca)",0.10,true)+poly(scores,"var(--crew)",0.18,false);
+ scores.forEach((v,i)=>{const[x,y]=pt(i,v);g+=`<circle cx="${x}" cy="${y}" r="3" fill="var(--crew)"/>`});
+ return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="육각형 능력 그래프">${g}</svg>`;
+}
+document.getElementById("cards").innerHTML=
+ `<div class="card"><h3>🐋 오르카 봇</h3><p class="role">기준선 · 사용자의 코딩 에이전트 위에서 도는 상주 봇</p>${radar(ORCA,true)}
+ <ul class="notes"><li><b class="tag-good">강점</b> 위험한 일과 비밀을 모델에게 부탁하지 않고 도구 호출 지점에서 막습니다. 못 읽으면 0이 아니라 모름으로 둡니다.</li>
+ <li><b class="tag-warn">약점</b> 답 없는 질문을 다시 알리지 않습니다. 사람의 정정을 학습 재료로 쓰지 않습니다. 결과물을 고친 뒤 다시 검사하지 않고, 계정도 자동으로 고르지 않습니다.</li></ul></div>`+
+ CREW.map(c=>`<div class="card"><h3>${c.n}</h3><p class="role">${c.r}</p>${radar(c.s)}
+ <ul class="notes"><li><b class="tag-good">앞선 점</b> ${c.good}</li><li><b class="tag-warn">가장 큰 차이</b> ${c.gap}</li><li><b>먼저 할 일</b> ${c.next}</li></ul></div>`).join("");
+// table
+const rows=[{n:"🐋 오르카",s:ORCA},...CREW.map(c=>({n:c.n,s:c.s}))];
+document.getElementById("tbl").innerHTML=`<thead><tr><th>누구</th>${AX.map(a=>`<th>${a}</th>`).join("")}<th>평균</th></tr></thead><tbody>`+
+ rows.map(r=>{const avg=(r.s.reduce((a,b)=>a+b,0)/6).toFixed(1);return `<tr><td>${r.n}</td>${r.s.map((v,i)=>{const d=r.n.includes("오르카")?"":(v>=ORCA[i]?"hi":(ORCA[i]-v>=2?"lo":""));return `<td class="${d}">${v}</td>`}).join("")}<td>${avg}</td></tr>`}).join("")+"</tbody>";
+// map
+(function(){const W=640,H=440,L=70,T=30,PW=530,PH=350;const X=v=>L+(v-1)/4*PW,Y=v=>T+PH-(v-1)/4*PH;
+ let g=`<rect x="${L}" y="${T}" width="${PW}" height="${PH}" fill="none" stroke="var(--line)"/>`;
+ g+=`<line x1="${X(3)}" y1="${T}" x2="${X(3)}" y2="${T+PH}" stroke="var(--grid)" stroke-dasharray="4 4"/><line x1="${L}" y1="${Y(3)}" x2="${L+PW}" y2="${Y(3)}" stroke="var(--grid)" stroke-dasharray="4 4"/>`;
+ [1,2,3,4,5].forEach(v=>{g+=`<text x="${X(v)}" y="${T+PH+18}" font-size="11" fill="var(--sub)" text-anchor="middle">${v}</text><text x="${L-10}" y="${Y(v)+4}" font-size="11" fill="var(--sub)" text-anchor="end">${v}</text>`});
+ g+=`<text x="${L+PW/2}" y="${H-6}" font-size="13" fill="var(--sub)" text-anchor="middle">스스로 움직이는 정도 →</text>`;
+ g+=`<text x="18" y="${T+PH/2}" font-size="13" fill="var(--sub)" text-anchor="middle" transform="rotate(-90 18 ${T+PH/2})">코드로 강제하는 정도 →</text>`;
+ g+=`<text x="${L+PW-8}" y="${T+18}" font-size="12" fill="var(--sub)" text-anchor="end">스스로 하되 코드로 지킴</text><text x="${L+8}" y="${T+PH-8}" font-size="12" fill="var(--sub)">부르면 하고 말로 지킴</text>`;
+ const pts=[{n:"오르카",x:ORCA[1],y:(ORCA[3]+ORCA[5])/2,c:"var(--orca)",dx:10,dy:-8},...CREW.map((c,i)=>({n:c.n.split(" ")[1],x:c.s[1],y:(c.s[3]+c.s[5])/2,c:"var(--crew)",dx:[10,10,-12,10,10][i],dy:[4,4,-10,16,4][i]}))];
+ pts.forEach(p=>{g+=`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="8" fill="${p.c}" fill-opacity="0.85"/><text x="${X(p.x)+p.dx}" y="${Y(p.y)+p.dy}" font-size="13" fill="var(--ink)" text-anchor="${p.dx<0?'end':'start'}">${p.n}</text>`});
+ document.getElementById("map").innerHTML=g;})();
+// theme toggle
+(function(){const b=document.getElementById("theme"),r=document.documentElement;let saved=null;try{saved=localStorage.getItem("theme")}catch(e){}
+ if(saved)r.setAttribute("data-theme",saved);
+ b.onclick=()=>{const dark=r.getAttribute("data-theme")?r.getAttribute("data-theme")==="dark":matchMedia("(prefers-color-scheme: dark)").matches;const nx=dark?"light":"dark";r.setAttribute("data-theme",nx);try{localStorage.setItem("theme",nx)}catch(e){}};})();
+</script>
+</body>
+</html>
